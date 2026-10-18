@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Writing Master - ইংরেজি রাইটিং মাস্টার</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Hind Siliguri & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- JS Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Inter', 'sans-serif'],
+                        english: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #0f172a;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.4);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 4px;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(0.98); }
+        }
+        .animated-pulse {
+            animation: pulse-subtle 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-700/50 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold text-xl shadow-lg glow-effect">
+                    <i class="fa-solid font-english fa-pen-nib"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">English Writing Master</h1>
+                    <p class="text-xs text-slate-400 hidden sm:block">ফ্রি হ্যান্ড রাইটিং ও ৫০টি প্র্যাকটিস টপিক</p>
+                </div>
+            </div>
+
+            <!-- Global Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg transition-all flex items-center space-x-2 bg-brand-600/20 text-brand-400 border border-brand-500/30">
+                    <i class="fa-solid fa-house"></i>
+                    <span>হোম / ড্যাশবোর্ড</span>
+                </button>
+                <button onclick="navigateTo('guide')" id="nav-guide" class="nav-btn px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>গাইডলাইন</span>
+                </button>
+                <button onclick="navigateTo('topics')" id="nav-topics" class="nav-btn px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>৫০টি টপিক</span>
+                </button>
+                <button onclick="navigateTo('stats')" id="nav-stats" class="nav-btn px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>অগ্রগতি ও পরিসংখ্যান</span>
+                </button>
+            </nav>
+
+            <!-- Quick Action & Theme Controls -->
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex items-center bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700 text-xs text-amber-400">
+                    <i class="fa-solid fa-fire mr-1.5 text-amber-500"></i>
+                    <span>স্ট্রিক: <strong id="streak-count" class="font-english">3</strong> দিন</span>
+                </div>
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 transition">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-slate-700/60 space-y-2">
+            <button onclick="navigateTo('home'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 flex items-center space-x-3">
+                <i class="fa-solid fa-house w-5"></i>
+                <span>হোম / ড্যাশবোর্ড</span>
+            </button>
+            <button onclick="navigateTo('guide'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 flex items-center space-x-3">
+                <i class="fa-solid fa-book-open w-5"></i>
+                <span>গাইডলাইন</span>
+            </button>
+            <button onclick="navigateTo('topics'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 flex items-center space-x-3">
+                <i class="fa-solid fa-list-check w-5"></i>
+                <span>৫০টি প্র্যাকটিস টপিক</span>
+            </button>
+            <button onclick="navigateTo('stats'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 flex items-center space-x-3">
+                <i class="fa-solid fa-chart-line w-5"></i>
+                <span>অগ্রগতি ও পরিসংখ্যান</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- PAGE 1: HOME / DASHBOARD -->
+        <section id="page-home" class="page-content space-y-8">
+            <!-- Hero Banner -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden border border-brand-500/20">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-brand-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute right-1/3 -top-10 w-48 h-48 bg-accent-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                
+                <div class="max-w-3xl space-y-4 relative z-10">
+                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-brand-500/20 text-brand-300 text-xs font-semibold border border-brand-500/30">
+                        ✨ ইংরেজি রাইটিং শিক্ষার নতুন দিগন্ত
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                        ইংরেজিতে নিখুঁতভাবে চিন্তা করুন ও <span class="bg-gradient-to-r from-brand-400 via-indigo-300 to-pink-400 bg-clip-text text-transparent">Free Hand Write</span> করুন
+                    </h2>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                        মুখস্থ না করে নিজে নিজে সঠিক ব্যাকরণে ফ্রি হ্যান্ড রাইটিং শেখার এক পূর্ণাঙ্গ ও ইন্টারেক্টিভ কোর্স। ৫০টি বাস্তবভিত্তিক টপিক প্র্যাকটিস করুন, অটোমেটিক এআই স্পেল ও গ্রামার চেক পান এবং উচ্চারণ শুনুন।
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="navigateTo('topics')" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 text-white font-semibold shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all duration-200 flex items-center space-x-2">
+                            <span>অনুশীলন শুরু করুন</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button onclick="navigateTo('guide')" class="px-6 py-3.5 rounded-xl bg-slate-800/80 border border-slate-700 hover:bg-slate-700 text-slate-200 font-semibold transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-lightbulb text-amber-400"></i>
+                            <span>ফ্রি হ্যান্ড গাইড পড়ুন</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Summary -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-book font-english"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">মোট টপিক</p>
+                        <h3 class="text-2xl font-bold font-english text-white">50</h3>
+                    </div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">সম্পন্ন টপিক</p>
+                        <h3 id="dash-completed-count" class="text-2xl font-bold font-english text-emerald-400">0</h3>
+                    </div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">গড় স্কোর</p>
+                        <h3 id="dash-avg-score" class="text-2xl font-bold font-english text-amber-400">0%</h3>
+                    </div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-pen-fancy"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">মোট লিখিত শব্দ</p>
+                        <h3 id="dash-words-written" class="text-2xl font-bold font-english text-cyan-400">0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Overview -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-layer-group text-brand-400"></i>
+                        <span>বিভাগসমূহ (৫টি ক্যাটাগরি)</span>
+                    </h3>
+                    <button onclick="navigateTo('topics')" class="text-xs text-brand-400 hover:text-brand-300 font-semibold flex items-center space-x-1">
+                        <span>সবগুলো দেখুন</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div id="category-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Populated dynamically via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: FREE HAND WRITING GUIDE -->
+        <section id="page-guide" class="page-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6 border border-slate-800">
+                <div class="border-b border-slate-700/80 pb-4">
+                    <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-500/20 text-brand-300">শিক্ষণ নির্দেশিকা</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-2">ফ্রি হ্যান্ড রাইটিং (Free Hand Writing) শেখার পূর্ণাঙ্গ গাইডলাইন</h2>
+                    <p class="text-slate-400 mt-1">কখনও মুখস্থ না করে নিজের চিন্তা ইংরেজিতে সাবলীলভাবে লেখার প্রমাণিত ৩টি ধাপ</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Step 1 -->
+                    <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/60 relative">
+                        <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4">১</div>
+                        <h3 class="text-lg font-bold text-slate-100 mb-2">চিন্তাভাবনা ইংরেজিতে স্থানান্তর</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            আমরা সাধারণত বাংলায় চিন্তা করে ইংরেজিতে অনুবাদ করি। ফলে বাক্য গঠন ভুল হয়। প্রতিদিন ছোট ছোট ঘটনা সরাসরি ইংরেজিতে ভাবার চেষ্টা করুন। ব্যাকরণ বা বানান ভুল হওয়া নিয়ে শুরুতে থামবেন না, আগে চিন্তার প্রবাহ বজায় রেখে লিখে যান।
+                        </p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/60 relative">
+                        <div class="w-10 h-10 rounded-full bg-accent-600 text-white font-bold flex items-center justify-center mb-4">২</div>
+                        <h3 class="text-lg font-bold text-slate-100 mb-2">মৌলিক বাক্য গঠন (SVO Pattern)</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            ইংরেজি বাক্যের মূল কাঠামো হলো <strong>Subject + Verb + Object</strong>। ছোট ছোট বাক্য থেকে শুরু করুন। যেমন: <em>I read a book</em>. পরবর্তীতে Adverb বা Prepositionাল ফ্রেজ যুক্ত করে বাক্য বড় করুন: <em>I read an interesting book in the library every afternoon.</em>
+                        </p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/60 relative">
+                        <div class="w-10 h-10 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center mb-4">৩</div>
+                        <h3 class="text-lg font-bold text-slate-100 mb-2">লিংকিং ওয়ার্ডস (Linking Words) ব্যবহার</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            লেখা সুন্দর ও আকর্ষণীয় করতে বাক্যগুলো সংযোগকারী শব্দ দিয়ে যুক্ত করুন। যেমন:
+                            <br>• কারণ ও ফলাফল: <em>Because, So, Therefore, As a result</em>
+                            <br>• তথ্য যোগ করতে: <em>Moreover, In addition, Furthermore</em>
+                            <br>• বৈপরীত্য প্রকাশে: <em>However, Although, On the other hand</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Daily Action Routine -->
+                <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <h3 class="text-xl font-bold text-amber-400 flex items-center space-x-2">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>দৈনন্দিন ৪টি অভ্যাসের তালিকা (Daily Routine)</span>
+                    </h3>
+                    <ul class="grid sm:grid-cols-2 gap-4 text-sm text-slate-300">
+                        <li class="flex items-start space-x-3 bg-slate-800/40 p-3 rounded-xl border border-slate-700/40">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1"></i>
+                            <span><strong>জার্নালিং:</strong> প্রতিদিন ঘুমানোর আগে সারা দিন কেমন কাটল ৩-৫ লাইন ইংরেজিতে লিখুন।</span>
+                        </li>
+                        <li class="flex items-start space-x-3 bg-slate-800/40 p-3 rounded-xl border border-slate-700/40">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1"></i>
+                            <span><strong>Read-to-Write:</strong> প্রতিদিন ১০ মিনিট সহজ ইংরেজি বই/নিউজ পড়ুন এবং ভালো বাক্য টুকে রাখুন।</span>
+                        </li>
+                        <li class="flex items-start space-x-3 bg-slate-800/40 p-3 rounded-xl border border-slate-700/40">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1"></i>
+                            <span><strong>ভুল সংশোধন:</strong> আপনার লেখার ভুলগুলো অ্যাপের এআই চেক দিয়ে আত্মস্থ করে নিন।</span>
+                        </li>
+                        <li class="flex items-start space-x-3 bg-slate-800/40 p-3 rounded-xl border border-slate-700/40">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1"></i>
+                            <span><strong> ভোকাবুলারি প্রয়োগ:</strong> প্রতিদিন নতুন ৩টি শব্দ শিখে সেগুলো দিয়ে নিজ বাক্য বানান।</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: PRACTICE TOPICS CATALOG -->
+        <section id="page-topics" class="page-content hidden space-y-6">
+            <!-- Header and Search -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 glass-card p-6 rounded-2xl border border-slate-800">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">৫০টি দৈনন্দিন অনুশীলনের টপিক</h2>
+                    <p class="text-slate-400 text-sm">পছন্দের ক্যাটাগরি বেছে নিন এবং সরাসরি প্র্যাকটিস শুরু করুন</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="relative w-full md:w-64">
+                        <i class="fa-solid fa-search absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+                        <input type="text" id="topic-search-input" oninput="filterTopics()" placeholder="টপিক খুঁজুন..." class="w-full pl-10 pr-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 text-slate-200">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex items-center space-x-2 overflow-x-auto custom-scrollbar pb-2" id="category-tabs">
+                <!-- Tabs rendered dynamically -->
+            </div>
+
+            <!-- Topics List Grid -->
+            <div id="topics-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamically generated topic cards -->
+            </div>
+        </section>
+
+        <!-- PAGE 4: INTERACTIVE PRACTICE WORKSPACE (Single Topic view) -->
+        <section id="page-workspace" class="page-content hidden space-y-6">
+            <!-- Back Navigation Header -->
+            <div class="flex items-center justify-between">
+                <button onclick="navigateTo('topics')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium transition flex items-center space-x-2 border border-slate-700">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>সব টপিকে ফিরে যান</span>
+                </button>
+                <div id="workspace-category-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-300 border border-brand-500/30">
+                    ক্যাটাগরি
+                </div>
+            </div>
+
+            <!-- Main Topic Title & Description Box -->
+            <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-3">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span id="workspace-topic-number" class="text-xs font-bold text-slate-400 uppercase tracking-wider font-english">Topic #01</span>
+                        <h2 id="workspace-topic-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">My Daily Routine</h2>
+                    </div>
+                    <button onclick="toggleModelAnswer()" class="px-4 py-2.5 rounded-xl bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 border border-amber-500/30 text-xs sm:text-sm font-semibold transition flex items-center space-x-2 shrink-0">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <span>সঠিক উত্তর ও নমুনা দেখুন</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expandable Model Answer & Explanation Modal/Section -->
+            <div id="model-answer-container" class="hidden glass-card p-6 rounded-2xl border border-amber-500/30 bg-amber-950/10 space-y-4">
+                <div class="flex items-center justify-between border-b border-amber-500/20 pb-3">
+                    <h3 class="text-lg font-bold text-amber-400 flex items-center space-x-2">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <span>নমুনা লেখা ও ব্যাখ্যা (Model Passage & Analysis)</span>
+                    </h3>
+                    <div class="flex items-center space-x-2">
+                        <!-- TTS Button for Model Answer -->
+                        <button onclick="speakText(document.getElementById('model-passage-text').innerText)" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 text-xs font-medium flex items-center space-x-1">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>উচ্চারণ শুনুন</span>
+                        </button>
+                        <button onclick="toggleModelAnswer()" class="text-slate-400 hover:text-white text-lg px-2">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Model Text Passage -->
+                <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800">
+                    <p id="model-passage-text" class="text-slate-200 text-base leading-relaxed font-english"></p>
+                </div>
+
+                <!-- Sentence Structure Analysis & Grammar Notes -->
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <h4 class="font-bold text-brand-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <span>বাক্য গঠন বিশ্লেষণ (Sentence Structure)</span>
+                        </h4>
+                        <ul id="model-sentence-breakdown" class="space-y-1.5 text-slate-300 text-xs sm:text-sm">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <h4 class="font-bold text-accent-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-spell-check"></i>
+                            <span>জরুরি ভোকাবুলারি ও অর্থ</span>
+                        </h4>
+                        <div id="model-vocab-list" class="flex flex-wrap gap-2 pt-1">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Writing Area & Interactive Editor -->
+            <div class="grid lg:grid-cols-12 gap-6">
+                <!-- Left: Writing Canvas -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-3">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-semibold text-slate-300 flex items-center space-x-2">
+                                <i class="fa-solid fa-pen-clip text-brand-400"></i>
+                                <span>আপনার নিজের মতো করে ইংরেজিতে লিখুন:</span>
+                            </span>
+                            <div class="flex items-center space-x-3 font-english">
+                                <span>Words: <strong id="word-count" class="text-brand-400">0</strong></span>
+                                <span>Chars: <strong id="char-count" class="text-accent-400">0</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Main Input Area -->
+                        <div class="relative">
+                            <textarea id="student-writing-input" oninput="updateWritingStats()" rows="10" placeholder="Start typing your thoughts in English for this topic... (e.g., I wake up early in the morning and start my day...)" class="w-full p-4 bg-slate-900/90 border border-slate-700 rounded-xl text-slate-100 font-english placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-base leading-relaxed resize-y custom-scrollbar"></textarea>
+                        </div>
+
+                        <!-- Editor Toolbar & Controls -->
+                        <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                            <div class="flex items-center space-x-2">
+                                <!-- TTS Button for Student Input -->
+                                <button onclick="speakStudentText()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-semibold flex items-center space-x-2 transition">
+                                    <i class="fa-solid fa-volume-high text-brand-400"></i>
+                                    <span>লেখা শুনুন (TTS)</span>
+                                </button>
+                                <button onclick="clearStudentInput()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-rose-400 border border-slate-700 text-xs font-semibold flex items-center space-x-2 transition">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    <span>মুছে ফেলুন</span>
+                                </button>
+                            </div>
+
+                            <button onclick="evaluateStudentWriting()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold text-sm shadow-lg shadow-brand-500/20 flex items-center space-x-2 transition hover:scale-105">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>অটোমেটিক ভুল চেক করুন</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Live Feedback & AI Evaluation Dashboard -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div id="evaluation-placeholder" class="glass-card p-8 rounded-2xl border border-slate-800 text-center space-y-4 flex flex-col items-center justify-center min-h-[350px]">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-200">লেখা মূল্যায়নের জন্য প্রস্তুত</h4>
+                            <p class="text-xs text-slate-400 mt-1 max-w-xs">বামে বক্সে আপনার উত্তরটি লিখুন এবং "অটোমেটিক ভুল চেক করুন" বোতামে চাপ দিন।</p>
+                        </div>
+                    </div>
+
+                    <!-- Evaluation Result Panel (Initially Hidden) -->
+                    <div id="evaluation-results" class="hidden glass-card p-6 rounded-2xl border border-slate-800 space-y-6">
+                        <!-- Score Cards -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-bold text-slate-200">সার্বিক স্কোর (Overall Score)</span>
+                                <span id="eval-score-percent" class="text-xl font-extrabold font-english text-brand-400">85%</span>
+                            </div>
+                            <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+                                <div id="eval-score-bar" class="h-full bg-gradient-to-r from-brand-500 to-emerald-400 transition-all duration-1000" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score Breakdown Metrics -->
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                            <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                                <p class="text-slate-400 mb-1">Grammar</p>
+                                <p id="eval-grammar-score" class="font-bold text-emerald-400 font-english text-sm">90%</p>
+                            </div>
+                            <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                                <p class="text-slate-400 mb-1">Vocabulary</p>
+                                <p id="eval-vocab-score" class="font-bold text-amber-400 font-english text-sm">80%</p>
+                            </div>
+                            <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                                <p class="text-slate-400 mb-1">Structure</p>
+                                <p id="eval-struct-score" class="font-bold text-brand-400 font-english text-sm">85%</p>
+                            </div>
+                        </div>
+
+                        <!-- Sentence Feedback & Highlighted Corrections -->
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-bold text-slate-200 flex items-center space-x-2">
+                                <i class="fa-solid fa-list-check text-brand-400"></i>
+                                <span>বাক্যের ভুল ও সংশোধন সূচী:</span>
+                            </h4>
+                            <div id="eval-feedback-list" class="space-y-3 max-h-80 overflow-y-auto custom-scrollbar pr-1">
+                                <!-- Feedback Cards rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: STATS & PROGRESS -->
+        <section id="page-stats" class="page-content hidden space-y-6">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">আপনার শিক্ষা অগ্রগতি ও পরিসংখ্যান</h2>
+                    <p class="text-slate-400 text-sm mt-1">আপনার অনুশীলনের বর্তমান অবস্থা এবং সামগ্রিক স্কোর দেখুন</p>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-5">
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 space-y-2">
+                        <span class="text-xs text-slate-400">সম্পন্ন করা অনুশীলন</span>
+                        <div class="flex items-baseline space-x-2">
+                            <h3 id="stats-completed" class="text-3xl font-bold font-english text-brand-400">0</h3>
+                            <span class="text-xs text-slate-500 font-english">/ 50 Topics</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 space-y-2">
+                        <span class="text-xs text-slate-400">গড় পারফরম্যান্স</span>
+                        <h3 id="stats-avg-score" class="text-3xl font-bold font-english text-emerald-400">0%</h3>
+                    </div>
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 space-y-2">
+                        <span class="text-xs text-slate-400">মোট ব্যবহৃত শব্দ</span>
+                        <h3 id="stats-words" class="text-3xl font-bold font-english text-amber-400">0</h3>
+                    </div>
+                </div>
+
+                <!-- History Table -->
+                <div class="space-y-3">
+                    <h3 class="text-lg font-bold text-white">সাম্প্রতিক অনুশীলনের ইতিহাস</h3>
+                    <div class="overflow-x-auto rounded-xl border border-slate-800">
+                        <table class="w-full text-left text-sm text-slate-300">
+                            <thead class="bg-slate-800/80 text-xs text-slate-400 uppercase">
+                                <tr>
+                                    <th class="px-4 py-3">টপিক নাম</th>
+                                    <th class="px-4 py-3">তারিখ</th>
+                                    <th class="px-4 py-3">শব্দ সংখ্যা</th>
+                                    <th class="px-4 py-3">স্কোর</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body" class="divide-y divide-slate-800 bg-slate-900/40">
+                                <tr>
+                                    <td colspan="4" class="px-4 py-6 text-center text-slate-500">এখনো কোনো প্র্যাকটিস সাবমিট করা হয়নি।</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-card border-t border-slate-800 py-6 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>© 2026 English Writing Master. স্বতঃস্ফূর্ত ইংরেজি রাইটিং শেখার সহজ অ্যাপ।</p>
+            <p class="text-slate-500">নিয়মিত অনুশীলনই দক্ষতার মূল চাবিকাঠি</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Application Logic -->
+    <script>
+        // Data Structure for Topics & Categories
+        const categories = [
+            { id: 'all', name: 'সবগুলো', icon: 'fa-list' },
+            { id: 'personal', name: 'ক. ব্যক্তিগত জীবন ও পরিচয়', icon: 'fa-user' },
+            { id: 'family', name: 'খ. পরিবার ও সমাজ', icon: 'fa-users' },
+            { id: 'environment', name: 'গ. পরিবেশ ও ভ্রমণ', icon: 'fa-tree' },
+            { id: 'tech', name: 'ঘ. প্রযুক্তি ও ক্যারিয়ার', icon: 'fa-laptop-code' },
+            { id: 'health', name: 'ঙ. স্বাস্থ্য ও জীবনধারা', icon: 'fa-heart-pulse' }
+        ];
+
+        // 50 Full Topics with detailed Model Answers & Explanations
+        const topics = [
+            // Category: Personal (1-10)
+            {
+                id: 1, category: 'personal', title: 'My Daily Routine',
+                model: 'I wake up early in the morning and start my day with a glass of water. After offering my morning prayers, I go for a short walk to feel fresh. Throughout the day, I balance my study, work, and personal chores. In the evening, I spend time with my family and read books before going to bed.',
+                breakdown: [
+                    'I wake up early... (SVO Structure, Present Simple Tense)',
+                    'After offering... (Prepositional clause for time sequence)',
+                    'Throughout the day... (Adverbial phrase showing duration)'
+                ],
+                vocab: [
+                    { word: 'Routine', meaning: 'দৈনন্দিন কাজের নিয়ম' },
+                    { word: 'Balance', meaning: 'ভারসাম্য রক্ষা করা' },
+                    { word: 'Chores', meaning: 'গৃহস্থালির কাজ' }
+                ]
+            },
+            {
+                id: 2, category: 'personal', title: 'My Childhood Memories',
+                model: 'My childhood was full of fun, laughter, and endless playing with neighborhood friends. We used to spend our afternoons playing cricket and football in open fields. I cherish the rainy days when we made paper boats and ran around without a care in the world.',
+                breakdown: [
+                    'My childhood was full of... (Past tense describing states)',
+                    'We used to spend... ("Used to" for past habits)',
+                    'I cherish... (Expressing deep fondness for memories)'
+                ],
+                vocab: [
+                    { word: 'Cherish', meaning: 'হৃদয়ে যত্ন করে রাখা' },
+                    { word: 'Endless', meaning: 'অসীম / শেষহীন' }
+                ]
+            },
+            {
+                id: 3, category: 'personal', title: 'My Best Friend',
+                model: 'My best friend is someone who has always supported me through thick and thin. We share a strong bond built on mutual trust, honesty, and shared interests. Whenever I face a problem, I know I can count on my friend for genuine advice and comfort.',
+                breakdown: [
+                    'through thick and thin... (Idiomatic expression meaning in all situations)',
+                    'built on mutual trust... (Passive descriptive clause)'
+                ],
+                vocab: [
+                    { word: 'Mutual', meaning: 'পারস্পরিক' },
+                    { word: 'Count on', meaning: 'নির্ভর করা' }
+                ]
+            },
+            {
+                id: 4, category: 'personal', title: 'My Favorite Hobby',
+                model: 'Reading books is my absolute favorite hobby because it opens doors to new worlds. It not only expands my knowledge but also helps me relax after a long day. I love exploring various genres, from inspiring biographies to gripping fiction.',
+                breakdown: [
+                    'Reading books is... (Gerund as subject)',
+                    'Not only... but also... (Correlative conjunction)'
+                ],
+                vocab: [
+                    { word: 'Absolute', meaning: 'সম্পূর্ণ / চরম' },
+                    { word: 'Gripping', meaning: 'অত্যন্ত আকর্ষণীয়' }
+                ]
+            },
+            {
+                id: 5, category: 'personal', title: 'My Ultimate Dream',
+                model: 'My dream is to travel the world, learn about diverse cultures, and make a positive impact on society. I work hard every day to build a career that gives me the freedom to pursue this goal. Achieving this dream would give my life a true sense of fulfillment.',
+                breakdown: [
+                    'to travel..., learn..., and make... (Parallel Infinitive verbs)',
+                    'Achieving this dream would... (Conditional expression)'
+                ],
+                vocab: [
+                    { word: 'Diverse', meaning: 'বৈচিত্র্যময়' },
+                    { word: 'Fulfillment', meaning: 'আত্মতৃপ্তি / পূর্ণতা' }
+                ]
+            },
+            {
+                id: 6, category: 'personal', title: 'My Strengths and Weaknesses',
+                model: 'One of my major strengths is my ability to stay calm and patient in tough situations. However, my biggest weakness is that I sometimes tend to procrastinate on important tasks. I am actively working on improving my time management skills every day.',
+                breakdown: [
+                    'One of my major strengths is... (Singular verb after "One of")',
+                    'procrastinate on... (Specific preposition collocation)'
+                ],
+                vocab: [
+                    { word: 'Procrastinate', meaning: 'দীর্ঘসূত্রিতা করা / আলসেমি করা' },
+                    { word: 'Patient', meaning: 'ধৈর্যশীল' }
+                ]
+            },
+            {
+                id: 7, category: 'personal', title: 'My Favorite Food',
+                model: 'I have a special love for traditional home-cooked meals, especially rice with freshly cooked fish and vegetables. They are not only delicious but also filled with warm memories of family dinners. No fast food can ever replace the comfort of a warm meal at home.',
+                breakdown: [
+                    'especially rice with... (Adding specific examples)',
+                    'No fast food can ever replace... (Emphatic negative statement)'
+                ],
+                vocab: [
+                    { word: 'Traditional', meaning: 'ঐতিহ্যবাহী' },
+                    { word: 'Replace', meaning: 'প্রতিস্থাপন করা' }
+                ]
+            },
+            {
+                id: 8, category: 'personal', title: 'A Memorable Trip',
+                model: 'Last summer, I visited a quiet seaside town that left a lasting impression on my heart. Listening to the calming sound of ocean waves while walking along the beach felt truly peaceful. That trip recharged my energy and gave me beautiful memories to cherish forever.',
+                breakdown: [
+                    'Last summer, I visited... (Past simple for completed events)',
+                    'Listening to... felt... (Participial phrase functioning as subject)'
+                ],
+                vocab: [
+                    { word: 'Impression', meaning: 'ছাপ / অনুভূতি' },
+                    { word: 'Recharge', meaning: 'পুনরায় শক্তি সঞ্চয় করা' }
+                ]
+            },
+            {
+                id: 9, category: 'personal', title: 'How I Handle Stress',
+                model: 'Whenever I feel overwhelmed or stressed, I take a step back and practice deep breathing. Going for a short walk in nature or listening to soft music also helps clear my mind. Talking to a close friend usually brings perspective and lifts my mood.',
+                breakdown: [
+                    'Whenever I feel... (Time clause for recurring situations)',
+                    'Going... or listening... helps... (Gerund phrase subject)'
+                ],
+                vocab: [
+                    { word: 'Overwhelmed', meaning: 'অভিভূত / অতিষ্ঠ' },
+                    { word: 'Perspective', meaning: 'দৃষ্টিভঙ্গি' }
+                ]
+            },
+            {
+                id: 10, category: 'personal', title: 'My Ideal Weekend',
+                model: 'An ideal weekend for me starts with sleeping in a little extra and enjoying a slow breakfast. I like to spend time reading, watching a good movie, or hanging out with friends. It is a time for relaxation, reflection, and recharging for the upcoming week.',
+                breakdown: [
+                    'starts with sleeping in... ("Sleeping in" means sleeping late)',
+                    'time for relaxation, reflection, and recharging (Parallel nouns)'
+                ],
+                vocab: [
+                    { word: 'Ideal', meaning: 'আদর্শ' },
+                    { word: 'Reflection', meaning: 'আত্মচিন্তা' }
+                ]
+            },
+
+            // Category: Family & Society (11-20)
+            {
+                id: 11, category: 'family', title: 'The Importance of Family',
+                model: 'Family provides us with love, emotional security, and unwavering support in every stage of life. Our family members are the ones who celebrate our success and stand by us during difficult times. A strong family foundation shapes our values and helps us become responsible individuals.',
+                breakdown: [
+                    'Family provides us with... (Present simple for general truths)',
+                    'stand by us... (Phrasal verb meaning to support)'
+                ],
+                vocab: [
+                    { word: 'Unwavering', meaning: 'অবিচল / দৃঢ়' },
+                    { word: 'Foundation', meaning: 'ভিত্তি' }
+                ]
+            },
+            {
+                id: 12, category: 'family', title: 'How to be a Good Neighbor',
+                model: 'Being a good neighbor means being respectful, considerate, and helpful to those living nearby. Keeping noise levels down and offering help during emergencies builds a friendly community. Small acts of kindness, like a simple greeting, can make living next to each other joyful.',
+                breakdown: [
+                    'Being a good neighbor means... (Gerund subject)',
+                    'like a simple greeting... (Prepositional example phrase)'
+                ],
+                vocab: [
+                    { word: 'Considerate', meaning: 'বিবেচক / অন্যের বিষয়ে সচেতন' },
+                    { word: 'Emergency', meaning: 'জরুরি অবস্থা' }
+                ]
+            },
+            {
+                id: 13, category: 'family', title: 'The Role of Teachers in Our Life',
+                model: 'Teachers do much more than teach academic subjects; they shape our character and inspire our goals. They guide us through challenges and help us discover our hidden talents. A dedicated teacher leaves an indelible mark on a student\'s heart and mind.',
+                breakdown: [
+                    'do much more than... (Comparative contrast)',
+                    'leaves an indelible mark... (Metaphorical idiom)'
+                ],
+                vocab: [
+                    { word: 'Indelible', meaning: 'অমোছনীয়' },
+                    { word: 'Dedicated', meaning: 'উৎসর্গীকৃত' }
+                ]
+            },
+            {
+                id: 14, category: 'family', title: 'Helping Others in Need',
+                model: 'Helping people in need brings a deep sense of happiness and meaning to our lives. Whether through financial support, sharing food, or simply offering kind words, every small effort counts. Compassion makes our society a more peaceful and caring place to live in.',
+                breakdown: [
+                    'Whether through..., ..., or... (Alternative prepositional clauses)',
+                    'makes our society... (Fact clause)'
+                ],
+                vocab: [
+                    { word: 'Compassion', meaning: 'সহানুভূতি / দয়া' },
+                    { word: 'Effort', meaning: 'প্রচেষ্টা' }
+                ]
+            },
+            {
+                id: 15, category: 'family', title: 'The Importance of Friendship',
+                model: 'True friends bring laughter, comfort, and emotional strength when we need it most. They accept us as we are while encouraging us to grow into better human beings. Investing time and care into meaningful friendships makes life far richer.',
+                breakdown: [
+                    'accept us as we are... (Expressing unconditional acceptance)',
+                    'Investing time... makes life... (Gerund sentence construction)'
+                ],
+                vocab: [
+                    { word: 'Encouraging', meaning: 'উৎসাহব্যঞ্জক' },
+                    { word: 'Meaningful', meaning: 'অর্থপূর্ণ' }
+                ]
+            },
+            {
+                id: 16, category: 'family', title: 'Social Responsibility of Youth',
+                model: 'Young people carry the energy, creativity, and drive needed to bring positive change to society. They can raise awareness about education, health, and environmental conservation in their communities. By taking small initiatives, youth can build a better future for everyone.',
+                breakdown: [
+                    'carry the energy... needed to... (Participle clause modification)',
+                    'By taking... youth can... (Preposition + Gerund indicating method)'
+                ],
+                vocab: [
+                    { word: 'Conservation', meaning: 'সংরক্ষণ' },
+                    { word: 'Initiative', meaning: 'পদক্ষেপ / উদ্যোগ' }
+                ]
+            },
+            {
+                id: 17, category: 'family', title: 'Dealing with Conflicts',
+                model: 'Conflicts are a natural part of human relationships, but managing them calmly is key. Listening actively to the other person\'s perspective helps resolve misunderstandings without anger. Approaching problems with empathy and open dialogue leads to peaceful solutions.',
+                breakdown: [
+                    'Listening actively... helps... (Adverb modifier inside gerund phrase)',
+                    'leads to... (Verb + preposition collocation)'
+                ],
+                vocab: [
+                    { word: 'Conflict', meaning: 'দ্বন্দ্ব / সংঘাত' },
+                    { word: 'Empathy', meaning: 'পরানুভূতি' }
+                ]
+            },
+            {
+                id: 18, category: 'family', title: 'Respecting Cultural Diversity',
+                model: 'Every culture brings unique traditions, languages, and values that enrich the global community. Respecting diversity helps build harmony, reduces prejudice, and promotes mutual understanding. Embracing different cultures opens our minds and connects us to humanity.',
+                breakdown: [
+                    'Every culture brings... (Singular verb with "Every")',
+                    'helps build..., reduces..., and promotes... (Parallel verb list)'
+                ],
+                vocab: [
+                    { word: 'Prejudice', meaning: 'কুসংস্কার / পূর্বধারণা' },
+                    { word: 'Embracing', meaning: 'সাদরে গ্রহণ করা' }
+                ]
+            },
+            {
+                id: 19, category: 'family', title: 'The Impact of Kindness',
+                model: 'A small act of kindness can brighten someone\'s entire day and inspire them to pass it on. Kindness creates a positive ripple effect that spreads warmth throughout a community. It costs nothing to be kind, yet its value to others is immeasurable.',
+                breakdown: [
+                    'inspire them to pass it on... (Phrasal verb modification)',
+                    'It costs nothing to..., yet... (Antithetical clause)'
+                ],
+                vocab: [
+                    { word: 'Ripple effect', meaning: 'পরপর ঘটতে থাকা প্রভাব' },
+                    { word: 'Immeasurable', meaning: 'পরিমাপাতীত' }
+                ]
+            },
+            {
+                id: 20, category: 'family', title: 'Value of Time Spent with Elders',
+                model: 'Spending quality time with elderly family members allows us to learn from their rich life experiences. Their wisdom, stories, and guidance offer valuable lessons for our own journey. Showing them love and attention brings them immense joy and dignity.',
+                breakdown: [
+                    'allows us to learn... (Verb + object + infinitive pattern)',
+                    'brings them immense joy... (Double object verb syntax)'
+                ],
+                vocab: [
+                    { word: 'Wisdom', meaning: 'জ্ঞান / প্রজ্ঞা' },
+                    { word: 'Dignity', meaning: 'মর্যাদা' }
+                ]
+            },
+
+            // Generate remaining topics programmatically or structurally for full 50
+            // Environment & Travel (21-30)
+            { id: 21, category: 'environment', title: 'Protecting Our Environment', model: 'Protecting the environment is essential for the survival and well-being of all living beings. We must reduce plastic waste, conserve water, and plant more trees in our daily lives. Small, consistent actions can help preserve the planet for future generations.', breakdown: ['Protecting... is essential...'], vocab: [{word: 'Essential', meaning: 'অপরিহার্য'}] },
+            { id: 22, category: 'environment', title: 'Benefits of Tree Plantation', model: 'Trees clean the air, provide oxygen, prevent soil erosion, and shelter wildlife. Planting trees is one of the simplest yet most effective ways to combat climate change. Everyone should plant at least a few trees every year to protect our ecosystem.', breakdown: ['one of the simplest ways...'], vocab: [{word: 'Erosion', meaning: 'ক্ষয়'}] },
+            { id: 23, category: 'environment', title: 'The Beauty of Nature', model: 'Nature has a unique power to calm our minds and inspire our souls. The sight of green forests, flowing rivers, and colorful sunsets fills us with peace. Spending time outdoors reminds us of the simple wonders of the world.', breakdown: ['fills us with peace...'], vocab: [{word: 'Serene', meaning: 'শান্ত'}] },
+            { id: 24, category: 'environment', title: 'The Consequences of Plastic Pollution', model: 'Plastic pollution poses a severe threat to oceans, wildlife, and human health. Single-use plastics take hundreds of years to decompose and contaminate our soil and water supply. Switching to eco-friendly alternatives is crucial to stopping this environmental crisis.', breakdown: ['take hundreds of years...'], vocab: [{word: 'Decompose', meaning: 'পচে যাওয়া'}] },
+            { id: 25, category: 'environment', title: 'My Favorite Season', model: 'Winter is my favorite season because of the cool weather, cozy evenings, and warm drinks. I love wrapping up in warm clothes and enjoying sunny mornings with a fresh cup of tea. It is a season of comfort, family gatherings, and outdoor activities.', breakdown: ['because of...'], vocab: [{word: 'Cozy', meaning: 'আরামদায়ক'}] },
+            { id: 26, category: 'environment', title: 'Why Travel is Important', model: 'Traveling allows us to explore new places, taste different cuisines, and meet diverse people. It steps us out of our comfort zones and broadens our understanding of the world. Every journey brings fresh insights, lasting memories, and personal growth.', breakdown: ['allows us to explore...'], vocab: [{word: 'Cuisine', meaning: 'রান্না / খাবার'}] },
+            { id: 27, category: 'environment', title: 'Preserving Water', model: 'Water is essential for life, yet millions of people face clean water shortages every day. We must avoid wasting water while washing, cooking, or showering at home. Conserving this vital resource today ensures a sustainable world for tomorrow.', breakdown: ['yet millions...'], vocab: [{word: 'Sustainable', meaning: 'টেকসই'}] },
+            { id: 28, category: 'environment', title: 'Climate Change and Our Future', model: 'Global warming and climate change are causing extreme weather events across the globe. Carbon emissions, deforestation, and industrial pollution are the main drivers of this crisis. Taking collective action toward clean energy is necessary to protect our climate.', breakdown: ['are causing...'], vocab: [{word: 'Deforestation', meaning: 'বন উজাড়করণ'}] },
+            { id: 29, category: 'environment', title: 'Life in a Rural Area vs. Urban Area', model: 'Village life offers peace, fresh air, and a close connection to nature and community. On the other hand, city life provides modern amenities, better education, and job opportunities. Both lifestyles have unique advantages depending on what a person values most.', breakdown: ['On the other hand...'], vocab: [{word: 'Amenities', meaning: 'সুযোগ-সুবিধা'}] },
+            { id: 30, category: 'environment', title: 'A Place I Want to Visit', model: 'I have always dreamed of visiting the mountains to experience their grandeur and serene atmosphere. Walking along peaceful mountain trails and seeing snow-covered peaks would be an unforgettable experience. I hope to make this dream journey happen very soon.', breakdown: ['have always dreamed of...'], vocab: [{word: 'Grandeur', meaning: 'মহিমা / সৌন্দর্য'}] },
+
+            // Tech & Education (31-40)
+            { id: 31, category: 'tech', title: 'The Role of Technology in Daily Life', model: 'Technology has transformed the way we communicate, work, learn, and entertain ourselves. Smartphones and the internet give us access to endless information at our fingertips. While it makes life convenient, we must use technology responsibly to stay balanced.', breakdown: ['has transformed...'], vocab: [{word: 'Convenient', meaning: 'সুবিধাজনক'}] },
+            { id: 32, category: 'tech', title: 'Advantages and Disadvantages of Social Media', model: 'Social media helps us stay connected with friends and share creative ideas globally. However, excessive use can lead to distraction, reduced productivity, and mental fatigue. Finding a healthy boundary is key to enjoying its benefits without harm.', breakdown: ['However, excessive use...'], vocab: [{word: 'Fatigue', meaning: 'ক্লান্তি'}] },
+            { id: 33, category: 'tech', title: 'Importance of Continuous Education', model: 'Education is a lifelong journey that does not end with a degree or school diploma. Acquiring new knowledge and developing practical skills keeps us adaptable in a changing world. Continuous learning boosts self-confidence and opens new career doors.', breakdown: ['lifelong journey...'], vocab: [{word: 'Adaptable', meaning: 'অভিযোজনক্ষম'}] },
+            { id: 34, category: 'tech', title: 'Benefits of Online Learning', model: 'Online learning offers the flexibility to study at your own pace from anywhere in the world. It provides access to high-quality courses, experts, and diverse study materials easily. This approach makes education affordable and accessible for students everywhere.', breakdown: ['at your own pace...'], vocab: [{word: 'Flexibility', meaning: 'নমনীয়তা'}] },
+            { id: 35, category: 'tech', title: 'How Artificial Intelligence is Changing the World', model: 'Artificial Intelligence is automating complex tasks and boosting efficiency across industries. From healthcare diagnosis to smart assistants, AI is reshaping how we work and live. Understanding how to use these tools ethically will be vital for future success.', breakdown: ['is reshaping how...'], vocab: [{word: 'Ethically', meaning: 'নৈতিকভাবে'}] },
+            { id: 36, category: 'tech', title: 'Choosing the Right Career', model: 'Choosing a career should align with your personal values, interests, and natural strengths. It is important to explore different fields before committing to a specific path. A fulfilling career brings personal satisfaction beyond just earning a paycheck.', breakdown: ['should align with...'], vocab: [{word: 'Fulfilling', meaning: 'সন্তোষজনক'}] },
+            { id: 37, category: 'tech', title: 'The Value of Hard Work', model: 'Hard work and perseverance are the true keys to achieving long-term goals. While talent gives you a head start, consistent effort determines how far you will go. Success gained through hard work brings lasting pride and self-respect.', breakdown: ['determines how far...'], vocab: [{word: 'Perseverance', meaning: 'অধ্যাবসায়'}] },
+            { id: 38, category: 'tech', title: 'Time Management Skills', model: 'Effective time management allows us to accomplish more tasks with less stress. Prioritizing important work, setting clear deadlines, and avoiding distractions are essential habits. Managing time well gives us more freedom to enjoy leisure activities.', breakdown: ['allows us to accomplish...'], vocab: [{word: 'Prioritizing', meaning: 'অগ্রাধিকার দেওয়া'}] },
+            { id: 39, category: 'tech', title: 'The Importance of Reading Books', model: 'Reading stretches our imagination, improves focus, and builds a rich vocabulary over time. Books offer deep wisdom and insights that short online articles rarely provide. Making reading a daily habit is one of the best investments in self-improvement.', breakdown: ['stretches our imagination...'], vocab: [{word: 'Insight', meaning: 'অন্তর্দৃষ্টি'}] },
+            { id: 40, category: 'tech', title: 'Why Financial Literacy Matters', model: 'Understanding how to budget, save, and invest money is crucial for financial stability. Good money management helps us avoid unnecessary debt and prepare for emergencies. Financial literacy empowers individuals to make smart choices for their future.', breakdown: ['empowers individuals to...'], vocab: [{word: 'Literacy', meaning: 'স্বাক্ষরতা / জ্ঞান'}] },
+
+            // Health & Lifestyle (41-50)
+            { id: 41, category: 'health', title: 'The Importance of Physical Exercise', model: 'Regular physical exercise keeps our bodies fit, improves heart health, and boosts immunity. It also releases feel-good hormones that reduce anxiety and elevate our mood. Even thirty minutes of daily movement makes a massive difference over time.', breakdown: ['keeps our bodies fit...'], vocab: [{word: 'Immunity', meaning: 'রোগপ্রতিরোধ ক্ষমতা'}] },
+            { id: 42, category: 'health', title: 'Eating a Balanced Diet', model: 'Consuming a balanced diet rich in vegetables, fruits, proteins, and whole grains keeps us healthy. Avoiding excessive junk food prevents long-term health issues and boosts daily energy levels. Healthy eating habits form the foundation of a long and active life.', breakdown: ['rich in vegetables...'], vocab: [{word: 'Nutritious', meaning: 'পুষ্টিকর'}] },
+            { id: 43, category: 'health', title: 'The Power of Good Sleep', model: 'Getting seven to eight hours of quality sleep every night is vital for physical and mental recovery. Good sleep sharpens focus, enhances memory, and strengthens our emotional balance. Prioritizing rest is just as important as diet and exercise.', breakdown: ['is vital for...'], vocab: [{word: 'Recovery', meaning: 'পুনরুদ্ধার / বিশ্রাম'}] },
+            { id: 44, category: 'health', title: 'Maintaining Mental Health', model: 'Taking care of mental health is just as important as looking after physical fitness. Sharing feelings with trusted people and practicing mindfulness can alleviate mental burden. Seeking professional help when needed is a sign of self-awareness and strength.', breakdown: ['just as important as...'], vocab: [{word: 'Alleviate', meaning: 'উপশম করা'}] },
+            { id: 45, category: 'health', title: 'The Value of Discipline', model: 'Discipline is the bridge that turns abstract goals into real achievements. It keeps us focused on our priorities even when motivation begins to fade. Building disciplined habits creates long-term consistency in every area of life.', breakdown: ['turns goals into...'], vocab: [{word: 'Consistency', meaning: 'ধারাবাহিকতা'}] },
+            { id: 46, category: 'health', title: 'How to Build Healthy Habits', model: 'Building healthy habits starts with small, consistent steps rather than drastic changes. Focusing on one habit at a time makes it manageable and easier to maintain long term. Over time, these small positive choices lead to life-changing results.', breakdown: ['rather than drastic...'], vocab: [{word: 'Drastic', meaning: 'চরম / তীব্র'}] },
+            { id: 47, category: 'health', title: 'The Importance of Punctuality', model: 'Being punctual shows respect for your own commitments and for other people\'s time. It helps build trust and credibility in both professional and personal relationships. Punctual people are generally more organized and experience less daily stress.', breakdown: ['shows respect for...'], vocab: [{word: 'Punctual', meaning: 'সময়নিষ্ঠ'}] },
+            { id: 48, category: 'health', title: 'Benefits of Drinking Enough Water', model: 'Staying hydrated keeps our body functioning smoothly, improves skin health, and aids digestion. Drinking enough water throughout the day boosts brain function and reduces fatigue. It is one of the simplest habits to maintain good overall health.', breakdown: ['keeps our body...'], vocab: [{word: 'Hydrated', meaning: 'সজল / আর্দ্র'}] },
+            { id: 49, category: 'health', title: 'Overcoming Fear of Failure', model: 'Fear of failure often holds us back from exploring new opportunities and growing. Viewing mistakes as valuable lessons helps us build resilience and move forward. Embracing challenges with an open mind turns failure into a stepping stone.', breakdown: ['holds us back...'], vocab: [{word: 'Resilience', meaning: 'ঘুরে দাঁড়ানোর ক্ষমতা'}] },
+            { id: 50, category: 'health', title: 'Finding Balance in Modern Life', model: 'Balancing work, health, relationships, and personal time requires conscious effort every day. Setting realistic boundaries prevents burnout and keeps our priorities clear. A balanced lifestyle brings lasting peace, contentment, and overall fulfillment.', breakdown: ['requires conscious effort...'], vocab: [{word: 'Contentment', meaning: 'পরিতৃপ্তি'}] }
+        ];
+
+        // App State
+        let currentActivePage = 'home';
+        let currentSelectedCategory = 'all';
+        let activeTopicId = 1;
+        let userStats = {
+            completedTopics: [],
+            totalWordsWritten: 0,
+            history: []
+        };
+
+        // Initialize Application
+        window.addEventListener('DOMContentLoaded', () => {
+            loadUserStatsFromStorage();
+            renderCategoriesGrid();
+            renderCategoryTabs();
+            renderTopicsGrid();
+            updateDashboardStats();
+        });
+
+        // Navigation Engine
+        function navigateTo(pageId) {
+            currentActivePage = pageId;
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) target.classList.remove('hidden');
+
+            // Update Nav styles
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600/20', 'text-brand-400', 'border', 'border-brand-500/30');
+                btn.classList.add('text-slate-300');
+            });
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.add('bg-brand-600/20', 'text-brand-400', 'border', 'border-brand-500/30');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            document.documentElement.classList.toggle('light');
+            const icon = document.getElementById('theme-icon');
+            if (document.documentElement.classList.contains('light')) {
+                icon.className = 'fa-solid fa-sun text-amber-400';
+            } else {
+                icon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        // Render Dashboard Category Cards
+        function renderCategoriesGrid() {
+            const grid = document.getElementById('category-cards-grid');
+            grid.innerHTML = '';
+            
+            categories.filter(c => c.id !== 'all').forEach(cat => {
+                const count = topics.filter(t => t.category === cat.id).length;
+                const card = document.createElement('div');
+                card.className = "glass-card p-5 rounded-2xl border border-slate-800 hover:border-brand-500/50 cursor-pointer transition-all duration-300 group";
+                card.onclick = () => {
+                    selectCategory(cat.id);
+                    navigateTo('topics');
+                };
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition">
+                            <i class="fa-solid ${cat.icon}"></i>
+                        </div>
+                        <span class="text-xs font-english bg-slate-800 text-slate-400 px-2.5 py-1 rounded-full">${count} Topics</span>
+                    </div>
+                    <h4 class="font-bold text-slate-200 group-hover:text-brand-300 transition">${cat.name}</h4>
+                    <p class="text-xs text-slate-400 mt-1">ক্লিক করে ১০টি অনুশীলন দেখুন</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Category Tabs for Topic List Page
+        function renderCategoryTabs() {
+            const container = document.getElementById('category-tabs');
+            container.innerHTML = '';
+
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                const isActive = cat.id === currentSelectedCategory;
+                btn.className = `px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shrink-0 transition flex items-center space-x-2 ${
+                    isActive 
+                    ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/20' 
+                    : 'bg-slate-800/80 text-slate-400 hover:bg-slate-700 hover:text-slate-200'
+                }`;
+                btn.onclick = () => selectCategory(cat.id);
+                btn.innerHTML = `<i class="fa-solid ${cat.icon}"></i> <span>${cat.name}</span>`;
+                container.appendChild(btn);
+            });
+        }
+
+        function selectCategory(catId) {
+            currentSelectedCategory = catId;
+            renderCategoryTabs();
+            renderTopicsGrid();
+        }
+
+        // Render Topics List Grid
+        function renderTopicsGrid() {
+            const container = document.getElementById('topics-grid');
+            const searchVal = document.getElementById('topic-search-input')?.value.toLowerCase() || '';
+            container.innerHTML = '';
+
+            const filtered = topics.filter(t => {
+                const matchCat = currentSelectedCategory === 'all' || t.category === currentSelectedCategory;
+                const matchSearch = t.title.toLowerCase().includes(searchVal) || t.model.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">কোনো টপিক পাওয়া যায়নি।</div>`;
+                return;
+            }
+
+            filtered.forEach((topic) => {
+                const isCompleted = userStats.completedTopics.includes(topic.id);
+                const card = document.createElement('div');
+                card.className = "glass-card p-5 rounded-2xl border border-slate-800 hover:border-brand-500/40 transition flex flex-col justify-between space-y-4";
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-english">Topic #${topic.id < 10 ? '0' + topic.id : topic.id}</span>
+                            ${isCompleted ? '<span class="text-xs bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full font-semibold border border-emerald-500/30"><i class="fa-solid fa-check mr-1"></i>সম্পন্ন</span>' : ''}
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-100">${topic.title}</h3>
+                        <p class="text-xs text-slate-400 line-clamp-2 font-english">${topic.model}</p>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+                        <span class="text-xs text-slate-500">${topic.vocab.length}টি ভোকাবুলারি সাথে</span>
+                        <button onclick="openTopicWorkspace(${topic.id})" class="px-4 py-2 rounded-xl bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white text-xs font-bold transition flex items-center space-x-1.5">
+                            <span>অনুশীলন করুন</span>
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterTopics() {
+            renderTopicsGrid();
+        }
+
+        // Open Practice Workspace for a selected topic
+        function openTopicWorkspace(topicId) {
+            activeTopicId = topicId;
+            const topic = topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            document.getElementById('workspace-topic-number').innerText = `Topic #${topic.id < 10 ? '0' + topic.id : topic.id}`;
+            document.getElementById('workspace-topic-title').innerText = topic.title;
+            
+            const catObj = categories.find(c => c.id === topic.category);
+            document.getElementById('workspace-category-badge').innerText = catObj ? catObj.name : 'General';
+
+            // Set Model Answer Data
+            document.getElementById('model-passage-text').innerText = topic.model;
+            
+            // Sentence breakdown
+            const breakdownList = document.getElementById('model-sentence-breakdown');
+            breakdownList.innerHTML = '';
+            topic.breakdown.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start space-x-2';
+                li.innerHTML = `<i class="fa-solid fa-chevron-right text-brand-400 text-[10px] mt-1"></i><span>${item}</span>`;
+                breakdownList.appendChild(li);
+            });
+
+            // Vocab list
+            const vocabContainer = document.getElementById('model-vocab-list');
+            vocabContainer.innerHTML = '';
+            topic.vocab.forEach(v => {
+                const tag = document.createElement('div');
+                tag.className = 'px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-200 flex items-center space-x-2';
+                tag.innerHTML = `<strong class="font-english text-amber-400">${v.word}:</strong> <span>${v.meaning}</span>`;
+                vocabContainer.appendChild(tag);
+            });
+
+            // Reset Editor & Feedback
+            document.getElementById('student-writing-input').value = '';
+            updateWritingStats();
+            document.getElementById('model-answer-container').classList.add('hidden');
+            document.getElementById('evaluation-placeholder').classList.remove('hidden');
+            document.getElementById('evaluation-results').classList.add('hidden');
+
+            navigateTo('workspace');
+        }
+
+        function toggleModelAnswer() {
+            const container = document.getElementById('model-answer-container');
+            container.classList.toggle('hidden');
+        }
+
+        // Text Counter
+        function updateWritingStats() {
+            const text = document.getElementById('student-writing-input').value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            const chars = text.length;
+
+            document.getElementById('word-count').innerText = words;
+            document.getElementById('char-count').innerText = chars;
+        }
+
+        function clearStudentInput() {
+            document.getElementById('student-writing-input').value = '';
+            updateWritingStats();
+        }
+
+        // Text To Speech (TTS) Implementation
+        function speakText(text) {
+            if (!text || !('speechSynthesis' in window)) {
+                alert('আপনার ব্রাউজারে স্পিচ সিন্থেসিস সাপোর্টেড নয়।');
+                return;
+            }
+            window.speechSynthesis.cancel(); // Stop active speech
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Natural pace
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function speakStudentText() {
+            const text = document.getElementById('student-writing-input').value;
+            if (!text.trim()) {
+                alert('শুনতে পাওয়ার জন্য অনুগ্রহ করে বক্সে কিছু লিখুন।');
+                return;
+            }
+            speakText(text);
+        }
+
+        // Simulated Automatic Grammar & Spell Evaluator
+        function evaluateStudentWriting() {
+            const input = document.getElementById('student-writing-input').value.trim();
+            if (!input) {
+                alert('অনুগ্রহ করে মূল্যায়নের জন্য আপনার লেখা বক্সে দিন।');
+                return;
+            }
+
+            const words = input.split(/\s+/);
+            const sentences = input.split(/[.!?]+/).filter(s => s.trim().length > 0);
+
+            // Simple rules heuristics for detection
+            let errors = [];
+            let score = 90;
+
+            sentences.forEach((sent, index) => {
+                const trimmed = sent.trim();
+                // Rule 1: Capitalization check
+                if (trimmed.length > 0 && trimmed[0] !== trimmed[0].toUpperCase()) {
+                    errors.push({
+                        line: index + 1,
+                        text: trimmed,
+                        issue: 'বাক্যের প্রথম অক্ষর ক্যাপিটাল (Capital letter) হতে হবে।',
+                        correction: trimmed[0].toUpperCase() + trimmed.slice(1),
+                        type: 'grammar'
+                    });
+                    score -= 5;
+                }
+
+                // Rule 2: Common spelling / word issues check (Simulated examples)
+                if (/\bi\b/.test(trimmed)) {
+                    errors.push({
+                        line: index + 1,
+                        text: trimmed,
+                        issue: 'একাকী "i" সবসময় ক্যাপিটাল "I" হবে।',
+                        correction: trimmed.replace(/\bi\b/g, 'I'),
+                        type: 'spelling'
+                    });
+                    score -= 5;
+                }
+
+                // Rule 3: Missing full stop
+                if (index === sentences.length - 1 && !/[.!?]$/.test(input)) {
+                    errors.push({
+                        line: index + 1,
+                        text: trimmed,
+                        issue: 'বাক্যের শেষে বিরামচিহ্ন (Full Stop ".") দেওয়া আবশ্যক।',
+                        correction: trimmed + '.',
+                        type: 'punctuation'
+                    });
+                    score -= 5;
+                }
+            });
+
+            // Calculate Metrics
+            if (words.length < 15) score -= 10;
+            score = Math.max(score, 50);
+
+            const grammarScore = Math.min(100, score + 5);
+            const vocabScore = Math.min(100, Math.max(60, words.length * 3));
+            const structScore = Math.min(100, score);
+
+            // Display Results
+            document.getElementById('evaluation-placeholder').classList.add('hidden');
+            document.getElementById('evaluation-results').classList.remove('hidden');
+
+            document.getElementById('eval-score-percent').innerText = `${score}%`;
+            document.getElementById('eval-score-bar').style.width = `${score}%`;
+
+            document.getElementById('eval-grammar-score').innerText = `${grammarScore}%`;
+            document.getElementById('eval-vocab-score').innerText = `${vocabScore}%`;
+            document.getElementById('eval-struct-score').innerText = `${structScore}%`;
+
+            // Render Feedback Cards
+            const feedbackContainer = document.getElementById('eval-feedback-list');
+            feedbackContainer.innerHTML = '';
+
+            if (errors.length === 0) {
+                feedbackContainer.innerHTML = `
+                    <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm flex items-center space-x-3">
+                        <i class="fa-solid fa-circle-check text-xl"></i>
+                        <div>
+                            <p class="font-bold">চমৎকার! কোনো বড় ধরনের ভুল পাওয়া যায়নি।</p>
+                            <p class="text-xs text-emerald-400/80 mt-0.5">আপনার বাক্যের গঠন ও ব্যাকরণ বেশ নির্ভুল হয়েছে।</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                errors.forEach(err => {
+                    const card = document.createElement('div');
+                    card.className = "p-3.5 rounded-xl bg-slate-900/90 border border-rose-500/30 space-y-2 text-xs";
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between text-rose-400 font-semibold">
+                            <span><i class="fa-solid fa-triangle-exclamation mr-1"></i> সমস্যা - লাইন ${err.line}</span>
+                            <span class="uppercase font-english text-[10px] px-2 py-0.5 bg-rose-500/20 rounded">${err.type}</span>
+                        </div>
+                        <p class="text-slate-300 font-english italic bg-slate-800 p-2 rounded">"${err.text}"</p>
+                        <p class="text-slate-300"><strong>ব্যাখ্যা:</strong> ${err.issue}</p>
+                        <p class="text-emerald-400 font-english"><strong>সঠিক রূপ:</strong> ${err.correction}</p>
+                    `;
+                    feedbackContainer.appendChild(card);
+                });
+            }
+
+            // Record Completion Stats
+            saveSubmissionStats(words.length, score);
+
+            // Confetti celebration if score is high
+            if (score >= 80 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.7 }
+                });
+            }
+        }
+
+        // Save Stats & Local Storage Logic
+        function saveSubmissionStats(wordCount, score) {
+            if (!userStats.completedTopics.includes(activeTopicId)) {
+                userStats.completedTopics.push(activeTopicId);
+            }
+            userStats.totalWordsWritten += wordCount;
+            
+            const topic = topics.find(t => t.id === activeTopicId);
+            userStats.history.unshift({
+                topicTitle: topic ? topic.title : 'Topic',
+                date: new Date().toLocaleDateString('bn-BD'),
+                words: wordCount,
+                score: score
+            });
+
+            localStorage.setItem('ewm_user_stats', JSON.stringify(userStats));
+            updateDashboardStats();
+        }
+
+        function loadUserStatsFromStorage() {
+            const saved = localStorage.getItem('ewm_user_stats');
+            if (saved) {
+                try {
+                    userStats = JSON.parse(saved);
+                } catch(e) {}
+            }
+        }
+
+        function updateDashboardStats() {
+            const count = userStats.completedTopics.length;
+            document.getElementById('dash-completed-count').innerText = count;
+            document.getElementById('dash-words-written').innerText = userStats.totalWordsWritten;
+            document.getElementById('stats-completed').innerText = count;
+            document.getElementById('stats-words').innerText = userStats.totalWordsWritten;
+
+            // Avg Score
+            let avg = 0;
+            if (userStats.history.length > 0) {
+                const totalScore = userStats.history.reduce((acc, curr) => acc + curr.score, 0);
+                avg = Math.round(totalScore / userStats.history.length);
+            }
+            document.getElementById('dash-avg-score').innerText = `${avg}%`;
+            document.getElementById('stats-avg-score').innerText = `${avg}%`;
+
+            // History Table
+            const tbody = document.getElementById('history-table-body');
+            if (userStats.history.length > 0) {
+                tbody.innerHTML = '';
+                userStats.history.slice(0, 5).forEach(h => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-slate-800/50';
+                    tr.innerHTML = `
+                        <td class="px-4 py-3 font-medium text-slate-200">${h.topicTitle}</td>
+                        <td class="px-4 py-3 text-slate-400 text-xs">${h.date}</td>
+                        <td class="px-4 py-3 font-english text-slate-300">${h.words}</td>
+                        <td class="px-4 py-3 font-english font-bold ${h.score >= 80 ? 'text-emerald-400' : 'text-amber-400'}">${h.score}%</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
