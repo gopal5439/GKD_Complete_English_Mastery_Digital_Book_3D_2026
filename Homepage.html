@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030817">
+<title>GKD | KHUDE IELTS - Complete English Mastery</title>
+<!-- Three.js Library for Real 3D Globe -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:root{--gold:#f5c96b;--gold2:#fff1bd;--navy:#030817;--ice:#d9eaff;--muted:#b9c9e3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif;background:#030817;display:flex;flex-direction:column}
+
+/* Fullscreen Background Space & Stars */
+.space{position:fixed;inset:0;overflow:hidden;z-index:-5;background:radial-gradient(ellipse at 50% 25%,#163c70 0%,#0b1a3b 34%,#050b1d 66%,#01030b 100%)}
+.stars,.stars:before,.stars:after{position:absolute;inset:-100px;content:"";background-image:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 80px,#d6e8ff,transparent),radial-gradient(1.5px 1.5px at 160px 150px,#f6d27b,transparent),radial-gradient(1px 1px at 230px 50px,#fff,transparent);background-size:270px 220px;opacity:.55;animation:starDrift 65s linear infinite}
+.stars:before{transform:scale(1.4);opacity:.35;animation-duration:95s}.stars:after{transform:scale(.8);opacity:.4;animation-duration:45s}
+@keyframes starDrift{to{transform:translate3d(-100px,80px,0)}}
+
+/* Fullscreen Real 3D Rotating Earth Container */
+#earth-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -4;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Header Styles */
+header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-content:space-between;align-items:center;padding:18px 0;position:relative;z-index:10}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#ffe9a6;font-weight:900;letter-spacing:.15em;font-size:1rem}
+.brand img{width:52px;height:52px;object-fit:cover;border-radius:50%;border:2px solid var(--gold);box-shadow:0 0 15px rgba(245,201,107,0.6);background:#fff}
+
+/* 3-Line Hamburger Menu Toggle Button */
+.menu-toggle{width:48px;height:48px;background:linear-gradient(145deg,#1c3d6d,#0a1b38);border:1.5px solid var(--gold);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,0.5);transition:0.3s}
+.menu-toggle:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(245,201,107,0.5)}
+.menu-toggle span{width:24px;height:3px;background:var(--gold);border-radius:2px;box-shadow:0 0 6px var(--gold);transition:0.3s}
+
+/* Sliding Navigation Sidebar */
+.sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:linear-gradient(160deg,#0a1b38,#030817);border-left:1px solid #f5c96b44;z-index:200;box-shadow:-10px 0 40px rgba(0,0,0,0.85);transition:right 0.4s cubic-bezier(0.77,0,0.175,1);padding:30px 20px;display:flex;flex-direction:column}
+.sidebar.active{right:0}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f5c96b33;padding-bottom:15px;margin-bottom:20px}
+.sidebar-header h3{color:var(--gold);margin:0;font-size:1.1rem;letter-spacing:1px}
+.close-sidebar{background:none;border:none;color:#fff;font-size:2rem;cursor:pointer}
+.sidebar-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.sidebar-links li a{color:#d9eaff;text-decoration:none;font-weight:700;font-size:.95rem;letter-spacing:0.08em;display:block;padding:12px 15px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid rgba(245,201,107,0.15);transition:0.25s}
+.sidebar-links li a:hover{background:rgba(245,201,107,0.2);color:var(--gold);transform:translateX(6px)}
+
+/* Overlay */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(5px);z-index:150;display:none}
+.overlay.active{display:block}
+
+/* Main Section Styles */
+main{width:min(1250px,calc(100% - 36px));margin:auto;flex:1}
+.hero{min-height:calc(100vh - 86px);display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;padding:16px 0 40px}
+.copy{position:relative;z-index:2;animation:appear 1s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{display:flex;align-items:center;gap:10px;color:#ffe7a3;font-size:.75rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
+.eyebrow:before{content:"";height:2px;width:30px;background:var(--gold)}
+h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
+.gkd{display:block;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:1000;color:#fff;text-shadow:0 2px #ffe7a5,0 5px #b37d27,0 9px 0 #152541,0 18px 28px #000b}
+.booktitle{display:block;margin-top:12px;font-size:clamp(1.8rem,3.8vw,3.5rem);font-weight:1000;line-height:1.02;background:linear-gradient(120deg,#fff7d2 0%,#e9b950 26%,#fff4c7 46%,#bc8127 67%,#ffeb9f 84%,#fff);background-size:240% auto;color:transparent;background-clip:text;-webkit-background-clip:text;filter:drop-shadow(0 6px 12px #0009);animation:shine 8s linear infinite}
+@keyframes shine{to{background-position:240% center}}
+.tagline{font-size:clamp(1rem,1.7vw,1.28rem);font-weight:700;color:#e0eaff;letter-spacing:.02em;margin:19px 0 10px}
+.description{max-width:600px;color:#bfcee5;line-height:1.75;font-size:.96rem;margin:0 0 22px}
+.motto{font-size:.8rem;letter-spacing:.15em;color:var(--gold2);font-weight:850;margin-bottom:24px}
+
+/* Real 3D Open Notebook Container */
+.art{position:relative;min-height:500px;display:grid;place-items:center;perspective:1200px}
+.open-book-3d{position:relative;width:400px;height:280px;transform-style:preserve-3d;transform:rotateX(20deg) rotateY(-15deg) rotateZ(2deg);animation:floatOpenBook 5s ease-in-out infinite alternate;z-index:5}
+@keyframes floatOpenBook{0%{transform:rotateX(20deg) rotateY(-15deg) translateY(0)}100%{transform:rotateX(15deg) rotateY(-10deg) translateY(-15px)}}
+
+.book-base{
+  position:absolute;
+  inset:0;
+  background:url('OLPhoto/3dbookphoto.png') center/contain no-repeat;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+  display:flex;
+  padding: 35px 25px;
+}
+
+/* ব্যাকগ্রাউন্ড ছাড়া সম্পূর্ণ স্বচ্ছ পাতা এবং লেখার পজিশনিং */
+.page-left, .page-right{
+  flex:1;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.page-left h4, .page-right h4{
+  color:#112a52;
+  font-size:0.85rem;
+  margin:0 0 4px;
+  font-weight:900;
+  text-shadow: none;
+}
+
+.page-left p, .page-right p{
+  color:#2b3a55;
+  font-size:0.58rem;
+  margin:0;
+  line-height:1.3;
+  font-weight:700;
+}
+
+/* শেপহীন নরম ছড়ানো আলোর ইফেক্ট (Soft Glowing Spread Light) */
+.light-beam{
+  position:absolute;
+  bottom:35%;
+  left:50%;
+  transform:translateX(-50%);
+  width:320px;
+  height:320px;
+  background: radial-gradient(circle, rgba(245,201,107,0.65) 0%, rgba(255,241,189,0.2) 40%, transparent 75%);
+  pointer-events:none;
+  z-index:6;
+  animation:beamPulse 3s ease-in-out infinite alternate;
+  filter:blur(25px);
+}
+@keyframes beamPulse{
+  0%{opacity:0.6; transform:translateX(-50%) scale(0.9);}
+  100%{opacity:1; transform:translateX(-50%) scale(1.1);}
+}
+
+/* Floating Alphabet Stream Container */
+.alphabet-stream{position:absolute;inset:0;pointer-events:none;z-index:7;overflow:visible}
+.floating-letter{position:absolute;bottom:40%;font-size:1.8rem;font-weight:900;color:#fff7d2;text-shadow:0 0 12px #f5c96b, 0 0 25px #ffe49e;animation:riseAndFade 4s ease-out infinite;opacity:0}
+@keyframes riseAndFade{
+  0%{transform:translateY(0) scale(0.5) rotate(0deg);opacity:0}
+  20%{opacity:1}
+  80%{opacity:0.9}
+  100%{transform:translateY(-280px) scale(1.5) rotate(30deg);opacity:0}
+}
+
+/* Skills / Modules Section with High-Contrast 3D Headings */
+.skills{padding:40px 0 50px}
+.section-heading{text-align:center;margin:0 auto 35px;position:relative;z-index:2}
+.section-heading .mini{
+  color:#ffe89d;
+  font-weight:1000;
+  letter-spacing:.28em;
+  font-size:.85rem;
+  text-transform:uppercase;
+  text-shadow:0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(245,201,107,0.7);
+  background:rgba(3,8,23,0.7);
+  padding:6px 16px;
+  border-radius:30px;
+  border:1px solid rgba(245,201,107,0.4);
+  display:inline-block;
+  margin-bottom:10px;
+}
+.section-heading h2{
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  margin:10px 0;
+  color:#ffffff;
+  font-weight:1000;
+  text-shadow:0 3px 6px rgba(0,0,0,0.9), 0 0 25px rgba(245,201,107,0.8), 0 0 50px rgba(56,121,165,0.6);
+  letter-spacing:-0.02em;
+}
+
+/* 6 Items in Straight Row / Grid */
+.skill-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:15px}
+.skill-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:210px;padding:22px 10px;border:1.5px solid rgba(245,201,107,0.45);border-radius:20px;text-decoration:none;color:white;background:linear-gradient(145deg,rgba(23,53,91,0.9),rgba(6,19,41,0.95));box-shadow:0 15px 35px rgba(0,0,0,0.6);transition:0.3s ease}
+.skill-card:hover{border-color:var(--gold);transform:translateY(-8px);box-shadow:0 20px 45px rgba(245,201,107,0.3)}
+.icon3d{width:55px;height:55px;border-radius:16px;margin-bottom:12px;font-size:1.6rem;display:grid;place-items:center;background:linear-gradient(145deg,#fff1bd,#e5b74e 48%,#97651f);box-shadow:0 5px 0 #694b20,0 10px 15px rgba(0,0,0,0.5);color:#10203b}
+.skill-card h3{font-size:0.95rem;margin:0 0 5px;color:#ffedb5;font-weight:900}
+.skill-card p{font-size:0.72rem;color:#b9c9e3;margin:0}
+
+/* Footer Styles */
+footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 23, 0.9);backdrop-filter:blur(10px);color:#91a6c5;font-size:.8rem;margin-top:auto;position:relative;z-index:10}
+.footer-container{width:min(1250px,calc(100% - 36px));margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding-bottom:25px;border-bottom:1px solid #e8bd6218}
+.footer-col h4{color:#f2d58a;font-size:.95rem;letter-spacing:.12em;margin:0 0 15px;text-transform:uppercase;font-weight:900}
+.footer-col p{line-height:1.6;margin:0 0 10px;color:#b9c9e3}
+.contact-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;color:#b9c9e3}
+.contact-item a{color:#f2d58a;text-decoration:none}
+.footer-bottom{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-content:space-between;align-items:center;padding-top:20px;flex-wrap:wrap;gap:12px;font-size:.75rem}
+
+/* Modal Popup Box */
+.modal{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px}
+.modal-content{background:linear-gradient(145deg,#0d1e3a,#061329);border:1.5px solid var(--gold);border-radius:20px;padding:30px;max-width:550px;width:100%;color:#d9eaff;position:relative;box-shadow:0 0 50px rgba(245,201,107,0.3)}
+.close-btn{position:absolute;top:15px;right:20px;font-size:1.8rem;color:#f5ce70;cursor:pointer;line-height:1}
+
+@media(max-width:1100px){.skill-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:750px){.skill-grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr;padding-top:10px}.art{min-height:380px}.gkd{font-size:3.5rem}.booktitle{font-size:2rem}}
+</style>
+</head>
+<body>
+
+<div class="space" aria-hidden="true"><div class="stars"></div></div>
+
+<!-- Fullscreen Real 3D Earth Canvas -->
+<div id="earth-container"></div>
+
+<!-- Overlay for Sidebar -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- Sliding Sidebar Menu -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h3>GKD Navigation</h3>
+    <button class="close-sidebar" onclick="toggleMenu()">&times;</button>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="Homepage.html" onclick="toggleMenu(); openModal('Home')">🏠 Home</a></li>
+    <li><a href="lesson_link.html" onclick="toggleMenu(); openModal('Grammar')">📖 Grammar Mastery</a></li>
+    <li><a href="Sopken/Spoken_practice.html" onclick="toggleMenu(); openModal('Spoken English')">🎙️ Spoken English</a></li>
+    <li><a href="Reading/Learn reading.html" onclick="toggleMenu(); openModal('Reading')">📚 Reading Strategies</a></li>
+    <li><a href="#" onclick="toggleMenu(); openModal('Writing')">✍️ Writing (Band 8+)</a></li>
+    <li><a href="#" onclick="toggleMenu(); openModal('Listening')">🎧 Listening Skill</a></li>
+    <li><a href="#" onclick="toggleMenu(); openModal('Exam')">📝 Practice Exam & Mock Test</a></li>
+    <li><a href="About me/About author.html" onclick="toggleMenu(); openModal('About Owner')">👑 About Founder (Gopal Krishna Das)</a></li>
+  </ul>
+</div>
+
+
+
+
+<!-- Header with Updated Logo -->
+<header>
+  <a href="#" class="brand">
+    <img src="OLPhoto/gkdlogo.png" alt="GKD Logo">
+    <span>GKD KHUDE IELTS</span>
+  </a>
+  <div class="menu-toggle" onclick="toggleMenu()" title="Open Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- Main Hero Section -->
+<main>
+  <section class="hero">
+    <div class="copy">
+      <div class="eyebrow">Advanced English Mastery</div>
+      <h1>
+        <span class="gkd">GKD</span>
+        <span class="booktitle">KHUDE IELTS</span>
+      </h1>
+      <p class="tagline">Transform your English proficiency with elite strategies & structured mastery.</p>
+      <p class="description">Unlock advanced vocabulary, grammatical precision, and high-band IELTS techniques designed by Gopal Krishna Das for ultimate success.</p>
+      <div class="motto">“Learn English, Achieve Your Dreams.”</div>
+    </div>
+    
+    <!-- 3D Open Notebook Container -->
+    <div class="art">
+      <div class="light-beam"></div>
+      
+      <div class="open-book-3d">
+        <div class="book-base">
+          <div class="page-left">
+            <h4>English Grammar</h4>
+            <p>Master Tenses, Voices, Narration & Advanced Structures.</p>
+          </div>
+          <div class="page-right">
+            <h4>IELTS Mastery</h4>
+            <p>Vocabulary, High-Band Strategies & Practice.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating A-Z Stream -->
+      <div class="alphabet-stream" id="alphabetStream"></div>
+    </div>
+  </section>
+
+  <!-- Modules Section with 6 Straight Row Items -->
+  <section class="skills" id="courses">
+    <div class="section-heading">
+      <div class="mini">Core Modules</div>
+      <h2>Master Every Dimension of English</h2>
+    </div>
+    
+
+
+
+
+
+    <div class="skill-grid">
+      <div class="skill-card" onclick="window.location.href='lesson_link.html'">
+        <div class="icon3d">📖</div>
+        <h3>Grammar</h3>
+        <p>Flawless Structure</p>
+      </div>
+      <div class="skill-card" onclick="window.location.href='Sopken/Spoken_practice.html'">
+        <div class="icon3d">🎙️</div>
+        <h3>Spoken</h3>
+        <p>Natural Fluency</p>
+      </div>
+      <div class="skill-card" onclick="window.location.href='Reading/Learn reading.html'">
+        <div class="icon3d">📚</div>
+        <h3>Reading</h3>
+        <p>Speed & Comprehension</p>
+      </div>
+      <div class="skill-card" onclick="openModal('Writing')">
+        <div class="icon3d">✍️</div>
+        <h3>Writing</h3>
+        <p>Band 8+ Strategies</p>
+      </div>
+      <div class="skill-card" onclick="openModal('Listening')">
+        <div class="icon3d">🎧</div>
+        <h3>Listening</h3>
+        <p>Active Ear Training</p>
+      </div>
+      <div class="skill-card" onclick="openModal('Exam')">
+        <div class="icon3d">📝</div>
+        <h3>Exam</h3>
+        <p>Mock Tests & Evaluation</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-col">
+      <h4>GKD Khude IELTS</h4>
+      <p>Empowering students to achieve absolute fluency and international test excellence.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <div class="contact-item">
+        <span>📞</span> <a href="tel:+8801751905439">+88017 51 90 54 39</a>
+      </div>
+      <div class="contact-item">
+        <span>✉️</span> <a href="mailto:gkdkhudeielts26@gmail.com">gkdkhudeielts26@gmail.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2026 <strong>GKD Khude IELTS</strong>. All rights reserved.</div>
+    <div>Founder: Gopal Krishna Das</div>
+  </div>
+</footer>
+
+<!-- Modal Box -->
+<div class="modal" id="infoModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3 id="modalTitle" style="color:var(--gold)">Details</h3>
+    <p id="modalText">Information content...</p>
+  </div>
+</div>
+
+<!-- JavaScript for 3D Earth & Alphabet Floating Effects -->
+<script>
+  // --- 1. Real 3D Earth using Three.js & Online Earth Texture ---
+  const container = document.getElementById('earth-container');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 2.8;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  const textureLoader = new THREE.TextureLoader();
+  const earthTexture = textureLoader.load('https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg');
+
+  const geometry = new THREE.SphereGeometry(1.1, 64, 64);
+  const material = new THREE.MeshStandardMaterial({
+    map: earthTexture,
+    roughness: 0.7,
+    metalness: 0.1
+  });
+
+  const earth = new THREE.Mesh(geometry, material);
+  scene.add(earth);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
+  scene.add(ambientLight);
+
+  const dirLight = new THREE.DirectionalLight(0xfff1bd, 1.8);
+  dirLight.position.set(5, 3, 5);
+  scene.add(dirLight);
+
+  function animateEarth() {
+    requestAnimationFrame(animateEarth);
+    earth.rotation.y += 0.0015;
+    renderer.render(scene, camera);
+  }
+  animateEarth();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // --- 2. Floating A-Z Alphabet Stream Animation ---
+  const alphabetStream = document.getElementById('alphabetStream');
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+  function createFloatingLetter() {
+    const letterEl = document.createElement('div');
+    letterEl.className = 'floating-letter';
+    letterEl.innerText = letters[Math.floor(Math.random() * letters.length)];
+    
+    const randomX = (Math.random() - 0.5) * 160;
+    letterEl.style.left = `calc(50% + ${randomX}px)`;
+    letterEl.style.animationDuration = `${3 + Math.random() * 2}s`;
+    
+    alphabetStream.appendChild(letterEl);
+
+    setTimeout(() => {
+      letterEl.remove();
+    }, 4500);
+  }
+
+  setInterval(createFloatingLetter, 300);
+
+  // --- 3. Sidebar & Modal Functions ---
+  function toggleMenu() {
+    document.getElementById('sidebar').classList.toggle('active');
+    document.getElementById('overlay').classList.toggle('active');
+  }
+
+  function openModal(title) {
+    const modal = document.getElementById('infoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    
+    modalTitle.innerText = title;
+    
+    if(title === 'About Owner') {
+      modalText.innerHTML = '<strong>Founder & Instructor:</strong> Gopal Krishna Das<br><strong>Email:</strong> gkdkhudeielts26@gmail.com<br><strong>Phone:</strong> +88017 51 90 54 39<br><br>Dedicated to providing top-tier English language and IELTS preparation training.';
+    } else if(title === 'Exam') {
+      modalText.innerHTML = '<strong>Practice Exam & Mock Test:</strong> Test your skills with our comprehensive band-score evaluation exams designed to simulate real IELTS tests.';
+    } else {
+      modalText.innerHTML = `You selected <strong>${title}</strong> module. This section contains structured guidelines, grammar secrets, and practice materials for high achievement.`;
+    }
+    
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('infoModal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

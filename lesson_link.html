@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GKD Complete English Mastery</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, "Noto Sans Bengali", sans-serif;
+    background: linear-gradient(135deg, #e8f4ff, #f8f0ff);
+    color: #202b3c;
+    min-height: 100vh;
+    padding: 20px 12px 40px;
+}
+
+/* BOOK HEADER */
+.book-header {
+    max-width: 850px;
+    margin: 0 auto 22px;
+    padding: 30px 18px;
+    text-align: center;
+    background: linear-gradient(135deg, #142850, #274690);
+    color: white;
+    border-radius: 22px;
+    box-shadow: 0 10px 25px #14285035;
+    animation: appear 0.8s ease;
+}
+
+.book-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+    animation: float 3s infinite ease-in-out;
+}
+
+.book-header h1 {
+    font-size: clamp(23px, 5vw, 35px);
+    margin-bottom: 10px;
+}
+
+.book-header p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #dbeafe;
+}
+
+/* PROGRESS */
+.progress-box {
+    max-width: 850px;
+    margin: 0 auto 18px;
+    padding: 16px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px #00000008;
+}
+
+.progress-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.progress-track {
+    height: 9px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #06b6d4, #6366f1);
+    border-radius: 20px;
+    transition: width 0.5s;
+}
+
+/* SEARCH */
+.search-box {
+    max-width: 850px;
+    margin: 0 auto 18px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 18px;
+    border: 2px solid #dbeafe;
+    border-radius: 14px;
+    font-size: 16px;
+    outline: none;
+    background: white;
+}
+
+.search-box input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px #6366f120;
+}
+
+/* CHAPTER SECTION */
+.chapter-container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.section-heading {
+    font-size: 23px;
+    margin: 24px 5px 14px;
+    color: #142850;
+}
+
+.chapter-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.chapter {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 3px 10px #00000006;
+    transition: transform 0.25s, box-shadow 0.25s,
+                border-color 0.25s;
+    animation: appear 0.6s ease both;
+}
+
+.chapter:hover {
+    transform: translateY(-3px);
+    border-color: #818cf8;
+    box-shadow: 0 8px 20px #6366f125;
+}
+
+.chapter:active {
+    transform: scale(0.97);
+}
+
+.chapter-number {
+    min-width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eef2ff;
+    color: #4338ca;
+    border-radius: 13px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.chapter-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chapter-info h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.chapter-info p {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.arrow {
+    font-size: 24px;
+    color: #6366f1;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    margin: 35px auto 10px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.empty-message {
+    display: none;
+    text-align: center;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    color: #64748b;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@media (min-width: 600px) {
+    .chapter-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+
+<!-- BOOK COVER HEADER -->
+<header class="book-header">
+
+    <div class="book-icon">📘</div>
+
+    <h1>GKD Complete English Mastery</h1>
+
+    <p>
+        সম্পূর্ণ ইংরেজি শেখার ইন্টারঅ্যাকটিভ ই-বুক<br>
+        অধ্যায় নির্বাচন করো এবং শেখা শুরু করো।
+    </p>
+
+</header>
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='Homepage.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 Homepage
+    </button>
+
+</div>
+
+<!-- LEARNING PROGRESS -->
+<section class="progress-box">
+
+    <div class="progress-title">
+        <span>📚 মোট অধ্যায়</span>
+        <span id="chapterCount">0 টি অধ্যায়</span>
+    </div>
+
+    <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+</section>
+
+<!-- SEARCH -->
+<div class="search-box">
+
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="🔍 অধ্যায়ের নাম লিখে খুঁজুন..."
+        oninput="searchChapters()"
+        aria-label="অধ্যায় খুঁজুন"
+    >
+
+</div>
+
+<!-- CHAPTER LIST -->
+<main class="chapter-container">
+
+    <h2 class="section-heading">📖 সূচিপত্র — Chapters</h2>
+
+    <div class="chapter-list" id="chapterList">
+
+        <!--
+        নতুন অধ্যায় যোগ করতে নিচের মতো একটি লিংক তৈরি করবে।
+
+        href="chapters/language.html"
+        এখানে chapters ফোল্ডারের ভেতরে
+        language.html ফাইলটি থাকতে হবে।
+        -->
+
+       <a class="chapter" href="All lesson/GKD_English_Foundation_Pronunciation_Guide.html">
+            <div class="chapter-number">01</div>
+            <div class="chapter-info">
+                <h3>Language & Grammar</h3>
+                <p>GKD_English_Foundation_Pronunciation_Guide</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Article.html">
+            <div class="chapter-number">02</div>
+            <div class="chapter-info">
+                <h3>Article</h3>
+                <p>Article</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Narration.html">
+            <div class="chapter-number">03</div>
+            <div class="chapter-info">
+                <h3>Narration</h3>
+                <p>Narration</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Sub_Verb_Agreement.html">
+            <div class="chapter-number">04</div>
+            <div class="chapter-info">
+                <h3>Sub_Verb_Agreement</h3>
+                <p>Sub_Verb_Agreement</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Vocabulary.html">
+            <div class="chapter-number">05</div>
+            <div class="chapter-info">
+                <h3>Vocabulary</h3>
+                <p>শব্দভান্ডার</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Changing Sentence ASS-EXC.html">
+            <div class="chapter-number">06</div>
+            <div class="chapter-info">
+                <h3>Changing Sentence</h3>
+                <p>Changing Sentence</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Suffix Prefix Master.html">
+            <div class="chapter-number">07</div>
+            <div class="chapter-info">
+                <h3>Suffi & Prefix</h3>
+                <p>Suffi & Prefix</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Parts of speech.html">
+            <div class="chapter-number">08</div>
+            <div class="chapter-info">
+                <h3>Parts of speech</h3>
+                <p>Parts of speech</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="All lesson/Tense.html">
+            <div class="chapter-number">09</div>
+            <div class="chapter-info">
+                <h3>Tense</h3>
+                <p>বিস্তারিত</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="chapters/tense.html">
+            <div class="chapter-number">10</div>
+            <div class="chapter-info">
+                <h3>Tense</h3>
+                <p>কালের ব্যবহার</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        
+
+        <a class="chapter" href="All lesson/Idioms and Phrases.html">
+            <div class="chapter-number">19</div>
+            <div class="chapter-info">
+                <h3>Idioms & Phrases</h3>
+                <p>বাগধারা ও বিশেষ অভিব্যক্তি</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="chapters/proverbs.html">
+            <div class="chapter-number">20</div>
+            <div class="chapter-info">
+                <h3>Proverbs</h3>
+                <p>প্রবাদ-প্রবচন</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="chapter" href="chapters/reading-test.html">
+            <div class="chapter-number">21</div>
+            <div class="chapter-info">
+                <h3>Reading Test</h3>
+                <p>পাঠ অনুশীলন ও মূল্যায়ন</p>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+    </div>
+
+    <div class="empty-message" id="emptyMessage">
+        দুঃখিত! এই নামে কোনো অধ্যায় পাওয়া যায়নি।
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>GKD Complete English Mastery</p>
+    <p>Learn English Easily • Learn English Completely</p>
+</footer>
+
+<script>
+
+// অধ্যায়ের মোট সংখ্যা
+const chapters = document.querySelectorAll(".chapter");
+
+document.getElementById("chapterCount").textContent =
+    chapters.length + " টি অধ্যায়";
+
+// সার্চ ফাংশন
+function searchChapters() {
+
+    const input = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let visibleCount = 0;
+
+    chapters.forEach(chapter => {
+
+        const text = chapter.innerText.toLowerCase();
+
+        if (text.includes(input)) {
+            chapter.style.display = "flex";
+            visibleCount++;
+        } else {
+            chapter.style.display = "none";
+        }
+
+    });
+
+    document.getElementById("emptyMessage").style.display =
+        visibleCount === 0 ? "block" : "none";
+
+}
+
+// অধ্যায় খুললে অগ্রগতি সংরক্ষণ
+chapters.forEach(chapter => {
+
+    chapter.addEventListener("click", function() {
+
+        const visited = JSON.parse(
+            localStorage.getItem("gkdVisitedChapters") || "[]"
+        );
+
+        const chapterName =
+            this.querySelector("h3").innerText;
+
+        if (!visited.includes(chapterName)) {
+            visited.push(chapterName);
+
+            localStorage.setItem(
+                "gkdVisitedChapters",
+                JSON.stringify(visited)
+            );
+        }
+
+        updateProgress();
+
+    });
+
+});
+
+// অগ্রগতি দেখানো
+function updateProgress() {
+
+    const visited = JSON.parse(
+        localStorage.getItem("gkdVisitedChapters") || "[]"
+    );
+
+    const percentage = chapters.length
+        ? Math.min(100, visited.length / chapters.length * 100)
+        : 0;
+
+    document.getElementById("progressFill").style.width =
+        percentage + "%";
+
+}
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
