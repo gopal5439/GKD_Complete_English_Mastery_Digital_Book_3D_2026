@@ -1,0 +1,357 @@
+<!-- CLAUSE GUIDE MODULE: paste inside an existing HTML <body>; styles and scripts are self-contained. -->
+<style>
+#clause-course{--ink:#18243a;--muted:#64748b;--paper:#ffffff;--bg:#f3f6ff;--line:#dfe6f2;--blue:#4f46e5;--teal:#0f9d8a;--gold:#f59e0b;--pink:#ec4899; color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Hind Siliguri",sans-serif;line-height:1.75;background:linear-gradient(135deg,#f5f7ff,#eefbf8 55%,#fff7ed);border-radius:22px;overflow:hidden;box-shadow:0 18px 55px #263b6617}
+#clause-course *{box-sizing:border-box}
+#clause-course .cc-hero{padding:clamp(24px,5vw,52px);color:white;background:radial-gradient(circle at 85% 15%,#ffffff35,transparent 24%),linear-gradient(125deg,#312e81,#4f46e5 48%,#0891b2);position:relative;overflow:hidden}
+#clause-course .cc-hero:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #ffffff40;border-radius:50%;right:-70px;bottom:-140px;box-shadow:0 0 0 25px #ffffff0c,0 0 0 55px #ffffff0a}
+#clause-course .cc-kicker{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+#clause-course .cc-hero h2{font-size:clamp(1.8rem,4vw,3.1rem);line-height:1.2;margin:.35rem 0 .7rem;color:white}
+#clause-course .cc-hero p{max-width:780px;margin:0;color:#eef2ff}
+#clause-course .cc-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:18px;padding:18px;align-items:start}
+#clause-course .cc-nav{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;background:#ffffffd9;backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:17px;padding:14px}
+#clause-course .cc-nav strong{display:block;margin:2px 8px 10px}
+#clause-course .cc-nav button{display:block;width:100%;border:0;text-align:left;background:transparent;padding:9px 11px;margin:3px 0;border-radius:10px;color:#475569;cursor:pointer;font:inherit;font-size:.92rem;transition:.2s}
+#clause-course .cc-nav button:hover{background:#eef2ff;color:#3730a3;transform:translateX(3px)}
+#clause-course .cc-nav button.active{background:linear-gradient(90deg,#e0e7ff,#dcfce7);color:#312e81;font-weight:750}
+#clause-course .cc-main{min-width:0}
+#clause-course .cc-page{display:none;animation:cc-rise .35s ease both}
+#clause-course .cc-page.active{display:block}
+#clause-course .cc-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,30px);margin-bottom:16px;box-shadow:0 8px 24px #1e293b08}
+#clause-course h3{font-size:clamp(1.3rem,2.7vw,1.8rem);line-height:1.35;margin:0 0 14px;color:#312e81}
+#clause-course h4{margin:18px 0 7px;color:#0f766e;font-size:1.08rem}
+#clause-course p{margin:8px 0}
+#clause-course .cc-lead{font-size:1.06rem;color:#334155}
+#clause-course .cc-note{border-left:4px solid var(--teal);background:#ecfdf5;padding:13px 16px;border-radius:0 12px 12px 0;margin:14px 0}
+#clause-course .cc-warn{border-left-color:var(--gold);background:#fffbeb}
+#clause-course .cc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:14px 0}
+#clause-course .cc-mini{border:1px solid #e2e8f0;border-radius:14px;padding:15px;background:linear-gradient(145deg,#fff,#f8fafc)}
+#clause-course .cc-mini b{color:#4338ca;display:block;margin-bottom:5px}
+#clause-course .cc-tag{display:inline-block;border-radius:999px;background:#e0e7ff;color:#3730a3;font-weight:700;font-size:.83rem;padding:3px 10px;margin:2px}
+#clause-course .cc-table-wrap{overflow-x:auto;margin:12px 0}
+#clause-course table{border-collapse:collapse;width:100%;min-width:490px;background:white}
+#clause-course th,#clause-course td{border:1px solid #e2e8f0;padding:10px 12px;text-align:left;vertical-align:top}
+#clause-course th{background:#eef2ff;color:#312e81}
+#clause-course .cc-example{background:#f8fafc;border:1px dashed #cbd5e1;padding:11px 14px;border-radius:11px;margin:9px 0}
+#clause-course .cc-highlight{color:#be123c;font-weight:800;text-decoration:underline;text-decoration-color:#fda4af;text-underline-offset:3px}
+#clause-course .cc-tree{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:10px;margin:18px 0}
+#clause-course .cc-tree div{flex:1 1 180px;text-align:center;border-radius:13px;padding:13px;border:1px solid #c7d2fe;background:linear-gradient(135deg,#eef2ff,#f0fdfa);font-weight:700}
+#clause-course .cc-tree span{display:block;color:#64748b;font-size:.9rem;font-weight:400}
+#clause-course .cc-quiz{border:1px solid #dbeafe;border-radius:15px;padding:17px;margin:14px 0;background:linear-gradient(145deg,#fff,#f8fbff)}
+#clause-course .cc-q{font-weight:750;margin:0 0 10px}
+#clause-course .cc-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+#clause-course .cc-options button{font:inherit;text-align:left;border:1px solid #cbd5e1;background:white;color:#334155;border-radius:10px;padding:10px 12px;cursor:pointer;transition:.18s}
+#clause-course .cc-options button:hover{border-color:#818cf8;background:#eef2ff}
+#clause-course .cc-options button.correct{background:#dcfce7;border-color:#16a34a;color:#166534}
+#clause-course .cc-options button.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#clause-course .cc-feedback{display:none;margin-top:11px;padding:12px;border-radius:10px;background:#f1f5f9}
+#clause-course .cc-feedback.show{display:block;animation:cc-rise .25s ease}
+#clause-course .cc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+#clause-course .cc-actions button{border:0;border-radius:11px;padding:10px 16px;font:inherit;font-weight:750;cursor:pointer;background:#4f46e5;color:white}
+#clause-course .cc-actions button.secondary{background:#e2e8f0;color:#334155}
+#clause-course .cc-progress{height:6px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-top:16px}
+#clause-course .cc-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#a78bfa,#2dd4bf);transition:width .35s}
+#clause-course .cc-footer{text-align:center;color:#64748b;font-size:.85rem;padding:0 18px 22px}
+@keyframes cc-rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){#clause-course .cc-layout{grid-template-columns:1fr;padding:10px}#clause-course .cc-nav{position:sticky;top:0;z-index:5;max-height:none;display:flex;gap:5px;overflow-x:auto;white-space:nowrap;padding:8px;border-radius:12px}#clause-course .cc-nav strong{display:none}#clause-course .cc-nav button{display:inline-block;width:auto;flex:0 0 auto;margin:0;padding:7px 10px}#clause-course .cc-nav button:hover{transform:none}#clause-course .cc-card{padding:17px}}
+@media(prefers-reduced-motion:reduce){#clause-course *,#clause-course *:before{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div id="clause-course">
+  <header class="cc-hero">
+    <div class="cc-kicker">Complete English Grammar • বাংলা গাইড</div>
+    <h2>CLAUSE — সম্পূর্ণ অধ্যায়</h2>
+    <p>Clause কী, কীভাবে চেনা যায়, Principal ও Subordinate Clause-এর পার্থক্য, প্রকারভেদ, উদাহরণ, বাক্য বিশ্লেষণ এবং ক্লিক করে শেখার অনুশীলন—সব এক জায়গায়।</p>
+    <div class="cc-progress" aria-label="পাঠের অগ্রগতি"><span id="cc-progress-fill"></span></div>
+  </header>
+  <div class="cc-layout">
+    <nav class="cc-nav" aria-label="অধ্যায় সূচি">
+      <strong>📚 অধ্যায় সূচি</strong>
+      <a href="Idioms and Phrases.html">ফিরে যাই</a>
+      <button class="active" data-page="intro">১. Clause পরিচিতি</button>
+      <button data-page="structure">২. গঠন ও Finite Verb</button>
+      <button data-page="principal">৩. Principal Clause</button>
+      <button data-page="subordinate">৪. Subordinate Clause</button>
+      <button data-page="noun">৫. Noun Clause</button>
+      <button data-page="adjective">৬. Adjective Clause</button>
+      <button data-page="adverb">৭. Adverb Clause</button>
+      <button data-page="other">৮. অন্যান্য শ্রেণিবিভাগ</button>
+      <button data-page="compare">৯. Phrase বনাম Clause</button>
+      <button data-page="identify">১০. চেনার কৌশল</button>
+      <button data-page="practice">১১. অনুশীলন</button>
+    </nav>
+    <main class="cc-main">
+      <section class="cc-page active" id="cc-page-intro">
+        <div class="cc-card">
+          <h3>১. Clause কী?</h3>
+          <p class="cc-lead"><b>Clause</b> হলো এমন একদল শব্দ, যেখানে একটি subject (কর্তা) এবং একটি finite verb (সমাপিকা ক্রিয়া) থাকে। এটি কোনো বাক্যের অংশ হতে পারে, আবার একাই সম্পূর্ণ বাক্যও হতে পারে।</p>
+          <div class="cc-example"> <b>Example:</b> <span class="cc-highlight">when the bell rang</span> — যখন ঘণ্টা বাজল।<br>এখানে <i>the bell</i> = subject এবং <i>rang</i> = finite verb। কিন্তু এটি একা সাধারণত পূর্ণ ভাব প্রকাশ করে না।</div>
+          <div class="cc-example"><b>Example:</b> <span class="cc-highlight">I went home</span> — আমি বাড়ি গেলাম।<br><i>I</i> = subject, <i>went</i> = finite verb; এটি সম্পূর্ণ ভাব প্রকাশ করে।</div>
+          <div class="cc-note"><b>মনে রাখো:</b> প্রতিটি clause-এ সাধারণত subject ও finite verb থাকে। তবে imperative বাক্যে subject “you” উহ্য থাকতে পারে—যেমন <i>Come here.</i></div>
+        </div>
+        <div class="cc-card">
+          <h3>Clause-এর প্রধান ভাগ</h3>
+          <div class="cc-tree">
+            <div>Clause <span>উপবাক্য</span></div><div>Principal / Main Clause <span>স্বাধীন উপবাক্য</span></div><div>Subordinate / Dependent Clause <span>আশ্রিত উপবাক্য</span></div>
+          </div>
+          <p>বাক্যের অর্থের ওপর নির্ভর করে clause-কে প্রধানত স্বাধীন ও আশ্রিত ভাগে ভাগ করা হয়। Subordinate clause কাজের ভিত্তিতে আবার Noun, Adjective ও Adverb Clause হতে পারে।</p>
+          <div class="cc-grid">
+            <div class="cc-mini"><b>Principal Clause</b>নিজে স্বাধীনভাবে পূর্ণ বক্তব্য দিতে পারে।<br><i>I know</i> — আমি জানি।</div>
+            <div class="cc-mini"><b>Subordinate Clause</b>অন্য clause-এর ওপর নির্ভরশীল।<br><i>that he is honest</i> — যে সে সৎ।</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-structure">
+        <div class="cc-card">
+          <h3>২. Clause-এর গঠন ও Finite Verb</h3>
+          <p>Clause শনাক্ত করতে প্রথমে subject ও verb খুঁজতে হবে। বিশেষভাবে দেখতে হবে verb-টি finite কি না।</p>
+          <div class="cc-table-wrap"><table><thead><tr><th>উপাদান</th><th>কাজ</th><th>উদাহরণ</th></tr></thead><tbody>
+            <tr><td>Subject</td><td>কে বা কী কাজ করছে/যার সম্পর্কে বলা হচ্ছে</td><td><b>She</b> sings.</td></tr>
+            <tr><td>Finite verb</td><td>Subject/tense অনুযায়ী রূপ নেয়; clause-এর কেন্দ্রীয় ক্রিয়া</td><td>She <b>sings</b>. / They <b>sing</b>.</td></tr>
+            <tr><td>Object/Complement</td><td>অর্থ পূর্ণ করতে পারে; সব clause-এ থাকা বাধ্যতামূলক নয়</td><td>She reads <b>a book</b>.</td></tr>
+          </tbody></table></div>
+          <h4>Finite ও Non-finite-এর পার্থক্য</h4>
+          <div class="cc-example"><b>Finite:</b> When he <span class="cc-highlight">arrived</span>, we started dinner.<br>এখানে <i>arrived</i> finite verb; subject ও tense আছে।</div>
+          <div class="cc-example"><b>Non-finite:</b> <span class="cc-highlight">To win the match</span> is difficult.<br><i>To win the match</i> একটি infinitive phrase, পূর্ণ clause নয়—এখানে নিজস্ব finite verb নেই।</div>
+          <div class="cc-note cc-warn">একটি বাক্যে একাধিক clause থাকতে পারে। প্রতিটি finite verb-ই আলাদা clause বোঝায়—এমন সরল নিয়ম সব ক্ষেত্রে প্রযোজ্য নয়; compound verb ও auxiliary-ও খেয়াল করতে হবে।</div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-principal">
+        <div class="cc-card">
+          <h3>৩. Principal Clause / Main Clause</h3>
+          <p><b>Principal Clause</b> বা <b>Main Clause</b> হলো এমন স্বাধীন clause, যা অন্য clause-এর সাহায্য ছাড়াই পূর্ণ বক্তব্য প্রকাশ করতে পারে। বাংলায় একে প্রধান বা স্বাধীন উপবাক্য বলা যায়।</p>
+          <div class="cc-example"><b>Example:</b> <span class="cc-highlight">I stayed at home</span> because it was raining.<br>Principal Clause: <b>I stayed at home</b> — আমি বাড়িতে ছিলাম।<br>Subordinate Clause: <b>because it was raining</b> — কারণ বৃষ্টি হচ্ছিল।</div>
+          <h4>Principal Clause-এর বৈশিষ্ট্য</h4>
+          <ul><li>নিজে স্বাধীনভাবে সম্পূর্ণ বক্তব্য প্রকাশ করে।</li><li>একটি complex sentence-এ সাধারণত একটি প্রধান clause থাকে; একাধিক স্বাধীন clause যুক্ত হলে compound/compound-complex গঠন হতে পারে।</li><li>অন্য clause এর আগে বা পরে থাকতে পারে।</li></ul>
+          <h4>আরও উদাহরণ</h4>
+          <div class="cc-example">She smiled <b>when she saw me.</b><br>Principal: <b>She smiled</b> — সে হাসল।</div>
+          <div class="cc-example"><b>Although he was tired</b>, he finished the work.<br>Principal: <b>he finished the work</b> — সে কাজটি শেষ করল।</div>
+          <div class="cc-example">I believe <b>that she is right.</b><br>Principal: <b>I believe</b> — আমি বিশ্বাস করি।</div>
+          <div class="cc-note">কোনো clause বাক্যের শুরুতে আছে কি শেষে আছে, তা দিয়ে Principal নির্ধারণ করা যায় না। এটি স্বাধীনভাবে পূর্ণ বক্তব্য দিতে পারে কি না—সেটিই মূল পরীক্ষা।</div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-subordinate">
+        <div class="cc-card">
+          <h3>৪. Subordinate Clause / Dependent Clause</h3>
+          <p><b>Subordinate Clause</b> হলো এমন clause, যা একটি subject ও finite verb থাকা সত্ত্বেও বাক্যে পূর্ণ বক্তব্যের জন্য অন্য clause-এর ওপর নির্ভর করে। একে dependent clause-ও বলে।</p>
+          <div class="cc-example">I know <span class="cc-highlight">that he is honest</span>.<br>“that he is honest” অংশে subject = he, finite verb = is; কিন্তু এই প্রসঙ্গে এটি <i>I know</i>-এর ওপর নির্ভর করছে।</div>
+          <h4>Subordinate Clause-এর প্রধান প্রকারভেদ</h4>
+          <div class="cc-grid">
+            <div class="cc-mini"><b>১. Noun Clause</b>বাক্যে noun-এর কাজ করে।<br><i>I know that he is honest.</i></div>
+            <div class="cc-mini"><b>২. Adjective / Relative Clause</b>কোনো noun বা pronoun-কে বর্ণনা করে।<br><i>The boy who won is my friend.</i></div>
+            <div class="cc-mini"><b>৩. Adverb Clause</b>সময়, কারণ, শর্ত, উদ্দেশ্য, ফল, বৈপরীত্য ইত্যাদি বোঝায়।<br><i>We left when it rained.</i></div>
+          </div>
+          <h4>Subordinate clause চেনার সাধারণ সংকেত</h4>
+          <p><span class="cc-tag">because</span><span class="cc-tag">although</span><span class="cc-tag">if</span><span class="cc-tag">when</span><span class="cc-tag">while</span><span class="cc-tag">that</span><span class="cc-tag">who</span><span class="cc-tag">which</span><span class="cc-tag">where</span><span class="cc-tag">whether</span></p>
+          <p>এগুলো প্রায়ই subordinate clause শুরু করে; তবে শুধু connector দেখেই সিদ্ধান্ত নেওয়া যাবে না। শব্দটি বাক্যে কী কাজ করছে, সেটিও দেখতে হবে।</p>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-noun">
+        <div class="cc-card">
+          <h3>৫. Noun Clause</h3>
+          <p><b>Noun Clause</b> এমন subordinate clause, যা বাক্যে noun-এর মতো কাজ করে—যেমন subject, object, subject complement বা preposition-এর object হিসেবে।</p>
+          <h4>ক. Subject হিসেবে</h4>
+          <div class="cc-example"><span class="cc-highlight">What he said</span> was true.<br>সে যা বলেছিল, তা সত্য ছিল। এখানে “What he said” পুরো অংশটি subject।</div>
+          <h4>খ. Object হিসেবে</h4>
+          <div class="cc-example">I know <span class="cc-highlight">that she is honest</span>.<br>আমি জানি যে সে সৎ। “that she is honest” হলো know-এর object।</div>
+          <h4>গ. Complement হিসেবে</h4>
+          <div class="cc-example">The truth is <span class="cc-highlight">that we are late</span>.<br>সত্য হলো যে আমরা দেরি করে ফেলেছি।</div>
+          <h4>ঘ. Preposition-এর object হিসেবে</h4>
+          <div class="cc-example">It depends on <span class="cc-highlight">whether he agrees</span>.<br>এটি নির্ভর করছে সে রাজি হয় কি না তার ওপর।</div>
+          <h4>সাধারণ সূচক শব্দ</h4>
+          <p><span class="cc-tag">that</span><span class="cc-tag">what</span><span class="cc-tag">who</span><span class="cc-tag">whom</span><span class="cc-tag">whose</span><span class="cc-tag">which</span><span class="cc-tag">when</span><span class="cc-tag">where</span><span class="cc-tag">why</span><span class="cc-tag">how</span><span class="cc-tag">whether</span><span class="cc-tag">if</span></p>
+          <div class="cc-note">Noun Clause-এর ভেতরে প্রশ্নের মতো শব্দ থাকলেও এটি সব সময় সরাসরি প্রশ্ন নয়: <i>I know where he lives.</i> = আমি জানি সে কোথায় থাকে।</div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-adjective">
+        <div class="cc-card">
+          <h3>৬. Adjective Clause / Relative Clause</h3>
+          <p>যে subordinate clause কোনো noun বা pronoun সম্পর্কে অতিরিক্ত তথ্য দেয় বা সেটিকে নির্দিষ্ট করে, তাকে <b>Adjective Clause</b> বলে। একে Relative Clause-ও বলা হয়।</p>
+          <div class="cc-example">The girl <span class="cc-highlight">who is wearing a red dress</span> is my sister.<br>লাল পোশাক পরা মেয়েটি আমার বোন। Clause-টি “the girl”-কে বর্ণনা করছে।</div>
+          <h4>সাধারণ Relative words</h4>
+          <div class="cc-table-wrap"><table><thead><tr><th>শব্দ</th><th>সাধারণ ব্যবহার</th><th>উদাহরণ</th></tr></thead><tbody>
+            <tr><td>who</td><td>ব্যক্তি; subject</td><td>The man who called me is here.</td></tr>
+            <tr><td>whom</td><td>ব্যক্তি; object, অপেক্ষাকৃত আনুষ্ঠানিক</td><td>The person whom I met was kind.</td></tr>
+            <tr><td>whose</td><td>অধিকার/সম্পর্ক</td><td>The boy whose bag is lost is crying.</td></tr>
+            <tr><td>which</td><td>বস্তু/প্রাণী</td><td>The book which I bought is useful.</td></tr>
+            <tr><td>that</td><td>ব্যক্তি বা বস্তু; অনেক defining clause-এ</td><td>The food that we ate was delicious.</td></tr>
+            <tr><td>where/when</td><td>স্থান/সময়</td><td>This is the house where I grew up.</td></tr>
+          </tbody></table></div>
+          <h4>Defining ও Non-defining</h4>
+          <div class="cc-example"><b>Defining:</b> The students <i>who studied hard</i> passed. — কোন শিক্ষার্থীদের কথা বলা হচ্ছে তা নির্দিষ্ট করে।</div>
+          <div class="cc-example"><b>Non-defining:</b> My brother, <i>who lives in Dhaka</i>, is a doctor. — অতিরিক্ত তথ্য দেয়; সাধারণত কমা ব্যবহৃত হয়।</div>
+          <div class="cc-note cc-warn">Non-defining relative clause-এ সাধারণত <i>that</i> ব্যবহার করা হয় না। Relative pronoun object হলে অনেক defining clause-এ সেটি বাদও দেওয়া যায়: <i>The book (that) I read...</i></div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-adverb">
+        <div class="cc-card">
+          <h3>৭. Adverb Clause</h3>
+          <p>যে subordinate clause verb, adjective, adverb বা পুরো main clause সম্পর্কে সময়, কারণ, শর্ত, ছাড়, উদ্দেশ্য, ফল, তুলনা ইত্যাদি তথ্য দেয়, তাকে <b>Adverb Clause</b> বলে।</p>
+          <div class="cc-table-wrap"><table><thead><tr><th>প্রকার</th><th>সাধারণ connector</th><th>উদাহরণ</th><th>অর্থ/কাজ</th></tr></thead><tbody>
+            <tr><td>Time (সময়)</td><td>when, while, before, after, until, as soon as</td><td>Call me when you arrive.</td><td>কখন কল করবে</td></tr>
+            <tr><td>Reason (কারণ)</td><td>because, since, as</td><td>We stayed in because it rained.</td><td>কেন থাকলাম</td></tr>
+            <tr><td>Condition (শর্ত)</td><td>if, unless, provided that</td><td>If you work hard, you will improve.</td><td>কোন শর্তে</td></tr>
+            <tr><td>Concession (বৈপরীত্য/ছাড়)</td><td>although, though, even though</td><td>Although he was tired, he continued.</td><td>বাধা থাকা সত্ত্বেও</td></tr>
+            <tr><td>Purpose (উদ্দেশ্য)</td><td>so that, in order that</td><td>She spoke slowly so that I could understand.</td><td>কী উদ্দেশ্যে</td></tr>
+            <tr><td>Result (ফল)</td><td>so...that, such...that</td><td>He was so tired that he slept early.</td><td>কী ফল হলো</td></tr>
+            <tr><td>Place (স্থান)</td><td>where, wherever</td><td>Sit wherever you like.</td><td>কোথায়</td></tr>
+            <tr><td>Manner (রীতি)</td><td>as, as if, as though</td><td>He talks as if he knows everything.</td><td>কীভাবে/কেমনভাবে</td></tr>
+            <tr><td>Comparison (তুলনা)</td><td>than, as...as</td><td>She is taller than I am.</td><td>তুলনা</td></tr>
+          </tbody></table></div>
+          <h4>গুরুত্বপূর্ণ নিয়ম</h4>
+          <ul><li>Adverb clause বাক্যের শুরুতে এলে সাধারণত তার পরে comma বসে: <i>When the rain stopped, we went out.</i></li><li>সময় ও শর্ত বোঝানো future clause-এ subordinate অংশে সাধারণত present form ব্যবহৃত হয়: <i>When he arrives, we will start.</i> (সাধারণত <i>When he will arrive</i> নয়।)</li><li><i>Unless</i> অর্থ “যদি না”; এর সঙ্গে অকারণে আরেকটি negative ব্যবহার কোরো না।</li></ul>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-other">
+        <div class="cc-card">
+          <h3>৮. Clause-এর অন্যান্য শ্রেণিবিভাগ</h3>
+          <p>Principal/Subordinate হলো স্বাধীনতার ভিত্তিতে শ্রেণিবিভাগ। আবার বাক্যের গঠন বা clause-এর বিশেষ ভূমিকার ভিত্তিতে আরও কিছু নাম শেখানো হয়। এগুলোকে একে অপরের সঙ্গে গুলিয়ে ফেলা যাবে না।</p>
+          <div class="cc-grid">
+            <div class="cc-mini"><b>Independent Clause</b>স্বাধীনভাবে সম্পূর্ণ বক্তব্য দেয়। এটি Principal/Main Clause-এর সমার্থক।<br><i>Birds fly.</i></div>
+            <div class="cc-mini"><b>Dependent Clause</b>অন্য clause-এর ওপর নির্ভর করে। এটি Subordinate Clause-এর সমার্থক।<br><i>because it was late</i></div>
+            <div class="cc-mini"><b>Coordinate Clauses</b>সমমানের স্বাধীন clause and, but, or, so ইত্যাদি দিয়ে যুক্ত হয়।<br><i>I called, but nobody answered.</i></div>
+            <div class="cc-mini"><b>Relative Clause</b>Adjective clause-এরই প্রচলিত নাম।<br><i>The car that I bought is blue.</i></div>
+            <div class="cc-mini"><b>Conditional Clause</b>শর্ত বোঝায়; সাধারণত Adverb Clause-এর অন্তর্ভুক্ত।<br><i>If you hurry, you can catch the bus.</i></div>
+            <div class="cc-mini"><b>Comparative Clause</b>তুলনা প্রকাশ করে; সাধারণত adverbial/comparative গঠনের অংশ।<br><i>She is older than I am.</i></div>
+          </div>
+          <h4>Sentence structure অনুযায়ী</h4>
+          <div class="cc-table-wrap"><table><thead><tr><th>Sentence type</th><th>গঠন</th><th>উদাহরণ</th></tr></thead><tbody>
+            <tr><td>Simple</td><td>একটি independent clause; phrase থাকতে পারে</td><td>She opened the door.</td></tr>
+            <tr><td>Compound</td><td>দুই বা ততোধিক independent clause</td><td>She opened the door, and I went in.</td></tr>
+            <tr><td>Complex</td><td>একটি independent clause + অন্তত একটি dependent clause</td><td>When she opened the door, I went in.</td></tr>
+            <tr><td>Compound-complex</td><td>দুই বা ততোধিক independent clause + অন্তত একটি dependent clause</td><td>When she arrived, I smiled, and we began.</td></tr>
+          </tbody></table></div>
+          <div class="cc-note">কিছু ব্যাকরণ বইয়ে “principal clause-এর প্রকারভেদ” বা “subordinate clause-এর প্রকারভেদ” আলাদা ভাবে উপস্থাপিত হয়। এখানে মূল ও প্রচলিত শ্রেণিবিভাগ দেখানো হয়েছে; বইভেদে পরিভাষায় সামান্য পার্থক্য থাকতে পারে।</div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-compare">
+        <div class="cc-card">
+          <h3>৯. Phrase বনাম Clause</h3>
+          <p>Phrase ও Clause দুটোই শব্দগুচ্ছ, কিন্তু মূল পার্থক্য হলো finite verb-সহ subject–verb সম্পর্ক।</p>
+          <div class="cc-table-wrap"><table><thead><tr><th>বিষয়</th><th>Phrase</th><th>Clause</th></tr></thead><tbody>
+            <tr><td>গঠন</td><td>সাধারণত নিজস্ব subject + finite verb থাকে না</td><td>সাধারণত subject + finite verb থাকে</td></tr>
+            <tr><td>ভাব</td><td>একাই সাধারণত পূর্ণ বক্তব্য নয়</td><td>স্বাধীন বা আশ্রিত—দুই রকম হতে পারে</td></tr>
+            <tr><td>উদাহরণ</td><td><i>in the morning</i> (সকালে)</td><td><i>when morning came</i> (যখন সকাল হলো)</td></tr>
+            <tr><td>আরেকটি উদাহরণ</td><td><i>to win the game</i> (খেলায় জিততে)</td><td><i>because we won the game</i> (কারণ আমরা খেলায় জিতেছিলাম)</td></tr>
+          </tbody></table></div>
+          <div class="cc-note cc-warn">সব বড় শব্দগুচ্ছ clause নয়। <i>Running down the road</i> সাধারণত participial phrase; কিন্তু <i>while he was running down the road</i> একটি clause।</div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-identify">
+        <div class="cc-card">
+          <h3>১০. Clause চেনার ধাপে ধাপে কৌশল</h3>
+          <div class="cc-grid">
+            <div class="cc-mini"><b>ধাপ ১ — Verb খোঁজো</b>বাক্যে finite verb বা verb group চিহ্নিত করো।</div>
+            <div class="cc-mini"><b>ধাপ ২ — Subject খোঁজো</b>কে কাজ করছে বা কার সম্পর্কে বলা হচ্ছে দেখো।</div>
+            <div class="cc-mini"><b>ধাপ ৩ — Clause-এর সীমানা</b>and, but, because, when, who, that ইত্যাদির সাহায্যে অংশ আলাদা করো।</div>
+            <div class="cc-mini"><b>ধাপ ৪ — স্বাধীনতা পরীক্ষা</b>অংশটি একা পূর্ণ বক্তব্য দেয়? দিলে Principal; না দিলে সাধারণত Subordinate।</div>
+            <div class="cc-mini"><b>ধাপ ৫ — কাজ নির্ধারণ</b>Noun-এর কাজ = Noun Clause; noun-কে বর্ণনা = Adjective Clause; সময়/কারণ/শর্ত ইত্যাদি = Adverb Clause।</div>
+          </div>
+          <h4>সম্পূর্ণ বাক্য বিশ্লেষণ</h4>
+          <div class="cc-example"><b>Sentence:</b> <i>Although it was raining, we went to school because we had an exam.</i><br><b>Clause 1:</b> Although it was raining — Subordinate Adverb Clause (concession)<br><b>Clause 2:</b> we went to school — Principal / Independent Clause<br><b>Clause 3:</b> because we had an exam — Subordinate Adverb Clause (reason)</div>
+          <div class="cc-example"><b>Sentence:</b> <i>The student who won the prize said that he was happy.</i><br><b>Principal:</b> The student said ...<br><b>Adjective Clause:</b> who won the prize — student-কে বর্ণনা করে।<br><b>Noun Clause:</b> that he was happy — said-এর object/content।</div>
+          <div class="cc-note">একটি subordinate clause-এর ভেতরেও অন্য clause থাকতে পারে। তাই শুধু connector দেখে নয়, প্রতিটি অংশের গঠন ও কাজ দেখে বিশ্লেষণ করতে হবে।</div>
+        </div>
+      </section>
+
+      <section class="cc-page" id="cc-page-practice">
+        <div class="cc-card">
+          <h3>১১. ক্লিক করে অনুশীলন করো</h3>
+          <p>প্রতিটি প্রশ্নের একটি অপশনে ক্লিক করো। সঙ্গে সঙ্গে সঠিক উত্তর ও ব্যাখ্যা দেখা যাবে। আলাদা উত্তরমালা প্রয়োজন নেই।</p>
+          <div id="cc-quiz-list"></div>
+          <div class="cc-actions"><button type="button" id="cc-reset">আবার অনুশীলন</button><button type="button" class="secondary" id="cc-score">ফলাফল দেখুন</button></div>
+          <p id="cc-result" aria-live="polite"></p>
+        </div>
+      </section>
+      <div class="cc-actions">
+        <button type="button" id="cc-prev" class="secondary">← আগের অধ্যায়</button>
+        <button type="button" id="cc-next">পরের অধ্যায় →</button>
+      </div>
+    </main>
+  </div>
+  <div class="cc-footer">পড়ো • বুঝো • অনুশীলন করো — Clause Master Guide</div>
+</div>
+
+<script>
+(function(){
+  const root=document.getElementById('clause-course');
+  if(!root || root.dataset.ready==='yes') return;
+  root.dataset.ready='yes';
+  const nav=[...root.querySelectorAll('.cc-nav button')];
+  const pages=[...root.querySelectorAll('.cc-page')];
+  let current=0;
+  function showPage(index){
+    current=Math.max(0,Math.min(index,pages.length-1));
+    pages.forEach((p,i)=>p.classList.toggle('active',i===current));
+    nav.forEach((b,i)=>{b.classList.toggle('active',i===current);if(i===current)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    root.querySelector('#cc-prev').disabled=current===0;
+    root.querySelector('#cc-next').textContent=current===pages.length-1?'শেষ অধ্যায়':'পরের অধ্যায় →';
+    root.querySelector('#cc-progress-fill').style.width=((current+1)/pages.length*100)+'%';
+    if(window.matchMedia('(max-width:760px)').matches) root.querySelector('.cc-nav').scrollLeft=nav[current].offsetLeft;
+  }
+  nav.forEach((b,i)=>b.addEventListener('click',()=>showPage(i)));
+  root.querySelector('#cc-prev').addEventListener('click',()=>showPage(current-1));
+  root.querySelector('#cc-next').addEventListener('click',()=>showPage(current===pages.length-1?0:current+1));
+
+  const questions=[
+    {q:'1. Clause-এর সবচেয়ে গুরুত্বপূর্ণ গঠনগত বৈশিষ্ট্য কোনটি?',o:['শুধু একটি noun থাকা','সাধারণত subject ও finite verb থাকা','অবশ্যই ১০টি শব্দ থাকা','সব সময় পূর্ণ বাক্য হওয়া'],a:1,e:'Clause-এ সাধারণত subject ও finite verb থাকে। তবে clause স্বাধীন বা আশ্রিত—দুই ধরনেরই হতে পারে।'},
+    {q:'2. “I stayed home because it rained.” — Principal Clause কোনটি?',o:['because it rained','it rained','I stayed home','because'],a:2,e:'“I stayed home” একাই পূর্ণ বক্তব্য দেয়, তাই এটি Principal/Main Clause।'},
+    {q:'3. Subordinate Clause-এর সমার্থক কোনটি?',o:['Independent Clause','Dependent Clause','Main Clause','Coordinate Clause'],a:1,e:'Subordinate Clause অন্য clause-এর ওপর নির্ভরশীল; তাই একে Dependent Clause-ও বলা হয়।'},
+    {q:'4. “I know that he is honest.” — “that he is honest” কোন clause?',o:['Adjective Clause','Adverb Clause','Noun Clause','Principal Clause'],a:2,e:'এটি “know” ক্রিয়ার object/content হিসেবে noun-এর কাজ করছে; তাই Noun Clause।'},
+    {q:'5. “The boy who helped me is kind.” — “who helped me” কী?',o:['Noun Clause','Adjective/Relative Clause','Adverb Clause','Principal Clause'],a:1,e:'Clause-টি “the boy” সম্পর্কে তথ্য দেয়, তাই Adjective বা Relative Clause।'},
+    {q:'6. “When the bell rang, we left.” — “When the bell rang” কোনটি?',o:['Noun Clause','Principal Clause','Adverb Clause of Time','Adjective Clause'],a:2,e:'এটি কখন আমরা চলে গেলাম তা জানায়, তাই Adverb Clause of Time।'},
+    {q:'7. কোনটি Phrase, Clause নয়?',o:['because she cried','when he arrived','in the morning','that I was right'],a:2,e:'“in the morning”-এ নিজস্ব subject ও finite verb নেই; এটি prepositional phrase।'},
+    {q:'8. “What she said was true.” — “What she said” কী কাজ করছে?',o:['Adjective হিসেবে noun-কে বর্ণনা','Subject হিসেবে','Adverb of time হিসেবে','Principal clause-এর বাইরে'],a:1,e:'পুরো “What she said” অংশটি “was true”-এর subject; তাই এটি Noun Clause।'},
+    {q:'9. কোন connector সাধারণত কারণ বোঝানো Adverb Clause শুরু করে?',o:['because','although','unless','wherever'],a:0,e:'Because সাধারণত কারণ বোঝায়: We stayed in because it rained.'},
+    {q:'10. “Although he was tired, he continued.” — Principal Clause কোনটি?',o:['Although he was tired','he was tired','he continued','Although'],a:2,e:'“he continued” স্বাধীনভাবে পূর্ণ বক্তব্য দেয়। “Although he was tired” বৈপরীত্য বোঝানো subordinate clause।'},
+    {q:'11. “The book that I bought is useful.” — “that I bought” কী?',o:['Adjective/Relative Clause','Noun Clause','Adverb Clause of Reason','Principal Clause'],a:0,e:'এটি “the book” কোনটি তা নির্দিষ্ট করছে, তাই Adjective/Relative Clause।'},
+    {q:'12. “If you study, you will improve.” — “If you study” কী বোঝায়?',o:['কারণ','উদ্দেশ্য','শর্ত','ফল'],a:2,e:'If দিয়ে শুরু হওয়া অংশটি শর্ত বোঝায়; এটি Adverb Clause of Condition।'},
+    {q:'13. Complex sentence-এর সাধারণ গঠন কোনটি?',o:['শুধু একটি phrase','একটি independent clause ও অন্তত একটি dependent clause','শুধু দুটি noun','কোনো finite verb নেই'],a:1,e:'Complex sentence-এ একটি independent clause এবং অন্তত একটি dependent/subordinate clause থাকে।'},
+    {q:'14. “She spoke slowly so that I could understand.” — subordinate clause-এর কাজ কী?',o:['উদ্দেশ্য বোঝানো','সময় বোঝানো','স্থান বোঝানো','তুলনা বোঝানো'],a:0,e:'“so that I could understand” কাজটির উদ্দেশ্য বোঝায়; এটি Adverb Clause of Purpose।'},
+    {q:'15. সঠিক বিশ্লেষণ কোনটি? “The student who won said that he was happy.”',o:['who won = Noun Clause','that he was happy = Adjective Clause','who won = Adjective Clause; that he was happy = Noun Clause','দুটি অংশই Principal Clause'],a:2,e:'“who won” student-কে বর্ণনা করে, তাই Adjective Clause। “that he was happy” said-এর বক্তব্য/object, তাই Noun Clause।'}
+  ];
+  let correctCount=0,answered=0;
+  const list=root.querySelector('#cc-quiz-list');
+  function renderQuiz(){
+    correctCount=0;answered=0;
+    root.querySelector('#cc-result').textContent='';
+    list.innerHTML='';
+    questions.forEach((item,qi)=>{
+      const card=document.createElement('div');card.className='cc-quiz';
+      const q=document.createElement('p');q.className='cc-q';q.textContent=item.q;card.appendChild(q);
+      const opts=document.createElement('div');opts.className='cc-options';
+      const feedback=document.createElement('div');feedback.className='cc-feedback';feedback.setAttribute('aria-live','polite');
+      item.o.forEach((option,oi)=>{
+        const btn=document.createElement('button');btn.type='button';btn.textContent=String.fromCharCode(65+oi)+'. '+option;
+        btn.addEventListener('click',()=>{
+          if(card.dataset.answered==='yes')return;
+          card.dataset.answered='yes';answered++;
+          const isCorrect=oi===item.a;
+          if(isCorrect){correctCount++;btn.classList.add('correct')}else{btn.classList.add('wrong');opts.children[item.a].classList.add('correct')}
+          [...opts.children].forEach(b=>b.disabled=true);
+          feedback.classList.add('show');
+          feedback.innerHTML='<b>'+(isCorrect?'✅ সঠিক উত্তর!':'❌ সঠিক উত্তর: '+String.fromCharCode(65+item.a)+'. '+item.o[item.a])+'</b><br>'+item.e;
+          root.querySelector('#cc-result').textContent='উত্তর দেওয়া হয়েছে: '+answered+'/'+questions.length;
+        });
+        opts.appendChild(btn);
+      });
+      card.appendChild(opts);card.appendChild(feedback);list.appendChild(card);
+    });
+  }
+  root.querySelector('#cc-reset').addEventListener('click',renderQuiz);
+  root.querySelector('#cc-score').addEventListener('click',()=>{
+    const result=root.querySelector('#cc-result');
+    result.textContent='তোমার ফলাফল: '+correctCount+'/'+answered+' সঠিক। '+(answered<questions.length?'বাকি প্রশ্নগুলোর উত্তরও দাও।':(correctCount===questions.length?'দারুণ! সবগুলো সঠিক হয়েছে।':'ভুল উত্তরগুলোর ব্যাখ্যা দেখে আবার চেষ্টা করো।'));
+  });
+  renderQuiz();showPage(0);
+})();
+</script>
+<!-- END CLAUSE GUIDE MODULE -->

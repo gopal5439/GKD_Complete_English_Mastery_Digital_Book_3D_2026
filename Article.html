@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article — Complete Mastery</title>
+<style>
+:root{--ink:#14213d;--blue:#2563eb;--purple:#7c3aed;--mint:#d9fff1;--gold:#fbbf24;--paper:rgba(255,255,255,.94)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans Bengali","Hind Siliguri",system-ui,sans-serif;color:var(--ink);background:linear-gradient(125deg,#dbeafe,#f5e8ff,#d1fae5,#fff7d6);background-size:400% 400%;animation:bgFlow 18s ease infinite;line-height:1.75}
+@keyframes bgFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+header{padding:42px 18px 32px;text-align:center;color:white;background:linear-gradient(125deg,#101a48,#4338ca,#087f8c);position:relative;overflow:hidden}
+header:after{content:"";position:absolute;left:-10%;right:-10%;height:70px;bottom:-42px;background:#dbeafe;border-radius:50% 50% 0 0/100% 100% 0 0;animation:wave 7s ease-in-out infinite alternate}
+@keyframes wave{from{transform:translateX(-2%) scaleY(.8)}to{transform:translateX(2%) scaleY(1.2)}}
+header h1{font-size:clamp(2rem,5vw,3.5rem);margin:0;text-shadow:0 5px 18px #0007;animation:floatTitle 4s ease-in-out infinite}
+@keyframes floatTitle{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+header p{max-width:850px;margin:10px auto 0;color:#e0f2fe}
+nav{position:sticky;top:0;z-index:10;background:#111b3deF;backdrop-filter:blur(12px);display:flex;gap:8px;overflow-x:auto;padding:10px;justify-content:center}
+nav a{color:#fff;text-decoration:none;padding:7px 12px;border:1px solid #ffffff55;border-radius:20px;white-space:nowrap;font-size:.9rem}
+nav a:hover{background:#7c3aed}
+main{max-width:1100px;margin:28px auto;padding:0 16px}
+.page{background:var(--paper);border:1px solid #ffffffc9;border-radius:22px;padding:clamp(18px,3vw,34px);margin:24px 0;box-shadow:0 14px 38px #243b6520;position:relative;overflow:hidden;scroll-margin-top:80px}
+.page:before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,#06b6d4,#7c3aed,#f59e0b,#10b981);background-size:200% 100%;animation:rainbow 5s linear infinite}
+@keyframes rainbow{to{background-position:200% 0}}
+h2{color:#3730a3;margin-top:0;font-size:clamp(1.35rem,3vw,2rem)}
+h3{color:#075985;margin-bottom:8px}
+.lead{font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.card{background:linear-gradient(135deg,#fff,#eef6ff);border:1px solid #dbeafe;border-radius:16px;padding:16px;box-shadow:0 5px 14px #1e3a8a0c;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 25px #1e3a8a20}
+.big{font-size:2rem;font-weight:900;color:#4f46e5}
+.callout{padding:14px 18px;border-left:5px solid #7c3aed;background:#f3e8ff;border-radius:10px;margin:14px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0 18px;background:#fff;border-radius:12px;overflow:hidden}
+th,td{padding:10px 12px;border:1px solid #dbe3f2;text-align:left;vertical-align:top}
+th{background:#e0e7ff;color:#252b67}
+tr:nth-child(even) td{background:#f8fbff}
+.example{font-weight:650;color:#0f766e}
+ul,ol{padding-left:24px}
+li{margin:5px 0}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;background:#dbeafe;color:#1d4ed8;font-size:.85rem;font-weight:bold}
+.quiz-item{padding:14px;border:1px solid #dbe3f2;border-radius:14px;margin:12px 0;background:#fff}
+.quiz-item p{margin:0 0 8px;font-weight:650}
+.options{display:flex;flex-wrap:wrap;gap:8px}
+.options label{padding:6px 11px;border:1px solid #cbd5e1;border-radius:9px;cursor:pointer}
+.options label:has(input:checked){background:#e0e7ff;border-color:#6366f1}
+button{border:0;border-radius:12px;padding:11px 17px;font:inherit;font-weight:bold;cursor:pointer;background:#4f46e5;color:#fff;box-shadow:0 5px 12px #4338ca30}
+button:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.secondary{background:#0f766e}
+.result{padding:14px;border-radius:12px;margin-top:14px;background:#ecfdf5;display:none}
+.progress{height:9px;background:#e2e8f0;border-radius:20px;overflow:hidden;margin:12px 0}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#06b6d4,#7c3aed);transition:width .3s}
+footer{text-align:center;padding:28px 16px;color:#334155}
+.wave-text{display:inline-block;animation:letterWave 2.5s ease-in-out infinite}
+@keyframes letterWave{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media(max-width:650px){nav{justify-content:flex-start}.page{border-radius:16px}th,td{padding:8px;font-size:.94rem}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../lesson_link.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+
+  <div class="badge">ENGLISH GRAMMAR • LEARN • PRACTISE</div>
+  <h1 id="waveTitle">Article — Complete Mastery</h1>
+  <p>Article (A, An, The) • বাংলা ব্যাখ্যা, নিয়ম, উদাহরণ, ব্যতিক্রম ও ৫০টি অনুশীলন</p>
+</header>
+<nav>
+<a href="#p1">Article কী</a><a href="#p2">A / An</a><a href="#p3">a/an পূর্ণাঙ্গ ব্যবহার</a> <a href="#p4">The এর ব্যবহার</a> <a href="#p5">Zero Article</a><a href="#p6">বিশেষ নিয়ম</a><a href="#quiz">Practice Test</a><a href="#recap">মনে রাখো</a>
+</nav>
+<main>
+<section class="page" id="p1">
+<h2>পৃষ্ঠা ১ — Article কী?</h2>
+<p class="lead">Article হলো এমন এক ধরনের <b>Determiner</b>, যা Noun-এর আগে বসে Noun-টিকে নির্দিষ্ট বা অনির্দিষ্টভাবে প্রকাশ করে।<br>
+Article আসলে Determiner-এরই একটি বিশেষ শ্রেণি (Class)। <br>
+
+<b>মূল কাজ:</b> এটি Noun-কে নির্দেশ (Specify) করে—সেটি নির্দিষ্ট (Definite: the) হোক কিংবা অনির্দিষ্ট (Indefinite: a/an) হোক।</p>
+<div class="grid">
+<div class="card"><div class="big">A</div><b>একটি / একজন</b><br>ব্যঞ্জনধ্বনি দিয়ে শুরু হওয়া শব্দের আগে।<br><span class="example">a boy, a cat, a book</span></div>
+<div class="card"><div class="big">An</div><b>একটি / একজন</b><br>স্বরধ্বনি দিয়ে শুরু হওয়া শব্দের আগে।<br><span class="example">an apple, an egg, an orange</span></div>
+<div class="card"><div class="big">The</div><b>নির্দিষ্ট</b><br>বিশেষভাবে চিহ্নিত ব্যক্তি বা বস্তুর আগে।<br><span class="example">the sun, the book</span></div>
+</div>
+<div class="callout"><b>Golden Rule:</b> A অথবা An বসানোর সময় শব্দের প্রথম অক্ষর (Letter) নয়, প্রথম উচ্চারিত ধ্বনি (Sound) দেখবে।</div>
+<p>ইংরেজিতে Vowel Letter হলো <b>A, E, I, O, U</b>। কিন্তু Vowel Sound ও Vowel Letter এক জিনিস নয়।</p>
+</section>
+
+<section class="page" id="p2">
+<h2>পৃষ্ঠা ২ — A ও An: Sound-এর নিয়ম</h2>
+<table><tr><th>প্রথম উচ্চারিত Sound</th><th>Article</th><th>উদাহরণ</th></tr>
+<tr><td>ব্যঞ্জনধ্বনি (Consonant sound)</td><td><b>A</b></td><td>a boy, a cat, a book</td></tr>
+<tr><td>স্বরধ্বনি (Vowel sound)</td><td><b>An</b></td><td>an apple, an egg, an orange</td></tr></table>
+<h3>A বসবে — শুরুতে ব্যঞ্জনধ্বনি থাকলে</h3>
+<p>শব্দের প্রথম Letter Vowel হলেও প্রথম Sound ব্যঞ্জনধ্বনি হতে পারে।</p>
+<div class="grid">
+<div class="card"><b>U = /juː/ (ইউ)</b><p class="example">a university<br>a uniform<br>a useful book<br>a European</p></div>
+<div class="card"><b>O = /w/ ধ্বনি</b><p class="example">a one-eyed man<br>a one-rupee coin<br>a one-way road</p></div>
+</div>
+<h3>An বসবে — শুরুতে স্বরধ্বনি থাকলে</h3>
+<div class="grid">
+<div class="card"><b>Silent H</b><p class="example">an honest man<br>an hour<br>an honourable person<br>an heir</p></div>
+<div class="card"><b>Vowel Sound</b><p class="example">an apple<br>an umbrella<br>an MP<br>an FBI agent</p></div>
+</div>
+<h3>Single ও Double Vowel Sound-এর উদাহরণ</h3>
+<table><tr><th>শব্দ</th><th>উচ্চারণের শুরু</th><th>সঠিক ব্যবহার</th></tr>
+<tr><td>university</td><td>/juː/</td><td>a university</td></tr><tr><td>European</td><td>/jʊ/</td><td>a European</td></tr><tr><td>useful</td><td>/juː/</td><td>a useful thing</td></tr><tr><td>one</td><td>/w/</td><td>a one-time offer</td></tr><tr><td>apple</td><td>/æ/</td><td>an apple</td></tr><tr><td>hour</td><td>/aʊ/</td><td>an hour</td></tr><tr><td>honest</td><td>/ɒ/ বা /ɑː/</td><td>an honest person</td></tr><tr><td>umbrella</td><td>/ʌ/</td><td>an umbrella</td></tr></table>
+<div class="callout"><b>সতর্কতা:</b> H সবসময় Silent নয়: <i>a house, a horse, a happy boy</i>। Hotel শব্দটি সাধারণ আধুনিক উচ্চারণে /h/ দিয়ে শুরু হয়, তাই সাধারণত <i>a hotel</i>। উচ্চারণভেদে কিছু শব্দে পার্থক্য হতে পারে।</div>
+</section>
+
+<section class="page" id="p3">
+<h2>পৃষ্ঠা ৩ — A ও An-এর পূর্ণাঙ্গ ব্যবহার</h2>
+
+<style>
+/* ===== A / AN LEARNING SECTION ===== */
+.aa-learning{
+  --aa-primary:#2563eb;
+  --aa-dark:#102544;
+  --aa-text:#26354d;
+  --aa-muted:#64748b;
+  --aa-border:#dce6f2;
+  font-family:"Noto Sans Bengali","Hind Siliguri",Arial,sans-serif;
+  color:var(--aa-text);
+  max-width:1200px;
+  margin:25px auto;
+  line-height:1.85;
+  overflow:hidden;
+}
+.aa-learning *{box-sizing:border-box}
+.aa-learning .aa-hero{
+  position:relative;
+  overflow:hidden;
+  padding:35px 22px;
+  border-radius:24px;
+  text-align:center;
+  color:#fff;
+  background:linear-gradient(130deg,#101b40,#174a85 55%,#087e8b);
+  box-shadow:0 15px 38px #10254425;
+}
+.aa-learning .aa-hero:before,
+.aa-learning .aa-hero:after{
+  content:"";
+  position:absolute;
+  border:1px solid #ffffff25;
+  border-radius:50%;
+  pointer-events:none;
+  animation:aa-orbit 12s linear infinite;
+}
+.aa-learning .aa-hero:before{
+  width:230px;height:230px;top:-125px;left:-50px;
+}
+.aa-learning .aa-hero:after{
+  width:290px;height:290px;bottom:-205px;right:-55px;
+  animation-direction:reverse;
+}
+.aa-learning .aa-kicker{
+  display:inline-block;
+  padding:5px 14px;
+  border:1px solid #ffffff50;
+  background:#ffffff15;
+  border-radius:30px;
+  font-size:13px;
+  letter-spacing:1px;
+}
+.aa-learning .aa-hero h2{
+  position:relative;
+  z-index:1;
+  font-size:clamp(30px,5vw,52px);
+  line-height:1.3;
+  margin:12px 0;
+  color:#fff;
+}
+.aa-learning .aa-hero p{
+  position:relative;z-index:1;
+  max-width:720px;margin:0 auto;
+  color:#e2f2ff;font-size:16px;
+}
+.aa-learning .aa-hero strong{color:#fde68a}
+.aa-learning .aa-rule-banner{
+  margin:20px 0;
+  padding:17px;
+  border-radius:15px;
+  text-align:center;
+  background:linear-gradient(110deg,#dbeafe,#ecfeff);
+  border:1px solid #b8d9fa;
+  color:#173b6d;
+  font-weight:700;
+}
+.aa-learning .aa-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;
+  margin:20px 0;
+}
+.aa-learning .aa-card{
+  min-width:0;
+  background:#fff;
+  border:1px solid var(--aa-border);
+  border-radius:17px;
+  padding:20px;
+  box-shadow:0 5px 18px #1025440b;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  animation:aa-appear .6s ease both;
+}
+.aa-learning .aa-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 13px 28px #10254418;
+  border-color:#9bbdf7;
+}
+.aa-learning .aa-card h3{
+  font-size:20px;line-height:1.5;
+  margin:0 0 10px;color:#173b6d;
+}
+.aa-learning .aa-card p{margin:7px 0}
+.aa-learning .aa-card ul,
+.aa-learning .aa-card ol{padding-left:24px;margin:8px 0}
+.aa-learning .aa-card li{margin:5px 0}
+.aa-learning .aa-a-card{
+  border-top:5px solid #16a34a;
+  background:linear-gradient(180deg,#f0fdf4,#fff 60%);
+}
+.aa-learning .aa-an-card{
+  border-top:5px solid #f59e0b;
+  background:linear-gradient(180deg,#fff7ed,#fff 60%);
+}
+.aa-learning .aa-big-letter{
+  font-size:54px;font-weight:900;
+  line-height:1.2;margin:5px 0;
+}
+.aa-learning .aa-a-card .aa-big-letter{color:#15803d}
+.aa-learning .aa-an-card .aa-big-letter{color:#c26108}
+.aa-learning .aa-small{
+  color:var(--aa-muted);font-size:13px;
+}
+.aa-learning .aa-example{
+  padding:9px 12px;
+  margin:8px 0;
+  border-radius:10px;
+  background:#f1f5f9;
+  border-left:3px solid #93a9c5;
+}
+.aa-learning .aa-example b{color:#1453a2}
+.aa-learning .aa-bn{color:#475569;font-size:14px}
+.aa-learning .aa-tag{
+  display:inline-block;
+  border-radius:6px;
+  padding:2px 8px;
+  background:#dbeafe;color:#174ea6;
+  font-size:12px;font-weight:700;
+}
+.aa-learning .aa-section-title{
+  display:flex;align-items:center;gap:12px;
+  margin:34px 0 15px;
+  font-size:clamp(21px,3vw,29px);
+  line-height:1.5;color:#123566;
+}
+.aa-learning .aa-section-title:before{
+  content:"";display:block;flex:0 0 6px;
+  height:35px;border-radius:8px;
+  background:linear-gradient(#2563eb,#06b6d4);
+}
+.aa-learning .aa-flow{
+  display:flex;flex-direction:column;
+  align-items:center;gap:10px;
+}
+.aa-learning .aa-flow-box{
+  width:100%;max-width:580px;
+  padding:15px;
+  text-align:center;
+  border:1px solid #cbdaf0;
+  border-radius:13px;
+  background:#f8fbff;
+  font-weight:700;
+}
+.aa-learning .aa-arrow{
+  color:#3981d8;font-size:26px;
+  line-height:1;animation:aa-bounce 1.5s infinite;
+}
+.aa-learning .aa-split{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:14px;width:100%;
+}
+.aa-learning .aa-split>div{
+  padding:17px 12px;border-radius:14px;
+  text-align:center;
+}
+.aa-learning .aa-green{
+  background:#dcfce7;border:1px solid #86d6a2;
+}
+.aa-learning .aa-orange{
+  background:#ffedd5;border:1px solid #fdc98b;
+}
+.aa-learning .aa-split h4{
+  font-size:30px;margin:0 0 7px;
+}
+.aa-learning .aa-table-wrap{
+  width:100%;overflow-x:auto;
+  border:1px solid var(--aa-border);
+  border-radius:13px;margin:13px 0;
+}
+.aa-learning table{
+  width:100%;border-collapse:collapse;
+  min-width:470px;font-size:14px;
+}
+.aa-learning th{
+  background:#173b6d;color:white;
+  text-align:left;padding:12px;
+}
+.aa-learning td{
+  padding:11px 12px;
+  border-bottom:1px solid #e5edf6;
+  vertical-align:top;
+}
+.aa-learning tbody tr:nth-child(even){background:#f5f9ff}
+.aa-learning tbody tr:hover{background:#e8f3ff}
+.aa-learning .aa-note{
+  padding:14px 16px;border-radius:12px;
+  background:#eff6ff;border:1px solid #bfdbfe;
+  margin:12px 0;
+}
+.aa-learning .aa-warning{
+  background:#fff7ed;border-color:#fed7aa;
+}
+.aa-learning .aa-correct{
+  color:#15803d;font-weight:700;
+}
+.aa-learning .aa-wrong{
+  color:#b91c1c;text-decoration:line-through;
+}
+.aa-learning .aa-topic{
+  border:1px solid var(--aa-border);
+  border-radius:14px;margin:11px 0;
+  overflow:hidden;background:white;
+}
+.aa-learning .aa-topic summary{
+  list-style:none;cursor:pointer;
+  padding:14px 17px;
+  display:flex;align-items:center;
+  justify-content:space-between;gap:10px;
+  font-weight:700;color:#173b6d;
+  background:#f5f9ff;
+}
+.aa-learning .aa-topic summary::-webkit-details-marker{display:none}
+.aa-learning .aa-topic summary:after{
+  content:"＋";font-size:22px;color:#2563eb;
+  flex-shrink:0;
+}
+.aa-learning .aa-topic[open] summary:after{content:"−"}
+.aa-learning .aa-topic[open] summary{background:#e8f2ff}
+.aa-learning .aa-topic-content{padding:16px}
+.aa-learning .aa-rule-no{
+  display:inline-flex;align-items:center;
+  justify-content:center;flex-shrink:0;
+  width:34px;height:34px;border-radius:10px;
+  background:#dbeafe;color:#174ea6;
+  font-size:13px;margin-right:8px;
+}
+.aa-learning .aa-search{
+  width:100%;padding:13px 15px;
+  border:1px solid #cbd5e1;border-radius:12px;
+  font:inherit;font-size:15px;
+  outline:none;margin:8px 0 15px;
+}
+.aa-learning .aa-search:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px #2563eb18;
+}
+.aa-learning .aa-buttons{
+  display:flex;flex-wrap:wrap;gap:9px;
+  margin:14px 0;
+}
+.aa-learning .aa-btn{
+  border:0;border-radius:10px;
+  padding:10px 15px;cursor:pointer;
+  background:#1d4ed8;color:#fff;
+  font:inherit;font-size:14px;
+  transition:transform .2s,background .2s;
+}
+.aa-learning .aa-btn:hover{
+  transform:translateY(-2px);background:#123b9d;
+}
+.aa-learning .aa-btn.aa-secondary{
+  background:#e2e8f0;color:#1e293b;
+}
+.aa-learning .aa-quiz-option{
+  display:block;width:100%;text-align:left;
+  padding:11px 13px;margin:7px 0;
+  border:1px solid #d7e1ee;border-radius:10px;
+  background:white;cursor:pointer;font:inherit;
+}
+.aa-learning .aa-quiz-option:hover{background:#eff6ff}
+.aa-learning .aa-quiz-option.aa-right{
+  background:#dcfce7;border-color:#22c55e;
+}
+.aa-learning .aa-quiz-option.aa-wrong-answer{
+  background:#fee2e2;border-color:#ef4444;
+}
+.aa-learning .aa-quiz-feedback{
+  min-height:30px;font-weight:700;margin-top:8px;
+}
+.aa-learning .aa-footer{
+  margin-top:25px;padding:19px;
+  text-align:center;border-radius:15px;
+  color:white;background:linear-gradient(110deg,#173b6d,#087e8b);
+}
+.aa-learning [hidden]{display:none!important}
+@keyframes aa-appear{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes aa-bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(5px)}
+}
+@keyframes aa-orbit{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+@media(max-width:680px){
+  .aa-learning .aa-grid{grid-template-columns:1fr}
+  .aa-learning .aa-hero{padding:28px 15px}
+  .aa-learning .aa-card{padding:16px}
+  .aa-learning .aa-split{gap:8px}
+  .aa-learning .aa-split>div{padding:12px 7px}
+  .aa-learning .aa-section-title{margin-top:26px}
+}
+@media(prefers-reduced-motion:reduce){
+  .aa-learning *, .aa-learning *:before,.aa-learning *:after{
+    animation:none!important;transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+
+<section class="aa-learning" id="article-a-an">
+
+  <!-- HERO -->
+  <header class="aa-hero">
+    <span class="aa-kicker">COMPLETE ENGLISH GRAMMAR</span>
+    <h2>A &amp; AN</h2>
+    <p><strong>Article-এর পূর্ণাঙ্গ ব্যবহারবিধি</strong></p>
+    <p>নিয়ম • ব্যতিক্রম • উদাহরণ • বাংলা অর্থ • পরীক্ষার প্রস্তুতি</p>
+  </header>
+
+  <div class="aa-rule-banner">
+    মূল সূত্র: Article নির্বাচন করবে বানান দেখে নয়, পরের শব্দের
+    <strong>প্রথম উচ্চারিত ধ্বনি</strong> শুনে।
+  </div>
+
+  <!-- MAIN DIAGRAM -->
+  <h3 class="aa-section-title">১. A নাকি An? — মূল ডায়াগ্রাম</h3>
+  <div class="aa-flow">
+    <div class="aa-flow-box">পরের শব্দটির প্রথম উচ্চারিত ধ্বনি নির্ণয় করো</div>
+    <div class="aa-arrow">↓</div>
+    <div class="aa-split">
+      <div class="aa-green">
+        <h4>A</h4>
+        <strong>ব্যঞ্জনধ্বনি</strong>
+        <div class="aa-example">a boy</div>
+        <div class="aa-example">a cat</div>
+        <div class="aa-example">a university</div>
+        <div class="aa-example">a European</div>
+        <div class="aa-example">a one-eyed man</div>
+      </div>
+      <div class="aa-orange">
+        <h4>AN</h4>
+        <strong>স্বরধ্বনি</strong>
+        <div class="aa-example">an apple</div>
+        <div class="aa-example">an egg</div>
+        <div class="aa-example">an hour</div>
+        <div class="aa-example">an honest man</div>
+        <div class="aa-example">an MBA student</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aa-note">
+    <strong>মনে রাখবে:</strong> A/An সাধারণত অনির্দিষ্ট একবচন গণনাযোগ্য
+    Noun-এর আগে বসে। তবে Noun-এর আগে Adjective বা অন্য শব্দ থাকলে
+    Article নির্বাচন করতে হবে তার ঠিক পরের শব্দের উচ্চারণ অনুযায়ী।
+  </div>
+
+  <!-- 22 RULES -->
+  <h3 class="aa-section-title">২. A, An-এর ২২টি ব্যবহারবিধি</h3>
+  <p class="aa-small">যেকোনো নিয়মে ক্লিক করে বিস্তারিত পড়তে পারবে।</p>
+
+  <details class="aa-topic" open>
+    <summary><span><span class="aa-rule-no">01</span>Singular Countable Noun-এর আগে</span></summary>
+    <div class="aa-topic-content">
+      কোনো অনির্দিষ্ট একবচন গণনাযোগ্য ব্যক্তি বা বস্তু বোঝালে A/An বসে।
+      <div class="aa-example"><b>I saw a bird.</b><br>আমি একটি পাখি দেখেছি।</div>
+      <div class="aa-example"><b>She bought an umbrella.</b><br>সে একটি ছাতা কিনেছে।</div>
+      <div class="aa-note">Bird গণনাযোগ্য: a bird, two birds। Water সাধারণত Uncountable: water, some water।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">02</span>পেশা বা পরিচয় বোঝাতে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>He is a teacher.</b><br>তিনি একজন শিক্ষক।</div>
+      <div class="aa-example"><b>She is an engineer.</b><br>তিনি একজন প্রকৌশলী।</div>
+      <div class="aa-example"><b>He became a doctor.</b><br>তিনি একজন ডাক্তার হলেন।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">03</span>কোনো শ্রেণির প্রতিনিধি বোঝাতে</span></summary>
+    <div class="aa-topic-content">
+      কোনো প্রাণী বা বস্তুর পুরো শ্রেণি সম্পর্কে সাধারণ সত্য প্রকাশে একবচন Noun-এর আগে A/An ব্যবহার করা যায়।
+      <div class="aa-example"><b>A cow is a useful animal.</b><br>গরু একটি উপকারী প্রাণী।</div>
+      <div class="aa-example"><b>An owl is a bird.</b><br>পেঁচা একটি পাখি।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">04</span>প্রথমবার উল্লেখ করলে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>I bought a book. The book is interesting.</b><br>আমি একটি বই কিনেছি। বইটি আকর্ষণীয়।</div>
+      প্রথমবার অনির্দিষ্ট: <b>a book</b>। পরে বইটি নির্দিষ্ট হওয়ায়: <b>the book</b>।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">05</span>What দিয়ে বিস্ময় প্রকাশে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>What a beautiful flower!</b><br>কী সুন্দর একটি ফুল!</div>
+      <div class="aa-example"><b>What an amazing idea!</b><br>কী অসাধারণ একটি ধারণা!</div>
+      <div class="aa-example"><b>What a pity!</b><br>কী দুঃখের বিষয়!</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">06</span>Hundred, Thousand, Dozen ইত্যাদির আগে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>A hundred</b> — একশ</div>
+      <div class="aa-example"><b>A thousand</b> — এক হাজার</div>
+      <div class="aa-example"><b>A dozen</b> — এক ডজন</div>
+      <div class="aa-example"><b>A million</b> — দশ লক্ষ</div>
+      নির্দিষ্ট সংখ্যার সঙ্গে নির্দিষ্ট পরিমাণ বোঝালে প্রচলিত গঠন: <b>two hundred students</b> — দুইশ শিক্ষার্থী।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">07</span>Rate বা হার বোঝাতে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>Twice a day</b> — দিনে দুবার।</div>
+      <div class="aa-example"><b>Three times a week</b> — সপ্তাহে তিনবার।</div>
+      <div class="aa-example"><b>50 taka a kilo</b> — প্রতি কেজি ৫০ টাকা।</div>
+      <div class="aa-example"><b>60 kilometres an hour</b> — ঘণ্টায় ৬০ কিলোমিটার।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">08</span>ভগ্নাংশে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>A half</b> — অর্ধেক।</div>
+      <div class="aa-example"><b>A quarter</b> — এক-চতুর্থাংশ।</div>
+      <div class="aa-example"><b>Half an hour</b> — আধা ঘণ্টা।</div>
+      <div class="aa-example"><b>One and a half hours</b> — দেড় ঘণ্টা।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">09</span>A few, A little, A lot of ইত্যাদি</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>A few students</b> — কয়েকজন শিক্ষার্থী।</div>
+      <div class="aa-example"><b>A little water</b> — কিছুটা পানি।</div>
+      <div class="aa-example"><b>A lot of books</b> — অনেক বই।</div>
+      <div class="aa-example"><b>A great deal of time</b> — অনেকটা সময়।</div>
+      <div class="aa-note">
+        <b>A few</b> = কয়েকটি/কয়েকজন; <b>few</b> = খুব কম।<br>
+        <b>A little</b> = কিছুটা; <b>little</b> = খুব কম।
+      </div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">10</span>বিখ্যাত ব্যক্তির মতো গুণ বোঝাতে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>He is a Shakespeare in poetry.</b><br>কবিতায় তিনি শেক্‌সপিয়ারের মতো প্রতিভাবান।</div>
+      এখানে ব্যক্তির নামটি তাঁর মতো গুণ বা প্রতিভা বোঝাচ্ছে।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">11</span>Proper Noun-এর আগে বিশেষ অর্থে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>A Mr Rahman called you.</b><br>রহমান নামের একজন ব্যক্তি তোমাকে ফোন করেছিলেন।</div>
+      <div class="aa-example"><b>A Rabindranath is rare.</b><br>রবীন্দ্রনাথের মতো প্রতিভা বিরল।</div>
+      <div class="aa-small">এখানে নামটি সাধারণ পরিচয়ের পরিবর্তে অনির্দিষ্ট ব্যক্তি বা তুলনীয় প্রতিভা বোঝাতে ব্যবহৃত হয়েছে।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">12</span>কিছু রোগের নামের আগে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>He has a cold.</b><br>তার সর্দি হয়েছে।</div>
+      <div class="aa-example"><b>She has a headache.</b><br>তার মাথাব্যথা হয়েছে।</div>
+      <div class="aa-example"><b>He has a fever.</b><br>তার জ্বর হয়েছে।</div>
+      <div class="aa-note">Malaria, diabetes, cancer ইত্যাদি রোগের নাম সাধারণ অর্থে ব্যবহৃত হলে সাধারণত A/An বসে না। রোগের নামের প্রচলিত ব্যবহার আলাদা হতে পারে।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">13</span>পদবি বা সংক্ষিপ্ত পেশাগত পরিচয়ের আগে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>He is a doctor.</b><br>তিনি একজন ডাক্তার।</div>
+      <div class="aa-example"><b>She became an MP.</b><br>তিনি একজন সংসদ সদস্য হলেন।</div>
+      <div class="aa-example"><b>He is a university professor.</b><br>তিনি একজন বিশ্ববিদ্যালয়ের অধ্যাপক।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">14</span>Plural Countable Noun-এর আগে সাধারণ অর্থে নয়</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>I saw birds.</b><br>আমি পাখি দেখেছি।</div>
+      <div class="aa-example"><span class="aa-wrong">a books</span> → <span class="aa-correct">books / a book</span></div>
+      A/An শুধু একবচন গণনাযোগ্য Noun-এর জন্য ব্যবহৃত হয়।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">15</span>Uncountable Noun-এর আগে সরাসরি নয়</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>I need water.</b><br>আমার পানি প্রয়োজন।</div>
+      <div class="aa-example"><b>We need information.</b><br>আমাদের তথ্য প্রয়োজন।</div>
+      <div class="aa-example"><b>A glass of water</b> — এক গ্লাস পানি।</div>
+      <div class="aa-example"><b>A piece of information</b> — একটি তথ্য।</div>
+      <div class="aa-small">পরিমাপ, পাত্র বা একক বোঝানো হলে সংশ্লিষ্ট গণনাযোগ্য Noun-এর আগে A/An বসতে পারে।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">16</span>সাধারণ Proper Noun-এর আগে নয়</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>Rahim is my friend.</b><br>রহিম আমার বন্ধু।</div>
+      <div class="aa-example"><b>Bangladesh is a country.</b><br>বাংলাদেশ একটি দেশ।</div>
+      তবে Proper Noun বিশেষ অর্থে ব্যবহৃত হলে A/An বসতে পারে; দেখো নিয়ম ১০ ও ১১।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">17</span>My, This, That, Possessive-এর সঙ্গে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>my book</b> — আমার বই।</div>
+      <div class="aa-example"><b>this pen</b> — এই কলম।</div>
+      <div class="aa-example"><b>that boy</b> — ওই ছেলে।</div>
+      <div class="aa-example"><b>Rahim's bag</b> — রহিমের ব্যাগ।</div>
+      একই Noun-এর আগে সাধারণত <b>my a book</b> বা <b>this a pen</b> বলা যায় না।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">18</span>নির্দিষ্ট Noun-এর আগে The</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>The sun rises in the east.</b><br>সূর্য পূর্ব দিকে ওঠে।</div>
+      <div class="aa-example"><b>The book on the table is mine.</b><br>টেবিলের ওপরের বইটি আমার।</div>
+      নির্দিষ্ট ব্যক্তি বা বস্তু বোঝালে The ব্যবহার করা হয়। তবে নির্দিষ্টতা ছাড়াও কিছু স্থায়ী ব্যবহার রয়েছে।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">19</span>Such, Quite, Rather-এর সঙ্গে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>Such a good boy</b> — এমন একজন ভালো ছেলে।</div>
+      <div class="aa-example"><b>Quite a difficult task</b> — বেশ কঠিন একটি কাজ।</div>
+      <div class="aa-example"><b>Rather an unusual idea</b> — বেশ অস্বাভাবিক একটি ধারণা।</div>
+      প্রচলিত গঠন: <b>Such + a/an + adjective + singular noun</b>।
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">20</span>As, So, Too, How-এর বিশেষ গঠন</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>As good a boy as his brother</b><br>তার ভাইয়ের মতোই ভালো একটি ছেলে।</div>
+      <div class="aa-example"><b>So beautiful a place</b><br>এত সুন্দর একটি জায়গা।</div>
+      <div class="aa-example"><b>Too difficult a question</b><br>অত্যন্ত কঠিন একটি প্রশ্ন।</div>
+      <div class="aa-example"><b>How clever a boy he is!</b><br>সে কী চতুর একটি ছেলে!</div>
+      <div class="aa-small">এগুলো বিশেষত আনুষ্ঠানিক গঠন। দৈনন্দিন ইংরেজিতে a very good boy বা a very difficult question বেশি স্বাভাবিক হতে পারে।</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">21</span>Half, Many a ইত্যাদির সঙ্গে</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>Half an hour</b> — আধা ঘণ্টা।</div>
+      <div class="aa-example"><b>Many a student has failed.</b><br>অনেক শিক্ষার্থী ফেল করেছে।</div>
+      <div class="aa-note">Many a + singular countable noun + singular verb। যেমন: Many a student <b>has</b> participated.</div>
+    </div>
+  </details>
+
+  <details class="aa-topic">
+    <summary><span><span class="aa-rule-no">22</span>একবচন গণনাযোগ্য Noun সাধারণত একা বসে না</span></summary>
+    <div class="aa-topic-content">
+      <div class="aa-example"><b>He is a student.</b><br>সে একজন শিক্ষার্থী।</div>
+      <div class="aa-example"><b>He is my student.</b><br>সে আমার শিক্ষার্থী।</div>
+      <div class="aa-example"><b>He is the student I mentioned.</b><br>সে সেই শিক্ষার্থী, যার কথা আমি বলেছিলাম।</div>
+      <div class="aa-note">Singular countable noun-এর আগে প্রসঙ্গ অনুযায়ী a/an, the, my, this, one ইত্যাদি determiner প্রয়োজন হয়।</div>
+    </div>
+  </details>
+
+  <!-- PRONUNCIATION -->
+  <h3 class="aa-section-title">৩. উচ্চারণের ব্যতিক্রম: A বনাম An</h3>
+  <div class="aa-grid">
+    <div class="aa-card aa-a-card">
+      <div class="aa-big-letter">A</div>
+      <h3>Vowel letter, কিন্তু Consonant sound</h3>
+      <p class="aa-small">শুরুতে /ইউ/ বা /ওয়/ ধরনের ব্যঞ্জনধ্বনি থাকলে।</p>
+      <div class="aa-example"><b>a university</b><br>একটি বিশ্ববিদ্যালয়</div>
+      <div class="aa-example"><b>a European</b><br>একজন ইউরোপীয়</div>
+      <div class="aa-example"><b>a uniform</b><br>একটি ইউনিফর্ম</div>
+      <div class="aa-example"><b>a useful book</b><br>একটি উপকারী বই</div>
+      <div class="aa-example"><b>a one-eyed man</b><br>এক চোখবিশিষ্ট একজন লোক</div>
+      <div class="aa-example"><b>a U-turn</b><br>ইউ-টার্ন</div>
+      <div class="aa-example"><b>a UNESCO project</b><br>একটি ইউনেসকো প্রকল্প</div>
+      <div class="aa-small">UNESCO-র মতো সংক্ষিপ্ত নামের ক্ষেত্রে প্রচলিত উচ্চারণ অনুযায়ী Article নির্বাচন করবে।</div>
+    </div>
+    <div class="aa-card aa-an-card">
+      <div class="aa-big-letter">AN</div>
+      <h3>Consonant letter, কিন্তু Vowel sound</h3>
+      <p class="aa-small">প্রথম H নীরব হলে অথবা অক্ষরের নাম স্বরধ্বনি দিয়ে শুরু হলে।</p>
+      <div class="aa-example"><b>an hour</b><br>এক ঘণ্টা</div>
+      <div class="aa-example"><b>an honest man</b><br>একজন সৎ মানুষ</div>
+      <div class="aa-example"><b>an honour</b><br>একটি সম্মান</div>
+      <div class="aa-example"><b>an heir</b><br>একজন উত্তরাধিকারী</div>
+      <div class="aa-example"><b>an MBA student</b><br>একজন এমবিএ শিক্ষার্থী</div>
+      <div class="aa-example"><b>an MP</b><br>একজন সংসদ সদস্য</div>
+      <div class="aa-example"><b>an FBI agent</b><br>একজন এফবিআই এজেন্ট</div>
+      <div class="aa-example"><b>an X-ray</b><br>একটি এক্স-রে</div>
+      <div class="aa-example"><b>an SOS call</b><br>একটি এসওএস কল</div>
+    </div>
+  </div>
+  <div class="aa-note">
+    <b>সংক্ষিপ্ত রূপের সূত্র:</b> অক্ষরটি যেভাবে উচ্চারিত হয়, সেটিই বিবেচনা করবে।
+    যেমন <b>a USB drive</b> (/ইউ-এস-বি/) কিন্তু <b>an MBA student</b> (/এম-বি-এ/)।
+  </div>
+
+  <!-- ADJECTIVE -->
+  <h3 class="aa-section-title">৪. Adjective থাকলে Article কোথায় বসবে?</h3>
+  <div class="aa-card">
+    <div class="aa-flow">
+      <div class="aa-flow-box">Article + Adjective + Noun</div>
+      <div class="aa-arrow">↓</div>
+      <div class="aa-split">
+        <div class="aa-green">
+          <h4>A</h4>
+          <div class="aa-example"><b>a beautiful girl</b><br>একজন সুন্দরী মেয়ে</div>
+          <div class="aa-example"><b>a useful idea</b><br>একটি উপকারী ধারণা</div>
+          <div class="aa-example"><b>a one-hour journey</b><br>এক ঘণ্টার যাত্রা</div>
+          <div class="aa-example"><b>a very honest man</b><br>একজন অত্যন্ত সৎ মানুষ</div>
+        </div>
+        <div class="aa-orange">
+          <h4>AN</h4>
+          <div class="aa-example"><b>an intelligent boy</b><br>একজন বুদ্ধিমান ছেলে</div>
+          <div class="aa-example"><b>an interesting story</b><br>একটি আকর্ষণীয় গল্প</div>
+          <div class="aa-example"><b>an eight-year-old boy</b><br>আট বছর বয়সী একটি ছেলে</div>
+          <div class="aa-example"><b>an unusually good student</b><br>অস্বাভাবিক রকমের ভালো একজন শিক্ষার্থী</div>
+        </div>
+      </div>
+    </div>
+    <div class="aa-note">খেয়াল করো: a very honest man-এ Article-এর পরের শব্দ very; তাই A। কিন্তু an unusually good student-এ পরের শব্দ unusually; তাই An।</div>
+  </div>
+
+  <!-- FIXED EXPRESSIONS -->
+  <h3 class="aa-section-title">৫. গুরুত্বপূর্ণ স্থায়ী ব্যবহার</h3>
+  <div class="aa-grid">
+    <div class="aa-card">
+      <h3>A-এর ব্যবহার</h3>
+      <div class="aa-example"><b>a few students</b><br>কয়েকজন শিক্ষার্থী</div>
+      <div class="aa-example"><b>a little water</b><br>কিছুটা পানি</div>
+      <div class="aa-example"><b>a lot of books</b><br>অনেক বই</div>
+      <div class="aa-example"><b>a hundred people</b><br>একশ মানুষ</div>
+      <div class="aa-example"><b>a quarter</b><br>এক-চতুর্থাংশ</div>
+      <div class="aa-example"><b>twice a day</b><br>দিনে দুবার</div>
+    </div>
+    <div class="aa-card">
+      <h3>An-এর ব্যবহার</h3>
+      <div class="aa-example"><b>an hour</b><br>এক ঘণ্টা</div>
+      <div class="aa-example"><b>an honest person</b><br>একজন সৎ ব্যক্তি</div>
+      <div class="aa-example"><b>an egg</b><br>একটি ডিম</div>
+      <div class="aa-example"><b>an idea</b><br>একটি ধারণা</div>
+      <div class="aa-example"><b>half an hour</b><br>আধা ঘণ্টা</div>
+      <div class="aa-example"><b>an unusual event</b><br>একটি অস্বাভাবিক ঘটনা</div>
+    </div>
+  </div>
+
+  <!-- COMMON ERRORS -->
+  <h3 class="aa-section-title">৬. ভুল ও সঠিক ব্যবহার</h3>
+  <div class="aa-table-wrap">
+    <table>
+      <thead>
+        <tr><th>ভুল</th><th>সঠিক</th><th>কারণ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="aa-wrong">an university</span></td><td><span class="aa-correct">a university</span></td><td>/ইউ/ ধ্বনি</td></tr>
+        <tr><td><span class="aa-wrong">a honest man</span></td><td><span class="aa-correct">an honest man</span></td><td>H নীরব</td></tr>
+        <tr><td><span class="aa-wrong">an useful book</span></td><td><span class="aa-correct">a useful book</span></td><td>/ইউ/ ধ্বনি</td></tr>
+        <tr><td><span class="aa-wrong">a apple</span></td><td><span class="aa-correct">an apple</span></td><td>স্বরধ্বনি</td></tr>
+        <tr><td><span class="aa-wrong">an one-eyed man</span></td><td><span class="aa-correct">a one-eyed man</span></td><td>/ওয়ান/ ধ্বনি</td></tr>
+        <tr><td><span class="aa-wrong">an USB drive</span></td><td><span class="aa-correct">a USB drive</span></td><td>U = /ইউ/</td></tr>
+        <tr><td><span class="aa-wrong">an information</span></td><td><span class="aa-correct">information / a piece of information</span></td><td>Uncountable noun</td></tr>
+        <tr><td><span class="aa-wrong">a books</span></td><td><span class="aa-correct">books / a book</span></td><td>Plural noun</td></tr>
+        <tr><td><span class="aa-wrong">He is teacher.</span></td><td><span class="aa-correct">He is a teacher.</span></td><td>পেশার আগে Article</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- QUIZ -->
+  <h3 class="aa-section-title">৭. নিজেকে যাচাই করো</h3>
+  <div class="aa-card" id="aa-quiz">
+    <p class="aa-small">সঠিক উত্তর নির্বাচন করো। প্রতিটি প্রশ্নের উত্তর দেওয়ার পর ব্যাখ্যা দেখাবে।</p>
+    <div id="aa-quiz-question" style="font-size:19px;font-weight:700;margin:12px 0"></div>
+    <div id="aa-quiz-options"></div>
+    <div class="aa-quiz-feedback" id="aa-quiz-feedback" aria-live="polite"></div>
+    <div class="aa-buttons">
+      <button class="aa-btn" type="button" id="aa-next">পরের প্রশ্ন →</button>
+      <button class="aa-btn aa-secondary" type="button" id="aa-restart">আবার শুরু</button>
+    </div>
+    <p id="aa-quiz-score" class="aa-small"></p>
+  </div>
+
+  <!-- QUICK REVISION -->
+  <h3 class="aa-section-title">৮. পরীক্ষার আগে এক নজরে</h3>
+  <div class="aa-card">
+    <div class="aa-example"><b>ধাপ ১:</b> Noun একবচন গণনাযোগ্য কি না যাচাই করো।</div>
+    <div class="aa-example"><b>ধাপ ২:</b> Noun-এর আগে Adjective বা অন্য শব্দ থাকলে পরের শব্দটির উচ্চারণ দেখো।</div>
+    <div class="aa-example"><b>ধাপ ৩:</b> ব্যঞ্জনধ্বনি হলে A, স্বরধ্বনি হলে An ব্যবহার করো।</div>
+    <div class="aa-example"><b>ধাপ ৪:</b> Plural, Uncountable, Proper Noun ও নির্দিষ্ট অর্থের নিয়ম যাচাই করো।</div>
+    <div class="aa-example"><b>ধাপ ৫:</b> স্থায়ী বাক্যগঠন ও ব্যতিক্রমগুলো মিলিয়ে নাও।</div>
+  </div>
+
+  <div class="aa-footer">
+    <h3 style="margin:0 0 7px;color:white">A / AN — Learn the Rule, Master the Article!</h3>
+    <p style="margin:0;color:#e0f2fe">উচ্চারণ বুঝে Article নির্বাচন করো; শুধু বানান মুখস্থ করো না।</p>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  const root = document.getElementById('article-a-an');
+  if(!root || root.dataset.aaInitialized === 'yes') return;
+  root.dataset.aaInitialized = 'yes';
+
+  // FAQ accordion: একই সময়ে একটি নিয়ম খোলা থাকবে
+  const topics = root.querySelectorAll('.aa-topic');
+  topics.forEach(function(topic){
+    topic.addEventListener('toggle', function(){
+      if(topic.open){
+        topics.forEach(function(other){
+          if(other !== topic) other.open = false;
+        });
+      }
+    });
+  });
+
+  // Search/filter rules by keyword
+  const search = document.createElement('input');
+  search.type = 'search';
+  search.className = 'aa-search';
+  search.placeholder = 'নিয়ম খুঁজুন: university, profession, few, hour...';
+  search.setAttribute('aria-label','নিয়ম খুঁজুন');
+  const ruleHeading = Array.from(root.querySelectorAll('.aa-section-title'))
+    .find(el => el.textContent.includes('২২টি ব্যবহারবিধি'));
+  if(ruleHeading) ruleHeading.insertAdjacentElement('afterend', search);
+
+  search.addEventListener('input', function(){
+    const term = search.value.trim().toLowerCase();
+    topics.forEach(function(topic){
+      const match = topic.textContent.toLowerCase().includes(term);
+      topic.hidden = !match;
+      if(term && match) topic.open = true;
+    });
+  });
+
+  // Interactive practice quiz
+  const questions = [
+    {q:'I saw ___ elephant.',opts:['a','an'],ans:1,why:'Elephant-এর শুরুতে স্বরধ্বনি; তাই an elephant।'},
+    {q:'She studies at ___ university.',opts:['a','an'],ans:0,why:'University-এর শুরুতে /ইউ/ ব্যঞ্জনধ্বনির মতো; তাই a university।'},
+    {q:'He waited for ___ hour.',opts:['a','an'],ans:1,why:'Hour-এ H নীরব; তাই an hour।'},
+    {q:'He is ___ honest person.',opts:['a','an'],ans:1,why:'Honest-এ H নীরব; তাই an honest person।'},
+    {q:'It was ___ useful lesson.',opts:['a','an'],ans:0,why:'Useful-এর শুরুতে /ইউ/ ধ্বনি; তাই a useful lesson।'},
+    {q:'She is ___ MBA student.',opts:['a','an'],ans:1,why:'M-এর নাম উচ্চারণ /এম/; তাই an MBA student।'},
+    {q:'He bought ___ one-eyed doll.',opts:['a','an'],ans:0,why:'One-এর শুরুতে /ওয়ান/ ধ্বনি; তাই a one-eyed doll।'},
+    {q:'What ___ amazing idea!',opts:['a','an'],ans:1,why:'Amazing-এর শুরুতে স্বরধ্বনি; তাই an amazing idea।'},
+    {q:'He is ___ teacher.',opts:['a','an','কোনোটিই নয়'],ans:0,why:'Teacher একবচন গণনাযোগ্য পেশা; তাই a teacher।'},
+    {q:'I need ___ information.',opts:['a','an','কোনোটিই নয়'],ans:2,why:'Information সাধারণত Uncountable; তাই সরাসরি a/an নয়।'},
+    {q:'She has ___ headache.',opts:['a','an'],ans:0,why:'Headache-এর আগে প্রচলিত গঠন a headache।'},
+    {q:'He drives ___ USB-equipped car.',opts:['a','an'],ans:0,why:'USB-এর উচ্চারণ /ইউ-এস-বি/; তাই a USB-equipped car।'}
+  ];
+
+  const qEl = root.querySelector('#aa-quiz-question');
+  const optionsEl = root.querySelector('#aa-quiz-options');
+  const feedback = root.querySelector('#aa-quiz-feedback');
+  const scoreEl = root.querySelector('#aa-quiz-score');
+  const next = root.querySelector('#aa-next');
+  const restart = root.querySelector('#aa-restart');
+  let index = 0, score = 0, answered = false;
+
+  function renderQuestion(){
+    const item = questions[index];
+    answered = false;
+    qEl.textContent = (index + 1) + '/' + questions.length + ' — ' + item.q;
+    optionsEl.replaceChildren();
+    feedback.textContent = '';
+    scoreEl.textContent = 'স্কোর: ' + score + ' / ' + questions.length;
+    item.opts.forEach(function(opt, i){
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'aa-quiz-option';
+      button.textContent = opt;
+
+      if(opt.trim().toLowerCase() === 'a' || opt.trim().toLowerCase() === 'an' || opt.includes('কোনোটিই নয়')){
+        button.style.setProperty('color', '#000000', 'important');
+      }
+
+      button.addEventListener('click', function(){
+        if(answered) return;
+        answered = true;
+        if(i === item.ans){
+          score++;
+          button.classList.add('aa-right');
+          feedback.textContent = 'সঠিক উত্তর! ' + item.why;
+          feedback.style.color = '#b45309';
+        }else{
+          button.classList.add('aa-wrong-answer');
+          optionsEl.children[item.ans].classList.add('aa-right');
+          feedback.textContent = 'সঠিক উত্তর: ' + item.opts[item.ans] + '। ' + item.why;
+          feedback.style.color = '#b45309';
+        }
+        scoreEl.textContent = 'স্কোর: ' + score + ' / ' + questions.length;
+        if(index === questions.length - 1){
+          next.textContent = 'ফলাফল দেখো';
+        }
+      });
+      optionsEl.appendChild(button);
+    });
+    next.textContent = index === questions.length - 1 ? 'ফলাফল দেখো' : 'পরের প্রশ্ন →';
+  }
+
+  next.addEventListener('click', function(){
+    if(!answered){
+      feedback.textContent = 'আগে একটি উত্তর নির্বাচন করো।';
+      feedback.style.color = '#b45309';
+      return;
+    }
+    if(index < questions.length - 1){
+      index++;
+      renderQuestion();
+    }else{
+      qEl.textContent = 'অনুশীলন সম্পন্ন!';
+      optionsEl.replaceChildren();
+      feedback.textContent = 'তোমার ফলাফল: ' + score + ' / ' + questions.length;
+      feedback.style.color = '#174ea6';
+      scoreEl.textContent = score === questions.length
+        ? 'চমৎকার! সব প্রশ্নের উত্তর সঠিক হয়েছে।'
+        : 'আবার শুরু করে ভুলগুলো অনুশীলন করো।';
+      next.disabled = true;
+      next.style.opacity = '.5';
+    }
+  });
+
+  restart.addEventListener('click', function(){
+    index = 0;
+    score = 0;
+    next.disabled = false;
+    next.style.opacity = '1';
+    renderQuestion();
+  });
+
+  renderQuestion();
+})();
+</script>
+</section>
+
+
+
+<section class="page" id="p4">
+<h2>পৃষ্ঠা ৪ — The-এর পূর্ণাঙ্গ ব্যবহার</h2>
+<p><b>The</b> হলো Definite Article। আগে উল্লেখ করা, প্রসঙ্গ থেকে নির্দিষ্ট বোঝা যায় এমন অথবা এককভাবে পরিচিত Noun-এর আগে বসে।</p>
+<table><tr><th>নিয়ম</th><th>উদাহরণ</th></tr>
+<tr><td>১. আগে উল্লেখিত Noun দ্বিতীয়বার এলে</td><td>I saw a dog. The dog was black.</td></tr>
+<tr><td>২. পৃথিবীতে একক বা অনন্য বস্তু</td><td>the sun, the moon, the earth</td></tr>
+<tr><td>৩. Superlative Degree-এর আগে</td><td>the best boy, the tallest building</td></tr>
+<tr><td>৪. Ordinal Number-এর আগে</td><td>the first, the second, the last</td></tr>
+<tr><td>৫. একমাত্র বা নির্দিষ্ট ব্যক্তি/বস্তু</td><td>the headmaster of our school</td></tr>
+<tr><td>৬. নদী, সাগর, মহাসাগর</td><td>the Padma, the Bay of Bengal, the Pacific Ocean</td></tr>
+<tr><td>৭. পর্বতমালা, দ্বীপপুঞ্জ, মরুভূমি</td><td>the Himalayas, the Sundarbans, the Sahara</td></tr>
+<tr><td>৮. বিখ্যাত ধর্মগ্রন্থের নাম</td><td>the Quran, the Bible</td></tr>
+<tr><td>৯. সংবাদপত্রের নাম</td><td>The Daily Star</td></tr>
+<tr><td>১০. বাদ্যযন্ত্র বাজানো বোঝাতে</td><td>He plays the guitar.</td></tr>
+<tr><td>১১. জাতি বা শ্রেণির পুরো গোষ্ঠী বোঝাতে</td><td>The rich should help the poor.</td></tr>
+<tr><td>১২. Adjective-কে একটি শ্রেণি হিসেবে ব্যবহার করলে</td><td>the poor, the elderly</td></tr>
+<tr><td>১৩. একই জিনিসের তুলনায় নির্দিষ্টটি বোঝাতে</td><td>The more you read, the more you learn.</td></tr>
+<tr><td>১৪. দিক নির্দেশ করতে</td><td>the east, the west</td></tr>
+<tr><td>১৫. কিছু দেশের নামের আগে</td><td>the United States, the United Kingdom</td></tr>
+<tr><td>১৬. নির্দিষ্ট পদ বা পরিচিত প্রতিষ্ঠান</td><td>the principal of our school</td></tr>
+<tr><td>১৭. নির্দিষ্ট Noun-এর আগে Phrase/Clause থাকলে</td><td>The boy in the blue shirt is my brother.</td></tr>
+<tr><td>১৮. নির্দিষ্ট আবিষ্কার বা যন্ত্রের ক্ষেত্রে (প্রসঙ্গভেদে)</td><td>the telephone, the internet</td></tr></table>
+<h3>ভৌগোলিক নামের বিশেষ নিয়ম</h3>
+<div class="grid">
+<div class="card"><b>The বসে</b><p>নদী: the Nile, the Padma<br>সাগর/মহাসাগর: the Red Sea, the Indian Ocean<br>পর্বতমালা: the Alps<br>দেশ: the Netherlands, the Philippines, the United Arab Emirates<br>হ্রদসমষ্টি: the Great Lakes<br>দ্বীপপুঞ্জ: the Andaman and Nicobar Islands</p></div>
+<div class="card"><b>সাধারণত The বসে না</b><p>একক পর্বত: Mount Everest<br>দেশ: Bangladesh, India, Japan<br>হ্রদ: Lake Victoria<br>দ্বীপ: Madagascar</p></div>
+</div>
+</section>
+
+<section class="page" id="p5">
+<h2>পৃষ্ঠা ৫ — Zero Article (Ø)</h2>
+<p><b>Zero Article</b> অর্থ Noun-এর আগে A, An বা The—কোনোটিই বসবে না।</p>
+<table><tr><th>নিয়ম</th><th>উদাহরণ</th></tr>
+<tr><td>১. সাধারণ অর্থে Plural Noun</td><td>Books are useful.</td></tr>
+<tr><td>২. সাধারণ অর্থে Uncountable Noun</td><td>Water is essential.</td></tr>
+<tr><td>৩. অধিকাংশ ব্যক্তি ও স্থানের নাম</td><td>Rahim lives in Bangladesh.</td></tr>
+<tr><td>৪. ভাষার নাম</td><td>I speak English.</td></tr>
+<tr><td>৫. বিষয় বা বিদ্যার নাম</td><td>Mathematics is interesting.</td></tr>
+<tr><td>৬. খাবারের নাম সাধারণ অর্থে</td><td>We have breakfast at 8.</td></tr>
+<tr><td>৭. দিনের ও মাসের নাম</td><td>Sunday, October</td></tr>
+<tr><td>৮. খেলার নাম</td><td>He plays football.</td></tr>
+<tr><td>৯. সাধারণ অর্থে রোগের নাম</td><td>He has malaria.</td></tr>
+<tr><td>১০. পদবি/উপাধির সঙ্গে ব্যক্তির নাম</td><td>President Lincoln</td></tr>
+<tr><td>১১. উদ্দেশ্য বোঝালে কিছু প্রতিষ্ঠানের নাম</td><td>go to school, be in bed, go to church</td></tr>
+<tr><td>১২. যানবাহনে by-এর পরে</td><td>by bus, by train, by air</td></tr>
+<tr><td>১৩. কিছু স্থায়ী Phrase</td><td>at home, at night, in fact</td></tr></table>
+<h3>Article বদলালে অর্থ বদলাতে পারে</h3>
+<div class="grid">
+<div class="card"><b>go to school</b><br>পড়াশোনা করতে স্কুলে যাওয়া</div><div class="card"><b>go to the school</b><br>নির্দিষ্ট স্কুল ভবনে যাওয়া</div>
+<div class="card"><b>be in bed</b><br>বিছানায় শোয়া/বিশ্রামে থাকা</div><div class="card"><b>sit on the bed</b><br>নির্দিষ্ট বিছানার ওপর বসা</div>
+<div class="card"><b>have breakfast</b><br>নাশতা করা</div><div class="card"><b>a good breakfast</b><br>একটি ভালো নাশতা</div>
+</div>
+</section>
+
+<section class="page" id="p6">
+<h2>পৃষ্ঠা ৬ — Article-এর আরও গুরুত্বপূর্ণ নিয়ম</h2>
+<div class="card"><b>Rule 1: A/An + Singular Countable Noun</b><p>সাধারণত একবচন গণনাযোগ্য Noun একা ব্যবহার করা যায় না।</p>ভুল: <del>I bought book.</del><br>সঠিক: <span class="example">I bought a book.</span></div>
+<div class="card"><b>Rule 2: A/An + একবচন; The + একবচন/বহুবচন/Uncountable</b><p class="example">a student, the student, the students, the water</p>A/An সরাসরি Plural বা Uncountable Noun-এর আগে বসে না।</div>
+<div class="card"><b>Rule 3: Abbreviation-এর Sound</b><p class="example">an MA, an MSc, an MBA, an NGO<br>a BCS officer, a UNESCO project</p>সংক্ষিপ্ত রূপের প্রথম উচ্চারিত Sound অনুসরণ করতে হবে।</div>
+<div class="card"><b>Rule 4: Number ও পরিমাণ</b><p class="example">a hundred, a thousand, a million<br>one hundred students, two thousand people</p>নির্দিষ্ট সংখ্যার আগে One/Two ইত্যাদি থাকলে সাধারণত A বসে না।</div>
+<div class="card"><b>Rule 5: Such, Quite, Rather, Many</b><p class="example">such a nice day<br>quite a good idea<br>rather a difficult question<br>many a student (= many students; formal)</p></div>
+</section>
+
+<section class="page" id="p7">
+<h2>পৃষ্ঠা ৭ — পরীক্ষায় বেশি আসা বিশেষ ব্যতিক্রম</h2>
+<table><tr><th>শব্দ/গঠন</th><th>সঠিক ব্যবহার</th></tr>
+<tr><td>honest, honour, hour, heir</td><td>an honest man, an hour</td></tr>
+<tr><td>house, horse, hotel</td><td>a house, a horse, a hotel</td></tr>
+<tr><td>university, uniform, unique</td><td>a university, a uniform, a unique idea</td></tr>
+<tr><td>European, eucalyptus</td><td>a European, a eucalyptus tree</td></tr>
+<tr><td>one, once, one-eyed</td><td>a one-eyed man, a once-famous actor</td></tr>
+<tr><td>umbrella, uncle, egg</td><td>an umbrella, an uncle, an egg</td></tr>
+<tr><td>useful, usual, union</td><td>a useful book, a usual event, a union</td></tr>
+<tr><td>X-ray</td><td>an X-ray</td></tr>
+<tr><td>F / L / M / N / R / S উচ্চারিত Letter</td><td>an F, an L, an M, an N, an R, an S</td></tr>
+<tr><td>U উচ্চারণ /juː/ হলে</td><td>a U-turn</td></tr>
+<tr><td>O উচ্চারণ /əʊ/ হলে</td><td>an open door</td></tr></table>
+<div class="callout"><b>খুব গুরুত্বপূর্ণ:</b> শব্দের বানান নয়, উচ্চারণই চূড়ান্ত। অঞ্চলভেদে উচ্চারণ আলাদা হলে Article-ও আলাদা হতে পারে।</div>
+</section>
+
+<section class="page" id="quiz">
+<h2>পৃষ্ঠা ৮ — Practice Test: Article Mastery Quiz</h2>
+<p>৫০টি MCQ • প্রতিটি প্রশ্নে একটি উত্তর নির্বাচন করো, তারপর “উত্তর যাচাই” চাপো।</p>
+<div><b id="scoreText">0/50</b> উত্তর দিয়েছ</div><div class="progress"><span id="progressBar"></span></div>
+<div id="questions"></div>
+<button id="checkBtn">উত্তর যাচাই ও ব্যাখ্যা দেখো</button> <button class="secondary" id="resetBtn">আবার শুরু</button>
+<div class="result" id="result"></div>
+</section>
+
+<section class="page" id="recap">
+<h2>পৃষ্ঠা ৯ — এক মিনিটে Article মনে রাখার কৌশল</h2>
+<div class="grid">
+<div class="card"><div class="big">A</div>প্রথম Sound ব্যঞ্জনধ্বনি।</div>
+<div class="card"><div class="big">An</div>প্রথম Sound স্বরধ্বনি।</div>
+<div class="card"><div class="big">The</div>নির্দিষ্ট, পরিচিত বা এককভাবে চিহ্নিত Noun।</div>
+<div class="card"><div class="big">Ø</div>সাধারণ অর্থে Plural/Uncountable Noun, ভাষা, বিষয়, খাবার, খেলা ও অনেক নামের আগে।</div>
+</div>
+<div class="callout">Single/Double Vowel Letter নয়, উচ্চারণই চূড়ান্ত: <b>university → A, honest → An, one → A, hour → An</b>।</div>
+<p>এই নিয়মগুলো বুঝে অনুশীলন করলে Article-এর অধিকাংশ স্কুল ও বোর্ড পরীক্ষার প্রশ্ন সমাধান করা সহজ হবে।</p>
+</section>
+</main>
+<footer>Article — Complete Mastery • পড়ো, বুঝো, অনুশীলন করো ✨</footer>
+<script>
+const quiz = [
+["He is ___ honest man.",["a","an","the","Ø"],1],["She studies at ___ university.",["a","an","the","Ø"],0],
+["I ate ___ apple.",["a","an","the","Ø"],1],["He waited for ___ hour.",["a","an","the","Ø"],1],
+["He is ___ European.",["a","an","the","Ø"],0],["It is ___ one-eyed cat.",["a","an","the","Ø"],0],
+["She has ___ umbrella.",["a","an","the","Ø"],1],["He bought ___ useful book.",["a","an","the","Ø"],0],
+["He is ___ MBA student.",["a","an","the","Ø"],1],["I saw ___ horse.",["a","an","the","Ø"],0],
+["___ sun rises in the east.",["A","An","The","Ø"],2],["The Padma is ___ river.",["a","an","the","Ø"],0],
+["___ rich should help the poor.",["A","An","The","Ø"],2],["Mount Everest is in ___ Himalayas region.",["a","an","the","Ø"],2],
+["Bangladesh is ___ independent country.",["a","an","the","Ø"],1],["He plays ___ guitar.",["a","an","the","Ø"],2],
+["She is ___ best student in the class.",["a","an","the","Ø"],2],["I saw a boy. ___ boy was crying.",["A","An","The","Ø"],2],
+["We have ___ breakfast at 8 a.m.",["a","an","the","Ø"],3],["He goes to ___ school every day.",["a","an","the","Ø"],3],
+["I went to ___ school to meet the headteacher.",["a","an","the","Ø"],2],["Water is essential for ___ life.",["a","an","the","Ø"],3],
+["The earth moves around ___ sun.",["a","an","the","Ø"],2],["He is ___ BCS officer.",["a","an","the","Ø"],0],
+["She gave me ___ orange.",["a","an","the","Ø"],1],["This is ___ unique idea.",["a","an","the","Ø"],0],
+["He is ___ heir to the property.",["a","an","the","Ø"],1],["I need ___ X-ray.",["a","an","the","Ø"],1],
+["She speaks ___ English fluently.",["a","an","the","Ø"],3],["___ Nile is a famous river.",["A","An","The","Ø"],2],
+["He is ___ teacher.",["a","an","the","Ø"],0],["It was ___ interesting story.",["a","an","the","Ø"],1],
+["What ___ beautiful day!",["a","an","the","Ø"],0],["He travels by ___ bus.",["a","an","the","Ø"],3],
+["She is ___ tallest girl in the group.",["a","an","the","Ø"],2],["I saw ___ elephant at the zoo.",["a","an","the","Ø"],1],
+["He lives in ___ United States.",["a","an","the","Ø"],2],["___ honesty is a great virtue.",["A","An","The","Ø"],3],
+["She is ___ MP.",["a","an","the","Ø"],1],["He bought ___ European car.",["a","an","the","Ø"],0],
+["I have read ___ Quran.",["a","an","the","Ø"],2],["___ Padma flows through Bangladesh.",["A","An","The","Ø"],2],
+["She is ___ university student.",["a","an","the","Ø"],0],["He earns 500 taka ___ day.",["a","an","the","Ø"],1],
+["I met ___ old friend yesterday.",["a","an","the","Ø"],1],["___ Mount Everest is very high.",["A","An","The","Ø"],3],
+["She plays ___ football every afternoon.",["a","an","the","Ø"],3],["He is ___ honest and hardworking man.",["a","an","the","Ø"],1],
+["This is ___ one-time offer.",["a","an","the","Ø"],0],["The more you practise, ___ better you become.",["a","an","the","Ø"],2]
+];
+const explanations = [
+"honest-এ H নীরব; প্রথম Sound স্বরধ্বনি।","university-এর শুরুতে /juː/ ব্যঞ্জনধ্বনিসদৃশ Sound।","apple স্বরধ্বনি দিয়ে শুরু।","hour-এ H নীরব।","European-এর শুরুতে /j/ Sound।","one-এর শুরুতে /w/ Sound।","umbrella স্বরধ্বনি দিয়ে শুরু।","useful-এর শুরুতে /juː/ Sound।","MBA উচ্চারণে প্রথম Sound /em/।","horse-এ /h/ Sound আছে।",
+"সূর্য এককভাবে পরিচিত।","river একবচন গণনাযোগ্য Noun; এখানে একটি নদী বোঝানো হয়েছে।","the rich একটি শ্রেণিকে বোঝায়।","পর্বতমালার নামের আগে The বসে।","independent-এর শুরুতে স্বরধ্বনি।","বাদ্যযন্ত্র বাজানোর ক্ষেত্রে the।","Superlative-এর আগে the।","দ্বিতীয়বার উল্লেখিত boy নির্দিষ্ট।","সাধারণ অর্থে breakfast-এর আগে Article নেই।","go to school অর্থ পড়াশোনা করতে স্কুলে যাওয়া।",
+"নির্দিষ্ট স্কুল ভবনে যাওয়ার কথা বলা হয়েছে।","life সাধারণ অর্থে ব্যবহৃত।","sun এককভাবে পরিচিত।","BCS-এর উচ্চারণের শুরু ব্যঞ্জনধ্বনি।","orange স্বরধ্বনি দিয়ে শুরু।","unique-এর শুরুতে /j/ Sound।","heir-এ H নীরব।","X উচ্চারণে /eks/ স্বরধ্বনি দিয়ে শুরু।","ভাষার নামের আগে সাধারণত Article নেই।","নদীর নামের আগে the।",
+"পেশা বোঝাতে a teacher।","interesting স্বরধ্বনি দিয়ে শুরু।","What + a + adjective + singular countable noun।","by-এর পরে যানবাহনের আগে Article নেই।","Superlative-এর আগে the।","elephant স্বরধ্বনি দিয়ে শুরু।","United States-এর আগে the।","honesty সাধারণ অর্থে uncountable noun।","MP উচ্চারণে প্রথম Sound /em/।","European-এর শুরুতে /j/ Sound।",
+"প্রদত্ত নিয়ম অনুযায়ী বিখ্যাত ধর্মগ্রন্থের আগে the।","নদীর নামের আগে the।","university-এর শুরুতে /juː/ Sound।","প্রতি দিন বোঝাতে per অর্থে a day।","old স্বরধ্বনি দিয়ে শুরু।","একক পর্বতের নাম Mount Everest-এর আগে সাধারণত Article নেই।","খেলার নাম সাধারণ অর্থে Article ছাড়া ব্যবহৃত।","honest-এ H নীরব; honest-এর Sound অনুসারে an।","one-এর শুরুতে /w/ Sound।","The more..., the better... গঠনে the ব্যবহৃত হয়。"
+];
+const qRoot=document.getElementById("questions");
+quiz.forEach((q,i)=>{
+ const box=document.createElement("div");box.className="quiz-item";box.id="q"+i;
+ box.innerHTML=`<p>${i+1}. ${q[0]}</p><div class="options">${q[1].map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o==="Ø"?"Ø (কোনো Article নয়)":o}</label>`).join("")}</div><div class="answer" hidden></div>`;
+ qRoot.appendChild(box);
+});
+function updateProgress(){
+ let n=0;quiz.forEach((q,i)=>{if(document.querySelector(`input[name="q${i}"]:checked`))n++});
+ document.getElementById("scoreText").textContent=n+"/50";document.getElementById("progressBar").style.width=(n/50*100)+"%";
+}
+qRoot.addEventListener("change",updateProgress);
+document.getElementById("checkBtn").addEventListener("click",()=>{
+ let answered=0,score=0;
+ quiz.forEach((q,i)=>{
+  const selected=document.querySelector(`input[name="q${i}"]:checked`),box=document.querySelector("#q"+i),ans=box.querySelector(".answer");
+  if(selected)answered++;
+  const correct=q[2];ans.hidden=false;
+  if(selected&&Number(selected.value)===correct){score++;ans.innerHTML=`<p style="color:#047857">সঠিক উত্তর: ${q[1][correct]}</p><small>${explanations[i]}</small>`;box.style.borderColor="#10b981";}
+  else{ans.innerHTML=`<p style="color:#b91c1c">সঠিক উত্তর: ${q[1][correct]}</p><small>${explanations[i]}</small>`;box.style.borderColor="#f87171";}
+ });
+ const r=document.getElementById("result");r.style.display="block";r.innerHTML=`<h3>তোমার ফলাফল: ${score}/50</h3><p>উত্তর দিয়েছ ${answered}টি। ${score>=45?"চমৎকার!":score>=35?"ভালো হয়েছে!":"নিয়মগুলো আবার পড়ে আরও অনুশীলন করো।"}</p>`;r.scrollIntoView({behavior:"smooth",block:"center"});
+});
+document.getElementById("resetBtn").addEventListener("click",()=>{
+ document.querySelectorAll('input[type="radio"]').forEach(x=>x.checked=false);
+ document.querySelectorAll(".answer").forEach(x=>{x.hidden=true;x.innerHTML=""});
+ document.querySelectorAll(".quiz-item").forEach(x=>x.style.borderColor="#dbe3f2");
+ document.getElementById("result").style.display="none";updateProgress();document.getElementById("quiz").scrollIntoView({behavior:"smooth"});
+});
+// A flowing wave across the heading, one character at a time.
+const title=document.getElementById("waveTitle"),words=title.textContent;title.textContent="";
+[...words].forEach((ch,i)=>{const s=document.createElement("span");s.className="wave-text";s.textContent=ch===" "?"\u00a0":ch;s.style.animationDelay=(i*.055)+"s";title.appendChild(s)});
+</script>
+
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../lesson_link.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্রে ফিরে যাও
+    </button>
+
+</div>
+
+
+</body>
+</html>

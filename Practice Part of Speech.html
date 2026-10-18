@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parts of Speech Practice & Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .exercise-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .exercise-card:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        }
+        .question-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .options-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 600px) {
+            .options-group {
+                grid-template-columns: 1fr;
+            }
+        }
+        .option-btn {
+            padding: 10px 15px;
+            text-align: left;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background: #f8fafc;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+        }
+        .show-ans-btn {
+            padding: 10px 18px;
+            background-color: #3b82f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .show-ans-btn:hover {
+            background-color: #2563eb;
+        }
+        .feedback-box {
+            display: none;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+        .passage-box {
+            display: none;
+            background: #f0f7ff;
+            padding: 15px;
+            border-left: 4px solid #3b82f6;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+
+        <!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='Parts of speech.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+        <h1>Parts of Speech Exercise (1-50)</h1>
+        <div id="exercise-container"></div>
+    </div>
+</div>
+    <script>
+        const exercises = [
+            // --- Part 1: Single Sentences (1-25) ---
+            { 
+                type: 'single', 
+                q: "1. 'Honesty is the best policy'— বাক্যে <u>Honesty</u> শব্দটি কোন parts of speech?", 
+                options: ["Proper Noun", "Common Noun", "Abstract Noun", "Material Noun"],
+                ans: "Abstract Noun", 
+                exp: "Honesty একটি গুণের নাম যা ছোঁয়া যায় না।" 
+            },
+            { 
+                type: 'single', 
+                q: "2. 'The Padma is a big river'— বাক্যে <u>Padma</u> শব্দটি কোন parts of speech?", 
+                options: ["Proper Noun", "Common Noun", "Collective Noun", "Material Noun"],
+                ans: "Proper Noun", 
+                exp: "Padma নির্দিষ্ট একটি নদীর নাম।" 
+            },
+            { 
+                type: 'single', 
+                q: "3. 'Our team won the match'— বাক্যে <u>team</u> শব্দটি কোন parts of speech?", 
+                options: ["Common Noun", "Collective Noun", "Abstract Noun", "Proper Noun"],
+                ans: "Collective Noun", 
+                exp: "Team দ্বারা খেলোয়াড়দের সমষ্টি বোঝানো হয়েছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "4. 'Drink water to stay healthy'— বাক্যে <u>water</u> শব্দটি কোন parts of speech?", 
+                options: ["Material Noun", "Proper Noun", "Common Noun", "Abstract Noun"],
+                ans: "Material Noun", 
+                exp: "Water গণনা করা যায় না, তাই এটি মেটেরিয়াল নাউন।" 
+            },
+            { 
+                type: 'single', 
+                q: "5. 'He is a good boy'— বাক্যে <u>boy</u> শব্দটি কোন parts of speech?", 
+                options: ["Proper Noun", "Common Noun", "Collective Noun", "Abstract Noun"],
+                ans: "Common Noun", 
+                exp: "Boy সকল বালককে সাধারণভাবে নির্দেশ করে।" 
+            },
+            { 
+                type: 'single', 
+                q: "6. 'He goes to school daily'— বাক্যে <u>He</u> শব্দটি কোন parts of speech?", 
+                options: ["Personal Pronoun", "Demonstrative Pronoun", "Relative Pronoun", "Indefinite Pronoun"],
+                ans: "Personal Pronoun", 
+                exp: "ব্যক্তির পরিবর্তে He ব্যবহৃত হয়েছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "7. 'This is my book'— বাক্যে <u>This</u> শব্দটি কোন parts of speech?", 
+                options: ["Personal Pronoun", "Demonstrative Pronoun", "Interrogative Pronoun", "Relative Pronoun"],
+                ans: "Demonstrative Pronoun", 
+                exp: "This নির্দিষ্ট করে বস্তু নির্দেশ করছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "8. 'Who is calling me?'— বাক্যে <u>Who</u> শব্দটি কোন parts of speech?", 
+                options: ["Relative Pronoun", "Interrogative Pronoun", "Personal Pronoun", "Indefinite Pronoun"],
+                ans: "Interrogative Pronoun", 
+                exp: "Who প্রশ্ন করতে ব্যবহৃত হয়েছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "9. 'The girl who came is my sister'— বাক্যে <u>who</u> শব্দটি কোন parts of speech?", 
+                options: ["Interrogative Pronoun", "Relative Pronoun", "Demonstrative Pronoun", "Indefinite Pronoun"],
+                ans: "Relative Pronoun", 
+                exp: "Who দুটি অংশকে যুক্ত করেছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "10. 'Everyone praised his work'— বাক্যে <u>Everyone</u> শব্দটি কোন parts of speech?", 
+                options: ["Personal Pronoun", "Demonstrative Pronoun", "Indefinite Pronoun", "Relative Pronoun"],
+                ans: "Indefinite Pronoun", 
+                exp: "Everyone অনির্দিষ্টভাবে সকলকে বুঝিয়েছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "11. 'She is a clever girl'— বাক্যে <u>clever</u> শব্দটি কোন parts of speech?", 
+                options: ["Adjective of Quality", "Adjective of Quantity", "Adjective of Number", "Demonstrative Adjective"],
+                ans: "Adjective of Quality", 
+                exp: "Clever মেয়েটির গুণ প্রকাশ করছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "12. 'Give me some rice'— বাক্যে <u>some</u> শব্দটি কোন parts of speech?", 
+                options: ["Adjective of Quality", "Adjective of Quantity", "Adjective of Number", "Proper Adjective"],
+                ans: "Adjective of Quantity", 
+                exp: "Some পরিমাণ নির্দেশ করছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "13. 'He won the first prize'— বাক্যে <u>first</u> শব্দটি কোন parts of speech?", 
+                options: ["Adjective of Quality", "Adjective of Quantity", "Adjective of Number", "Distributive Adjective"],
+                ans: "Adjective of Number", 
+                exp: "First ক্রমিক সংখ্যা বোঝাচ্ছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "14. 'Birds fly in the sky'— বাক্যে <u>fly</u> শব্দটি কোন parts of speech?", 
+                options: ["Transitive Verb", "Intransitive Verb", "Auxiliary Verb", "Modal Verb"],
+                ans: "Intransitive Verb", 
+                exp: "Fly ক্রিয়ার কোনো অবজেক্ট নেই।" 
+            },
+            { 
+                type: 'single', 
+                q: "15. 'Rahim plays cricket'— বাক্যে <u>cricket</u> শব্দটি কোন parts of speech?", 
+                options: ["Transitive Verb", "Proper Noun", "Common Noun", "Noun (Object)"],
+                ans: "Noun (Object)", 
+                exp: "এখানে cricket হলো Object (Noun)।" 
+            },
+            { 
+                type: 'single', 
+                q: "16. 'You must obey rules'— বাক্যে <u>must</u> শব্দটি কোন parts of speech?", 
+                options: ["Main Verb", "Modal Auxiliary Verb", "Transitive Verb", "Intransitive Verb"],
+                ans: "Modal Auxiliary Verb", 
+                exp: "Must বাধ্যবাধকতা প্রকাশ করছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "17. 'She walks slowly'— বাক্যে <u>slowly</u> শব্দটি কোন parts of speech?", 
+                options: ["Adverb of Manner", "Adverb of Time", "Adverb of Place", "Adverb of Degree"],
+                ans: "Adverb of Manner", 
+                exp: "Slowly হাঁটার ধরন বোঝাচ্ছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "18. 'He will come tomorrow'— বাক্যে <u>tomorrow</u> শব্দটি কোন parts of speech?", 
+                options: ["Adverb of Manner", "Adverb of Time", "Adverb of Place", "Adverb of Frequency"],
+                ans: "Adverb of Time", 
+                exp: "Tomorrow সময় নির্দেশ করছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "19. 'Please sit here'— বাক্যে <u>here</u> শব্দটি কোন parts of speech?", 
+                options: ["Adverb of Place", "Adverb of Time", "Adverb of Manner", "Preposition"],
+                ans: "Adverb of Place", 
+                exp: "Here স্থান নির্দেশ করছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "20. 'The book is on the desk'— বাক্যে <u>on</u> শব্দটি কোন parts of speech?", 
+                options: ["Conjunction", "Preposition", "Adverb", "Interjection"],
+                ans: "Preposition", 
+                exp: "On অবস্থান ও সম্পর্ক স্থাপন করেছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "21. 'Roni and Sumon are friends'— বাক্যে <u>and</u> শব্দটি কোন parts of speech?", 
+                options: ["Coordinating Conjunction", "Subordinating Conjunction", "Preposition", "Interjection"],
+                ans: "Coordinating Conjunction", 
+                exp: "And দুটি শব্দ যুক্ত করেছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "22. 'If you work hard, you will shine'— বাক্যে <u>If</u> শব্দটি কোন parts of speech?", 
+                options: ["Coordinating Conjunction", "Subordinating Conjunction", "Preposition", "Adverb"],
+                ans: "Subordinating Conjunction", 
+                exp: "If শর্ত বোঝাচ্ছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "23. 'Hurrah! We have won the game'— বাক্যে <u>Hurrah</u> শব্দটি কোন parts of speech?", 
+                options: ["Interjection", "Conjunction", "Preposition", "Adjective"],
+                ans: "Interjection", 
+                exp: "Hurrah আনন্দ প্রকাশ করছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "24. 'This is a fast train'— বাক্যে <u>fast</u> শব্দটি কোন parts of speech?", 
+                options: ["Adverb", "Adjective", "Noun", "Verb"],
+                ans: "Adjective", 
+                exp: "Fast শব্দটি train Noun-কে বিশেষিত করেছে।" 
+            },
+            { 
+                type: 'single', 
+                q: "25. 'The train runs fast'— বাক্যে <u>fast</u> শব্দটি কোন parts of speech?", 
+                options: ["Adjective", "Adverb", "Noun", "Verb"],
+                ans: "Adverb", 
+                exp: "Fast শব্দটি runs Verb-কে বিশেষিত করেছে।" 
+            },
+
+            // --- Part 2: Passage Based (26-50) ---
+            { 
+                type: 'passage', 
+                q: "26. Yesterday, <u>Anik</u> went to a big <u>market</u>. He bought <u>some</u> fresh <u>apples</u>. He was very <u>happy</u>. — চিহ্নিত শব্দগুলোর সঠিক Parts of Speech কোনটি?", 
+                ans: "26. Proper Noun | 27. Common Noun | 28. Adjective | 29. Common Noun | 30. Adjective", 
+                exp: "প্যাসেজটির শব্দগুলোর অবস্থান ও কার্যকারিতা অনুযায়ী যথাক্রমে এগুলো চিহ্নিত হয়েছে।" 
+            },
+            { 
+                type: 'passage', 
+                q: "27. <u>Birds</u> are flying in the <u>sky</u>. They <u>sing</u> <u>sweetly</u> in the <u>morning</u>. — চিহ্নিত শব্দগুলোর সঠিক Parts of Speech কোনটি?", 
+                ans: "31. Common Noun | 32. Common Noun | 33. Verb | 34. Adverb | 35. Noun", 
+                exp: "বাক্যের গঠন অনুযায়ী প্রতিটি পদের ব্যাকরণিক রূপ নির্ধারণ করা হয়েছে।" 
+            },
+            { 
+                type: 'passage', 
+                q: "28. <u>She</u> is a <u>diligent</u> student. <u>Her</u> teacher <u>always</u> helps <u>her</u>. — চিহ্নিত শব্দগুলোর সঠিক Parts of Speech কোনটি?", 
+                ans: "36. Pronoun | 37. Adjective | 38. Possessive Adjective/Pronoun | 39. Adverb | 40. Pronoun", 
+                exp: "সর্বনাম, বিশেষণ ও অবজেক্টিভ রূপ নিখুঁতভাবে চিহ্নিত।" 
+            },
+            { 
+                type: 'passage', 
+                q: "29. <u>Alas!</u> The <u>old</u> man <u>died</u> <u>in</u> great <u>pain</u>. — চিহ্নিত শব্দগুলোর সঠিক Parts of Speech কোনটি?", 
+                ans: "41. Interjection | 42. Adjective | 43. Verb | 44. Preposition | 45. Abstract Noun", 
+                exp: "আবেগ, অবস্থা, ক্রিয়া, প্রিপজিশন এবং বিমূর্ত বিশেষ্যের সমন্বয়।" 
+            },
+            { 
+                type: 'passage', 
+                q: "30. Work hard <u>lest</u> you should <u>fail</u>. <u>Success</u> comes <u>to</u> the <u>brave</u>. — চিহ্নিত শব্দগুলোর সঠিক Parts of Speech কোনটি?", 
+                ans: "46. Conjunction | 47. Verb | 48. Abstract Noun | 49. Preposition | 50. Adjective (Used as Noun)", 
+                exp: "ক্লজ সংযোগকারী, ক্রিয়া এবং বিশেষ পদের সঠিক প্রয়োগ।" 
+            }
+        ];
+
+        function renderExercises() {
+            const container = document.getElementById('exercise-container');
+            let html = '';
+
+            exercises.forEach((item) => {
+                html += `<div class="exercise-card">`;
+                html += `<div class="question-text">${item.q}</div>`;
+
+                if (item.type === 'single') {
+                    html += `<div class="options-group">`;
+                    item.options.forEach((opt) => {
+                        html += `<button class="option-btn" onclick="checkAnswer(this, '${opt === item.ans}', '${item.ans.replace(/'/g, "\\'")}', '${item.exp.replace(/'/g, "\\'")}')">${opt}</button>`;
+                    });
+                    html += `</div>`;
+                    html += `<div class="feedback-box"></div>`;
+                } else {
+                    html += `<button class="show-ans-btn" onclick="togglePassageAns(this)">উত্তর ও ব্যাখ্যা দেখুন</button>`;
+                    html += `<div class="passage-box">`;
+                    html += `<strong>সঠিক উত্তর:</strong> ${item.ans}<br>`;
+                    html += `<small style="color: #475569;"><strong>ব্যাখ্যা:</strong> ${item.exp}</small>`;
+                    html += `</div>`;
+                }
+
+                html += `</div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function checkAnswer(btn, isCorrect, correctAns, explanation) {
+            const parent = btn.closest('.exercise-card');
+            const buttons = parent.querySelectorAll('.option-btn');
+            const feedback = parent.querySelector('.feedback-box');
+
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.style.cursor = 'default';
+            });
+
+            if (isCorrect === 'true') {
+                btn.style.background = '#dcfce7';
+                btn.style.borderColor = '#bbf7d0';
+                btn.style.color = '#166534';
+                feedback.style.background = '#dcfce7';
+                feedback.style.color = '#166534';
+                feedback.innerHTML = `<b>✓ সঠিক উত্তর!</b><br><small>${explanation}</small>`;
+            } else {
+                btn.style.background = '#fee2e2';
+                btn.style.borderColor = '#fecaca';
+                btn.style.color = '#991b1b';
+                feedback.style.background = '#fef9c3';
+                feedback.style.color = '#854d0e';
+                feedback.innerHTML = `<b>✕ ভুল উত্তর।</b> সঠিক উত্তর: <b>${correctAns}</b><br><small><b>ব্যাখ্যা:</b> ${explanation}</small>`;
+            }
+
+            feedback.style.display = 'block';
+        }
+
+        function togglePassageAns(btn) {
+            const parent = btn.closest('.exercise-card');
+            const passageBox = parent.querySelector('.passage-box');
+
+            if (passageBox.style.display === 'block') {
+                passageBox.style.display = 'none';
+                btn.innerText = 'উত্তর ও ব্যাখ্যা দেখুন';
+            } else {
+                passageBox.style.display = 'block';
+                btn.innerText = 'উত্তর লুকিয়ে ফেলুন';
+            }
+        }
+
+        window.onload = renderExercises;
+    </script>
+</body>
+</html>

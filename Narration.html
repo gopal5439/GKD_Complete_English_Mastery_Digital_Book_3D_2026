@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GKD Complete Narration Mastery</title>
+<style>
+:root{--navy:#10234d;--blue:#2457d6;--cyan:#1bb8c8;--purple:#7b3fe4;--pink:#f15bb5;--gold:#ffc857;--ink:#172033;--paper:#fff;--soft:#eef5ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans Bengali","SolaimanLipi","Kalpurush",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 10%,#e4f4ff,transparent 30%),linear-gradient(135deg,#f5f7ff,#eaf8ff);overflow-x:hidden}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(12,29,65,.94);color:white;padding:10px 14px;box-shadow:0 8px 25px #0c1d4130;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1100px;margin:auto}.brand h1{font-size:clamp(16px,2.5vw,23px);margin:0}.brand small{opacity:.8;font-size:12px}.progress-wrap{height:5px;background:#ffffff30;border-radius:9px;margin:9px auto 0;max-width:1100px;overflow:hidden}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink));transition:width .4s}
+main{max-width:1100px;margin:20px auto 90px;padding:0 14px}.page{display:none;animation:pageIn .55s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(18px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+.hero{position:relative;overflow:hidden;border-radius:26px;padding:clamp(22px,5vw,52px);color:white;background:linear-gradient(130deg,#10234d,#2457d6 55%,#7b3fe4);box-shadow:0 18px 0 #0d1d4930,0 25px 45px #243b7a35;margin-bottom:22px}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#ffffff12;pointer-events:none}.hero:before{width:250px;height:250px;right:-45px;top:-85px}.hero:after{width:170px;height:170px;right:130px;bottom:-100px}
+.kicker{letter-spacing:2px;text-transform:uppercase;color:#bcecff;font-size:12px;font-weight:800}.hero h2{font-size:clamp(28px,5vw,48px);line-height:1.2;margin:12px 0}.hero p{font-size:clamp(14px,2vw,18px);line-height:1.8;max-width:780px}.pill{display:inline-block;border:1px solid #ffffff65;border-radius:999px;padding:7px 12px;margin:5px 5px 0 0;background:#ffffff14;font-size:13px}
+.card{background:rgba(255,255,255,.94);border:1px solid #dce7ff;border-radius:20px;padding:clamp(16px,3vw,26px);margin:16px 0;box-shadow:0 8px 0 #dbe6ff,0 15px 30px #243b7a13;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 11px 0 #dbe6ff,0 20px 35px #243b7a1a}
+h3{font-size:clamp(19px,2.7vw,27px);color:#183d91;margin:0 0 14px}h4{color:#6a35c7;margin:18px 0 8px;font-size:17px}
+p,li{line-height:1.8}.lead{font-size:17px}.tag{display:inline-block;background:#e8f0ff;color:#2048a5;padding:4px 9px;border-radius:8px;font-weight:700;font-size:12px;margin:2px}
+table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:13px;margin:12px 0 18px;font-size:14px}th{background:#183d91;color:white;text-align:left}td,th{padding:11px 12px;border-right:1px solid #dce5f7;border-bottom:1px solid #dce5f7;vertical-align:top}tr:nth-child(even) td{background:#f4f7ff}tr:nth-child(odd) td{background:#fff}
+.formula{border-left:5px solid var(--cyan);background:#eafaff;border-radius:12px;padding:13px 16px;margin:12px 0;font-weight:700;color:#123a61}
+.example{border:1px dashed #9bb6ed;background:#f8fbff;padding:13px 15px;border-radius:12px;margin:10px 0;line-height:1.85}.en{font-family:Arial,sans-serif;font-weight:600;color:#182c58}.bn{color:#46536d}.answer{display:none;margin-top:10px;background:#e9fff5;border-left:4px solid #16a66a;padding:12px;border-radius:10px;line-height:1.8}.answer.show{display:block;animation:pageIn .3s}.btn{border:0;border-radius:12px;padding:10px 15px;font:700 14px inherit;cursor:pointer;background:linear-gradient(135deg,#2457d6,#7b3fe4);color:white;box-shadow:0 4px 0 #192d79;transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #192d79}.btn.secondary{background:linear-gradient(135deg,#087f8c,#1bb8c8);box-shadow:0 4px 0 #07515b}.btn.light{background:#eef3ff;color:#173b8a;box-shadow:0 4px 0 #c8d6fb}.nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid #d7e2f8;padding:10px 14px;display:flex;justify-content:center;gap:10px;align-items:center}.nav button{min-width:110px}.nav .counter{font-weight:800;color:#243b7a;font-size:13px;min-width:78px;text-align:center}
+.page-title{display:flex;align-items:center;gap:12px;margin:6px 0 18px}.page-title .num{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:white;display:grid;place-items:center;font-weight:900;box-shadow:0 5px 0 #183d9160;flex-shrink:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px}.mini{padding:16px;border-radius:16px;background:linear-gradient(145deg,#fff,#f0f5ff);border:1px solid #dce7ff;box-shadow:inset 0 1px white}.mini b{color:#244bb0}
+.floaty{position:fixed;top:-40px;z-index:1;pointer-events:none;opacity:.7;animation:fall linear forwards;font-size:20px;filter:drop-shadow(0 3px 4px #5465a344)}@keyframes fall{0%{transform:translateY(-30px) rotate(0deg) translateX(0);opacity:0}10%{opacity:.8}50%{transform:translateY(55vh) rotate(180deg) translateX(35px)}100%{transform:translateY(110vh) rotate(360deg) translateX(-25px);opacity:0}}
+.wave{display:inline-block;cursor:pointer;transition:color .2s}.wave.waving{animation:wave .65s ease-in-out 2;color:#7b3fe4;text-shadow:0 3px 0 #e2d6ff}@keyframes wave{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-6px) rotate(-1deg)}50%{transform:translateY(3px) rotate(1deg)}75%{transform:translateY(-3px)}}
+.tap-effect{position:fixed;pointer-events:none;z-index:100;width:20px;height:20px;border:3px solid #18b8c8;border-radius:50%;animation:ripple .55s ease-out forwards}@keyframes ripple{to{transform:scale(5);opacity:0}}
+.note{padding:13px 15px;background:#fff8e5;border-left:5px solid #f3b52d;border-radius:10px;margin:12px 0}.good{background:#e9fff4;border-left-color:#1bb87a}.bad{background:#fff0f3;border-left-color:#f05b78}
+.practice{border:1px solid #dbe5ff;border-radius:16px;padding:16px;margin:14px 0;background:white}.practice h4{margin-top:0}.practice .qnum{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;background:#e8efff;color:#244bb0;margin-right:6px}.small{font-size:13px;color:#52617b}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.toc button{width:100%;text-align:left;margin:4px 0}.footer{text-align:center;font-size:12px;color:#64718a;margin:24px 0 10px}
+@media(max-width:600px){main{padding:0 10px;margin-top:12px}.nav{gap:6px;padding:8px}.nav button{min-width:0;flex:1;padding:10px 6px;font-size:12px}.nav .counter{min-width:55px;font-size:11px}.two-col{grid-template-columns:1fr}table{font-size:12px}td,th{padding:8px}.brand small{display:none}}
+@media print{.topbar,.nav,.floaty,.btn{display:none!important}.page{display:block!important;page-break-after:always}.card{box-shadow:none;break-inside:avoid}body{background:white}main{max-width:none}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="brand"><div><h1>✨ GKD COMPLETE NARRATION MASTERY</h1><small>বাংলা ব্যাখ্যা • নিয়ম • Solve Tricks • Practice</small></div><div id="pageLabel">পৃষ্ঠা ১</div></div><div class="progress-wrap"><div class="progress" id="progress"></div></div></header>
+
+
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../lesson_link.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+
+
+<main id="book">
+<section class="page active">
+<div class="hero"><div class="kicker">Complete Grammar Guide</div><h2 class="wave">NARRATION<br>DIRECT & INDIRECT SPEECH</h2><p>সংজ্ঞা থেকে শুরু করে সব গুরুত্বপূর্ণ Rule, Sentence Type, Pronoun, Tense, Time & Place, Solve Tricks এবং Single ও Passage Narration Practice—এক জায়গায়।</p><span class="pill">📘 পূর্ণাঙ্গ নোট</span><span class="pill">🎯 Board Exam Focus</span><span class="pill">🌸 Animated Learning</span></div>
+
+
+
+
+
+ <div class="narration-wrapper" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); padding: 25px; border-radius: 22px; max-width: 850px; margin: 15px auto; color: #ffffff; box-shadow: 0 25px 50px rgba(0,0,0,0.8); border: 3px solid #38bdf8;">
+  <style>
+    .scene-head {
+      text-align: center;
+      color: #38bdf8;
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .stage-box {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(to bottom, #0ea5e9 0%, #bae6fd 60%, #334155 60%, #0f172a 100%);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 4px solid #6366f1;
+      box-shadow: inset 0 12px 30px rgba(0,0,0,0.5);
+    }
+    .road-track {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 140px;
+      background: #1e293b;
+      border-top: 6px solid #fbbf24;
+    }
+    .road-line {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      height: 5px;
+      background: repeating-linear-gradient(90deg, #fff, #fff 35px, transparent 35px, transparent 70px);
+    }
+    .sun {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      width: 55px;
+      height: 55px;
+      background: #facc15;
+      border-radius: 50%;
+      box-shadow: 0 0 35px #facc15;
+    }
+    .action-badge {
+      position: absolute;
+      font-size: 30px;
+      background: #ffffff;
+      color: #000;
+      padding: 6px 10px;
+      border-radius: 50%;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      z-index: 50;
+      display: none;
+      animation: pulseGlow 0.8s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.18); }
+    }
+    .human-avatar {
+      position: absolute;
+      bottom: 12px;
+      height: 230px;
+      width: 100px;
+      transition: left 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 10;
+      filter: drop-shadow(0 15px 12px rgba(0,0,0,0.6));
+    }
+    .boy1-img { left: 40px; }
+    .boy2-img { left: 170px; }
+    .friend-img { left: 680px; }
+
+    .dialog-box {
+      position: absolute;
+      background: #ffffff;
+      color: #0f172a;
+      padding: 16px 22px;
+      border-radius: 18px;
+      font-size: 20px;
+      font-weight: 800;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      display: none;
+      z-index: 30;
+      max-width: 360px;
+      border: 3px solid #6366f1;
+      line-height: 1.5;
+    }
+    .box-boy1 { top: 25px; left: 30px; }
+    .box-boy2 { top: 25px; left: 380px; }
+    .dialog-box .sub-eng {
+      font-size: 17px;
+      color: #4f46e5;
+      margin-top: 8px;
+      border-top: 2px dashed #cbd5e1;
+      padding-top: 6px;
+      font-weight: 700;
+    }
+    .panel-box {
+      margin-top: 20px;
+      background: #1e1b4b;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid #6366f1;
+    }
+    .btn-center {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .start-btn {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 8px 25px rgba(34, 197, 94, 0.5);
+      transition: transform 0.2s;
+    }
+    .start-btn:hover { transform: scale(1.05); }
+    .start-btn:disabled { background: #475569; cursor: not-allowed; transform: none; }
+    .info-text {
+      background: #0f172a;
+      padding: 16px 22px;
+      border-radius: 12px;
+      font-size: 19px;
+      border-left: 6px solid #38bdf8;
+      line-height: 1.7;
+      color: #f8fafc;
+    }
+    .info-text strong { color: #38bdf8; }
+  </style>
+
+  <div class="scene-head">🎬 Direct to Indirect Speech (Interactive Animation)</div>
+
+  <div class="stage-box">
+    <div class="sun"></div>
+    <div class="road-track"><div class="road-line"></div></div>
+
+    <div class="action-badge" id="speakerIcon">🔊</div>
+    <div class="action-badge" id="listenerIcon">👂</div>
+
+    <!-- ছেলে ১ (বক্তা - নীল শার্ট) -->
+    <div class="human-avatar boy1-img">
+      <svg viewBox="0 0 100 230" width="100" height="230">
+        <circle cx="50" cy="30" r="22" fill="#ffdbac"/>
+        <path d="M 30 20 Q 50 2 70 20 Q 75 35 65 40 Q 50 30 35 40 Q 25 35 30 20" fill="#4a3525"/>
+        <rect x="30" y="52" width="40" height="90" rx="10" fill="#2563eb"/>
+        <rect x="35" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
+        <rect x="53" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
+      </svg>
+    </div>
+
+    <!-- ছেলে ২ (মধ্যবর্তী/চলমান - লাল শার্ট) -->
+    <div class="human-avatar boy2-img" id="movingBoy">
+      <svg viewBox="0 0 100 230" width="100" height="230">
+        <circle cx="50" cy="30" r="22" fill="#ffdbac"/>
+        <path d="M 30 20 Q 50 2 70 20 Q 75 35 65 40 Q 50 30 35 40 Q 25 35 30 20" fill="#111827"/>
+        <rect x="30" y="52" width="40" height="90" rx="10" fill="#dc2626"/>
+        <rect x="35" y="142" width="12" height="75" rx="5" fill="#334155"/>
+        <rect x="53" y="142" width="12" height="75" rx="5" fill="#334155"/>
+      </svg>
+    </div>
+
+    <!-- বন্ধু (শ্রোতা - সবুজ শার্ট) -->
+    <div class="human-avatar friend-img">
+      <svg viewBox="0 0 100 230" width="100" height="230">
+        <circle cx="50" cy="30" r="22" fill="#ffdbac"/>
+        <path d="M 30 20 Q 50 2 70 20 Q 75 35 65 40 Q 50 30 35 40 Q 25 35 30 20" fill="#78350f"/>
+        <rect x="30" y="52" width="40" height="90" rx="10" fill="#16a34a"/>
+        <rect x="35" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
+        <rect x="53" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
+      </svg>
+    </div>
+
+    <div class="dialog-box box-boy1" id="boy1Talk">
+      “আমি আজকে যাব না।”
+      <div class="sub-eng">"I will not go today."</div>
+    </div>
+
+    <div class="dialog-box box-boy2" id="boy2Talk">
+      সে বলল যে সে সেদিন যাবে না।
+      <div class="sub-eng">He said that he would not go that day.</div>
+    </div>
+  </div>
+
+  <div class="panel-box">
+    <div class="btn-center">
+      <button class="start-btn" id="mainBtn" onclick="startAnimation()">▶ Play Animation</button>
+    </div>
+    <div class="info-text" id="statusBox">
+      <strong>নির্দেশনা:</strong> অ্যানিমেশন শুরু করতে <strong>Play Animation</strong> বাটনে ক্লিক করুন।
+    </div>
+  </div>
+
+  <script>
+    let isPlaying = false;
+
+    function startAnimation() {
+      if (isPlaying) return;
+      isPlaying = true;
+
+      const movingBoy = document.getElementById('movingBoy');
+      const boy1Talk = document.getElementById('boy1Talk');
+      const boy2Talk = document.getElementById('boy2Talk');
+      const speaker = document.getElementById('speakerIcon');
+      const listener = document.getElementById('listenerIcon');
+      const status = document.getElementById('statusBox');
+      const btn = document.getElementById('mainBtn');
+
+      btn.disabled = true;
+      btn.textContent = '⏳ এনিমেশন চলছে...';
+
+      movingBoy.style.left = '170px';
+      boy2Talk.style.display = 'none';
+      boy1Talk.style.display = 'block';
+
+      speaker.style.top = '170px';
+      speaker.style.left = '65px';
+      speaker.style.display = 'block';
+
+      listener.style.top = '170px';
+      listener.style.left = '195px';
+      listener.style.display = 'block';
+
+      status.innerHTML = '<strong>দৃশ্য ১ (Direct Speech):</strong> প্রথম ছেলেটি সরাসরি কথা বলছে (🔊) এবং দ্বিতীয় ছেলেটি শুনছে (👂):<br>“আমি আজকে যাব না।” / <em>"I will not go today."</em>';
+
+      setTimeout(() => {
+        boy1Talk.style.display = 'none';
+        speaker.style.display = 'none';
+        listener.style.display = 'none';
+
+        movingBoy.style.left = '560px';
+        status.innerHTML = '<strong>দৃশ্য ২ (Transition):</strong> দ্বিতীয় ছেলেটি হেঁটে তার বন্ধুর কাছে যাচ্ছে...';
+      }, 3500);
+
+      setTimeout(() => {
+        speaker.style.top = '170px';
+        speaker.style.left = '580px';
+        speaker.style.display = 'block';
+
+        listener.style.top = '170px';
+        listener.style.left = '700px';
+        listener.style.display = 'block';
+
+        boy2Talk.style.display = 'block';
+        status.innerHTML = '<strong>দৃশ্য ৩ (Indirect Speech):</strong> দ্বিতীয় ছেলেটি তার বন্ধুকে বিবরণ দিচ্ছে (🔊) আর বন্ধু শুনছে (👂):<br>“সে বলল যে সে সেদিন যাবে না।” / <em>"He said that he would not go that day."</em>';
+      }, 7000);
+
+      setTimeout(() => {
+        speaker.style.display = 'none';
+        listener.style.display = 'none';
+        btn.disabled = false;
+        btn.textContent = '🔄 Replay Animation';
+        status.innerHTML = '<strong>সম্পন্ন!</strong> অ্যানিমেশন সফলভাবে শেষ হয়েছে।';
+        isPlaying = false;
+      }, 11000);
+    }
+  </script>
+</div>
+
+
+
+
+<div class="card"><h3>১. Narration কী?</h3><p class="lead">কোনো বক্তার বলা কথা অন্যের কাছে প্রকাশ করার পদ্ধতিকে <b>Narration</b> বলে।</p><div class="grid"><div class="mini"><b>Direct Speech</b><p>বক্তার কথা হুবহু quotation mark (“ ”)-এর মধ্যে প্রকাশ করা হয়।</p><div class="example"><span class="en">He said, “I am happy.”</span><br><span class="bn">সে বলল, “আমি সুখী।”</span></div></div><div class="mini"><b>Indirect Speech</b><p>বক্তার কথার মূল অর্থ ঠিক রেখে নিজের বাক্যগঠনে প্রকাশ করা হয়।</p><div class="example"><span class="en">He said that he was happy.</span><br><span class="bn">সে বলল যে সে সুখী ছিল।</span></div></div></div></div>
+<div class="card"><h3>২. Basic Structure ও পরিভাষা</h3><div class="formula">Reporting Part + “Reported Speech”</div><div class="example"><span class="en">He said to me, “I am reading a book now.”</span><br>Reporting Part: <b>He said to me</b><br>Reported Speech: <b>I am reading a book now.</b><br><span class="bn">বাংলা: সে আমাকে বলল, “আমি এখন একটি বই পড়ছি।”</span></div><p><b>Reporting Verb:</b> said / said to / asked ইত্যাদি—যে verb দিয়ে বক্তব্য জানানোর কাজ বোঝায়।</p><p><b>Reported Speech:</b> উদ্ধৃতির মধ্যে বক্তার আসল বক্তব্য।</p></div>
+<div class="card"><h3>৩. Narration-এর ৫টি প্রধান পরিবর্তনের জায়গা</h3><div class="grid"><div class="mini"><b>১. Reporting Verb</b><p>said → asked / told / ordered ইত্যাদি</p></div><div class="mini"><b>২. Connector</b><p>that / if / whether / WH-word / to</p></div><div class="mini"><b>৩. Person / Pronoun</b><p>I, we, you, he, she ইত্যাদি</p></div><div class="mini"><b>৪. Verb / Tense</b><p>am → was; will → would</p></div><div class="mini"><b>৫. Time & Place</b><p>now → then; here → there</p></div></div><div class="note">সব বাক্যে পাঁচটি পরিবর্তনই হবে না। বাক্যের ধরন, reporting verb, সময়-স্থান ও অর্থ অনুযায়ী প্রয়োজনীয় পরিবর্তন করবে।</div></div>
+<div class="card"><h3>৪. Narration-এর ৫ ধরনের Sentence</h3><table><tr><th>ধরন</th><th>কাজ</th><th>উদাহরণ</th></tr><tr><td>Assertive</td><td>বিবৃতি/সাধারণ বক্তব্য</td><td>He said, “I am fine.”</td></tr><tr><td>Interrogative</td><td>প্রশ্ন</td><td>He said, “Are you ready?”</td></tr><tr><td>Imperative</td><td>আদেশ, অনুরোধ, উপদেশ, নিষেধ</td><td>He said, “Open the door.”</td></tr><tr><td>Optative</td><td>ইচ্ছা, প্রার্থনা, আশীর্বাদ, অভিশাপ</td><td>He said, “May you win!”</td></tr><tr><td>Exclamatory</td><td>আনন্দ, দুঃখ, বিস্ময়, প্রশংসা</td><td>He said, “Hurrah!”</td></tr></table><p><span class="tag">Special</span> “Let” যুক্ত বাক্য সাধারণত Imperative-এর বিশেষ রূপ; পরীক্ষায় আলাদা করে অনুশীলন করা হয়।</p></div>
+</section>
+
+<section class="page"><div class="page-title"><div class="num">R1</div><h2>RULE–1: Reporting Verb-এর পরিবর্তন</h2></div>
+<div class="card"><h3>Sentence-এর ধরন অনুযায়ী Reporting Verb</h3><table><tr><th>Sentence Type</th><th>Reporting Verb / Structure</th></tr><tr><td>Assertive</td><td>said; said to + object → told + object</td></tr><tr><td>Interrogative</td><td>asked / inquired / wanted to know</td></tr><tr><td>Imperative—Order</td><td>ordered / commanded + object + to</td></tr><tr><td>Imperative—Request</td><td>requested / begged / entreated + object + to</td></tr><tr><td>Imperative—Advice</td><td>advised + object + to</td></tr><tr><td>Imperative—Prohibition</td><td>forbade / prohibited + object + from + V-ing; অথবা told/ordered + object + not to</td></tr><tr><td>Optative</td><td>wished / prayed; context অনুযায়ী blessed / cursed</td></tr><tr><td>Exclamatory</td><td>exclaimed with joy/sorrow/surprise/wonder</td></tr></table>
+<h4>A. Assertive Sentence</h4><div class="example"><span class="en">He said, “I am fine.”</span><br>→ He said that he was fine.<br><span class="bn">সে বলল যে সে ভালো ছিল।</span></div><div class="example"><span class="en">He said to me, “I am fine.”</span><br>→ He told me that he was fine.<br><span class="bn">সে আমাকে বলল যে সে ভালো ছিল।</span></div><div class="note bad">❌ He told that he was fine. &nbsp; ✅ He told <b>me</b> that he was fine. <b>Told-এর পরে সাধারণত object প্রয়োজন।</b></div>
+<h4>B. Interrogative</h4><div class="example"><span class="en">He said to me, “Are you ready?”</span><br>→ He asked me if I was ready.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি প্রস্তুত ছিলাম কি না।</span></div>
+<h4>C. Imperative</h4><div class="example"><span class="en">The teacher said to me, “Open the door.”</span><br>→ The teacher ordered me to open the door.<br><span class="bn">শিক্ষক আমাকে দরজা খুলতে আদেশ দিলেন।</span></div>
+<h4>D. Optative</h4><div class="example"><span class="en">He said, “May you be happy.”</span><br>→ He wished that I might be happy.<br><span class="bn">সে কামনা করল যেন আমি সুখী হই।</span></div>
+<h4>E. Exclamatory</h4><div class="example"><span class="en">He said, “Hurrah! We have won.”</span><br>→ He exclaimed with joy that they had won.<br><span class="bn">সে আনন্দের সঙ্গে বলল যে তারা জিতেছে/জিতেছিল।</span></div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">R2</div><h2>RULE–2: Inverted Comma (“ ”) ও Connector</h2></div>
+<div class="card"><table><tr><th>বাক্যের ধরন</th><th>Connector / Structure</th></tr><tr><td>Assertive</td><td>that</td></tr><tr><td>Interrogative—Yes/No</td><td>if / whether</td></tr><tr><td>Interrogative—WH</td><td>WH-word-টি থাকে</td></tr><tr><td>Imperative</td><td>to + verb</td></tr><tr><td>Negative Imperative</td><td>not to + verb</td></tr><tr><td>Optative</td><td>that</td></tr><tr><td>Exclamatory</td><td>that</td></tr></table>
+<h4>Assertive → that</h4><div class="example"><span class="en">He said, “I am happy.”</span><br>→ He said <b>that</b> he was happy.</div>
+<h4>Yes/No Question → if/whether</h4><div class="example"><span class="en">She said to me, “Do you know him?”</span><br>→ She asked me <b>if</b> I knew him.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি তাকে চিনি কি না।</span></div>
+<h4>WH Question → WH-word</h4><div class="example"><span class="en">He said, “Where do you live?”</span><br>→ He asked where I lived.<br><span class="bn">সে জিজ্ঞেস করল আমি কোথায় থাকি/থাকতাম।</span></div>
+<h4>Imperative → to / not to</h4><div class="example"><span class="en">He said to me, “Sit down.”</span><br>→ He told me <b>to sit</b> down.</div><div class="example"><span class="en">He said to me, “Do not run.”</span><br>→ He told me <b>not to run</b>.</div>
+<div class="note">Quotation mark ও comma বাদ যায়। Indirect speech-এ বাক্যের শেষে সাধারণত full stop হয়। তবে মূল অর্থ ও বাক্যের গঠন অক্ষুণ্ণ রাখতে হবে।</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">R3</div><h2>RULE–3: Person / Pronoun-এর পরিবর্তন</h2></div>
+<div class="card"><div class="formula">1st Person → Reporting Verb-এর Subject অনুসরণ করবে</div><p><b>1st Person:</b> I, we, me, us, my, our, mine, ours</p><div class="example"><span class="en">Rahim said, “I am happy.”</span><br>→ Rahim said that <b>he</b> was happy.<br><span class="bn">রহিম বলল যে সে সুখী ছিল।</span></div>
+<div class="formula">2nd Person → Reporting Verb-এর Object অনুসরণ করবে</div><p><b>2nd Person:</b> you, your, yours</p><div class="example"><span class="en">Rahim said to Karim, “You are honest.”</span><br>→ Rahim told Karim that <b>he</b> was honest.<br><span class="bn">রহিম করিমকে বলল যে সে সৎ।</span></div>
+<div class="formula">3rd Person → সাধারণত পরিবর্তন হয় না</div><p><b>3rd Person:</b> he, she, they, him, her, them, his, their ইত্যাদি</p><div class="example"><span class="en">Rahim said, “He is honest.”</span><br>→ Rahim said that <b>he</b> was honest.</div>
+<table><tr><th>Direct</th><th>সম্ভাব্য পরিবর্তন</th></tr><tr><td>I / me / my / mine</td><td>he, she / him, her / his, her / his, hers</td></tr><tr><td>we / us / our / ours</td><td>they / them / their / theirs</td></tr><tr><td>you / your / yours</td><td>বক্তা ও শ্রোতার পরিচয় অনুযায়ী I/we/he/she/they; my/our/his/her/their ইত্যাদি</td></tr><tr><td>he / she / they</td><td>সাধারণত অপরিবর্তিত</td></tr></table>
+<div class="note bad">এটি যান্ত্রিকভাবে pronoun বদলানোর নিয়ম নয়। “I/you” কাকে বোঝাচ্ছে তা বুঝে পরিবর্তন করতে হবে; একই বাক্যে একাধিক ব্যক্তি থাকলে অর্থ মিলিয়ে নেবে।</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">R4</div><h2>RULE–4: Verb / Tense-এর পরিবর্তন</h2></div>
+<div class="card"><p>Reporting Verb Past Tense হলে Reported Speech-এর tense সাধারণত এক ধাপ পিছিয়ে যায়। একে <b>Backshift of Tense</b> বলা হয়।</p>
+<table><tr><th>Direct Speech</th><th>Indirect Speech</th><th>উদাহরণ</th></tr><tr><td>Present Indefinite</td><td>Past Indefinite</td><td>play → played</td></tr><tr><td>Present Continuous</td><td>Past Continuous</td><td>am reading → was reading</td></tr><tr><td>Present Perfect</td><td>Past Perfect</td><td>have done → had done</td></tr><tr><td>Present Perfect Continuous</td><td>Past Perfect Continuous</td><td>have been reading → had been reading</td></tr><tr><td>Past Indefinite</td><td>Past Perfect</td><td>went → had gone</td></tr><tr><td>Past Continuous</td><td>Past Perfect Continuous</td><td>was reading → had been reading</td></tr><tr><td>Past Perfect</td><td>Past Perfect—No change</td><td>had done → had done</td></tr><tr><td>Past Perfect Continuous</td><td>Past Perfect Continuous—No change</td><td>had been working → had been working</td></tr></table>
+<h4>Modal Verb Chart</h4><table><tr><th>Direct</th><th>Indirect</th><th>নোট</th></tr><tr><td>will</td><td>would</td><td>সাধারণ backshift</td></tr><tr><td>shall</td><td>would / should</td><td>ব্যক্তি ও অর্থ অনুযায়ী</td></tr><tr><td>can</td><td>could</td><td>ক্ষমতা</td></tr><tr><td>may</td><td>might</td><td>সম্ভাবনা/অনুমতি</td></tr><tr><td>must</td><td>had to / must</td><td>অর্থ ও প্রয়োজন অনুযায়ী</td></tr><tr><td>could, would, should, might</td><td>সাধারণত অপরিবর্তিত</td><td>অর্থ বজায় রাখবে</td></tr><tr><td>ought to</td><td>সাধারণত ought to</td><td>কিছু প্রসঙ্গে ought to have</td></tr><tr><td>have/has to</td><td>had to</td><td>বাধ্যবাধকতা</td></tr><tr><td>am/is/are to</td><td>was/were to</td><td>নির্ধারিত কাজ</td></tr><tr><td>need</td><td>need / needed to</td><td>ব্যবহার ও অর্থ অনুযায়ী</td></tr></table>
+<h4>Verb-এর ছোট পরিবর্তন</h4><table><tr><th>Direct</th><th>Indirect</th></tr><tr><td>do/does</td><td>সাধারণত বাদ/মূল verb past হয়</td></tr><tr><td>am/is/are</td><td>was/were</td></tr><tr><td>was/were</td><td>had been (প্রয়োজন হলে)</td></tr><tr><td>have/has</td><td>had</td></tr><tr><td>did + base verb</td><td>had + past participle (প্রাসঙ্গিক হলে)</td></tr><tr><td>have/has been</td><td>had been</td></tr></table>
+<div class="note">“Do/does → did” শুধু শব্দ বদল নয়। যেমন “Do you know?” → “if I knew”; এখানে do বাদ যায় এবং মূল verb-এর tense বদলায়।</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">R4+</div><h2>Tense Change-এর ব্যতিক্রম</h2></div>
+<div class="card"><h3>কখন Tense পরিবর্তন হয় না?</h3><div class="example"><b>১. Reporting Verb Present/Future হলে</b><br><span class="en">He says, “I am happy.”</span><br>→ He says that he <b>is</b> happy.<br><span class="bn">সে বলে যে সে সুখী।</span></div>
+<div class="example"><b>২. Universal Truth / চিরন্তন সত্য</b><br><span class="en">The teacher said, “The earth moves round the sun.”</span><br>→ The teacher said that the earth <b>moves</b> round the sun.<br><span class="bn">শিক্ষক বললেন যে পৃথিবী সূর্যের চারদিকে ঘোরে।</span></div>
+<div class="example"><b>৩. Scientific Truth</b><br><span class="en">He said, “Water boils at 100°C at standard atmospheric pressure.”</span><br>→ He said that water <b>boils</b> at 100°C at standard atmospheric pressure.</div>
+<div class="example"><b>৪. Historical fact / এখনও সত্য এমন বক্তব্য</b><br><span class="en">He said, “Bangladesh became independent in 1971.”</span><br>→ He said that Bangladesh <b>became</b> independent in 1971.</div>
+<div class="example"><b>৫. Habitual truth / এখনও প্রযোজ্য বক্তব্য</b><br>বক্তব্যটি এখনও সত্য থাকলে অর্থ অনুযায়ী tense অপরিবর্তিত রাখা যায়।</div>
+<div class="note">পরীক্ষার প্রচলিত নিয়মে past reporting verb হলে tense backshift করা হয়; কিন্তু universal truth ও বর্তমানে সত্য বক্তব্যে অর্থ বজায় রাখাই প্রধান।</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">R5</div><h2>RULE–5: Time & Place-এর পরিবর্তন</h2></div>
+<div class="card"><table><tr><th>Direct Speech</th><th>Indirect Speech</th><th>বাংলা অর্থ</th></tr><tr><td>now</td><td>then</td><td>এখন → তখন</td></tr><tr><td>today</td><td>that day</td><td>আজ → সেদিন</td></tr><tr><td>tonight</td><td>that night</td><td>আজ রাতে → সেদিন রাতে</td></tr><tr><td>yesterday</td><td>the previous day / the day before</td><td>গতকাল → আগের দিন</td></tr><tr><td>tomorrow</td><td>the next day / the following day</td><td>আগামীকাল → পরের দিন</td></tr><tr><td>ago</td><td>before</td><td>আগে → তার আগে</td></tr><tr><td>last night</td><td>the previous night</td><td>গত রাতে → আগের রাতে</td></tr><tr><td>last week/month/year</td><td>the previous week/month/year</td><td>গত সপ্তাহ/মাস/বছর → আগের...</td></tr><tr><td>next week/month/year</td><td>the following week/month/year</td><td>পরের সপ্তাহ/মাস/বছর</td></tr><tr><td>this</td><td>that</td><td>এটি → সেটি</td></tr><tr><td>these</td><td>those</td><td>এগুলো → সেগুলো</td></tr><tr><td>here</td><td>there</td><td>এখানে → সেখানে</td></tr><tr><td>come</td><td>go (প্রয়োজন হলে)</td><td>এদিকে আসা → সেখানে যাওয়া</td></tr><tr><td>thus</td><td>so / in that way</td><td>এভাবে → সেভাবে</td></tr><tr><td>hence</td><td>thence / from there</td><td>এখান থেকে → সেখান থেকে</td></tr><tr><td>hither</td><td>thither</td><td>এদিকে → সেদিকে (পুরোনো/দুর্লভ)</td></tr></table>
+<div class="note">এই পরিবর্তনগুলো স্বয়ংক্রিয় নয়। বক্তব্য দেওয়ার সময় ও স্থান অপরিবর্তিত থাকলে now, today, here ইত্যাদি অপরিবর্তিতও থাকতে পারে। “last day/next day” সাধারণত প্রসঙ্গ বুঝে ব্যবহার করবে; প্রচলিত রূপ হলো yesterday→the previous day এবং tomorrow→the next day.</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">R6</div><h2>RULE–6: Repeated Speech, Yes/No, Addressing</h2></div>
+<div class="card"><h3>একই বক্তা বারবার বললে</h3><p>একই বক্তার ধারাবাহিক বক্তব্যে পুনরাবৃত্তি এড়াতে context অনুযায়ী ব্যবহার করা যায়:</p><div class="grid"><div class="mini"><b>again said</b><p>আবার বলল</p></div><div class="mini"><b>also said</b><p>এটাও বলল</p></div><div class="mini"><b>added that</b><p>আরও যোগ করল যে</p></div><div class="mini"><b>further said</b><p>আরও বলল</p></div><div class="mini"><b>again asked</b><p>আবার জিজ্ঞেস করল</p></div><div class="mini"><b>replied / answered</b><p>উত্তর দিল</p></div></div><div class="example"><span class="en">Rahim said, “I am tired.” He again said, “I need rest.”</span><br>→ Rahim said that he was tired and added that he needed rest.<br><span class="bn">রহিম বলল যে সে ক্লান্ত ছিল এবং আরও যোগ করল যে তার বিশ্রাম দরকার।</span></div>
+<h3>Yes / No-এর পরিবর্তন</h3><div class="example"><b>Yes → replied in the affirmative</b><br><b>No → replied in the negative</b><br><span class="en">He said, “Yes.”</span> → He replied in the affirmative.<br><span class="en">He said, “No.”</span> → He replied in the negative.</div>
+<h3>Sir / Madam / Respectful Addressing</h3><p>সম্মানসূচক সম্বোধন থাকলে respectfully / respectfully replied ইত্যাদি ব্যবহার করা যায়; শ্রোতা কে, তা স্পষ্ট হলে “the teacher” বা উপযুক্ত object ব্যবহার করা যায়।</p><div class="example"><span class="en">The student said, “Sir, I cannot understand it.”</span><br>→ The student respectfully told the teacher that he could not understand it.<br><span class="bn">শিক্ষার্থী সম্মানের সঙ্গে শিক্ষককে বলল যে সে বিষয়টি বুঝতে পারছে না।</span></div>
+<div class="note">Addressing—Mother, Father, friend, sir ইত্যাদি—বাক্যের অর্থ ও সম্পর্ক বুঝে Reporting Part-এ সাজাতে হবে; প্রতিটি সম্বোধনকে একইভাবে পরিবর্তন করা যায় না।</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">A</div><h2>ASSERTIVE SENTENCE — পূর্ণ নিয়ম</h2></div>
+<div class="card"><div class="formula">said → said; said to + object → told + object; connector → that</div><ol><li>সাধারণ বক্তব্যে said অপরিবর্তিত থাকতে পারে।</li><li>said to + object সাধারণত told + object হয়।</li><li>Quotation mark বাদ দিয়ে that বসে।</li><li>Person, tense এবং time/place প্রয়োজন অনুযায়ী বদলাবে।</li><li>Universal truth হলে tense সাধারণত অপরিবর্তিত থাকে।</li></ol>
+<div class="example"><span class="en">He said, “I play football.”</span><br>→ He said that he played football.<br><span class="bn">সে বলল যে সে ফুটবল খেলত।</span></div><div class="example"><span class="en">She said to me, “You have helped me.”</span><br>→ She told me that I had helped her.<br><span class="bn">সে আমাকে বলল যে আমি তাকে সাহায্য করেছিলাম।</span></div></div>
+<div class="page-title"><div class="num">Q</div><h2>INTERROGATIVE SENTENCE — পূর্ণ নিয়ম</h2></div>
+<div class="card"><h3>১. Yes/No Question</h3><div class="formula">asked + object + if/whether + subject + verb</div><ul><li>said to → asked</li><li>Do/does/did সাধারণত বাদ যায়; main verb-এর tense ঠিক করো।</li><li>is/are/was/were ইত্যাদি subject-এর পরে বসে।</li><li>Indirect speech-এ question mark সাধারণত full stop হয়।</li></ul><div class="example"><span class="en">He said to me, “Do you know me?”</span><br>→ He asked me if I knew him.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি তাকে চিনি কি না।</span></div>
+<h3>২. WH Question</h3><div class="formula">asked + object + WH-word + subject + verb</div><div class="example"><span class="en">He said to me, “Where are you going?”</span><br>→ He asked me where I was going.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি কোথায় যাচ্ছিলাম।</span></div><div class="example"><span class="en">He said, “Who broke the glass?”</span><br>→ He asked who had broken the glass.<br><span class="bn">সে জিজ্ঞেস করল কে কাচটি ভেঙেছিল।</span></div><div class="note">WH-word নিজেই subject হলে তার পরে সরাসরি verb আসতে পারে: “Who came?” → He asked who had come.</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">I</div><h2>IMPERATIVE SENTENCE — পূর্ণ নিয়ম</h2></div>
+<div class="card"><div class="formula">Reporting Verb + Object + to + base verb</div><table><tr><th>অর্থ</th><th>Reporting Verb</th><th>Structure</th></tr><tr><td>আদেশ</td><td>ordered / commanded</td><td>object + to</td></tr><tr><td>অনুরোধ</td><td>requested / begged / entreated</td><td>object + to</td></tr><tr><td>উপদেশ</td><td>advised</td><td>object + to</td></tr><tr><td>সাধারণ নির্দেশ</td><td>told / asked</td><td>object + to</td></tr><tr><td>নিষেধ</td><td>told/ordered/advised</td><td>object + not to</td></tr></table>
+<div class="example"><b>Order</b><br><span class="en">The officer said to the soldier, “Stand up.”</span><br>→ The officer ordered the soldier to stand up.<br><span class="bn">কর্মকর্তা সৈনিককে দাঁড়াতে আদেশ দিলেন।</span></div>
+<div class="example"><b>Request</b><br><span class="en">He said to me, “Please help me.”</span><br>→ He requested me to help him.<br><span class="bn">সে আমাকে তাকে সাহায্য করতে অনুরোধ করল।</span></div>
+<div class="example"><b>Advice</b><br><span class="en">The doctor said to me, “Take regular exercise.”</span><br>→ The doctor advised me to take regular exercise.<br><span class="bn">ডাক্তার আমাকে নিয়মিত ব্যায়াম করতে পরামর্শ দিলেন।</span></div>
+<div class="example"><b>Negative command</b><br><span class="en">Mother said to me, “Never tell a lie.”</span><br>→ Mother advised me never to tell a lie.<br><span class="bn">মা আমাকে কখনো মিথ্যা না বলতে উপদেশ দিলেন।</span></div>
+<div class="note">Forbid-এর ব্যবহার: “He forbade me to go” = তিনি আমাকে যেতে নিষেধ করলেন। “He prohibited me from going” = তিনি আমাকে যাওয়া থেকে নিষেধ করলেন। একই বাক্যে “forbade me not to go” ব্যবহার করবে না, যদি উদ্দেশ্য হয় নিষেধ করা।</div></div>
+<div class="page-title"><div class="num">O</div><h2>OPTATIVE & EXCLAMATORY</h2></div>
+<div class="card"><h3>Optative Sentence</h3><p>Wish, prayer, blessing বা curse বোঝায়। wished / prayed / blessed / cursed + that ব্যবহার করা যায়। May সাধারণত might হয়।</p><div class="example"><span class="en">Mother said to me, “May you prosper in life.”</span><br>→ Mother wished that I might prosper in life.<br><span class="bn">মা কামনা করলেন যেন আমি জীবনে উন্নতি করি।</span></div><div class="example"><span class="en">He said, “May Allah help you.”</span><br>→ He prayed that Allah might help me.<br><span class="bn">সে প্রার্থনা করল যেন আল্লাহ আমাকে সাহায্য করেন।</span></div>
+<h3>Exclamatory Sentence</h3><p>Hurrah, Alas, Bravo, What/How ইত্যাদি থাকলে অনুভূতি অনুযায়ী reporting verb বেছে নাও। Exclamation mark বাদ যায়।</p><div class="example"><span class="en">He said, “Alas! I am undone.”</span><br>→ He exclaimed with sorrow that he was undone.<br><span class="bn">সে দুঃখের সঙ্গে বলল যে তার সর্বনাশ হয়েছিল।</span></div><div class="example"><span class="en">He said, “What a beautiful bird it is!”</span><br>→ He exclaimed with wonder that it was a very beautiful bird.<br><span class="bn">সে বিস্ময়ের সঙ্গে বলল যে পাখিটি খুব সুন্দর।</span></div><div class="example"><span class="en">He said, “Bravo! You have done well.”</span><br>→ He applauded me, saying that I had done well.<br><span class="bn">সে আমার প্রশংসা করে বলল যে আমি ভালো করেছি।</span></div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">L</div><h2>“LET” যুক্ত বাক্য ও বিশেষ নিয়ম</h2></div>
+<div class="card"><h3>Let us = Suggestion / Proposal</h3><div class="example"><span class="en">He said, “Let us go out.”</span><br>→ He suggested that they should go out.<br>অথবা: He proposed that they should go out.<br><span class="bn">সে প্রস্তাব দিল যে তাদের বাইরে যাওয়া উচিত।</span></div>
+<h3>Let me = Permission/Request</h3><div class="example"><span class="en">He said to me, “Let me go.”</span><br>→ He requested me to let him go.<br><span class="bn">সে আমাকে তাকে যেতে দিতে অনুরোধ করল।</span></div>
+<h3>Let him/her/them</h3><div class="example"><span class="en">He said to me, “Let him go.”</span><br>→ He told me to let him go.<br><span class="bn">সে আমাকে তাকে যেতে দিতে বলল।</span></div>
+<h3>Must</h3><p>সাধারণ বাধ্যবাধকতায় must → had to হতে পারে; স্থায়ী প্রয়োজন বা logical conclusion হলে must অপরিবর্তিত থাকতে পারে।</p><div class="example"><span class="en">He said, “I must go.”</span><br>→ He said that he had to go.<br><span class="bn">সে বলল যে তাকে যেতে হবে/হতো।</span></div>
+<h3>সবসময় অর্থ যাচাই করো</h3><p>“come → go”, “here → there” ইত্যাদি কেবল তখনই বদলাবে, যখন reporting context-এ দৃষ্টিকোণ বদলায়। একই স্থান ও সময় থাকলে সব শব্দ যান্ত্রিকভাবে বদলাবে না।</p></div></section>
+
+<section class="page"><div class="page-title"><div class="num">S</div><h2>SOLVE TRICKS — Step by Step</h2></div>
+<div class="card"><h3>যেকোনো Narration সমাধানের ১০ ধাপ</h3><ol><li><b>Reporting Part</b> ও <b>Reported Speech</b> আলাদা করো।</li><li>Reported Speech দেখে Sentence Type চেনো।</li><li>Reporting Verb পরিবর্তন করো।</li><li>Quotation mark বাদ দাও এবং সঠিক connector বসাও।</li><li>Person: 1st → Subject; 2nd → Object; 3rd → সাধারণত no change।</li><li>Reporting verb past হলে tense backshift করো—ব্যতিক্রম যাচাই করে।</li><li>Time & Place-এর শব্দ অর্থ অনুযায়ী বদলাও।</li><li>Question হলে subject + verb word order করো।</li><li>Imperative হলে to/not to এবং সঠিক reporting verb বসাও।</li><li>Punctuation ঠিক করে পুরো বাক্যের অর্থ মিলিয়ে নাও।</li></ol>
+<h3>সম্পূর্ণ Solve Example</h3><div class="example"><b>Direct:</b> <span class="en">He said to me, “I am reading a book now.”</span><br><b>Step 1:</b> Reporting Part = He said to me; Reported Speech = I am reading a book now.<br><b>Step 2:</b> Assertive → said to + object = told + object; connector = that.<br><b>Step 3:</b> I → he (1st person follows subject).<br><b>Step 4:</b> am reading → was reading (past reporting verb).<br><b>Step 5:</b> now → then.<br><b>Final:</b> <span class="en">He told me that he was reading a book then.</span><br><span class="bn">বাংলা: সে আমাকে বলল যে সে তখন একটি বই পড়ছিল।</span></div>
+<h3>Master Flowchart</h3><div class="grid"><div class="mini"><b>① TYPE</b><p>Assertive / Interrogative / Imperative / Optative / Exclamatory</p></div><div class="mini"><b>② REPORTING VERB</b><p>said / told / asked / ordered / requested...</p></div><div class="mini"><b>③ CONNECTOR</b><p>that / if-whether / WH / to / not to</p></div><div class="mini"><b>④ PERSON</b><p>1 → Subject; 2 → Object; 3 → No change (usually)</p></div><div class="mini"><b>⑤ TENSE</b><p>Present → Past; Past → Past Perfect (usually)</p></div><div class="mini"><b>⑥ TIME/PLACE</b><p>now → then; today → that day; here → there</p></div><div class="mini"><b>⑦ STRUCTURE</b><p>Question → Subject + Verb</p></div><div class="mini"><b>⑧ PUNCTUATION</b><p>Quotation marks ও প্রয়োজনহীন ? ! বাদ</p></div></div>
+<div class="note good"><b>Master Formula:</b> TYPE → REPORTING VERB → CONNECTOR → PERSON → TENSE → TIME/PLACE → STRUCTURE → PUNCTUATION → MEANING CHECK</div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">P1</div><h2>SINGLE NARRATION PRACTICE — ১–৫</h2></div><div class="card"><p>প্রতিটি Direct Speech নিজে Indirect Speech-এ পরিবর্তন করো। তারপর <b>উত্তর দেখুন</b> বাটনে চাপ দিয়ে উত্তর ও বাংলা অর্থ মিলিয়ে নাও।</p>
+<div class="practice"><h4><span class="qnum">১</span>Assertive</h4><p class="en">Rahim said, “I am tired.”</p><p class="bn">বাংলা: রহিম বলল, “আমি ক্লান্ত।”</p><button class="btn secondary" onclick="toggleAnswer('s1')">উত্তর দেখুন</button><div class="answer" id="s1"><b>Answer:</b> Rahim said that he was tired.<br><b>বাংলা অর্থ:</b> রহিম বলল যে সে ক্লান্ত ছিল।<br><b>কারণ:</b> I → he; am → was; Assertive-এ that.</div></div>
+<div class="practice"><h4><span class="qnum">২</span>Assertive + said to</h4><p class="en">Karim said to me, “You are honest.”</p><p class="bn">বাংলা: করিম আমাকে বলল, “তুমি সৎ।”</p><button class="btn secondary" onclick="toggleAnswer('s2')">উত্তর দেখুন</button><div class="answer" id="s2"><b>Answer:</b> Karim told me that I was honest.<br><b>বাংলা অর্থ:</b> করিম আমাকে বলল যে আমি সৎ ছিলাম।<br><b>কারণ:</b> said to → told; you → I (এখানে me-কে বোঝায়); are → was.</div></div>
+<div class="practice"><h4><h4><span class="qnum">৩</span>Universal Truth</h4><p class="en">The teacher said, “The earth moves round the sun.”</p><p class="bn">বাংলা: শিক্ষক বললেন, “পৃথিবী সূর্যের চারদিকে ঘোরে।”</p><button class="btn secondary" onclick="toggleAnswer('s3')">উত্তর দেখুন</button><div class="answer" id="s3"><b>Answer:</b> The teacher said that the earth moves round the sun.<br><b>বাংলা অর্থ:</b> শিক্ষক বললেন যে পৃথিবী সূর্যের চারদিকে ঘোরে।<br><b>কারণ:</b> Universal truth হওয়ায় moves অপরিবর্তিত।</div></div>
+<div class="practice"><h4><span class="qnum">৪</span>Yes/No Question</h4><p class="en">He said to me, “Are you ready?”</p><p class="bn">বাংলা: সে আমাকে জিজ্ঞেস করল, “তুমি কি প্রস্তুত?”</p><button class="btn secondary" onclick="toggleAnswer('s4')">উত্তর দেখুন</button><div class="answer" id="s4"><b>Answer:</b> He asked me if I was ready.<br><b>বাংলা অর্থ:</b> সে আমাকে জিজ্ঞেস করল আমি প্রস্তুত ছিলাম কি না।<br><b>কারণ:</b> asked + if; প্রশ্নের word order বদলেছে।</div></div>
+<div class="practice"><h4><span class="qnum">৫</span>WH Question</h4><p class="en">The teacher said to the boy, “Why are you late?”</p><p class="bn">বাংলা: শিক্ষক ছেলেটিকে জিজ্ঞেস করলেন, “তোমার দেরি কেন?”</p><button class="btn secondary" onclick="toggleAnswer('s5')">উত্তর দেখুন</button><div class="answer" id="s5"><b>Answer:</b> The teacher asked the boy why he was late.<br><b>বাংলা অর্থ:</b> শিক্ষক ছেলেটিকে জিজ্ঞেস করলেন সে কেন দেরি করেছিল।<br><b>কারণ:</b> why থাকবে; are → was; subject + verb order.</div></div></div></section>
+
+<section class="page"><div class="page-title"><div class="num">P2</div><h2>SINGLE NARRATION PRACTICE — ৬–১০</h2></div><div class="card">
+<div class="practice"><h4><span class="qnum">৬</span>Order</h4><p class="en">The officer said to the soldier, “Stand up.”</p><p class="bn">বাংলা: কর্মকর্তা সৈনিককে বললেন, “দাঁড়াও।”</p><button class="btn secondary" onclick="toggleAnswer('s6')">উত্তর দেখুন</button><div class="answer" id="s6"><b>Answer:</b> The officer ordered the soldier to stand up.<br><b>বাংলা অর্থ:</b> কর্মকর্তা সৈনিককে দাঁড়াতে আদেশ দিলেন।</div></div>
+<div class="practice"><h4><span class="qnum">৭</span>Request</h4><p class="en">He said to me, “Please lend me your pen.”</p><p class="bn">বাংলা: সে আমাকে বলল, “দয়া করে তোমার কলমটি আমাকে ধার দাও।”</p><button class="btn secondary" onclick="toggleAnswer('s7')">উত্তর দেখুন</button><div class="answer" id="s7"><b>Answer:</b> He requested me to lend him my pen.<br><b>বাংলা অর্থ:</b> সে আমাকে আমার কলমটি তাকে ধার দিতে অনুরোধ করল।</div></div>
+<div class="practice"><h4><span class="qnum">৮</span>Advice</h4><p class="en">The doctor said to me, “Take regular exercise.”</p><p class="bn">বাংলা: ডাক্তার আমাকে বললেন, “নিয়মিত ব্যায়াম করো।”</p><button class="btn secondary" onclick="toggleAnswer('s8')">উত্তর দেখুন</button><div class="answer" id="s8"><b>Answer:</b> The doctor advised me to take regular exercise.<br><b>বাংলা অর্থ:</b> ডাক্তার আমাকে নিয়মিত ব্যায়াম করতে পরামর্শ দিলেন।</div></div>
+<div class="practice"><h4><span class="qnum">৯</span>Optative</h4><p class="en">Mother said to me, “May you be happy.”</p><p class="bn">বাংলা: মা আমাকে বললেন, “তুমি সুখী হও।”</p><button class="btn secondary" onclick="toggleAnswer('s9')">উত্তর দেখুন</button><div class="answer" id="s9"><b>Answer:</b> Mother wished that I might be happy.<br><b>বাংলা অর্থ:</b> মা কামনা করলেন যেন আমি সুখী হই।</div></div>
+<div class="practice"><h4><span class="qnum">১০</span>Exclamatory</h4><p class="en">He said, “Hurrah! We have won the match.”</p><p class="bn">বাংলা: সে বলল, “হুররে! আমরা খেলায় জিতেছি।”</p><button class="btn secondary" onclick="toggleAnswer('s10')">উত্তর দেখুন</button><div class="answer" id="s10"><b>Answer:</b> He exclaimed with joy that they had won the match.<br><b>বাংলা অর্থ:</b> সে আনন্দের সঙ্গে বলল যে তারা খেলায় জিতেছিল।</div></div>
+</div></section>
+
+<section class="page"><div class="page-title"><div class="num">P3</div><h2>PASSAGE NARRATION PRACTICE — ১–৫</h2></div><div class="card"><p>প্রতিটি passage-এর সব বক্তব্যকে Indirect Speech-এ পরিবর্তন করো। উত্তর দেখার আগে নিজে চেষ্টা করো।</p>
+<div class="practice"><h4><span class="qnum">১</span>Assertive + Proposal</h4><p class="en">Rahim said to Karim, “I am going to school.” Karim said, “I shall go with you.” Rahim said, “Then let us go together.”</p><p class="bn">বাংলা: রহিম করিমকে বলল, “আমি স্কুলে যাচ্ছি।” করিম বলল, “আমি তোমার সঙ্গে যাব।” রহিম বলল, “তাহলে চলো একসঙ্গে যাই।”</p><button class="btn secondary" onclick="toggleAnswer('p1')">উত্তর দেখুন</button><div class="answer" id="p1"><b>Answer:</b> Rahim told Karim that he was going to school. Karim said that he would go with him. Rahim then proposed that they should go together.<br><b>বাংলা অর্থ:</b> রহিম করিমকে বলল যে সে স্কুলে যাচ্ছিল। করিম বলল যে সে তার সঙ্গে যাবে। রহিম তখন প্রস্তাব দিল যে তাদের একসঙ্গে যাওয়া উচিত।</div></div>
+<div class="practice"><h4><span class="qnum">২</span>Question + Answer</h4><p class="en">The teacher said to the boy, “Why are you late?” The boy said, “I missed the bus.” The teacher said, “Did you leave home late?”</p><p class="bn">বাংলা: শিক্ষক জিজ্ঞেস করলেন, “তোমার দেরি কেন?” ছেলেটি বলল, “আমি বাস মিস করেছি।” শিক্ষক বললেন, “তুমি কি বাড়ি থেকে দেরিতে বের হয়েছিলে?”</p><button class="btn secondary" onclick="toggleAnswer('p2')">উত্তর দেখুন</button><div class="answer" id="p2"><b>Answer:</b> The teacher asked the boy why he was late. The boy replied that he had missed the bus. The teacher then asked him if he had left home late.<br><b>বাংলা অর্থ:</b> শিক্ষক ছেলেটিকে জিজ্ঞেস করলেন সে কেন দেরি করেছিল। ছেলেটি উত্তর দিল যে সে বাস মিস করেছিল। শিক্ষক তাকে জিজ্ঞেস করলেন সে বাড়ি থেকে দেরিতে বের হয়েছিল কি না।</div></div>
+<div class="practice"><h4><span class="qnum">৩</span>Advice + Question + Prohibition</h4><p class="en">The doctor said to the patient, “Take regular exercise.” The patient said, “Can I eat oily food?” The doctor said, “No. Do not eat oily food.”</p><p class="bn">বাংলা: ডাক্তার বললেন, “নিয়মিত ব্যায়াম করুন।” রোগী জিজ্ঞেস করল, “আমি কি তেলযুক্ত খাবার খেতে পারি?” ডাক্তার বললেন, “না। তেলযুক্ত খাবার খাবেন না।”</p><button class="btn secondary" onclick="toggleAnswer('p3')">উত্তর দেখুন</button><div class="answer" id="p3"><b>Answer:</b> The doctor advised the patient to take regular exercise. The patient asked if he could eat oily food. The doctor replied in the negative and advised him not to eat oily food.<br><b>বাংলা অর্থ:</b> ডাক্তার রোগীকে নিয়মিত ব্যায়াম করতে পরামর্শ দিলেন। রোগী জিজ্ঞেস করল সে তেলযুক্ত খাবার খেতে পারবে কি না। ডাক্তার না-সূচক উত্তর দিয়ে তাকে তেলযুক্ত খাবার না খেতে পরামর্শ দিলেন।</div></div>
+<div class="practice"><h4><span class="qnum">৪</span>Request + WH Question</h4><p class="en">The poor man said to the rich man, “Please give me some food.” The rich man said, “Why do you need food?” The poor man said, “I have not eaten anything today.”</p><p class="bn">বাংলা: গরিব লোকটি বলল, “দয়া করে আমাকে খাবার দিন।” ধনী লোকটি জিজ্ঞেস করল, “তোমার খাবার কেন দরকার?” গরিব লোকটি বলল, “আমি আজ কিছুই খাইনি।”</p><button class="btn secondary" onclick="toggleAnswer('p4')">উত্তর দেখুন</button><div class="answer" id="p4"><b>Answer:</b> The poor man requested the rich man to give him some food. The rich man asked him why he needed food. The poor man replied that he had not eaten anything that day.<br><b>বাংলা অর্থ:</b> গরিব লোকটি ধনী লোকটিকে খাবার দিতে অনুরোধ করল। ধনী লোকটি জিজ্ঞেস করল তার খাবার কেন প্রয়োজন। গরিব লোকটি বলল যে সে সেদিন কিছুই খায়নি।</div></div>
+<div class="practice"><h4><span class="qnum">৫</span>Order + Question + Obligation</h4><p class="en">The captain said to the soldiers, “March forward.” A soldier said, “Sir, may we take a rest?” The captain said, “No. You must continue your journey.”</p><p class="bn">বাংলা: ক্যাপ্টেন বললেন, “সামনে এগিয়ে চলো।” এক সৈনিক বলল, “স্যার, আমরা কি বিশ্রাম নিতে পারি?” ক্যাপ্টেন বললেন, “না। তোমাদের যাত্রা চালিয়ে যেতে হবে।”</p><button class="btn secondary" onclick="toggleAnswer('p5')">উত্তর দেখুন</button><div class="answer" id="p5"><b>Answer:</b> The captain ordered the soldiers to march forward. A soldier respectfully asked the captain if they might take a rest. The captain replied in the negative and said that they had to continue their journey.<br><b>বাংলা অর্থ:</b> ক্যাপ্টেন সৈন্যদের সামনে এগিয়ে যাওয়ার আদেশ দিলেন। একজন সৈনিক সম্মানের সঙ্গে জিজ্ঞেস করল তারা বিশ্রাম নিতে পারবে কি না। ক্যাপ্টেন না-সূচক উত্তর দিয়ে বললেন যে তাদের যাত্রা চালিয়ে যেতে হবে।</div></div>
+</div></section>
+
+<section class="page"><div class="page-title"><div class="num">P4</div><h2>PASSAGE NARRATION PRACTICE — ৬–১০</h2></div><div class="card">
+<div class="practice"><h4><span class="qnum">৬</span>Optative + Thanks</h4><p class="en">The mother said to her son, “May you succeed in life.” The son said, “Thank you, mother.” The mother said, “May Allah bless you.”</p><p class="bn">বাংলা: মা বললেন, “তুমি জীবনে সফল হও।” ছেলে বলল, “ধন্যবাদ, মা।” মা বললেন, “আল্লাহ তোমাকে আশীর্বাদ করুন।”</p><button class="btn secondary" onclick="toggleAnswer('p6')">উত্তর দেখুন</button><div class="answer" id="p6"><b>Answer:</b> The mother wished that her son might succeed in life. The son thanked his mother. The mother prayed that Allah might bless him.<br><b>বাংলা অর্থ:</b> মা ছেলের জীবনে সফলতা কামনা করলেন। ছেলে মাকে ধন্যবাদ দিল। মা প্রার্থনা করলেন যেন আল্লাহ তাকে আশীর্বাদ করেন।</div></div>
+<div class="practice"><h4><span class="qnum">৭</span>Exclamatory + Assertive</h4><p class="en">The boy said, “Hurrah! We have won the match.” His friend said, “What a wonderful victory!” The boy said, “It is really exciting.”</p><p class="bn">বাংলা: ছেলেটি বলল, “হুররে! আমরা ম্যাচ জিতেছি।” বন্ধু বলল, “কী দারুণ বিজয়!” ছেলেটি বলল, “এটি সত্যিই রোমাঞ্চকর।”</p><button class="btn secondary" onclick="toggleAnswer('p7')">উত্তর দেখুন</button><div class="answer" id="p7"><b>Answer:</b> The boy exclaimed with joy that they had won the match. His friend exclaimed with wonder that it was a wonderful victory. The boy said that it was really exciting.<br><b>বাংলা অর্থ:</b> ছেলেটি আনন্দের সঙ্গে বলল যে তারা ম্যাচ জিতেছিল। তার বন্ধু বিস্ময়ের সঙ্গে বলল যে এটি একটি দারুণ বিজয় ছিল। ছেলেটি বলল যে এটি সত্যিই রোমাঞ্চকর ছিল।</div></div>
+<div class="practice"><h4><span class="qnum">৮</span>Let us + Agreement</h4><p class="en">Rafiq said to Karim, “Let us go to the library.” Karim said, “Yes, let us go.” Rafiq said, “We can study there.”</p><p class="bn">বাংলা: রফিক বলল, “চলো লাইব্রেরিতে যাই।” করিম বলল, “হ্যাঁ, চলো যাই।” রফিক বলল, “আমরা সেখানে পড়তে পারব।”</p><button class="btn secondary" onclick="toggleAnswer('p8')">উত্তর দেখুন</button><div class="answer" id="p8"><b>Answer:</b> Rafiq proposed to Karim that they should go to the library. Karim agreed and said that they should go. Rafiq said that they could study there.<br><b>বাংলা অর্থ:</b> রফিক করিমকে লাইব্রেরিতে যাওয়ার প্রস্তাব দিল। করিম সম্মতি জানাল এবং বলল যে তাদের যাওয়া উচিত। রফিক বলল যে তারা সেখানে পড়তে পারবে।</div></div>
+<div class="practice"><h4><span class="qnum">৯</span>Mixed Narration</h4><p class="en">Father said to me, “Why are you wasting your time?” I said, “I am not wasting my time.” Father said, “Then finish your homework.” I said, “Please give me another hour.”</p><p class="bn">বাংলা: বাবা জিজ্ঞেস করলেন, “তুমি সময় নষ্ট করছ কেন?” আমি বললাম, “আমি সময় নষ্ট করছি না।” বাবা বললেন, “তাহলে বাড়ির কাজ শেষ করো।” আমি বললাম, “দয়া করে আমাকে আরও এক ঘণ্টা দিন।”</p><button class="btn secondary" onclick="toggleAnswer('p9')">উত্তর দেখুন</button><div class="answer" id="p9"><b>Answer:</b> Father asked me why I was wasting my time. I replied that I was not wasting my time. Father then told me to finish my homework. I requested him to give me another hour.<br><b>বাংলা অর্থ:</b> বাবা আমাকে জিজ্ঞেস করলেন আমি কেন সময় নষ্ট করছিলাম। আমি উত্তর দিলাম যে আমি সময় নষ্ট করছিলাম না। বাবা আমাকে বাড়ির কাজ শেষ করতে বললেন। আমি তাঁকে আমাকে আরও এক ঘণ্টা দিতে অনুরোধ করলাম।</div></div>
+<div class="practice"><h4><span class="qnum">১০</span>Question + Request + Universal Truth + Advice</h4><p class="en">The teacher said to the student, “Do you know why trees are important?” The student said, “No, sir. Please tell me.” The teacher said, “Trees give us oxygen.” He also said, “Plant more trees and protect them.”</p><p class="bn">বাংলা: শিক্ষক জিজ্ঞেস করলেন, “তুমি কি জানো গাছ কেন গুরুত্বপূর্ণ?” শিক্ষার্থী বলল, “না, স্যার। দয়া করে বলুন।” শিক্ষক বললেন, “গাছ আমাদের অক্সিজেন দেয়।” তিনি আরও বললেন, “আরও গাছ লাগাও এবং সেগুলো রক্ষা করো।”</p><button class="btn secondary" onclick="toggleAnswer('p10')">উত্তর দেখুন</button><div class="answer" id="p10"><b>Answer:</b> The teacher asked the student if he knew why trees were important. The student respectfully replied in the negative and requested the teacher to tell him. The teacher said that trees give us oxygen. He also advised the student to plant more trees and protect them.<br><b>বাংলা অর্থ:</b> শিক্ষক শিক্ষার্থীকে জিজ্ঞেস করলেন সে জানে কি না গাছ কেন গুরুত্বপূর্ণ। শিক্ষার্থী সম্মানের সঙ্গে না-সূচক উত্তর দিয়ে শিক্ষককে বলতে অনুরোধ করল। শিক্ষক বললেন যে গাছ আমাদের অক্সিজেন দেয়। তিনি শিক্ষার্থীকে আরও গাছ লাগাতে ও সেগুলো রক্ষা করতে পরামর্শ দিলেন।</div></div>
+</div></section>
+
+<section class="page"><div class="page-title"><div class="num">REV</div><h2>শেষ মুহূর্তের Revision Sheet</h2></div>
+<div class="card"><h3>এক নজরে Master Chart</h3><table><tr><th>Sentence Type</th><th>Reporting Verb</th><th>Connector / Structure</th></tr><tr><td>Assertive</td><td>said / told</td><td>that</td></tr><tr><td>Yes/No Question</td><td>asked</td><td>if / whether</td></tr><tr><td>WH Question</td><td>asked</td><td>WH-word + subject + verb</td></tr><tr><td>Order</td><td>ordered / commanded</td><td>object + to</td></tr><tr><td>Request</td><td>requested / begged</td><td>object + to</td></tr><tr><td>Advice</td><td>advised</td><td>object + to</td></tr><tr><td>Negative command</td><td>told / ordered / advised</td><td>object + not to</td></tr><tr><td>Prohibition</td><td>forbade / prohibited</td><td>object + to / from + V-ing (গঠন অনুযায়ী)</td></tr><tr><td>Optative</td><td>wished / prayed</td><td>that + might (সাধারণত)</td></tr><tr><td>Exclamatory</td><td>exclaimed with...</td><td>that</td></tr><tr><td>Let us</td><td>suggested / proposed</td><td>that + subject + should</td></tr></table>
+<h3>Pronoun Golden Rule</h3><div class="formula">1st Person → Subject &nbsp; | &nbsp; 2nd Person → Object &nbsp; | &nbsp; 3rd Person → Usually no change</div>
+<h3>Common Time/Place</h3><div class="formula">now → then • today → that day • yesterday → the previous day • tomorrow → the next day • here → there • this → that • these → those</div>
+<h3>পরীক্ষার আগে ১০টি Checklist</h3><ol><li>Sentence type ঠিক ধরেছি?</li><li>Reporting Verb ঠিক হয়েছে?</li><li>Connector ঠিক হয়েছে?</li><li>Pronoun কার দিকে নির্দেশ করছে বুঝেছি?</li><li>Tense backshift প্রয়োজন কি না দেখেছি?</li><li>Universal truth-এর tense ঠিক রেখেছি?</li><li>Time/Place প্রসঙ্গ অনুযায়ী বদলেছি?</li><li>Question-এ subject + verb order করেছি?</li><li>Imperative-এ to/not to ঠিক বসিয়েছি?</li><li>Punctuation সরিয়ে অর্থ মিলিয়েছি?</li></ol><div class="note good"><b>স্মরণীয় সূত্র:</b> TYPE → REPORTING VERB → CONNECTOR → PERSON → TENSE → TIME/PLACE → STRUCTURE → PUNCTUATION → MEANING CHECK.</div></div><div class="footer">GKD Complete Narration Mastery • Learn • Practise • Master</div></section>
+</main>
+<nav class="nav"><button class="btn light" id="prev" onclick="movePage(-1)">← পূর্ববর্তী পৃষ্ঠা</button><div class="counter" id="counter">১ / ১৪</div><button class="btn" id="next" onclick="movePage(1)">পরবর্তী পৃষ্ঠা →</button></nav>
+<script>
+const pages=[...document.querySelectorAll('.page')];let current=0;
+const bnDigits=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
+function showPage(n){current=Math.max(0,Math.min(pages.length-1,n));pages.forEach((p,i)=>p.classList.toggle('active',i===current));document.getElementById('counter').textContent=bnDigits(current+1)+' / '+bnDigits(pages.length);document.getElementById('pageLabel').textContent='পৃষ্ঠা '+bnDigits(current+1);document.getElementById('progress').style.width=((current+1)/pages.length*100)+'%';document.getElementById('prev').disabled=current===0;document.getElementById('next').textContent=current===pages.length-1?'শেষ পৃষ্ঠা ✓':'পরবর্তী পৃষ্ঠা →';window.scrollTo({top:0,behavior:'smooth'});}
+function movePage(d){showPage(current+d)}
+function toggleAnswer(id){const el=document.getElementById(id);if(el)el.classList.toggle('show')}
+document.addEventListener('click',e=>{if(e.target.closest('button')){const r=document.createElement('span');r.className='tap-effect';r.style.left=e.clientX-10+'px';r.style.top=e.clientY-10+'px';document.body.appendChild(r);setTimeout(()=>r.remove(),600)}});
+document.querySelectorAll('.wave').forEach(el=>el.addEventListener('click',()=>{el.classList.remove('waving');void el.offsetWidth;el.classList.add('waving')}));
+const symbols=['✿','✦','✧','❀','★','✿','❋'];
+function floatSymbol(){const f=document.createElement('div');f.className='floaty';f.textContent=symbols[Math.floor(Math.random()*symbols.length)];f.style.left=Math.random()*100+'vw';f.style.animationDuration=(7+Math.random()*8)+'s';f.style.fontSize=(13+Math.random()*17)+'px';f.style.color=['#f15bb5','#2457d6','#1bb8c8','#ffc857','#7b3fe4'][Math.floor(Math.random()*5)];document.body.appendChild(f);setTimeout(()=>f.remove(),16000)}
+setInterval(floatSymbol,650);
+showPage(0);
+</script>
+</body>
+</html>

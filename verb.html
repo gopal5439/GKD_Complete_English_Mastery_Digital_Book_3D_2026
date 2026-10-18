@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verb Master Guide — সম্পূর্ণ বাংলা গাইড</title>
+<style>
+:root{
+ --ink:#17233b;--muted:#65728a;--primary:#3659d9;--secondary:#7547d8;--cyan:#14a6b8;
+ --bg:#f4f7ff;--card:#ffffff;--line:#e0e7f4;--soft:#edf2ff;--good:#13875a;--bad:#d44747;
+ --shadow:0 12px 34px rgba(31,52,104,.10)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 90% 0,#e4eaff 0,transparent 28%),var(--bg);color:var(--ink);font-family:"Noto Sans Bengali","Hind Siliguri","Segoe UI",sans-serif;line-height:1.75}
+button{font:inherit;cursor:pointer}.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);box-shadow:0 5px 20px #253c7410}
+.topinner{max-width:1450px;margin:auto;padding:10px 18px;display:flex;align-items:center;gap:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;white-space:nowrap}.brandmark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;display:grid;place-items:center;font-weight:900;font-size:20px;box-shadow:0 7px 18px #3659d944}.nav{display:flex;gap:7px;overflow-x:auto;flex:1;padding:3px 0}.nav button{border:1px solid transparent;background:transparent;color:#44516d;border-radius:10px;padding:8px 12px;white-space:nowrap;font-size:14px}.nav button:hover,.nav button.active{background:var(--soft);color:var(--primary);border-color:#d5defe;font-weight:800}.progress{height:3px;background:#e7ecf8}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--secondary));transition:width .3s}
+.wrap{max-width:1200px;margin:26px auto;padding:0 18px}.hero{position:relative;overflow:hidden;padding:38px clamp(22px,5vw,58px);border-radius:28px;color:#fff;background:linear-gradient(120deg,#203eaa 0%,#4c50d8 48%,#7c45c9 100%);box-shadow:0 20px 45px #2f43a533;animation:rise .7s ease both}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#ffffff12;pointer-events:none}.hero:before{width:310px;height:310px;right:-55px;top:-150px}.hero:after{width:220px;height:220px;right:190px;bottom:-165px}.eyebrow{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;opacity:.82;font-weight:800}.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.2;margin:12px 0}.hero p{max-width:740px;color:#eef0ff;font-size:17px}.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.hero-tags span{border:1px solid #ffffff45;background:#ffffff14;padding:6px 12px;border-radius:999px;font-size:13px}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px;margin-top:24px}.sidebar{align-self:start;position:sticky;top:82px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow);max-height:calc(100vh - 100px);overflow:auto}.side-title{font-size:12px;color:var(--muted);font-weight:900;letter-spacing:1px;padding:4px 10px 12px}.sidebtn{display:flex;width:100%;text-align:left;gap:10px;align-items:center;border:0;background:transparent;padding:10px;border-radius:11px;color:#45516c;margin:2px 0;font-size:14px}.sidebtn .num{width:26px;height:26px;flex:0 0 26px;display:grid;place-items:center;border-radius:8px;background:#f0f3fa;color:#65728a;font-size:12px;font-weight:800}.sidebtn:hover,.sidebtn.active{background:#eef2ff;color:var(--primary);font-weight:800}.sidebtn.active .num{background:var(--primary);color:#fff}
+main{min-width:0}.page{display:none;animation:fade .35s ease}.page.active{display:block}.page-head{margin:0 0 20px;padding:3px 2px 15px;border-bottom:1px solid var(--line)}.page-head .kicker{font-size:12px;color:var(--primary);font-weight:900;letter-spacing:1px}.page-head h2{font-size:clamp(25px,3vw,35px);margin:5px 0 7px;line-height:1.3}.page-head p{margin:0;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:15px 0;box-shadow:0 7px 24px #2b42700a;transition:transform .2s,box-shadow .2s}.card:hover{box-shadow:var(--shadow)}.card h3{margin:0 0 12px;font-size:20px;color:#253967}.card h4{margin:15px 0 6px;color:#3b4b71}.lead{font-size:17px}.note{border-left:4px solid var(--cyan);background:#eafaff;padding:13px 16px;border-radius:0 12px 12px 0;margin:14px 0}.warn{border-left-color:#f0a12b;background:#fff8e8}.pill{display:inline-block;padding:3px 10px;border-radius:999px;background:#e9edff;color:#3659d9;font-weight:800;font-size:12px}.example{background:#f7f9ff;border:1px dashed #cbd6f5;border-radius:12px;padding:12px 15px;margin:10px 0}.en{font-weight:800;color:#263c86}.bn{color:#52627d}.hi{color:#d14d72;font-weight:900}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.mini{background:linear-gradient(145deg,#fff,#f6f8ff);border:1px solid var(--line);border-radius:15px;padding:16px}.mini h4{margin:0 0 8px;color:var(--primary)}.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px;margin:12px 0}table{width:100%;border-collapse:collapse;min-width:480px;background:#fff}th,td{padding:11px 13px;text-align:left;border-bottom:1px solid #e8edf6;vertical-align:top}th{background:#eef2ff;color:#30478c;font-weight:900}tr:last-child td{border-bottom:0}td:first-child{font-weight:700}
+.diagram{padding:18px;background:linear-gradient(140deg,#f4f6ff,#f1fbff);border:1px solid #dce5fb;border-radius:18px;overflow:hidden}.rootnode{width:max-content;max-width:100%;margin:0 auto 10px;background:linear-gradient(120deg,#294fc4,#7651d7);color:#fff;padding:12px 28px;border-radius:14px;text-align:center;font-weight:900;font-size:20px;box-shadow:0 9px 18px #3854b52b}.downarrow{text-align:center;font-size:28px;color:#647ce0;line-height:1.1}.branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:8px}.branch{border:1px solid #dce4fa;border-radius:15px;background:#fff;padding:13px;text-align:center;position:relative}.branch .branchhead{background:#eaf0ff;border-radius:10px;padding:9px;font-weight:900;color:#2e4db0}.branch .arrow{font-size:24px;color:#7b86bd;line-height:1.25}.subbranches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.subnode{background:#f5f7fc;border:1px solid #e2e8f5;border-radius:10px;padding:10px 7px;font-size:13px}.subnode b{display:block;color:#283e85}.diagram-caption{text-align:center;font-size:13px;color:var(--muted);margin-top:12px}
+.quiz{border:1px solid #dfe6f5;background:#fff;border-radius:16px;padding:18px;margin:14px 0}.quiz-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.qnum{font-size:12px;font-weight:900;color:#5b66a7;background:#f0f2ff;padding:4px 9px;border-radius:999px}.question{font-weight:900;font-size:17px;margin:12px 0}.options{display:grid;gap:8px}.option{border:1px solid #dbe3f2;border-radius:11px;background:#fbfcff;color:#263451;padding:10px 12px;text-align:left;transition:.18s}.option:hover:not(:disabled){border-color:#788ce0;background:#f0f3ff}.option.correct{border-color:#47b98b;background:#e9fff5;color:#126b49}.option.wrong{border-color:#e78c8c;background:#fff0f0;color:#a22d2d}.feedback{display:none;border-radius:11px;padding:12px 14px;margin-top:12px;font-size:14px}.feedback.show{display:block;animation:fade .25s}.feedback.good{background:#eafff4;color:#116e4b;border:1px solid #bcebd5}.feedback.bad{background:#fff1f1;color:#9c2e2e;border:1px solid #f3c6c6}.quiz-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px}.score{font-weight:900;color:#3d4d7b}.btn{border:0;border-radius:11px;padding:10px 16px;background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;font-weight:800;box-shadow:0 5px 13px #3659d92c}.btn.secondary{background:#edf1fc;color:#354c9b;box-shadow:none}.btn:disabled{opacity:.45;cursor:not-allowed}.footer-nav{display:flex;justify-content:space-between;gap:12px;margin:24px 0 10px}.footer{padding:24px;text-align:center;color:#7a8498;font-size:13px}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:relative;top:auto;max-height:none}.side-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.topinner{flex-wrap:wrap}.brand{min-width:100%}.nav{order:2;flex-basis:100%}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.wrap{padding:0 11px;margin:15px auto}.hero{padding:27px 20px;border-radius:20px}.layout{gap:13px}.card{padding:16px}.grid2,.grid3,.branches{grid-template-columns:1fr}.subbranches{grid-template-columns:repeat(2,minmax(0,1fr))}.side-list{grid-template-columns:1fr 1fr}.page-head h2{font-size:26px}.topinner{padding:8px 11px}.nav button{padding:7px 10px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="topinner">
+  <div class="brand"><span class="brandmark">V</span><span>VERB <span style="color:#5367cf">MASTER GUIDE</span></span></div>
+  <nav class="nav" id="topNav" aria-label="দ্রুত নেভিগেশন"></nav>
+ </div>
+ <div class="progress"><span id="progressBar"></span></div>
+</header>
+<div class="wrap">
+ <section class="hero">
+  <div class="eyebrow">COMPLETE GRAMMAR • বাংলা ব্যাখ্যাসহ</div>
+  <h1>Verb — ক্রিয়ার পূর্ণাঙ্গ পাঠ</h1>
+  <p>সংজ্ঞা থেকে প্রকারভেদ, পাঁচটি রূপ, Tense, Subject–Verb Agreement, বাক্য গঠন এবং ব্যাখ্যাসহ ইন্টার‌্যাকটিভ অনুশীলন—এক জায়গায়।</p>
+  <div class="hero-tags"><span>সহজ বাংলা ব্যাখ্যা</span><span>ডায়াগ্রাম ও তীরচিহ্ন</span><span>উদাহরণসহ নিয়ম</span><span>ক্লিক করলেই উত্তর ও ব্যাখ্যা</span></div>
+ </section>
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='Parts of speech.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+ <div class="layout">
+  <aside class="sidebar">
+   <div class="side-title">বিষয়সূচি / CONTENTS</div>
+   <div class="side-list" id="sideList"></div>
+  </aside>
+  <main id="mainContent">
+   <section class="page active" id="p0">
+    <div class="page-head"><div class="kicker">PART 01 • OVERVIEW</div><h2>Verb কী? প্রকারভেদ এক নজরে</h2><p>প্রথমে Verb-এর প্রধান শ্রেণিবিভাগ ও তাদের পারস্পরিক সম্পর্ক বুঝে নিন।</p></div>
+    <div class="card"><h3>Verb-এর সংজ্ঞা</h3><p class="lead"><b>Verb (ক্রিয়া)</b> এমন শব্দ, যা কোনো কাজ করা, হওয়া, থাকা, অবস্থা বা ঘটনার কথা প্রকাশ করে।</p>
+     <div class="example"><div class="en">Rina reads a book.</div><div class="bn">রিনা একটি বই পড়ে। — <b>reads</b> কাজ বোঝাচ্ছে।</div></div>
+     <div class="example"><div class="en">He is happy.</div><div class="bn">সে সুখী। — <b>is</b> অবস্থা/সংযোগ বোঝাচ্ছে।</div></div>
+     <div class="example"><div class="en">They are in the room.</div><div class="bn">তারা ঘরে আছে। — <b>are</b> থাকা/অবস্থান বোঝাচ্ছে।</div></div>
+     <div class="note"><b>মনে রাখুন:</b> ইংরেজির একটি পূর্ণাঙ্গ সাধারণ বাক্যে সাধারণত একটি finite verb বা finite verb-যুক্ত verb phrase থাকে। আদেশসূচক বাক্যে subject “you” উহ্য থাকতে পারে: <i>Come here.</i></div>
+    </div>
+    <div class="card"><h3>Verb-এর প্রকারভেদের ডায়াগ্রাম</h3>
+     <div class="diagram">
+      <div class="rootnode">VERB (ক্রিয়া)</div><div class="downarrow">↓</div>
+      <div class="branches">
+       <div class="branch"><div class="branchhead">১. কাজ ও ভূমিকা অনুযায়ী</div><div class="arrow">↓</div><div class="subbranches">
+        <div class="subnode"><b>Main / Lexical Verb</b>মূল অর্থবাহী ক্রিয়া</div><div class="subnode"><b>Auxiliary Verb</b>সাহায্যকারী ক্রিয়া</div>
+        <div class="subnode"><b>Transitive</b>কর্ম লাগে</div><div class="subnode"><b>Intransitive</b>কর্ম লাগে না</div>
+        <div class="subnode"><b>Linking Verb</b>Subject-এর অবস্থা যুক্ত করে</div><div class="subnode"><b>Causative Verb</b>অন্যকে দিয়ে কাজ করানো</div>
+       </div></div>
+       <div class="branch"><div class="branchhead">২. গঠন ও রূপ অনুযায়ী</div><div class="arrow">↓</div><div class="subbranches">
+        <div class="subnode"><b>Finite Verb</b>Subject/Tense অনুযায়ী বদলায়</div><div class="subnode"><b>Non-finite Verb</b>নিজে Tense/Subject অনুযায়ী বদলায় না</div>
+        <div class="subnode"><b>Regular Verb</b>সাধারণত -ed/-d</div><div class="subnode"><b>Irregular Verb</b>রূপ অনিয়মিত</div>
+       </div></div>
+       <div class="branch"><div class="branchhead">৩. Auxiliary-এর উপপ্রকার</div><div class="arrow">↓</div><div class="subbranches">
+        <div class="subnode"><b>Primary</b>be, do, have</div><div class="subnode"><b>Modal</b>can, may, must ইত্যাদি</div>
+       </div></div>
+       <div class="branch"><div class="branchhead">৪. Non-finite-এর উপপ্রকার</div><div class="arrow">↓</div><div class="subbranches">
+        <div class="subnode"><b>Infinitive</b>to read / read</div><div class="subnode"><b>Gerund</b>Reading is fun.</div><div class="subnode"><b>Participle</b>broken / smiling</div><div class="subnode"><b>রূপভেদ</b>Present / Past Participle</div>
+       </div></div>
+      </div><div class="diagram-caption">এগুলো একই ধরনের ভাগ নয়—কোনো Verb একসঙ্গে একাধিক শ্রেণিতে পড়তে পারে। যেমন: “writes” হলো main, finite এবং transitive হতে পারে।</div>
+     </div>
+    </div>
+    <div class="card"><h3>Verb কেন গুরুত্বপূর্ণ?</h3><div class="grid3">
+     <div class="mini"><h4>কাজ</h4><span class="en">She sings.</span><br><span class="bn">সে গান গায়।</span></div>
+     <div class="mini"><h4>অবস্থা</h4><span class="en">He seems tired.</span><br><span class="bn">তাকে ক্লান্ত মনে হয়।</span></div>
+     <div class="mini"><h4>ঘটনা</h4><span class="en">The glass broke.</span><br><span class="bn">গ্লাসটি ভেঙে গেল।</span></div>
+    </div></div>
+   </section>
+   <section class="page" id="p1">
+    <div class="page-head"><div class="kicker">PART 02 • CORE TYPES</div><h2>কাজ ও ভূমিকা অনুযায়ী Verb</h2><p>Main, Auxiliary, Transitive, Intransitive, Linking ও Causative Verb।</p></div>
+    <div class="card"><h3>১. Main Verb / Lexical Verb (মূল ক্রিয়া)</h3><p>বাক্যের প্রধান অর্থ প্রকাশ করে। যেমন কাজ, ঘটনা, অনুভূতি বা অবস্থা।</p><div class="example"><span class="en">They play football.</span><br><span class="bn">তারা ফুটবল খেলে। — <b>play</b> মূল ক্রিয়া।</span></div><div class="example"><span class="en">I know the answer.</span><br><span class="bn">আমি উত্তরটি জানি। — <b>know</b> মূল ক্রিয়া।</span></div></div>
+    <div class="card"><h3>২. Auxiliary Verb (সাহায্যকারী ক্রিয়া)</h3><p>Main verb-কে সাহায্য করে Tense, প্রশ্ন, না-বাচকতা, Passive Voice বা বিশেষ অর্থ প্রকাশ করতে।</p>
+     <div class="grid2"><div class="mini"><h4>Primary auxiliaries</h4><b>be:</b> am, is, are, was, were, be, being, been<br><b>do:</b> do, does, did<br><b>have:</b> have, has, had</div><div class="mini"><h4>Modal auxiliaries</h4>can, could, may, might, shall, should, will, would, must; এছাড়া ought to, need, dare-ও নির্দিষ্ট ব্যবহারে modal বৈশিষ্ট্য দেখায়।</div></div>
+     <div class="example"><span class="en">She is reading.</span><br><span class="bn">সে পড়ছে। — <b>is</b> সাহায্যকারী, <b>reading</b> মূল ক্রিয়া।</span></div>
+     <div class="example"><span class="en">Do you know him?</span><br><span class="bn">তুমি কি তাকে চেনো? — <b>Do</b> প্রশ্ন গঠনে সাহায্য করছে।</span></div>
+     <div class="example"><span class="en">The door was opened.</span><br><span class="bn">দরজাটি খোলা হয়েছিল। — <b>was</b> Passive গঠনে সাহায্য করছে।</span></div>
+     <div class="note warn"><b>সতর্কতা:</b> be, do, have সব সময় auxiliary নয়। <i>She is kind.</i> বাক্যে <b>is</b> linking verb; <i>She has a car.</i> বাক্যে <b>has</b> মূল অর্থে “আছে/মালিক” বোঝাতে পারে।</div>
+    </div>
+    <div class="card"><h3>৩. Transitive Verb (সকর্মক ক্রিয়া)</h3><p>যে Verb-এর অর্থ সম্পূর্ণ করতে সরাসরি Object বা কর্ম প্রয়োজন/গ্রহণ করে।</p><div class="example"><span class="en">Mina opened the door.</span><br><span class="bn">মিনা দরজাটি খুলল। — কী খুলল? <b>the door</b> (Object)।</span></div><div class="example"><span class="en">He bought a pen.</span><br><span class="bn">সে একটি কলম কিনল। — কী কিনল? <b>a pen</b>।</span></div><div class="note">কিছু Verb প্রসঙ্গ অনুযায়ী Object-সহ বা Object ছাড়া—দুইভাবেই ব্যবহৃত হয়: <i>She reads every day.</i> / <i>She reads novels.</i></div></div>
+    <div class="card"><h3>৪. Intransitive Verb (অকর্মক ক্রিয়া)</h3><p>যে Verb-এর পরে সরাসরি Object লাগে না; কাজ/ঘটনা Subject-এই সম্পন্ন হয়।</p><div class="example"><span class="en">The baby cried.</span><br><span class="bn">শিশুটি কাঁদল। — সরাসরি Object নেই।</span></div><div class="example"><span class="en">Birds fly.</span><br><span class="bn">পাখিরা ওড়ে।</span></div><div class="note">কোনো preposition-এর পরে noun থাকলেই সেটি সরাসরি Object হয় না: <i>He slept on the bed.</i> — এখানে <i>on the bed</i> স্থান বোঝানো prepositional phrase।</div></div>
+    <div class="card"><h3>৫. Linking Verb (সংযোজক ক্রিয়া)</h3><p>Subject-কে তার পরিচয়, অবস্থা বা গুণের সঙ্গে যুক্ত করে; এর পরে সাধারণত complement আসে।</p><div class="example"><span class="en">Rafi is a student.</span><br><span class="bn">রাফি একজন শিক্ষার্থী। — <b>a student</b> Subject-এর পরিচয়।</span></div><div class="example"><span class="en">The soup smells delicious.</span><br><span class="bn">স্যুপটির গন্ধ দারুণ। — <b>delicious</b> Subject-এর অবস্থা বোঝায়।</span></div><p>প্রচলিত linking verbs: be, seem, become, appear, feel, look, sound, smell, taste, remain, stay, grow। কিছু Verb প্রসঙ্গভেদে linking বা action—দুইভাবেই হতে পারে।</p></div>
+    <div class="card"><h3>৬. Causative Verb (প্রযোজক ক্রিয়া)</h3><p>নিজে কাজ না করে অন্য কাউকে দিয়ে কাজ করানো বা কোনো কাজ ঘটানোর অর্থ দেয়।</p><div class="tablewrap"><table><thead><tr><th>Pattern</th><th>Example</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+     <tr><td>make + person + V1</td><td>The joke made me laugh.</td><td>কৌতুকটি আমাকে হাসাল।</td></tr>
+     <tr><td>have + person + V1</td><td>I had him repair the fan.</td><td>আমি তাকে দিয়ে ফ্যানটি মেরামত করালাম।</td></tr>
+     <tr><td>get + person + to + V1</td><td>I got him to help me.</td><td>আমি তাকে আমাকে সাহায্য করতে রাজি করালাম/দিয়ে সাহায্য করালাম।</td></tr>
+     <tr><td>have/get + thing + V3</td><td>I had my hair cut.</td><td>আমি চুল কাটালাম।</td></tr>
+     <tr><td>let + person + V1</td><td>Let me go.</td><td>আমাকে যেতে দাও।</td></tr>
+    </tbody></table></div><div class="note">make/let/have-এর কিছু causative pattern-এ bare infinitive (to ছাড়া V1) ব্যবহৃত হয়; get-এর সঙ্গে সাধারণত <b>to + V1</b> হয়।</div></div>
+   </section>
+   <section class="page" id="p2">
+    <div class="page-head"><div class="kicker">PART 03 • FORMS</div><h2>Finite, Non-finite ও Verb-এর পাঁচ রূপ</h2><p>বাক্যে Verb কীভাবে কাজ করে এবং রূপ বদলায়—তা বুঝুন।</p></div>
+    <div class="card"><h3>Finite Verb (সমাপিকা ক্রিয়া)</h3><p>যে Verb clause-এ Tense প্রকাশ করে এবং Subject-এর সঙ্গে Person/Number অনুযায়ী বদলাতে পারে।</p><div class="example"><span class="en">He plays cricket.</span><br><span class="bn">সে ক্রিকেট খেলে। — <b>plays</b> finite; Present Simple-এ he-এর সঙ্গে -s হয়েছে।</span></div><div class="example"><span class="en">They played cricket.</span><br><span class="bn">তারা ক্রিকেট খেলেছিল/খেলল। — <b>played</b> finite; Past Tense।</span></div></div>
+    <div class="card"><h3>Non-finite Verb (অসমাপিকা ক্রিয়া)</h3><p>যে Verb form নিজে Subject বা Tense অনুযায়ী finite verb-এর মতো বদলায় না। এটি infinitive, gerund বা participle হিসেবে কাজ করতে পারে।</p>
+     <div class="grid3"><div class="mini"><h4>Infinitive</h4><span class="en">I want to learn.</span><br><span class="bn">আমি শিখতে চাই।</span></div><div class="mini"><h4>Gerund</h4><span class="en">Reading is useful.</span><br><span class="bn">পড়া উপকারী।</span></div><div class="mini"><h4>Participle</h4><span class="en">The crying baby slept.</span><br><span class="bn">কাঁদতে থাকা শিশুটি ঘুমাল।</span></div></div>
+    </div>
+    <div class="card"><h3>Non-finite-এর তিন ধরন</h3>
+     <h4>১. Infinitive</h4><p><b>to + V1</b> হলো to-infinitive; কিছু গঠনে to ছাড়া bare infinitive হয়।</p><div class="example"><span class="en">She hopes to win.</span> — সে জিততে আশা করে।</div><div class="example"><span class="en">You must work.</span> — তোমাকে কাজ করতেই হবে। (modal-এর পরে bare V1)</div>
+     <h4>২. Gerund</h4><p><b>V-ing</b> form যখন noun-এর কাজ করে, তখন তাকে Gerund বলে।</p><div class="example"><span class="en">Swimming is good exercise.</span> — সাঁতার কাটা ভালো ব্যায়াম।</div><div class="example"><span class="en">I enjoy reading.</span> — আমি পড়তে/পড়া উপভোগ করি।</div>
+     <h4>৩. Participle</h4><p>Verb-এর form যা adjective বা verb phrase-এর অংশ হিসেবে কাজ করতে পারে।</p><div class="example"><span class="en">The broken chair is old.</span> — ভাঙা চেয়ারটি পুরোনো। (Past participle)</div><div class="example"><span class="en">The girl is singing.</span> — মেয়েটি গান গাইছে। (Present participle, continuous phrase)</div><div class="example"><span class="en">Having finished the work, he left.</span> — কাজ শেষ করে সে চলে গেল। (Perfect participle phrase)</div>
+    </div>
+    <div class="card"><h3>Verb-এর পাঁচটি রূপ (Five Forms)</h3><p>শিক্ষণ-সহজতার জন্য প্রচলিত V1–V5 তালিকা। V5 বলতে এখানে he/she/it-এর Present Simple form বোঝানো হয়েছে।</p>
+     <div class="tablewrap"><table><thead><tr><th>Form</th><th>নাম</th><th>উদাহরণ: write</th><th>ব্যবহার</th></tr></thead><tbody>
+      <tr><td>V1</td><td>Base form</td><td>write</td><td>I/you/we/they-এর Present Simple; modal-এর পরে</td></tr><tr><td>V2</td><td>Past form</td><td>wrote</td><td>Past Simple-এর affirmative</td></tr><tr><td>V3</td><td>Past participle</td><td>written</td><td>have/has/had; Passive-এর সঙ্গে</td></tr><tr><td>V4</td><td>-ing form</td><td>writing</td><td>Continuous; Gerund/Participle</td></tr><tr><td>V5</td><td>s/es form</td><td>writes</td><td>Present Simple-এ he/she/it বা singular subject</td></tr>
+     </tbody></table></div>
+     <div class="note warn">সব Verb-এ পাঁচটি রূপ আলাদা হয় না। যেমন <b>cut–cut–cut–cutting–cuts</b>; আবার <b>be</b>-এর রূপ am/is/are/was/were/been/being ইত্যাদি।</div>
+    </div>
+    <div class="card"><h3>Regular ও Irregular Verb</h3><div class="grid2"><div class="mini"><h4>Regular Verb</h4><p>সাধারণত V2 ও V3-তে -ed/-d যোগ হয়।</p><span class="en">work – worked – worked</span><br><span class="en">live – lived – lived</span><br><span class="en">study – studied – studied</span></div><div class="mini"><h4>Irregular Verb</h4><p>V2/V3 নির্দিষ্ট -ed নিয়মে তৈরি হয় না; রূপ মুখস্থ/অনুশীলন করতে হয়।</p><span class="en">go – went – gone</span><br><span class="en">write – wrote – written</span><br><span class="en">see – saw – seen</span></div></div></div>
+   </section>
+   <section class="page" id="p3">
+    <div class="page-head"><div class="kicker">PART 04 • COMMON VERBS</div><h2>১০০টি বহুল ব্যবহৃত Verb-এর পাঁচ রূপ</h2><p>প্রতিটি Verb-এর পাশে বাংলা অর্থ দেওয়া হলো।</p></div>
+    <div class="card"><div class="note">V1 = Base, V2 = Past, V3 = Past Participle, V4 = -ing, V5 = s/es form।</div><div class="tablewrap"><table id="verbsTable"><thead><tr><th>#</th><th>V1</th><th>V2</th><th>V3</th><th>V4</th><th>V5</th><th>বাংলা অর্থ</th></tr></thead><tbody></tbody></table></div></div>
+   </section>
+   <section class="page" id="p4">
+    <div class="page-head"><div class="kicker">PART 05 • SENTENCE PATTERNS</div><h2>Verb-এর গঠন ও ব্যবহার</h2><p>কোন পরিস্থিতিতে কোন Verb form বসবে—প্রয়োজনীয় pattern-গুলো।</p></div>
+    <div class="card"><h3>গুরুত্বপূর্ণ Verb Patterns</h3><div class="tablewrap"><table><thead><tr><th>গঠন</th><th>উদাহরণ</th><th>ব্যাখ্যা</th></tr></thead><tbody>
+     <tr><td>Subject + V1/V5</td><td>She works hard.</td><td>Present Simple; she-এর জন্য V5</td></tr>
+     <tr><td>Subject + V2</td><td>They came early.</td><td>Past Simple affirmative</td></tr>
+     <tr><td>am/is/are + V-ing</td><td>I am studying.</td><td>Present Continuous</td></tr>
+     <tr><td>was/were + V-ing</td><td>We were waiting.</td><td>Past Continuous</td></tr>
+     <tr><td>has/have + V3</td><td>He has finished.</td><td>Present Perfect</td></tr>
+     <tr><td>had + V3</td><td>She had left.</td><td>Past Perfect</td></tr>
+     <tr><td>will + V1</td><td>I will call you.</td><td>Future Simple-এর প্রচলিত গঠন</td></tr>
+     <tr><td>modal + V1</td><td>You should rest.</td><td>Modal-এর পরে base form</td></tr>
+     <tr><td>do/does/did + not + V1</td><td>He does not smoke.</td><td>Simple tense-এ negative</td></tr>
+     <tr><td>be + V3</td><td>The room was cleaned.</td><td>Passive Voice-এর সাধারণ গঠন</td></tr>
+     <tr><td>to + V1</td><td>I want to sleep.</td><td>To-infinitive</td></tr>
+     <tr><td>preposition + V-ing</td><td>She is good at drawing.</td><td>Preposition-এর পরে Verb এলে সাধারণত -ing</td></tr>
+    </tbody></table></div></div>
+    <div class="card"><h3>১২টি Tense-এর সঙ্গে Verb form</h3><div class="tablewrap"><table><thead><tr><th>Tense</th><th>Structure</th><th>Example</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+     <tr><td>Present Simple</td><td>S + V1/V5</td><td>He writes.</td><td>সে লেখে।</td></tr><tr><td>Present Continuous</td><td>S + am/is/are + V-ing</td><td>He is writing.</td><td>সে লিখছে।</td></tr><tr><td>Present Perfect</td><td>S + has/have + V3</td><td>He has written.</td><td>সে লিখেছে।</td></tr><tr><td>Present Perfect Continuous</td><td>S + has/have been + V-ing</td><td>He has been writing.</td><td>সে কিছু সময় ধরে লিখছে।</td></tr>
+     <tr><td>Past Simple</td><td>S + V2</td><td>He wrote.</td><td>সে লিখেছিল/লিখল।</td></tr><tr><td>Past Continuous</td><td>S + was/were + V-ing</td><td>He was writing.</td><td>সে লিখছিল।</td></tr><tr><td>Past Perfect</td><td>S + had + V3</td><td>He had written.</td><td>সে লিখে ফেলেছিল।</td></tr><tr><td>Past Perfect Continuous</td><td>S + had been + V-ing</td><td>He had been writing.</td><td>সে কিছু সময় ধরে লিখছিল।</td></tr>
+     <tr><td>Future Simple</td><td>S + will + V1</td><td>He will write.</td><td>সে লিখবে।</td></tr><tr><td>Future Continuous</td><td>S + will be + V-ing</td><td>He will be writing.</td><td>সে লিখতে থাকবে/লিখতে থাকবে তখন।</td></tr><tr><td>Future Perfect</td><td>S + will have + V3</td><td>He will have written.</td><td>সে লিখে ফেলবে।</td></tr><tr><td>Future Perfect Continuous</td><td>S + will have been + V-ing</td><td>He will have been writing.</td><td>সে তখন পর্যন্ত কিছু সময় ধরে লিখতে থাকবে।</td></tr>
+    </tbody></table></div><div class="note warn">এগুলো শেখার প্রচলিত কাঠামো। বাস্তব ইংরেজিতে ভবিষ্যৎ বোঝাতে will ছাড়াও present forms, be going to ইত্যাদি ব্যবহৃত হয়; অর্থ ও প্রসঙ্গ অনুযায়ী নির্বাচন করতে হয়।</div></div>
+   </section>
+   <section class="page" id="p5">
+    <div class="page-head"><div class="kicker">PART 06 • AGREEMENT</div><h2>Subject–Verb Agreement</h2><p>Subject অনুযায়ী Verb-এর সঠিক রূপ নির্বাচন।</p></div>
+    <div class="card"><h3>মূল নিয়ম</h3><div class="tablewrap"><table><thead><tr><th>Subject</th><th>Verb</th><th>Example</th><th>বাংলা</th></tr></thead><tbody>
+     <tr><td>I / You / We / They</td><td>V1</td><td>They play.</td><td>তারা খেলে।</td></tr><tr><td>He / She / It / singular noun</td><td>V5</td><td>Rita plays.</td><td>রিতা খেলে।</td></tr><tr><td>I</td><td>am / have / do</td><td>I am ready.</td><td>আমি প্রস্তুত।</td></tr><tr><td>He/She/It</td><td>is / has / does</td><td>He has a book.</td><td>তার একটি বই আছে।</td></tr><tr><td>We/You/They</td><td>are / have / do</td><td>We are ready.</td><td>আমরা প্রস্তুত।</td></tr><tr><td>Past: সব Subject</td><td>সাধারণ Verb-এর V2</td><td>She went; They went.</td><td>সে গেল; তারা গেল।</td></tr></tbody></table></div>
+     <h4>গুরুত্বপূর্ণ বিশেষ নিয়ম</h4><ul><li><b>Each, every, everyone, somebody, nobody</b> সাধারণত singular verb নেয়: <i>Everyone is ready.</i></li><li><b>Two subjects joined by and</b> সাধারণত plural verb নেয়: <i>Rina and Mina are friends.</i></li><li><b>Either…or / neither…nor</b> হলে verb সাধারণত নিকটবর্তী subject-এর সঙ্গে মেলে: <i>Either the teacher or the students are coming.</i></li><li><b>There is/are</b> গঠনে পরের প্রকৃত subject অনুযায়ী is/are বেছে নিন: <i>There are two books.</i></li><li><b>Modal + V1</b>: <i>He can swim</i> (can swims নয়)।</li><li><b>Did + V1</b>: <i>Did she go?</i> (Did she went? নয়)।</li></ul>
+    </div>
+   </section>
+   <section class="page" id="p6">
+    <div class="page-head"><div class="kicker">PART 07 • SENTENCE BUILDING</div><h2>Negative, Interrogative ও Modal Verb</h2><p>বাক্যকে না-বাচক, প্রশ্নবোধক ও অর্থবহ করার নিয়ম।</p></div>
+    <div class="card"><h3>Negative sentence</h3><div class="example"><b>Present Simple:</b> Subject + do/does not + V1<br><span class="en">She does not like tea.</span> — সে চা পছন্দ করে না।</div><div class="example"><b>Past Simple:</b> Subject + did not + V1<br><span class="en">They did not come.</span> — তারা আসেনি।</div><div class="example"><b>Be verb:</b> Subject + be + not<br><span class="en">He is not ready.</span> — সে প্রস্তুত নয়।</div><div class="example"><b>Modal:</b> Subject + modal + not + V1<br><span class="en">You should not worry.</span> — তোমার চিন্তা করা উচিত নয়।</div></div>
+    <div class="card"><h3>Interrogative sentence</h3><div class="example"><b>Do/Does + subject + V1?</b><br><span class="en">Does he play?</span> — সে কি খেলে?</div><div class="example"><b>Did + subject + V1?</b><br><span class="en">Did you see it?</span> — তুমি কি এটি দেখেছিলে?</div><div class="example"><b>Be + subject…?</b><br><span class="en">Are they ready?</span> — তারা কি প্রস্তুত?</div><div class="example"><b>Modal + subject + V1?</b><br><span class="en">Can you help me?</span> — তুমি কি আমাকে সাহায্য করতে পারবে?</div></div>
+    <div class="card"><h3>Modal Verb-এর অর্থ ও ব্যবহার</h3><div class="tablewrap"><table><thead><tr><th>Modal</th><th>সাধারণ ব্যবহার</th><th>Example</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+     <tr><td>can</td><td>ক্ষমতা/অনুমতি</td><td>I can swim.</td><td>আমি সাঁতার কাটতে পারি।</td></tr><tr><td>could</td><td>অতীতের ক্ষমতা/ভদ্র অনুরোধ/সম্ভাবনা</td><td>Could you help me?</td><td>আপনি কি আমাকে সাহায্য করবেন?</td></tr><tr><td>may</td><td>অনুমতি/সম্ভাবনা</td><td>May I come in?</td><td>আমি কি ভেতরে আসতে পারি?</td></tr><tr><td>might</td><td>কম নিশ্চিত সম্ভাবনা</td><td>It might rain.</td><td>বৃষ্টি হতে পারে।</td></tr><tr><td>must</td><td>বাধ্যবাধকতা/জোরালো অনুমান</td><td>You must study.</td><td>তোমাকে অবশ্যই পড়তে হবে।</td></tr><tr><td>should</td><td>পরামর্শ/কর্তব্য</td><td>You should rest.</td><td>তোমার বিশ্রাম নেওয়া উচিত।</td></tr><tr><td>will</td><td>ভবিষ্যৎ/ইচ্ছা</td><td>I will call.</td><td>আমি ফোন করব।</td></tr><tr><td>would</td><td>ভদ্র অনুরোধ/শর্ত/অতীত অভ্যাস</td><td>Would you like tea?</td><td>আপনি কি চা চাইবেন?</td></tr><tr><td>shall</td><td>প্রস্তাব/ভবিষ্যৎ, বিশেষত I/we</td><td>Shall we begin?</td><td>আমরা কি শুরু করব?</td></tr></tbody></table></div><div class="note">সাধারণ modal-এর পরে মূল Verb-এর V1 বসে: <b>can go, should read, must work</b>। “to” সাধারণত বসে না, তবে ought to, have to, be able to-এর মতো আলাদা গঠন আছে।</div></div>
+   </section>
+   <section class="page" id="p7">
+    <div class="page-head"><div class="kicker">PART 08 • EXTRA TYPES</div><h2>আরও কিছু গুরুত্বপূর্ণ Verb</h2><p>অন্যান্য শ্রেণি ও বিশেষ ব্যবহার।</p></div>
+    <div class="card"><h3>Stative ও Dynamic Verb</h3><div class="grid2"><div class="mini"><h4>Stative Verb (অবস্থা)</h4><p>মতামত, অনুভূতি, মালিকানা বা অবস্থা বোঝায়। সাধারণত continuous-এ কম ব্যবহৃত হয়।</p><span class="en">I know the answer.</span><br>আমি উত্তরটি জানি।<br><span class="en">She owns a shop.</span><br>তার একটি দোকান আছে।</div><div class="mini"><h4>Dynamic Verb (কাজ)</h4><p>কাজ বা পরিবর্তন বোঝায়; প্রয়োজনমতো continuous-এ ব্যবহৃত হয়।</p><span class="en">I am writing now.</span><br>আমি এখন লিখছি।<br><span class="en">They are running.</span><br>তারা দৌড়াচ্ছে।</div></div><div class="note">কিছু Verb অর্থভেদে দুইভাবেই হয়: <i>I think you are right.</i> (মতামত) বনাম <i>I am thinking about it.</i> (চিন্তা করার কাজ)।</div></div>
+    <div class="card"><h3>Reflexive ও Reciprocal Verb use</h3><div class="grid2"><div class="mini"><h4>Reflexive</h4><p>কাজটি Subject-এর নিজের ওপর ফিরে আসে; reflexive pronoun ব্যবহৃত হয়।</p><span class="en">She taught herself.</span><br>সে নিজে নিজে শিখেছে।<br><span class="en">He hurt himself.</span><br>সে নিজেকে আঘাত করেছে।</div><div class="mini"><h4>Reciprocal</h4><p>দুই বা একাধিক ব্যক্তি পরস্পরের প্রতি কাজ করে।</p><span class="en">They help each other.</span><br>তারা একে অন্যকে সাহায্য করে।<br><span class="en">The friends hugged one another.</span><br>বন্ধুরা পরস্পরকে আলিঙ্গন করল।</div></div></div>
+    <div class="card"><h3>Impersonal Verb / আবহাওয়া ও প্রাকৃতিক ঘটনা</h3><p>কিছু Verb আবহাওয়া বা প্রাকৃতিক ঘটনা বোঝায়; ইংরেজিতে সাধারণত dummy subject <b>it</b> লাগে।</p><div class="example"><span class="en">It rains a lot here.</span><br><span class="bn">এখানে অনেক বৃষ্টি হয়।</span></div><div class="example"><span class="en">It is snowing.</span><br><span class="bn">তুষারপাত হচ্ছে।</span></div><div class="example"><span class="en">It seems that he is busy.</span><br><span class="bn">মনে হচ্ছে সে ব্যস্ত।</span></div></div>
+    <div class="card"><h3>Verb মনে রাখার কৌশল</h3><ul><li>প্রথমে বাক্যে কাজ/অবস্থা প্রকাশকারী Verb খুঁজুন।</li><li>Verb-টি main না auxiliary—দেখুন।</li><li>Subject এবং Tense অনুযায়ী form নির্বাচন করুন।</li><li>Verb-এর পরে direct object আছে কি না দেখে transitive/intransitive ব্যবহার বুঝুন।</li><li>Modal-এর পরে V1, have/has/had-এর পরে perfect গঠনে V3, continuous-এ be + V-ing মনে রাখুন।</li><li>Irregular Verb-গুলো ছোট ছোট তালিকায় নিয়মিত অনুশীলন করুন।</li></ul></div>
+   </section>
+   <section class="page" id="p8">
+    <div class="page-head"><div class="kicker">PART 09 • PRACTICE</div><h2>ইন্টার‌্যাকটিভ অনুশীলন</h2><p>প্রতিটি প্রশ্নের একটি উত্তর বেছে নিন। সঙ্গে সঙ্গে সঠিক উত্তর ও ব্যাখ্যা দেখাবে—আলাদা উত্তরমালা নেই।</p></div>
+    <div class="card"><div class="quiz-actions"><div class="score" id="scoreText">উত্তর: ০ / ০</div><button class="btn secondary" id="resetQuiz">আবার অনুশীলন</button></div><div id="quizContainer"></div><div class="quiz-actions"><span class="score" id="scoreBottom">চেষ্টা শুরু করুন</span><button class="btn" id="finishQuiz">ফলাফল দেখুন</button></div><div id="finalResult" class="note" style="display:none"></div></div>
+   </section>
+  </main>
+ </div>
+ <div class="footer">VERB MASTER GUIDE • বাংলা ব্যাখ্যাসহ সম্পূর্ণ পাঠ<br>শেখো • অনুশীলন করো • সঠিক বাক্য গড়ো</div>
+</div>
+<script>
+const sections=[
+ ["পরিচিতি ও ডায়াগ্রাম","Verb কী ও প্রকারভেদ"],["কাজ ও ভূমিকা","Main, Auxiliary, Transitive"],["Finite ও Verb Forms","V1–V5, Non-finite"],["১০০টি Verb","পাঁচ রূপ ও বাংলা অর্থ"],["গঠন ও Tense","Verb patterns"],["Subject–Verb Agreement","Subject অনুযায়ী Verb"],["Negative / Question / Modal","বাক্য গঠন"],["অন্যান্য Verb","Stative, Reflexive ইত্যাদি"],["অনুশীলন","ক্লিক করে উত্তর দেখুন"]
+];
+const sideList=document.getElementById('sideList'),topNav=document.getElementById('topNav');
+sections.forEach((s,i)=>{
+ const b=document.createElement('button');b.className='sidebtn'+(i===0?' active':'');b.innerHTML=`<span class="num">${String(i+1).padStart(2,'0')}</span><span>${s[0]}</span>`;b.onclick=()=>showPage(i);sideList.appendChild(b);
+ const t=document.createElement('button');t.textContent=s[0];t.className=i===0?'active':'';t.onclick=()=>showPage(i);topNav.appendChild(t);
+});
+let current=0;
+function showPage(i){
+ current=i;document.querySelectorAll('.page').forEach((p,n)=>p.classList.toggle('active',n===i));
+ document.querySelectorAll('.sidebtn').forEach((b,n)=>b.classList.toggle('active',n===i));
+ document.querySelectorAll('#topNav button').forEach((b,n)=>b.classList.toggle('active',n===i));
+ document.getElementById('progressBar').style.width=((i+1)/sections.length*100)+'%';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+const verbs=[
+["be","was/were","been","being","is","হওয়া/থাকা"],["have","had","had","having","has","থাকা/অধিকার থাকা"],["do","did","done","doing","does","করা"],["say","said","said","saying","says","বলা"],["go","went","gone","going","goes","যাওয়া"],["get","got","got/gotten","getting","gets","পাওয়া/হওয়া"],["make","made","made","making","makes","তৈরি করা"],["know","knew","known","knowing","knows","জানা"],["think","thought","thought","thinking","thinks","চিন্তা করা"],["take","took","taken","taking","takes","নেওয়া"],["see","saw","seen","seeing","sees","দেখা"],["come","came","come","coming","comes","আসা"],["want","wanted","wanted","wanting","wants","চাওয়া"],["look","looked","looked","looking","looks","তাকানো/দেখতে লাগা"],["use","used","used","using","uses","ব্যবহার করা"],["find","found","found","finding","finds","খুঁজে পাওয়া"],["give","gave","given","giving","gives","দেওয়া"],["tell","told","told","telling","tells","বলা/জানানো"],["work","worked","worked","working","works","কাজ করা"],["call","called","called","calling","calls","ডাকা/ফোন করা"],["try","tried","tried","trying","tries","চেষ্টা করা"],["ask","asked","asked","asking","asks","জিজ্ঞাসা করা"],["need","needed","needed","needing","needs","প্রয়োজন হওয়া"],["feel","felt","felt","feeling","feels","অনুভব করা"],["become","became","become","becoming","becomes","হয়ে ওঠা"],["leave","left","left","leaving","leaves","ছেড়ে যাওয়া"],["put","put","put","putting","puts","রাখা"],["mean","meant","meant","meaning","means","অর্থ বোঝানো"],["keep","kept","kept","keeping","keeps","রাখা/চালিয়ে যাওয়া"],["let","let","let","letting","lets","অনুমতি দেওয়া"],["begin","began","begun","beginning","begins","শুরু করা"],["seem","seemed","seemed","seeming","seems","মনে হওয়া"],["help","helped","helped","helping","helps","সাহায্য করা"],["talk","talked","talked","talking","talks","কথা বলা"],["turn","turned","turned","turning","turns","ঘোরা/পরিবর্তন করা"],["start","started","started","starting","starts","শুরু করা"],["show","showed","shown/showed","showing","shows","দেখানো"],["hear","heard","heard","hearing","hears","শোনা"],["play","played","played","playing","plays","খেলা"],["run","ran","run","running","runs","দৌড়ানো"],["move","moved","moved","moving","moves","সরানো/নড়া"],["live","lived","lived","living","lives","বাস করা"],["believe","believed","believed","believing","believes","বিশ্বাস করা"],["bring","brought","brought","bringing","brings","নিয়ে আসা"],["happen","happened","happened","happening","happens","ঘটা"],["write","wrote","written","writing","writes","লেখা"],["provide","provided","provided","providing","provides","সরবরাহ করা"],["sit","sat","sat","sitting","sits","বসা"],["stand","stood","stood","standing","stands","দাঁড়ানো"],["lose","lost","lost","losing","loses","হারানো"],["pay","paid","paid","paying","pays","পরিশোধ করা"],["meet","met","met","meeting","meets","সাক্ষাৎ করা"],["include","included","included","including","includes","অন্তর্ভুক্ত করা"],["continue","continued","continued","continuing","continues","চালিয়ে যাওয়া"],["set","set","set","setting","sets","স্থাপন করা"],["learn","learned/learnt","learned/learnt","learning","learns","শেখা"],["change","changed","changed","changing","changes","পরিবর্তন করা"],["lead","led","led","leading","leads","নেতৃত্ব দেওয়া"],["understand","understood","understood","understanding","understands","বোঝা"],["watch","watched","watched","watching","watches","দেখা/লক্ষ করা"],["follow","followed","followed","following","follows","অনুসরণ করা"],["stop","stopped","stopped","stopping","stops","থামা/থামানো"],["create","created","created","creating","creates","সৃষ্টি করা"],["speak","spoke","spoken","speaking","speaks","কথা বলা"],["read","read","read","reading","reads","পড়া"],["allow","allowed","allowed","allowing","allows","অনুমতি দেওয়া"],["add","added","added","adding","adds","যোগ করা"],["spend","spent","spent","spending","spends","ব্যয় করা/সময় কাটানো"],["grow","grew","grown","growing","grows","বৃদ্ধি পাওয়া"],["open","opened","opened","opening","opens","খোলা"],["walk","walked","walked","walking","walks","হাঁটা"],["win","won","won","winning","wins","জেতা"],["teach","taught","taught","teaching","teaches","শেখানো"],["offer","offered","offered","offering","offers","প্রস্তাব দেওয়া"],["remember","remembered","remembered","remembering","remembers","মনে রাখা"],["consider","considered","considered","considering","considers","বিবেচনা করা"],["appear","appeared","appeared","appearing","appears","দেখা দেওয়া/মনে হওয়া"],["buy","bought","bought","buying","buys","কেনা"],["wait","waited","waited","waiting","waits","অপেক্ষা করা"],["serve","served","served","serving","serves","পরিবেশন/সেবা করা"],["die","died","died","dying","dies","মারা যাওয়া"],["send","sent","sent","sending","sends","পাঠানো"],["expect","expected","expected","expecting","expects","আশা করা"],["build","built","built","building","builds","নির্মাণ করা"],["stay","stayed","stayed","staying","stays","থাকা"],["fall","fell","fallen","falling","falls","পড়ে যাওয়া"],["cut","cut","cut","cutting","cuts","কাটা"],["reach","reached","reached","reaching","reaches","পৌঁছানো"],["kill","killed","killed","killing","kills","হত্যা করা"],["remain","remained","remained","remaining","remains","থেকে যাওয়া"],["suggest","suggested","suggested","suggesting","suggests","পরামর্শ দেওয়া"],["raise","raised","raised","raising","raises","উঁচু করা/বাড়ানো"],["pass","passed","passed","passing","passes","পাস করা/অতিক্রম করা"],["sell","sold","sold","selling","sells","বিক্রি করা"],["require","required","required","requiring","requires","প্রয়োজন হওয়া"],["report","reported","reported","reporting","reports","প্রতিবেদন দেওয়া"],["decide","decided","decided","deciding","decides","সিদ্ধান্ত নেওয়া"],["pull","pulled","pulled","pulling","pulls","টানা"],["return","returned","returned","returning","returns","ফিরে আসা/ফেরত দেওয়া"],["explain","explained","explained","explaining","explains","ব্যাখ্যা করা"],["hope","hoped","hoped","hoping","hopes","আশা করা"],["eat","ate","eaten","eating","eats","খাওয়া"],["drink","drank","drunk","drinking","drinks","পান করা"],["sleep","slept","slept","sleeping","sleeps","ঘুমানো"],["teach","taught","taught","teaching","teaches","শেখানো"]
+];
+const tbody=document.querySelector('#verbsTable tbody');
+verbs.slice(0,100).forEach((v,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${i+1}</td>${v.slice(0,5).map(x=>`<td>${x}</td>`).join('')}<td>${v[5]}</td>`;tbody.appendChild(tr)});
+const questions=[
+{q:"Verb কোনটি? — “The child sleeps.”",o:["child","the","sleeps","none"],a:2,e:"sleeps হলো Verb, কারণ এটি শিশুটির কাজ/অবস্থা (ঘুমানো) প্রকাশ করছে।"},
+{q:"“She ___ English every day.” সঠিক form কোনটি?",o:["study","studies","studied","studying"],a:1,e:"Present Simple-এ third-person singular She-এর সঙ্গে V5 studies বসে।"},
+{q:"Transitive Verb-এর উদাহরণ কোনটি?",o:["The baby cried.","Birds fly.","He opened the box.","The sun rises."],a:2,e:"opened-এর সরাসরি Object হলো the box—কী খুলল? বাক্সটি। তাই এটি transitive use।"},
+{q:"“They are playing.” বাক্যে auxiliary কোনটি?",o:["They","are","playing","কোনোটিই নয়"],a:1,e:"are হলো helping/auxiliary verb; playing হলো main verb-এর -ing form।"},
+{q:"Modal-এর পরে সাধারণত কোন Verb form বসে?",o:["V2","V3","V-ing","V1"],a:3,e:"সাধারণ modal-এর পরে base form/V1 বসে: can go, should read, must work।"},
+{q:"“I have ___ my work.” সঠিক form কোনটি?",o:["finish","finished","finishing","finishes"],a:1,e:"Present Perfect-এর গঠন have/has + V3; finish-এর V3 হলো finished।"},
+{q:"“Swimming is fun.” বাক্যে Swimming কী?",o:["Finite verb","Gerund","Past participle","Modal"],a:1,e:"Swimming এখানে বাক্যের Subject এবং noun-এর কাজ করছে, তাই Gerund।"},
+{q:"“The broken window is old.” — broken কী?",o:["V1","V2","Past participle হিসেবে adjective","Modal"],a:2,e:"broken হলো break-এর V3/Past participle form, এখানে window-কে বর্ণনা করছে।"},
+{q:"কোনটি irregular verb?",o:["walk–walked–walked","play–played–played","go–went–gone","help–helped–helped"],a:2,e:"go–went–gone-তে V2 ও V3 নিয়মিত -ed দিয়ে তৈরি হয়নি, তাই irregular।"},
+{q:"“He did not ___ there.” সঠিকটি কোনটি?",o:["went","go","gone","going"],a:1,e:"did-এর পরে মূল Verb-এর V1 বসে: did not go।"},
+{q:"“Rina and Mina ___ ready.”",o:["is","am","are","was"],a:2,e:"Rina and Mina দুটি Subject and দিয়ে যুক্ত হয়েছে; plural Subject-এর সঙ্গে are।"},
+{q:"“He is a doctor.” বাক্যে is-এর কাজ কী?",o:["Causative verb","Linking verb","Modal verb","Gerund"],a:1,e:"is Subject He-কে পরিচয় a doctor-এর সঙ্গে যুক্ত করেছে, তাই linking verb।"},
+{q:"“I want to learn.”-এ to learn কী?",o:["To-infinitive","Finite verb","V2","Auxiliary"],a:0,e:"to + base form (learn) হলো to-infinitive; এখানে want হলো finite main verb।"},
+{q:"“She ___ to school yesterday.”",o:["go","goes","went","going"],a:2,e:"yesterday অতীত সময় নির্দেশ করে; go-এর V2 হলো went।"},
+{q:"“The door was closed.” বাক্যে was closed কী বোঝায়?",o:["Present Simple","Passive structure","Gerund","Causative only"],a:1,e:"be + V3 (was closed) Passive Voice-এর সাধারণ গঠন।"},
+{q:"কোনটি stative verb-এর উদাহরণ?",o:["jump","know","run","dance"],a:1,e:"know সাধারণত জ্ঞান/অবস্থা বোঝায়, তাই stative verb হিসেবে ব্যবহৃত হয়।"},
+{q:"“He can ___ fast.”",o:["runs","ran","running","run"],a:3,e:"modal can-এর পরে V1 run বসে।"},
+{q:"“She has been reading.” — been reading কোন গঠনের অংশ?",o:["Present Perfect Continuous","Past Simple","Present Simple","Past Perfect"],a:0,e:"has/have been + V-ing হলো Present Perfect Continuous-এর গঠন।"},
+{q:"কোন বাক্যে intransitive use আছে?",o:["He kicked the ball.","She bought a book.","The baby laughed.","I wrote a letter."],a:2,e:"laughed-এর পরে কোনো direct object নেই; বাক্যটি intransitive use।"},
+{q:"“I got him ___ me.”",o:["help","helped","to help","helping"],a:2,e:"get + person + to + V1 causative pattern: got him to help।"},
+{q:"“Everyone ___ ready.”",o:["are","is","were","be"],a:1,e:"Everyone grammatically singular, তাই singular verb is ব্যবহৃত হয়।"},
+{q:"“They have ___ the news.”",o:["hear","heard","hearing","hears"],a:1,e:"have + V3 লাগে; hear-এর V3 হলো heard।"},
+{q:"“He is looking at the picture.” — looking কী?",o:["শুধু noun","Continuous phrase-এর main verb form","V2","Modal"],a:1,e:"is + looking (V-ing) Present Continuous গঠন; looking মূল ক্রিয়া।"},
+{q:"“Let me ___.”",o:["to go","going","went","go"],a:3,e:"let + object/person + bare infinitive: Let me go।"},
+{q:"“I enjoy ___ books.”",o:["read","to read","reading","reads"],a:2,e:"enjoy-এর পরে verb এলে সাধারণত gerund/V-ing হয়: enjoy reading।"}
+];
+const quizContainer=document.getElementById('quizContainer');let answers={};
+function renderQuiz(){
+ quizContainer.innerHTML='';
+ questions.forEach((q,i)=>{
+  const box=document.createElement('div');box.className='quiz';box.innerHTML=`<div class="quiz-top"><span class="qnum">প্রশ্ন ${i+1} / ${questions.length}</span><span class="pill">Verb Practice</span></div><div class="question">${q.q}</div><div class="options">${q.o.map((op,j)=>`<button class="option" data-q="${i}" data-a="${j}">${String.fromCharCode(65+j)}. ${op}</button>`).join('')}</div><div class="feedback" id="fb${i}"></div>`;
+  quizContainer.appendChild(box);
+  box.querySelectorAll('.option').forEach(btn=>btn.addEventListener('click',()=>choose(+btn.dataset.q,+btn.dataset.a)));
+ });
+ updateScore();
+}
+function choose(qi,ai){
+ if(answers[qi]!==undefined)return;
+ answers[qi]=ai;const q=questions[qi],box=quizContainer.children[qi],opts=box.querySelectorAll('.option');
+ opts.forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');if(j===ai&&ai!==q.a)b.classList.add('wrong')});
+ const fb=document.getElementById('fb'+qi);fb.className='feedback show '+(ai===q.a?'good':'bad');fb.innerHTML=`<b>${ai===q.a?'✓ সঠিক উত্তর!':'✗ সঠিক উত্তর: '+q.o[q.a]}</b><br>${q.e}`;
+ updateScore();
+}
+function updateScore(){
+ const done=Object.keys(answers).length,correct=Object.keys(answers).filter(i=>answers[i]===questions[i].a).length;
+ document.getElementById('scoreText').textContent=`উত্তর: ${correct} / ${done}টি সম্পন্ন`;
+ document.getElementById('scoreBottom').textContent=`মোট ${questions.length}টির মধ্যে ${done}টি উত্তর দিয়েছেন`;
+}
+document.getElementById('resetQuiz').onclick=()=>{answers={};document.getElementById('finalResult').style.display='none';renderQuiz();};
+document.getElementById('finishQuiz').onclick=()=>{
+ const done=Object.keys(answers).length,correct=Object.keys(answers).filter(i=>answers[i]===questions[i].a).length;
+ const r=document.getElementById('finalResult');r.style.display='block';
+ r.innerHTML=done<questions.length?`আপনি ${questions.length}টির মধ্যে ${done}টির উত্তর দিয়েছেন। বাকি প্রশ্নগুলোতেও উত্তর দিন; প্রতিটি প্রশ্নের ব্যাখ্যা পাশে দেখা যাবে।`:`ফলাফল: ${correct}/${questions.length} (${Math.round(correct/questions.length*100)}%)। ${correct>=20?'দারুণ! আপনার Verb-এর ধারণা ভালো।':correct>=15?'ভালো চেষ্টা! ভুল উত্তরগুলোর ব্যাখ্যা আবার পড়ুন।':'আবার অধ্যায়গুলো পড়ে অনুশীলন করুন—ভুল উত্তরগুলোও ব্যাখ্যাসহ দেখানো আছে।'}`;
+ r.scrollIntoView({behavior:'smooth',block:'center'});
+};
+renderQuiz();
+</script>
+</body>
+</html>

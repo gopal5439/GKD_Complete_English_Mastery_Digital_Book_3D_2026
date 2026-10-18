@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10172a">
+<title>GKD English Foundation & Pronunciation Masterclass</title>
+<style>
+:root{--bg:#0b1020;--panel:#141d33;--panel2:#1b2944;--ink:#f3f6ff;--muted:#b9c5dd;--a:#72e6d1;--b:#9e9bff;--gold:#ffd477;--pink:#ff8fb3;--line:#344363;--shadow:0 18px 50px #0005}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 12% 5%,#24345b 0,transparent 28%),radial-gradient(circle at 90% 28%,#25365b 0,transparent 25%),var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Nirmala UI",sans-serif;line-height:1.7}
+button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.topbar{position:sticky;top:0;z-index:20;background:#0b1020eF;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff18;padding:10px 14px}
+.toprow{max-width:1100px;margin:auto;display:flex;align-items:center;gap:10px;justify-content:space-between}.brand{font-weight:900;letter-spacing:.3px}.brand span{color:var(--a)}.mini{font-size:.82rem;color:var(--muted)}.progress{height:5px;background:#ffffff16;border-radius:99px;max-width:1100px;margin:9px auto 0;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b),var(--pink));transition:width .35s}
+.layout{max-width:1100px;margin:22px auto;padding:0 14px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:20px}.sidebar{align-self:start;position:sticky;top:85px;max-height:calc(100vh - 105px);overflow:auto;background:#111a2dd9;border:1px solid #ffffff18;border-radius:20px;padding:12px;box-shadow:var(--shadow)}.sidebar h3{margin:5px 8px 10px;font-size:1rem}.toc{display:grid;gap:5px}.toc button{border:0;text-align:left;color:var(--muted);background:transparent;border-radius:11px;padding:9px 10px;font-size:.88rem;transition:.2s}.toc button:hover,.toc button.active{color:var(--ink);background:linear-gradient(100deg,#72e6d124,#9e9bff25);transform:translateX(3px)}.toc button.active{box-shadow:inset 3px 0 var(--a)}
+main{min-width:0}.hero,.page{background:linear-gradient(145deg,#18233cfa,#10182cf5);border:1px solid #ffffff1a;border-radius:26px;box-shadow:var(--shadow);overflow:hidden}.hero{padding:clamp(22px,5vw,52px);position:relative;min-height:360px;display:flex;flex-direction:column;justify-content:center}.hero:before{content:"";position:absolute;width:260px;height:260px;border:1px solid #72e6d14a;border-radius:50%;right:-55px;top:-70px;box-shadow:0 0 0 28px #72e6d10a,0 0 0 60px #9e9bff0a;animation:orbit 18s linear infinite}.hero:after{content:"Aa";position:absolute;right:45px;bottom:12px;font-size:clamp(6rem,18vw,11rem);font-weight:1000;color:#ffffff07;line-height:1;pointer-events:none}.eyebrow{color:var(--a);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:.8rem}.hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.16;margin:12px 0;max-width:720px}.gradient-text{background:linear-gradient(90deg,var(--a),#c1baff,var(--pink));color:transparent;background-clip:text}.hero p{max-width:690px;color:var(--muted);font-size:1.05rem}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.chip{padding:6px 11px;border:1px solid #ffffff22;border-radius:99px;background:#ffffff08;font-size:.83rem;color:#dce5ff}
+.hero-actions,.navbuttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{border:1px solid #ffffff22;background:#ffffff0c;color:var(--ink);padding:11px 16px;border-radius:13px;transition:transform .15s,box-shadow .2s,background .2s}.btn.primary{background:linear-gradient(110deg,#72e6d1,#a7a2ff);color:#11182a;border:0;font-weight:850}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px #0004}.btn:active,.touchable:active{transform:scale(.97);filter:brightness(1.2)}
+.page{display:none;animation:pageIn .45s ease both}.page.active{display:block}.pagehead{padding:28px clamp(18px,4vw,38px) 22px;border-bottom:1px solid #ffffff15;background:linear-gradient(110deg,#72e6d112,#9e9bff0d)}.pagehead .num{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--b));color:#11182a;font-weight:900;margin-right:10px}.pagehead h2{display:inline;font-size:clamp(1.45rem,3.5vw,2.15rem);line-height:1.3}.pagehead p{color:var(--muted);margin:10px 0 0}.content{padding:clamp(18px,4vw,36px)}h3{color:var(--a);margin:24px 0 10px;font-size:1.2rem}h4{margin:14px 0 8px;color:#e5e8ff}p{margin:8px 0 14px}ul,ol{padding-left:23px}li{margin:5px 0}.muted{color:var(--muted)}.callout{border-left:4px solid var(--gold);background:#ffd47712;padding:13px 16px;border-radius:0 13px 13px 0;margin:16px 0}.good{border-left-color:var(--a);background:#72e6d110}.warn{border-left-color:var(--pink);background:#ff8fb310}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:15px 0}.card{background:linear-gradient(145deg,#ffffff0c,#ffffff04);border:1px solid #ffffff16;border-radius:17px;padding:15px;transition:transform .22s,border-color .22s,box-shadow .22s;position:relative;overflow:hidden}.card:hover{transform:translateY(-3px);border-color:#72e6d16b;box-shadow:0 12px 25px #0002}.card h4{margin-top:0}.big{font-size:1.35rem;font-weight:900;color:var(--gold)}.ipa{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#b7f5e9;font-size:.98rem}.tablewrap{overflow-x:auto;border:1px solid #ffffff18;border-radius:14px;margin:14px 0}table{border-collapse:collapse;width:100%;min-width:480px;background:#ffffff04}th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #ffffff12;vertical-align:top}th{background:#72e6d118;color:#c7fff4;font-size:.9rem}tr:last-child td{border-bottom:0}tr:hover td{background:#ffffff06}.diagram{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;padding:20px;background:#080e1b66;border:1px dashed #ffffff2a;border-radius:18px;margin:16px 0}.node{padding:12px 15px;border-radius:14px;background:linear-gradient(140deg,#72e6d125,#9e9bff25);border:1px solid #ffffff20;text-align:center;font-weight:800}.arrow{font-size:1.5rem;color:var(--gold)}.alphabet{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.letter{padding:10px 4px;border:1px solid #ffffff18;border-radius:12px;background:#ffffff08;text-align:center;cursor:pointer;transition:.2s}.letter strong{display:block;font-size:1.3rem;color:var(--a)}.letter small{color:var(--muted)}.letter:hover{background:#72e6d125;transform:translateY(-3px)}.quiz{padding:16px;border-radius:16px;background:#090f1f;border:1px solid #ffffff1c;margin:15px 0}.quiz button{margin:5px 6px 0 0}.feedback{font-weight:750;min-height:1.7em;margin-top:8px}.ripple{position:relative;overflow:hidden}.ripple .rip{position:absolute;border-radius:50%;transform:scale(0);animation:ripple .6s linear;background:#ffffff60;pointer-events:none}.footer-nav{padding:20px clamp(18px,4vw,36px);border-top:1px solid #ffffff15;display:flex;align-items:center;justify-content:space-between;gap:10px}.pagecount{color:var(--muted);font-size:.9rem}.search{width:100%;padding:11px 13px;border:1px solid #ffffff20;border-radius:12px;background:#080e1b;color:var(--ink);margin:5px 0 12px}.floating{position:fixed;right:15px;bottom:18px;z-index:30;display:grid;gap:8px}.floatbtn{border:1px solid #ffffff25;background:#1b2944;color:var(--ink);border-radius:50%;width:46px;height:46px;box-shadow:var(--shadow)}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#e9fff9;color:#10182a;padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:40;font-weight:750}.source-note{font-size:.86rem;color:var(--muted)}.hide{display:none!important}
+
+/* উচ্চারণ এনহ্যান্সমেন্ট ও টাচ ইফেক্ট স্টাইল */
+.speakable { cursor: pointer; border-bottom: 1px dashed var(--a); transition: background 0.2s; padding: 0 3px; border-radius: 4px; }
+.speakable:hover { background: rgba(114, 230, 209, 0.15); color: var(--a); }
+.accent-control { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06); padding: 6px 12px; border-radius: 10px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); }
+.accent-control select { background: #0b1020; color: var(--ink); border: 1px solid var(--a); padding: 4px 8px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes orbit{to{transform:rotate(360deg)}}@keyframes ripple{to{transform:scale(4);opacity:0}}
+@media(max-width:820px){.layout{grid-template-columns:1fr;margin-top:14px}.sidebar{position:relative;top:auto;max-height:none}.toc{grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar h3{margin-top:0}.hero{min-height:320px}.alphabet{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.toc{grid-template-columns:1fr 1fr}.toprow{align-items:flex-start}.brand{font-size:.92rem}.mini{font-size:.73rem}.pagehead{padding-top:22px}.footer-nav{flex-wrap:wrap}.footer-nav .btn{flex:1}.alphabet{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="toprow">
+    <div><div class="brand">GKD <span>ENGLISH MASTERY</span></div><div class="mini">Foundation • Spelling • Pronunciation</div></div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="accent-control">
+        <span>🌐 উচ্চারণ মোড:</span>
+        <select id="accentSelect" onchange="changeAccent(this.value)">
+          <option value="en-GB">🇬🇧 ব্রিটিশ (UK)</option>
+          <option value="en-US">🇺🇸 আমেরিকান (US)</option>
+        </select>
+      </div>
+      <div class="mini" id="topCount">Intro • 1 / 24</div>
+    </div>
+  </div>
+  <div class="progress"><div id="progressBar"></div></div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+
+<div style="position:sticky;top:0;z-index:9999;padding:12px;background:rgba(255,255,255,0.95);text-align:center;box-shadow:0 3px 12px #0002;">
+    <button onclick="window.location.href='../lesson_link.html'"
+    style="padding:12px 24px;border:none;border-radius:12px;background:linear-gradient(135deg,#142850,#274690);color:white;font-size:16px;font-weight:bold;cursor:pointer;">
+        📚 সূচিপত্র
+    </button>
+</div>
+
+  <h3>📚 পাঠসূচি / Contents</h3>
+  <input class="search" id="searchToc" placeholder="🔎 টপিক খুঁজুন..." aria-label="টপিক খুঁজুন">
+  <nav class="toc" id="toc"></nav>
+  <p class="source-note">টিপ: যেকোনো ইংরেজি শব্দ বা লেখায় আঙুল দিয়ে টাচ করলে সঠিক উচ্চারণ শুনতে পাবেন।</p>
+</aside>
+<main id="main">
+<section class="hero" id="intro">
+  <div class="eyebrow">The Ultimate Learning Journey</div>
+  <h1>English <span class="gradient-text">Foundation & Pronunciation Masterclass</span></h1>
+  <p> ইংরেজী সঠিক ও শুদ্ধ উচ্চারণ, ফনিক্স, বানান কৌশল এবং ব্রিটিশ বনাম আমেরিকান পার্থক্যের এক পরম ও বিস্তারিত নির্দেশিকা। প্রতিটি শব্দে টাচ করে অডিও শুনুন। </p>
+  <div class="chips"><span class="chip">26 Letters</span><span class="chip">Phonics & IPA</span><span class="chip">Spelling Rules</span><span class="chip">British vs American</span><span class="chip">Touch Audio Effects</span></div>
+  <div class="diagram"><div class="node">LETTER</div><div class="arrow">→</div><div class="node">SOUND</div><div class="arrow">→</div><div class="node">WORD</div><div class="arrow">→</div><div class="node">SENTENCE</div><div class="arrow">→</div><div class="node">NATURAL SPEECH</div></div>
+  <div class="hero-actions"><button class="btn primary ripple" onclick="go(1)">🚀 পড়া শুরু করুন</button><button class="btn ripple" onclick="toggleAllTips()">💡 টিপস দেখুন/লুকান</button></div>
+  <p class="source-note">শিক্ষামূলক নোট: বাংলা উচ্চারণ-সহায়িকা ও শব্দার্থ সহ প্রতিটি অধ্যায় পুঙ্খানুপুঙ্খভাবে সাজানো হয়েছে।</p>
+</section>
+<div id="pages"></div>
+</main>
+</div>
+<div class="floating"><button class="floatbtn ripple" onclick="go(current-1)" title="আগের পেজ">↑</button><button class="floatbtn ripple" onclick="go(current+1)" title="পরের পেজ">↓</button></div>
+<div class="toast" id="toast">পৃষ্ঠা পরিবর্তন হয়েছে</div>
+<script>
+// Web Speech API উচ্চারণ ফাংশন
+let currentAccent = 'en-GB';
+function changeAccent(val) {
+  currentAccent = val;
+  toast(val === 'en-GB' ? 'ব্রিটিশ (UK) উচ্চারণ সিলেক্ট করা হয়েছে' : 'আমেরিকান (US) উচ্চারণ সিলেক্ট করা হয়েছে');
+}
+function speakText(text) {
+  if (!('speechSynthesis' in window)) {
+    toast('আপনার ব্রাউজার স্পিচ সিন্থেসিস সমর্থন করে না।');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = currentAccent;
+  utterance.rate = 0.9;
+  window.speechSynthesis.speak(utterance);
+  toast(`উচ্চারণ: ${text}`);
+}
+
+// বিস্তারিত ও সমৃদ্ধ পাঠ্য ডেটা (Enhanced & Expanded Lessons)
+const lessons = [
+{title:"Letter, Sound ও Pronunciation",sub:"ইংরেজি শেখার মূল ভিত্তি ও মৌলিক ধারণা",html:`
+<div class="callout good"><b>মূল ধারণা:</b> <span class="speakable" onclick="speakText('Letter')">Letter</span> (লেটার - বর্ণ) হলো লিখিত রূপ, <span class="speakable" onclick="speakText('Letter Name')">Letter Name</span> (লেটার নেইম - বর্ণের নাম) হলো বর্ণটির আভিধানিক নাম, <span class="speakable" onclick="speakText('Sound')">Sound</span> (সাউন্ড - ধ্বনি) হলো বাক্যে বা শব্দে উচ্চারित ধ্বনি, এবং <span class="speakable" onclick="speakText('Pronunciation')">Pronunciation</span> (প্রোনাউন্সিয়েশন - উচ্চারণ) হলো মুখ, জিহ্বা ও ঠোঁটের সঠিক ব্যবহারের মাধ্যমে শব্দ ফুটিয়ে তোলার শিল্প।</div>
+<div class="diagram"><div class="node speakable" onclick="speakText('A')">A (Letter)</div><div class="arrow">→</div><div class="node speakable" onclick="speakText('eɪ')">/eɪ/ (Name)</div><div class="arrow">→</div><div class="node speakable" onclick="speakText('Apple')">Apple /æ/ (অ্যাপল)</div></div>
+<div class="grid"><div class="card"><h4>Letter Name (বর্ণের নাম)</h4><div class="big speakable" onclick="speakText('A is /eɪ/')">A = /eɪ/ (এই)</div><p>বর্ণটির নিজস্ব নাম “এই”-এর কাছাকাছি উচ্চারিত হয়।</p></div><div class="card"><h4>Word Sound (শব্দে ধ্বনি)</h4><div class="big speakable" onclick="speakText('Apple')">Apple = /ˈæpəl/ (অ্যাপল)</div><p>শব্দের ভেতরে এসে A বর্ণটি পরিবর্তন হয়ে /æ/ ধ্বনি দেয়।</p></div></div>
+<h3>বিশ্লেষণমূলক পরিভাষা গাইড</h3><div class="tablewrap"><table><tr><th>Term (পরিভাষা)</th><th>বাংলা উচ্চারণ ও বিস্তারিত ব্যাখ্যা</th></tr><tr><td><span class="speakable" onclick="speakText('Phonics')">Phonics</span> (ফনিক্স)</td><td>বর্ণ এবং সেই বর্ণগুলোর সাথে ধ্বনির সম্পর্ক স্থাপন করে পড়ার পদ্ধতি।</td></tr><tr><td><span class="speakable" onclick="speakText('Phoneme')">Phoneme</span> (ফোনিম)</td><td>ভাষার ক্ষুদ্রতম ধ্বনি একক যা একটি শব্দের অর্থ বদলে দিতে পারে (যেমন: /p/ এবং /b/)।</td></tr><tr><td><span class="speakable" onclick="speakText('Grapheme')">Grapheme</span> (গ্রাফিম)</td><td>একটি ধ্বনি লেখার জন্য ব্যবহৃত একক বর্ণ বা একাধিক বর্ণের সমষ্টি।</td></tr><tr><td><span class="speakable" onclick="speakText('Digraph')">Digraph</span> (ডাইগ্রাফ)</td><td>দুটি বর্ণ মিলে যখন একটি মাত্র নতুন ধ্বনি তৈরি করে (যেমন: sh, ch)।</td></tr><tr><td><span class="speakable" onclick="speakText('Trigraph')">Trigraph</span> (ট্রাইগ্রাফ)</td><td>তিনটি বর্ণ মিলে যখন একটিমাত্র ধ্বনি প্রকাশ করে (যেমন: igh)।</td></tr><tr><td><span class="speakable" onclick="speakText('Accent')">Accent</span> (অ্যাকসেন্ট)</td><td>ভৌগোলিক অঞ্চল বা সামাজিক অবস্থানভেদে উচ্চারণের নিজস্ব ভঙ্গি বা ঢং।</td></tr><tr><td><span class="speakable" onclick="speakText('Articulation')">Articulation</span> (আর্টিকুলেশন)</td><td>মুখগহ্বর, জিহ্বা, দাঁত ও ঠোঁটের নিখুঁত সঞ্চালনের মাধ্যমে ধ্বনি তৈরি করা।</td></tr></table></div>
+<h3>বাস্তব অনুশীলনী</h3>
+<p>নিচের শব্দগুলো দেখে প্রতিটির নাম এবং ধ্বনির পার্থক্য নিজে উচ্চারণ করে মিলিয়ে নিন:</p>
+<p>1. <span class="speakable" onclick="speakText('Cat')">Cat</span> [ক্যাট] - এখানে C এর ধ্বনি /k/ | 2. <span class="speakable" onclick="speakText('City')">City</span> [সিটি] - এখানে C এর ধ্বনি /s/ | 3. <span class="speakable" onclick="speakText('Education')">Education</span> [এজুকেশন] - পূর্ণাঙ্গ শব্দ উচ্চারণ।</p>
+<div class="quiz"><b>দ্রুত যাচাই:</b><p>Apple শব্দে A কোন ধ্বনি প্রকাশ করে?</p><button class="btn" onclick="answer(this,false,'/eɪ/ নয়; Apple-এ A = /æ/')">/eɪ/</button><button class="btn" onclick="answer(this,true,'ঠিক! Apple-এ A = /æ/.')">/æ/</button><div class="feedback"></div></div>`},
+{title:"Alphabet: ২৬টি Letter",sub:"Capital, Small, IPA Name এবং পূর্ণাঙ্গ নির্দেশিকা",html:`
+<p>ইংরেজিতে ২৬টি বর্ণ বা Letter রয়েছে। প্রতিটি বর্ণ ক্যাপিটাল (বড় হাতের) এবং স্মল (ছোট হাতের) রূপে লেখা হয়। প্রতিটি বর্ণের নিজস্ব নাম এবং শব্দের ভেতরে তার উচ্চারণ সম্পূর্ণ ভিন্ন হতে পারে। নিচে ছক আকারে প্রতিটি বর্ণের IPA নাম ও বাংলা উচ্চারণ দেওয়া হলো:</p>
+<div class="alphabet" id="alphabet"></div>
+<div class="callout"><b>উচ্চারণ-সহায়িকা:</b> বাংলা হরফে দেওয়া রূপ কেবল প্রাথমিক ধারণার জন্য; সঠিক ও নিখুঁত অভ্যাসের জন্য IPA এবং অডিও বাটনে ক্লিক করে শুনে নিন।</div>
+<div class="tablewrap"><table><tr><th>Letter (বর্ণ)</th><th>IPA Name (আইপিএ নাম)</th><th>বাংলা উচ্চারণ-সহায়িকা</th><th>শব্দে ব্যবহারের উদাহরণ</th></tr>
+<tr><td><span class="speakable" onclick="speakText('A')">A a</span></td><td>/eɪ/</td><td>এই</td><td><span class="speakable" onclick="speakText('Ant')">Ant</span> (এন্ট)</td></tr><tr><td><span class="speakable" onclick="speakText('B')">B b</span></td><td>/biː/</td><td>বি</td><td><span class="speakable" onclick="speakText('Ball')">Ball</span> (বল)</td></tr><tr><td><span class="speakable" onclick="speakText('C')">C c</span></td><td>/siː/</td><td>সি</td><td><span class="speakable" onclick="speakText('Cat')">Cat</span> (ক্যাট)</td></tr><tr><td><span class="speakable" onclick="speakText('D')">D d</span></td><td>/diː/</td><td>ডি</td><td><span class="speakable" onclick="speakText('Dog')">Dog</span> (ডগ)</td></tr><tr><td><span class="speakable" onclick="speakText('E')">E e</span></td><td>/iː/</td><td>ঈ</td><td><span class="speakable" onclick="speakText('Egg')">Egg</span> (এগ)</td></tr><tr><td><span class="speakable" onclick="speakText('F')">F f</span></td><td>/ɛf/</td><td>এফ</td><td><span class="speakable" onclick="speakText('Fish')">Fish</span> (ফিশ)</td></tr><tr><td><span class="speakable" onclick="speakText('G')">G g</span></td><td>/dʒiː/</td><td>জি</td><td><span class="speakable" onclick="speakText('Go')">Go</span> (গো)</td></tr><tr><td><span class="speakable" onclick="speakText('H')">H h</span></td><td>/eɪtʃ/</td><td>এইট্চ</td><td><span class="speakable" onclick="speakText('Hat')">Hat</span> (হ্যাট)</td></tr><tr><td><span class="speakable" onclick="speakText('I')">I i</span></td><td>/aɪ/</td><td>আই</td><td><span class="speakable" onclick="speakText('Ink')">Ink</span> (ইংক)</td></tr><tr><td><span class="speakable" onclick="speakText('J')">J j</span></td><td>/dʒeɪ/</td><td>জেই</td><td><span class="speakable" onclick="speakText('Jug')">Jug</span> (জাগ)</td></tr><tr><td><span class="speakable" onclick="speakText('K')">K k</span></td><td>/keɪ/</td><td>কেই</td><td><span class="speakable" onclick="speakText('Kite')">Kite</span> (কাইট)</td></tr><tr><td><span class="speakable" onclick="speakText('L')">L l</span></td><td>/ɛl/</td><td>এল</td><td><span class="speakable" onclick="speakText('Lion')">Lion</span> (লাইয়ন)</td></tr><tr><td><span class="speakable" onclick="speakText('M')">M m</span></td><td>/ɛm/</td><td>এম</td><td><span class="speakable" onclick="speakText('Moon')">Moon</span> (মুন)</td></tr><tr><td><span class="speakable" onclick="speakText('N')">N n</span></td><td>/ɛn/</td><td>এন</td><td><span class="speakable" onclick="speakText('Net')">Net</span> (নেট)</td></tr><tr><td><span class="speakable" onclick="speakText('O')">O o</span></td><td>/oʊ/ AmE, /əʊ/ BrE</td><td>ওউ</td><td><span class="speakable" onclick="speakText('Owl')">Owl</span> (আউল)</td></tr><tr><td><span class="speakable" onclick="speakText('P')">P p</span></td><td>/piː/</td><td>পি</td><td><span class="speakable" onclick="speakText('Pen')">Pen</span> (পেন)</td></tr><tr><td><span class="speakable" onclick="speakText('Q')">Q q</span></td><td>/kjuː/</td><td>কিউ</td><td><span class="speakable" onclick="speakText('Queen')">Queen</span> (কুইন)</td></tr><tr><td><span class="speakable" onclick="speakText('R')">R r</span></td><td>/ɑːr/ AmE; /ɑː/ BrE</td><td>আর</td><td><span class="speakable" onclick="speakText('Rose')">Rose</span> (রোজ)</td></tr><tr><td><span class="speakable" onclick="speakText('S')">S s</span></td><td>/ɛs/</td><td>এস</td><td><span class="speakable" onclick="speakText('Sun')">Sun</span> (সান)</td></tr><tr><td><span class="speakable" onclick="speakText('T')">T t</span></td><td>/tiː/</td><td>টি</td><td><span class="speakable" onclick="speakText('Tree')">Tree</span> (ট্রি)</td></tr><tr><td><span class="speakable" onclick="speakText('U')">U u</span></td><td>/juː/</td><td>ইউ</td><td><span class="speakable" onclick="speakText('Umbrella')">Umbrella</span> (আমব্রেলা)</td></tr><tr><td><span class="speakable" onclick="speakText('V')">V v</span></td><td>/viː/</td><td>ভি</td><td><span class="speakable" onclick="speakText('Van')">Van</span> (ভ্যান)</td></tr><tr><td><span class="speakable" onclick="speakText('W')">W w</span></td><td>/ˈdʌbəl juː/</td><td>ডাবল ইউ</td><td><span class="speakable" onclick="speakText('Watch')">Watch</span> (ওয়াচ)</td></tr><tr><td><span class="speakable" onclick="speakText('X')">X x</span></td><td>/ɛks/</td><td>এক্স</td><td><span class="speakable" onclick="speakText('Box')">Box</span> (বক্স)</td></tr><tr><td><span class="speakable" onclick="speakText('Y')">Y y</span></td><td>/waɪ/</td><td>ওয়াই</td><td><span class="speakable" onclick="speakText('Yes')">Yes</span> (ইয়েস)</td></tr><tr><td><span class="speakable" onclick="speakText('Z')">Z z</span></td><td>/ziː/ AmE; /zɛd/ BrE</td><td>জি / জেড</td><td><span class="speakable" onclick="speakText('Zebra')">Zebra</span> (জেব্রা)</td></tr></table></div>
+<h3>Y ও W অক্ষরের বহুমুখী ভূমিকা</h3>
+<p>ইংরেজি বর্ণমালায় Y এবং W-কে অর্ধ-স্বরবর্ণ বা Semi-vowel বলা হয়। কারণ এরা কখনো কনসোনেন্টের মতো আবার কখনো ভাওয়েলের মতো আচরণ করে:</p>
+<ul>
+  <li><b>Y as Consonant:</b> শব্দের শুরুতে থাকলে এটি /j/ ধ্বনি দেয়, যেমন—<span class="speakable" onclick="speakText('Yes')">Yes</span> [ইয়েস], <span class="speakable" onclick="speakText('Yellow')">Yellow</span> [ইয়েলো]।</li>
+  <li><b>Y as Vowel:</b> শব্দের মাঝে বা শেষে থাকলে এটি স্বরধ্বনির কাজ করে, যেমন—<span class="speakable" onclick="speakText('Gym')">Gym</span> [জিম] এ /ɪ/ এবং <span class="speakable" onclick="speakText('Happy')">Happy</span> [হ্যাপি] এ /i/ ধ্বনি।</li>
+  <li><b>W Sound:</b> শব্দের শুরুতে বা মাঝে এটি ওষ্ঠ্য বা ঠোঁট গোল করে উচ্চারিত হয়, যেমন—<span class="speakable" onclick="speakText('Water')">Water</span> [ওয়াটার]। তবে <span class="speakable" onclick="speakText('Cow')">Cow</span> [কাউ] ও <span class="speakable" onclick="speakText('Snow')">Snow</span> [স্নো] শব্দে এটি ভিন্ন ডিফথং তৈরি করে।</li>
+</ul>`},
+{title:"Vowels ও Consonants",sub:"Letter এবং Sound-এর আদ্যোপান্ত বিশ্লেষণ",html:`
+<div class="diagram"><div class="node">26 Letters</div><div class="arrow">→</div><div class="node">5 Vowel Letters<br><span class="speakable" onclick="speakText('A E I O U')">A, E, I, O, U</span></div><div class="arrow">+</div><div class="node">21 Consonants</div></div>
+<p>ঐতিহ্যগতভাবে A, E, I, O, U হলো ৫টি প্রধান Vowel Letter এবং বাকি ২১টি Consonant Letter। কিন্তু ধ্বনিবিজ্ঞান বা Phonetics অনুযায়ী ইংরেজিতে স্বরধ্বনির সংখ্যা ২০টিরও বেশি! অর্থাৎ বর্ণের চেয়ে ধ্বনির বৈচিত্র্য অনেক বেশি বিস্তৃত।</p>
+<div class="grid">
+  <div class="card">
+    <h4>Short Vowels (হ্রস্ব স্বরধ্বনি)</h4>
+    <p>এগুলো ছোট ও দ্রুত উচ্চারিত স্বরধ্বনি। নিচে উদাহরণগুলোয় ক্লিক করে শুনুন:</p>
+    <p>• <span class="speakable" onclick="speakText('Cat')">Cat</span> /kæt/ [ক্যাট]<br>• <span class="speakable" onclick="speakText('Pen')">Pen</span> /pen/ [পেন]<br>• <span class="speakable" onclick="speakText('Sit')">Sit</span> /sɪt/ [সিট]<br>• <span class="speakable" onclick="speakText('Hot')">Hot</span> /hɒt/ [হট]<br>• <span class="speakable" onclick="speakText('Cup')">Cup</span> /kʌp/ [কাপ]</p>
+  </div>
+  <div class="card">
+    <h4>Long Vowels (দীর্ঘ স্বরধ্বনি)</h4>
+    <p>প্রাথমিক ফনিক্সে এগুলো বর্ণগুলোর নিজস্ব নামের মতো শোনায়:</p>
+    <p>• <span class="speakable" onclick="speakText('Cake')">Cake</span> /keɪk/ [কেইক]<br>• <span class="speakable" onclick="speakText('See')">See</span> /siː/ [সি]<br>• <span class="speakable" onclick="speakText('Bike')">Bike</span> /baɪk/ [বাইল্ক]<br>• <span class="speakable" onclick="speakText('Home')">Home</span> /hoʊm/ [হোম]<br>• <span class="speakable" onclick="speakText('Cute')">Cute</span> /kjuːt/ [কিউট]</p>
+  </div>
+</div>
+<div class="callout warn">সতর্কতা: ফনিক্সে “Long vowel” বললেই যে অনেক সময় ধরে টেনে বলতে হবে তা নয়; বরং এটি বর্ণের নিজস্ব নামের ধ্বনিকে নির্দেশ করে।</div>
+<h3>অনুশীলনী ও পরীক্ষা</h3>
+<div class="quiz"><b>কোন বর্ণটি কনসোনেন্ট হওয়া সত্ত্বেও ভাওয়েলের মতো ধ্বনি দেয়?</b><br><button class="btn" onclick="answer(this,true,'সঠিক! Y একটি consonant letter হলেও অনেক শব্দে এটি i বা e এর মতো vowel sound প্রকাশ করে।')">Y</button><button class="btn" onclick="answer(this,false,'E একটি মূল ভাওয়েল লেটার।')">E</button><button class="btn" onclick="answer(this,false,'U একটি মূল ভাওয়েল লেটার।')">U</button><div class="feedback"></div></div>`},
+{title:"Consonant Sounds",sub:"C, G, S এবং ব্যঞ্জনধ্বনির গভীরে প্রবেশ",html:`
+<p>ইংরেজি কনসোনেন্টগুলোর উচ্চারণ সবসময় একরকম হয় না। পারিপার্শ্বিক বর্ণের ওপর ভিত্তি করে এদের ধ্বনি পরিবর্তিত হয়। নিচে বিস্তারিত চার্ট ও নিয়ম দেওয়া হলো:</p>
+<div class="tablewrap"><table><tr><th>Letter (বর্ণ)</th><th>প্রধান ধ্বনিসমূহ</th><th>বিস্তারিত ব্যাখ্যা ও উদাহরণ</th></tr>
+<tr><td>B</td><td>/b/</td><td>সব সময় দ্বিউষ্ঠ্য ধ্বনি। যেমন: <span class="speakable" onclick="speakText('Bat')">Bat</span> [ব্যাট]।</td></tr>
+<tr><td>C</td><td>/k/, /s/</td><td>E, I, Y এর আগে <span class="speakable" onclick="speakText('City')">City</span> [সিটি] তে /s/; অন্যথায় <span class="speakable" onclick="speakText('Cat')">Cat</span> [ক্যাট] তে /k/।</td></tr>
+<tr><td>G</td><td>/g/, /dʒ/</td><td>E, I, Y এর আগে সাধারণত <span class="speakable" onclick="speakText('Gem')">Gem</span> [জেম] তে /dʒ/; অন্যথায় <span class="speakable" onclick="speakText('Go')">Go</span> [গো] তে /g/।</td></tr>
+<tr><td>S</td><td>/s/, /z/, /ʃ/, /ʒ/</td><td><span class="speakable" onclick="speakText('Sun')">Sun</span> [সান], <span class="speakable" onclick="speakText('Rose')">Rose</span> [রোজ], <span class="speakable" onclick="speakText('Sugar')">Sugar</span> [সুগার], <span class="speakable" onclick="speakText('Measure')">Measure</span> [মেজার]।</td></tr>
+<tr><td>X</td><td>/ks/, /gz/</td><td>সাধারণত <span class="speakable" onclick="speakText('Box')">Box</span> এ /ks/; ভাওয়েলের আগে <span class="speakable" onclick="speakText('Exam')">Exam</span> এ /gz/।</td></tr>
+<tr><td>Q</td><td>/kw/</td><td>সর্বদা U কে সাথে নিয়ে কুই ধ্বনি দেয়। যেমন: <span class="speakable" onclick="speakText('Queen')">Queen</span> [কুইন]।</td></tr></table></div>
+<h3>C এবং G এর উচ্চারণ সংক্রান্ত সুনির্দিষ্ট নিয়ম</h3>
+<div class="diagram"><div class="node">C + E / I / Y</div><div class="arrow">→</div><div class="node">উচ্চারণ /s/<br><span class="speakable" onclick="speakText('Center')">Center</span>, <span class="speakable" onclick="speakText('City')">City</span></div></div>
+<div class="diagram"><div class="node">C + A / O / U</div><div class="arrow">→</div><div class="node">উচ্চারণ /k/<br><span class="speakable" onclick="speakText('Cup')">Cup</span>, <span class="speakable" onclick="speakText('Cot')">Cot</span></div></div>
+<p><b>G এর ব্যতিক্রম:</b> নিয়মানুযায়ী G এর পরে E থাকলে /dʒ/ হওয়ার কথা (যেমন- <span class="speakable" onclick="speakText('Gem')">Gem</span>), কিন্তু <span class="speakable" onclick="speakText('Get')">Get</span>, <span class="speakable" onclick="speakText('Give')">Give</span>, <span class="speakable" onclick="speakText('Girl')">Girl</span> শব্দগুলোতে ব্যতিক্রমীভাবে /g/ উচ্চারিত হয়।</p>
+<div class="grid">
+  <div class="card">
+    <h4>CH এর ভিন্নরূপ</h4>
+    <p>• സാധാരണ: <span class="speakable" onclick="speakText('Chair')">Chair</span> /tʃ/ [চেয়ার]<br>• গ্রিক উৎসে: <span class="speakable" onclick="speakText('Chemistry')">Chemistry</span> /k/ [কেমিস্ট্রি]<br>• ফরাসি উৎসে: <span class="speakable" onclick="speakText('Chef')">Chef</span> /ʃ/ [শেফ]</p>
+  </div>
+  <div class="card">
+    <h4>GH এর বৈচিত্র্য</h4>
+    <p>• শেষে বা মাঝে নীরব: <span class="speakable" onclick="speakText('Night')">Night</span> [নাইট]<br>• /f/ ধ্বনি: <span class="speakable" onclick="speakText('Laugh')">Laugh</span> [লাফ]<br>• শুরুতে /g/ ধ্বনি: <span class="speakable" onclick="speakText('Ghost')">Ghost</span> [গোস্ট]</p>
+  </div>
+</div>`},
+{title:"Digraph ও Trigraph",sub:"একাধিক বর্ণ মিলে একটি অবিভাজ্য ধ্বনি তৈরি",html:`
+<p>ইংরেজি বানান পদ্ধতিতে যখন দুই বা ততোধিক বর্ণ মিলে একটি মাত্র স্বতন্ত্র ধ্বনি তৈরি করে, তখন তাকে Digraph (দুটি বর্ণ) বা Trigraph (তিনটি বর্ণ) বলে। নিচে একটি পূর্ণাঙ্গ তালিকা দেওয়া হলো:</p>
+<div class="tablewrap"><table><tr><th>Pattern</th><th>IPA ধ্বনি</th><th>বাংলা উচ্চারণ</th><th>উদাহরণ শব্দ</th></tr><tr><td>SH</td><td>/ʃ/</td><td>শ</td><td><span class="speakable" onclick="speakText('Ship')">Ship</span> [শিপ]</td></tr><tr><td>CH</td><td>/tʃ/</td><td>চ</td><td><span class="speakable" onclick="speakText('Chair')">Chair</span> [চেয়ার]</td></tr><tr><td>TH (Voiceless)</td><td>/θ/</td><td>নরম থ</td><td><span class="speakable" onclick="speakText('Think')">Think</span> [থিংক]</td></tr><tr><td>TH (Voiced)</td><td>/ð/</td><td>নরম দ</td><td><span class="speakable" onclick="speakText('This')">This</span> [দিস]</td></tr><tr><td>PH</td><td>/f/</td><td>ফ</td><td><span class="speakable" onclick="speakText('Phone')">Phone</span> [ফোন]</td></tr><tr><td>WH</td><td>/w/</td><td>ও্ব</td><td><span class="speakable" onclick="speakText('White')">White</span> [হোয়াইট]</td></tr><tr><td>NG</td><td>/ŋ/</td><td>ঙ</td><td><span class="speakable" onclick="speakText('Sing')">Sing</span> [সিং]</td></tr><tr><td>CK</td><td>/k/</td><td>ক্</td><td><span class="speakable" onclick="speakText('Back')">Back</span> [ব্যাক]</td></tr><tr><td>TCH</td><td>/tʃ/</td><td>চ</td><td><span class="speakable" onclick="speakText('Watch')">Watch</span> [ওয়াচ]</td></tr><tr><td>DGE</td><td>/dʒ/</td><td>জ</td><td><span class="speakable" onclick="speakText('Bridge')">Bridge</span> [ব্রিজ]</td></tr><tr><td>IGH (Trigraph)</td><td>/aɪ/</td><td>আই</td><td><span class="speakable" onclick="speakText('Light')">Light</span> [লাইট]</td></tr></table></div>
+<div class="grid">
+  <div class="card">
+    <h4>TH ধ্বনির বৈজ্ঞানিক উচ্চারণ</h4>
+    <p><b>/θ/ (<span class="speakable" onclick="speakText('Think')">Think</span>):</b> জিহ্বার অগ্রভাগ ওপরের ও নিচের দাঁতের মাঝখানে হালকা ছুঁইয়ে বাতাস ছাড়তে হবে, স্বরযন্ত্রে কোনো কম্পন হবে না।</p>
+  </div>
+  <div class="card">
+    <h4>TH স্বরযন্ত্র কম্পনयुक्त</h4>
+    <p><b>/ð/ (<span class="speakable" onclick="speakText('This')">This</span>):</b> একই জিহ্বার অবস্থানে স্বরযন্ত্রে বা গলার ভেতর কম্পন সৃষ্টি করে উচ্চারণ করতে হবে।</p>
+  </div>
+</div>
+<div class="callout">বাংলা বর্ণমালার 'থ' বা 'দ' দিয়ে সম্পূর্ণ নিখুঁতভাবে এই দুটি ইংরেজি ধ্বনি বোঝানো সম্ভব নয়। তাই অডিও শুনে বারবার অনুকরণ করুন।</div>`},
+{title:"Vowel Sounds ও Schwa",sub:"IPA ভিত্তিক স্বরধ্বনি এবং সবচেয়ে গুরুত্বপূর্ণ 'Schwa' ধ্বনি",html:`
+<p>আন্তর্জাতিক ধ্বনিমূলক বর্ণমালা (IPA) অনুযায়ী ইংরেজি স্বরধ্বনিগুলোর সঠিক রূপ নিচে দেওয়া হলো। এখানে সবচেয়ে আকর্ষণীয় এবং বহুল ব্যবহৃত ধ্বনি হলো 'Schwa' (/ə/):</p>
+<div class="tablewrap"><table><tr><th>IPA Symbol</th><th>শাব্দিক উদাহরণ</th><th>বাংলা রূপ</th><th>বিবরণ ও বিশেষ সতর্কতা</th></tr><tr><td>/æ/</td><td><span class="speakable" onclick="speakText('Cat')">Cat</span> [ক্যাট]</td><td>অ্যা</td><td>মুখ প্রশস্ত করে খোলা ‘এ’-এর মতো।</td></tr><tr><td>/e/</td><td><span class="speakable" onclick="speakText('Bed')">Bed</span> [বেড]</td><td>এ</td><td>স্বাভাবিক মাঝারি ‘এ’।</td></tr><tr><td>/ɪ/</td><td><span class="speakable" onclick="speakText('Sit')">Sit</span> [সিট]</td><td>হ্রস্ব ই</td><td>খুব সংক্ষিপ্ত ও চটজলদি ই।</td></tr><tr><td>/iː/</td><td><span class="speakable" onclick="speakText('See')">See</span> [সি]</td><td>দীর্ঘ ঈ</td><td>একটু টেনে দীর্ঘ ঈ।</td></tr><tr><td>/ʌ/</td><td><span class="speakable" onclick="speakText('Cup')">Cup</span> [কাপ]</td><td>আ/অ</td><td>বাংলা ‘আ’ ও ‘অ’-এর মাঝামাঝি খোলা ধ্বনি।</td></tr><tr><td>/ɑː/</td><td><span class="speakable" onclick="speakText('Father')">Father</span> [ফাদার]</td><td>পূর্ণ আ</td><td>গলার ভেতর থেকে আসা দীর্ঘ ‘আ’।</td></tr><tr><td>/ɒ/ /ɔː/</td><td><span class="speakable" onclick="speakText('Hot')">Hot</span> [হট] / <span class="speakable" onclick="speakText('Ball')">Ball</span> [বল]</td><td>অ/ও</td><td>গোলাকার ঠোঁটে উচ্চারিত ধ্বনি।</td></tr><tr><td>/ʊ/</td><td><span class="speakable" onclick="speakText('Book')">Book</span> [বুক]</td><td>হ্রস্ব উ</td><td>সংক্ষিপ্ত উ।</td></tr><tr><td>/uː/</td><td><span class="speakable" onclick="speakText('Food')">Food</span> [ফুড]</td><td>দীর্ঘ উ</td><td>একটু দীর্ঘ উ।</td></tr><tr><td>/ə/ (Schwa)</td><td><span class="speakable" onclick="speakText('About')">About</span> [অ্যাবাউট]</td><td>দুর্বল অ</td><td>ইংরেজি ভাষার সবচেয়ে বহুল ব্যবহৃত অলস স্বরধ্বনি!</td></tr></table></div>
+<h3>Diphthong (যুগ্ম স্বরধ্বনি)</h3>
+<p>যখন একটি স্বরধ্বনি থেকে অন্য স্বরধ্বনিতে গ্লাইড বা স্লাইড করা হয়, তখন তাকে Diphthong বলে:</p>
+<div class="grid">
+  <div class="card"><b>/eɪ/</b>: <span class="speakable" onclick="speakText('Day')">Day</span> [ডেই]</div>
+  <div class="card"><b>/aɪ/</b>: <span class="speakable" onclick="speakText('My')">My</span> [মাই]</div>
+  <div class="card"><b>/ɔɪ/</b>: <span class="speakable" onclick="speakText('Boy')">Boy</span> [বয়]</div>
+  <div class="card"><b>/aʊ/</b>: <span class="speakable" onclick="speakText('Now')">Now</span> [নাউ]</div>
+  <div class="card"><b>/əʊ/</b>: <span class="speakable" onclick="speakText('Go')">Go</span> [গো]</div>
+  <div class="card"><b>/ɪə/</b>: <span class="speakable" onclick="speakText('Near')">Near</span> [নিয়ার]</div>
+</div>
+<div class="callout good"><b>Schwa (/ə/) এর রহস্য:</b> ইংরেজি শব্দের যে সিলেবলগুলোতে জোর (Stress) দেওয়া হয় না, সেখানে থাকা ভাওয়েলগুলো দুর্বল হয়ে Schwa বা ‘অ্যা/অ’-এর মতো উচ্চারিত হয়। যেমন—<span class="speakable" onclick="speakText('Support')">Support</span> এ প্রথম 'S' এর পরের অংশ।</div>`},
+{title:"Vowel Teams ও Magic E",sub:"যুগ্ম স্বরধ্বনি, ওপেন/ক্লোজড সিলেবল এবং ম্যাজিক ই এর জাদু",html:`
+<p>ইংরেজি বানানে ভাওয়েলগুলোর কম্বিনেশন এবং শব্দের শেষে থাকা নীরব 'E' উচ্চারণকে কীভাবে বদলে দেয় তা নিচে বিশদভাবে বিশ্লেষণ করা হলো:</p>
+<div class="tablewrap"><table><tr><th>Vowel Team</th><th>সাধারণ ধ্বনি</th><th>উদাহরণ শব্দ ও উচ্চারণ</th><th>পার্থক্য বা ব্যতিক্রম</th></tr><tr><td>AI / AY</td><td>/eɪ/</td><td><span class="speakable" onclick="speakText('Rain')">Rain</span> [রেইন], <span class="speakable" onclick="speakText('Day')">Day</span> [ডেই]</td><td>বেশিরভাগ সময় একই ধ্বনি।</td></tr><tr><td>EE / EA</td><td>/iː/ /e/</td><td><span class="speakable" onclick="speakText('See')">See</span> [সি], <span class="speakable" onclick="speakText('Bread')">Bread</span> [ব্রেড]</td><td>EA কখনো দীর্ঘ ঈ, কখনো সংক্ষিপ্ত এ (/e/) হয়।</td></tr><tr><td>OO</td><td>/uː/ /ʊ/</td><td><span class="speakable" onclick="speakText('Moon')">Moon</span> [মুন], <span class="speakable" onclick="speakText('Book')">Book</span> [বুক]</td><td>শব্দভেদে দীর্ঘ বা হ্রস্ব হতে পারে।</td></tr><tr><td>OU / OW</td><td>/aʊ/ /oʊ/</td><td><span class="speakable" onclick="speakText('Out')">আউট</span>, <span class="speakable" onclick="speakText('Cow')">কাউ</span>, <span class="speakable" onclick="speakText('Snow')">স্নো</span></td><td>প্রসঙ্গ অনুযায়ী বদলে যায়।</td></tr></table></div>
+<h3>Magic E (নীরব ই এর ম্যাজিক নিয়ম)</h3>
+<div class="diagram"><div class="node speakable" onclick="speakText('Cap')">Cap [ক্যাপ]</div><div class="arrow">→ শেষে E যুক্ত হলে →</div><div class="node speakable" onclick="speakText('Cape')">Cape [কেইপ]</div></div>
+<div class="diagram"><div class="node speakable" onclick="speakText('Kit')">Kit [কিট]</div><div class="arrow">→ শেষে E যুক্ত হলে →</div><div class="node speakable" onclick="speakText('Kite')">Kite [কাইট]</div></div>
+<p>শব্দের শেষে একটি নীরব 'E' যুক্ত হলে আগের ভাওয়েলটির সংক্ষিপ্ত উচ্চারণ তার নিজস্ব নাম বা লং ভাওয়েলে রূপ নেয়। তবে ব্যতিক্রম হিসেবে <span class="speakable" onclick="speakText('Have')">Have</span>, <span class="speakable" onclick="speakText('Give')">Give</span>, <span class="speakable" onclick="speakText('Love')">Love</span> শব্দগুলোতে এই নিয়ম মানে না।</p>
+<h3>ওপেন ও ক্লোজড সিলেবল (Open & Closed Syllables)</h3>
+<div class="grid">
+  <div class="card"><h4>Closed Syllable</h4><p>সিলেবল যদি কনসোনেন্টে শেষ হয়, তবে ভেতরের ভাওয়েলটি শর্ট বা হ্রস্ব হয়। যেমন—<span class="speakable" onclick="speakText('Cat')">Cat</span>, <span class="speakable" onclick="speakText('Pen')">Pen</span>।</p></div>
+  <div class="card"><h4>Open Syllable</h4><p>সিলেবল যদি ভাওয়েল ধ্বনিতে শেষ হয়, তবে ভাওয়েলটি লং বা দীর্ঘ হয়। যেমন—<span class="speakable" onclick="speakText('Me')">Me</span>, <span class="speakable" onclick="speakText('Go')">Go</span>, <span class="speakable" onclick="speakText('Hi')">Hi</span>。</p></div>
+</div>`},
+{title:"বাংলা বর্ণ ও Roman Transliteration",sub:"বাংলা বানানকে রোমান হরফে নিখুঁতভাবে রূপান্তর করার নিয়ম",html:`
+<div class="callout warn"><b>জরুরি সতর্কতা:</b> বাংলা শব্দের রোমান রূপান্তর (Transliteration) এবং ইংরেজি শব্দের নিজস্ব উচ্চারণ সম্পূর্ণ আলাদা বিষয়। ‘খ = kh’ লিখলেই ইংরেজি শব্দে খ-এর মতো উচ্চারণ হবে এমন কোনো কথা নেই।</div>
+<h3>স্বরবর্ণ ও কার-চিহ্নের রোমান রূপ</h3>
+<div class="tablewrap"><table><tr><th>বাংলা স্বরবর্ণ</th><th>সম্ভাব্য Roman রূপ</th><th>উদাহরণ শব্দ</th><th>বাংলা স্বরবর্ণ</th><th>সম্ভাব্য Roman রূপ</th><th>উদাহরণ শব্দ</th></tr><tr><td>অ</td><td>ô / a</td><td>Amar (আমার)</td><td>এ</td><td>e</td><td>Ek (এক)</td></tr><tr><td>আ / আ-কার</td><td>a / ā</td><td>Am (আম) / Kār (কার)</td><td>ঐ / ঐ-কার</td><td>oi / ai</td><td>Oikkota (ঐক্যতা)</td></tr><tr><td>ই / ই-কার</td><td>i / ī</td><td>Iti (ইতি)</td><td>ও / ও-কার</td><td>o</td><td>Ojon (ওজন)</td></tr><tr><td>উ / উ-কার</td><td>u / ū</td><td>Uṭ (উট)</td><td>ঔ / ঔ-কার</td><td>ou / au</td><td>Pourôshôba (পৌরসভা)</td></tr><tr><td>ঋ / ঋ-কার</td><td>ṛ / ri</td><td>Ritu (ঋতু)</td><td colspan="3"></td></tr></table></div>
+<h3>ব্যঞ্জনবর্ণের মানসম্মত রোমান রূপ</h3>
+<div class="tablewrap"><table><tr><th>বাংলা</th><th>Roman</th><th>বাংলা</th><th>Roman</th><th>বাংলা</th><th>Roman</th></tr><tr><td>ক / খ</td><td>k / kh</td><td>ট / ঠ</td><td>ṭ / ṭh</td><td>প / ফ</td><td>p / ph (f)</td></tr><tr><td>গ / ঘ</td><td>g / gh</td><td>ড / ঢ</td><td>ḍ / ḍh</td><td>ব / ভ</td><td>b / bh</td></tr><tr><td>ঙ</td><td>ng</td><td>ণ</td><td>ṇ</td><td>ম</td><td>m</td></tr><tr><td>চ / ছ</td><td>ch / chh</td><td>ত / থ</td><td>t / th</td><td>য / র / ল</td><td>y / r / l</td></tr><tr><td>জ / ঝ</td><td>j / jh</td><td>দ / ধ</td><td>d / dh</td><td>শ / ষ / স</td><td>sh / ṣ / s</td></tr><tr><td>ঞ</td><td>ñ / ny</td><td>ন</td><td>n</td><td>হ / ড় / ঢ়</td><td>h / ṛ / ṛh</td></tr></table></div>
+<p>আধুনিক সময়ে নামের বানান বা বাংলা লেখার ক্ষেত্রে আন্তর্জাতিক মানদণ্ড (ISO বা National Standard) অনুসরণ করা হয়। যুক্তাক্ষরের ক্ষেত্রে ধ্বনি বিশ্লেষণ করে রোমান রূপ দেওয়া হয়।</p>`},
+{title:"Spelling Rules: Plural ও Verb",sub:"Noun-এর বহুবচন এবং Verb-এর রূপ পরিবর্তনের বানান নীতি",html:`
+<h3>Noun Plural (বহুবচন গঠনের বানান নিয়ম)</h3>
+<div class="tablewrap"><table><tr><th>নিয়ম</th><th>বিস্তারিত বিবরণ</th><th>উদাহরণ শব্দ</th></tr><tr><td>সাধারণ নিয়ম</td><td>অধিকাংশ শব্দের শেষে সরাসরি -s যুক্ত হয়।</td><td><span class="speakable" onclick="speakText('Book')">Book</span> → <span class="speakable" onclick="speakText('Books')">Books</span> [বুকস]</td></tr><tr><td>-s, -sh, -ch, -x, -z</td><td>শেষের বর্ণগুলো থাকলে -es যুক্ত করতে হয়।</td><td><span class="speakable" onclick="speakText('Box')">Box</span> → <span class="speakable" onclick="speakText('Boxes')">Boxes</span> [বক্সেস]</td></tr><tr><td>Consonant + y</td><td>'y' উঠে গিয়ে '-ies' যুক্ত হয়।</td><td><span class="speakable" onclick="speakText('City')">City</span> → <span class="speakable" onclick="speakText('Cities')">Cities</span> [সিটিস]</td></tr><tr><td>Vowel + y</td><td>'y' অপরিবর্তিত রেখে শুধু '-s' যুক্ত হয়।</td><td><span class="speakable" onclick="speakText('Boy')">Boy</span> → <span class="speakable" onclick="speakText('Boys')">Boys</span> [বয়েজ]</td></tr><tr><td>f / fe ending</td><td>'f' বা 'fe' পরিবর্তিত হয়ে '-ves' হয়।</td><td><span class="speakable" onclick="speakText('Leaf')">Leaf</span> → <span class="speakable" onclick="speakText('Leaves')">Leaves</span> [লিভস]</td></tr></table></div>
+<div class="callout">ব্যতিক্রম: সব f যুক্ত শব্দে -ves হয় না। যেমন—<span class="speakable" onclick="speakText('Roof')">Roof</span> থেকে <span class="speakable" onclick="speakText('Roofs')">Roofs</span>, <span class="speakable" onclick="speakText('Chief')">Chief</span> থেকে <span class="speakable" onclick="speakText('Chiefs')">Chiefs</span>।</div>
+<h3>Third Person Singular Verb ও অন্যান্য প্রত্যয়</h3>
+<p>• <b>Verb -es/-s:</b> <span class="speakable" onclick="speakText('Play')">Play</span> → <span class="speakable" onclick="speakText('Plays')">Plays</span> | <span class="speakable" onclick="speakText('Watch')">Watch</span> → <span class="speakable" onclick="speakText('Watches')">Watches</span> | <span class="speakable" onclick="speakText('Study')">Study</span> → <span class="speakable" onclick="speakText('Studies')">Studies</span>।</p>
+<p>• <b>-ing যোগ:</b> <span class="speakable" onclick="speakText('Make')">Make</span> → <span class="speakable" onclick="speakText('Making')">Making</span> (শেষের e বাদ যায়) | <span class="speakable" onclick="speakText('Run')">Run</span> → <span class="speakable" onclick="speakText('Running')">Running</span> (শেষের কনসোনেন্ট দ্বিত্ব হয়)।</p>
+<div class="quiz"><b>কোন বানানটি সঠিক?</b><br><button class="btn" onclick="answer(this,false,'ফোরটি বানানে U থাকে না।')">Fourty</button><button class="btn" onclick="answer(this,true,'সঠিক! Forty হলো সঠিক বানান।')">Forty</button><div class="feedback"></div></div>`},
+{title:"-ed ও -s-এর উচ্চারণ",sub:"ব্যাকরণগত Ending সাউন্ড কীভাবে নিখুঁতভাবে উচ্চারণ করতে হয়",html:`
+<h3>Past Tense -ed এর ৩টি ভিন্ন উচ্চারণ নিয়ম</h3>
+<p>ইংরেজি -ed যুক্ত Verb-গুলোর উচ্চারণ আগের কনসোনেন্টের প্রকৃতির ওপর নির্ভর করে তিন ভাগে বিভক্ত:</p>
+<div class="tablewrap"><table><tr><th>IPA Sound</th><th>নিয়ম ও শর্ত</th><th>উদাহরণ শব্দ ও উচ্চারণ</th></tr><tr><td>/t/</td><td>শব্দের শেষ ধ্বনি যদি Voiceless (ঘোষহীন) হয় (/p, k, f, s, ʃ, tʃ/)।</td><td><span class="speakable" onclick="speakText('Worked')">Worked</span> [ওয়ার্ক্ট], <span class="speakable" onclick="speakText('Helped')">Helped</span> [হেলপ্ট]</td></tr><tr><td>/d/</td><td>শব্দের শেষ ধ্বনি যদি Voiced (ঘোষবান) হয় (অন্যান্য সব ভাওয়েল ও কনসোনেন্ট)।</td><td><span class="speakable" onclick="speakText('Played')">Played</span> [প্লেড], <span class="speakable" onclick="speakText('Cleaned')">Cleaned</span> [ক্লিন্ড]</td></tr><tr><td>/ɪd/ বা /əd/</td><td>শব্দের শেষ ধ্বনি যদি সরাসরি /t/ বা /d/ হয়।</td><td><span class="speakable" onclick="speakText('Wanted')">Wanted</span> [ওয়েন্টেড], <span class="speakable" onclick="speakText('Needed')">Needed</span> [নিডেড]</td></tr></table></div>
+<h3>Noun Plural বা Third Person -s / -es এর ৩টি উচ্চারণ নিয়ম</h3>
+<div class="tablewrap"><table><tr><th>IPA Sound</th><th>নিয়ম ও শর্ত</th><th>উদাহরণ শব্দ</th></tr><tr><td>/s/</td><td>Voiceless কনসোনেন্টের পরে।</td><td><span class="speakable" onclick="speakText('Books')">Books</span> [বুক্স], <span class="speakable" onclick="speakText('Cats')">Cats</span> [ক্যাট্স]</td></tr><tr><td>/z/</td><td>Voiced কনসোনেন্ট বা ভাওয়েলের পরে।</td><td><span class="speakable" onclick="speakText('Dogs')">Dogs</span> [ডগজ], <span class="speakable" onclick="speakText('Boys')">Boys</span> [বয়েজ]</td></tr><tr><td>/ɪz/</td><td>/s, z, ʃ, ʒ, tʃ, dʒ/ ধ্বনির পরে।</td><td><span class="speakable" onclick="speakText('Buses')">Buses</span> [বাসিজ], <span class="speakable" onclick="speakText('Watches')">Watches</span> [ওয়াচিয]</td></tr></table></div>`},
+{title:"Silent Letters",sub:"ইংরেজি বানানে লুকিয়ে থাকা নীরব বা উচ্চতাহীন বর্ণসমূহ",html:`
+<p>ইংরেজি ভাষায় অনেক বর্ণ লেখায় থাকলেও উচ্চারণে একেবারেই আসে না। ঐতিহাসিক বিবর্তন ও বিভিন্ন ভাষার প্রভাবের কারণে এই নীরব বর্ণগুলোর সৃষ্টি হয়েছে। নিচে প্রধান ক্যাটাগরিগুলো দেওয়া হলো:</p>
+<div class="tablewrap"><table><tr><th>Pattern</th><th>নীরব বর্ণ</th><th>উদাহরণ শব্দ ও উচ্চারণ</th><th>বিশেষ লক্ষণ</th></tr><tr><td>KN-</td><td>K নীরব</td><td><span class="speakable" onclick="speakText('Know')">Know</span> [নৌ], <span class="speakable" onclick="speakText('Knife')">Knife</span> [নািফ]</td><td>শুরুতে K উচ্চারিত হয় না।</td></tr><tr><td>WR-</td><td>W নীরব</td><td><span class="speakable" onclick="speakText('Write')">Write</span> [রাইট], <span class="speakable" onclick="speakText('Wrong')">Wrong</span> [রং]</td><td>শুরুতে W উহ্য থাকে।</td></tr><tr><td>-MB</td><td>B নীরব</td><td><span class="speakable" onclick="speakText('Lamb')">Lamb</span> [ল্যাম], <span class="speakable" onclick="speakText('Thumb')">Thumb</span> [থাম]</td><td>শব্দশেষে M এর পরের B নীরব।</td></tr><tr><td>-IGH</td><td>GH নীরব</td><td><span class="speakable" onclick="speakText('Night')">Night</span> [নাইট], <span class="speakable" onclick="speakText('High')">High</span> [হাই]</td><td>GH অংশটি উচ্চারিত হয় না।</td></tr><tr><td>H-</td><td>H নীরব</td><td><span class="speakable" onclick="speakText('Hour')">Hour</span> [আওয়ার], <span class="speakable" onclick="speakText('Honest')">Honest</span> [অনেস্ট]</td><td>কিছু শব্দে H উচ্চারিত হয় না।</td></tr><tr><td>-T-</td><td>T নীরব</td><td><span class="speakable" onclick="speakText('Listen')">Listen</span> [লিসন], <span class="speakable" onclick="speakText('Castle')">Castle</span> [কাসল]</td><td>মাঝের T উচ্চারণ হয় না।</td></tr><tr><td>-L-</td><td>L নীরব</td><td><span class="speakable" onclick="speakText('Walk')">Walk</span> [ওয়াক], <span class="speakable" onclick="speakText('Calm')">Calm</span> [কাম]</td><td>কে বা এম এর আগের L নীরব।</td></tr></table></div>
+<h3>অন্যান্য ব্যতিক্রমী অনিয়মিত শব্দ</h3>
+<p>• <span class="speakable" onclick="speakText('One')">One</span> [ওয়ান] • <span class="speakable" onclick="speakText('Once')">Once</span> [ওয়ান্স] • <span class="speakable" onclick="speakText('Sword')">Sword</span> [সর্ড] • <span class="speakable" onclick="speakText('Colonel')">Colonel</span> [কার্নেল] • <span class="speakable" onclick="speakText('Choir')">Choir</span> [কয়ার] • <span class="speakable" onclick="speakText('Women')">Women</span> [উইমিন] • <span class="speakable" onclick="speakText('Busy')">Busy</span> [বিজি]।”</p>`},
+{title:"Syllables ও Word Division",sub:"সিলেবল গণনা, শব্দের অংশ বিভাজন এবং এর গুরুত্ব",html:`
+<p>Syllable হলো কোনো শব্দের এমন একটি অংশ যা একবারে বা এক নিঃশ্বাসে উচ্চারিত হয়। প্রতিটি সিলেবলে অন্তত একটি স্বরধ্বনি বা Vowel Sound থাকতেই হবে। সিলেবলের সংখ্যা জানলে বড় শব্দের উচ্চারণ ও বানান নির্ভুল হয়:</p>
+<div class="tablewrap"><table><tr><th>ধরণ (Type)</th><th>সিলেবল সংখ্যা</th><th>উদাহরণ শব্দ ও বিভাজন</th><th>বাংলা উচ্চারণ</th></tr><tr><td>Monosyllable</td><td>১টি</td><td><span class="speakable" onclick="speakText('Cat')">Cat</span> (Cat)</td><td>ক্যাট</td></tr><tr><td>Disyllable</td><td>২টি</td><td><span class="speakable" onclick="speakText('Teacher')">Teacher</span> (Teach-er)</td><td>টিচার</td></tr><tr><td>Trisyllable</td><td>৩টি</td><td><span class="speakable" onclick="speakText('Banana')">Banana</span> (Ba-na-na)</td><td>ব্যানানা</td></tr><tr><td>Polysyllable</td><td>৪ বা ততোধিক</td><td><span class="speakable" onclick="speakText('Education')">Education</span> (Ed-u-ca-tion)</td><td>এজুকেশন</td></tr></table></div>
+<h3>সিলেবল বিভাজনের সহায়ক কৌশল</h3>
+<ul>
+  <li><b>Compound Words:</b> দুটি আলাদা শব্দ মিলে এক হলে তাদের মাঝখানে ভাগ হয়। যেমন—<span class="speakable" onclick="speakText('Foot-ball')">Foot-ball</span>।</li>
+  <li><b>Consonant વચ્ચે ভাগ:</b> দুটি কনসোনেন্টের মাঝখানে সাধারণত সিলেবল ভাগ হয়। যেমন—<span class="speakable" onclick="speakText('Winter')">Win-ter</span>, <span class="speakable" onclick="speakText('Sister')">Sis-ter</span>।</li>
+  <li><b>Prefix & Suffix:</b> উপসর্গ বা প্রত্যয় আলাদাভাবে সিলেবল গঠন করে। যেমন—<span class="speakable" onclick="speakText('Unhappy')">Un-hap-py</span>।</li>
+</ul>
+<div class="callout good"><b>সতর্কতা:</b> ভাওয়েল লেটার গুনে সিলেবল নির্ধারণ করবেন না। যেমন—<span class="speakable" onclick="speakText('Queue')">Queue</span> শব্দে ৫টি ভাওয়েল লেটার থাকলেও এটি মাত্র ১ সিলেবল বিশিষ্ট শব্দ!</div>`},
+{title:"Word Stress ও Sentence Stress",sub:"শব্দে ও বাক্যে সঠিক ঝোঁক বা জোর (Stress) দেওয়ার শিল্প",html:`
+<h3>Word Stress (শব্দে ঝোঁক)</h3>
+<p>ইংরেজি বহুসিলেবল বিশিষ্ট শব্দে সব সিলেবল সমান জোরে উচ্চারিত হয় না। একটি নির্দিষ্ট সিলেবলে বেশি জোর বা Stress দিতে হয়:</p>
+<div class="tablewrap"><table><tr><th>শব্দ</th><th>Stress এর অবস্থান</th><th>সঠিক উচ্চারণ বিন্যাস</th></tr><tr><td><span class="speakable" onclick="speakText('Table')">Table</span></td><td>প্রথম সিলেবল</td><td><b>TA</b>-ble</td></tr><tr><td><span class="speakable" onclick="speakText('Begin')">Begin</span></td><td>দ্বিতীয় সিলেবল</td><td>be-<b>GIN</b></td></tr><tr><td><span class="speakable" onclick="speakText('Important')">Important</span></td><td>দ্বিতীয় সিলেবল</td><td>im-<b>POR</b>-tant</td></tr><tr><td><span class="speakable" onclick="speakText('Banana')">Banana</span></td><td>দ্বিতীয় সিলেবল</td><td>ba-<b>NA</b>-na</td></tr></table></div>
+<h3>Noun বনাম Verb এ Stress পরিবর্তনের জাদুকরী রূপ</h3>
+<div class="grid">
+  <div class="card"><h4>Noun রূপ</h4><p><b><span class="speakable" onclick="speakText('REcord')">REcord</span></b> [প্রথম সিলেবলে জোর]<br>অর্থ: রেকর্ড বা নথি।</p></div>
+  <div class="card"><h4>Verb রূপ</h4><p><b><span class="speakable" onclick="speakText('reCORD')">reCORD</span></b> [দ্বিতীয় সিলেবলে জোর]<br>অর্থ: রেকর্ড করা।</p></div>
+</div>
+<h3>Sentence Stress (বাক্যে ঝোঁক)</h3>
+<p>একটি পূর্ণাঙ্গ বাক্যে বক্তা তার ভাব প্রকাশের জন্য গুরুত্বপূর্ণ তথ্যবাহী শব্দগুলোতে (Content words: Noun, Verb, Adjective) বেশি জোর দেন:</p>
+<p class="speakable" onclick="speakText('I want to BUY a BOOK.')">“I want to <b>BUY</b> a <b>BOOK</b>.” — এখানে BUY ও BOOK এ জোর দিয়ে নির্দিষ্ট গুরুত্ব বোঝানো হয়েছে।</p>`},
+{title:"Intonation: কণ্ঠস্বরের ওঠানামা",sub:"Falling ও Rising Intonation এর মাধ্যমে মনের ভাব প্রকাশ",html:`
+<p>কথা বলার সময় কণ্ঠস্বর ওপরের দিকে ওঠানো বা নিচের দিকে নামানোর ভঙ্গিকেই Intonation বলে। এটি ভাষার অর্থ ও বক্তার মনোভাব ফুটিয়ে তোলে:</p>
+<div class="grid">
+  <div class="card">
+    <h4>↘ Falling Intonation (কণ্ঠস্বর নিচে নামানো)</h4>
+    <p>সাধারণ বিবৃতিমূলক বাক্য, আদেশ এবং Wh-question (What, Where, Who) এর ক্ষেত্রে কণ্ঠস্বর নিচে নামে।</p>
+    <p class="speakable" onclick="speakText('I am a teacher.')">• I am a teacher. ↘</p>
+    <p class="speakable" onclick="speakText('Where do you live?')">• Where do you live? ↘</p>
+  </div>
+  <div class="card">
+    <h4>↗ Rising Intonation (কণ্ঠস্বর ওপরে ওঠানো)</h4>
+    <p>Yes/No প্রশ্ন, অনিশ্চয়তা কিংবা কথা চালিয়ে যাওয়ার অনুরোধ বোঝাতে কণ্ঠস্বর ওপরে ওঠে।</p>
+    <p class="speakable" onclick="speakText('Are you ready?')">• Are you ready? ↗</p>
+    <p class="speakable" onclick="speakText('Do you understand?')">• Do you understand? ↗</p>
+  </div>
+</div>
+<div class="callout good"><b>অনুশীলন:</b> “Really?” শব্দটি একবার কৌতূহল ও বিস্ময় নিয়ে উপরে তুলে (↗) বলুন, আবার আরেকবার নিরাসক্তভাবে নিচে নামিয়ে (↘) বলুন। পার্থক্য স্পষ্ট টের পাবেন।</div>`},
+{title:"Numbers, Ordinals ও Dates",sub:"সংখ্যা, ক্রমবাচক সংখ্যা এবং তারিখ বলার আন্তর্জাতিক নিয়ম",html:`
+<h3>Cardinal Numbers (মূল সংখ্যা)</h3>
+<div class="tablewrap"><table><tr><th>রেঞ্জ</th><th>ইংরেজি শব্দ ও বানান</th><th>বাংলা অর্থ</th></tr><tr><td>1–10</td><td><span class="speakable" onclick="speakText('One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten')">One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten</span></td><td>এক থেকে দশ</td></tr><tr><td>11–20</td><td><span class="speakable" onclick="speakText('Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty')">Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty</span></td><td>এগারো থেকে বিশ</td></tr><tr><td>বড় সংখ্যা</td><td><span class="speakable" onclick="speakText('Hundred, Thousand, Million, Billion')">Hundred (শত), Thousand (হাজার), Million (দশ লক্ষ), Billion (শত কোটি)</span></td><td>আন্তর্জাতিক একক</td></tr></table></div>
+<h3>Ordinal Numbers (ক্রমবাচক সংখ্যা)</h3>
+<div class="tablewrap"><table><tr><th>সংখ্যা</th><th>Ordinal Word</th><th>উচ্চারণ</th><th>সংখ্যা</th><th>Ordinal Word</th><th>উচ্চারণ</th></tr><tr><td>1st</td><td><span class="speakable" onclick="speakText('First')">First</span></td><td>ফার্স্ট</td><td>6th</td><td><span class="speakable" onclick="speakText('Sixth')">Sixth</span></td><td>সিক্সথ</td></tr><tr><td>2nd</td><td><span class="speakable" onclick="speakText('Second')">Second</span></td><td>সেকেন্ড</td><td>7th</td><td><span class="speakable" onclick="speakText('Seventh')">Seventh</span></td><td>সেভन्थ</td></tr><tr><td>3rd</td><td><span class="speakable" onclick="speakText('Third')">Third</span></td><td>থার্ড</td><td>8th</td><td><span class="speakable" onclick="speakText('Eighth')">Eighth</span></td><td>এইথ</td></tr><tr><td>4th</td><td><span class="speakable" onclick="speakText('Fourth')">Fourth</span></td><td>ফোর্থ</td><td>9th</td><td><span class="speakable" onclick="speakText('Ninth')">Ninth</span></td><td>নাইন্থ</td></tr><tr><td>5th</td><td><span class="speakable" onclick="speakText('Fifth')">Fifth</span></td><td>ফিফথ</td><td>10th</td><td><span class="speakable" onclick="speakText('Tenth')">Tenths</span></td><td>টেন্থ</td></tr></table></div>
+<p><b>তারিখ উচ্চারণ নিয়ম:</b> 14 October 2026 কে বলা হয়— “the fourteenth of October, twenty twenty-six”। বছর বলার সময় দুই অঙ্ক করে ভাগ করে বলা প্রচলিত।</p>`},
+{title:"Days, Months ও Seasons",sub:"সপ্তাহের দিন, মাসের নাম এবং ঋতুভিত্তিক ইংরেজি পরিভাষা",html:`
+<h3>সপ্তাহের দিনসমূহ (Days of the Week)</h3>
+<div class="tablewrap"><table><tr><th>Day</th><th>বাংলা অর্থ</th><th>উচ্চারণ-সহায়িকা</th><th>Day</th><th>বাংলা অর্থ</th><th>উচ্চারণ-সহায়িকা</th></tr><tr><td><span class="speakable" onclick="speakText('Saturday')">Saturday</span></td><td>শনিবার</td><td>স্যাটারডে</td><td><span class="speakable" onclick="speakText('Wednesday')">Wednesday</span></td><td>বুধবার</td><td>ওয়েনজডে</td></tr><tr><td><span class="speakable" onclick="speakText('Sunday')">Sunday</span></td><td>রবিবার</td><td>সানডে</td><td><span class="speakable" onclick="speakText('Thursday')">Thursday</span></td><td>বৃহস্পতিবার</td><td>থার্সডে</td></tr><tr><td><span class="speakable" onclick="speakText('Monday')">Monday</span></td><td>সোমবার</td><td>মানডে</td><td><span class="speakable" onclick="speakText('Friday')">Friday</span></td><td>শুক্রবার</td><td>ফ্রাইডে</td></tr><tr><td><span class="speakable" onclick="speakText('Tuesday')">Tuesday</span></td><td>মঙ্গলবার</td><td>টিউজডে</td><td colspan="3"></td></tr></table></div>
+<h3>বছরের ১২টি মাস (Months of the Year)</h3>
+<p><span class="speakable" onclick="speakText('January, February, March, April, May, June, July, August, September, October, November, December')">January, February, March, April, May, June, July, August, September, October, November, December</span> — মাসগুলোর নাম উচ্চারণের সময় দ্বিতীয় সিলেবলে জোর দেওয়া হয়।</p>
+<h3>ঋতুসমূহ (Seasons)</h3>
+<div class="grid">
+  <div class="card">🌸 <span class="speakable" onclick="speakText('Spring')">Spring</span> — বসন্ত</div>
+  <div class="card">☀️ <span class="speakable" onclick="speakText('Summer')">Summer</span> — গ্রীষ্ম</div>
+  <div class="card">🌧️ <span class="speakable" onclick="speakText('Monsoon')">Monsoon</span> — বর্ষা</div>
+  <div class="card">🍂 <span class="speakable" onclick="speakText('Autumn')">Autumn / Fall</span> — শরৎ</div>
+  <div class="card">🌾 <span class="speakable" onclick="speakText('Late Autumn')">Late Autumn</span> — হেমন্ত</div>
+  <div class="card">❄️ <span class="speakable" onclick="speakText('Winter')">Winter</span> — শীত</div>
+</div>`},
+{title:"British vs American: Accent",sub:"ব্রিটিশ (UK) এবং আমেরিকান (US) উচ্চারণের মূল পার্থক্যসমূহ",html:`
+<p>ব্রিটিশ ইংরেজি (BrE) এবং আমেরিকান ইংরেজি (AmE) এর মধ্যে উচ্চারণগত কিছু সুনির্দিষ্ট পার্থক্য রয়েছে। প্রধান পার্থক্যগুলো নিচে ছক আকারে দেওয়া হলো:</p>
+<div class="tablewrap"><table><tr><th>বৈশিষ্ট্য</th><th>British English (UK)</th><th>American English (US)</th></tr><tr><td><b>R Sound (Rhoticity)</b></td><td>শব্দশেষে বা কনসোনেন্টের আগে R সাধারণত নীরব থাকে। যেমন: <span class="speakable" onclick="speakText('Car')">Car</span> [/kɑː/]</td><td>R অত্যন্ত জোরালোভাবে উচ্চারিত হয়। যেমন: <span class="speakable" onclick="speakText('Car')">Car</span> [/kɑːr/]</td></tr><tr><td><b>Flap T (T Flapping)</b></td><td>T পরিষ্কার ও শক্তভাবে উচ্চারিত হয়। যেমন: <span class="speakable" onclick="speakText('Water')">Water</span> [/ˈwɔːtə/]</td><td>মাঝের T দ্রুত ড এর মতো (Tap sound) উচ্চারিত হয়। যেমন: <span class="speakable" onclick="speakText('Water')">Water</span> [/ˈwɔːɾɚ/]</td></tr><tr><td><b>A Sound (Bath/Trap)</b></td><td>কিছু শব্দে দীর্ঘ আ (/ɑː/) হয়। যেমন: <span class="speakable" onclick="speakText('Dance')">Dance</span> [/dɑːns/]</td><td>সেগুলোতে সংক্ষিপ্ত অ্যা (/æ/) হয়। যেমন: <span class="speakable" onclick="speakText('Dance')">Dance</span> [/dæns/]</td></tr></table></div>
+<h3>বহুল ব্যবহৃত শব্দের উচ্চারণগত বৈচিত্র্য</h3>
+<div class="tablewrap"><table><tr><th>Word</th><th>British (BrE)</th><th>American (AmE)</th><th>বাংলা অর্থ</th></tr><tr><td><span class="speakable" onclick="speakText('Tomato')">Tomato</span></td><td>/təˈmɑːtəʊ/ [টমাটো]</td><td>/təˈmeɪtoʊ/ [টমেটো]</td><td>টমেটো</td></tr><tr><td><span class="speakable" onclick="speakText('Schedule')">Schedule</span></td><td>/ˈʃedjuːl/ [শেডিউল]</td><td>/ˈskedʒuːl/ [স্কেজুয়াল]</td><td>সময়সূচি</td></tr><tr><td><span class="speakable" onclick="speakText('Privacy')">Privacy</span></td><td>/ˈprɪvəsi/ [প্রিভসি]</td><td>/ˈpraɪvəsi/ [প্রাইভেসি]</td><td>গোপনীয়তা</td></tr><tr><td><span class="speakable" onclick="speakText('Zebra')">Zebra</span></td><td>/ˈzebrə/ [জেব্রা]</td><td>/ˈziːbrə/ [জিব্রা]</td><td>জেব্রা</td></tr></table></div>`},
+{title:"British–American Spelling ও Vocabulary",sub:"বানানের বানানরীতি এবং দৈনন্দিন শব্দচয়নের পার্থক্য",html:`
+<h3>বানানের ভিন্নতা (Spelling Variations)</h3>
+<div class="tablewrap"><table><tr><th>British (UK)</th><th>American (US)</th><th>বাংলা অর্থ</th></tr><tr><td><span class="speakable" onclick="speakText('Colour')">Colour</span></td><td><span class="speakable" onclick="speakText('Color')">Color</span></td><td>রং</td></tr><tr><td><span class="speakable" onclick="speakText('Centre')">Centre</span></td><td><span class="speakable" onclick="speakText('Center')">Center</span></td><td>কেন্দ্র</td></tr><tr><td><span class="speakable" onclick="speakText('Theatre')">Theatre</span></td><td><span class="speakable" onclick="speakText('Theater')">Theater</span></td><td>নাট্যশালা</td></tr><tr><td><span class="speakable" onclick="speakText('Organise')">Organise</span></td><td><span class="speakable" onclick="speakText('Organize')">Organize</span></td><td>সংগঠিত করা</td></tr><tr><td><span class="speakable" onclick="speakText('Programme')">Programme</span></td><td><span class="speakable" onclick="speakText('Program')">Program</span></td><td>অনুষ্ঠান / প্রোগ্রাম</td></tr></table></div>
+<h3>দৈনন্দিন শব্দচয়ন (Vocabulary Variations)</h3>
+<div class="tablewrap"><table><tr><th>British Term (UK)</th><th>American Term (US)</th><th>বাংলা অর্থ</th></tr><tr><td><span class="speakable" onclick="speakText('Lift')">Lift</span></td><td><span class="speakable" onclick="speakText('Elevator')">Elevator</span></td><td>লিফট</td></tr><tr><td><span class="speakable" onclick="speakText('Lorry')">Lorry</span></td><td><span class="speakable" onclick="speakText('Truck')">Truck</span></td><td>পণ্যবাহী ট্রাক</td></tr><tr><td><span class="speakable" onclick="speakText('Petrol')">Petrol</span></td><td><span class="speakable" onclick="speakText('Gasoline')">Gas / Gasoline</span></td><td>পেট্রল / জ্বালানি</td></tr><tr><td><span class="speakable" onclick="speakText('Flat')">Flat</span></td><td><span class="speakable" onclick="speakText('Apartment')">Apartment</span></td><td>ফ্ল্যাট বাসা</td></tr><tr><td><span class="speakable" onclick="speakText('Queue')">Queue</span></td><td><span class="speakable" onclick="speakText('Line')">Line</span></td><td>সারি</td></tr><tr><td><span class="speakable" onclick="speakText('Autumn')">Autumn</span></td><td><span class="speakable" onclick="speakText('Fall')">Fall</span></td><td>শরৎকাল</td></tr></table></div>`},
+{title:"Connected Speech",sub:"সংযুক্ত বাক্য, লিংকিং, উইক ফর্ম এবং সাবলীল বলার কৌশল",html:`
+<p>বাস্তব জীবনে নেটিভ স্পিকাররা আলাদা আলাদা শব্দ স্পষ্ট করে উচ্চারণ করেন না, বরং শব্দগুলোকে একত্রে গেঁথে ফেলেন। একেই Connected Speech বলে:</p>
+<h3>1. Linking (শব্দ সংযোগ)</h3>
+<p>একটি শব্দের শেষ কনসোনেন্ট পরের শব্দের শুরুর ভাওয়েলের সাথে যুক্ত হয়ে যায়:</p>
+<p class="speakable" onclick="speakText('Pick it up')">• Pick it up → Pi-ck-i-t-up [পিক ইট আপ]</p>
+<p class="speakable" onclick="speakText('Turn off')">• Turn off → Tur-n-off [টার্ন অফ]</p>
+<p class="speakable" onclick="speakText('An apple')">• An apple → A-n-apple [অ্যান অ্যাপল]</p>
+<h3>2. Weak Forms (দুর্বল রূপ)</h3>
+<p>বাক্যের ব্যাকরণগত ছোট শব্দগুলোতে জোর দেওয়া হয় না, ফলে সেগুলোর উচ্চারণ দুর্বল বা Schwa তে পরিণত হয়:</p>
+<div class="tablewrap"><table><tr><th>Word</th><th>Strong Form</th><th>Weak Form (স্বাভাবিক কথ্য রূপ)</th></tr><tr><td>To</td><td>/tuː/</td><td>/tə/ [টা]</td></tr><tr><td>For</td><td>/fɔːr/</td><td>/fər/ [ফার]</td></tr><tr><td>And</td><td>/ænd/</td><td>/ən/ বা /n/ [এন]</td></tr><tr><td>Can</td><td>/kæn/</td><td>/kən/ [কান]</td></tr></table></div>
+<h3>3. Assimilation ও Elision</h3>
+<p>দ্রুত গতিতে কথা বলার সময় পাশাপাশি থাকা দুটি ধ্বনি মিলে নতুন ধ্বনি তৈরি করতে পারে (যেমন: <span class="speakable" onclick="speakText('Would you')">Would you</span> → वुজু) অথবা কোনো ধ্বনি উহ্য বা বাদ পড়তে পারে (যেমন: <span class="speakable" onclick="speakText('Next day')">Next day</span> এ t ধ্বনি নীরব হয়ে যাওয়া)।</p>`},
+{title:"Consonant Cluster ও Aspiration",sub:"একাধিক ব্যঞ্জনধ্বনির গুচ্ছ এবং মহাশ্বাস বা এস্পিরেশন",html:`
+<h3>Consonant Cluster (ব্যঞ্জনগুচ্ছ)</h3>
+<p>যখন দুই বা ততোধিক কনসোনেন্ট কোনো ভাওয়েল ছাড়াই পাশাপাশি বসে, তখন তাকে Consonant Cluster বলে। বাংলাভাষীরা প্রায়ই এদের মাঝে অতিরিক্ত স্বরধ্বনি টেনে আনেন যা বর্জন করতে হবে:</p>
+<div class="grid">
+  <div class="card">
+    <h4>শব্দের শুরুতে Cluster</h4>
+    <p>• <span class="speakable" onclick="speakText('School')">School</span> [/skuːl/ - এস্কুল নয়, একসাথে স্কুল]<br>• <span class="speakable" onclick="speakText('Street')">Street</span> [/striːt/ - স্ট্রিন্ট]<br>• <span class="speakable" onclick="speakText('Spring')">Spring</span> [/sprɪŋ/]<br>• <span class="speakable" onclick="speakText('Play')">Play</span> [/pleɪ/]</p>
+  </div>
+  <div class="card">
+    <h4>শব্দের শেষে Cluster</h4>
+    <p>• <span class="speakable" onclick="speakText('Asked')">Asked</span> [/ɑːskt/]<br>• <span class="speakable" onclick="speakText('Helped')">Helped</span> [/helpt/]<br>• <span class="speakable" onclick="speakText('Months')">Months</span> [/mʌnθs/]</p>
+  </div>
+</div>
+<h3>Aspiration (অ্যাসপিরেশন বা বায়ুপ্রবাহ)</h3>
+<p>ইংরেজি P, T, K বর্ণগুলো যখন কোনো শব্দের শুরুতে বা জোর দেওয়া সিলেবলে থাকে, তখন মুখ থেকে অতিরিক্ত এক পশলা বাতাস বা Puff of air বের হয়। একে Aspiration বলে।</p>
+<p>• <b>Pin</b> [প্যিন - ফুটিয়ে বাতাস বের হবে] বনাম <b>Spin</b> [স্পিন - এখানে বাতাস কম বের হবে]।</p>`},
+{title:"Homophones, Homographs ও Homonyms",sub:"একই রকম উচ্চারণ বা বানান কিন্তু ভিন্ন অর্থবাহী শব্দসমূহ",html:`
+<h3>1. Homophones (সমোচ্চারিত শব্দ)</h3>
+<p>যে শব্দগুলোর উচ্চারণ একই কিন্তু বানান এবং অর্থ সম্পূর্ণ ভিন্ন:</p>
+<div class="tablewrap"><table><tr><th>শব্দজোড়া</th><th>অর্থ ১</th><th>অর্থ ২</th></tr><tr><td><span class="speakable" onclick="speakText('See – Sea')">See – Sea</span></td><td>দেখা (See)</td><td>সমুদ্র (Sea)</td></tr><tr><td><span class="speakable" onclick="speakText('Right – Write')">Right – Write</span></td><td>সঠিক / ডান দিক (Right)</td><td>লেখা (Write)</td></tr><tr><td><span class="speakable" onclick="speakText('Sun – Son')">Sun – Son</span></td><td>সূর্য (Sun)</td><td>পুত্র (Son)</td></tr><tr><td><span class="speakable" onclick="speakText('Flour – Flower')">Flour – Flower</span></td><td>ময়দা (Flour)</td><td>ফুল (Flower)</td></tr></table></div>
+<h3>2. Homographs (সমবানান শব্দ)</h3>
+<p>যে শব্দগুলোর বানান হুবহু এক কিন্তু উচ্চারণ ও অর্থ ভিন্ন:</p>
+<p>• <span class="speakable" onclick="speakText('Read')">Read</span>: /riːd/ [বর্তমান কাল] বনাম /red/ [অতীত কাল]।<br>• <span class="speakable" onclick="speakText('Wind')">Wind</span>: /wɪnd/ [বাতাস] বনাম /waɪnd/ [ঘড়িতে চাবি দেওয়া]।</p>
+<h3>3. Homonyms (সমরূপ শব্দ)</h3>
+<p>বানান ও উচ্চারণ এক কিন্তু প্রসঙ্গভেদে অর্থ সম্পূর্ণ আলাদা। যেমন— <span class="speakable" onclick="speakText('Bank')">Bank</span> (টাকার ব্যাংক বা নদীর তীর) এবং <span class="speakable" onclick="speakText('Bat')">Bat</span> (বাদুড় বা ক্রিকেট ব্যাট)।</p>`},
+{title:"Prefix, Root, Suffix ও Word Stress",sub:"উপসর্গ, মূল শব্দ, প্রত্যয় এবং শব্দ গঠনে ঝোঁকের পরিবর্তন",html:`
+<div class="diagram"><div class="node speakable" onclick="speakText('un')">Prefix (un-)</div><div class="arrow">+</div><div class="node speakable" onclick="speakText('help')">Root (help)</div><div class="arrow">+</div><div class="node speakable" onclick="speakText('ful')">Suffix (-ful)</div><div class="arrow">→</div><div class="node speakable" onclick="speakText('Unhelpful')">Unhelpful</div></div>
+<div class="tablewrap"><table><tr><th>গঠন উপাদান</th><th>উদাহরণ শব্দ</th><th>বিবরণ ও কার্যকারিতা</th></tr><tr><td>Prefix (উপসর্গ)</td><td><span class="speakable" onclick="speakText('Unhappy')">Unhappy</span> [আনহ্যাপি]</td><td>মূল শব্দের আগে বসে বিপরীত অর্থ প্রকাশ করে।</td></tr><tr><td>Root (মূল শব্দ)</td><td><span class="speakable" onclick="speakText('Help')">Help</span> [হেল্প]</td><td>শব্দের মূল বা আদি অর্থ বহন করে।</td></tr><tr><td>Suffix (প্রত্যয়)</td><td><span class="speakable" onclick="speakText('Helpful')">Helpful</span> [হেল্পফুল]</td><td>মূল শব্দের পরে বসে নতুন পার্টস অফ স্পিচ তৈরি করে।</td></tr></table></div>
+<h3>Word Stress পরিবর্তনের চমৎকার উদাহরণ</h3>
+<p>মূল শব্দের সাথে সাফিক্স বা প্রিফিক্স যুক্ত হলে অনেক সময় মূল শব্দের Stress বা ঝোঁকের স্থান পরিবর্তিত হয়ে যায়:</p>
+<p>• <span class="speakable" onclick="speakText('Photograph')"><b>PHO</b>-to-graph</span> (প্রথম সিলেবলে জোর) ➔ <span class="speakable" onclick="speakText('Photography')">pho-<b>TOG</b>-ra-phy</span> (দ্বিতীয় সিলেবলে জোর পরিবর্তিত হয়েছে)।</p>`},
+{title:"Punctuation, Capitalization ও Reading Aloud",sub:"বিরামচিহ্ন, বড় হাতের অক্ষর এবং সাবলীল সশব্দ পাঠের নিয়ম",html:`
+<h3>Punctuation Marks (বিরামচিহ্ন পরিচিতি)</h3>
+<div class="tablewrap"><table><tr><th>চিহ্ন</th><th>নাম</th><th>বাক্যে ব্যবহার ও পঠন কৌশল</th></tr><tr><td>.</td><td>Full Stop</td><td>বাক্যের সমাপ্তি; কণ্ঠস্বর নিচে নামিয়ে পূর্ণ বিরতি।</td></tr><tr><td>,</td><td>Comma</td><td>সাময়িক ছোট বিরতি (এক সেকেন্ডের কম)।</td></tr><tr><td>?</td><td>Question Mark</td><td>প্রশ্নবোধক বাক্য; কণ্ঠস্বর সাধারণত ওপরে ওঠে।</td></tr><tr><td>!</td><td>Exclamation Mark</td><td>আবেগ, বিস্ময় বা তীব্র অনুভূতির প্রকাশ।</td></tr><tr><td>;</td><td>Semicolon</td><td>সম্পর্কযুক্ত দুটি স্বাধীন উপবাক্যের মাঝে মাঝারি বিরতি।</td></tr></table></div>
+<h3>Capitalization (বড় হাতের অক্ষরের নিয়ম)</h3>
+<ul>
+  <li>বাক্যের একেবারে প্রথম শব্দে: <span class="speakable" onclick="speakText('The weather is nice.')">The weather is nice.</span></li>
+  <li>ব্যক্তি, নদী, দেশ বা প্রতিষ্ঠানের নাম (Proper Noun): <span class="speakable" onclick="speakText('Bangladesh, Rahim, Dhaka')">Bangladesh, Rahim, Dhaka</span>।</li>
+  <li>বার ও মাসের নাম: <span class="speakable" onclick="speakText('Monday, October')">Monday, October</span>।</li>
+  <li>সর্বদা বড় হাতের হবে এমন সর্বনাম: <span class="speakable" onclick="speakText('I am ready.')">I am ready.</span></li>
+</ul>`},
+{title:"Contractions ও Everyday Pronunciation",sub:"কথ্য ইংরেজিতে বহুল ব্যবহৃত সংক্ষিপ্ত রূপসমূহ",html:`
+<p>দৈনন্দিন কথ্য ভাষায় এবং অনানুষ্ঠানিক লেখায় সময় বাঁচাতে এবং সাবলীলতা আনতে Contractions বা সংক্ষিপ্ত রূপগুলো ব্যাপকভাবে ব্যবহৃত হয়:</p>
+<div class="tablewrap"><table><tr><th>Full Form (পূর্ণ রূপ)</th><th>Contraction (সংক্ষিপ্ত রূপ)</th><th>বাংলা অর্থ</th><th>সঠিক কথ্য উচ্চারণ</th></tr><tr><td>I am</td><td><span class="speakable" onclick="speakText('I\'m')">I'm</span></td><td>আমি হই</td><td>আইম</td></tr><tr><td>You are</td><td><span class="speakable" onclick="speakText('You\'re')">You're</span></td><td>তুমি/আপনারা</td><td>ইউআর / ইওর</td></tr><tr><td>He is / He has</td><td><span class="speakable" onclick="speakText('He\'s')">He's</span></td><td>সে হয় / তার আছে</td><td>হিজ</td></tr><tr><td>Do not</td><td><span class="speakable" onclick="speakText('Don\'t')">Don't</span></td><td>করি না</td><td>ডোনট</td></tr><tr><td>Does not</td><td><span class="speakable" onclick="speakText('Doesn\'t')">Doesn't</span></td><td>করে না</td><td>ডাজেন্ট</td></tr><tr><td>Did not</td><td><span class="speakable" onclick="speakText('Didn\'t')">Didn't</span></td><td>করেনি</td><td>ডিডেন্ট</td></tr><tr><td>Cannot</td><td><span class="speakable" onclick="speakText('Can\'t')">Can't</span></td><td>পারে না</td><td>ক্যান্ট (BrE) / কেন্ট (AmE)</td></tr><tr><td>Will not</td><td><span class="speakable" onclick="speakText('Won\'t')">Won't</span></td><td>করবে না</td><td>ওন্ট</td></tr><tr><td>I have</td><td><span class="speakable" onclick="speakText('I\'ve')">I've</span></td><td>আমার আছে</td><td>আইভ</td></tr></table></div>`},
+{title:"IPA ও Phonetic Transcription",sub:"অভিধান থেকে নিখুঁত উচ্চারণ চেনার জন্য IPA পাঠের মাস্টার গাইড",html:`
+<p>আন্তর্জাতিক ধ্বনিমূলক বর্ণমালা বা IPA (International Phonetic Alphabet) হলো এমন একটি ব্যবস্থা যার মাধ্যমে পৃথিবীর যেকোনো ভাষার নিখুঁত উচ্চারণ কোনো অডিও শোনা ছাড়াই পড়া সম্ভব। নিচে অভিধানে বহুল ব্যবহৃত প্রধান IPA প্রতীকগুলো দেওয়া হলো:</p>
+<div class="tablewrap"><table><tr><th>IPA Symbol</th><th>মূল শব্দ</th><th>বাংলা রূপ</th><th>IPA Symbol</th><th>মূল শব্দ</th><th>বাংলা রূপ</th></tr><tr><td>/iː/</td><td><span class="speakable" onclick="speakText('See')">See</span> [সি]</td><td>দীর্ঘ ঈ</td><td>/ɪ/</td><td><span class="speakable" onclick="speakText('Sit')">Sit</span> [সিট]</td><td>হ্রস্ব ই</td></tr><tr><td>/e/</td><td><span class="speakable" onclick="speakText('Bed')">Bed</span> [বেড]</td><td>এ</td><td>/æ/</td><td><span class="speakable" onclick="speakText('Cat')">Cat</span> [ক্যাট]</td><td>অ্যা</td></tr><tr><td>/ʌ/</td><td><span class="speakable" onclick="speakText('Cup')">Cup</span> [কাপ]</td><td>আ/অ</td><td>/ə/</td><td><span class="speakable" onclick="speakText('About')">About</span> [অ্যাবাউট]</td><td>শোয়া (দুর্বল অ)</td></tr><tr><td>/ʃ/</td><td><span class="speakable" onclick="speakText('Ship')">Ship</span> [শিপ]</td><td>শ</td><td>/ʒ/</td><td><span class="speakable" onclick="speakText('Measure')">Measure</span></td><td>ঝ</td></tr><tr><td>/θ/</td><td><span class="speakable" onclick="speakText('Think')">Think</span> [থিংক]</td><td>নরম থ</td><td>/ð/</td><td><span class="speakable" onclick="speakText('This')">This</span> [দিস]</td><td>নরম দ</td></tr><tr><td>/ŋ/</td><td><span class="speakable" onclick="speakText('Sing')">Sing</span> [সিং]</td><td>ঙ</td><td>/tʃ/</td><td><span class="speakable" onclick="speakText('Chair')">Chair</span> [চেয়ার]</td><td>চ</td></tr><tr><td>/dʒ/</td><td><span class="speakable" onclick="speakText('Jam')">Jam</span> [জ্যাম]</td><td>জ</td><td>/j/</td><td><span class="speakable" onclick="speakText('Yes')">Yes</span> [ইয়েস]</td><td>য়</td></tr></table></div>`},
+{title:"Minimal Pairs ও ১০০-শব্দের Drill",sub:"ক্ষুদ্রতম ধ্বনিগত পার্থক্য যাচাই এবং ১০০ শব্দের মাস্টার প্র্যাকটিস ড্রিল",html:`
+<h3>Minimal Pairs (ধ্বনিগত সূক্ষ্ম পার্থক্য সৃষ্টকারী জোড়া)</h3>
+<p>যে শব্দজোড়াগুলোর মধ্যে মাত্র একটি ধ্বনির পার্থক্যের কারণে পুরো শব্দের অর্থ বদলে যায়, তাদের Minimal Pairs বলে:</p>
+<div class="tablewrap"><table><tr><th>শব্দজোড়া</th><th>ধ্বনিগত পার্থক্য</th><th>অর্থগত ভিন্নতা</th></tr><tr><td><span class="speakable" onclick="speakText('Ship – Sheep')">Ship – Sheep</span></td><td>/ɪ/ বনাম /iː/</td><td>জাহাজ ও ভেড়া</td></tr><tr><td><span class="speakable" onclick="speakText('Full – Fool')">Full – Fool</span></td><td>/ʊ/ বনাম /uː/</td><td>পূর্ণ ও বোকাসোকা</td></tr><tr><td><span class="speakable" onclick="speakText('Bat – Bet')">Bat – Bet</span></td><td>/æ/ বনাম /e/</td><td>ব্যাট ও বাজি</td></tr><tr><td><span class="speakable" onclick="speakText('Fan – Van')">Fan – Van</span></td><td>/f/ বনাম /v/</td><td>পাখা ও ভ্যানগাড়ি</td></tr><tr><td><span class="speakable" onclick="speakText('Think – Sink')">Think – Sink</span></td><td>/θ/ বনাম /s/</td><td>চিন্তা করা ও ডুবে যাওয়া</td></tr><tr><td><span class="speakable" onclick="speakText('Light – Right')">Light – Right</span></td><td>/l/ বনাম /r/</td><td>আলো ও সঠিক/ডান</td></tr></table></div>
+<h3>১০০-শব্দের মাস্টার প্র্যাকটিস ড্রিল তালিকা</h3>
+<p>নিচের শব্দগুলো প্রতিদিন ক্রমানুসারে উচ্চারণ করে নিজের জড়তা কাটান:</p>
+<details class="card"><summary><b>১–২৫: Vowel & Phonics Words</b></summary><p><span class="speakable" onclick="speakText('Cat, Cake, Pen, See, Sit, Bike, Hot, Home, Cup, Cute, Ship, Chair, Think, This, Phone, Ghost, Laugh, Night, Watch, Bridge, Rain, Day, Moon, Book, Out')">Cat, Cake, Pen, See, Sit, Bike, Hot, Home, Cup, Cute, Ship, Chair, Think, This, Phone, Ghost, Laugh, Night, Watch, Bridge, Rain, Day, Moon, Book, Out</span></p></details>
+<details class="card"><summary><b>২৬–৫০: Silent Letters & R Sounds</b></summary><p><span class="speakable" onclick="speakText('Know, Knife, Write, Wrong, Lamb, Thumb, Comb, Island, Listen, Castle, Red, Run, Car, Hard, Bird, First, Teacher, Better, Water, Turn, Hour, Honest, Walk, Calm, Half')">Know, Knife, Write, Wrong, Lamb, Thumb, Comb, Island, Listen, Castle, Red, Run, Car, Hard, Bird, First, Teacher, Better, Water, Turn, Hour, Honest, Walk, Calm, Half</span></p></details>
+<details class="card"><summary><b>৫১–৭৫: Stress & Advanced Words</b></summary><p><span class="speakable" onclick="speakText('Teacher, Table, Begin, Important, Banana, Education, Photograph, Photography, Economic, Electricity, One, Two, Once, Sword, Answer, Colonel, Yacht, Choir, Women, Busy, Schedule, Tomato, Privacy, Zebra, Motor')">Teacher, Table, Begin, Important, Banana, Education, Photograph, Photography, Economic, Electricity, One, Two, Once, Sword, Answer, Colonel, Yacht, Choir, Women, Busy, Schedule, Tomato, Privacy, Zebra, Motor</span></p></details>
+<details class="card"><summary><b>৭৬–১০০: Connected Speech & Minimal Pairs</b></summary><p><span class="speakable" onclick="speakText('Pick it up, Turn off, Take it, An apple, Far away, I want to go, Bread and butter, Would you, Did you, Next day, Ship, Sheep, Full, Fool, Bat, Bet, Fan, Van, Pat, Bat, Sue, Zoo, Think, Sink, Light')">Pick it up, Turn off, Take it, An apple, Far away, I want to go, Bread and butter, Would you, Did you, Next day, Ship, Sheep, Full, Fool, Bat, Bet, Fan, Van, Pat, Bat, Sue, Zoo, Think, Sink, Light</span></p></details>`},
+{title:"Foundation থেকে Advanced: Study Plan",sub:"ধাপভিত্তিক সফল অধ্যয়ন পরিকল্পনা ও চূড়ান্ত নির্দেশিকা",html:`
+<p>ইংরেজি উচ্চারণ ও ফনিক্সের ভিত্তি শক্ত করতে ১২ সপ্তাহের একটি ধাপে ধাপে শেখার পরিকল্পনা নিচে দেওয়া হলো:</p>
+<div class="tablewrap"><table><tr><th>ধাপ (Level)</th><th>মূল বিষয়বস্তু</th><th>সাপ্তাহিক লক্ষ্য</th></tr><tr><td>Level 1–3</td><td>Alphabet, Basic Phonics & Vowels</td><td>২৬টি বর্ণ এবং মৌলিক স্বরধ্বনি আয়ত্ত করা।</td></tr><tr><td>Level 4–6</td><td>Digraphs, Spelling Rules & Silent Letters</td><td>যুক্তধ্বনি, বানানের নিয়ম এবং নীরব বর্ণ চেনা।</td></tr><tr><td>Level 7–9</td><td>Syllables, Word Stress & IPA</td><td>সিলেবল ভাগ করা, ঝোঁক দেওয়া এবং অভিধানের IPA পড়া।</td></tr><tr><td>Level 10–12</td><td>BrE vs AmE, Connected Speech & Master Drill</td><td>উভয় অ্যাকসেন্ট, সংযুক্ত বাক্য এবং সাবলীল বলার অভ্যাস।</td></tr></table></div>
+<h3>প্রতিদিনের রুটিন (২৫–৩০ মিনিট)</h3>
+<div class="grid">
+  <div class="card"><b>৫ মিনিট</b><p>আগের দিনের শব্দ রিভিশন।</p></div>
+  <div class="card"><b>৫ মিনিট</b><p>নতুন একটি ফনিক্স রুল অধ্যয়ন।</p></div>
+  <div class="card"><b>৫ মিনিট</b><p>IPA দেখে শব্দ উচ্চারণ অভ্যাস।</p></div>
+  <div class="card"><b>৫ মিনিট</b><p>অডিও শুনে নিখুঁত অনুকরণ।</p></div>
+  <div class="card"><b>৫ মিনিট</b><p>নিজের কণ্ঠ রেকর্ড করে মূল্যায়ন।</p></div>
+  <div class="card"><b>৫ মিনিট</b><p>১০০ শব্দের ড্রিল থেকে অনুশীলন।</p></div>
+</div>
+<div class="callout good"><b>চূড়ান্ত বাণী:</b> সঠিক উচ্চারণ একদিনে হয় না। নিয়ম কানুন, IPA, অডিও শোনার অভ্যাস এবং নিয়মিত চর্চার মাধ্যমেই আপনি একজন নিখুঁত ইংরেজি বক্তা হয়ে উঠতে পারেন।</div>`}
+];
+
+let current=0;
+const pagesEl=document.getElementById('pages'), tocEl=document.getElementById('toc');
+function build(){
+ lessons.forEach((l,i)=>{
+   const sec=document.createElement('section');sec.className='page';sec.id='page'+(i+1);
+   sec.innerHTML=`<div class="pagehead"><span class="num">${String(i+1).padStart(2,'0')}</span><h2>${l.title}</h2><p>${l.sub}</p></div><div class="content">${l.html}</div><div class="footer-nav"><button class="btn ripple" onclick="go(${i})">← আগের পেজ</button><span class="pagecount">পৃষ্ঠা ${i+1} / ${lessons.length}</span><button class="btn primary ripple" onclick="go(${i+2})">পরের পেজ →</button></div>`;
+   pagesEl.appendChild(sec);
+   const b=document.createElement('button');b.textContent=String(i+1).padStart(2,'0')+' · '+l.title;b.dataset.index=i+1;b.onclick=()=>go(i+1);tocEl.appendChild(b);
+ });
+ const alphabet=document.getElementById('alphabet');
+ if(alphabet){
+   const letters=[
+     ['A','/eɪ/'],['B','/biː/'],['C','/siː/'],['D','/diː/'],['E','/iː/'],['F','/ɛf/'],['G','/dʒiː/'],['H','/eɪtʃ/'],
+     ['I','/aɪ/'],['J','/dʒeɪ/'],['K','/keɪ/'],['L','/ɛl/'],['M','/ɛm/'],['N','/ɛn/'],['O','/oʊ/'],['P','/piː/'],
+     ['Q','/kjuː/'],['R','/ɑːr/'],['S','/ɛs/'],['T','/tiː/'],['U','/juː/'],['V','/viː/'],['W','/ˈdʌbəl juː/'],['X','/ɛks/'],
+     ['Y','/waɪ/'],['Z','/ziː/']
+   ];
+   letters.forEach(x=>{
+     const d=document.createElement('div');
+     d.className='letter touchable';
+     d.innerHTML=`<strong>${x[0]} ${x[0].toLowerCase()}</strong><small>${x[1]}</small>`;
+     d.onclick=()=> { speakText(x[0]); toast(`${x[0]} — ${x[1]}`); };
+     alphabet.appendChild(d);
+   });
+ }
+}
+function go(n){
+ if(n===0){document.getElementById('intro').scrollIntoView({behavior:'smooth',block:'start'});current=0;updateProgress();return}
+ if(n<1)n=1;if(n>lessons.length){toast('শেষ পৃষ্ঠা! আবার সূচিতে যেতে পারেন।');n=lessons.length}
+ current=n;document.getElementById('intro').classList.add('hide');
+ document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n-1));
+ document.querySelectorAll('.toc button').forEach((b,i)=>b.classList.toggle('active',i===n-1));
+ updateProgress();window.scrollTo({top:0,behavior:'smooth'});
+ try{localStorage.setItem('gkdPronunciationPage',String(n))}catch(e){}
+}
+function updateProgress(){document.getElementById('progressBar').style.width=(current/lessons.length*100)+'%';document.getElementById('topCount').textContent=current===0?'Intro • 0 / '+lessons.length:'পৃষ্ঠা '+current+' / '+lessons.length}
+function answer(btn,correct,msg){const q=btn.closest('.quiz');q.querySelectorAll('button').forEach(b=>b.disabled=true);const f=q.querySelector('.feedback');f.textContent=msg;f.style.color=correct?'#72e6d1':'#ff9db8';if(correct)btn.style.borderColor='#72e6d1';else btn.style.borderColor='#ff8fb3';}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),1900)}
+function toggleAllTips(){document.querySelectorAll('.callout').forEach(x=>x.classList.toggle('hide'))}
+document.getElementById('searchToc').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.toc button').forEach(b=>b.classList.toggle('hide',!b.textContent.toLowerCase().includes(q)))});
+document.addEventListener('click',e=>{const b=e.target.closest('.ripple');if(!b)return;const r=document.createElement('span');r.className='rip';const rect=b.getBoundingClientRect(),size=Math.max(rect.width,rect.height);r.style.width=r.style.height=size+'px';r.style.left=(e.clientX-rect.left-size/2)+'px';r.style.top=(e.clientY-rect.top-size/2)+'px';b.appendChild(r);setTimeout(()=>r.remove(),650)});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(current+1);if(e.key==='ArrowLeft')go(current-1)});
+build();updateProgress();
+</script>
+</body>
+</html>

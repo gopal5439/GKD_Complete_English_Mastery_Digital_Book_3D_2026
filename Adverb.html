@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adverb Master Guide | সম্পূর্ণ বাংলা গাইড</title>
+<style>
+:root{
+  --ink:#18233b;--muted:#5f6b82;--paper:#ffffff;--bg:#f3f6fc;
+  --primary:#5145cd;--primary2:#7c3aed;--cyan:#0891b2;--pink:#db2777;
+  --green:#15803d;--orange:#c2410c;--line:#e1e7f2;--soft:#eef0ff;
+  --shadow:0 12px 35px rgba(31,41,85,.10)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:radial-gradient(circle at 10% 5%,#e9e8ff 0,transparent 27%),radial-gradient(circle at 90% 20%,#dff8fb 0,transparent 25%),var(--bg);font-family:"Noto Sans Bengali","Hind Siliguri","Segoe UI",sans-serif;color:var(--ink);line-height:1.8}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 4px 18px #1d28510c}
+.topinner{max-width:1240px;margin:auto;padding:10px 18px;display:flex;align-items:center;gap:14px;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--primary);white-space:nowrap}
+.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--primary),var(--pink));font-size:22px;box-shadow:0 6px 16px #5145cd44}
+.topnav{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.topnav button,.menu-toggle{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:11px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer;transition:.2s}
+.topnav button:hover,.topnav button.active{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-1px)}
+.menu-toggle{display:none}
+.hero{max-width:1240px;margin:26px auto 20px;padding:0 18px}
+.hero-card{position:relative;overflow:hidden;border-radius:28px;padding:clamp(24px,5vw,56px);color:#fff;background:linear-gradient(120deg,#3027a6 0%,#6544d8 48%,#c02685 100%);box-shadow:0 20px 45px #5145cd30}
+.hero-card:before,.hero-card:after{content:"";position:absolute;border-radius:50%;background:#ffffff12;animation:float 8s ease-in-out infinite}
+.hero-card:before{width:300px;height:300px;right:-50px;top:-100px}
+.hero-card:after{width:180px;height:180px;right:200px;bottom:-110px;animation-delay:-3s}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.9}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.2;margin:10px 0 15px}
+.hero p{font-size:clamp(15px,2vw,19px);margin:0;max-width:720px;color:#f5f3ff}
+.hero-pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}
+.pill{background:#ffffff1c;border:1px solid #ffffff40;padding:7px 12px;border-radius:999px;font-size:13px}
+.layout{max-width:1240px;margin:auto;padding:0 18px 50px;display:grid;grid-template-columns:255px minmax(0,1fr);gap:22px;align-items:start}
+.sidebar{position:sticky;top:82px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow);max-height:calc(100vh - 100px);overflow:auto}
+.sidebar h3{margin:0 0 10px;font-size:16px}
+.sidebar a{display:block;text-decoration:none;color:#4a5670;padding:8px 10px;border-radius:10px;font-size:14px;margin:2px 0;transition:.2s}
+.sidebar a:hover,.sidebar a.current{background:var(--soft);color:var(--primary);font-weight:800}
+.progress-wrap{margin:12px 0 16px;background:#edf0f7;border-radius:99px;height:7px;overflow:hidden}
+.progress{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--pink));transition:width .3s}
+.content{min-width:0}
+.chapter{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,32px);margin-bottom:20px;box-shadow:var(--shadow);animation:rise .6s both;scroll-margin-top:85px}
+.chapter-head{display:flex;gap:13px;align-items:flex-start;margin-bottom:18px}
+.chapter-num{flex:0 0 44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary2));display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px}
+h2{font-size:clamp(22px,3vw,30px);line-height:1.35;margin:2px 0 4px}
+.sub{color:var(--muted);font-size:14px}
+h3{margin:24px 0 10px;font-size:19px;color:#342b8f}
+p{margin:10px 0}
+strong{color:#2f2b77}
+.note,.tip,.warning,.example{padding:14px 16px;border-radius:14px;margin:13px 0;border-left:4px solid var(--primary);background:#f2f1ff}
+.tip{border-color:var(--green);background:#ecfdf3}
+.warning{border-color:var(--orange);background:#fff7ed}
+.example{border-color:var(--cyan);background:#ecfeff}
+.grid2,.grid3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mini-card{border:1px solid var(--line);border-radius:15px;padding:15px;background:linear-gradient(145deg,#fff,#f8f9ff)}
+.mini-card h4{margin:0 0 6px;color:var(--primary);font-size:16px}
+.mini-card p{margin:4px 0;font-size:14px}
+.en{font-family:Arial,sans-serif;font-weight:700;color:#312e81}
+.bn{color:#5b6478}
+table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;border:1px solid var(--line);border-radius:13px;overflow:hidden;font-size:14px}
+th{background:#efedff;color:#30287e;text-align:left}
+th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even){background:#fafbff}
+.diagram{display:flex;flex-direction:column;align-items:center;gap:9px;background:#f8f7ff;border:1px dashed #c9c5ff;padding:18px;border-radius:17px;margin:15px 0}
+.node{background:#fff;border:2px solid #c8c3ff;border-radius:12px;padding:10px 16px;text-align:center;font-weight:800;box-shadow:0 4px 12px #5145cd12}
+.arrow{font-size:23px;color:var(--primary);line-height:1}
+.branches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+.branch{background:#fff;border:1px solid #d9d5ff;border-radius:11px;padding:10px;text-align:center;font-size:13px}
+.branch b{display:block;color:var(--primary);margin-bottom:3px}
+details{border:1px solid var(--line);border-radius:13px;margin:10px 0;background:#fff;overflow:hidden}
+summary{cursor:pointer;padding:12px 15px;font-weight:800;color:#373080;background:#f7f7ff}
+details .inside{padding:12px 15px}
+.quiz{border:1px solid #dcd9ff;background:linear-gradient(145deg,#fbfaff,#f3faff);padding:17px;border-radius:17px;margin:14px 0}
+.quiz-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.q-count{font-size:12px;color:var(--muted);font-weight:800}
+.question{font-weight:800;font-size:17px;margin:10px 0}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.option{border:1px solid #d8dced;border-radius:11px;background:#fff;padding:10px 12px;text-align:left;cursor:pointer;font:inherit;transition:.18s}
+.option:hover{border-color:var(--primary);transform:translateY(-1px)}
+.option.selected{border-color:var(--primary);background:#eeedff;box-shadow:inset 0 0 0 1px var(--primary)}
+.option.correct{border-color:#16a34a;background:#ecfdf3;color:#166534}
+.option.incorrect{border-color:#dc2626;background:#fef2f2;color:#991b1b}
+.feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;background:#fff;border:1px solid var(--line)}
+.feedback.show{display:block;animation:rise .3s both}
+.feedback.good{border-color:#86efac;background:#f0fdf4}
+.feedback.bad{border-color:#fca5a5;background:#fff7f7}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+.btn{border:0;border-radius:11px;padding:10px 15px;font:inherit;font-weight:800;cursor:pointer;transition:.2s}
+.btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
+.btn.secondary{background:#e9eaf5;color:#303858}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+.quiz-score{font-weight:900;color:var(--primary)}
+.footer{text-align:center;color:var(--muted);padding:25px 15px;font-size:13px}
+.backtop{position:fixed;right:18px;bottom:18px;z-index:40;border:0;border-radius:50%;width:46px;height:46px;color:#fff;background:var(--primary);font-size:21px;box-shadow:0 8px 20px #5145cd44;cursor:pointer}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(18px) rotate(10deg)}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:relative;top:auto;max-height:none}.side-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}.topnav{display:none}.menu-toggle{display:block}.topnav.open{display:flex;position:absolute;top:64px;left:10px;right:10px;background:#fff;padding:12px;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);justify-content:flex-start}.topnav.open button{flex:1}}
+@media(max-width:600px){.hero{margin-top:14px}.hero-card{border-radius:20px}.grid2,.grid3,.branches{grid-template-columns:1fr}.options{grid-template-columns:1fr}.chapter{border-radius:17px;padding:17px}.side-links{grid-template-columns:1fr 1fr}th,td{padding:8px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topinner">
+    <div class="brand"><div class="logo">A</div><span>Adverb Master Guide</span></div>
+    <button class="menu-toggle" id="menuToggle" aria-label="সূচি দেখান">☰ সূচি</button>
+    <nav class="topnav" id="topnav">
+      <button data-go="definition">সংজ্ঞা</button><button data-go="types">প্রকারভেদ</button><button data-go="position">অবস্থান</button><button data-go="comparison">তুলনা</button><button data-go="practice">অনুশীলন</button>
+    </nav>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-card">
+    <div class="hero-content">
+      <div class="eyebrow">Complete English Grammar • বাংলা ব্যাখ্যা</div>
+      <h1>ADVERB<br>ক্রিয়া বিশেষণ</h1>
+      <p>সংজ্ঞা থেকে প্রকারভেদ, গঠন, বাক্যে অবস্থান, তুলনা, Phrase–Clause এবং সাধারণ ভুল—সবকিছু অধ্যায়ভিত্তিক উদাহরণ ও অনুশীলনসহ।</p>
+      <div class="hero-pills"><span class="pill">📘 সহজ বাংলা ব্যাখ্যা</span><span class="pill">✦ উদাহরণ ও অনুবাদ</span><span class="pill">✓ ব্যাখ্যাসহ কুইজ</span><span class="pill">↗ মোবাইল ও কম্পিউটার উপযোগী</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='Parts of speech.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h3>📚 অধ্যায়সূচি</h3><div class="progress-wrap"><div class="progress" id="progress"></div></div>
+    <div class="side-links" id="sideLinks">
+      <a href="#definition">১. সংজ্ঞা ও কাজ</a><a href="#identify">২. চেনার কৌশল</a><a href="#types">৩. প্রকারভেদ</a><a href="#formation">৪. গঠন ও -ly</a><a href="#adjective">৫. Adjective বনাম Adverb</a><a href="#position">৬. বাক্যে অবস্থান</a><a href="#comparison">৭. তুলনা</a><a href="#phraseclause">৮. Phrase ও Clause</a><a href="#special">৯. বিশেষ ব্যবহার</a><a href="#mistakes">১০. সাধারণ ভুল</a><a href="#practice">১১. অনুশীলন</a>
+    </div>
+  </aside>
+  <main class="content">
+    <section class="chapter" id="definition">
+      <div class="chapter-head"><div class="chapter-num">01</div><div><h2>Adverb কী? — সংজ্ঞা ও কাজ</h2><div class="sub">শব্দটি কী বোঝায় এবং কোন শব্দকে বর্ণনা করে</div></div></div>
+      <p><strong>Adverb (ক্রিয়া বিশেষণ)</strong> এমন একটি শব্দ, যা সাধারণত <strong>Verb, Adjective, অন্য Adverb</strong> অথবা <strong>সম্পূর্ণ বাক্য</strong> সম্পর্কে অতিরিক্ত তথ্য দেয়। এটি কাজটি কীভাবে, কখন, কোথায়, কতবার বা কতখানি হচ্ছে তা বোঝাতে পারে।</p>
+      <div class="diagram"><div class="node">ADVERB — ক্রিয়া বিশেষণ</div><div class="arrow">↓</div><div class="branches">
+        <div class="branch"><b>Verb</b><span>কাজের ধরন/সময়</span><br><span class="en">runs quickly</span></div>
+        <div class="branch"><b>Adjective</b><span>গুণের মাত্রা</span><br><span class="en">very beautiful</span></div>
+        <div class="branch"><b>Adverb</b><span>অন্য ক্রিয়া বিশেষণের মাত্রা</span><br><span class="en">very slowly</span></div>
+      </div><div class="arrow">↓</div><div class="node">সম্পূর্ণ বাক্যকেও প্রভাবিত করতে পারে</div></div>
+      <div class="grid2">
+        <div class="mini-card"><h4>১. Verb-কে বর্ণনা</h4><p class="en">She sings beautifully.</p><p>সে সুন্দরভাবে গান গায়।</p><p class="bn">কীভাবে গান গায়? — beautifully</p></div>
+        <div class="mini-card"><h4>২. Adjective-কে বর্ণনা</h4><p class="en">The tea is very hot.</p><p>চা খুব গরম।</p><p class="bn">কতটা গরম? — very</p></div>
+        <div class="mini-card"><h4>৩. Adverb-কে বর্ণনা</h4><p class="en">He runs extremely fast.</p><p>সে অত্যন্ত দ্রুত দৌড়ায়।</p><p class="bn">কত দ্রুত? — extremely</p></div>
+        <div class="mini-card"><h4>৪. সম্পূর্ণ বাক্য সম্পর্কে</h4><p class="en">Fortunately, nobody was hurt.</p><p>সৌভাগ্যবশত, কেউ আহত হয়নি।</p><p class="bn">বক্তার সামগ্রিক মনোভাব — fortunately</p></div>
+      </div>
+      <div class="tip"><strong>মনে রাখুন:</strong> Adverb শুধু Verb-কে বর্ণনা করে না। এটি Adjective, অন্য Adverb এবং সম্পূর্ণ বাক্যকেও বর্ণনা করতে পারে।</div>
+    </section>
+
+    <section class="chapter" id="identify">
+      <div class="chapter-head"><div class="chapter-num">02</div><div><h2>Adverb চেনার সহজ কৌশল</h2><div class="sub">প্রশ্ন করে বাক্যে Adverb-এর কাজ বুঝুন</div></div></div>
+      <table><thead><tr><th>প্রশ্ন</th><th>কী বোঝায়</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+        <tr><td>How? (কীভাবে?)</td><td>পদ্ধতি/ধরন</td><td class="en">He spoke politely.</td><td>সে ভদ্রভাবে কথা বলল।</td></tr>
+        <tr><td>When? (কখন?)</td><td>সময়</td><td class="en">I will go tomorrow.</td><td>আমি আগামীকাল যাব।</td></tr>
+        <tr><td>Where? (কোথায়?)</td><td>স্থান</td><td class="en">Come here.</td><td>এখানে এসো।</td></tr>
+        <tr><td>How often? (কতবার?)</td><td>ঘনত্ব</td><td class="en">She often reads.</td><td>সে প্রায়ই পড়ে।</td></tr>
+        <tr><td>To what extent? (কতখানি?)</td><td>মাত্রা</td><td class="en">I am quite sure.</td><td>আমি বেশ নিশ্চিত।</td></tr>
+        <tr><td>How long? (কতক্ষণ?)</td><td>সময়কাল</td><td class="en">Wait awhile.</td><td>কিছুক্ষণ অপেক্ষা করো।</td></tr>
+      </tbody></table>
+      <div class="warning"><strong>সতর্কতা:</strong> শুধু প্রশ্ন করেই শব্দের পদ নির্ধারণ করবেন না। একই শব্দ বাক্যভেদে ভিন্ন কাজ করতে পারে। বাক্যে শব্দটি কী কাজ করছে, সেটিই মূল বিষয়।</div>
+      <div class="example"><span class="en">He is a fast runner.</span> — এখানে <b>fast</b> হলো Adjective; এটি runner-কে বর্ণনা করছে।<br><span class="en">He runs fast.</span> — এখানে <b>fast</b> হলো Adverb; এটি runs-কে বর্ণনা করছে।</div>
+    </section>
+
+    <section class="chapter" id="types">
+      <div class="chapter-head"><div class="chapter-num">03</div><div><h2>Adverb-এর প্রকারভেদ</h2><div class="sub">অর্থ ও বাক্যে কাজ অনুযায়ী প্রধান ধরনগুলো</div></div></div>
+      <div class="grid2">
+        <div class="mini-card"><h4>১. Adverb of Manner — ধরন</h4><p>কাজটি কীভাবে হয় বোঝায়।</p><p class="en">slowly, carefully, well, badly, politely</p><p>উদাহরণ: <span class="en">Drive carefully.</span> — সাবধানে গাড়ি চালাও।</p></div>
+        <div class="mini-card"><h4>২. Adverb of Place — স্থান</h4><p>কোথায় বা কোন দিকে বোঝায়।</p><p class="en">here, there, outside, upstairs, everywhere, away</p><p>উদাহরণ: <span class="en">Wait outside.</span> — বাইরে অপেক্ষা করো।</p></div>
+        <div class="mini-card"><h4>৩. Adverb of Time — সময়</h4><p>কখন কাজটি ঘটে বোঝায়।</p><p class="en">now, today, yesterday, soon, already, later</p><p>উদাহরণ: <span class="en">I saw him yesterday.</span> — গতকাল তাকে দেখেছি।</p></div>
+        <div class="mini-card"><h4>৪. Adverb of Frequency — ঘনত্ব</h4><p>কতবার কাজটি হয় বোঝায়।</p><p class="en">always, usually, often, sometimes, rarely, never</p><p>উদাহরণ: <span class="en">She always smiles.</span> — সে সবসময় হাসে।</p></div>
+        <div class="mini-card"><h4>৫. Adverb of Degree — মাত্রা</h4><p>কতটা বা কী পরিমাণে বোঝায়।</p><p class="en">very, too, quite, almost, enough, extremely</p><p>উদাহরণ: <span class="en">It is extremely cold.</span> — অত্যন্ত ঠান্ডা।</p></div>
+        <div class="mini-card"><h4>৬. Adverb of Duration — সময়কাল</h4><p>কতক্ষণ ধরে বা কত সময় পর্যন্ত বোঝায়।</p><p class="en">briefly, temporarily, forever, long</p><p>উদাহরণ: <span class="en">Stay here temporarily.</span> — আপাতত এখানে থাকো।</p></div>
+        <div class="mini-card"><h4>৭. Adverb of Certainty / Probability</h4><p>নিশ্চয়তা বা সম্ভাবনা বোঝায়।</p><p class="en">certainly, definitely, probably, perhaps, possibly</p><p>উদাহরণ: <span class="en">She will probably come.</span> — সম্ভবত সে আসবে।</p></div>
+        <div class="mini-card"><h4>৮. Sentence Adverb — বাক্যসূচক</h4><p>বক্তার মতামত বা পুরো বাক্যের মূল্যায়ন প্রকাশ করে।</p><p class="en">fortunately, honestly, surprisingly, clearly</p><p>উদাহরণ: <span class="en">Honestly, I disagree.</span> — সত্যি বলতে, আমি একমত নই।</p></div>
+        <div class="mini-card"><h4>৯. Interrogative Adverb — প্রশ্নবোধক</h4><p>প্রশ্ন করতে ব্যবহৃত হয়।</p><p class="en">when, where, why, how</p><p>উদাহরণ: <span class="en">Why are you late?</span> — তুমি দেরি করেছ কেন?</p></div>
+        <div class="mini-card"><h4>১০. Relative Adverb — সম্বন্ধবাচক</h4><p>স্থান, সময় বা কারণের সঙ্গে সম্পর্কিত উপবাক্য যুক্ত করে।</p><p class="en">where, when, why</p><p>উদাহরণ: <span class="en">This is the house where I grew up.</span> — এটি সেই বাড়ি যেখানে আমি বড় হয়েছি।</p></div>
+        <div class="mini-card"><h4>১১. Focusing Adverb — বিশেষভাবে নির্দেশক</h4><p>কোনো অংশকে বিশেষ গুরুত্ব দেয় বা সীমিত করে।</p><p class="en">only, just, even, mainly, especially</p><p>উদাহরণ: <span class="en">Only Rina passed.</span> — শুধু রিনা পাস করেছে।</p></div>
+        <div class="mini-card"><h4>১২. Linking / Conjunctive Adverb</h4><p>বাক্য বা ধারণার মধ্যে সম্পর্ক দেখায়।</p><p class="en">however, therefore, moreover, consequently, instead</p><p>উদাহরণ: <span class="en">It rained; therefore, we stayed home.</span> — বৃষ্টি হয়েছিল; তাই আমরা বাড়িতে ছিলাম।</p></div>
+      </div>
+      <div class="note"><strong>মনে রাখবেন:</strong> ব্যাকরণ বইভেদে Adverb-এর শ্রেণিবিভাগের নাম ও সংখ্যা কিছুটা ভিন্ন হতে পারে। উপরোক্ত ভাগগুলো ব্যবহারিকভাবে গুরুত্বপূর্ণ।</div>
+    </section>
+
+    <section class="chapter" id="formation">
+      <div class="chapter-head"><div class="chapter-num">04</div><div><h2>Adverb গঠন: Adjective থেকে -ly</h2><div class="sub">সাধারণ নিয়ম, বানান পরিবর্তন ও ব্যতিক্রম</div></div></div>
+      <table><thead><tr><th>নিয়ম</th><th>Adjective</th><th>Adverb</th><th>উদাহরণ</th></tr></thead><tbody>
+        <tr><td>সাধারণত -ly যোগ</td><td>quick</td><td>quickly</td><td class="en">He ran quickly. — সে দ্রুত দৌড়াল।</td></tr>
+        <tr><td>শেষে -y থাকলে y → i + ly</td><td>happy</td><td>happily</td><td class="en">She smiled happily. — সে আনন্দের সঙ্গে হাসল।</td></tr>
+        <tr><td>শেষে ব্যঞ্জনধ্বনি + le হলে e বাদ দিয়ে -y</td><td>gentle</td><td>gently</td><td class="en">Speak gently. — নম্রভাবে কথা বলো।</td></tr>
+        <tr><td>অনেক -ic শব্দে -ally</td><td>basic</td><td>basically</td><td class="en">Basically, it is simple. — মূলত এটি সহজ।</td></tr>
+        <tr><td>কিছু শব্দে রূপ অপরিবর্তিত</td><td>fast</td><td>fast</td><td class="en">He drives fast. — সে দ্রুত গাড়ি চালায়।</td></tr>
+      </tbody></table>
+      <h3>গুরুত্বপূর্ণ ব্যতিক্রম</h3>
+      <div class="grid2">
+        <div class="mini-card"><h4>একই রূপে Adjective ও Adverb</h4><p class="en">fast, hard, late, early, straight, daily</p><p><span class="en">a fast car</span> — দ্রুতগামী গাড়ি (Adjective)</p><p><span class="en">drive fast</span> — দ্রুত গাড়ি চালানো (Adverb)</p></div>
+        <div class="mini-card"><h4>Irregular forms</h4><p class="en">good → well</p><p class="en">He is a good singer. / He sings well.</p><p>সে ভালো গায়ক। / সে ভালো গান গায়।</p></div>
+      </div>
+      <div class="warning"><strong>সব Adjective-এর শেষে -ly যোগ করলেই সঠিক Adverb হয় না।</strong> যেমন: good → well; fast → fast; hard → hard। আবার friendly, lovely, lonely, likely—এগুলো দেখতে -ly দিয়ে শেষ হলেও সাধারণত Adjective, প্রচলিত Adverb নয়।</div>
+    </section>
+
+    <section class="chapter" id="adjective">
+      <div class="chapter-head"><div class="chapter-num">05</div><div><h2>Adjective ও Adverb-এর পার্থক্য</h2><div class="sub">কোন শব্দকে বর্ণনা করছে, সেটি দেখে চিহ্নিত করুন</div></div></div>
+      <table><thead><tr><th>Adjective</th><th>Adverb</th><th>পার্থক্য</th></tr></thead><tbody>
+        <tr><td class="en">She is a careful driver.</td><td class="en">She drives carefully.</td><td>careful = driver-কে বর্ণনা; carefully = drives-কে বর্ণনা।</td></tr>
+        <tr><td class="en">He is a good player.</td><td class="en">He plays well.</td><td>good = player-এর গুণ; well = খেলার ধরন।</td></tr>
+        <tr><td class="en">It is a fast train.</td><td class="en">The train moves fast.</td><td>fast দুই বাক্যেই আলাদা পদ হিসেবে ব্যবহৃত।</td></tr>
+        <tr><td class="en">She looks happy.</td><td class="en">She smiled happily.</td><td>linking verb-এর পরে happy তার অবস্থা বোঝায়; happily হাসার ধরন বোঝায়।</td></tr>
+      </tbody></table>
+      <h3>অর্থ বদলে যায় এমন জোড়া</h3>
+      <details><summary>hard বনাম hardly</summary><div class="inside"><p><span class="en">He works hard.</span> — সে কঠোর পরিশ্রম করে।</p><p><span class="en">He hardly works.</span> — সে প্রায় কাজই করে না।</p><p><b>hardly</b> মানে “কঠোরভাবে” নয়; সাধারণত “প্রায় না”।</p></div></details>
+      <details><summary>late বনাম lately</summary><div class="inside"><p><span class="en">I arrived late.</span> — আমি দেরিতে পৌঁছেছি।</p><p><span class="en">I have been busy lately.</span> — ইদানীং আমি ব্যস্ত আছি।</p></div></details>
+      <details><summary>near বনাম nearly</summary><div class="inside"><p><span class="en">Come near.</span> — কাছে এসো।</p><p><span class="en">It is nearly finished.</span> — এটি প্রায় শেষ।</p></div></details>
+      <details><summary>high বনাম highly</summary><div class="inside"><p><span class="en">The bird flew high.</span> — পাখিটি অনেক উঁচুতে উড়ল।</p><p><span class="en">She is highly respected.</span> — তিনি অত্যন্ত সম্মানিত।</p></div></details>
+      <details><summary>free বনাম freely</summary><div class="inside"><p><span class="en">Children can travel free.</span> — শিশুরা বিনা ভাড়ায় ভ্রমণ করতে পারে।</p><p><span class="en">Speak freely.</span> — নির্দ্বিধায় কথা বলো।</p></div></details>
+      <details><summary>most বনাম mostly</summary><div class="inside"><p><span class="en">Who runs fastest? He runs the most quickly.</span> — কে দ্রুততম দৌড়ায়? সে সবচেয়ে দ্রুত দৌড়ায়।</p><p><span class="en">The room is mostly empty.</span> — ঘরটি বেশিরভাগই খালি।</p></div></details>
+    </section>
+
+    <section class="chapter" id="position">
+      <div class="chapter-head"><div class="chapter-num">06</div><div><h2>বাক্যে Adverb-এর অবস্থান</h2><div class="sub">কোথায় বসবে—এটি অর্থ ও Adverb-এর ধরন অনুযায়ী বদলায়</div></div></div>
+      <h3>১. Adverb of Manner</h3><p>সাধারণত Verb বা Object-এর পরে বসে।</p>
+      <div class="example"><span class="en">She spoke softly.</span> — সে মৃদুস্বরে কথা বলল।<br><span class="en">He completed the work carefully.</span> — সে কাজটি সাবধানে শেষ করল।</div>
+      <h3>২. Adverb of Frequency</h3><p>সাধারণত মূল Verb-এর আগে, কিন্তু <b>be verb</b>-এর পরে বসে। Auxiliary verb থাকলে প্রথম auxiliary-এর পরে বসতে পারে।</p>
+      <div class="example"><span class="en">I often read.</span> — আমি প্রায়ই পড়ি।<br><span class="en">She is always kind.</span> — সে সবসময় দয়ালু।<br><span class="en">They have never visited Dhaka.</span> — তারা কখনো ঢাকা ভ্রমণ করেনি।</div>
+      <h3>৩. Adverb of Time ও Place</h3><p>প্রায়ই বাক্যের শেষে বসে। একাধিক Adverb থাকলে সাধারণ প্রবণতা: manner → place → time; তবে জোর বা প্রসঙ্গ অনুযায়ী ক্রম বদলাতে পারে।</p>
+      <div class="example"><span class="en">He worked quietly at home yesterday.</span><br>সে গতকাল বাড়িতে নীরবে কাজ করেছে।</div>
+      <h3>৪. Adverb of Degree</h3><p>সাধারণত যে Adjective বা Adverb-এর মাত্রা বোঝায়, তার আগে বসে। <b>Enough</b> সাধারণত সংশ্লিষ্ট শব্দের পরে বসে।</p>
+      <div class="example"><span class="en">very tall, quite slowly, too difficult, old enough</span><br>খুব লম্বা, বেশ ধীরে, অতিরিক্ত কঠিন, যথেষ্ট বয়স্ক।</div>
+      <h3>৫. Sentence Adverb</h3><p>বক্তার মনোভাব বোঝাতে প্রায়ই বাক্যের শুরুতে বসে; কখনো মাঝেও আসতে পারে।</p>
+      <div class="example"><span class="en">Fortunately, we arrived on time.</span> — সৌভাগ্যবশত আমরা সময়মতো পৌঁছেছি।</div>
+      <div class="tip"><strong>অবস্থান বদলালে অর্থ বদলাতে পারে:</strong><br><span class="en">Only Mina passed.</span> — শুধু মিনা পাস করেছে।<br><span class="en">Mina only passed.</span> — মিনা শুধু পাস করেছে (অন্য কিছু করেনি/উচ্চতর ফল পায়নি—প্রসঙ্গনির্ভর)।<br>তাই <b>only, just, even</b>-এর মতো শব্দ কোন অংশকে নির্দেশ করছে, তা খেয়াল করুন।</div>
+    </section>
+
+    <section class="chapter" id="comparison">
+      <div class="chapter-head"><div class="chapter-num">07</div><div><h2>Adverb-এর Comparison — তুলনা</h2><div class="sub">Positive, Comparative ও Superlative degree</div></div></div>
+      <p>কোনো কাজ কতটা বা কীভাবে সম্পন্ন হয়, তা দুই বা ততোধিক ব্যক্তি/বস্তুর মধ্যে তুলনা করতে Adverb-এর degree ব্যবহার করা হয়।</p>
+      <table><thead><tr><th>ধরন</th><th>গঠন</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+        <tr><td>Positive</td><td>মূল রূপ</td><td class="en">Rina runs fast.</td><td>রিনা দ্রুত দৌড়ায়।</td></tr>
+        <tr><td>Comparative</td><td>অনেক ক্ষেত্রে more + adverb</td><td class="en">Rina runs more quickly than Mina.</td><td>রিনা মিনার চেয়ে দ্রুত দৌড়ায়।</td></tr>
+        <tr><td>Superlative</td><td>অনেক ক্ষেত্রে most + adverb</td><td class="en">Rina runs most quickly of all.</td><td>সবার মধ্যে রিনা সবচেয়ে দ্রুত দৌড়ায়।</td></tr>
+      </tbody></table>
+      <h3>গঠন অনুযায়ী উদাহরণ</h3>
+      <div class="grid2">
+        <div class="mini-card"><h4>এক syllable-এর অনেক Adverb</h4><p class="en">fast → faster → fastest</p><p class="en">hard → harder → hardest</p><p>দ্রুত → আরও দ্রুত → সবচেয়ে দ্রুত</p></div>
+        <div class="mini-card"><h4>-ly দিয়ে গঠিত অধিকাংশ Adverb</h4><p class="en">carefully → more carefully → most carefully</p><p class="en">slowly → more slowly → most slowly</p></div>
+        <div class="mini-card"><h4>Irregular</h4><p class="en">well → better → best</p><p class="en">badly → worse → worst</p><p class="en">little → less → least</p></div>
+        <div class="mini-card"><h4>সমান তুলনা</h4><p class="en">as quickly as</p><p>উদাহরণ: <span class="en">He runs as quickly as his brother.</span></p><p>সে তার ভাইয়ের মতোই দ্রুত দৌড়ায়।</p></div>
+      </div>
+      <div class="warning">সব Adverb-এ -er/-est যোগ করা যায় না। সাধারণত -ly Adverb-এর সঙ্গে more/most ব্যবহৃত হয়। প্রচলিত ও স্বাভাবিক ব্যবহার শেখা জরুরি।</div>
+    </section>
+
+    <section class="chapter" id="phraseclause">
+      <div class="chapter-head"><div class="chapter-num">08</div><div><h2>Adverbial Phrase ও Adverbial Clause</h2><div class="sub">একটি শব্দের বদলে শব্দগুচ্ছ বা উপবাক্যও Adverb-এর কাজ করতে পারে</div></div></div>
+      <h3>Adverbial Phrase — ক্রিয়া বিশেষণীয় শব্দগুচ্ছ</h3><p>একাধিক শব্দ মিলে যখন কাজের সময়, স্থান, ধরন বা কারণ বোঝায়, তখন সেই শব্দগুচ্ছ Adverbial Phrase হিসেবে কাজ করতে পারে।</p>
+      <div class="example"><span class="en">He spoke in a low voice.</span> — সে নিচু স্বরে কথা বলল।<br><span class="en">We will meet in the evening.</span> — আমরা সন্ধ্যায় দেখা করব।<br><span class="en">She answered with great care.</span> — সে খুব সতর্কতার সঙ্গে উত্তর দিল।</div>
+      <h3>Adverbial Clause — ক্রিয়া বিশেষণীয় উপবাক্য</h3><p>Subject ও Verb-সহ একটি dependent clause যখন সময়, কারণ, শর্ত, উদ্দেশ্য, ছাড় বা তুলনা বোঝায়, তখন তা Adverbial Clause।</p>
+      <table><thead><tr><th>ধরন</th><th>সাধারণ সংযোজক</th><th>উদাহরণ</th></tr></thead><tbody>
+        <tr><td>Time — সময়</td><td>when, while, before, after, until</td><td class="en">Call me when you arrive. — তুমি পৌঁছালে আমাকে ফোন করো।</td></tr>
+        <tr><td>Reason — কারণ</td><td>because, since, as</td><td class="en">I stayed home because I was ill. — অসুস্থ ছিলাম বলে বাড়িতে ছিলাম।</td></tr>
+        <tr><td>Condition — শর্ত</td><td>if, unless, provided that</td><td class="en">If it rains, we will stay home. — বৃষ্টি হলে বাড়িতে থাকব।</td></tr>
+        <tr><td>Concession — সত্ত্বেও</td><td>although, though, even though</td><td class="en">Although he was tired, he continued. — ক্লান্ত হলেও সে চালিয়ে গেল।</td></tr>
+        <tr><td>Purpose — উদ্দেশ্য</td><td>so that, in order that</td><td class="en">Speak clearly so that everyone can understand. — সবাই বুঝতে পারে এমনভাবে স্পষ্ট করে বলো।</td></tr>
+        <tr><td>Comparison — তুলনা</td><td>than, as…as</td><td class="en">She works harder than I do. — সে আমার চেয়ে বেশি পরিশ্রম করে।</td></tr>
+      </tbody></table>
+      <div class="note">Adverbial clause-এর সংযোজকগুলোকে অনেক বইতে subordinating conjunction বলা হয়। এখানে শ্রেণিবিভাগটি তাদের বাক্যে কাজ বোঝানোর জন্য দেওয়া হয়েছে।</div>
+    </section>
+
+    <section class="chapter" id="special">
+      <div class="chapter-head"><div class="chapter-num">09</div><div><h2>বিশেষ ব্যবহার ও গুরুত্বপূর্ণ নিয়ম</h2><div class="sub">পরীক্ষা ও দৈনন্দিন ইংরেজিতে কাজে লাগে</div></div></div>
+      <details open><summary>১. Too ও Enough</summary><div class="inside"><p><b>Too + Adjective/Adverb:</b> প্রয়োজনের চেয়ে বেশি বা অতিরিক্ত।</p><p class="en">The box is too heavy to lift.</p><p>বাক্সটি তোলার জন্য অতিরিক্ত ভারী।</p><p><b>Adjective/Adverb + enough:</b> যথেষ্ট।</p><p class="en">He runs fast enough.</p><p>সে যথেষ্ট দ্রুত দৌড়ায়।</p><p><b>Enough + Noun:</b> <span class="en">We have enough food.</span> — আমাদের যথেষ্ট খাবার আছে।</p></div></details>
+      <details><summary>২. So ও Such</summary><div class="inside"><p><b>so + adjective/adverb</b>: <span class="en">She is so kind.</span> — সে এত দয়ালু।</p><p><b>such + (a/an) + adjective + noun</b>: <span class="en">She is such a kind person.</span> — সে এত দয়ালু একজন মানুষ।</p></div></details>
+      <details><summary>৩. Very ও Much</summary><div class="inside"><p><b>very</b> সাধারণত Positive adjective/adverb-এর আগে: <span class="en">very good, very slowly</span>।</p><p><b>much</b> comparative-এর আগে বা past participle-জাতীয় adjective-এর সঙ্গে: <span class="en">much better, much more carefully, much appreciated</span>।</p><p>সাধারণত <span class="en">very better</span> বলা হয় না; বলুন <span class="en">much better</span>।</p></div></details>
+      <details><summary>৪. Not, Never এবং Negative Inversion</summary><div class="inside"><p>কিছু negative বা সীমাবদ্ধতাসূচক Adverb বাক্যের শুরুতে এলে formal English-এ subject ও auxiliary-এর inversion হয়।</p><p class="en">Never have I seen such a view.</p><p>আমি কখনো এমন দৃশ্য দেখিনি।</p><p class="en">Rarely does he complain.</p><p>সে খুব কমই অভিযোগ করে।</p><p class="en">Not only did she sing, but she also danced.</p><p>সে শুধু গানই গায়নি, নাচও করেছে।</p><p>সাধারণ বাক্য: <span class="en">I have never seen this.</span> — আমি এটি কখনো দেখিনি।</p></div></details>
+      <details><summary>৫. Linking Adverb-এর punctuation</summary><div class="inside"><p>দুটি স্বতন্ত্র বাক্যকে however/therefore দিয়ে যুক্ত করলে সাধারণত semicolon ও comma ব্যবহার করা যায়।</p><p class="en">It was late; however, we continued.</p><p>দেরি হয়ে গিয়েছিল; তবু আমরা চালিয়ে গিয়েছিলাম।</p><p>অথবা আলাদা বাক্য: <span class="en">It was late. However, we continued.</span></p></div></details>
+      <details><summary>৬. Adverb বনাম Preposition</summary><div class="inside"><p>কিছু শব্দ কখনো Adverb, কখনো Preposition হতে পারে। শব্দের পরে object আছে কি না এবং বাক্যে কী কাজ করছে তা দেখুন।</p><p class="en">Come inside.</p><p>ভেতরে এসো। — <b>inside</b> এখানে Adverb; এর পরে object নেই।</p><p class="en">Come inside the room.</p><p>ঘরের ভেতরে এসো। — <b>inside</b> এখানে Preposition; এর object হলো the room।</p><p class="en">He went upstairs. / He went up the stairs.</p><p>প্রথম বাক্যে upstairs Adverb; দ্বিতীয় বাক্যে up Preposition হিসেবে stairs-এর সঙ্গে ব্যবহৃত।</p></div></details>
+    </section>
+
+    <section class="chapter" id="mistakes">
+      <div class="chapter-head"><div class="chapter-num">10</div><div><h2>সাধারণ ভুল ও সংশোধন</h2><div class="sub">ভুল বাক্য থেকে সঠিক ব্যবহার শিখুন</div></div></div>
+      <table><thead><tr><th>ভুল</th><th>সঠিক</th><th>ব্যাখ্যা</th></tr></thead><tbody>
+        <tr><td class="en">She sings beautiful.</td><td class="en">She sings beautifully.</td><td>গাওয়ার ধরন বোঝাতে Adverb দরকার।</td></tr>
+        <tr><td class="en">He speaks English good.</td><td class="en">He speaks English well.</td><td>কাজের ধরন বোঝাতে well ব্যবহৃত হয়।</td></tr>
+        <tr><td class="en">I very like it.</td><td class="en">I really like it.</td><td>very সাধারণত like-এর মতো Verb-কে সরাসরি modify করে না; really বলা যায়।</td></tr>
+        <tr><td class="en">She drives very careful.</td><td class="en">She drives very carefully.</td><td>carefully হলো Adverb; very তার মাত্রা বাড়ায়।</td></tr>
+        <tr><td class="en">He works hardly every day. (কঠোর পরিশ্রম বোঝাতে)</td><td class="en">He works hard every day.</td><td>hard = কঠোরভাবে/পরিশ্রম করে; hardly = প্রায় না।</td></tr>
+        <tr><td class="en">He is enough tall.</td><td class="en">He is tall enough.</td><td>Adjective-এর পরে enough বসে।</td></tr>
+        <tr><td class="en">She always is late.</td><td class="en">She is always late.</td><td>be verb-এর পরে frequency adverb সাধারণত বসে।</td></tr>
+        <tr><td class="en">He runs more faster.</td><td class="en">He runs faster.</td><td>faster-এর সঙ্গে more সাধারণত ব্যবহার করা হয় না।</td></tr>
+      </tbody></table>
+      <div class="tip"><strong>সম্পাদনার কৌশল:</strong> বাক্যে যে শব্দটি ব্যবহার করেছেন সেটি কোন শব্দকে বর্ণনা করছে তা খুঁজুন। Noun/Pronoun-এর গুণ হলে সাধারণত Adjective; কাজের ধরন হলে সাধারণত Adverb। তবে linking verb-এর পরে adjective আসতে পারে: <span class="en">She feels bad.</span></div>
+    </section>
+
+    <section class="chapter" id="practice">
+      <div class="chapter-head"><div class="chapter-num">11</div><div><h2>ইন্টারঅ্যাকটিভ অনুশীলন</h2><div class="sub">প্রতিটি প্রশ্নে একটি উত্তর নির্বাচন করুন—সঙ্গে সঙ্গে সঠিক উত্তর ও ব্যাখ্যা দেখুন</div></div></div>
+      <div class="note">প্রতিটি প্রশ্নে একটি অপশনে ক্লিক করুন, তারপর <b>উত্তর যাচাই করুন</b> চাপুন। আলাদা উত্তরমালা নেই—প্রতিটি প্রশ্নের নিচেই উত্তর ও ব্যাখ্যা দেখানো হবে।</div>
+      <div id="quizContainer"></div>
+      <div class="actions"><button class="btn primary" id="checkAll">সব উত্তর যাচাই করুন</button><button class="btn secondary" id="resetQuiz">আবার শুরু করুন</button><span class="quiz-score" id="score" aria-live="polite"></span></div>
+    </section>
+  </main>
+</div>
+<footer class="footer">Adverb Master Guide • বাংলা ব্যাখ্যাসহ English Grammar Learning Resource</footer>
+<button class="backtop" id="backtop" title="উপরে যান" aria-label="উপরে যান">↑</button>
+<script>
+const quizData = [
+{q:"Choose the adverb: “The baby slept peacefully.”",o:["baby","slept","peacefully","the"],a:2,e:"peacefully কাজটি কীভাবে হয়েছে তা বোঝায় এবং slept (Verb)-কে বর্ণনা করে। তাই এটি Adverb of Manner।"},
+{q:"Choose the correct word: “She sings ____.”",o:["beautiful","beautifully","beauty","beautify"],a:1,e:"sings একটি Verb। গান গাওয়ার ধরন বোঝাতে Adverb beautifully ব্যবহৃত হবে।"},
+{q:"Which is an adverb of frequency?",o:["outside","often","tomorrow","extremely"],a:1,e:"often অর্থ প্রায়ই; এটি কাজ কতবার ঘটে তা বোঝায়।"},
+{q:"Choose the correct sentence.",o:["He drives careful.","He drives carefully.","He careful drives.","He drives care."],a:1,e:"drives-এর ধরন বোঝাতে carefully দরকার। careful হলো Adjective।"},
+{q:"In “The soup is very hot”, ‘very’ modifies—",o:["soup","is","hot","the"],a:2,e:"very, hot নামের Adjective-এর মাত্রা বাড়ায়। তাই very হলো Adverb of Degree।"},
+{q:"Which word is an adverb of place?",o:["yesterday","slowly","there","always"],a:2,e:"there স্থান বোঝায়—কোথায়? তাই এটি Adverb of Place।"},
+{q:"Choose the correct pair.",o:["good → goodly (for ‘sings’)","good → well","fast → fastly (always)","happy → happyly"],a:1,e:"কাজের ধরন বোঝাতে good-এর প্রচলিত Adverb হলো well: He sings well."},
+{q:"Choose the correct sentence with ‘enough’.",o:["She is enough tall.","She enough is tall.","She is tall enough.","Enough she is tall."],a:2,e:"Adjective tall-এর পরে enough বসে: tall enough।"},
+{q:"‘He hardly works’ means—",o:["সে কঠোর পরিশ্রম করে","সে দ্রুত কাজ করে","সে প্রায় কাজই করে না","সে আনন্দে কাজ করে"],a:2,e:"hardly-এর অর্থ প্রায় না; hard-এর অর্থ পরিশ্রম করে/কঠোরভাবে।"},
+{q:"Which sentence uses ‘fast’ as an adverb?",o:["It is a fast car.","The fast train arrived.","He runs fast.","A fast runner won."],a:2,e:"He runs fast বাক্যে fast, runs (Verb)-কে বর্ণনা করছে, তাই Adverb। অন্য বাক্যগুলোতে fast Noun-এর আগে Adjective।"},
+{q:"Choose the adverb of time.",o:["soon","outside","carefully","quite"],a:0,e:"soon সময় বোঝায়—শিগগিরই। তাই এটি Adverb of Time।"},
+{q:"Choose the correct frequency-adverb position.",o:["She always is kind.","She is always kind.","Always she kind is.","She kind always is."],a:1,e:"be verb-এর পরে frequency adverb সাধারণত বসে: She is always kind."},
+{q:"Which is a sentence adverb?",o:["quickly","fortunately","upstairs","twice"],a:1,e:"fortunately পুরো বাক্যের ওপর বক্তার ইতিবাচক মূল্যায়ন প্রকাশ করে।"},
+{q:"Choose the correct comparative form.",o:["more faster","fastly","faster","most faster"],a:2,e:"fast-এর comparative হলো faster; এর আগে more যোগ করা হয় না।"},
+{q:"Choose the correct form: “He explained it ____ than before.”",o:["more clearly","clearlier","most clearly","clear"],a:0,e:"clearly হলো -ly Adverb; comparative-এ more clearly ব্যবহার হয়।"},
+{q:"Which sentence contains an interrogative adverb?",o:["I know where he lives.","Where do you live?","This is the place where I live.","He lives there."],a:1,e:"Where do you live? সরাসরি প্রশ্ন; where হলো Interrogative Adverb।"},
+{q:"In “Come inside the room”, ‘inside’ is used as—",o:["Adjective","Verb","Preposition","Conjunction"],a:2,e:"inside-এর পরে object the room আছে; তাই এখানে এটি Preposition।"},
+{q:"Choose the correct linking-adverb punctuation.",o:["It rained, therefore we left.","It rained; therefore, we left.","It rained therefore; we left.","It rained therefore we, left."],a:1,e:"দুটি স্বতন্ত্র বাক্যের মাঝে therefore-কে linking adverb হিসেবে ব্যবহার করলে semicolon ও comma একটি প্রচলিত সঠিক রীতি।"},
+{q:"Which is the correct meaning of ‘lately’?",o:["দেরিতে","ইদানীং","প্রায়","উঁচুতে"],a:1,e:"lately অর্থ ইদানীং/সাম্প্রতিক সময়ে; late অর্থ দেরিতে।"},
+{q:"Choose the adverbial clause of reason.",o:["when I arrived","if it rains","because I was ill","although he tried"],a:2,e:"because I was ill কারণ বোঝায়, তাই এটি Adverbial Clause of Reason।"},
+{q:"In “They have never visited Dhaka”, ‘never’ is placed—",o:["before the subject","after the main verb only","after the first auxiliary","at the end always"],a:2,e:"একাধিক verb থাকলে frequency adverb সাধারণত প্রথম auxiliary have-এর পরে বসে: have never visited।"},
+{q:"Which word modifies another adverb in “She ran very quickly”?",o:["She","ran","very","quickly"],a:2,e:"very, quickly-র মাত্রা বাড়ায়। তাই very একটি Adverb যা অন্য Adverb-কে modify করছে।"},
+{q:"Choose the correct superlative form.",o:["wellest","best","more well","most better"],a:1,e:"well-এর irregular superlative হলো best: well → better → best।"},
+{q:"Which word is an adverb of degree?",o:["almost","yesterday","here","politely"],a:0,e:"almost অর্থ প্রায়; এটি মাত্রা/পরিমাণ নির্দেশ করে।"},
+{q:"In “Although he was tired, he continued”, the clause shows—",o:["time","reason","concession","place"],a:2,e:"although he was tired সত্ত্বেও বা বাধা থাকা সত্ত্বেও কাজ চলেছে—এটি concession বোঝায়।"}
+];
+let selections = {};
+let checked = {};
+const quizContainer = document.getElementById('quizContainer');
+function renderQuiz(){
+  quizContainer.innerHTML = '';
+  quizData.forEach((item,i)=>{
+    const card=document.createElement('div'); card.className='quiz'; card.id='qcard'+i;
+    const top=document.createElement('div');top.className='quiz-title';
+    const count=document.createElement('span');count.className='q-count';count.textContent=`প্রশ্ন ${i+1} / ${quizData.length}`;
+    const tag=document.createElement('span');tag.className='q-count';tag.textContent='একটি উত্তর বেছে নিন';
+    top.append(count,tag);
+    const question=document.createElement('div');question.className='question';question.textContent=item.q;
+    const options=document.createElement('div');options.className='options';
+    item.o.forEach((opt,j)=>{
+      const b=document.createElement('button');b.type='button';b.className='option';b.textContent=String.fromCharCode(65+j)+'. '+opt;
+      b.addEventListener('click',()=>{
+        if(checked[i]) return;
+        selections[i]=j;
+        [...options.children].forEach(x=>x.classList.remove('selected'));
+        b.classList.add('selected');
+      });
+      options.appendChild(b);
+    });
+    const feedback=document.createElement('div');feedback.className='feedback';feedback.id='feedback'+i;
+    const actions=document.createElement('div');actions.className='actions';
+    const check=document.createElement('button');check.type='button';check.className='btn primary';check.textContent='উত্তর যাচাই করুন';check.addEventListener('click',()=>checkOne(i));
+    const clear=document.createElement('button');clear.type='button';clear.className='btn secondary';clear.textContent='নির্বাচন মুছুন';clear.addEventListener('click',()=>{
+      if(checked[i]) return;
+      delete selections[i];[...options.children].forEach(x=>x.classList.remove('selected'));
+    });
+    actions.append(check,clear);card.append(top,question,options,feedback,actions);quizContainer.appendChild(card);
+  });
+}
+function checkOne(i){
+  if(checked[i]) return;
+  const item=quizData[i], feedback=document.getElementById('feedback'+i), card=document.getElementById('qcard'+i);
+  if(selections[i]===undefined){feedback.className='feedback show bad';feedback.textContent='আগে একটি উত্তর নির্বাচন করুন, তারপর যাচাই করুন।';return;}
+  checked[i]=true;
+  const buttons=card.querySelectorAll('.option');
+  buttons[item.a].classList.add('correct');
+  if(selections[i]!==item.a) buttons[selections[i]].classList.add('incorrect');
+  const ok=selections[i]===item.a;
+  feedback.className='feedback show '+(ok?'good':'bad');
+  feedback.innerHTML=`<strong>${ok?'✓ সঠিক উত্তর!':'✗ সঠিক উত্তর: '+String.fromCharCode(65+item.a)+'. '+escapeHtml(item.o[item.a])}</strong><p>${escapeHtml(item.e)}</p>`;
+  card.querySelectorAll('.option').forEach(b=>b.disabled=true);
+  card.querySelectorAll('.actions button').forEach(b=>b.disabled=true);
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function updateScore(){
+  const total=Object.keys(checked).length;
+  const right=Object.keys(checked).filter(k=>selections[k]===quizData[k].a).length;
+  document.getElementById('score').textContent=`ফলাফল: ${right} / ${total}টি যাচাই • মোট ${quizData.length}টি প্রশ্ন`;
+}
+document.getElementById('checkAll').addEventListener('click',()=>{
+  quizData.forEach((_,i)=>{if(selections[i]!==undefined&&!checked[i])checkOne(i);});
+  const firstMissing=quizData.findIndex((_,i)=>!checked[i]);
+  if(firstMissing>=0){const f=document.getElementById('feedback'+firstMissing);f.className='feedback show bad';f.textContent='যেসব প্রশ্নের উত্তর বাছাই করা হয়নি, সেগুলোতে একটি অপশন নির্বাচন করুন।';}
+  updateScore();
+});
+document.getElementById('resetQuiz').addEventListener('click',()=>{selections={};checked={};renderQuiz();document.getElementById('score').textContent='';});
+renderQuiz();
+const sideLinks=[...document.querySelectorAll('.side-links a')];
+function setCurrent(){
+  const y=window.scrollY+130;
+  let active='';
+  document.querySelectorAll('.chapter').forEach(s=>{if(s.offsetTop<=y)active=s.id;});
+  sideLinks.forEach(a=>a.classList.toggle('current',a.getAttribute('href')==='#'+active));
+  const doc=document.documentElement;
+  const max=doc.scrollHeight-doc.clientHeight;
+  document.getElementById('progress').style.width=(max>0?(window.scrollY/max*100):0)+'%';
+}
+window.addEventListener('scroll',setCurrent,{passive:true});setCurrent();
+document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('topnav').classList.toggle('open'));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{document.getElementById(b.dataset.go).scrollIntoView({behavior:'smooth'});document.getElementById('topnav').classList.remove('open');}));
+document.getElementById('backtop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

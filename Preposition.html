@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preposition - ১০০ কুইজসহ পূর্ণাঙ্গ মাস্টার গাইড</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-alt: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent-cyan: #0284c7;
+            --accent-amber: #d97706;
+            --accent-emerald: #10b981;
+            --accent-rose: #ef4444;
+            --border-color: #cbd5e1;
+            --shadow: 0 15px 35px rgba(0,0,0,0.08);
+            --header-bg: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            --header-btn-bg: rgba(255, 255, 255, 0.12);
+            --header-btn-text: #f8fafc;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #090d16;
+            --bg-card: #111827;
+            --bg-card-alt: #1f2937;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent-cyan: #38bdf8;
+            --accent-amber: #fbbf24;
+            --accent-emerald: #34d399;
+            --accent-rose: #fb7185;
+            --border-color: #374151;
+            --shadow: 0 15px 35px rgba(0,0,0,0.5);
+            --header-bg: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --header-btn-bg: rgba(255, 255, 255, 0.08);
+            --header-btn-text: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .guidebook-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border-radius: 24px;
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Top Header & Navbar */
+        .header-bar {
+            background: var(--header-bg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .header-title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .nav-tab-btn {
+            background: var(--header-btn-bg);
+            color: var(--header-btn-text);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .nav-tab-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .nav-tab-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: #818cf8;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Chapter Panes */
+        .chapter-pane {
+            display: none;
+            padding: 30px;
+            animation: fadeInSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .chapter-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1.chap-title {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 8px;
+        }
+
+        h2.section-title {
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            margin: 25px 0 15px 0;
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 6px;
+        }
+
+        .info-card {
+            background-color: var(--bg-card-alt);
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--primary);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .type-card {
+            background: var(--bg-card-alt);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .type-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* Accordions */
+        .accordion-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--bg-card-alt);
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--bg-card-alt);
+            color: var(--text-main);
+            border: none;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--bg-body);
+        }
+
+        .accordion-body {
+            display: none;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-main);
+        }
+
+        /* A-Z Filtering System */
+        .az-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            background: var(--bg-card-alt);
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .az-btn {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 6px 13px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .az-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .az-btn.active {
+            background: var(--primary) !important;
+            color: #ffffff !important;
+            border-color: var(--primary) !important;
+        }
+
+        .az-display-box {
+            background: var(--bg-card-alt);
+            border: 2px solid var(--primary);
+            border-radius: 14px;
+            padding: 25px;
+            min-height: 250px;
+            color: var(--text-main);
+            line-height: 2;
+        }
+
+        /* Quiz Dashboard & Control Panel */
+        .quiz-dashboard {
+            background: var(--bg-card-alt);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quiz-stats-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stat-badge {
+            background: var(--bg-card);
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .set-selector-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .set-btn {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .set-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .set-btn.active {
+            background: var(--primary) !important;
+            color: #ffffff !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Quiz Card Styling */
+        .quiz-card {
+            background: var(--bg-card-alt);
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--primary);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-q-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .quiz-opts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-opt-btn {
+            padding: 12px 16px;
+            text-align: left;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-card);
+            color: var(--text-main);
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-opt-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .quiz-exp-box {
+            display: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14.5px;
+            animation: fadeInSlide 0.3s ease forwards;
+        }
+
+        .correct-bg {
+            background: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #14532d !important;
+        }
+
+        .wrong-bg {
+            background: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #7f1d1d !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="guidebook-container">
+
+    <!-- TOP HEADER BAR -->
+    <div class="header-bar">
+        <div class="header-title-wrapper">
+            <div class="header-title">Preposition - পূর্ণাঙ্গ ডিজিটাল গাইড ও ১০০ কুইজ অনুশীলন</div>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
+                <span id="themeIcon">🌙</span> <span id="themeText">ডার্ক থিম</span>
+            </button>
+        </div>
+
+        <!-- NAVBAR -->
+        <div class="nav-tabs">
+            <button class="nav-tab-btn active" onclick="showChapter('chap1', this)">১. ভূমিকা ও প্রকারভেদ</button>
+            <button class="nav-tab-btn" onclick="showChapter('chap2', this)">২. গ্রুপভিত্তিক ব্যাখ্যামূলক ব্যবহার</button>
+            <button class="nav-tab-btn" onclick="showChapter('chap3', this)">৩. A-Z Appropriate Preposition</button>
+            <button class="nav-tab-btn" onclick="showChapter('chap4', this)">৪. ১০০টি মাস্টার কুইজ টেস্ট</button>
+        </div>
+    </div>
+
+    <!-- CHAPTER 1: INTRO & TYPES -->
+    <div id="chap1" class="chapter-pane active">
+        <h1 class="chap-title">অধ্যায় ১: Preposition কী, কেন এবং এর কাজ কী?</h1>
+
+        <div class="info-card">
+            <p><strong>কী (What):</strong> <b>Pre-</b> অর্থ পূর্বে, আর <b>Position-</b> অর্থ অবস্থান। অর্থাৎ যে শব্দ কোনো Noun, Pronoun বা Noun equivalents-এর পূর্বে বসে বাক্যের অন্যান্য শব্দের সাথে ওই Noun বা Pronoun-এর অবস্থানগত, সময়গত বা ভাবগত সম্পর্ক তৈরি করে, তাকে <b>Preposition</b> বলে।</p>
+            <p style="margin-top: 10px;"><strong>কেন ব্যবহার হয় (Why):</strong> প্রিপজিশন ছাড়া একটি বাক্যের প্রতিটি পদ আলাদা অর্থ প্রকাশ করলেও পুরো বাক্যটিতে কোনো ধারাবাহিকতা বা সুনির্দিষ্ট সংযোগ থাকে না। এটি বাক্যের ভাবকে স্পষ্ট ও অর্থবহ করে তোলে।</p>
+            <p style="margin-top: 10px;"><strong>কাজ কী (Function):</strong> বাক্যের উপাদানগুলোর মধ্যে স্থান (Place), সময় (Time), দিক (Direction), কারণ (Cause/Reason), উদ্দেশ্য (Purpose) ও মাধ্যম (Medium) নির্দেশ করা এবং Noun-কে বাক্যের মূল ক্রিয়াপদের সাথে সুসংগতভাবে যুক্ত করা।</p>
+        </div>
+
+        <h2 class="section-title">Preposition-এর প্রধান ৬টি প্রকারভেদ</h2>
+
+        <div class="types-grid">
+            <div class="type-card">
+                <h4>১. Simple Preposition</h4>
+                <p>একটি মাত্র মৌলিক শব্দ দিয়ে গঠিত।<br><b>উদাহরণ:</b> in, on, at, by, for, from, to, with, off, through, under.</p>
+            </div>
+            <div class="type-card">
+                <h4>২. Double Preposition</h4>
+                <p>দুটি Simple Preposition যুক্ত হয়ে একটি হিসেবে কাজ করে।<br><b>উদাহরণ:</b> into (in+to), onto (on+to), within, without, throughout.</p>
+            </div>
+            <div class="type-card">
+                <h4>৩. Compound Preposition</h4>
+                <p>Noun/Adverb-এর পূর্বে Simple Preposition যুক্ত হয়ে গঠিত।<br><b>উদাহরণ:</b> about, above, across, along, behind, beside, between.</p>
+            </div>
+            <div class="type-card">
+                <h4>৪. Phrase Preposition</h4>
+                <p>একাধিক শব্দগুচ্ছ একত্রে প্রিপজিশনের কাজ করে।<br><b>উদাহরণ:</b> in front of, because of, in spite of, according to.</p>
+            </div>
+            <div class="type-card">
+                <h4>৫. Participle Preposition</h4>
+                <p>Participle (Verb+ing/v3) রূপ প্রিপজিশন হিসেবে ব্যবহৃত হয়।<br><b>উদাহরণ:</b> regarding, concerning, considering, during.</p>
+            </div>
+            <div class="type-card">
+                <h4>৬. Disguised Preposition</h4>
+                <p>ছদ্মবেশে সংক্ষেপে অবস্থান করে।<br><b>উদাহরণ:</b> He went <i>a</i> hunting (a=on), 4 <i>o'</i>clock (o'=of)।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 2: GROUP-WISE DETAILED USAGE -->
+    <div id="chap2" class="chapter-pane">
+        <h1 class="chap-title">অধ্যায় ২: গ্রুপভিত্তিক বিস্তারিত ব্যবহার ও সুনির্দিষ্ট পার্থক্য</h1>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">নিচের গ্রুপগুলোতে ক্লিক করে স্থান, সময় ও গতি সংক্রান্ত সমস্ত প্রিপজিশনের সূক্ষ্ম পার্থক্য ও সঠিক প্রয়োগ দেখে নিন:</p>
+
+        <div class="accordion-wrapper">
+            <!-- Group A -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('grpA')">
+                    <span>📌 Group A: উচ্চতা ও ওপরের অবস্থান (On, Over, Above, Up, Top, On top of)</span>
+                    <span id="grpA-icon">➕</span>
+                </button>
+                <div id="grpA" class="accordion-body">
+                    <p>• <b>On (উপরে - স্পর্শ করে থাকা):</b> কোনো বস্তু অন্য কোনো সমতল বা পৃষ্ঠকে স্পর্শ করে ওপরে থাকলে। <i>Ex: The laptop is <b>on</b> the table.</i></p>
+                    <p>• <b>Over (উপরে - না ছুঁয়ে/গতিশীল):</b> স্পর্শ না করে সরাসরি লম্বালম্বি মাথার ওপর থাকা কিংবা একপাশ থেকে অন্যপাশে গতিশীল হওয়া। <i>Ex: The fan is <b>over</b> my head. / A bird flew <b>over</b> the house.</i></p>
+                    <p>• <b>Above (উপরে - না ছুঁয়ে স্থির/উচ্চতর স্তর):</b> স্থির অবস্থায় উঁচুতে থাকা বা পরিমাপ/স্তরের দিক থেকে উপরে থাকা। <i>Ex: The sky is <b>above</b> us. / His marks are <b>above</b> average.</i></p>
+                    <p>• <b>Up (উর্ধ্বে/ওপরের দিকে গতি):</b> নিচ থেকে ওপরের দিকে উঠতে থাকা। <i>Ex: She is walking <b>up</b> the stairs.</i></p>
+                    <p>• <b>Top / On top of (চূড়ায়/একদম ওপরে):</b> কোনো কিছুর একদম উপরিভাগে বা সর্বোচ্চ চূড়ায় অবস্থান। <i>Ex: He placed the trophy <b>on top of</b> the shelf.</i></p>
+                </div>
+            </div>
+
+            <!-- Group B -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('grpB')">
+                    <span>📌 Group B: নৈকট্য ও পাশে থাকা (Near, Beside, Next to, By, Adjacent to)</span>
+                    <span id="grpB-icon">➕</span>
+                </button>
+                <div id="grpB" class="accordion-body">
+                    <p>• <b>Beside (পাশে):</b> ঠিক পাশেই অবস্থান করা। <i>Ex: Come and sit <b>beside</b> me.</i></p>
+                    <p>• <b>Next to (গা-ঘেঁষে লাগোয়া):</b> দুটি বস্তুর মাঝে কোনো ফাঁক না রেখে ঠিক পরেরটি বা গায়ে গায়ে লাগানো থাকা। <i>Ex: My shop is <b>next to</b> the pharmacy.</i></p>
+                    <p>• <b>Near (কাছে/নিকটে):</b> কিছুটা দূরত্ব বজায় রেখে কাছাকাছি অবস্থান করা। <i>Ex: The school is <b>near</b> the river.</i></p>
+                    <p>• <b>By (পাশে/নিকটে):</b> পাশে থাকা নির্দেশ করতে। <i>Ex: She stood <b>by</b> the window.</i></p>
+                    <p>• <b>Adjacent to (সংলগ্ন):</b> দেয়াল বা সীমানা ঘেঁষে কোনো কিছুর সাথে লেগে থাকা। <i>Ex: The library is <b>adjacent to</b> our college.</i></p>
+                </div>
+            </div>
+
+            <!-- Group C -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('grpC')">
+                    <span>📌 Group C: নিচু ও নিচের অবস্থান (Under, Below, Beneath, Underneath, Down)</span>
+                    <span id="grpC-icon">➕</span>
+                </button>
+                <div id="grpC" class="accordion-body">
+                    <p>• <b>Under (সরাসরি নিচে বা আড়ালে):</b> কোনো কিছুর সরাসরি নিচে থাকা বা ওপরের বস্তু দ্বারা আবৃত থাকা। <i>Ex: The dog is sleeping <b>under</b> the bed.</i></p>
+                    <p>• <b>Below (নির্দিষ্ট স্তর বা স্কেলের নিচে):</b> পরিমাপ, তাপমাত্রা বা স্তরের নিচে থাকা। <i>Ex: The temperature is <b>below</b> freezing point.</i></p>
+                    <p>• <b>Beneath / Underneath (একেবারে নিচে চাপা পড়ে থাকা):</b> নিচে ঢেকে থাকা বা স্পর্শ করে তলে পড়ে থাকা। <i>Ex: The secret file was hidden <b>underneath</b> the carpet.</i></p>
+                    <p>• <b>Down (নিচের দিকে গতি):</b> ওপর থেকে নিচের দিকে নামা। <i>Ex: She walked <b>down</b> the stairs.</i></p>
+                </div>
+            </div>
+
+            <!-- Group D -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('grpD')">
+                    <span>📌 Group D: সময় নির্দেশক (In, On, At, By, For, Since, During)</span>
+                    <span id="grpD-icon">➕</span>
+                </button>
+                <div id="grpD" class="accordion-body">
+                    <p>• <b>At (নির্দিষ্ট ঘড়ির সময়/ছোট সময়):</b> <i>At 6:00 AM, at noon, at dawn.</i></p>
+                    <p>• <b>On (নির্দিষ্ট দিন বা তারিখ):</b> <i>On Sunday, on 26th March.</i></p>
+                    <p>• <b>In (মাস, বছর, ঋতু বা দীর্ঘ সময়):</b> <i>In 2026, in winter, in January.</i></p>
+                    <p>• <b>By (নির্দিষ্ট সময়ের শেষ সীমা/Deadline):</b> <i>Finish the project <b>by</b> Friday.</i></p>
+                    <p>• <b>For (সময়ের ব্যাপ্তি - Period of Time):</b> <i>It has been raining <b>for</b> three hours.</i></p>
+                    <p>• <b>Since (নির্দিষ্ট শুরুর সময় - Point of Time):</b> <i>Living here <b>since</b> 2018.</i></p>
+                    <p>• <b>During (নির্দিষ্ট সময়কাল ব্যাপী):</b> <i>We enjoyed <b>during</b> the summer vacation.</i></p>
+                </div>
+            </div>
+
+            <!-- Group E -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('grpE')">
+                    <span>📌 Group E, F, G, H: স্থান, গতি, মাধ্যম, অংশভাগ ও সম্পর্ক</span>
+                    <span id="grpE-icon">➕</span>
+                </button>
+                <div id="grpE" class="accordion-body">
+                    <p>• <b>At / In / Inside / Outside:</b> ছোট স্থান বা বিন্দুতে at (<i>at Rajarhat</i>), বড় শহর বা দেশে in (<i>in Dhaka</i>), ঘরের ঠিক ভেতরে inside, বাইরে outside বসে।</p>
+                    <p>• <b>To / Towards / Into / Out of / Across / Through / Along:</b> নিশ্চিত গন্তব্যে to, অভিমুখে towards, বাইরে থেকে ভেতরে গতির প্রবেশে into, ভেতর থেকে বাইরে আসায় out of, নদী বা রাস্তা পারাপারে across, টানেল বা বনের ভেতর দিয়ে যাওয়ায় through, সোজা সমান্তরাল চলাচলে along বসে।</p>
+                    <p>• <b>Between / Among / Of / Off / With / Without / By / From / Like / As / Against:</b> দুজনের মাঝে between, তিন বা ততধিক মাঝে among, উৎস নির্দেশ করতে from, মাধ্যম বা বাহনে by, যন্ত্র দিয়ে করতে with, অধিকার বোঝাতে of, মুখোমুখি অবস্থান বোঝাতে opposite এবং হেলান দিয়ে রাখা নির্দেশ করতে against ব্যবহৃত হয়।</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAPTER 3: FULL A-Z APPROPRIATE PREPOSITION DIRECTORY -->
+    <div id="chap3" class="chapter-pane">
+        <h1 class="chap-title">অধ্যায় ৩: পূর্ণাঙ্গ A-Z Appropriate Preposition নির্দেশিকা</h1>
+        <p style="color: var(--text-muted); margin-bottom: 15px;">বর্ণমালার যেকোনো অক্ষরের ওপর ক্লিক করে উক্ত অক্ষরের সমস্ত গুরুত্বপূর্ণ প্রিপজিশন বের করুন:</p>
+
+        <!-- Alphabet Bar -->
+        <div class="az-nav">
+            <button class="az-btn active" onclick="filterAZ('A', this)">A</button>
+            <button class="az-btn" onclick="filterAZ('B', this)">B</button>
+            <button class="az-btn" onclick="filterAZ('C', this)">C</button>
+            <button class="az-btn" onclick="filterAZ('D', this)">D</button>
+            <button class="az-btn" onclick="filterAZ('E', this)">E</button>
+            <button class="az-btn" onclick="filterAZ('F', this)">F</button>
+            <button class="az-btn" onclick="filterAZ('G', this)">G</button>
+            <button class="az-btn" onclick="filterAZ('H', this)">H</button>
+            <button class="az-btn" onclick="filterAZ('I', this)">I</button>
+            <button class="az-btn" onclick="filterAZ('J', this)">J</button>
+            <button class="az-btn" onclick="filterAZ('K', this)">K</button>
+            <button class="az-btn" onclick="filterAZ('L', this)">L</button>
+            <button class="az-btn" onclick="filterAZ('M', this)">M</button>
+            <button class="az-btn" onclick="filterAZ('N', this)">N</button>
+            <button class="az-btn" onclick="filterAZ('O', this)">O</button>
+            <button class="az-btn" onclick="filterAZ('P', this)">P</button>
+            <button class="az-btn" onclick="filterAZ('Q', this)">Q</button>
+            <button class="az-btn" onclick="filterAZ('R', this)">R</button>
+            <button class="az-btn" onclick="filterAZ('S', this)">S</button>
+            <button class="az-btn" onclick="filterAZ('T', this)">T</button>
+            <button class="az-btn" onclick="filterAZ('U', this)">U</button>
+            <button class="az-btn" onclick="filterAZ('V', this)">V</button>
+            <button class="az-btn" onclick="filterAZ('W', this)">W</button>
+            <button class="az-btn" onclick="filterAZ('Y', this)">Y</button>
+            <button class="az-btn" onclick="filterAZ('Z', this)">Z</button>
+        </div>
+
+        <!-- Dynamic Content Display -->
+        <div id="azDisplay" class="az-display-box"></div>
+    </div>
+
+    <!-- CHAPTER 4: 100 INTERACTIVE QUIZ TEST -->
+    <div id="chap4" class="chapter-pane">
+        <h1 class="chap-title">অধ্যায় ৪: ১০০টি সম্পূর্ণ মাস্টার কুইজ ও অনুশীলন টেস্ট</h1>
+
+        <!-- Score Tracker & Control Dashboard -->
+        <div class="quiz-dashboard">
+            <div class="quiz-stats-row">
+                <div class="stat-badge">🎯 মোট উত্তর দেওয়া হয়েছে: <span id="totalAnswered">০</span> / ১০০</div>
+                <div class="stat-badge" style="color: var(--accent-emerald);">✅ সঠিক: <span id="correctScore">০</span></div>
+                <div class="stat-badge" style="color: var(--accent-rose);">❌ ভুল: <span id="wrongScore">০</span></div>
+            </div>
+
+            <div style="font-weight: 700; margin-top: 5px;">কুইজ সেট নির্বাচন করুন (প্রতি সেটে ১০টি কুইজ):</div>
+            <div class="set-selector-bar">
+                <button class="set-btn active" onclick="loadQuizSet(1, this)">সেট ১ (১-১০)</button>
+                <button class="set-btn" onclick="loadQuizSet(2, this)">সেট ২ (১১-২০)</button>
+                <button class="set-btn" onclick="loadQuizSet(3, this)">সেট ৩ (২১-৩০)</button>
+                <button class="set-btn" onclick="loadQuizSet(4, this)">সেট ৪ (৩১-৪০)</button>
+                <button class="set-btn" onclick="loadQuizSet(5, this)">সেট ৫ (৪১-৫০)</button>
+                <button class="set-btn" onclick="loadQuizSet(6, this)">সেট ৬ (৫১-৬০)</button>
+                <button class="set-btn" onclick="loadQuizSet(7, this)">সেট ৭ (৬১-৭০)</button>
+                <button class="set-btn" onclick="loadQuizSet(8, this)">সেট ৮ (৭১-৮০)</button>
+                <button class="set-btn" onclick="loadQuizSet(9, this)">সেট ৯ (৮১-৯০)</button>
+                <button class="set-btn" onclick="loadQuizSet(10, this)">সেট ১০ (৯১-১০০)</button>
+            </div>
+        </div>
+
+        <div id="quizContainer"></div>
+    </div>
+
+</div>
+
+<script>
+    // Theme Toggle Logic
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const icon = document.getElementById('themeIcon');
+        const text = document.getElementById('themeText');
+
+        if (currentTheme === 'dark') {
+            body.removeAttribute('data-theme');
+            icon.innerText = '🌙';
+            text.innerText = 'ডার্ক থিম';
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            icon.innerText = '☀️';
+            text.innerText = 'লাইট থিম';
+        }
+    }
+
+    // Chapter Navigation
+    function showChapter(chapId, btnElem) {
+        const panes = document.querySelectorAll('.chapter-pane');
+        panes.forEach(p => p.classList.remove('active'));
+
+        const targetPane = document.getElementById(chapId);
+        if (targetPane) targetPane.classList.add('active');
+
+        const navBtns = document.querySelectorAll('.nav-tab-btn');
+        navBtns.forEach(b => b.classList.remove('active'));
+
+        btnElem.classList.add('active');
+    }
+
+    // Accordion Logic
+    function toggleAccordion(grpId) {
+        const body = document.getElementById(grpId);
+        const icon = document.getElementById(grpId + '-icon');
+
+        if (body.style.display === 'block') {
+            body.style.display = 'none';
+            icon.innerText = '➕';
+        } else {
+            body.style.display = 'block';
+            icon.innerText = '➖';
+        }
+    }
+
+    // Complete A-Z Directory Database
+    const azDatabase = {
+        'A': '• <b>Abide by</b> — মেনে চলা (<i>Abide by the rules.</i>)<br>• <b>Abound in</b> — প্রচুর থাকা (<i>Fish abounds in this river.</i>)<br>• <b>Abound with</b> — পূর্ণ থাকা (<i>The river abounds with fish.</i>)<br>• <b>Absorbed in</b> — মগ্ন থাকা (<i>Absorbed in deep thought.</i>)<br>• <b>Absent from</b> — অনুপস্থিত (<i>Absent from meeting.</i>)<br>• <b>Abstain from</b> — বিরত থাকা (<i>Abstain from smoking.</i>)<br>• <b>Accede to</b> — সম্মতি দেওয়া (<i>Accede to my request.</i>)<br>• <b>Acceptable to</b> — গ্রহণযোগ্য (<i>Acceptable to all.</i>)<br>• <b>Access to</b> — প্রবেশাধিকার (<i>Access to the Internet.</i>)<br>• <b>Accompanied by</b> — কারো সাথে যাওয়া (<i>Accompanied by his father.</i>)<br>• <b>According to</b> — অনুসারে (<i>According to your order.</i>)<br>• <b>Accountable to (person) for (thing)</b> — জবাবদিহি করতে বাধ্য থাকা<br>• <b>Accuse of</b> — অভিযুক্ত করা (<i>Accused of theft.</i>)<br>• <b>Accustomed to</b> — অভ্যস্ত (<i>Accustomed to hard work.</i>)<br>• <b>Affection for</b> — স্নেহ (<i>Affection for the child.</i>)<br>• <b>Afraid of</b> — ভীত (<i>Afraid of snakes.</i>)<br>• <b>Agree to (proposal) / Agree with (person) / Agree on (point)</b> — একমত হওয়া<br>• <b>Aim at</b> — লক্ষ্য করা (<i>Aim at the target.</i>)<br>• <b>Angry with (person) / Angry at (thing)</b> — রাগান্বিত হওয়া<br>• <b>Anxious about/for</b> — চিন্তিত (<i>Anxious about result.</i>)<br>• <b>Apply to (person) for (thing)</b> — আবেদন করা (<i>Apply to Principal for leave.</i>)<br>• <b>Averse to</b> — অনিচ্ছুক/বিমুখ (<i>Averse to hard work.</i>)',
+        'B': '• <b>Base on/upon</b> — ভিত্তি করা (<i>Based on true facts.</i>)<br>• <b>Believe in</b> — বিশ্বাস রাখা (<i>Believe in honesty.</i>)<br>• <b>Belong to</b> — অধিকারভুক্ত হওয়া (<i>Belongs to me.</i>)<br>• <b>Beneficial to</b> — উপকারী (<i>Beneficial to health.</i>)<br>• <b>Beware of</b> — সতর্ক থাকা (<i>Beware of pickpockets.</i>)<br>• <b>Blind of (an eye)</b> — চোখে অন্ধ (<i>Blind of left eye.</i>)<br>• <b>Blind to (faults)</b> — দোষে অন্ধ (<i>Blind to son\'s faults.</i>)<br>• <b>Boast of/about</b> — অহংকার করা (<i>Do not boast of riches.</i>)<br>• <b>Born of/in</b> — জন্ম নেওয়া (<i>Born in 1995 / born of rich parents.</i>)<br>• <b>Bound for</b> — রওনা হওয়া (<i>Ship is bound for London.</i>)<br>• <b>Busy with</b> — ব্যস্ত থাকা (<i>Busy with studies.</i>)',
+        'C': '• <b>Call in</b> — ডেকে পাঠানো (<i>Call in a doctor.</i>)<br>• <b>Capable of</b> — সক্ষম (<i>Capable of doing this.</i>)<br>• <b>Care for</b> — যত্ন নেওয়া (<i>Care for health.</i>)<br>• <b>Compare to (dissimilar) / Compare with (similar)</b> — তুলনা করা<br>• <b>Complain against (person) to (authority)</b> — অভিযোগ করা<br>• <b>Confident of</b> — আত্মবিশ্বাসী (<i>Confident of success.</i>)<br>• <b>Consist of (formed) / Consist in (inherent)</b> — গঠিত হওয়া/নিহিত থাকা<br>• <b>Congratulate on</b> — অভিনন্দন জানানো (<i>Congratulate him on success.</i>)<br>• <b>Cure of (disease)</b> — আরোগ্য লাভ করা (<i>Cured of fever.</i>)',
+        'D': '• <b>Deaf to</b> — কর্ণপাত না করা (<i>Deaf to my advice.</i>)<br>• <b>Deal in</b> — ব্যবসা করা (<i>Deals in rice/jute.</i>)<br>• <b>Deal with</b> — আচরণ করা (<i>Deal with the matter.</i>)<br>• <b>Depend on/upon</b> — নির্ভর করা (<i>Depend on hard work.</i>)<br>• <b>Deprive of</b> — বঞ্চিত করা (<i>Deprived of basic rights.</i>)<br>• <b>Devoted to</b> — উৎসর্গীকৃত (<i>Devoted to studies.</i>)<br>• <b>Died of (disease) / Died by (violence/poison) / Died for (country)</b> — মারা যাওয়া<br>• <b>Different from</b> — ভিন্ন (<i>Different from mine.</i>)',
+        'E': '• <b>Eager for/about</b> — আগ্রহী (<i>Eager for knowledge.</i>)<br>• <b>Eligible for</b> — উপযুক্ত (<i>Eligible for the post.</i>)<br>• <b>Equal to</b> — সমান (<i>Equal to the task.</i>)<br>• <b>Escape from</b> — পালিয়ে যাওয়া (<i>Escape from prison.</i>)<br>• <b>Essential to/for</b> — অপরিহার্য (<i>Water is essential to life.</i>)<br>• <b>Excel in</b> — দক্ষ হওয়া (<i>Excel in sports.</i>)<br>• <b>Expert in/at</b> — বিশেষজ্ঞ (<i>Expert in English.</i>)',
+        'F': '• <b>Faithful to</b> — বিশ্বস্ত (<i>Faithful to master.</i>)<br>• <b>Familiar with (subject) / Familiar to (person)</b> — পরিচিত হওয়া<br>• <b>Famous for</b> — বিখ্যাত (<i>Famous for bravery.</i>)<br>• <b>Feed on</b> — খেয়ে বাঁচা (<i>Cows feed on grass.</i>)<br>• <b>Fond of</b> — শৌখিন (<i>Fond of music/sweets.</i>)<br>• <b>Free from</b> — মুক্ত (<i>Free from danger.</i>)',
+        'G': '• <b>Good at</b> — দক্ষ (<i>Good at mathematics.</i>)<br>• <b>Good for</b> — উপকারী (<i>Good for health.</i>)<br>• <b>Grateful to (person) for (thing)</b> — কৃতজ্ঞ হওয়া<br>• <b>Guilty of</b> — অপরাধী (<i>Guilty of murder.</i>)',
+        'H': '• <b>Hankering after</b> — পেছনে ছোটা (<i>Hankering after wealth.</i>)<br>• <b>Harmful to</b> — ক্ষতিকর (<i>Smoking is harmful to health.</i>)<br>• <b>Heir to</b> — উত্তরাধিকারী (<i>Heir to property.</i>)<br>• <b>Hopeful of</b> — আশাবাদী (<i>Hopeful of winning.</i>)<br>• <b>Hungry for</b> — ক্ষুধার্ত (<i>Hungry for knowledge.</i>)',
+        'I': '• <b>Ignorant of</b> — অজ্ঞ (<i>Ignorant of facts.</i>)<br>• <b>Ill with</b> — অসুস্থ (<i>Ill with fever.</i>)<br>• <b>Indebted to (person) for (thing)</b> — ঋণী থাকা<br>• <b>Indifferent to</b> — উদাসীন (<i>Indifferent to pain.</i>)<br>• <b>Inferior to</b> — কম মানের (<i>Inferior to this.</i>)<br>• <b>Insist on</b> — জোর দেওয়া (<i>Insist on going.</i>)<br>• <b>Interested in</b> — আগ্রহী (<i>Interested in science.</i>)',
+        'J': '• <b>Jealous of</b> — ঈর্ষান্বিত (<i>Jealous of success.</i>)<br>• <b>Junior to</b> — বয়সে বা পদে ছোট (<i>Junior to me.</i>)<br>• <b>Jump at (offer) / Jump to (conclusion)</b> — সানন্দে গ্রহণ/সিদ্ধান্তে পৌঁছানো',
+        'K': '• <b>Key to</b> — চাবিকাঠি (<i>Hard work is key to success.</i>)<br>• <b>Kind to</b> — দয়ালু (<i>Kind to animals.</i>)<br>• <b>Known to (person) / Known for (quality) / Known as (identity)</b> — পরিচিত',
+        'L': '• <b>Lacking in</b> — ঘাটতি থাকা (<i>Lacking in courage.</i>)<br>• <b>Laugh at</b> — উপহাস করা (<i>Do not laugh at poor.</i>)<br>• <b>Listen to</b> — মনোযোগ দিয়ে শোনা (<i>Listen to me.</i>)<br>• <b>Live on (food) / Live by (means)</b> — খেয়ে বা উপায়ে বেঁচে থাকা<br>• <b>Look after (care) / Look for (search) / Look into (investigate)</b> — দেখাশোনা/খোঁজা/তদন্ত',
+        'M': '• <b>Made of (visible) / Made from (chemical change)</b> — তৈরি<br>• <b>Married to</b> — বিবাহিত (<i>Married to a doctor.</i>)<br>• <b>Mindful of</b> — মনোযোগী (<i>Mindful of lessons.</i>)',
+        'N': '• <b>Necessary for/to</b> — প্রয়োজনীয় (<i>Necessary for life.</i>)<br>• <b>Negligent of</b> — অবহেলাকারী (<i>Negligent of duty.</i>)<br>• <b>Notable for</b> — উল্লেখযোগ্য (<i>Notable for bravery.</i>)',
+        'O': '• <b>Obedient to</b> — বাধ্য (<i>Obedient to parents.</i>)<br>• <b>Object to</b> — আপত্তি করা (<i>Object to proposal.</i>)<br>• <b>Obliged to (person) for (thing)</b> — কৃতজ্ঞ থাকা',
+        'P': '• <b>Part from (person) / Part with (thing)</b> — বিচ্ছিন্ন হওয়া/ত্যাগ করা<br>• <b>Popular with</b> — জনপ্রিয় (<i>Popular with students.</i>)<br>• <b>Prefer to</b> — অধিক পছন্দ করা (<i>Prefer tea to coffee.</i>)<br>• <b>Proud of</b> — গর্বিত (<i>Proud of his son.</i>)',
+        'Q': '• <b>Qualified for</b> — যোগ্য (<i>Qualified for job.</i>)<br>• <b>Quarrel with (person) over/about (thing)</b> — ঝগড়া করা<br>• <b>Quick at</b> — দ্রুত দক্ষ (<i>Quick at figures.</i>)',
+        'R': '• <b>Recover from</b> — আরোগ্য পাওয়া (<i>Recover from illness.</i>)<br>• <b>Rely on/upon</b> — নির্ভর করা (<i>Rely on my word.</i>)<br>• <b>Rich in</b> — সমৃদ্ধ (<i>Rich in natural resources.</i>)<br>• <b>Responsible to (authority) for (action)</b> — দায়ী থাকা',
+        'S': '• <b>Satisfied with</b> — সন্তুষ্ট (<i>Satisfied with result.</i>)<br>• <b>Senior to</b> — বয়সে বা পদে জ্যেষ্ঠ (<i>Senior to me.</i>)<br>• <b>Succeed in</b> — সফল হওয়া (<i>Succeed in life.</i>)<br>• <b>Suffering from</b> — ভোগা (<i>Suffering from fever.</i>)<br>• <b>Superior to</b> — উৎকৃষ্টতর (<i>Superior to that.</i>)',
+        'T': '• <b>Tired of</b> — ক্লান্ত বা বিরক্ত (<i>Tired of waiting.</i>)<br>• <b>True to</b> — বিশ্বস্ত (<i>True to his word.</i>)<br>• <b>Trust in (God)</b> — বিশ্বাস রাখা (<i>Trust in God.</i>)',
+        'U': '• <b>Unaware of</b> — অসচেতন (<i>Unaware of danger.</i>)<br>• <b>Useful for/to</b> — দরকারী (<i>Useful for health.</i>)',
+        'V': '• <b>Vain of</b> — অহংকারী (<i>Vain of her looks.</i>)<br>• <b>Vexed with (person) at (thing)</b> — বিরক্ত হওয়া<br>• <b>Victim of</b> — শিকার (<i>Victim of injustice.</i>)',
+        'W': '• <b>Wait for (person) / Wait on (attend)</b> — অপেক্ষা/সেবা করা<br>• <b>Weak in</b> — দুর্বল (<i>Weak in English.</i>)<br>• <b>Worthy of</b> — যোগ্য (<i>Worthy of praise.</i>)',
+        'Y': '• <b>Yield to</b> — বশ্যতা স্বীকার করা (<i>Yield to temptation.</i>)<br>• <b>Yearn for</b> — আকুল হওয়া (<i>Yearn for freedom.</i>)',
+        'Z': '• <b>Zeal for</b> — উদ্দীপনা বা আগ্রহ (<i>Zeal for learning.</i>)<br>• <b>Zealous in/for</b> — উৎসাহী (<i>Zealous for freedom.</i>)'
+    };
+
+    function filterAZ(letter, btnElem) {
+        const display = document.getElementById('azDisplay');
+        display.innerHTML = '<h3 style="color: var(--primary); margin-bottom: 10px; border-bottom: 2px solid var(--border-color); padding-bottom: 5px;">বর্ণমালা: ' + letter + '</h3>' + (azDatabase[letter] || 'তথ্য পাওয়া যায়নি।');
+
+        const btns = document.querySelectorAll('.az-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btnElem.classList.add('active');
+    }
+
+    // Initialize Default A
+    filterAZ('A', document.querySelector('.az-btn'));
+
+    // 100 COMPLETE PREPOSITION QUIZ DATABASE
+    const masterQuizData = [
+        // Set 1 (1-10)
+        { q: "১. The boy jumped _______ the river to save the drowning child.", options: ["in", "into", "on", "over"], correct: 1, exp: "বাইরে থেকে ভেতরে গতির সাথে স্থানান্তরিত হওয়া বোঝালে 'into' বসে।" },
+        { q: "২. He has been suffering from fever _______ last Sunday.", options: ["for", "from", "since", "in"], correct: 2, exp: "নির্দিষ্ট শুরুর সময় (Point of Time) বোঝালে 'since' বসে।" },
+        { q: "৩. Do not boast _______ your wealth or power.", options: ["for", "of", "in", "with"], correct: 1, exp: "অহংকার করা অর্থে 'boast'-এর পর Appropriate Preposition 'of' বসে।" },
+        { q: "৪. You must abide _______ the rules and regulations of the school.", options: ["with", "by", "to", "for"], correct: 1, exp: "নিয়ম মেনে চলা অর্থে 'abide by' বসে।" },
+        { q: "৫. The dog slept peacefully _______ the table.", options: ["under", "below", "beneath", "down"], correct: 0, exp: "কোনো বস্তুর নিচে আড়ালে থাকা বোঝালে 'under' বসে।" },
+        { q: "৬. She was born _______ 10:00 AM _______ Friday.", options: ["at, on", "in, at", "on, in", "at, in"], correct: 0, exp: "নির্দিষ্ট ঘড়ির সময়ের পূর্বে 'at' এবং দিনের পূর্বে 'on' বসে।" },
+        { q: "৭. He is good _______ Mathematics but weak _______ English.", options: ["in, at", "at, in", "for, with", "at, for"], correct: 1, exp: "কোনো বিষয়ে দক্ষতায় 'good at' এবং দুর্বলতায় 'weak in' হয়।" },
+        { q: "৮. My house is adjacent _______ the public library.", options: ["with", "to", "by", "near"], correct: 1, exp: "সংলগ্ন বা লাগোয়া বোঝাতে 'adjacent to' ব্যবহৃত হয়।" },
+        { q: "৯. Divide the mangoes _______ the four children.", options: ["between", "among", "with", "into"], correct: 1, exp: "দুইয়ের অধিক ব্যক্তির মধ্যে ভাগ করে দেওয়া বোঝালে 'among' বসে।" },
+        { q: "১০. What is the time _______ your watch?", options: ["in", "by", "at", "on"], correct: 1, exp: "ঘড়ি অনুযায়ী সময় জিজ্ঞাসায় 'by your watch' হয়।" },
+
+        // Set 2 (11-20)
+        { q: "১১. The thief entered the house _______ the night.", options: ["at", "in", "during", "on"], correct: 2, exp: "নির্দিষ্ট সময়কাল জুড়ে চলা বোঝাতে 'during' বসে।" },
+        { q: "১২. He died _______ cholera yesterday afternoon.", options: ["by", "for", "of", "from"], correct: 2, exp: "রোগে মারা যাওয়া বোঝালে 'died of' হয়।" },
+        { q: "১৩. The patriot died _______ his country.", options: ["of", "for", "by", "from"], correct: 1, exp: "দেশের জন্য বা মহান কারণে আত্মত্যাগে 'died for' বসে।" },
+        { q: "১৪. He prefers milk _______ tea in the morning.", options: ["than", "over", "to", "for"], correct: 2, exp: "পছন্দের তুলনায় Prefer-এর সাথে 'to' বসে (than নয়)।" },
+        { q: "১৫. The bird flew _______ the building.", options: ["on", "over", "above", "up"], correct: 1, exp: "স্পর্শ না করে উপর দিয়ে গতিশীল হওয়া বোঝালে 'over' বসে।" },
+        { q: "১৬. I agree _______ your proposal unconditionally.", options: ["with", "to", "on", "for"], correct: 1, exp: "কোনো প্রস্তাবে রাজি হওয়া বোঝালে 'agree to' বসে (ব্যক্তির সাথে agree with)।" },
+        { q: "১৭. He deals _______ rice, but deals _______ all customers politely.", options: ["in, with", "with, in", "in, in", "about, with"], correct: 0, exp: "ব্যবসা করা অর্থে 'deal in' এবং আচরণ করা অর্থে 'deal with' হয়।" },
+        { q: "১৮. The meeting was postponed because _______ heavy rain.", options: ["for", "of", "on", "by"], correct: 1, exp: "কারণ দর্শাতে Phrase Preposition 'because of' বসে।" },
+        { q: "১৯. I am confident _______ achieving success.", options: ["for", "of", "about", "in"], correct: 1, exp: "আত্মবিশ্বাসী হওয়া বোঝাতে 'confident of' বসে।" },
+        { q: "২০. They walked _______ the river bank for an hour.", options: ["across", "through", "along", "into"], correct: 2, exp: "ধার বা সোজা লাইন ধরে চলা বোঝালে 'along' বসে।" },
+
+        // Set 3 (21-30)
+        { q: "২১. He was accused _______ theft by the police.", options: ["for", "of", "with", "about"], correct: 1, exp: "অভিযুক্ত করার ক্ষেত্রে 'accuse of' বসে।" },
+        { q: "২২. Water consists _______ hydrogen and oxygen.", options: ["in", "of", "with", "by"], correct: 1, exp: "গঠিত হওয়া বোঝাতে 'consist of' ব্যবহৃত হয়।" },
+        { q: "২৩. True happiness consists _______ contentment.", options: ["of", "in", "with", "for"], correct: 1, exp: "কোনো কিছুর মধ্যে নিহিত থাকা বোঝালে 'consist in' বসে।" },
+        { q: "২৪. He walked _______ the forest alone at night.", options: ["across", "through", "along", "over"], correct: 1, exp: "বনের ভেতর বা ত্রিমাত্রিক মাধ্যমের মধ্য দিয়ে যাওয়ায় 'through' বসে।" },
+        { q: "২৫. I am searching _______ my lost wallet.", options: ["for", "after", "into", "at"], correct: 0, exp: "কোনো কিছু খোঁজা বোঝালে 'search for' বসে।" },
+        { q: "২৬. Beware _______ wild dogs in this area.", options: ["from", "of", "with", "about"], correct: 1, exp: "সতর্ক থাকা অর্থে 'beware of' বসে।" },
+        { q: "২৭. He prevented me _______ going to the park.", options: ["to", "from", "for", "against"], correct: 1, exp: "বাধা দেওয়া বা বিরত রাখা বোঝালে 'prevent from' + V-ing হয়।" },
+        { q: "২৮. The table is made _______ wood.", options: ["from", "of", "by", "with"], correct: 1, exp: "উপাদানের ভৌত রূপ পরিবর্তিত না হলে 'made of' বসে।" },
+        { q: "২৯. Paper is made _______ wood.", options: ["of", "from", "by", "with"], correct: 1, exp: "উপাদানের রাসায়নিক পরিবর্তন ঘটলে 'made from' বসে।" },
+        { q: "৩০. He looks _______ his old parents carefully.", options: ["for", "after", "into", "at"], correct: 1, exp: "দেখাListName বা যত্ন নেওয়া অর্থে 'look after' ব্যবহৃত হয়।" },
+
+        // Set 4 (31-40)
+        { q: "৩১. The police are looking _______ the murder case.", options: ["after", "for", "into", "on"], correct: 2, exp: "তদন্ত করা অর্থে 'look into' ব্যবহার করা হয়।" },
+        { q: "৩২. She was congratulated _______ her brilliant success.", options: ["for", "on", "about", "with"], correct: 1, exp: "অভিনন্দন জানানোর ক্ষেত্রে 'congratulate on' বসে।" },
+        { q: "৩৩. He was blind _______ his son's faults.", options: ["of", "to", "in", "with"], correct: 1, exp: "দোষের প্রতি অন্ধ বা উদাসীন বোঝাতে 'blind to' বসে।" },
+        { q: "৩৪. He is blind _______ one eye.", options: ["to", "of", "with", "in"], correct: 1, exp: "চোখে দৃষ্টিহীন হওয়া বোঝালে 'blind of' বসে।" },
+        { q: "৩৫. The train bound _______ Chittagong has arrived.", options: ["to", "for", "towards", "at"], correct: 1, exp: "কোনো গন্তব্যের উদ্দেশ্যে রওনা হওয়া বোঝালে 'bound for' বসে।" },
+        { q: "৩৬. He relies _______ my word blindly.", options: ["at", "on", "with", "in"], correct: 1, exp: "নির্ভর করা অর্থে 'rely on/upon' বসে।" },
+        { q: "৩৭. Do not hanker _______ worldy money or fame.", options: ["for", "after", "to", "with"], correct: 1, exp: "কোনো কিছুর পেছনে লালসা নিয়ে ছোটা বোঝালে 'hanker after' বসে।" },
+        { q: "৩৮. She is fond _______ sweets and chocolates.", options: ["for", "of", "in", "about"], correct: 1, exp: "পছন্দ করা বা শৌখিন হওয়া বোঝালে 'fond of' বসে।" },
+        { q: "৩৯. Man does not live _______ bread alone.", options: ["on", "by", "for", "with"], correct: 0, exp: "কোনো নির্দিষ্ট খাদ্য খেয়ে বেঁচে থাকা বোঝালে 'live on' বসে।" },
+        { q: "৪০. He lives _______ honest labor.", options: ["on", "by", "with", "for"], correct: 1, exp: "উপায় বা উপার্জনে বেঁচে থাকা বোঝালে 'live by' হয়।" },
+
+        // Set 5 (41-50)
+        { q: "৪১. He was exempted _______ paying the tuition fee.", options: ["to", "from", "for", "of"], correct: 1, exp: "মওকুফ বা ছাড় পাওয়া বোঝাতে 'exempted from' বসে।" },
+        { q: "৪২. Smoking is injurious _______ human health.", options: ["for", "to", "with", "upon"], correct: 1, exp: "ক্ষতিকর বোঝাতে 'injurious to' বসে।" },
+        { q: "৪৩. He is senior _______ me by two years.", options: ["than", "from", "to", "over"], correct: 2, exp: "Senior, Junior, Superior, Inferior-এর পর 'to' বসে।" },
+        { q: "৪৪. Please write _______ ink, not pencil.", options: ["with", "in", "by", "through"], correct: 1, exp: "কালি দিয়ে লেখা বোঝালে 'in ink' ব্যবহৃত হয় (with pen হয়)।" },
+        { q: "৪৫. The teacher is annoyed _______ his bad behavior.", options: ["with", "at", "for", "by"], correct: 1, exp: "কারো আচরণে অসন্তুষ্ট বা বিরক্ত হলে 'annoyed at' বসে।" },
+        { q: "৪৬. He is annoyed _______ me for being late.", options: ["at", "with", "against", "to"], correct: 1, exp: "ব্যক্তির ওপর বিরক্ত হলে 'annoyed with' বসে।" },
+        { q: "৪৭. He was absorbed _______ reading the newspaper.", options: ["with", "in", "at", "on"], correct: 1, exp: "কোনো কাজে গভীর মগ্ন থাকা বোঝালে 'absorbed in' হয়।" },
+        { q: "৪৮. We must refrain _______ telling lies.", options: ["to", "from", "for", "with"], correct: 1, exp: "বিরত থাকা অর্থে 'refrain from' বসে।" },
+        { q: "৪৯. The ladder was placed _______ the wall.", options: ["on", "against", "over", "to"], correct: 1, exp: "কোনো কিছুর গায়ে হেলান দিয়ে রাখা বোঝালে 'against' ব্যবহৃত হয়।" },
+        { q: "৫০. It is 5 o'clock. Here 'o'' stands for _______.", options: ["on", "of", "off", "out"], correct: 1, exp: "Disguised Preposition হিসেবে o' মূলত 'of'-এর ছদ্মরূপ।" },
+
+        // Set 6 (51-60)
+        { q: "৫১. He goes to university _______ foot.", options: ["by", "on", "with", "in"], correct: 1, exp: "হেঁটে যাওয়ার ক্ষেত্রে 'on foot' হয় (যানবাহনে by bus/car)।" },
+        { q: "৫২. I will return the book _______ a week.", options: ["within", "in", "by", "for"], correct: 0, exp: "নির্দিষ্ট সময়সীমা পার হওয়ার আগেই বোঝাতে Double Preposition 'within' বসে।" },
+        { q: "৫৩. She came here _______ purpose to meet you.", options: ["for", "on", "with", "in"], correct: 1, exp: "উদ্দেশ্যমূলকভাবে আসা বোঝালে Phrase হিসেবে 'on purpose' বসে।" },
+        { q: "৫৪. The work was done _______ line with instructions.", options: ["on", "in", "at", "by"], correct: 1, exp: "নির্দেশনা অনুযায়ী বোঝাতে 'in line with' ব্যবহৃত হয়।" },
+        { q: "৫৫. Considering his age, he was excused. Here 'Considering' is a _______.", options: ["Simple", "Participle", "Double", "Disguised"], correct: 1, exp: "Verb+ing রূপ প্রিপজিশন হিসেবে কাজ করলে তাকে Participle Preposition বলে।" },
+        { q: "৫৬. He sat _______ me during the lecture.", options: ["besides", "beside", "at", "by"], correct: 1, exp: "পাশে বসা অর্থে 'beside' ব্যবহৃত হয় (besides অর্থ অধিকন্তু)।" },
+        { q: "৫৭. He has no desire _______ fame or money.", options: ["for", "of", "in", "to"], correct: 0, exp: "আকাঙ্ক্ষা প্রকাশে 'desire for' বসে।" },
+        { q: "৫৮. He was convicted _______ murder by court.", options: ["for", "of", "with", "on"], correct: 1, exp: "অপরাধে দোষী সাব্যস্ত হওয়া বোঝালে 'convicted of' বসে।" },
+        { q: "৫৯. She takes pride _______ her beauty.", options: ["for", "in", "of", "on"], correct: 1, exp: "গর্ব করা অর্থে 'take pride in' হয় (কিন্তু proud of)।" },
+        { q: "৬০. He is proud _______ his academic performance.", options: ["in", "of", "for", "about"], correct: 1, exp: "গর্বিত হওয়া বোঝালে Adjective 'proud of' বসে।" },
+
+        // Set 7 (61-70)
+        { q: "৬১. He compensated me _______ the financial loss.", options: ["for", "of", "with", "at"], correct: 0, exp: "ক্ষতিপূরণ দেওয়া বোঝালে 'compensate for' বসে।" },
+        { q: "৬২. I am accustomed _______ living in cold weather.", options: ["with", "to", "in", "for"], correct: 1, exp: "অভ্যস্ত হওয়া বোঝাতে 'accustomed to' ব্যবহৃত হয়।" },
+        { q: "৬৩. He aims _______ securing the first position.", options: ["to", "at", "on", "for"], correct: 1, exp: "লক্ষ্য স্থির করা অর্থে 'aim at' বসে।" },
+        { q: "৬৪. The house was set _______ fire by miscreants.", options: ["in", "on", "to", "with"], correct: 1, exp: "আগুন লাগানো অর্থে 'set on fire' বা 'set fire to' হয়।" },
+        { q: "৬৫. He was absent _______ the class yesterday.", options: ["in", "from", "at", "with"], correct: 1, exp: "অনুপস্থিত থাকা বোঝালে 'absent from' বসে।" },
+        { q: "৬৬. He succeeded _______ passing the BCS exam.", options: ["for", "in", "at", "with"], correct: 1, exp: "সফলতা লাভ করার ক্ষেত্রে 'succeed in' বসে।" },
+        { q: "৬৭. Do not yield _______ evil temptations.", options: ["for", "to", "with", "at"], correct: 1, exp: "বশ্যতা স্বীকার করা বা নতি স্বীকারে 'yield to' বসে।" },
+        { q: "৬৮. The prisoner escaped _______ the high security jail.", options: ["of", "from", "out", "away"], correct: 1, exp: "পালিয়ে যাওয়ার ক্ষেত্রে 'escape from' ব্যবহৃত হয়।" },
+        { q: "৬৯. He was charged _______ murder.", options: ["for", "with", "of", "about"], correct: 1, exp: "অভিযোগ গঠনে 'charged with' বসে (accused of)।" },
+        { q: "৭০. He distributed the money _______ two brothers.", options: ["among", "between", "with", "in"], correct: 1, exp: "দুইজনের মধ্যে বণ্টন করা বোঝালে 'between' ব্যবহৃত হয়।" },
+
+        // Set 8 (71-80)
+        { q: "৭১. We reached home safe and sound _______ dusk.", options: ["in", "at", "on", "during"], correct: 1, exp: "সন্ধ্যা বা গোধূলি মুহূর্তের পূর্বে 'at dusk' বসে।" },
+        { q: "৭২. The submarine went _______ water quietly.", options: ["underneath", "under", "below", "down"], correct: 1, exp: "পানির নিচে থাকা বা যাওয়ায় 'under water' বসে।" },
+        { q: "৭৩. He lives _______ 12 Mirpur Road, _______ Dhaka.", options: ["in, at", "at, in", "on, in", "at, at"], correct: 1, exp: "নির্দিষ্ট ঠিকানা বা হোল্ডিং নম্বরে 'at' এবং বড় শহরে 'in' বসে।" },
+        { q: "৭৪. I can finish this work _______ two days.", options: ["within", "in", "by", "for"], correct: 1, exp: "নির্দিষ্ট সময়কালের মধ্যে শেষ করা বোঝালে 'in' বা 'within' বসে।" },
+        { q: "৭৫. He divided his property _______ three sons.", options: ["between", "among", "with", "for"], correct: 1, exp: "তিনজনের মাঝে ভাগ করা বোঝালে 'among' হয়।" },
+        { q: "৭৬. He died _______ over-eating last night.", options: ["of", "from", "by", "for"], correct: 1, exp: "অতিরিক্ত কোনো কাজ বা খাওয়ার ফলে মারা গেলে 'died from' বসে।" },
+        { q: "৭৭. He is devoted _______ his religious duties.", options: ["for", "to", "in", "with"], correct: 1, exp: "উৎসর্গীকৃত বা অনুগত হওয়া বোঝালে 'devoted to' বসে।" },
+        { q: "৭৮. The plane landed safely _______ the airport runway.", options: ["in", "on", "at", "over"], correct: 1, exp: "সমতল স্পর্শ করার ক্ষেত্র রানওয়ের ওপর বোঝালে 'on' বসে।" },
+        { q: "৭৯. I received a parcel _______ my uncle.", options: ["by", "from", "to", "with"], correct: 1, exp: "উৎস বা কারো কাছ থেকে পাওয়া বোঝালে 'from' বসে।" },
+        { q: "৮০. He cut the apple _______ a sharp knife.", options: ["by", "with", "in", "using"], correct: 1, exp: "কোনো হাতিয়ার বা যন্ত্র দিয়ে কাজ করা বোঝালে 'with' বসে।" },
+
+        // Set 9 (81-90)
+        { q: "৮১. The bridge was built _______ the river.", options: ["on", "across", "over", "along"], correct: 2, exp: "একক উপরিভাগে উঁচুতে বিস্তৃত হওয়া বোঝালে 'over' বা 'across' বসে।" },
+        { q: "৮২. He came to my room _______ my absence.", options: ["during", "in", "on", "at"], correct: 1, exp: "অনুপস্থিতির সময়কাল বোঝাতে 'in my absence' হয়।" },
+        { q: "৮৩. He was punished _______ breaking the law.", options: ["of", "for", "with", "about"], correct: 1, exp: "শাস্তির কারণ বোঝাতে 'punished for' ব্যবহৃত হয়।" },
+        { q: "৮৪. She is proficient _______ speaking English.", options: ["at", "in", "with", "for"], correct: 1, exp: "কোনো বিষয়ে বা ভাষায় দক্ষতা বোঝাতে 'proficient in' হয়।" },
+        { q: "৮৫. He responded _______ my phone call immediately.", options: ["for", "to", "with", "at"], correct: 1, exp: "উত্তর দেওয়া বা সাড়া দেওয়া অর্থে 'respond to' বসে।" },
+        { q: "৮৬. He is indifferent _______ pleasure or pain.", options: ["to", "for", "with", "at"], correct: 0, exp: "উদাসীন হওয়া বোঝালে Appropriate Preposition 'indifferent to' হয়।" },
+        { q: "৮৭. I introduced him _______ my best friends.", options: ["with", "to", "for", "among"], correct: 1, exp: "পরিচয় করিয়ে দেওয়ার ক্ষেত্রে 'introduce to' বসে।" },
+        { q: "৮৮. He is a man _______ high principles.", options: ["with", "of", "in", "for"], correct: 1, exp: "গুণ বা বৈশিষ্ট্যের অধিকার বোঝাতে 'man of principles' হয়।" },
+        { q: "৮৯. I have no control _______ my emotions right now.", options: ["on", "over", "at", "with"], correct: 1, exp: "নিয়ন্ত্রণ বোঝাতে 'control over' ব্যবহৃত হয়।" },
+        { q: "৯০. He translates Bengali _______ English fluently.", options: ["to", "into", "in", "with"], correct: 1, exp: "এক ভাষা রূপান্তর করে অন্য ভাষায় নেওয়ার গতির জন্য 'into' বসে।" },
+
+        // Set 10 (91-100)
+        { q: "৯১. The house is _______ fire! Call the fire brigade.", options: ["in", "on", "at", "with"], correct: 1, exp: "জ্বলন্ত অবস্থা বোঝাতে 'on fire' বসে।" },
+        { q: "৯২. He is short _______ money this month.", options: ["in", "of", "for", "with"], correct: 1, exp: "ঘাটতি বা অভাব বোঝাতে 'short of' বসে।" },
+        { q: "৯৩. She is familiar _______ this local environment.", options: ["to", "with", "for", "at"], correct: 1, exp: "কোনো বিষয় বা পরিবেশের সাথে পরিচিতিতে 'familiar with' হয়।" },
+        { q: "৯৪. This rule is not applicable _______ your case.", options: ["for", "to", "with", "in"], correct: 1, exp: "প্রযোজ্য হওয়া অর্থে 'applicable to' বসে।" },
+        { q: "৯৫. I am tired _______ waiting for him for hours.", options: ["with", "of", "for", "from"], correct: 1, exp: "বিরক্ত বা ক্লান্ত হওয়া বোঝালে 'tired of' বসে।" },
+        { q: "৯৬. He insisted _______ my going to the party with him.", options: ["to", "on", "for", "with"], correct: 1, exp: "জিদ করা বা জোর দেওয়া অর্থে 'insist on' ব্যবহৃত হয়।" },
+        { q: "৯৭. She is jealous _______ my academic success.", options: ["for", "of", "with", "about"], correct: 1, exp: "ঈর্ষান্বিত হওয়া বোঝালে 'jealous of' বসে।" },
+        { q: "৯৮. The patient was cured _______ his severe disease.", options: ["from", "of", "with", "by"], correct: 1, exp: "রোগ থেকে আরোগ্য লাভ করায় 'cured of' বসে।" },
+        { q: "৯৯. He jumped _______ the attractive business offer instantly.", options: ["to", "at", "on", "over"], correct: 1, exp: "কোনো সুযোগ বা প্রস্তাব সানন্দে গ্রহণে 'jump at' বসে।" },
+        { q: "১০০. Trust _______ God and do the right thing.", options: ["on", "in", "to", "upon"], correct: 1, exp: "ঈশ্বরের ওপর ঈমান বা বিশ্বাস রাখায় 'trust in' ব্যবহৃত হয়।" }
+    ];
+
+    // Quiz State Variables
+    let currentQuizSet = 1;
+    let userAnswers = new Array(100).fill(null); // Track answered state
+    let correctCount = 0;
+    let wrongCount = 0;
+
+    function loadQuizSet(setNum, btnElem) {
+        currentQuizSet = setNum;
+
+        if (btnElem) {
+            const setBtns = document.querySelectorAll('.set-btn');
+            setBtns.forEach(b => b.classList.remove('active'));
+            btnElem.classList.add('active');
+        }
+
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = '';
+
+        const startIdx = (setNum - 1) * 10;
+        const endIdx = startIdx + 10;
+        const currentItems = masterQuizData.slice(startIdx, endIdx);
+
+        currentItems.forEach((item, relativeIdx) => {
+            const globalIdx = startIdx + relativeIdx;
+            const card = document.createElement('div');
+            card.className = 'quiz-card';
+
+            let optsHTML = '';
+            item.options.forEach((opt, oIdx) => {
+                optsHTML += `<button type="button" class="quiz-opt-btn" id="opt-btn-${globalIdx}-${oIdx}" onclick="submitQuizAnswer(${globalIdx}, ${oIdx})">👉 ${opt}</button>`;
+            });
+
+            card.innerHTML = `
+                <div class="quiz-q-title">${item.q}</div>
+                <div class="quiz-opts-grid" id="q-grid-${globalIdx}">
+                    ${optsHTML}
+                </div>
+                <div class="quiz-exp-box" id="q-exp-${globalIdx}">
+                    <p style="font-weight: bold; margin-bottom: 4px;" id="q-res-${globalIdx}"></p>
+                    <p style="margin: 0;"><strong>ব্যাখ্যা:</strong> ${item.exp}</p>
+                </div>
+            `;
+            container.appendChild(card);
+
+            // Restore state if previously answered
+            if (userAnswers[globalIdx] !== null) {
+                restoreQuizCardState(globalIdx, userAnswers[globalIdx]);
+            }
+        });
+    }
+
+    function submitQuizAnswer(qIdx, selOpt) {
+        if (userAnswers[qIdx] !== null) return; // Prevent double answer
+
+        userAnswers[qIdx] = selOpt;
+        const item = masterQuizData[qIdx];
+        const isCorrect = (selOpt === item.correct);
+
+        if (isCorrect) correctCount++;
+        else wrongCount++;
+
+        updateQuizScoreboard();
+        restoreQuizCardState(qIdx, selOpt);
+    }
+
+    function restoreQuizCardState(qIdx, selOpt) {
+        const item = masterQuizData[qIdx];
+        const grid = document.getElementById(`q-grid-${qIdx}`);
+        if (!grid) return;
+
+        const buttons = grid.getElementsByTagName('button');
+        const expBox = document.getElementById(`q-exp-${qIdx}`);
+        const resTxt = document.getElementById(`q-res-${qIdx}`);
+
+        for (let b of buttons) {
+            b.style.pointerEvents = 'none'; // Disable clicking
+        }
+
+        const isCorrect = (selOpt === item.correct);
+
+        if (isCorrect) {
+            const btn = document.getElementById(`opt-btn-${qIdx}-${selOpt}`);
+            if (btn) btn.classList.add('correct-bg');
+
+            resTxt.innerHTML = "🎉 চমৎকার! সঠিক উত্তর।";
+            resTxt.style.color = "#14532d";
+            expBox.style.background = '#dcfce7';
+            expBox.style.border = '2px solid #86efac';
+            expBox.style.color = '#14532d';
+        } else {
+            const selBtn = document.getElementById(`opt-btn-${qIdx}-${selOpt}`);
+            if (selBtn) selBtn.classList.add('wrong-bg');
+
+            const corrBtn = document.getElementById(`opt-btn-${qIdx}-${item.correct}`);
+            if (corrBtn) corrBtn.classList.add('correct-bg');
+
+            resTxt.innerHTML = "❌ ভুল উত্তর! সঠিক উত্তরটি সবুজ রঙে নির্দেশ করা হলো।";
+            resTxt.style.color = "#7f1d1d";
+            expBox.style.background = '#fee2e2';
+            expBox.style.border = '2px solid #fca5a5';
+            expBox.style.color = '#7f1d1d';
+        }
+
+        expBox.style.display = 'block';
+    }
+
+    function updateQuizScoreboard() {
+        const answeredTotal = correctCount + wrongCount;
+        document.getElementById('totalAnswered').innerText = answeredTotal;
+        document.getElementById('correctScore').innerText = correctCount;
+        document.getElementById('wrongScore').innerText = wrongCount;
+    }
+
+    // Initialize Default Set 1 on Load
+    loadQuizSet(1, document.querySelector('.set-btn'));
+</script>
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='Parts of speech.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+</body>
+</html>

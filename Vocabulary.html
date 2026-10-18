@@ -1,0 +1,1369 @@
+<div id="ultimate-vocab-app">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        #ultimate-vocab-app {
+            --primary: #6366f1;
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --3d-shadow: 0 2px 0 #c7d2fe, 0 4px 0 #a5b4fc, 0 6px 0 #818cf8, 0 8px 15px rgba(0,0,0,0.3);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            background: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.35) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.35) 0px, transparent 50%);
+            min-height: 100vh;
+            padding: 30px 12px;
+            box-sizing: border-box;
+            color: var(--text-dark);
+        }
+
+        .app-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            animation: appAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes appAppear {
+            from { opacity: 0; transform: translateY(40px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* 3D Title Header */
+        .header-3d {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .main-3d-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin: 0;
+            text-shadow: var(--3d-shadow);
+            position: relative;
+            z-index: 2;
+            animation: floatText 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatText {
+            0% { transform: translateY(0); filter: drop-shadow(0 0 10px rgba(99,102,241,0.6)); }
+            100% { transform: translateY(-5px); filter: drop-shadow(0 0 25px rgba(236,72,153,0.8)); }
+        }
+
+        .sub-3d-title {
+            color: #cbd5e1;
+            font-size: 19px;
+            margin-top: 15px;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge-counter {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: #34d399;
+            padding: 6px 22px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        /* Top Controls Bar */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 30px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 14px;
+            border: 2px solid var(--border-color);
+            outline: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+        /* Chapter Tabs Navigation */
+        .chapter-nav-bar {
+            display: flex;
+            background: #1e293b;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) #1e293b;
+        }
+
+        .nav-tab-btn {
+            flex: 0 0 auto;
+            padding: 18px 22px;
+            color: #94a3b8;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            position: relative;
+            outline: none;
+        }
+
+        .nav-tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-tab-btn.active {
+            color: #ffffff;
+            background: var(--primary);
+        }
+
+        .nav-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #ec4899;
+        }
+
+        /* Chapter Views */
+        .chapter-view {
+            display: none;
+            padding: 35px;
+            animation: viewSlide 0.4s ease-out;
+        }
+
+        .chapter-view.active {
+            display: block;
+        }
+
+        @keyframes viewSlide {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .ch-title-header {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1e1b4b;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #e0e7ff;
+        }
+
+        /* Topic Block */
+        .topic-group {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .topic-group:hover {
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.08);
+            border-color: #c7d2fe;
+        }
+
+        .topic-header {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4338ca;
+            margin-top: 0;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topic-header::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 22px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        /* Vocab Grid & Touch Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .vocab-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 15px;
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: #ffffff;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.18);
+            border-color: #a5b4fc;
+        }
+
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .english-word {
+            font-size: 17px;
+            font-weight: 800;
+            color: #1e1b4b;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .pos-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: #e0e7ff;
+            color: #3730a3;
+            font-style: italic;
+        }
+
+        .pronun-text {
+            font-size: 13px;
+            color: #ec4899;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .bengali-meaning {
+            font-size: 15px;
+            font-weight: 600;
+            color: #334155;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 6px;
+            margin-top: 4px;
+        }
+
+        /* Footer Controls */
+        .footer-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 35px;
+            background: #1e293b;
+            color: white;
+        }
+
+        .nav-btn-action {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .nav-btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
+        }
+
+        .nav-btn-action:disabled {
+            background: #475569;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .main-3d-title { font-size: 26px; }
+            .chapter-view { padding: 20px 12px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+            .controls-bar { padding: 15px; }
+        }
+    </style>
+
+    <div class="app-wrapper">
+        <!-- 3D Header -->
+        <div class="header-3d">
+            <span class="badge-counter">১০০টি টপিক • ১০টি অধ্যায় • ১০০০+ শব্দভাণ্ডার</span>
+            <h1 class="main-3d-title">ULTIMATE WORLD VOCABULARY</h1>
+            <div class="sub-3d-title">বিশ্বের সবচেয়ে বড় ও সম্পূর্ণ বাংলা উচ্চারণসহ ভোকাবুলারি ব্যাংক</div>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="app-search-input" class="search-input" placeholder="ইংরেজি শব্দ, উচ্চারণ বা বাংলা অর্থ দিয়ে খুঁজুন..." oninput="filterWords()">
+            </div>
+
+
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../lesson_link.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+
+
+            <div style="font-weight: 700; color: var(--text-muted); font-size: 14px;" id="chapter-indicator-top">
+                অধ্যায় ১ / ১০
+            </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="chapter-nav-bar" id="tabs-wrapper">
+            <!-- Dynamic Navigation Tabs -->
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="main-content-wrapper">
+            <!-- Dynamic Chapter & Topic Content -->
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="footer-nav-bar">        
+            <button class="nav-btn-action" id="btn-prev-chapter" onclick="stepChapter(-1)">◄ পূর্ববর্তী অধ্যায়</button>
+            <span style="font-weight: 700;" id="footer-page-text">অধ্যায় ১</span>
+            <button class="nav-btn-action" id="btn-next-chapter" onclick="stepChapter(1)">পরবর্তী অধ্যায় ►</button>
+        </div>
+    </div>
+
+    <script>
+        // Master Database containing ALL topics and words from Lesson 1 to Lesson 10
+        const fullVocabDatabase = [
+            {
+                chapter: 1,
+                title: "Lesson 1: Daily Life, Family & Home (টপিক ১ - ১০)",
+                topics: [
+                    {
+                        name: "1. Family & Kinship (পরিবার ও আত্মীয়স্বজন)",
+                        words: [
+                            { eng: "Ancestor", pos: "n.", pron: "অ্যানসেস্টর", bng: "পূর্বপুরুষ" },
+                            { eng: "Descendant", pos: "n.", pron: "ডিসেন্ডেন্ট", bng: "উত্তরসূরি / বংশধর" },
+                            { eng: "Sibling", pos: "n.", pron: "সিবলিং", bng: "ভাই বা বোন" },
+                            { eng: "Spouse", pos: "n.", pron: "স্পাউস", bng: "স্বামী বা স্ত্রী" },
+                            { eng: "Step-mother", pos: "n.", pron: "স্টেপ মাদার", bng: "বিমাতা / সৎ মা" },
+                            { eng: "Step-father", pos: "n.", pron: "স্টেপ ফাদার", bng: "সৎ বাবা" },
+                            { eng: "In-laws", pos: "n.", pron: "ইন-লজ", bng: "শ্বশুরবাড়ির আত্মীয়" },
+                            { eng: "Guardian", pos: "n.", pron: "গার্ডিয়ান", bng: "অভিভাবক" },
+                            { eng: "Foster-child", pos: "n.", pron: "ফস্টার চাইল্ড", bng: "পালিত সন্তান" },
+                            { eng: "Offspring", pos: "n.", pron: "অফস্প্রিং", bng: "সন্তান-সন্ততি" },
+                            { eng: "Paternal", pos: "adj.", pron: "প্যাটার্নাল", bng: "পিতৃক / বাবার দিকের" },
+                            { eng: "Maternal", pos: "adj.", pron: "ম্যাটার্নাল", bng: "মাতৃক / মায়ের দিকের" },
+                            { eng: "Kinship", pos: "n.", pron: "কিনশিপ", bng: "রক্তের সম্পর্ক" },
+                            { eng: "Lineage", pos: "n.", pron: "লিনেয়েজ", bng: "বংশধারা" },
+                            { eng: "Genealogy", pos: "n.", pron: "জিনিয়ালজি", bng: "বংশতালিকা" },
+                            { eng: "Orphan", pos: "n.", pron: "অরফ্যান", bng: "অনাথ শিশু" },
+                            { eng: "Single parent", pos: "n.", pron: "সিঙ্গেল প্যারেন্ট", bng: "একক অভিভাবক" },
+                            { eng: "Extended family", pos: "n.", pron: "এক্সটেন্ডেড ফ্যামিলি", bng: "যৌথ পরিবার" },
+                            { eng: "Nuclear family", pos: "n.", pron: "নিউক্লিয়ার ফ্যামিলি", bng: "একক পরিবার" },
+                            { eng: "Heir", pos: "n.", pron: "এয়ার", bng: "উত্তরাধিকারী" },
+                            { eng: "Heiress", pos: "n.", pron: "এয়ারেস", bng: "নারী উত্তরাধিকারী" },
+                            { eng: "Godmother", pos: "n.", pron: "গডমাদার", bng: "ধর্মমাতা" },
+                            { eng: "Godfather", pos: "n.", pron: "গডফাদার", bng: "ধর্মপিতা" },
+                            { eng: "Nephew", pos: "n.", pron: "নেফিউ", bng: "ভাইপো / ভাগ্নে" },
+                            { eng: "Niece", pos: "n.", pron: "নিস", bng: "ভাইঝি / ভাগ্নি" }
+                        ]
+                    },
+                    {
+                        name: "2. Relationships & Dating (সম্পর্ক ও সামাজিক যোগাযোগ)",
+                        words: [
+                            { eng: "Acquaintance", pos: "n.", pron: "অ্যাকোয়েন্টেন্স", bng: "পরিচিত ব্যক্তি" },
+                            { eng: "Affection", pos: "n.", pron: "অ্যাফেকশন", bng: "স্নেহ / মায়া" },
+                            { eng: "Companionship", pos: "n.", pron: "কম্প্যানিয়নশিপ", bng: "সঙ্গ / সাহচর্য" },
+                            { eng: "Intimacy", pos: "n.", pron: "ইনটিমেসি", bng: "ঘনিষ্ঠতা" },
+                            { eng: "Fiancé", pos: "n.", pron: "ফিয়ান্সে", bng: "হবু বর" },
+                            { eng: "Fiancée", pos: "n.", pron: "ফিয়ান্সে", bng: "হবু কনে" },
+                            { eng: "Rivalry", pos: "n.", pron: "রাইভালরি", bng: "প্রতিদ্বন্দ্বিতা" },
+                            { eng: "Reconciliation", pos: "n.", pron: "রিকনসিলিয়েশন", bng: "পুনর্মিলন / আপস" },
+                            { eng: "Attachment", pos: "n.", pron: "অ্যাট্যাচমেন্ট", bng: "টান / আসক্তি" },
+                            { eng: "Breakup", pos: "n.", pron: "ব্রেকআপ", bng: "সম্পর্কচ্ছেদ" },
+                            { eng: "Cordial", pos: "adj.", pron: "কার্ডিয়াল", bng: "আন্তরিক" },
+                            { eng: "Bond", pos: "n.", pron: "বন্ড", bng: "বাঁধন / সম্পর্ক" },
+                            { eng: "Courtship", pos: "n.", pron: "কোর্টশিপ", bng: "প্রণয়কাল" },
+                            { eng: "Betrothal", pos: "n.", pron: "বিট্রোথাল", bng: "বাগদান" },
+                            { eng: "Companion", pos: "n.", pron: "কম্প্যানিয়ন", bng: "সঙ্গী" },
+                            { eng: "Empathy", pos: "n.", pron: "এমপ্যাথি", bng: "সমবেদনা" },
+                            { eng: "Sympathy", pos: "n.", pron: "সিম্প্যাথি", bng: "সহানুভূতি" },
+                            { eng: "Infatuation", pos: "n.", pron: "ইনফ্যাচুয়েশন", bng: "সাময়িক মোহ" },
+                            { eng: "Loyalty", pos: "n.", pron: "লয়ালটি", bng: "বিশ্বস্ততা" },
+                            { eng: "Betrayal", pos: "n.", pron: "বিট্রেয়াল", bng: "বিশ্বাসঘাতকতা" },
+                            { eng: "Misunderstanding", pos: "n.", pron: "মিসআন্ডারস্ট্যান্ডিং", bng: "ভুল বোঝাবুঝি" },
+                            { eng: "Compatibility", pos: "n.", pron: "কমপ্যাটিবিলিটি", bng: "খাপ খাওয়ার ক্ষমতা" },
+                            { eng: "Friendship", pos: "n.", pron: "ফ্রেন্ডশিপ", bng: "বন্ধুত্ব" },
+                            { eng: "Separation", pos: "n.", pron: "সেপারেশন", bng: "বিচ্ছিন্নতা" },
+                            { eng: "Divorce", pos: "n.", pron: "ডিভোর্স", bng: "বিবাহবিচ্ছেদ" }
+                        ]
+                    },
+                    {
+                        name: "3. Human Body Parts & Organs (অঙ্গপ্রত্যঙ্গ ও যন্ত্রাংশ)",
+                        words: [
+                            { eng: "Brain", pos: "n.", pron: "ব্রেইন", bng: "মস্তিষ্ক" },
+                            { eng: "Lungs", pos: "n.", pron: "লাংস", bng: "ফুসফুস" },
+                            { eng: "Kidney", pos: "n.", pron: "কিডনি", bng: "বৃক্ক / কিডনি" },
+                            { eng: "Liver", pos: "n.", pron: "লিভার", bng: "যকৃৎ" },
+                            { eng: "Skull", pos: "n.", pron: "স্কাল", bng: "মাথার খুলি" },
+                            { eng: "Rib", pos: "n.", pron: "রিব", bng: "পাঁজর" },
+                            { eng: "Vein", pos: "n.", pron: "ভেইন", bng: "শিরা" },
+                            { eng: "Artery", pos: "n.", pron: "আর্টারি", bng: "ধমনি" },
+                            { eng: "Joint", pos: "n.", pron: "জয়েন্ট", bng: "অস্থিসন্ধি" },
+                            { eng: "Spine", pos: "n.", pron: "স্পাইন", bng: "মেরুদণ্ড" },
+                            { eng: "Stomach", pos: "n.", pron: "স্টোমাক", bng: "পাকস্থলী" },
+                            { eng: "Intestine", pos: "n.", pron: "ইনটেস্টাইন", bng: "অন্ত্র" },
+                            { eng: "Throat", pos: "n.", pron: "থ্রোট", bng: "গলা" },
+                            { eng: "Esophagus", pos: "n.", pron: "ইসোফেগাস", bng: "খাদ্যনালী" },
+                            { eng: "Pancreas", pos: "n.", pron: "প্যানক্রিয়াস", bng: "অগ্ন্যাশয়" },
+                            { eng: "Spleen", pos: "n.", pron: "স্প্লিন", bng: "প্লীহা" },
+                            { eng: "Muscle", pos: "n.", pron: "মাসল", bng: "পেশি" },
+                            { eng: "Nerve", pos: "n.", pron: "নার্ভ", bng: "স্নায়ু" },
+                            { eng: "Bone marrow", pos: "n.", pron: "বোন ম্যারো", bng: "অস্থিমজ্জা" },
+                            { eng: "Bladder", pos: "n.", pron: "ব্ল্যাডার", bng: "মূত্রাশয়" },
+                            { eng: "Thigh", pos: "n.", pron: "থাই", bng: "উরু" },
+                            { eng: "Ankle", pos: "n.", pron: "অ্যাঙ্কেল", bng: "গোড়ালি" },
+                            { eng: "Wrist", pos: "n.", pron: "রিস্ট", bng: "কবজি" },
+                            { eng: "Elbow", pos: "n.", pron: "এলবো", bng: "কনুই" },
+                            { eng: "Nostril", pos: "n.", pron: "নস্ট্রিল", bng: "নাকের ছিদ্র" }
+                        ]
+                    },
+                    {
+                        name: "4. Physical Appearance & Features (শারীরিক গঠন ও চেহারা)",
+                        words: [
+                            { eng: "Complexion", pos: "n.", pron: "কমপ্লেকশন", bng: "গায়ের রং / ত্বকের বর্ণ" },
+                            { eng: "Stature", pos: "n.", pron: "স্ট্যাচার", bng: "শারীরিক উচ্চতা" },
+                            { eng: "Slender", pos: "adj.", pron: "স্লেন্ডার", bng: "ছিপছিপে / হালকা-পাতলা" },
+                            { eng: "Chubby", pos: "adj.", pron: "চাবি", bng: "গোলগাল / নাদুস-নুদুস" },
+                            { eng: "Wrinkle", pos: "n.", pron: "রিঙ্কেল", bng: "বলিরেখা" },
+                            { eng: "Gorgeous", pos: "adj.", pron: "গর্জিয়াস", bng: "অত্যন্ত আকর্ষণীয়" },
+                            { eng: "Robust", pos: "adj.", pron: "রোবাস্ট", bng: "বলিষ্ঠ / শক্তপোক্ত" },
+                            { eng: "Muscular", pos: "adj.", pron: "মাসকুলার", bng: "পেশিবহুল" },
+                            { eng: "Dwarf", pos: "n.", pron: "ডোয়ার্ফ", bng: "বামন / খাটো" },
+                            { eng: "Gigantic", pos: "adj.", pron: "জাইগ্যান্টিক", bng: "বিশালদেহী" },
+                            { eng: "Freckles", pos: "n.", pron: "ফ্রেকেলস", bng: "মেছতা / তিল" },
+                            { eng: "Dimple", pos: "n.", pron: " ডিম্পল", bng: "গালে টোল" },
+                            { eng: "Bald", pos: "adj.", pron: "বল্ড", bng: "টাকপড়া" },
+                            { eng: "Blonde", pos: "adj.", pron: "ব্লন্ড", bng: "সোনালী চুলযুক্ত" },
+                            { eng: "Brunette", pos: "n.", pron: "ব্রুনেট", bng: "বাদামি চুলযুক্ত নারী" },
+                            { eng: "Petite", pos: "adj.", pron: "পেটাইট", bng: "ছোটখাটো সুন্দর গঠন" },
+                            { eng: "Skinny", pos: "adj.", pron: "স্কিনি", bng: "খুব রোগা" },
+                            { eng: "Overweight", pos: "adj.", pron: "ওভারওয়েট", bng: "অতিরিক্ত ওজন" },
+                            { eng: "Handsome", pos: "adj.", pron: "হ্যান্ডসাম", bng: "সুদর্শন" },
+                            { eng: "Attractive", pos: "adj.", pron: "অ্যাট্রাক্টিভ", bng: "আকর্ষণীয়" },
+                            { eng: "Elegant", pos: "adj.", pron: "এলিজেন্ট", bng: "মার্জিত / রুচিশীল" },
+                            { eng: "Curvy", pos: "adj.", pron: "কার্ভি", bng: "বাঁকানো শারীরিক গঠন" },
+                            { eng: "Fair", pos: "adj.", pron: "ফেয়ার", bng: "ফর্সা" },
+                            { eng: "Dark", pos: "adj.", pron: "ডার্ক", bng: "কালো / শ্যামলা" },
+                            { eng: "Beard", pos: "n.", pron: "বিয়ার্ড", bng: "দাড়ি" }
+                        ]
+                    },
+                    {
+                        name: "5. Personality Traits & Character (ব্যক্তিত্ব ও চরিত্র)",
+                        words: [
+                            { eng: "Altruistic", pos: "adj.", pron: "অলট্রুইস্টিক", bng: "পরোপকারী" },
+                            { eng: "Arrogant", pos: "adj.", pron: "অ্যারোগ্যান্ট", bng: "অহংকারী" },
+                            { eng: "Introvert", pos: "n.", pron: "ইন্ট্রোভার্ট", bng: "অন্তর্মুখী" },
+                            { eng: "Extrovert", pos: "n.", pron: "এক্সট্রোভার্ট", bng: "বহির্মুখী" },
+                            { eng: "Optimistic", pos: "adj.", pron: "অপটিমিস্টিক", bng: "আশাবাদী" },
+                            { eng: "Pessimistic", pos: "adj.", pron: "পেসিমিস্টিক", bng: "হতাহাতাবাদী" },
+                            { eng: "Stubborn", pos: "adj.", pron: "স্টাবর্ন", bng: "একগুঁয়ে" },
+                            { eng: "Generous", pos: "adj.", pron: "জেনারেস", bng: "উদার" },
+                            { eng: "Modest", pos: "adj.", pron: "মডেস্ট", bng: "বিনয়ী" },
+                            { eng: "Hypocrite", pos: "n.", pron: "হিপোক্রিট", bng: "ভণ্ড / প্রতারক" },
+                            { eng: "Dishonest", pos: "adj.", pron: "ডিসঅনেস্ট", bng: "অসৎ" },
+                            { eng: "Sincere", pos: "adj.", pron: "সিনসিয়ার", bng: "আন্তরিক" },
+                            { eng: "Timid", pos: "adj.", pron: "টিমিড", bng: "ভীরু / লাজুক" },
+                            { eng: "Bold", pos: "adj.", pron: "বোল্ড", bng: "সাহসী" },
+                            { eng: "Greedy", pos: "adj.", pron: "গ্রিডি", bng: "লোভী" },
+                            { eng: "Selfish", pos: "adj.", pron: "সেলফিশ", bng: "স্বার্থপর" },
+                            { eng: "Humble", pos: "adj.", pron: "হাম্বল", bng: "নম্র" },
+                            { eng: "Polite", pos: "adj.", pron: "পোলাইট", bng: "ভদ্র" },
+                            { eng: "Rude", pos: "adj.", pron: "রুড", bng: "অভদ্র / রুক্ষ" },
+                            { eng: "Thoughtful", pos: "adj.", pron: "থটফুল", bng: "চিন্তাশীল" },
+                            { eng: "Eccentric", pos: "adj.", pron: "একসেন্ট্রিক", bng: "অদ্ভুত স্বভাবের" },
+                            { eng: "Compassionate", pos: "adj.", pron: "কমপ্যাশনেট", bng: "দয়ালু" },
+                            { eng: "Ruthless", pos: "adj.", pron: "রুথলেস", bng: "নিষ্ঠুর" },
+                            { eng: "Friendly", pos: "adj.", pron: "ফ্রেন্ডলি", bng: "বন্ধুভাবাপন্ন" },
+                            { eng: "Gullible", pos: "adj.", pron: "গ্যালিবল", bng: "অতিবিশ্বাসী" }
+                        ]
+                    },
+                    {
+                        name: "6. Emotions, Moods & Feelings (আবেগ ও মনের অবস্থা)",
+                        words: [
+                            { eng: "Euphoria", pos: "n.", pron: "ইউফোরিয়া", bng: "চরম আনন্দ" },
+                            { eng: "Melancholy", pos: "n.", pron: "মেলানকলি", bng: "বিষাদ / বিষণ্ণতা" },
+                            { eng: "Anxiety", pos: "n.", pron: "অ্যাংজাইটি", bng: "উদ্বেগ / দুশ্চিন্তা" },
+                            { eng: "Frustration", pos: "n.", pron: "ফ্রাস্ট্রেশন", bng: "হতাশা" },
+                            { eng: "Resentment", pos: "n.", pron: "রিজেন্টমেন্ট", bng: "ক্ষোভ / অসন্তোষ" },
+                            { eng: "Agony", pos: "n.", pron: "অ্যাগনি", bng: "চরম যন্ত্রণা" },
+                            { eng: "Ecstasy", pos: "n.", pron: "একস্ট্যাসি", bng: "পরমানন্দ" },
+                            { eng: "Despair", pos: "n.", pron: "ডিসপেয়ার", bng: "নিরাশা" },
+                            { eng: "Nostalgia", pos: "n.", pron: "নস্টালজিয়া", bng: "অতীতকাতরতা" },
+                            { eng: "Jealousy", pos: "n.", pron: "জেলাসি", bng: "ঈর্ষা" },
+                            { eng: "Compassion", pos: "n.", pron: "কমপ্যাশন", bng: "সমবেদনা" },
+                            { eng: "Rage", pos: "n.", pron: "রেইজ", bng: "প্রচণ্ড রাগ" },
+                            { eng: "Delight", pos: "n.", pron: "ডিলাইট", bng: "আনন্দ" },
+                            { eng: "Gloom", pos: "n.", pron: "গ্লুম", bng: "বিষাদ" },
+                            { eng: "Irritation", pos: "n.", pron: "ইরিটেশন", bng: "বিরক্তি" },
+                            { eng: "Embarrassment", pos: "n.", pron: "এমব্যারাসমেন্ট", bng: "অস্বস্তি" },
+                            { eng: "Reluctance", pos: "n.", pron: "রিল্যাকটেন্স", bng: "অনিচ্ছা" },
+                            { eng: "Regret", pos: "n.", pron: "রিগ্রেট", bng: "অনুশোচনা" },
+                            { eng: "Contentment", pos: "n.", pron: "কনটেন্টমেন্ট", bng: "তৃপ্তি / সন্তুষ্টি" },
+                            { eng: "Panic", pos: "n.", pron: "প্যানিক", bng: "আতঙ্ক" },
+                            { eng: "Affection", pos: "n.", pron: "অ্যাফেকশন", bng: "ভালোবাসা / স্নেহ" },
+                            { eng: "Grief", pos: "n.", pron: "গ্রীফ", bng: "গভীর শোক" },
+                            { eng: "Guilt", pos: "n.", pron: "গিল্ট", bng: "অপরাধবোধ" },
+                            { eng: "Serenity", pos: "n.", pron: "সেরেনিটি", bng: "প্রশান্তি" },
+                            { eng: "Apprehension", pos: "n.", pron: "অ্যাপ্রিহেনশন", bng: "আশঙ্কা" }
+                        ]
+                    },
+                    {
+                        name: "7. Housing, Architecture & Rooms (বাসাবাড়ি ও স্থাপত্য)",
+                        words: [
+                            { eng: "Mansion", pos: "n.", pron: "ম্যানশন", bng: "রাজপ্রাসাদ / বিশাল অট্টালিকা" },
+                            { eng: "Apartment", pos: "n.", pron: "অ্যাপার্টমেন্ট", bng: "ফ্ল্যাট বাসা" },
+                            { eng: "Balcony", pos: "n.", pron: "ব্যালকনি", bng: "বারান্দা" },
+                            { eng: "Attic", pos: "n.", pron: "অ্যাটিক", bng: "চিলেকোঠা" },
+                            { eng: "Basement", pos: "n.", pron: "বেসমেন্ট", bng: "ভূগর্ভস্থ তলা" },
+                            { eng: "Corridor", pos: "n.", pron: "করিডোর", bng: "হাঁটার পথ / গলি" },
+                            { eng: "Roof", pos: "n.", pron: "রুফ", bng: "ছাদ" },
+                            { eng: "Porch", pos: "n.", pron: "পোর্চ", bng: "প্রবেশপথের বারান্দা" },
+                            { eng: "Duplex", pos: "n.", pron: "ডিউপ্লেক্স", bng: "দোতলা বাড়ি" },
+                            { eng: "Cottage", pos: "n.", pron: "কটেজ", bng: "কুটির / ছোট বাড়ি" },
+                            { eng: "Skyscraper", pos: "n.", pron: "স্কাইস্ক্র্যাপার", bng: "বহুতল ভবন" },
+                            { eng: "Villa", pos: "n.", pron: "ভিলা", bng: "বাগানবাড়ি" },
+                            { eng: "Garage", pos: "n.", pron: "গ্যারেজ", bng: "গাড়ি রাখার ঘর" },
+                            { eng: "Fence", pos: "n.", pron: "ফেন্স", bng: "বেড়া" },
+                            { eng: "Courtyard", pos: "n.", pron: "কোর্টইয়ার্ড", bng: "উঠান" },
+                            { eng: "Foundation", pos: "n.", pron: "ফাউন্ডেশন", bng: "ভিত্তি / ভিত" },
+                            { eng: "Fireplace", pos: "n.", pron: "ফায়ারপ্লেস", bng: "অগ্নিকুণ্ড" },
+                            { eng: "Staircase", pos: "n.", pron: "স্টেয়ারকেস", bng: "সিঁড়ি" },
+                            { eng: "Ceiling", pos: "n.", pron: "সিলিং", bng: "ভেতরের ছাদ" },
+                            { eng: "Pillar", pos: "n.", pron: "পিলার", bng: "স্তম্ভ / খুঁটি" },
+                            { eng: "Lawn", pos: "n.", pron: "লন", bng: "ঘাসযুক্ত বাগান" },
+                            { eng: "Pantry", pos: "n.", pron: "প্যান্ট্রি", bng: "খাবার রাখার ছোট ঘর" },
+                            { eng: "Bedroom", pos: "n.", pron: "বেডরুম", bng: "শয়নকক্ষ" },
+                            { eng: "Kitchen", pos: "n.", pron: "কিচেন", bng: "রান্নাঘর" },
+                            { eng: "Washroom", pos: "n.", pron: "ওয়াশরুম", bng: "শৌচাগার" }
+                        ]
+                    },
+                    {
+                        name: "8. Furniture & Home Decor (আসবাবপত্র ও সাজসজ্জা)",
+                        words: [
+                            { eng: "Wardrobe", pos: "n.", pron: "ওয়ার্ডরোব", bng: "কাপড়ের আলমারি" },
+                            { eng: "Bookshelf", pos: "n.", pron: "বুকশেলফ", bng: "বইয়ের তাক" },
+                            { eng: "Curtain", pos: "n.", pron: "কার্টেন", bng: "পর্দা" },
+                            { eng: "Cushion", pos: "n.", pron: "কুশন", bng: "ছোট বালিশ" },
+                            { eng: "Showcase", pos: "n.", pron: "শোকেস", bng: "শোকেস" },
+                            { eng: "Dressing table", pos: "n.", pron: "ড্রেসিং টেবিল", bng: "প্রসাধন টেবিল" },
+                            { eng: "Sofa", pos: "n.", pron: "সোফা", bng: "গদিযুক্ত আসন" },
+                            { eng: "Mattress", pos: "n.", pron: "ম্যাট্রেস", bng: "তোশক / গদি" },
+                            { eng: "Carpet", pos: "n.", pron: "কার্পেট", bng: "গালিচা" },
+                            { eng: "Chandelier", pos: "n.", pron: "শ্যান্ডেলিয়ার", bng: "ঝাড়বাতি" },
+                            { eng: "Tablecloth", pos: "n.", pron: "টেবিলক্লথ", bng: "টেবিলের কাপড়" },
+                            { eng: "Mirror", pos: "n.", pron: "মিরর", bng: "আয়না" },
+                            { eng: "Drawer", pos: "n.", pron: "ড্রয়ার", bng: "ড্রয়ার" },
+                            { eng: "Recliner", pos: "n.", pron: "রিক্লাইনার", bng: "হেলান দেওয়ার চেয়ার" },
+                            { eng: "Cabinet", pos: "n.", pron: "ক্যাবিনেট", bng: "ছোট আলমারি" },
+                            { eng: "Hanger", pos: "n.", pron: "হ্যাঙ্গার", bng: "জামা ঝুলানোর হ্যাঙ্গার" },
+                            { eng: "Vase", pos: "n.", pron: "ভাস", bng: "ফুলদানি" },
+                            { eng: "Rug", pos: "n.", pron: "রাগ", bng: "ছোট গালিচা" },
+                            { eng: "Lamp", pos: "n.", pron: "ল্যাম্প", bng: "বাতি" },
+                            { eng: "Pillow", pos: "n.", pron: "পিলো", bng: "বালিশ" },
+                            { eng: "Quilt", pos: "n.", pron: "কুইল্ট", bng: "লেপ" },
+                            { eng: "Blanket", pos: "n.", pron: "ব্ল্যাঙ্কেট", bng: "কম্বল" },
+                            { eng: "Bed sheet", pos: "n.", pron: "বেড শিট", bng: "বিছানার চাদর" },
+                            { eng: "Stool", pos: "n.", pron: "স্টুল", bng: "টুল" },
+                            { eng: "Dining table", pos: "n.", pron: "ডাইনিং টেবিল", bng: "খাওয়ার টেবিল" }
+                        ]
+                    },
+                    {
+                        name: "9. Household Appliances & Utensils (গৃহস্থালি যন্ত্রপাতি ও পাত্র)",
+                        words: [
+                            { eng: "Refrigerator", pos: "n.", pron: "রেফ্রিজারেটর", bng: "ফ্রিজ / হিমায়ক" },
+                            { eng: "Microwave", pos: "n.", pron: "মাইক্রোওয়েভ", bng: "ওভেন" },
+                            { eng: "Blender", pos: "n.", pron: "ব্লেন্ডার", bng: "মিশ্রণযন্ত্র" },
+                            { eng: "Kettle", pos: "n.", pron: "কেটল", bng: "কেটলি" },
+                            { eng: "Saucepan", pos: "n.", pron: "সসপ্যান", bng: "সসপ্যান" },
+                            { eng: "Vacuum cleaner", pos: "n.", pron: "ভ্যাকুয়াম ক্লিনার", bng: "ধুলা পরিষ্কারক যন্ত্র" },
+                            { eng: "Toaster", pos: "n.", pron: "টোস্টার", bng: "পাউরুটি সেঁকার যন্ত্র" },
+                            { eng: "Washing machine", pos: "n.", pron: "ওয়াশিং মেশিন", bng: "কাপড় ধোয়ার যন্ত্র" },
+                            { eng: "Air conditioner", pos: "n.", pron: "এয়ার কন্ডিশনার", bng: "এসি" },
+                            { eng: "Water purifier", pos: "n.", pron: "ওয়াটার পিউরিফায়ার", bng: "পানি বিশুদ্ধকরণ যন্ত্র" },
+                            { eng: "Iron", pos: "n.", pron: "আয়রন", bng: "ইস্ত্রি" },
+                            { eng: "Frying pan", pos: "n.", pron: "ফ্রাইং প্যান", bng: "ভাজার কড়াই" },
+                            { eng: "Pressure cooker", pos: "n.", pron: "প্রেশার কুকার", bng: "প্রেশার কুকার" },
+                            { eng: "Spatula", pos: "n.", pron: "স্প্যাচুলা", bng: "খুন্তি / চাটু" },
+                            { eng: "Ladle", pos: "n.", pron: "লেডেল", bng: "বড় হাতা" },
+                            { eng: "Colander", pos: "n.", pron: "কল্যান্ডার", bng: "ঝাঁঝরি / চালনি" },
+                            { eng: "Peeler", pos: "n.", pron: "পিলার", bng: "ছাল ছাড়ানোর ছুরি" },
+                            { eng: "Chopping board", pos: "n.", pron: "চপিং বোর্ড", bng: "সবজি কাটার বোর্ড" },
+                            { eng: "Grater", pos: "n.", pron: "গ্রেটার", bng: "কোড়ানি" },
+                            { eng: "Tongs", pos: "n.", pron: "টংস", bng: "চিমটা" },
+                            { eng: "Dishwasher", pos: "n.", pron: "ডিশওয়াশার", bng: "পাত্র ধোয়ার যন্ত্র" },
+                            { eng: "Mixer", pos: "n.", pron: "মিক্সার", bng: "মিশ্রণ যন্ত্র" },
+                            { eng: "Chimney", pos: "n.", pron: "চিমনী", bng: "ধোঁয়া নির্গমনের পাইপ" },
+                            { eng: "Teapot", pos: "n.", pron: "টিপট", bng: "চা-দানি" },
+                            { eng: "Oven", pos: "n.", pron: "ওভেন", bng: "চুলা / ওভেন" }
+                        ]
+                    },
+                    {
+                        name: "10. Cleaning & Hygiene (পরিষ্কার ও স্বাস্থ্যবিধি)",
+                        words: [
+                            { eng: "Broom", pos: "n.", pron: "ব্রুম", bng: "ঝাড়ু" },
+                            { eng: "Detergent", pos: "n.", pron: "ডিটারজেন্ট", bng: "কাপড় কাচার পাউডার" },
+                            { eng: "Disinfectant", pos: "n.", pron: "ডিসইনফেকট্যান্ট", bng: "জীবাণুনাশক" },
+                            { eng: "Sanitation", pos: "n.", pron: "স্যানিটেশন", bng: "স্বাস্থ্যসম্মত ব্যবস্থা" },
+                            { eng: "Scrub", pos: "v.", pron: "স্ক্রাব", bng: "ঘষে পরিষ্কার করা" },
+                            { eng: "Sweep", pos: "v.", pron: "সুইপ", bng: "ঝাড়ু দেওয়া" },
+                            { eng: "Mopping", pos: "n.", pron: "মপিং", bng: "মেঝে মোছা" },
+                            { eng: "Dusting", pos: "n.", pron: "ডাস্টিং", bng: "ধুলা ঝাড়া" },
+                            { eng: "Garbage", pos: "n.", pron: "গার্বেজ", bng: "ময়লা-আবর্জনা" },
+                            { eng: "Trash can", pos: "n.", pron: "ট্র্যাশ ক্যান", bng: "ময়লার বালতি" },
+                            { eng: "Bleach", pos: "n.", pron: "ব্লিচ", bng: "সাদা করার রাসায়নিক" },
+                            { eng: "Soap", pos: "n.", pron: "সোপ", bng: "সাবান" },
+                            { eng: "Hand sanitizer", pos: "n.", pron: "হ্যান্ড স্যানিটাইজার", bng: "হাত জীবাণুমুক্তকারক" },
+                            { eng: "Hygiene", pos: "n.", pron: "হাইজিন", bng: "স্বাস্থ্যবিধি" },
+                            { eng: "Cleanliness", pos: "n.", pron: "ক্লিনলিনেস", bng: "পরিচ্ছন্নতা" },
+                            { eng: "Stain", pos: "n.", pron: "স্টেইন", bng: "দাগ" },
+                            { eng: "Wipe", pos: "v.", pron: "ওয়াইপ", bng: "মুছে ফেলা" },
+                            { eng: "Polish", pos: "v.", pron: "পলিশ", bng: "চকচকে করা" },
+                            { eng: "Dustpan", pos: "n.", pron: "ডাস্টপ্যান", bng: "ময়লা তোলার পাত্র" },
+                            { eng: "Plunger", pos: "n.", pron: "প্লানজার", bng: "পাম্প" },
+                            { eng: "Squeegee", pos: "n.", pron: "স্কুইজি", bng: "মেঝে মোছার রবার" },
+                            { eng: "Sponge", pos: "n.", pron: "স্পঞ্জ", bng: "স্পঞ্জ" },
+                            { eng: "Waste", pos: "n.", pron: "ওয়েস্ট", bng: "বর্জ্য" },
+                            { eng: "Disinfect", pos: "v.", pron: "ডিসইনফেক্ট", bng: "জীবাণুমুক্ত করা" },
+                            { eng: "Purification", pos: "n.", pron: "পিউরিফিকেশন", bng: "শোধন / বিশুদ্ধকরণ" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 2,
+                title: "Lesson 2: Personal Care, Food, Drinks & Shopping (টপিক ১১ - ২৫)",
+                topics: [
+                    {
+                        name: "11. Clothing, Fabrics & Dress Codes (পোশাক ও কাপড়ের ধরন)",
+                        words: [
+                            { eng: "Apparel", pos: "n.", pron: "অ্যাপারেল", bng: "পোশাক-আশাক" },
+                            { eng: "Attire", pos: "n.", pron: "অ্যাটায়ার", bng: "পরিচ্ছদ" },
+                            { eng: "Cotton", pos: "n.", pron: "কটন", bng: "সুতি কাপড়" },
+                            { eng: "Silk", pos: "n.", pron: "সিল্ক", bng: "রেশম" },
+                            { eng: "Denim", pos: "n.", pron: "ডেনিম", bng: "জিন্সের কাপড়" },
+                            { eng: "Garment", pos: "n.", pron: "গার্মেন্ট", bng: "তৈরি পোশাক" },
+                            { eng: "Velvet", pos: "n.", pron: "ভেলভেট", bng: "মখমল কাপড়" },
+                            { eng: "Woolen", pos: "adj.", pron: "উলান", bng: "পশমি" },
+                            { eng: "Linen", pos: "n.", pron: "লিনেন", bng: "লিনেন কাপড়" },
+                            { eng: "Texture", pos: "n.", pron: "টেক্সচার", bng: "কাপড়ের বুনন" },
+                            { eng: "Outfit", pos: "n.", pron: "আউটফিট", bng: "পোশাকের সেট" },
+                            { eng: "Uniform", pos: "n.", pron: "ইউনিফর্ম", bng: "নির্ধারিত পোশাক" },
+                            { eng: "Formal", pos: "adj.", pron: "ফরমাল", bng: "আনুষ্ঠানিক পোশাক" },
+                            { eng: "Casual", pos: "adj.", pron: "ক্যাজুয়াল", bng: "সাধারণ পোশাক" },
+                            { eng: "Sleeve", pos: "n.", pron: "স্লিভ", bng: "হাতা" },
+                            { eng: "Collar", pos: "n.", pron: "ক্লার", bng: "কলার" },
+                            { eng: "Button", pos: "n.", pron: "বাটন", bng: "বোতাম" },
+                            { eng: "Zipper", pos: "n.", pron: "জিপার", bng: "চেইন" },
+                            { eng: "Stitch", pos: "n.", pron: "স্টিচ", bng: "সেলাই" },
+                            { eng: "Embroidery", pos: "n.", pron: "এমব্রয়ডারি", bng: "কারুকাজ" },
+                            { eng: "Fabric", pos: "n.", pron: "ফ্যাব্রিক", bng: "কাপড়" },
+                            { eng: "Thread", pos: "n.", pron: "থ্রেড", bng: "সুতা" },
+                            { eng: "Pattern", pos: "n.", pron: "প্যাটার্ন", bng: "নকশা" },
+                            { eng: "Wardrobe", pos: "n.", pron: "ওয়ার্ডরোব", bng: "পোশাকভাণ্ডার" },
+                            { eng: "Overcoat", pos: "n.", pron: "ওভারকোট", bng: "জ্যাকেট / ওভারকোট" }
+                        ]
+                    },
+                    {
+                        name: "12. Footwear, Jewelry & Accessories (জুতো, গহনা ও অনুষঙ্গ)",
+                        words: [
+                            { eng: "Ornament", pos: "n.", pron: "ওরনামেন্ট", bng: "অলংকার" },
+                            { eng: "Necklace", pos: "n.", pron: "নেকলেস", bng: "কণ্ঠহার / হার" },
+                            { eng: "Bracelet", pos: "n.", pron: "ব্রেসলেট", bng: "হাতের বালা" },
+                            { eng: "Footwear", pos: "n.", pron: "ফুটওয়্যার", bng: "পাদুকা / জুতো" },
+                            { eng: "Wallet", pos: "n.", pron: "ওয়ালেট", bng: "মানিব্যাগ" },
+                            { eng: "Gemstone", pos: "n.", pron: "জেমস্টোন", bng: "মূল্যবান রত্ন" },
+                            { eng: "Diamond", pos: "n.", pron: "ডায়মন্ড", bng: "হীরা" },
+                            { eng: "Pearl", pos: "n.", pron: "পার্ল", bng: "মুক্তা" },
+                            { eng: "Anklet", pos: "n.", pron: "অ্যাঙ্কেলট", bng: "নূপুর" },
+                            { eng: "Earring", pos: "n.", pron: "ইয়াররিং", bng: "কানের দুল" },
+                            { eng: "Ring", pos: "n.", pron: "রিং", bng: "আংটি" },
+                            { eng: "Brooch", pos: "n.", pron: "ব্রোচ", bng: "জামার পিন" },
+                            { eng: "Leather", pos: "n.", pron: "লেদার", bng: "চামড়া" },
+                            { eng: "Sneakers", pos: "n.", pron: "স্নিকার্স", bng: "স্পোর্টস জুতো" },
+                            { eng: "Sandals", pos: "n.", pron: "স্যান্ডেলস", bng: "স্যান্ডেল" },
+                            { eng: "High heels", pos: "n.", pron: "হাই হিলস", bng: "হাই হিল জুতো" },
+                            { eng: "Belt", pos: "n.", pron: "বেল্ট", bng: "কোমরবন্ধ" },
+                            { eng: "Handbag", pos: "n.", pron: "হ্যান্ডব্যাগ", bng: "হ্যান্ডব্যাগ" },
+                            { eng: "Backpack", pos: "n.", pron: "ব্যাকপ্যাক", bng: "পিঠের ব্যাগ" },
+                            { eng: "Sunglasses", pos: "n.", pron: "সানগ্লাসেস", bng: "রোদচশমা" },
+                            { eng: "Cufflink", pos: "n.", pron: "কফলিঙ্ক", bng: "শার্টের কফলিঙ্ক" },
+                            { eng: "Turban", pos: "n.", pron: "টারবান", bng: "পাগড়ি" },
+                            { eng: "Scarf", pos: "n.", pron: "স্কার্ফ", bng: "ওড়না / স্কার্ফ" },
+                            { eng: "Glove", pos: "n.", pron: "গ্লাভ", bng: "দস্তানা / গ্লাভস" },
+                            { eng: "Umbrella", pos: "n.", pron: "আমব্রেলা", bng: "ছাতা" }
+                        ]
+                    },
+                    {
+                        name: "13. Personal Care, Cosmetics & Grooming (প্রসাধন ও সাজগোজ)",
+                        words: [
+                            { eng: "Moisturizer", pos: "n.", pron: "ময়েশ্চারাইজার", bng: "ত্বকের আর্দ্রতারক্ষক" },
+                            { eng: "Sunscreen", pos: "n.", pron: "সানস্ক্রিন", bng: "রোদ প্রতিরোধী ক্রিম" },
+                            { eng: "Fragrance", pos: "n.", pron: "ফ্র্যাগ্র্যান্স", bng: "সুবাস / সুগন্ধি" },
+                            { eng: "Grooming", pos: "n.", pron: "গ্রুমিং", bng: "পরিটি রাখা" },
+                            { eng: "Comb", pos: "n.", pron: "কম্ব", bng: "চিরুনি" },
+                            { eng: "Shampoo", pos: "n.", pron: "শ্যাম্পু", bng: "চুল পরিষ্কারক" },
+                            { eng: "Conditioner", pos: "n.", pron: "কন্ডিশনার", bng: "চুল নরম করার ক্রিম" },
+                            { eng: "Lotion", pos: "n.", pron: "লোশন", bng: "লোশন" },
+                            { eng: "Lip balm", pos: "n.", pron: "লিপ বাম", bng: "লিপবাম" },
+                            { eng: "Foundation", pos: "n.", pron: "ফাউন্ডেশন", bng: "মেকআপের বেস" },
+                            { eng: "Cleansing", pos: "n.", pron: "ক্লিনসিং", bng: "ত্বক পরিষ্কারকরণ" },
+                            { eng: "Deodorant", pos: "n.", pron: "ডিওডোরেন্ট", bng: "দুর্গন্ধনাশক স্প্রে" },
+                            { eng: "Razor", pos: "n.", pron: "রেজর", bng: "শেভিং রেজার" },
+                            { eng: "Trimmer", pos: "n.", pron: "ট্রিমার", bng: "চুল ছাঁটার যন্ত্র" },
+                            { eng: "Nail cutter", pos: "n.", pron: "নেইল কাটার", bng: "নখ কাটার যন্ত্র" },
+                            { eng: "Perfume", pos: "n.", pron: "পারফিউম", bng: "সুগন্ধি" },
+                            { eng: "Serum", pos: "n.", pron: "সিরাম", bng: "ত্বকের সিরাম" },
+                            { eng: "Exfoliate", pos: "v.", pron: "এক্সফোলিয়েট", bng: "মৃতকোষ তোলা" },
+                            { eng: "Cosmetics", pos: "n.", pron: "কসমোটিক্স", bng: "রূপচর্চার সামগ্রী" },
+                            { eng: "Lipstick", pos: "n.", pron: "লিপস্টিক", bng: "লিপস্টিক" },
+                            { eng: "Mascara", pos: "n.", pron: "মাসকারা", bng: "চোখের মেকআপ" },
+                            { eng: "Powder", pos: "n.", pron: "পাউডার", bng: "পাউডার" },
+                            { eng: "Face wash", pos: "n.", pron: "ফেস ওয়াশ", bng: "মুখ ধোয়ার তরল" },
+                            { eng: "Cotton pad", pos: "n.", pron: "কটন প্যাড", bng: "তুলোর প্যাড" },
+                            { eng: "Tweezers", pos: "n.", pron: "টুইজার্স", bng: "ছোট চিমেটা" }
+                        ]
+                    },
+                    {
+                        name: "14. Daily Routine & Lifestyle (রুটিন ও জীবনধারা)",
+                        words: [
+                            { eng: "Chore", pos: "n.", pron: "চোর", bng: "দৈনন্দিন কাজ" },
+                            { eng: "Schedule", pos: "n.", pron: "শিডিউল", bng: "সময়সূচি" },
+                            { eng: "Sedentary", pos: "adj.", pron: "সিডেন্টারি", bng: "বসে কাজ করার মতো" },
+                            { eng: "Punctual", pos: "adj.", pron: "পাঙ্কচুয়াল", bng: "সময়নিষ্ঠ" },
+                            { eng: "Procrastinate", pos: "v.", pron: "প্রোক্রাস্টিনেট", bng: "কাজ ফেলে রাখা" },
+                            { eng: "Habit", pos: "n.", pron: "হ্যাবিট", bng: "অভ্যাস" },
+                            { eng: "Lifestyle", pos: "n.", pron: "লাইফস্টাইল", bng: "জীবনযাত্রা" },
+                            { eng: "Early bird", pos: "n.", pron: "আর্লি বার্ড", bng: "ভোৰে ওঠা ব্যক্তি" },
+                            { eng: "Night owl", pos: "n.", pron: "নাইট আউল", bng: "রাত জাগা ব্যক্তি" },
+                            { eng: "Productivity", pos: "n.", pron: "প্রোডাক্টিভিটি", bng: "উৎপাদনশীলতা" },
+                            { eng: "Discipline", pos: "n.", pron: "ডিসিপ্লিন", bng: "শৃঙ্খলা" },
+                            { eng: "Timetable", pos: "n.", pron: "টাইমটেবিল", bng: "সময়তালিকা" },
+                            { eng: "Multitasking", pos: "n.", pron: "মাল্টিটাস্কিং", bng: "একসাথে অনেক কাজ" },
+                            { eng: "Relaxation", pos: "n.", pron: "রিল্যাক্সেশন", bng: "বিশ্রাম" },
+                            { eng: "Pastime", pos: "n.", pron: "পাসটাইম", bng: "বিনোদনের কাজ" },
+                            { eng: "Addiction", pos: "n.", pron: "অ্যাডিকশন", bng: "আসক্তি" },
+                            { eng: "Exercise", pos: "n.", pron: "এক্সারসাইজ", bng: "ব্যায়াম" },
+                            { eng: "Routine", pos: "n.", pron: "রুটিন", bng: "বাঁধাধরা নিয়ম" },
+                            { eng: "Efficiency", pos: "n.", pron: "ইফিশিয়েন্সি", bng: "দক্ষতা" },
+                            { eng: "Consistency", pos: "n.", pron: "কনসিস্টেন্সি", bng: "ধারাবাহিকতা" },
+                            { eng: "Leisure", pos: "n.", pron: "লেজার", bng: "অবসর" },
+                            { eng: "Work-life balance", pos: "n.", pron: "ওয়ার্ক-লাইফ ব্যালেন্স", bng: "কাজের ভারসাম্য" },
+                            { eng: "Commute", pos: "v.", pron: "কম্যুট", bng: "যাতায়াত করা" },
+                            { eng: "Overwork", pos: "n.", pron: "ওভারওয়ার্ক", bng: "অতিরিক্ত কাজ" },
+                            { eng: "Burnout", pos: "n.", pron: "বার্নআউট", bng: "শারীরিক-মানসিক ক্লান্তি" }
+                        ]
+                    },
+                    {
+                        name: "15. Sleep, Dreams & Fatigue (ঘুম, স্বপ্ন ও ক্লান্তি)",
+                        words: [
+                            { eng: "Insomnia", pos: "n.", pron: "ইনসোমনিয়া", bng: "অনিদ্রা রোগ" },
+                            { eng: "Drowsy", pos: "adj.", pron: "ড্রাউজি", bng: "তন্দ্রাচ্ছন্ন" },
+                            { eng: "Nightmare", pos: "n.", pron: "নাইটমেয়ার", bng: "দুঃস্বপ্ন" },
+                            { eng: "Exhaustion", pos: "n.", pron: "এক্সজশ্চন", bng: "চরম ক্লান্তি" },
+                            { eng: "Slumber", pos: "n.", pron: "সলাম্বার", bng: "হালকা ঘুম" },
+                            { eng: "Nap", pos: "n.", pron: "ন্যাপ", bng: "অল্প ঘুম / পাওয়ার ন্যাপ" },
+                            { eng: "Yawn", pos: "v.", pron: "ইয়ান", bng: "হাই তোলা" },
+                            { eng: "Snore", pos: "v.", pron: "স্নোর", bng: "নাক ডাকা" },
+                            { eng: "Fatigue", pos: "n.", pron: "ফ্যাটিগ", bng: "শারীরিক ক্লান্তি" },
+                            { eng: "Sleep deprivation", pos: "n.", pron: "স্লিপ ডেপ্রিভেশন", bng: "ঘুমহীনতা" },
+                            { eng: "Overtired", pos: "adj.", pron: "ওভারটাইয়ার্ড", bng: "অতিরিক্ত ক্লান্ত" },
+                            { eng: "Restlessness", pos: "n.", pron: "রেস্টলেসনেস", bng: "অস্থিরতা" },
+                            { eng: "REM sleep", pos: "n.", pron: "আরইএম স্লিপ", bng: "গভীর স্বপ্নের ঘুম" },
+                            { eng: "Sleepwalk", pos: "v.", pron: "স্লিপওয়াক", bng: "ঘুমে হাঁটা" },
+                            { eng: "Awakening", pos: "n.", pron: "অ্যাওয়াকেনিং", bng: "ঘুম ভাঙা" },
+                            { eng: "Somnolence", pos: "n.", pron: "সমনোলেন্স", bng: "ঘুমঘুম ভাব" },
+                            { eng: "Restful", pos: "adj.", pron: "রেস্টফুল", bng: "শান্তিময় বিশ্রাম" },
+                            { eng: "Heavy sleeper", pos: "n.", pron: "হেভি স্লিপার", bng: "গভীর ঘুমের ব্যক্তি" },
+                            { eng: "Light sleeper", pos: "n.", pron: "লাইট স্লিপার", bng: "হালকা ঘুমের ব্যক্তি" },
+                            { eng: "Sleep apnea", pos: "n.", pron: "স্লিপ অ্যাপনিয়া", bng: "ঘুমে শ্বাসকষ্ট" },
+                            { eng: "Daydream", pos: "n.", pron: "ডে-ডিম", bng: "দিবা স্বপ্ন" },
+                            { eng: "Insomniac", pos: "n.", pron: "ইনসোমনিয়াক", bng: "অনিদ্রার রোগী" },
+                            { eng: "Siesta", pos: "n.", pron: "সিয়েস্তা", bng: "দুপুরের হালকা ঘুম" },
+                            { eng: "Lethargy", pos: "n.", pron: "লেথারজি", bng: "অলসতা / অবসাদ" },
+                            { eng: "Rejuvenate", pos: "v.", pron: "রিজুভেনেইট", bng: "পুনরুজ্জীবিত হওয়া" }
+                        ]
+                    },
+                    {
+                        name: "16-25. Food, Drinks & Shopping (খাদ্য, পানীয় ও কেনাকাটা)",
+                        words: [
+                            { eng: "Pomegranate", pos: "n.", pron: "পমেগ্র্যানেট", bng: "ডালিম / বেদানা" },
+                            { eng: "Cabbage", pos: "n.", pron: "ক্যাবাজ", bng: "বাঁধাকপি" },
+                            { eng: "Cauliflower", pos: "n.", pron: "কলিফ্লাওয়ার", bng: "ফুলকপি" },
+                            { eng: "Spinach", pos: "n.", pron: "স্পিনাচ", bng: "পালং শাক" },
+                            { eng: "Turmeric", pos: "n.", pron: "টারমারিক", bng: "হলুদ" },
+                            { eng: "Cinnamon", pos: "n.", pron: "সিনামন", bng: "দারুচিনি" },
+                            { eng: "Cardamom", pos: "n.", pron: "কার্ডামম", bng: "এলাচ" },
+                            { eng: "Clove", pos: "n.", pron: "ক্লোভ", bng: "লবঙ্গ" },
+                            { eng: "Mutton", pos: "n.", pron: "মাটন", bng: "খাসির মাংস" },
+                            { eng: "Poultry", pos: "n.", pron: "পোল্ট্রি", bng: "হাঁস-মুরগি" },
+                            { eng: "Boil", pos: "v.", pron: "বয়েল", bng: "সেদ্ধ করা" },
+                            { eng: "Simmer", pos: "v.", pron: "সিমার", bng: "হালকা আঁচে রান্না" },
+                            { eng: "Delicious", pos: "adj.", pron: "ডিলিশাস", bng: "সুস্বাদু" },
+                            { eng: "Cuisine", pos: "n.", pron: "কুইজিন", bng: "রন্ধনশৈলী" },
+                            { eng: "Refreshment", pos: "n.", pron: "রিফ্রেশমেন্ট", bng: "হালকা নাশতা" },
+                            { eng: "Grocery", pos: "n.", pron: "গ্রোসারি", bng: "মুদি মালামাল" },
+                            { eng: "Aisle", pos: "n.", pron: "আইল", bng: "সুপারশপের সারির পথ" },
+                            { eng: "Discount", pos: "n.", pron: "ডিসকাউন্ট", bng: "মূল্যছাড়" },
+                            { eng: "Bargain", pos: "v.", pron: "বারগেইন", bng: "দরদাম করা" },
+                            { eng: "Currency", pos: "n.", pron: "কারেন্সি", bng: "টাকা / মুদ্রা" },
+                            { eng: "Transaction", pos: "n.", pron: "ট্রানজ্যাকশন", bng: "লেনদেন" },
+                            { eng: "Withdraw", pos: "v.", pron: "উইথড্র", bng: "টাকা তোলা" },
+                            { eng: "Deposit", pos: "v.", pron: "ডিপোজিট", bng: "জমা দেওয়া" },
+                            { eng: "Affordable", pos: "adj.", pron: "অ্যাফোর্ডেবল", bng: "সাশ্রয়ী" },
+                            { eng: "Receipt", pos: "n.", pron: "রিসিট", bng: "ক্রয়ের রসিদ" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 3,
+                title: "Lesson 3: Nature, Environment, Geography & Space (টপিক ২৬ - ৩৫)",
+                topics: [
+                    {
+                        name: "26. Flowers, Plants & Gardening (ফুল, গাছপালা ও বাগান)",
+                        words: [
+                            { eng: "Petal", pos: "n.", pron: "পেটাল", bng: "পাপড়ি" },
+                            { eng: "Fragrance", pos: "n.", pron: "ফ্র্যাগ্র্যান্স", bng: "সুবাস" },
+                            { eng: "Bloom", pos: "v.", pron: "ব্লুম", bng: "প্রস্ফুটিত হওয়া" },
+                            { eng: "Fertilizer", pos: "n.", pron: "ফার্টিলাইজার", bng: "সার" },
+                            { eng: "Seedling", pos: "n.", pron: "সিডলিং", bng: "চারাগাছ" },
+                            { eng: "Bud", pos: "n.", pron: "বাড", bng: "কুঁড়ি / কলি" },
+                            { eng: "Stem", pos: "n.", pron: "স্টেম", bng: "কাণ্ড" },
+                            { eng: "Thorn", pos: "n.", pron: "থর্ন", bng: "কাঁটা" },
+                            { eng: "Pollen", pos: "n.", pron: "পোলেন", bng: "পরাগরেণু" },
+                            { eng: "Pollination", pos: "n.", pron: "পোলিনেশন", bng: "পরাগায়ন" },
+                            { eng: "Nectar", pos: "n.", pron: "নেকটার", bng: "ফুলের মধু" },
+                            { eng: "Nursery", pos: "n.", pron: "নার্সারি", bng: "চারাগাছের বাগান" },
+                            { eng: "Pruning", pos: "n.", pron: "প্রুনিং", bng: "ডালপালা ছাঁটা" },
+                            { eng: "Soil", pos: "n.", pron: "সয়েল", bng: "মাটি" },
+                            { eng: "Weed", pos: "n.", pron: "উইড", bng: "আগাছা" },
+                            { eng: "Botanist", pos: "n.", pron: "বোটানিস্ট", bng: "উদ্ভিদবিজ্ঞানী" },
+                            { eng: "Sprout", pos: "v.", pron: "স্প্রাউট", bng: "গজানো / অঙ্কুরিত হওয়া" },
+                            { eng: "Foliage", pos: "n.", pron: "ফোলিয়েজ", bng: "গাছের পাতা" },
+                            { eng: "Roots", pos: "n.", pron: "রুটস", bng: "শিকড়" },
+                            { eng: "Greenhouse", pos: "n.", pron: "গ্রিনহাউস", bng: "কাঁচঘর" },
+                            { eng: "Wilting", pos: "n.", pron: "উইল্টিং", bng: "শুকিয়ে যাওয়া" },
+                            { eng: "Bouquet", pos: "n.", pron: "বুকে", bng: "ফুলের তোড়া" },
+                            { eng: "Compost", pos: "n.", pron: "কমপোস্ট", bng: "জৈব সার" },
+                            { eng: "Watering", pos: "n.", pron: "ওয়াটারিং", bng: "পানি দেওয়া" },
+                            { eng: "Gardening", pos: "n.", pron: "গার্ডেনিং", bng: "বাগান করা" }
+                        ]
+                    },
+                    {
+                        name: "27-35. Nature, Geography & Space (বন, ভূগোল ও মহাকাশ)",
+                        words: [
+                            { eng: "Deforestation", pos: "n.", pron: "ডিফরেস্টেশন", bng: "বননিধন" },
+                            { eng: "Cultivation", pos: "n.", pron: "কাল্টিভেশন", bng: "চাষাবাদ" },
+                            { eng: "Carnivore", pos: "n.", pron: "কার্নিভোর", bng: "মাংসাশী প্রাণী" },
+                            { eng: "Herbivore", pos: "n.", pron: "হার্বিভোর", bng: "তৃণভোজী প্রাণী" },
+                            { eng: "Predator", pos: "n.", pron: "প্রেডেটর", bng: "শিকারী প্রাণী" },
+                            { eng: "Feather", pos: "n.", pron: "ফেদার", bng: "পালক" },
+                            { eng: "Migration", pos: "n.", pron: "মাইগ্রেশন", bng: "পরিযাণ" },
+                            { eng: "Amphibian", pos: "n.", pron: "অ্যামফিবিয়ান", bng: "উভচর প্রাণী" },
+                            { eng: "Reptile", pos: "n.", pron: "রেপটাইল", bng: "সরীসৃপ" },
+                            { eng: "Peninsula", pos: "n.", pron: "পেনিনসুলা", bng: "উপদ্বীপ" },
+                            { eng: "Glacier", pos: "n.", pron: "গ্লেসিয়ার", bng: "হিমবাহ" },
+                            { eng: "Humidity", pos: "n.", pron: "হিউমিডিটি", bng: "আর্দ্রতা" },
+                            { eng: "Drought", pos: "n.", pron: "ড্রাউট", bng: "খরা" },
+                            { eng: "Earthquake", pos: "n.", pron: "আর্থকোয়েক", bng: "ভূমিকম্প" },
+                            { eng: "Tsunami", pos: "n.", pron: "সুনামি", bng: "সামুদ্রিক জলোচ্ছ্বাস" },
+                            { eng: "Avalanche", pos: "n.", pron: "অ্যাভালাঞ্চ", bng: "হিমস্খলন" },
+                            { eng: "Contamination", pos: "n.", pron: "কনট্যামিনেশন", bng: "দূষণ / বিষাক্ত করা" },
+                            { eng: "Recycle", pos: "v.", pron: "রিসাইকেল", bng: "পুনর্ব্যবহারযোগ্য করা" },
+                            { eng: "Ecosystem", pos: "n.", pron: "ইকোসিস্টেম", bng: "বাস্তুতন্ত্র" },
+                            { eng: "Galaxy", pos: "n.", pron: "গ্যালাক্সি", bng: "ছায়াপথ" },
+                            { eng: "Satellite", pos: "n.", pron: "স্যাটেলাইট", bng: "উপগ্রহ" },
+                            { eng: "Eclipse", pos: "n.", pron: "ইক্লিপস", bng: "গ্রহণ" },
+                            { eng: "Orbit", pos: "n.", pron: "অরবিট", bng: "কক্ষপথ" },
+                            { eng: "Constellation", pos: "n.", pron: "কনস্টেলেশন", bng: "তারামণ্ডল" },
+                            { eng: "Black hole", pos: "n.", pron: "ব্ল্যাক হোল", bng: "কৃষ্ণগহ্বর" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 4,
+                title: "Lesson 4: Health, Fitness & Psychology (টপিক ৩৬ - ৪২)",
+                topics: [
+                    {
+                        name: "36-42. Health, Fitness & Psychology (স্বাস্থ্য, ফিটনেস ও মনস্তত্ত্ব)",
+                        words: [
+                            { eng: "Symptom", pos: "n.", pron: "সিম্পটম", bng: "উপসর্গ / লক্ষণ" },
+                            { eng: "Infection", pos: "n.", pron: "ইনফেকশন", bng: "সংক্রমণ" },
+                            { eng: "Contagious", pos: "adj.", pron: "কনটেজিয়াস", bng: "ছোঁয়াচে" },
+                            { eng: "Diagnosis", pos: "n.", pron: "ডায়াগনোসিস", bng: "রোগ নির্ণয়" },
+                            { eng: "Surgeon", pos: "n.", pron: "সার্জন", bng: "শল্য চিকিৎসক" },
+                            { eng: "Prescription", pos: "n.", pron: "প্রেসক্রিপশন", bng: "ব্যবস্থাপত্র" },
+                            { eng: "Antibiotic", pos: "n.", pron: "অ্যান্টিবায়োটিক", bng: "জীবাণুনাশক ওষুধ" },
+                            { eng: "Vaccine", pos: "n.", pron: "ভ্যাকসিন", bng: "টিকা / প্রতিষেধক" },
+                            { eng: "Workout", pos: "n.", pron: "ওয়ার্কআউট", bng: "শারীরিক কসরত" },
+                            { eng: "Stamina", pos: "n.", pron: "স্ট্যামিনা", bng: "সহনশীলতা" },
+                            { eng: "Flexibility", pos: "n.", pron: "ফ্লেক্সিবিলিটি", bng: "নমনীয়তা" },
+                            { eng: "Calorie", pos: "n.", pron: "ক্যালোরি", bng: "শক্তির একক" },
+                            { eng: "Protein", pos: "n.", pron: "প্রোটিন", bng: "আমিষ" },
+                            { eng: "Obesity", pos: "n.", pron: "ওবেসিটি", bng: "স্থূলতা" },
+                            { eng: "Depression", pos: "n.", pron: "ডিপ্রেশন", bng: "বিষণ্ণতা" },
+                            { eng: "Stress", pos: "n.", pron: "স্ট্রেস", bng: "মানসিক চাপ" },
+                            { eng: "Trauma", pos: "n.", pron: "ট্রমা", bng: "মানসিক তীব্র আঘাত" },
+                            { eng: "Therapy", pos: "n.", pron: "থেরাপি", bng: "চিকিৎসা পদ্ধতি" },
+                            { eng: "Coping", pos: "v.", pron: "কোপিং", bng: "মানিয়ে নেওয়া" },
+                            { eng: "Subconscious", pos: "adj.", pron: "সাবকনশাস", bng: "অবচেতন মন" },
+                            { eng: "Perception", pos: "n.", pron: "পারসেপশন", bng: "ধারণা / বোধগম্যতা" },
+                            { eng: "Cognitive", pos: "adj.", pron: "কগনিটিভ", bng: "প্রজ্ঞামূলক" },
+                            { eng: "Phobia", pos: "n.", pron: "ফোবিয়া", bng: "অযৌক্তিক ভয়" },
+                            { eng: "Illusion", pos: "n.", pron: "ইলিউশন", bng: "বিভ্রম / মোহ" },
+                            { eng: "Empathy", pos: "n.", pron: "এমপ্যাথি", bng: "সমানুভূতি" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 5,
+                title: "Lesson 5: Education, Science & Technology (টপিক ৪৩ - ৫২)",
+                topics: [
+                    {
+                        name: "43-52. Education, Science & Future Tech (শিক্ষা, বিজ্ঞান ও প্রযুক্তি)",
+                        words: [
+                            { eng: "Curriculum", pos: "n.", pron: "কারিকুলাম", bng: "পাঠ্যসূচি" },
+                            { eng: "Assignment", pos: "n.", pron: "অ্যাসাইনমেন্ট", bng: "নির্ধারিত কাজ" },
+                            { eng: "Graduation", pos: "n.", pron: "গ্র্যাজুয়েশন", bng: "স্নাতক লাভ" },
+                            { eng: "Scholarship", pos: "n.", pron: "স্কলারশিপ", bng: "বৃত্তি" },
+                            { eng: "Dissertation", pos: "n.", pron: "ডিসারটেশন", bng: "থিসিস / গবেষণাপত্র" },
+                            { eng: "Biography", pos: "n.", pron: "বায়োগ্রাফি", bng: "জীবনী" },
+                            { eng: "Processor", pos: "n.", pron: "প্রসেসর", bng: "প্রক্রিয়াকরণ যন্ত্র" },
+                            { eng: "Algorithm", pos: "n.", pron: "অ্যালগরিদম", bng: "গাণিতিক নিয়ম" },
+                            { eng: "Cybersecurity", pos: "n.", pron: "সাইবার সিকিউরিটি", bng: "সাইবার নিরাপত্তা" },
+                            { eng: "Encryption", pos: "n.", pron: "এনক্রিপশন", bng: "তথ্য সংকেতবদ্ধ করা" },
+                            { eng: "Automation", pos: "n.", pron: "অটোমেশন", bng: "স্বয়ংক্রিয়করণ" },
+                            { eng: "Robotics", pos: "n.", pron: "রোবোটিক্স", bng: "রোবট বিজ্ঞান" },
+                            { eng: "Innovation", pos: "n.", pron: "ইনোভেশন", bng: "নতুন উদ্ভাবন" },
+                            { eng: "Experiment", pos: "n.", pron: "এক্সপেরিমেন্ট", bng: "পরীক্ষা-নিরীক্ষা" },
+                            { eng: "Hypothesis", pos: "n.", pron: "হাইপোথিসিস", bng: "অনুমান" },
+                            { eng: "Analysis", pos: "n.", pron: "অ্যানালাইসিস", bng: "বিশ্লেষণ" },
+                            { eng: "Methodology", pos: "n.", pron: "মেথডোলজি", bng: "গবেষণা পদ্ধতি" },
+                            { eng: "Survey", pos: "n.", pron: "সার্ভে", bng: "জরিপ" },
+                            { eng: "Proficiency", pos: "n.", pron: "প্রফিশিয়েন্সি", bng: "পারদর্শিতা" },
+                            { eng: "Aptitude", pos: "n.", pron: "অ্যাপটিটিউড", bng: "স্বাভাবিক প্রতিভা" },
+                            { eng: "Competence", pos: "n.", pron: "কমপিটেন্স", bng: "যোগ্যতা" },
+                            { eng: "Training", pos: "n.", pron: "ট্রেনিং", bng: "প্রশিক্ষণ" },
+                            { eng: "Artificial Intelligence", pos: "n.", pron: "আর্টিফিশিয়াল ইন্টেলিজেন্স", bng: "কৃত্রিম বুদ্ধিমত্তা" },
+                            { eng: "Virtual Reality", pos: "n.", pron: "ভার্চুয়াল রিয়েলিটি", bng: "ভার্চুয়াল বাস্তবতা" },
+                            { eng: "Database", pos: "n.", pron: "ডেটাবেস", bng: "তথ্যভাণ্ডার" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 6,
+                title: "Lesson 6: Profession, Corporate, Business & Economy (টপিক ৫৩ - ৬৩)",
+                topics: [
+                    {
+                        name: "53-63. Profession, Corporate & Economy (পেশা, কর্পোরেট ও অর্থনীতি)",
+                        words: [
+                            { eng: "Entrepreneur", pos: "n.", pron: "আন্ত্রেপ্রেনিউর", bng: "উদ্যোক্তা" },
+                            { eng: "Journalist", pos: "n.", pron: "জার্নালিস্ট", bng: "সাংবাদিক" },
+                            { eng: "Resume", pos: "n.", pron: "রিজিউমে", bng: "জীবনবৃত্তান্ত" },
+                            { eng: "Recruitment", pos: "n.", pron: "রিক্রুটমেন্ট", bng: "নিয়োগ প্রক্রিয়া" },
+                            { eng: "Colleague", pos: "n.", pron: "কলিগ", bng: "সহকর্মী" },
+                            { eng: "Promotion", pos: "n.", pron: "প্রমোশন", bng: "পদোন্নতি" },
+                            { eng: "Resignation", pos: "n.", pron: "রেজিগনেশন", bng: "পদত্যাগ" },
+                            { eng: "Startup", pos: "n.", pron: "স্টার্টআপ", bng: "নতুন ব্যবসায়িক উদ্যোগ" },
+                            { eng: "Investment", pos: "n.", pron: "ইনভেস্টমেন্ট", bng: "বিনিয়োগ" },
+                            { eng: "Revenue", pos: "n.", pron: "রেভিনিউ", bng: "রাজস্ব" },
+                            { eng: "Agenda", pos: "n.", pron: "অ্যাজেন্ডা", bng: "আলোচনার বিষয়সূচি" },
+                            { eng: "Minutes", pos: "n.", pron: "মিনিটস", bng: "মিটিংয়ের লিখিত বিবরণী" },
+                            { eng: "Mortgage", pos: "n.", pron: "মরগেজ", bng: "জামানত / বন্ধক" },
+                            { eng: "Inflation", pos: "n.", pron: "ইনফ্লেশন", bng: "মূল্যস্ফীতি" },
+                            { eng: "Recession", pos: "n.", pron: "রিসেশন", bng: "অর্থনৈতিক মন্দা" },
+                            { eng: "Dividend", pos: "n.", pron: "ডিভিডেন্ড", bng: "লভ্যাংশ" },
+                            { eng: "Import", pos: "v.", pron: "ইমপোর্ট", bng: "আমদানি করা" },
+                            { eng: "Export", pos: "v.", pron: "এক্সপোর্ট", bng: "রপ্তানি করা" },
+                            { eng: "Tariff", pos: "n.", pron: "ট্যারিফ", bng: "শুল্ক" },
+                            { eng: "Delegation", pos: "n.", pron: "ডেলিগেশন", bng: "দায়িত্ব অর্পণ" },
+                            { eng: "Supervision", pos: "n.", pron: "সুপারভিশন", bng: "তদারকি" },
+                            { eng: "Integrity", pos: "n.", pron: "ইনটেগ্রিটি", bng: "সততা ও নীতিপরায়ণতা" },
+                            { eng: "Strategy", pos: "n.", pron: "স্ট্র্যাটেজি", bng: "কৌশল" },
+                            { eng: "Campaign", pos: "n.", pron: "ক্যাম্পেইন", bng: "প্রচার অভিযান" },
+                            { eng: "Feedback", pos: "n.", pron: "ফিডব্যাক", bng: "মতামত" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 7,
+                title: "Lesson 7: Travel, Vehicles, Transport & Media (টপিক ৬৪ - ৭০)",
+                topics: [
+                    {
+                        name: "64-70. Travel, Transport & Mass Media (ভ্রমণ, পরিবহন ও গণমাধ্যম)",
+                        words: [
+                            { eng: "Destination", pos: "n.", pron: "ডেস্টিনেশন", bng: "গন্তব্য" },
+                            { eng: "Itinerary", pos: "n.", pron: "আইটিন্যারারি", bng: "ভ্রমণসূচি" },
+                            { eng: "Sightseeing", pos: "n.", pron: "সাইটসিয়িং", bng: "দর্শনীয় স্থান দেখা" },
+                            { eng: "Hospitality", pos: "n.", pron: "হসপিটালিটি", bng: "আতিথেয়তা" },
+                            { eng: "Reservation", pos: "n.", pron: "রিজার্ভেশন", bng: "সিট বুকিং" },
+                            { eng: "Vehicle", pos: "n.", pron: "ভেহিকেল", bng: "যানবাহন" },
+                            { eng: "Accelerator", pos: "n.", pron: "অ্যাক্সিলারেটর", bng: "গতি বাড়ানোর যন্ত্র" },
+                            { eng: "Pedestrian", pos: "n.", pron: "পেডেস্ট্রিয়ান", bng: "পথচারী" },
+                            { eng: "Intersection", pos: "n.", pron: "ইন্টারসেকশন", bng: "চৌরাস্তা" },
+                            { eng: "Congestion", pos: "n.", pron: "কনজেসশন", bng: "যানজট" },
+                            { eng: "Commute", pos: "v.", pron: "কম্যুট", bng: "নিয়মিত যাতায়াত" },
+                            { eng: "Terminal", pos: "n.", pron: "টার্মিনাল", bng: "শেষ স্টেশন" },
+                            { eng: "Broadband", pos: "n.", pron: "ব্রডব্যান্ড", bng: "উচ্চগতির ইন্টারনেট" },
+                            { eng: "Correspondent", pos: "n.", pron: "করেসপনডেন্ট", bng: "সংবাদদাতা" },
+                            { eng: "Broadcast", pos: "v.", pron: "ব্রডকাস্ট", bng: "সম্প্রচার করা" },
+                            { eng: "Headline", pos: "n.", pron: "হেডলাইন", bng: "প্রধান শিরোনাম" },
+                            { eng: "Editorial", pos: "n.", pron: "এডিটোরিয়াল", bng: "সম্পাদকীয়" },
+                            { eng: "Sensational", pos: "adj.", pron: "সেনসেশনাল", bng: "চাঞ্চল্যকর" },
+                            { eng: "Luggage", pos: "n.", pron: "লাগেজ", bng: "মালামাল" },
+                            { eng: "Passport", pos: "n.", pron: "পাসপোর্ট", bng: "পাসপোর্ট" },
+                            { eng: "Visa", pos: "n.", pron: "ভিসা", bng: "ভিসা" },
+                            { eng: "Fare", pos: "n.", pron: "ফেয়ার", bng: "ভাড়া" },
+                            { eng: "Route", pos: "n.", pron: "রুট", bng: "ভ্রমণের পথ" },
+                            { eng: "Highway", pos: "n.", pron: "হাইওয়ে", bng: "মহাসড়ক" },
+                            { eng: "Navigation", pos: "n.", pron: "ন্যাভিগেশন", bng: "দিকনির্ণয়" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 8,
+                title: "Lesson 8: Society, Law, Politics & History (টপিক ৭১ - ৮২)",
+                topics: [
+                    {
+                        name: "71-82. Society, Law, Politics & History (সমাজ, আইন, রাজনীতি ও ইতিহাস)",
+                        words: [
+                            { eng: "Community", pos: "n.", pron: "কম্যুনিটি", bng: "সম্প্রদায়" },
+                            { eng: "Poverty", pos: "n.", pron: "পভার্টি", bng: "দারিদ্র্য" },
+                            { eng: "Heritage", pos: "n.", pron: "হেরিটেজ", bng: "ঐতিহ্য" },
+                            { eng: "Ritual", pos: "n.", pron: "রিচুয়াল", bng: "ধর্মীয় প্রথা" },
+                            { eng: "Devotion", pos: "n.", pron: "ডিভোশন", bng: "ভক্তি" },
+                            { eng: "Pilgrimage", pos: "n.", pron: "পিলগ্রিমেজ", bng: "তীর্থযাত্রা" },
+                            { eng: "Sculpture", pos: "n.", pron: "স্কাল্পচার", bng: "ভাস্কর্য" },
+                            { eng: "Masterpiece", pos: "n.", pron: "মাস্টারপিস", bng: "কালজয়ী সৃষ্টি" },
+                            { eng: "Melody", pos: "n.", pron: "মেলোডি", bng: "মধুর সুর" },
+                            { eng: "Audience", pos: "n.", pron: "অডিয়েন্স", bng: "দর্শক" },
+                            { eng: "Screenplay", pos: "n.", pron: "স্কিনপ্লে", bng: "চিত্রনাট্য" },
+                            { eng: "Democracy", pos: "n.", pron: "ডেমোক্রেসি", bng: "গণতন্ত্র" },
+                            { eng: "Constitution", pos: "n.", pron: "কনস্টিটিউশন", bng: "সংবিধান" },
+                            { eng: "Justice", pos: "n.", pron: "জাস্টিস", bng: "ন্যায়বিচার" },
+                            { eng: "Verdict", pos: "n.", pron: "ভারডিক্ট", bng: "আদালতের রায়" },
+                            { eng: "Offense", pos: "n.", pron: "অফেন্স", bng: "অপরাধ" },
+                            { eng: "Investigation", pos: "n.", pron: "ইনভেস্টিগেশন", bng: "তদন্ত" },
+                            { eng: "Discrimination", pos: "n.", pron: "ডিসক্রিমিনেশন", bng: "বৈষম্য" },
+                            { eng: "Diplomacy", pos: "n.", pron: "ডিপ্লোমেসি", bng: "কূটনীতি" },
+                            { eng: "Alliance", pos: "n.", pron: "অ্যালায়েন্স", bng: "মিত্রতা / জোট" },
+                            { eng: "Casualty", pos: "n.", pron: "ক্যাজুয়ালটি", bng: "হতাহত" },
+                            { eng: "Ceasefire", pos: "n.", pron: "সিজফায়ার", bng: "যুদ্ধবিরতি" },
+                            { eng: "Sovereignty", pos: "n.", pron: "সোভারেনটি", bng: "সার্বভৌমত্ব" },
+                            { eng: "Imprisonment", pos: "n.", pron: "ইমপ্রিজনমেন্ট", bng: "কারাদণ্ড" },
+                            { eng: "Human rights", pos: "n.", pron: "হিউম্যান রাইটস", bng: "মানবাধিকার" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 9,
+                title: "Lesson 9: Entertainment, Sports & Hobbies (টপিক ৮৩ - ৮৮)",
+                topics: [
+                    {
+                        name: "83-88. Sports, Hobbies & Youth Culture (খেলাধুলা, শখ ও বিনোদন)",
+                        words: [
+                            { eng: "Tournament", pos: "n.", pron: "টুর্নামেন্ট", bng: "প্রতিযোগিতা" },
+                            { eng: "Referee", pos: "n.", pron: "রেফারি", bng: "পরিচালক" },
+                            { eng: "Checkmate", pos: "n.", pron: "চেকমেট", bng: "কিস্তিমাত (দাবায়)" },
+                            { eng: "Strategy", pos: "n.", pron: "স্ট্র্যাটেজি", bng: "কৌশল" },
+                            { eng: "Leisure", pos: "n.", pron: "লেজার", bng: "অবসর সময়" },
+                            { eng: "Pastime", pos: "n.", pron: "পাসটাইম", bng: "বিনোদনের কাজ" },
+                            { eng: "Gathering", pos: "n.", pron: "গ্যাদারিং", bng: "আড্ডা / সমাবেশ" },
+                            { eng: "Anniversary", pos: "n.", pron: "অ্যানিভার্সারি", bng: "বার্ষিকী" },
+                            { eng: "Trend", pos: "n.", pron: "ট্রেন্ড", bng: "চলমান ধারা" },
+                            { eng: "Glamorous", pos: "adj.", pron: "গ্ল্যামারাস", bng: "আকর্ষণীয়" },
+                            { eng: "Nostalgia", pos: "n.", pron: "নস্টালজিয়া", bng: "স্মৃতিবেদনা" },
+                            { eng: "Childhood", pos: "n.", pron: "চাইল্ডহুড", bng: "শৈশবকাল" },
+                            { eng: "Innocence", pos: "n.", pron: "ইনোসেন্স", bng: "সারল্য" },
+                            { eng: "Memoir", pos: "n.", pron: "মেমোয়ার", bng: "স্মৃতিকথা" },
+                            { eng: "Victory", pos: "n.", pron: "ভিক্টরি", bng: "বিজয়" },
+                            { eng: "Champion", pos: "n.", pron: "চ্যাম্পিয়ন", bng: "বিজয়ী" },
+                            { eng: "Opponent", pos: "n.", pron: "ওপোনেন্ট", bng: "প্রতিদ্বন্দ্বী" },
+                            { eng: "Feast", pos: "n.", pron: "ফিস্ট", bng: "ভোজ" },
+                            { eng: "Stylish", pos: "adj.", pron: "স্টাইলিশ", bng: "ফ্যাশনেবল" },
+                            { eng: "Youth", pos: "n.", pron: "ইউথ", bng: "তারুণ্য" },
+                            { eng: "Photography", pos: "n.", pron: "ফটোগ্রাফি", bng: "আলোকচিত্র শিল্প" },
+                            { eng: "Trophy", pos: "n.", pron: "ট্রফি", bng: "বিজয়ী কাপ" },
+                            { eng: "Spectator", pos: "n.", pron: "স্পেক্টেটর", bng: "দর্শক" },
+                            { eng: "Reunion", pos: "n.", pron: "রিইউনিয়ন", bng: "পুনর্মিলনী" },
+                            { eng: "Aesthetics", pos: "n.", pron: "এসথেটিক্স", bng: "নান্দনিকতা" }
+                        ]
+                    }
+                ]
+            },
+            {
+                chapter: 10,
+                title: "Lesson 10: Numbers, Grammar, Connectors & Expressions (টপিক ৮৯ - ১০০)",
+                topics: [
+                    {
+                        name: "89-94. Time, Numbers, Shapes & Direction (সময়, গণিত, রঙ ও দিক)",
+                        words: [
+                            { eng: "Decade", pos: "n.", pron: "ডিকেড", bng: "দশক (১০ বছর)" },
+                            { eng: "Century", pos: "n.", pron: "সেনঞ্চুরি", bng: "শতাব্দী (১০০ বছর)" },
+                            { eng: "Chronological", pos: "adj.", pron: "ক্রোনোলজিক্যাল", bng: "কালানুক্রমিক" },
+                            { eng: "Punctual", pos: "adj.", pron: "পাঙ্কচুয়াল", bng: "সময়নিষ্ঠ" },
+                            { eng: "Equation", pos: "n.", pron: "ইকুয়েশন", bng: "সমীকরণ" },
+                            { eng: "Fraction", pos: "n.", pron: "ফ্র্যাকশন", bng: "ভগ্নাংশ" },
+                            { eng: "Dimension", pos: "n.", pron: "ডাইমেনশন", bng: "মাত্রা" },
+                            { eng: "Capacity", pos: "n.", pron: "ক্যাপাসিটি", bng: "ধারণক্ষমতা" },
+                            { eng: "Symmetrical", pos: "adj.", pron: "সিমেট্রিক্যাল", bng: "সুষম" },
+                            { eng: "Transparent", pos: "adj.", pron: "ট্রান্সপারেন্ট", bng: "স্বচ্ছ" },
+                            { eng: "Echo", pos: "n.", pron: "ইকো", bng: "প্রতিধ্বনি" },
+                            { eng: "Deafening", pos: "adj.", pron: "ডেফেনিং", bng: "কানফাটা বিকট শব্দ" },
+                            { eng: "Horizontal", pos: "adj.", pron: "হরিজন্টাল", bng: "অনুভূমিক" },
+                            { eng: "Vertical", pos: "adj.", pron: "ভার্টিক্যাল", bng: "উলম্ব" },
+                            { eng: "Adjacent", pos: "adj.", pron: "অ্যাডজাসেন্ট", bng: "সংলগ্ন" }
+                        ]
+                    },
+                    {
+                        name: "95-100. Actions, Abstract Ideas, Connectors & Phrases (বডি ল্যাঙ্গুয়েজ ও প্রবাদ)",
+                        words: [
+                            { eng: "Gesture", pos: "n.", pron: "জেসচার", bng: "অঙ্গভঙ্গি" },
+                            { eng: "Posture", pos: "n.", pron: "পসচার", bng: "বসার ভঙ্গি" },
+                            { eng: "Nod", pos: "v.", pron: "নড", bng: "মাথা নাড়িয়ে সম্মতি দেওয়া" },
+                            { eng: "Gaze", pos: "v.", pron: "গেইজ", bng: "একদৃষ্টিতে চেয়ে থাকা" },
+                            { eng: "Perseverance", pos: "n.", pron: "পারসিভিয়ারেন্স", bng: "অধ্যবসায়" },
+                            { eng: "Obstacle", pos: "n.", pron: "অবস্ট্যাকল", bng: "বাধা" },
+                            { eng: "Triumph", pos: "n.", pron: "ট্রায়াম্ফ", bng: "মহাবিজয়" },
+                            { eng: "Catastrophe", pos: "n.", pron: "ক্যাটাস্ট্রফি", bng: "মহাবিপর্যয়" },
+                            { eng: "Ethics", pos: "n.", pron: "এথিক্স", bng: "নীতিশাস্ত্র" },
+                            { eng: "Philosophy", pos: "n.", pron: "ফিলোসফি", bng: "দর্শন" },
+                            { eng: "Consensus", pos: "n.", pron: "কনসেনসাস", bng: "সর্বসম্মত মতামত" },
+                            { eng: "Dissent", pos: "n.", pron: "ডিসেন্ট", bng: "ভিন্নমত" },
+                            { eng: "Perspective", pos: "n.", pron: "পারসপেক্টিভ", bng: "দৃষ্টিভঙ্গি" },
+                            { eng: "Furthermore", pos: "adv.", pron: "ফারদারমোর", bng: "অধিকন্তু / তাছাড়া" },
+                            { eng: "Nevertheless", pos: "adv.", pron: "নেভারদেলেস", bng: "তা সত্ত্বেও" },
+                            { eng: "Consequently", pos: "adv.", pron: "কনসিকুয়েন্টলি", bng: "পরিমাণস্বরূপ / ফলে" },
+                            { eng: "On the contrary", pos: "phr.", pron: "অন দ্য কনট্রারি", bng: "পক্ষান্তরে" },
+                            { eng: "A piece of cake", pos: "phr.", pron: "এ পিস অফ কেক", bng: "অতি সহজ কাজ" },
+                            { eng: "Break the ice", pos: "phr.", pron: "ব্রেক দ্য আইস", bng: "জড়তা কাটানো" },
+                            { eng: "Burn the midnight oil", pos: "phr.", pron: "বার্ন দ্য মিডনাইট অয়েল", bng: "গভীর রাত পর্যন্ত পড়া" },
+                            { eng: "Once in a blue moon", pos: "phr.", pron: "ওয়ান্স ইন এ ব্লু মুন", bng: "কদাচিৎ" },
+                            { eng: "Blessing in disguise", pos: "phr.", pron: "ব্লেসিং ইন ডিসগাইস", bng: "ছদ্মবেশে আশীর্বাদ" },
+                            { eng: "Spill the beans", pos: "phr.", pron: "স্পিল দ্য বিনস", bng: "গোপন তথ্য ফাঁস করা" },
+                            { eng: "Under the weather", pos: "phr.", pron: "আন্ডার দ্য ওয়েদার", bng: "অসুস্থ বোধ করা" },
+                            { eng: "Time flies", pos: "phr.", pron: "টাইম ফ্লাইস", bng: "সময় দ্রুত কেটে যাওয়া" }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        let activeChapterIndex = 1;
+
+        // Render Nav Tabs
+        function buildNavTabs() {
+            const tabsWrapper = document.getElementById("tabs-wrapper");
+            tabsWrapper.innerHTML = "";
+            fullVocabDatabase.forEach(ch => {
+                const btn = document.createElement("button");
+                btn.className = `nav-tab-btn ${ch.chapter === activeChapterIndex ? 'active' : ''}`;
+                btn.innerText = `অধ্যায় ${ch.chapter}`;
+                btn.onclick = () => selectChapter(ch.chapter);
+                tabsWrapper.appendChild(btn);
+            });
+        }
+
+        // Render Active Chapter View
+        function buildChapterContent() {
+            const contentWrapper = document.getElementById("main-content-wrapper");
+            contentWrapper.innerHTML = "";
+
+            const activeChData = fullVocabDatabase.find(c => c.chapter === activeChapterIndex);
+            if (!activeChData) return;
+
+            const chDiv = document.createElement("div");
+            chDiv.className = "chapter-view active";
+            
+            let html = `<h2 class="ch-title-header">${activeChData.title}</h2>`;
+
+            activeChData.topics.forEach(tp => {
+                html += `
+                    <div class="topic-group">
+                        <h3 class="topic-header">${tp.name}</h3>
+                        <div class="vocab-grid">
+                `;
+
+                tp.words.forEach(w => {
+                    html += `
+                        <div class="vocab-card" onclick="speakText('${w.eng}')" title="ক্লিক করে উচ্চারণ শুনুন">
+                            <div class="card-header-row">
+                                <span class="english-word">${w.eng}</span>
+                                <span class="pos-tag">${w.pos}</span>
+                            </div>
+                            <div class="pronun-text">🔊 [${w.pron}]</div>
+                            <div class="bengali-meaning">${w.bng}</div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            chDiv.innerHTML = html;
+            contentWrapper.appendChild(chDiv);
+
+            // Update Control Elements State
+            document.getElementById("chapter-indicator-top").innerText = `অধ্যায় ${activeChapterIndex} / ${fullVocabDatabase.length}`;
+            document.getElementById("footer-page-text").innerText = `অধ্যায় ${activeChapterIndex}`;
+            document.getElementById("btn-prev-chapter").disabled = (activeChapterIndex === 1);
+            document.getElementById("btn-next-chapter").disabled = (activeChapterIndex === fullVocabDatabase.length);
+
+            buildNavTabs();
+        }
+
+        function selectChapter(chNum) {
+            activeChapterIndex = chNum;
+            buildChapterContent();
+            document.querySelector('.app-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function stepChapter(dir) {
+            const target = activeChapterIndex + dir;
+            if (target >= 1 && target <= fullVocabDatabase.length) {
+                selectChapter(target);
+            }
+        }
+
+        // Audio Voice Engine (Text to Speech)
+        function speakText(phrase) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const speech = new SpeechSynthesisUtterance(phrase);
+                speech.lang = 'en-US';
+                speech.rate = 0.85;
+                window.speechSynthesis.speak(speech);
+            }
+        }
+
+        // Search Filter Engine
+        function filterWords() {
+            const query = document.getElementById("app-search-input").value.toLowerCase().trim();
+            const cards = document.querySelectorAll(".vocab-card");
+
+            cards.forEach(card => {
+                const eng = card.querySelector(".english-word").innerText.toLowerCase();
+                const pron = card.querySelector(".pronun-text").innerText.toLowerCase();
+                const bng = card.querySelector(".bengali-meaning").innerText.toLowerCase();
+
+                if (eng.includes(query) || pron.includes(query) || bng.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Initialize Application
+        buildChapterContent();
+    </script>
+</div>

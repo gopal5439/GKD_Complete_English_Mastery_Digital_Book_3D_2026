@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GKD Complete Changing Sentence Masterclass</title>
+<style>
+:root{--bg:#0f172a;--panel:#1e1b4b;--card:#ffffff;--ink:#0f172a;--muted:#475569;--primary:#6366f1;--primary-hover:#4f46e5;--secondary:#ec4899;--accent:#10b981;--border:#e2e8f0;--success:#10b981;--error:#ef4444;--shadow:0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#0f172a 100%);color:var(--ink);font-family:system-ui,-apple-system,"Hind Siliguri","Poppins",sans-serif;line-height:1.7;min-height:100vh;padding:20px}
+.ebook-wrapper{max-width:1250px;margin:auto;background:var(--card);border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;min-height:90vh;animation:fadeIn 0.6s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.ebook-header{background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;padding:30px;text-align:center}
+.ebook-header h1{margin:0;font-size:2.2rem;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.2)}
+.ebook-header p{margin:10px 0 0;font-size:1.05rem;opacity:0.95}
+.book-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 16px;border-radius:20px;font-size:0.85rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.ebook-body{display:grid;grid-template-columns:280px minmax(0,1fr);flex:1;background:#f8fafc}
+.sidebar{background:#ffffff;border-right:1px solid var(--border);padding:20px;display:flex;flex-direction:column;gap:8px;overflow-y:auto}
+.sidebar h3{font-size:0.95rem;color:var(--primary);margin:0 0 10px 5px;text-transform:uppercase;letter-spacing:1px}
+.nav-tab{text-align:left;background:transparent;border:none;padding:12px 15px;border-radius:10px;font-family:inherit;font-weight:600;font-size:0.9rem;color:var(--muted);cursor:pointer;transition:all 0.3s ease;display:flex;align-items:center;gap:10px;width:100%}
+.nav-tab:hover{color:var(--primary);background:rgba(99,102,241,0.08);transform:translateX(4px)}
+.nav-tab.active{background:var(--primary);color:white;box-shadow:0 4px 12px rgba(99,102,241,0.3)}
+.main-area{padding:35px;overflow-y:auto;max-height:75vh;background:white}
+.chapter-content{display:none}
+.chapter-content.active{display:block;animation:slideIn 0.4s ease}
+@keyframes slideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+.chapter-title{font-size:1.8rem;color:var(--primary);border-bottom:3px solid #e0e7ff;padding-bottom:10px;margin-top:0;margin-bottom:25px}
+.table-wrap{overflow-x:auto;margin:20px 0;border-radius:12px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;background:white;text-align:left}
+th,td{padding:12px 15px;border-bottom:1px solid var(--border);font-size:0.9rem;vertical-align:top}
+th{background:#e0e7ff;color:#3730a3;font-weight:700}
+tr:hover{background:#f8fafc}
+.pagination{display:flex;justify-content:space-between;margin-top:40px;border-top:1px solid var(--border);padding-top:20px}
+.btn{background:var(--primary);color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.9rem;transition:background 0.2s}
+.btn:hover{background:var(--primary-hover)}
+.quiz-section{margin-top:40px;border-top:2px dashed var(--border);padding-top:25px}
+.quiz-section h3{color:#1e293b;font-size:1.3rem;margin-bottom:20px}
+.quiz-card{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 4px rgba(0,0,0,0.02)}
+.quiz-q{font-weight:600;font-size:1rem;margin-bottom:12px;color:#1e293b}
+.quiz-input{padding:9px 14px;border:2px solid var(--border);border-radius:8px;font-size:0.9rem;width:220px;margin-right:8px;outline:none;transition:border 0.2s}
+.quiz-input:focus{border-color:var(--primary)}
+.btn-outline{background:transparent;color:var(--primary);border:1px solid var(--primary);padding:8px 14px;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.85rem;margin-right:5px}
+.btn-outline:hover{background:var(--primary);color:white}
+.result-msg{font-weight:bold;margin-left:8px;font-size:0.9rem}
+.correct{color:var(--success)}
+.incorrect{color:var(--error)}
+.ans-box, .explanation-box{margin-top:12px;padding:12px;background:#f1f5f9;border-left:4px solid var(--secondary);border-radius:4px;font-size:0.88rem;display:none}
+.explanation-box{border-left-color:var(--primary)}
+.ebook-footer{background:#0f172a;color:#94a3b8;text-align:center;padding:15px;font-size:0.85rem;border-top:1px solid rgba(255,255,255,0.1)}
+@media(max-width:900px){.ebook-body{grid-template-columns:1fr}.sidebar{flex-direction:row;overflow-x:auto;padding:10px}.nav-tab{min-width:160px}}
+</style>
+</head>
+<body>
+<div class="ebook-wrapper">
+  
+  <!-- Header -->
+  <div class="ebook-header">
+    <span class="book-badge">GKD Masterclass Complete Guide</span>
+    <h1>Changing Sentence পূর্ণাঙ্গ ডিজিটাল ই-বুক</h1>
+    <p>সমস্ত নিয়ম, টেবিল, বাংলা অর্থ এবং প্রতিটি টপিকে ২০টি করে অনুশীলন, উত্তর ও ব্যাখ্যাসহ</p>
+  </div>
+
+  <!-- Body Container -->
+  <div class="ebook-body">
+    
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+  
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../lesson_link.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+      <h3>টপিকসমূহ</h3>
+      <button class="nav-tab active" onclick="switchTab(1)">১. Affirmative to Negative</button>
+      <button class="nav-tab" onclick="switchTab(2)">২. Assertive to Interrogative</button>
+      <button class="nav-tab" onclick="switchTab(3)">৩. Assertive to Imperative</button>
+      <button class="nav-tab" onclick="switchTab(4)">৪. Assertive to Optative</button>
+      <button class="nav-tab" onclick="switchTab(5)">৫. Assertive to Exclamatory</button>
+      <button class="nav-tab" onclick="switchTab(6)">৬. Simple, Complex, Compound</button>
+      <button class="nav-tab" onclick="switchTab(7)">৭. Changing Degree</button>
+      <button class="nav-tab" onclick="switchTab(8)">৮. Voice Change</button>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-area">
+      
+      <!-- CHAPTER 1 -->
+      <div id="chapter-1" class="chapter-content active">
+        <h2 class="chapter-title">Affirmative to Negative Sentence</h2>
+        <p>অর্থ অপরিবর্তিত রেখে হ্যাঁ-সূচক বাক্যকে না-সূচক বাক্যে রূপান্তর করার সমস্ত নিয়ম নিচে ছক আকারে দেওয়া হলো:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Affirmative রূপ</th><th>Negative রূপ</th><th>উদাহরণ ও বাংলা অর্থ</th></tr>
+            <tr><td>Only / Alone (ব্যক্তি/স্রষ্টা)</td><td>None but</td><td><b>Aff:</b> Only Rahim attended the meeting.<br><b>Neg:</b> None but Rahim attended the meeting (রহিত ছাড়া কেউ মিটিংয়ে অংশ নেয়নি).</td></tr>
+            <tr><td>Only (বস্তু)</td><td>Nothing but</td><td><b>Aff:</b> Only water was found in the bottle.<br><b>Neg:</b> Nothing but water was found in the bottle (বোতলে পানি ছাড়া কিছুই পাওয়া যায়নি).</td></tr>
+            <tr><td>Only (সংখ্যা)</td><td>Not more than / Not less than</td><td><b>Aff:</b> He has only ten books.<br><b>Neg:</b> He has not more than ten books (তার দশটির বেশি বই নেই).</td></tr>
+            <tr><td>Every / Everybody / Everyone</td><td>There is no ... but / Nobody</td><td><b>Aff:</b> Every mother loves her child.<br><b>Neg:</b> There is no mother but loves her child (এমন কোনো মা নেই যে তার সন্তানকে ভালোবাসে না).</td></tr>
+            <tr><td>Always / Ever</td><td>Never</td><td><b>Aff:</b> He always tells the truth.<br><b>Neg:</b> He never tells a lie (সে কখনো মিথ্যা বলে না).</td></tr>
+            <tr><td>As soon as</td><td>No sooner had ... than</td><td><b>Aff:</b> As soon as he saw me, he smiled.<br><b>Neg:</b> No sooner had he seen me than he smiled (সে আমাকে দেখতে না দেখতেই হাসল).</td></tr>
+            <tr><td>Must / Have to</td><td>Cannot but / Cannot help (+ V-ing)</td><td><b>Aff:</b> I must obey my parents.<br><b>Neg:</b> I cannot but obey my parents (আমি আমার পিতামাতাকে বাধ্য হয়েই মানব).</td></tr>
+            <tr><td>Too ... to</td><td>So ... that (+ can not / could not)</td><td><b>Aff:</b> The boy was too weak to walk.<br><b>Neg:</b> The boy was so weak that he could not walk (বালকটি এত দুর্বল ছিল যে হাঁটতে পারেনি).</td></tr>
+          </table>
+        </div>
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Affirmative to Negative - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-1"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" disabled>পূর্ববর্তী</button>
+          <button class="btn" onclick="switchTab(2)">পরবর্তী টপিক →</button>
+        </div>
+      </div>
+
+      <!-- CHAPTER 2 -->
+      <div id="chapter-2" class="chapter-content">
+        <h2 class="chapter-title">Assertive to Interrogative Sentence</h2>
+        <p>বিবৃতিমূলক বাক্যকে প্রশ্নবোধক বাক্যে রূপান্তরের নিয়ম ও উদাহরণ:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Assertive রূপ</th><th>Interrogative রূপ</th><th>উদাহরণ ও ব্যাখ্যা</th></tr>
+            <tr><td>Auxiliary Verb যুক্ত Affirmative</td><td>Auxiliary Verb সামনে বসে + Negative রূপ</td><td><b>Ass:</b> He is honest. ➔ <b>Int:</b> Is he honest? / Isn't he honest?</td></tr>
+            <tr><td>Main Verb (Present/Past)</td><td>Do / Does / Did সামনে বসে</td><td><b>Ass:</b> Rahim plays football. ➔ <b>Int:</b> Does Rahim play football?</td></tr>
+            <tr><td>Everybody / Everyone</td><td>Who + does not + V1</td><td><b>Ass:</b> Everybody loves flowers. ➔ <b>Int:</b> Who does not love flowers?</td></tr>
+            <tr><td>Nobody / No one / None</td><td>Who (বাক্যের শুরুতে বসে)</td><td><b>Ass:</b> Nobody can solve it. ➔ <b>Int:</b> Who can solve it?</td></tr>
+            <tr><td>Nothing</td><td>What + Auxiliary + not ...</td><td><b>Ass:</b> Nothing is impossible to him. ➔ <b>Int:</b> What is not possible to him?</td></tr>
+          </table>
+        </div>
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Assertive to Interrogative - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-2"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" onclick="switchTab(1)">← পূর্ববর্তী</button>
+          <button class="btn" onclick="switchTab(3)">পরবর্তী টপিক →</button>
+        </div>
+      </div>
+
+      <!-- CHAPTER 3 -->
+      <div id="chapter-3" class="chapter-content">
+        <h2 class="chapter-title">Assertive to Imperative Sentence</h2>
+        <p>আদেশ, নিষেধ বা অনুরোধ প্রকাশ করতে Assertive থেকে Imperative-এ রূপান্তর:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Assertive রূপ</th><th>Imperative রূপ</th><th>উদাহরণ</th></tr>
+            <tr><td>You + V1 + O (সাধারণ নির্দেশ)</td><td>V1 + O (সরাসরি Verb দিয়ে শুরু)</td><td><b>Ass:</b> You go home. ➔ <b>Imp:</b> Go home (বাড়ি যাও).</td></tr>
+            <tr><td>You should / ought to + V1</td><td>V1 + O</td><td><b>Ass:</b> You should obey your parents. ➔ <b>Imp:</b> Obey your parents.</td></tr>
+            <tr><td>You should not / never + V1</td><td>Don't / Never + V1</td><td><b>Ass:</b> You should not waste time. ➔ <b>Imp:</b> Don't waste time (সময় নষ্ট করো না).</td></tr>
+            <tr><td>He / She / They / Name + should</td><td>Let + him / her / them / Name + V1</td><td><b>Ass:</b> He should go there. ➔ <b>Imp:</b> Let him go there.</td></tr>
+            <tr><td>We should / ought to + V1</td><td>Let us + V1</td><td><b>Ass:</b> We should help the poor. ➔ <b>Imp:</b> Let us help the poor.</td></tr>
+            <tr><td>You are requested to + V1</td><td>Please / Kindly + V1</td><td><b>Ass:</b> You are requested to sit down. ➔ <b>Imp:</b> Please sit down.</td></tr>
+          </table>
+        </div>
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Assertive to Imperative - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-3"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" onclick="switchTab(2)">← পূর্ববর্তী</button>
+          <button class="btn" onclick="switchTab(4)">পরবর্তী টপিক →</button>
+        </div>
+      </div>
+
+      <!-- CHAPTER 4 -->
+      <div id="chapter-4" class="chapter-content">
+        <h2 class="chapter-title">Assertive to Optative Sentence</h2>
+        <p>ইচ্ছা, আশীর্বাদ বা প্রার্থনা প্রকাশকারী বাক্য রূপান্তরের নিয়ম:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Assertive রূপ</th><th>Optative রূপ</th><th>উদাহরণ ও বাংলা অর্থ</th></tr>
+            <tr><td>I pray that God may ...</td><td>May God ...</td><td><b>Ass:</b> I pray that God may bless you.<br><b>Opt:</b> May God bless you (ঈশ্বর তোমার মঙ্গল করুন)।</td></tr>
+            <tr><td>I wish that you may succeed ...</td><td>May you succeed ...</td><td><b>Ass:</b> I wish that you may succeed in life.<br><b>Opt:</b> May you succeed in life (তুমি জীবনে সফল হও)।</td></tr>
+            <tr><td>It is my wish that our country live long.</td><td>Long live ...</td><td><b>Ass:</b> I wish that our country may live long.<br><b>Opt:</b> Long live our country (আমাদের দেশ দীর্ঘজীবী হোক)।</td></tr>
+          </table>
+        </div>
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Assertive to Optative - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-4"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" onclick="switchTab(3)">← পূর্ববর্তী</button>
+          <button class="btn" onclick="switchTab(5)">পরবর্তী টপিক →</button>
+        </div>
+      </div>
+
+      <!-- CHAPTER 5 -->
+      <div id="chapter-5" class="chapter-content">
+        <h2 class="chapter-title">Assertive to Exclamatory Sentence</h2>
+        <p>আবেগ বা বিস্ময় প্রকাশকারী বাক্যে পরিবর্তন:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Assertive রূপ</th><th>Exclamatory রূপ</th><th>উদাহরণ</th></tr>
+            <tr><td>It is a very / great + Adj + Noun</td><td>What + a/an + Adj + Noun + Sub + Verb!</td><td><b>Ass:</b> It is a very beautiful flower. ➔ <b>Exc:</b> What a beautiful flower it is!</td></tr>
+            <tr><td>Subject + is + very + Adjective</td><td>How + Adjective + Subject + Verb!</td><td><b>Ass:</b> He is very brave. ➔ <b>Exc:</b> How brave he is!</td></tr>
+            <tr><td>I wish + Subject + were / past verb</td><td>If only / Would that + Subject + past verb!</td><td><b>Ass:</b> I wish I were a king. ➔ <b>Exc:</b> Would that I were a king!</td></tr>
+            <tr><td>It is a matter of joy that ...</td><td>Hurrah! + বাক্যের বাকি অংশ</td><td><b>Ass:</b> It is a matter of joy that he has passed. ➔ <b>Exc:</b> Hurrah! He has passed.</td></tr>
+          </table>
+        </div>
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Assertive to Exclamatory - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-5"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" onclick="switchTab(4)">← পূর্ববর্তী</button>
+          <button class="btn" onclick="switchTab(6)">পরবর্তী টপিক →</button>
+        </div>
+      </div>
+
+      <!-- CHAPTER 6 -->
+      <div id="chapter-6" class="chapter-content">
+        <h2 class="chapter-title">Simple, Complex ও Compound Sentence রূপান্তর</h2>
+        <p>বাক্যের গঠনগত রূপান্তরের প্রধান নিয়মসমূহ:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Complex Sentence</th><th>Simple Sentence</th><th>Compound Sentence</th></tr>
+            <tr><td><b>Though / Although</b> (যদিও)</td><td><b>In spite of / Despite</b></td><td><b>... but ...</b> (কিন্তু)</td></tr>
+            <tr><td><b>Since / As / Because</b> (যেহেতু)</td><td><b>Because of / Due to</b></td><td><b>... and / so ...</b></td></tr>
+            <tr><td><b>If</b> (শর্ত - Affirmative)</td><td><b>By + V-ing</b></td><td><b>Imperative + and ...</b></td></tr>
+            <tr><td><b>If not / Unless</b> (নেতিবাচক শর্ত)</td><td><b>Without + V-ing</b></td><td><b>Imperative + or ...</b></td></tr>
+            <tr><td><b>So that / In order that</b> (যাতে)</td><td><b>To / In order to</b> (+ V1)</td><td><b>... and so ...</b></td></tr>
+          </table>
+        </div>
+  
+
+ <div style="font-family: system-ui, -apple-system, 'Hind Siliguri', 'Poppins', sans-serif; line-height: 1.7; color: #0f172a;">
+  <h2 style="font-size: 1.8rem; color: #6366f1; border-bottom: 3px solid #e0e7ff; padding-bottom: 10px; margin-top: 0; margin-bottom: 25px;">Simple, Complex ও Compound Sentence রূপান্তরের ১৩টি নিয়ম</h2>
+  <p>বাক্যের গঠনগত রূপান্তরের যাবতীয় নিয়ম নিচে ছক আকারে দেওয়া হলো:</p>
+  
+  <div style="overflow-x: auto; margin: 20px 0; border-radius: 12px; border: 1px solid #e2e8f0;">
+    <table style="width: 100%; border-collapse: collapse; background: white; text-align: left;">
+      <tr>
+        <th style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; background: #e0e7ff; color: #3730a3; font-weight: 700;">ক্রম</th>
+        <th style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; background: #e0e7ff; color: #3730a3; font-weight: 700;">Complex Sentence</th>
+        <th style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; background: #e0e7ff; color: #3730a3; font-weight: 700;">Simple Sentence</th>
+        <th style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; background: #e0e7ff; color: #3730a3; font-weight: 700;">Compound Sentence</th>
+      </tr>
+      
+      <!-- নিয়ম ১ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">১</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ১. Contrast বা বৈসাদৃশ্য প্রকাশ
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>Though / Although</b> he was rich, he was not happy.<br>(যদিও তিনি ধনী ছিলেন, তবুও তিনি সুখী ছিলেন না।)</div>
+            <div><b>Simple:</b><br><b>In spite of / Despite</b> his being rich, he was not happy.<br>(ধনী হওয়া সত্ত্বেও তিনি সুখী ছিলেন না।)</div>
+            <div><b>Compound:</b><br>He was rich, <b>but</b> he was not happy.<br>(তিনি ধনী ছিলেন, কিন্তু তিনি সুখী ছিলেন না।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ২ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">২</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ২. Cause and Effect বা কারণ ও ফলাফল প্রকাশ
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>Since / As / Because</b> he was ill, he could not attend school.<br>(যেহেতু সে অসুস্থ ছিল, সে স্কুলে যেতে পারেনি।)</div>
+            <div><b>Simple:</b><br><b>Because of / Due to</b> his illness, he could not attend school.<br>(তার অসুস্থতার কারণে সে স্কুলে যেতে পারেনি।)</div>
+            <div><b>Compound:</b><br>He was ill, <b>and so / therefore</b> he could not attend school.<br>(সে অসুস্থ ছিল, তাই সে স্কুলে যেতে পারেনি।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ৩ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">৩</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ৩. Affirmative Condition বা ইতিবাচক শর্ত
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>If</b> you read attentively, you will pass.<br>(যদি তুমি মনোযোগ দিয়ে পড়ো, তবে পাস করবে।)</div>
+            <div><b>Simple:</b><br><b>By</b> reading attentively, you will pass.<br>(মনোযোগ দিয়ে পড়ার মাধ্যমে তুমি পাস করবে।)</div>
+            <div><b>Compound:</b><br>Read attentively, <b>and</b> you will pass.<br>(মনোযোগ দিয়ে পড়ো এবং তুমি পাস করবে।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ৪ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">৪</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ৪. Negative Condition বা নেতিবাচক শর্ত
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>Unless / If not</b> you work hard, you will fail.<br>(যদি না তুমি কঠোর পরিশ্রম করো, তবে তুমি ব্যর্থ হবে।)</div>
+            <div><b>Simple:</b><br><b>Without</b> working hard, you will fail.<br>(কঠোর পরিশ্রম ছাড়া তুমি ব্যর্থ হবে।)</div>
+            <div><b>Compound:</b><br>Work hard, <b>or / otherwise</b> you will fail.<br>(কঠোর পরিশ্রম করো, অন্যথায় তুমি ব্যর্থ হবে।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ৫ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">৫</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ৫. Purpose বা উদ্দেশ্য প্রকাশ
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br>He went to market <b>so that / in order that</b> he could buy a pen.<br>(সে বাজারে গিয়েছিল যাতে সে একটি কলম কিনতে পারে।)</div>
+            <div><b>Simple:</b><br>He went to market <b>to / in order to</b> buy a pen.<br>(সে একটি কলম কিনতে বাজারে গিয়েছিল।)</div>
+            <div><b>Compound:</b><br>He wanted to buy a pen, <b>and so</b> he went to market.<br>(সে একটি কলম কিনতে চেয়েছিল, আর তাই সে বাজারে গিয়েছিল।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ৬ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">৬</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ৬. Result বা পরিণতি প্রকাশ (Too...to / So...that)
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br>The boy is <b>so</b> weak <b>that</b> he cannot walk.<br>(বালকটি এত দুর্বল যে সে হাঁটতে পারে না।)</div>
+            <div><b>Simple:</b><br>The boy is <b>too</b> weak <b>to</b> walk.<br>(বালকটি হাঁটার জন্য অতিরিক্ত দুর্বল।)</div>
+            <div><b>Compound:</b><br>The boy is very weak, <b>and so</b> he cannot walk.<br>(বালকটি খুব দুর্বল, তাই সে হাঁটতে পারে না।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ৭ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">৭</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ৭. Time বা সময় নির্দেশক (When / As soon as)
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>When</b> the sun rose, the fog disappeared.<br>(যখন সূর্য উঠল, কুয়াশা কেটে গেল।)</div>
+            <div><b>Simple:</b><br><b>At the sunrise / On the rising of the sun</b>, the fog disappeared.<br>(সূর্যোদয়ের সাথে সাথে কুয়াশা কেটে গেল।)</div>
+            <div><b>Compound:</b><br>The sun rose, <b>and</b> the fog disappeared.<br>(সূর্য উঠল এবং কুয়াশা কেটে গেল।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ৮ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">৮</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ৮. Simultaneous Action বা একই সময়ে দুটি কাজ
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>While</b> I was walking in the garden, I saw a snake.<br>(যখন আমি বাগানে হাঁটছিলাম, তখন একটি সাপ দেখলাম।)</div>
+            <div><b>Simple:</b><br><b>Walking</b> in the garden, I saw a snake.<br>(বাগানে হাঁটার সময় আমি একটি সাপ দেখলাম।)</div>
+            <div><b>Compound:</b><br>I was walking in the garden, <b>and</b> I saw a snake.<br>(আমি বাগানে হাঁটছিলাম এবং একটি সাপ দেখলাম।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ৯ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">৯</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ৯. Relative Pronoun বা আপেক্ষিক সর্বনাম যুক্ত বাক্য
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br>I know <b>the man who</b> came here yesterday.<br>(আমি সেই লোকটিকে জানি যে গতকাল এখানে এসেছিল।)</div>
+            <div><b>Simple:</b><br>I know <b>the man</b> coming here yesterday.<br>(আমি গতকাল এখানে আসা লোকটিকে চিনি।)</div>
+            <div><b>Compound:</b><br>He came here yesterday, <b>and</b> I know him.<br>(সে গতকাল এখানে এসেছিল এবং আমি তাকে চিনি।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ১০ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">১০</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ১০. Noun Clause বা বিশেষ্য পদ যুক্ত বাক্য
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>That</b> he is honest is known to all.<br>(যে সে সৎ, তা সবাই জানে।)</div>
+            <div><b>Simple:</b><br><b>His honesty</b> is known to all.<br>(তার সততা সবার কাছে পরিচিত।)</div>
+            <div><b>Compound:</b><br>He is honest, <b>and</b> this is known to all.<br>(সে সৎ এবং এটি সবার কাছে পরিচিত।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ১১ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">১১</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ১১. Apposition বা পরিচয়মূলক বিশেষ্য
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br>Nazrul, <b>who</b> was our national poet, wrote the rebel poem.<br>(নজরুল, যিনি আমাদের জাতীয় কবি, বিদ্রোহী কবিতাটি লিখেছেন।)</div>
+            <div><b>Simple:</b><br>Nazrul, <b>our national poet</b>, wrote the rebel poem.<br>(নজরুল, আমাদের জাতীয় কবি, বিদ্রোহী কবিতাটি লিখেছেন।)</div>
+            <div><b>Compound:</b><br>Nazrul was our national poet, <b>and</b> he wrote the rebel poem.<br>(নজরুল আমাদের জাতীয় কবি ছিলেন এবং তিনি বিদ্রোহী কবিতাটি লিখেছেন।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ১২ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">১২</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ১২. Age বা বয়স নির্দেশক বাক্য
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>When</b> he was five years old, he left the village.<br>(যখন তার বয়স পাঁচ বছর ছিল, সে গ্রাম ছেড়েছিল।)</div>
+            <div><b>Simple:</b><br><b>At the age of five</b>, he left the village.<br>(পাঁচ বছর বয়সে সে গ্রাম ছেড়েছিল।)</div>
+            <div><b>Compound:</b><br>He was five years old, <b>and</b> he left the village.<br>(তার বয়স পাঁচ বছর ছিল এবং সে গ্রাম ছেড়েছিল।)</div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- নিয়ম ১৩ -->
+      <tr style="transition: background 0.2s;">
+        <td style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; font-weight: bold; color: #4f46e5;">১৩</td>
+        <td colspan="3" style="padding: 16px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; vertical-align: top;">
+          <div style="background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; padding: 10px 18px; border-radius: 30px; display: inline-block; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">
+            ১৩. Possession বা মালিকানা বোঝাতে (Having যুক্ত)
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 8px;">
+            <div><b>Complex:</b><br><b>Because</b> he had much money, he helped the poor.<br>(যেহেতু তার অনেক টাকা ছিল, সে গরিবদের সাহায্য করেছিল।)</div>
+            <div><b>Simple:</b><br><b>Having much money</b>, he helped the poor.<br>(অনেক টাকা থাকায় সে গরিবদের সাহায্য করেছিল।)</div>
+            <div><b>Compound:</b><br>He had much money, <b>and</b> he helped the poor.<br>(তার অনেক টাকা ছিল এবং সে গরিবদের সাহায্য করেছিল।)</div>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>     
+
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Sentence Transformation - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-6"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" onclick="switchTab(5)">← পূর্ববর্তী</button>
+          <button class="btn" onclick="switchTab(7)">পরবর্তী টপিক →</button>
+        </div>
+      </div>
+
+      <!-- CHAPTER 7 -->
+      <div id="chapter-7" class="chapter-content">
+        <h2 class="chapter-title">Changing Degree (ডিগ্রি পরিবর্তন)</h2>
+        <p>Adjective-এর তুলনামূলক রূপ বা Degree পরিবর্তনের নিয়ম:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Superlative Degree</th><th>Comparative Degree</th><th>Positive Degree</th></tr>
+            <tr><td><b>The + Superlative form</b></td><td><b>Comparative + than any other</b></td><td><b>No other + positive form + as/so ... as</b></td></tr>
+            <tr><td><b>One of the + Superlative form</b></td><td><b>Comparative + than most other</b></td><td><b>Very few + positive form + as/so ... as</b></td></tr>
+          </table>
+        </div>
+
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; margin: 20px 0; font-family: 'Hind Siliguri', sans-serif; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+    <h3 style="color: #6366f1; margin-top: 0; border-bottom: 2px solid #e0e7ff; padding-bottom: 8px; font-size: 1.25rem;">
+        🌟 Changing Degree (Positive ➔ Comparative ➔ Superlative)
+    </h3>
+
+    <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
+
+        <!-- 1. Rule 1 (The) -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 15px; border-radius: 0 8px 8px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #1e1b4b; font-size: 1.05rem;">১. 'The' যুক্ত বাক্য (এককভাবে শ্রেষ্ঠ বোঝালে):</h4>
+            <p style="margin: 4px 0;">• <strong>Positive:</strong> No other boy in the class is so rich as he. (ক্লাসের অন্য কোনো ছেলেই তার মতো এত ধনী নয়।)</p>
+            <p style="margin: 4px 0;">• <strong>Comparative:</strong> He is richer than any other boy in the class. (সে ক্লাসের অন্য যেকোনো ছেলের চেয়ে ধনী।)</p>
+            <p style="margin: 4px 0;">• <strong>Superlative:</strong> He is the richest boy in the class. (সে ক্লাসের সবচেয়ে ধনী ছেলে।)</p>
+        </div>
+
+        <!-- 2. Rule 2 (One of the) -->
+        <div style="background: #f8fafc; border-left: 4px solid #ec4899; padding: 15px; border-radius: 0 8px 8px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #831843; font-size: 1.05rem;">২. 'One of the' যুক্ত বাক্য (অনেকের মধ্যে অন্যতম শ্রেষ্ঠ বোঝালে):</h4>
+            <p style="margin: 4px 0;">• <strong>Positive:</strong> Very few cities in Bangladesh are as big as Dhaka. (বাংলাদেশের খুব কম শহরই ঢাকার মতো এত বড়।)</p>
+            <p style="margin: 4px 0;">• <strong>Comparative:</strong> Dhaka is bigger than most other cities in Bangladesh. (ঢাকা বাংলাদেশের অধিকাংশ শহরের চেয়ে বড়।)</p>
+            <p style="margin: 4px 0;">• <strong>Superlative:</strong> Dhaka is one of the biggest cities in Bangladesh. (ঢাকা বাংলাদেশের অন্যতম বৃহত্তম শহর।)</p>
+        </div>
+
+        <!-- 3. Rule 3 (General Example) -->
+        <div style="background: #f8fafc; border-left: 4px solid #10b981; padding: 15px; border-radius: 0 8px 8px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #064e3b; font-size: 1.05rem;">৩. বস্তুর তুলনামূলক উদাহরণ ('The' এর নিয়ম):</h4>
+            <p style="margin: 4px 0;">• <strong>Positive:</strong> No other metal is as useful as iron. (লোহার মতো এত দরকারী ধাতু আর নেই।)</p>
+            <p style="margin: 4px 0;">• <strong>Comparative:</strong> Iron is more useful than any other metal. (লোহা অন্য যেকোনো ধাতুর চেয়ে বেশি দরকারী।)</p>
+            <p style="margin: 4px 0;">• <strong>Superlative:</strong> Iron is the most useful metal. (লোহা সবচেয়ে দরকারী ধাতু।)</p>
+        </div>
+
+    </div>
+</div>
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Degree Change - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-7"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" onclick="switchTab(6)">← পূর্ববর্তী</button>
+          <button class="btn" onclick="switchTab(8)">পরবর্তী টপিক →</button>
+        </div>
+      </div>
+
+      <!-- CHAPTER 8 -->
+      <div id="chapter-8" class="chapter-content">
+        <h2 class="chapter-title">Voice Change (Active থেকে Passive)</h2>
+        <p>বাচ্য পরিবর্তনের মৌলিক নিয়ম এবং টেন্সভিত্তিক রূপ:</p>
+        
+        <div class="table-wrap">
+          <table>
+            <tr><th>Tense / বাক্যের ধরন</th><th>Active Structure</th><th>Passive Structure</th></tr>
+            <tr><td>Present Indefinite</td><td>Subject + V1 + Object</td><td>Object (sub) + am/is/are + V3 + by + S (obj)</td></tr>
+            <tr><td>Present Continuous</td><td>S + am/is/are + V-ing + O</td><td>O (sub) + am/is/are being + V3 + by + S (obj)</td></tr>
+            <tr><td>Present Perfect</td><td>S + has/have + V3 + O</td><td>O (sub) + has/have been + V3 + by + S (obj)</td></tr>
+            <tr><td>Past Indefinite</td><td>S + V2 + O</td><td>O (sub) + was/were + V3 + by + S (obj)</td></tr>
+            <tr><td>Future Indefinite</td><td>S + shall/will + V1 + O</td><td>O (sub) + shall be/will be + V3 + by + S (obj)</td></tr>
+            <tr><td>Imperative Sentence</td><td>V1 + Object + Extension</td><td>Let + Object (sub) + be + V3</td></tr>
+          </table>
+        </div>
+
+  
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin: 20px 0;">
+        <p style="margin-top: 0; font-weight: 600; color: #3730a3;">এক নজরে দেখে নাও-</p>
+        <p>কর্তার কাজ করার সক্রিয়তার ওপর Sentence ২ ধরণের। যথা-<br>
+        <strong>১। সক্রিয়/ Active</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>২। নিষ্ক্রিয়/ Passive</strong><br>
+        Voice অর্থ বাচ্য।</p>
+        
+        <p style="font-weight: 600; color: #4f46e5; margin-top: 15px;">Active to passive voice করার ৫টি নিয়ম:</p>
+        <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>Object টি Subject হবে:</strong> Active voice-এর object পরিবর্তন হয়ে passive voice-এর subject রূপে বসে।</li>
+            <li><strong>Verb পরিবর্তন:</strong> 
+                <ul style="list-style-type: disc; margin-top: 5px;">
+                    <li>Indefinite থাকলে continuous এর auxiliary verb বসে: <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; `do/does/did` ➔ `am/is/are/was/were`<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; `shall/will` ➔ `shall be/will be`</li>
+                    <li>Continuous থাকলে auxiliary verb-এর সাথে `being` যুক্ত হয়: <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; `am/is/are/was/were` ➔ `am being / is being / are being / was being / were being`</li>
+                    <li>Perfect থাকলে `been` যুক্ত হয়: <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; `have/has` ➔ `have been / has been`</li>
+                    <li>Imperative sentence হলে শুরুতে `Let` যুক্ত হয়।</li>
+                </ul>
+            </li>
+            <li><strong>মূল Verb এর V3 হয়:</strong> Passive voice-এ সবসময় মূল verb-এর Past Participle (V3) ফর্ম ব্যবহৃত হয়।</li>
+            <li><strong>Preposition ব্যবহার:</strong> Imperative sentence ছাড়া সব ক্ষেত্রে সাধারণত `by` বসে।</li>
+            <li><strong>Subject-এর রূপান্তর:</strong> Active voice-এর subject-টি Objective Form-এ রূপান্তরিত হয়ে preposition-এর পরে বসে।</li>
+        </ol>
+    </div>
+
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; margin: 20px 0; font-family: 'Hind Siliguri', sans-serif; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+    <h3 style="color: #4f46e5; margin-top: 0; border-bottom: 2px solid #e0e7ff; padding-bottom: 8px; font-size: 1.25rem;">
+        📌 Tense অনুযায়ী Active to Passive Voice পরিবর্তন
+    </h3>
+    
+    <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+        
+        <!-- 1. Present Indefinite -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">১. Present Indefinite Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> He writes a letter. (সে একটি চিঠি লেখে।)<br>
+                • <strong>Passive:</strong> A letter is written by him. (তার দ্বারা একটি চিঠি লেখা হয়।)
+            </p>
+        </div>
+
+        <!-- 2. Present Continuous -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">২. Present Continuous Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> She is cooking rice. (সে ভাত রান্না করছে।)<br>
+                • <strong>Passive:</strong> Rice is being cooked by her. (তার দ্বারা ভাত রান্না করা হচ্ছে।)
+            </p>
+        </div>
+
+        <!-- 3. Present Perfect -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">৩. Present Perfect Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> I have completed my work. (আমি আমার কাজ সম্পন্ন করেছি।)<br>
+                • <strong>Passive:</strong> My work has been completed by me. (আমার কাজ আমার দ্বারা সম্পন্ন হয়েছে।)
+            </p>
+        </div>
+
+        <!-- 4. Past Indefinite -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">৪. Past Indefinite Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> He ate an apple. (সে একটি আপেল খেয়েছিল।)<br>
+                • <strong>Passive:</strong> An apple was eaten by him. (একটি আপেল তার দ্বারা খাওয়া হয়েছিল।)
+            </p>
+        </div>
+
+        <!-- 5. Past Continuous -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">৫. Past Continuous Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> She was singing a song. (সে একটি গান গাইছিল।)<br>
+                • <strong>Passive:</strong> A song was being sung by her. (গানটি তার দ্বারা গাওয়া হচ্ছিল।)
+            </p>
+        </div>
+
+        <!-- 6. Past Perfect -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">৬. Past Perfect Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> They had written a book. (তারা একটি বই লিখেছিল।)<br>
+                • <strong>Passive:</strong> A book had been written by them. (তাদের দ্বারা একটি বই লেখা হয়েছিল।)
+            </p>
+        </div>
+
+        <!-- 7. Future Indefinite -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">৭. Future Indefinite Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> She will help us. (তিনি আমাদের সাহায্য করবেন।)<br>
+                • <strong>Passive:</strong> We will be helped by her. (আমরা তার দ্বারা সাহায্যপ্রাপ্ত হব।)
+            </p>
+        </div>
+
+        <!-- 8. Future Perfect -->
+        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #1e1b4b;">৮. Future Perfect Tense:</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> They will have built the house. (তারা বাড়িটি তৈরি করে ফেলবে।)<br>
+                • <strong>Passive:</strong> The house will have been built by them. (তাদের দ্বারা বাড়িটি তৈরি হয়ে যাবে।)
+            </p>
+        </div>
+
+    </div>
+
+    <h3 style="color: #ec4899; margin-top: 25px; border-bottom: 2px solid #fce7f3; padding-bottom: 8px; font-size: 1.25rem;">
+        📌 অন্যান্য ধরণের Sentence-এর Voice পরিবর্তন
+    </h3>
+
+    <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+        
+        <!-- Modal Auxiliaries -->
+        <div style="background: #fdf2f8; border-left: 4px solid #ec4899; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #831843;">৯. Modal Auxiliaries (Can, Should, Must, etc.):</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> You should help the poor. (তোমার গরিবদের সাহায্য করা উচিত।)<br>
+                • <strong>Passive:</strong> The poor should be helped by you. (তোমার দ্বারা গরিবদের সাহায্য করা উচিত।)
+            </p>
+        </div>
+
+        <!-- Interrogative Sentence -->
+        <div style="background: #fdf2f8; border-left: 4px solid #ec4899; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #831843;">১০. Interrogative Sentence (প্রশ্নবোধক বাক্য):</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> Does he play football? (সে কি ফুটবল খেলে?)<br>
+                • <strong>Passive:</strong> Is football played by him? (তার দ্বারা কি ফুটবল খেলা হয়?)
+            </p>
+        </div>
+
+        <!-- Imperative Sentence -->
+        <div style="background: #fdf2f8; border-left: 4px solid #ec4899; padding: 12px 16px; border-radius: 0 8px 8px 0;">
+            <strong style="color: #831843;">১১. Imperative Sentence (আদেশ/অনুরোধসূচক বাক্য):</strong>
+            <p style="margin: 5px 0 0 0;">
+                • <strong>Active:</strong> Do the work. (কাজটি করো।)<br>
+                • <strong>Passive:</strong> Let the work be done. (কাজটি করা হোক।)
+            </p>
+        </div>
+
+    </div>
+</div>
+
+        <div class="quiz-section">
+          <h3>✍️ অনুশীলন (Voice Change - ২০টি প্রশ্ন)</h3>
+          <div id="quiz-container-8"></div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn" onclick="switchTab(7)">← পূর্ববর্তী</button>
+          <button class="btn" disabled>শেষ টপিক</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="ebook-footer">
+    <p>GKD Complete English Mastery Masterclass &bull; Changing Sentence Digital Interactive Guide &copy; 2026</p>
+  </div>
+</div>
+
+<script>
+// Tab Switching logic
+function switchTab(tabNum) {
+  document.querySelectorAll('.chapter-content').forEach(c => c.classList.remove('active'));
+  const target = document.getElementById(`chapter-${tabNum}`);
+  if(target) target.classList.add('active');
+  
+  document.querySelectorAll('.nav-tab').forEach((tab, index) => {
+    if(index + 1 === tabNum) tab.classList.add('active');
+    else tab.classList.remove('active');
+  });
+  
+  const mainArea = document.querySelector('.main-area');
+  if(mainArea) mainArea.scrollTop = 0;
+}
+
+// 20 items per chapter generator dataset
+const quizData = {
+  1: [
+    { q: "Only Rahim attended the meeting.", ans: "none but rahim attended the meeting", meaning: "রহিত ছাড়া কেউ মিটিংয়ে অংশ নেয়নি।", exp: "ব্যক্তিবাচক Only থাকায় None but বসেছে।" },
+    { q: "Only water was found in the bottle.", ans: "nothing but water was found in the bottle", meaning: "বোতলে পানি ছাড়া কিছুই পাওয়া যায়নি।", exp: "বস্তুবাচক Only থাকায় Nothing but বসেছে।" },
+    { q: "He has only ten books.", ans: "he has not more than ten books", meaning: "তার দশটির বেশি বই নেই।", exp: "সংখ্যা বোঝালে not more than বসে।" },
+    { q: "Every mother loves her child.", ans: "there is no mother but loves her child", meaning: "এমন কোনো মা নেই যে তার সন্তানকে ভালোবাসে না।", exp: "Every-এর পরিবর্তে There is no ... but বসে।" },
+    { q: "He always tells the truth.", ans: "he never tells a lie", meaning: "সে কখনো মিথ্যা বলে না।", exp: "Always-এর বিপরীত শব্দ Never বসে।" },
+    { q: "As soon as he saw me, he smiled.", ans: "no sooner had he seen me than he smiled", meaning: "সে আমাকে দেখতে না দেখতেই হাসল।", exp: "As soon as এর পরিবর্তে No sooner had ... than বসে।" },
+    { q: "I must obey my parents.", ans: "i cannot but obey my parents", meaning: "আমি আমার পিতামাতাকে বাধ্য হয়েই মানব।", exp: "Must-এর পরিবর্তে cannot but বসেছে।" },
+    { q: "The boy was too weak to walk.", ans: "the boy was so weak that he could not walk", meaning: "বালকটি এত দুর্বল ছিল যে হাঁটতে পারেনি।", exp: "Too ... to এর পরিবর্তে so ... that বসে।" },
+    { q: "He is as tall as Karim.", ans: "he is not less tall than Karim", meaning: "সে করিমের চেয়ে কম লম্বা নয়।", exp: "As ... as থাকলে not less ... than বসে।" },
+    { q: "Everybody knows the truth.", ans: "nobody denies the truth", meaning: "সবাই সত্য জানে / কেউ সত্য অস্বীকার করে না।", exp: "Everybody-এর পরিবর্তে Nobody এবং বিপরীত শব্দ বসে।" },
+    { q: "Man is mortal.", ans: "man is not immortal", meaning: "মানুষ অমর নয়।", exp: "Affirmative শব্দকে Negative করে Not যুক্ত করা হয়েছে।" },
+    { q: "I have few books.", ans: "I do not have many books", meaning: "আমার অনেক বই নেই।", exp: "Few-এর পরিবর্তে not many বসে।" },
+    { q: "He is a good boy.", ans: "he is not a bad boy", meaning: "সে খারাপ ছেলে নয়।", exp: "Good-এর বিপরীত bad এবং not যুক্ত হয়েছে।" },
+    { q: "She is always punctual.", ans: "she is never late", meaning: "সে কখনো দেরি করে না।", exp: "Always এবং punctual-এর বিপরীত রূপ ব্যবহার করা হয়েছে।" },
+    { q: "I shall remember you.", ans: "I shall never forget you", meaning: "আমি তোমাকে কখনো ভুলব না।", exp: "Remember-এর বিপরীত forget এবং never বসেছে।" },
+    { q: "Only the graduates can apply.", ans: "none but the graduates can apply", meaning: "স্নাতকধারীরা ছাড়া কেউ আবেদন করতে পারবে না।", exp: "ব্যক্তি বোঝালে None but বসে।" },
+    { q: "He drinks only milk.", ans: "he drinks nothing but milk", meaning: "সে দুধ ছাড়া আর কিছু পান করে না।", exp: "বস্তু বোঝালে Nothing but বসে।" },
+    { q: "She has only a few friends.", ans: "she has not more than a few friends", meaning: "তার অল্পের বেশি বন্ধু নেই।", exp: "সংখ্যার ক্ষেত্রে not more than বসেছে।" },
+    { q: "All men must die.", ans: "there is no man but must die", meaning: "এমন কোনো মানুষ নেই যে মরবে না।", exp: "All-এর ক্ষেত্রে There is no ... but ব্যবহার হয়েছে।" },
+    { q: "We must finish the work today.", ans: "we cannot but finish the work today", meaning: "আজকেই আমাদের কাজটি শেষ করতে হবে।", exp: "Must-এর জায়গায় cannot but বসেছে।" }
+  ],
+  2: [
+    { q: "He is honest.", ans: "is he honest", meaning: "সে কি সৎ?", exp: "Affirmative বাক্যকে Interrogative করতে Auxiliary verb সামনে বসে এবং negative করতে হয়।" },
+    { q: "He is not happy.", ans: "is he happy", meaning: "সে কি সুখী?", exp: "Negative বাক্য Interrogative করার সময় not বাদ যায়।" },
+    { q: "Rahim plays football.", ans: "does Rahim play football", meaning: "রহিত কি ফুটবল খেলে?", exp: "Present indefinite টেন্সে Does সামনে এসেছে এবং plays থেকে s বাদ গেছে।" },
+    { q: "Everybody loves flowers.", ans: "who does not love flowers", meaning: "ফুল কে না ভালোবাসে?", exp: "Everybody-এর পরিবর্তে Who does not বসে।" },
+    { q: "Nobody can solve it.", ans: "who can solve it", meaning: "এটি কে সমাধান করতে পারে?", exp: "Nobody-এর পরিবর্তে Who বসে।" },
+    { q: "Nothing is impossible to him.", ans: "what is not possible to him", meaning: "তার কাছে অসম্ভব কী?", exp: "Nothing-এর পরিবর্তে What বসে।" },
+    { q: "There is a pen on the table.", ans: "is there a pen on the table", meaning: "টেবিলের ওপর কি একটি কলম আছে?", exp: "There দিয়ে শুরু বাক্য Auxiliary সামনে এনে প্রশ্ন করা হয়েছে।" },
+    { q: "It is a fine day.", ans: "is it a fine day", meaning: "এটি কি একটি সুন্দর দিন?", exp: "Auxiliary verb সামনে আনা হয়েছে।" },
+    { q: "You must obey your parents.", ans: "must you obey your parents", meaning: "তোমার কি পিতামাতাকে মান্য করা উচিত?", exp: "Must সামনে বসেছে।" },
+    { q: "He never tells a lie.", ans: "does he ever tell a lie", meaning: "সে কি কখনো মিথ্যা বলে?", exp: "Never থাকলে ever হয় এবং Does সামনে বসে।" },
+    { q: "He always speaks the truth.", ans: "doesn't he always speak the truth", meaning: "সে কি সর্বদা সত্য বলে না?", exp: "Always থাকলে negative interrogative হয়।" },
+    { q: "Very few students are honest.", ans: "are there any students who are honest", meaning: "এমন কি কোনো ছাত্র আছে যে সৎ?", exp: "Very few থাকলে Are there any ... বসে।" },
+    { q: "The boy was too weak to walk.", ans: "was the boy so weak that he could not walk", meaning: "বালকটি কি এতই দুর্বল ছিল যে হাঁটতে পারেনি?", exp: "Too ... to যুক্ত বাক্য Interrogative করার নিয়ম।" },
+    { q: "I went to school.", ans: "did I go to school", meaning: "আমি কি স্কুলে গিয়েছিলাম?", exp: "Past tense থাকায় Did ব্যবহার করা হয়েছে।" },
+    { q: "They will help us.", ans: "won't they help us", meaning: "তারা কি আমাদের সাহায্য করবে না?", exp: "Future tense Interrogative রূপ।" },
+    { q: "She sings well.", ans: "doesn't she sing well", meaning: "সে কি ভালো গান গায় না?", exp: "Present tense Auxiliary সহযোগে প্রশ্ন।" },
+    { q: "The sun rises in the east.", ans: "doesn't the sun rise in the east", meaning: "সূর্য কি পূর্বে ওঠে না?", exp: "Universal truth Interrogative রূপ।" },
+    { q: "Water has no color.", ans: "does water have any color", meaning: "পানির কি কোনো রঙ আছে?", exp: "Negative assertive থেকে Interrogative।" },
+    { q: "No one could deny the fact.", ans: "who could deny the fact", meaning: "কে এই সত্য অস্বীকার করতে পারে?", exp: "No one-এর বদলে Who বসেছে।" },
+    { q: "This is a great wonder.", ans: "isn't this a great wonder", meaning: "এটি কি একটি বড় বিস্ময় নয়?", exp: "Assertive থেকে Interrogative রূপান্তর।" }
+  ],
+  3: [
+    { q: "You go home.", ans: "go home", meaning: "বাড়ি যাও।", exp: "Subject (You) বাদ দিয়ে সরাসরি Verb দিয়ে শুরু হয়েছে।" },
+    { q: "You should obey your parents.", ans: "obey your parents", meaning: "পিতামাতাকে মান্য করো।", exp: "Should তুলে দিয়ে সরাসরি Verb দিয়ে শুরু হয়েছে।" },
+    { q: "You should not waste time.", ans: "don't waste time", meaning: "সময় নষ্ট করো না।", exp: "Should not এর পরিবর্তে Don't বসেছে।" },
+    { q: "He should go there.", ans: "let him go there", meaning: "তাকে সেখানে যেতে দাও।", exp: "Third person থাকায় Let + object বসেছে।" },
+    { q: "We should help the poor.", ans: "let us help the poor", meaning: "চলো গরিবদের সাহায্য করি।", exp: "We should থাকলে Let us দিয়ে শুরু হয়।" },
+    { q: "You are requested to sit down.", ans: "please sit down", meaning: "দয়া করে বসুন।", exp: "Requested-এর বদলে Please বসেছে।" },
+    { q: "You should never tell a lie.", ans: "never tell a lie", meaning: "কখনো মিথ্যা বলবে না।", exp: "Never দিয়ে Imperative করা হয়েছে।" },
+    { q: "Rahim does not waste time.", ans: "let Rahim not waste time", meaning: "রহিত যেন সময় নষ্ট না করে।", exp: "Name + does not থাকলে Let + name + not হয়।" },
+    { q: "You are ordered to leave the room.", ans: "leave the room", meaning: "রুমটি ত্যাগ করো।", exp: "Ordered থাকলে সরাসরি Verb দিয়ে শুরু হয়।" },
+    { q: "We should not quarrel.", ans: "let us not quarrel", meaning: "চলো ঝগড়া না করি।", exp: "Let us not দিয়ে গঠিত হয়েছে।" },
+    { q: "You speak the truth.", ans: "speak the truth", meaning: "সত্য কথা বলো।", exp: "সরাসরি Verb দিয়ে শুরু।" },
+    { q: "You should respect your teachers.", ans: "respect your teachers", meaning: "শিক্ষকদের সম্মান করো।", exp: "Imperative রূপ।" },
+    { q: "You should not run in the sun.", ans: "don't run in the sun", meaning: "রোদে দৌড়াবে না।", exp: "Don't যুক্ত Imperative।" },
+    { q: "She should write a letter.", ans: "let her write a letter", meaning: "তাকে একটি চিঠি লিখতে দাও।", exp: "Let + her ব্যবহার।" },
+    { q: "We should play football.", ans: "let us play football", meaning: "চলো ফুটবল খেলি।", exp: "Let us ব্যবহার।" },
+    { q: "You are requested to help me.", ans: "please help me", meaning: "দয়া করে আমাকে সাহায্য করুন।", exp: "Please দিয়ে রূপান্তর।" },
+    { q: "You should never disobey your elders.", ans: "never disobey your elders", meaning: "বড়দের কখনো অমান্য কোরো না।", exp: "Never দিয়ে রূপান্তর।" },
+    { q: "Karim does not tell a lie.", ans: "let Karim not tell a lie", meaning: "করিম যেন মিথ্যা না বলে।", exp: "Let + Name + not।" },
+    { q: "You are told to shut the door.", ans: "shut the door", meaning: "দরজাটি বন্ধ করো।", exp: "সরাসরি Verb।" },
+    { q: "We should not make a noise.", ans: "let us not make a noise", meaning: "চলো গোলমাল না করি।", exp: "Let us not।" }
+  ],
+  4: [
+    { q: "I pray that God may bless you.", ans: "may God bless you", meaning: "ঈশ্বর তোমার মঙ্গল করুন।", exp: "Optative sentence গঠনের নিয়ম।" },
+    { q: "I wish that you may succeed in life.", ans: "may you succeed in life", meaning: "তুমি জীবনে সফল হও।", exp: "May দিয়ে শুরু হয়েছে।" },
+    { q: "I wish that our country may live long.", ans: "long live our country", meaning: "আমাদের দেশ দীর্ঘজীবী হোক।", exp: "Long live দিয়ে Optative।" },
+    { q: "I pray that you may be happy.", ans: "may you be happy", meaning: "তুমি সুখী হও।", exp: "Optative রূপ।" },
+    { q: "I wish that Allah may forgive you.", ans: "may Allah forgive you", meaning: "আল্লাহ তোমাকে ক্ষমা করুন।", exp: "Optative রূপ।" },
+    { q: "I pray that you may win the prize.", ans: "may you win the prize", meaning: "তুমি পুরস্কার লাভ করো।", exp: "Optative রূপ।" },
+    { q: "I wish that your mother may recover soon.", ans: "may your mother recover soon", meaning: "তোমার মা দ্রুত সুস্থ হয়ে উঠুন।", exp: "Optative রূপ।" },
+    { q: "I pray that peace may prevail.", ans: "may peace prevail", meaning: "শান্তি বিরাজ করুক।", exp: "Optative রূপ।" },
+    { q: "I wish that you may prosper.", ans: "may you prosper", meaning: "তুমি উন্নতি লাভ করো।", exp: "Optative রূপ।" },
+    { q: "I pray that you may live long.", ans: "may you live long", meaning: "তুমি দীর্ঘজীবী হও।", exp: "Optative রূপ।" },
+    { q: "I wish that health may be yours.", ans: "may health be yours", meaning: "তোমার সুস্বাস্থ্য লাভ হোক।", exp: "Optative রূপ।" },
+    { q: "I pray that success attend you.", ans: "may success attend you", meaning: "সাফল্য তোমার সঙ্গী হোক।", exp: "Optative রূপ।" },
+    { q: "I wish that fortune may favor you.", ans: "may fortune favor you", meaning: "ভাগ্য তোমার সহায় হোক।", exp: "Optative রূপ।" },
+    { q: "I pray that no harm may touch you.", ans: "may no harm touch you", meaning: "কোনো অনিষ্ট যেন তোমাকে স্পর্শ না করে।", exp: "Optative রূপ।" },
+    { q: "I wish that joy may be yours.", ans: "may joy be yours", meaning: "আনন্দ তোমার হোক।", exp: "Optative রূপ।" },
+    { q: "I pray that dreams come true.", ans: "may dreams come true", meaning: "স্বপ্ন সত্যি হোক।", exp: "Optative রূপ।" },
+    { q: "I wish that you may shine in life.", ans: "may you shine in life", meaning: "তুমি জীবনে উজ্জ্বল নক্ষত্র হও।", exp: "Optative রূপ।" },
+    { q: "I pray that safety be with you.", ans: "may safety be with you", meaning: "নিরাপত্তা তোমার সাথে থাকুক।", exp: "Optative রূপ।" },
+    { q: "I wish that grace be upon you.", ans: "may grace be upon you", meaning: "তোমার ওপর করুণা বর্ষিত হোক।", exp: "Optative রূপ।" },
+    { q: "I pray that light guide you.", ans: "may light guide you", meaning: "আলো তোমাকে পথ দেখাক।", exp: "Optative রূপ।" }
+  ],
+  5: [
+    { q: "It is a very beautiful flower.", ans: "what a beautiful flower it is", meaning: "কী সুন্দর ফুল এটি!", exp: "Very + Adjective + Noun থাকায় What a দিয়ে শুরু হয়েছে।" },
+    { q: "He is very brave.", ans: "how brave he is", meaning: "সে কী সাহসী!", exp: "Very + Adjective থাকায় How দিয়ে শুরু হয়েছে।" },
+    { q: "I wish I were a king.", ans: "would that I were a king", meaning: "ইশ, আমি যদি রাজা হতাম!", exp: "I wish এর পরিবর্তে Would that বসেছে।" },
+    { q: "It is a matter of joy that he has passed.", ans: "hurrah! he has passed", meaning: "কী আনন্দ, সে পাস করেছে!", exp: "Joy বোঝালে Hurrah! বসেছে।" },
+    { q: "The scenery is very charming.", ans: "how charming the scenery is", meaning: "দৃশ্যটি কত না মনোরম!", exp: "How দিয়ে Exclamatory করা হয়েছে।" },
+    { q: "It is a very great surprise.", ans: "what a great surprise it is", meaning: "কী বড় বিস্ময় এটি!", exp: "What a দিয়ে Exclamatory।" },
+    { q: "The day is very fine.", ans: "how fine the day is", meaning: "দিনটি কী চমৎকার!", exp: "How দিয়ে Exclamatory।" },
+    { q: "I wish I had the wings of a bird.", ans: "if only I had the wings of a bird", meaning: "ইশ, যদি আমার পাখির ডানা থাকত!", exp: "If only দিয়ে রূপান্তর।" },
+    { q: "It is a very tragic incident.", ans: "what a tragic incident it is", meaning: "কী মর্মান্তিক ঘটনা এটি!", exp: "What a দিয়ে Exclamatory।" },
+    { q: "She sings very sweetly.", ans: "how sweetly she sings", meaning: "সে কত সুন্দর মিষ্টি সুরে গান গায়!", exp: "How দিয়ে রূপান্তর।" },
+    { q: "It is a very foul weather.", ans: "what foul weather it is", meaning: "কী খারাপ আবহাওয়া!", exp: "What দিয়ে Exclamatory।" },
+    { q: "The task is very easy.", ans: "how easy the task is", meaning: "কাজটি কত সহজ!", exp: "How দিয়ে Exclamatory।" },
+    { q: "I wish I were young again.", ans: "would that I were young again", meaning: "ইশ, যদি আবার তরুণ হতে পারতাম!", exp: "Would that ব্যবহার।" },
+    { q: "It is a very foolish decision.", ans: "what a foolish decision it is", meaning: "কী বোকামি ভরা সিদ্ধান্ত!", exp: "What a ব্যবহার।" },
+    { q: "He ran very fast.", ans: "how fast he ran", meaning: "সে কী দ্রুত দৌড়াল!", exp: "How ব্যবহার।" },
+    { q: "It is a matter of sorrow that he is dead.", ans: "alas! he is dead", meaning: "হায়! সে মারা গেছে।", exp: "Alas! ব্যবহার।" },
+    { q: "The rose is a very sweet flower.", ans: "what a sweet flower the rose is", meaning: "গোলাপ কী মিষ্টি ফুল!", exp: "What a ব্যবহার।" },
+    { q: "The night was very dark.", ans: "how dark the night was", meaning: "রাতটি কত অন্ধকার ছিল!", exp: "How ব্যবহার।" },
+    { q: "I wish I could fly.", ans: "if only I could fly", meaning: "ইশ, যদি আমি উড়তে পারতাম!", exp: "If only ব্যবহার।" },
+    { q: "It is a very noble deed.", ans: "what a noble deed it is", meaning: "কী মহৎ কাজ এটি!", exp: "What a ব্যবহার।" }
+  ],
+  6: [
+    { q: "Though he was rich, he was not happy.", ans: "in spite of his being rich, he was not happy", meaning: "দহী হওয়া সত্ত্বেও তিনি সুখী ছিলেন না।", exp: "Though থাকলে Simple-এ In spite of বসে।" },
+    { q: "Since he was ill, he could not attend school.", ans: "because of his illness, he could not attend school", meaning: "অসুস্থতার কারণে সে স্কুলে যেতে পারেনি।", exp: "Since থাকলে Simple-এ Because of বসে।" },
+    { q: "If you read attentively, you will pass.", ans: "by reading attentively, you will pass", meaning: "মনোযোগ দিয়ে পড়ার মাধ্যমে তুমি পাস করবে।", exp: "Affirmative If থাকলে By + V-ing বসে।" },
+    { q: "Unless you work hard, you will fail.", ans: "without working hard, you will fail", meaning: "কঠোর পরিশ্রম ছাড়া তুমি ব্যর্থ হবে।", exp: "Unless থাকলে Without + V-ing বসে।" },
+    { q: "He went to market so that he could buy a pen.", ans: "he went to market to buy a pen", meaning: "সে একটি কলম কিনতে বাজারে গিয়েছিল।", exp: "So that থাকলে Simple-এ to + V1 বসে।" },
+    { q: "He is poor, but he is honest.", ans: "despite his poverty, he is honest", meaning: "দারিদ্র্য সত্ত্বেও সে সৎ।", exp: "Compound থেকে Simple রূপ।" },
+    { q: "Walk fast so that you can catch the train.", ans: "walk fast to catch the train", meaning: "ট্রেনটি ধরতে দ্রুত হাঁটো।", exp: "Simple রূপান্তর।" },
+    { q: "As he was industrious, he succeeded.", ans: "because of his industry, he succeeded", meaning: "পরিশ্রমী হওয়ার কারণে সে সফল হয়েছে।", exp: "Simple রূপান্তর।" },
+    { q: "Read more and you will learn more.", ans: "by reading more, you will learn more", meaning: "বেশি পড়ার মাধ্যমে তুমি বেশি জানবে।", exp: "Compound থেকে Simple।" },
+    { q: "Waste not, want not.", ans: "without wasting, you will not want", meaning: "অপচয় না করলে অভাব হবে না।", exp: "Proverbial transformation।" },
+    { q: "Although she tried hard, she failed.", ans: "in spite of her trying hard, she failed", meaning: "খুব চেষ্টা করা সত্ত্বেও সে ব্যর্থ হলো।", exp: "Simple রূপান্তর।" },
+    { q: "He is too weak to walk.", ans: "he is so weak that he cannot walk", meaning: "সে এতই দুর্বল যে হাঁটতে পারে না।", exp: "Complex রূপান্তর।" },
+    { q: "The box is so heavy that I cannot lift it.", ans: "the box is too heavy for me to lift", meaning: "বাক্সটি আমার তোলার জন্য অতিরিক্ত ভারী।", exp: "Simple রূপান্তর।" },
+    { q: "If you do not obey, you will be punished.", ans: "otherwise you will be punished", meaning: "অন্যথায় তোমাকে শাস্তি দেওয়া হবে।", exp: "Compound রূপান্তর।" },
+    { q: "He finished the work and went home.", ans: "having finished the work, he went home", meaning: "কাজটি শেষ করে সে বাড়ি গেল।", exp: "Simple রূপান্তর।" },
+    { q: "When the sun set, we returned home.", ans: "at sunset, we returned home", meaning: "সূর্যাস্তে আমরা বাড়ি ফিরলাম।", exp: "Simple রূপান্তর।" },
+    { q: "The man who is honest is respected.", ans: "an honest man is respected", meaning: "একজন সৎ মানুষকে সম্মান করা হয়।", exp: "Simple রূপান্তর।" },
+    { q: "I know where he lives.", ans: "I know his residence", meaning: "আমি তার বাসস্থান জানি।", exp: "Simple রূপান্তর।" },
+    { q: "Tell me what your name is.", ans: "tell me your name", meaning: "তোমার নাম আমাকে বলো।", exp: "Simple রূপান্তর।" },
+    { q: "He confessed that he was guilty.", ans: "he confessed his guilt", meaning: "সে তার অপরাধ স্বীকার করল।", exp: "Simple রূপান্তর।" }
+  ],
+  7: [
+    { q: "He is the richest boy in the class. (Comparative)", ans: "he is richer than any other boy in the class", meaning: "সে ক্লাসের অন্য যেকোনো ছেলের চেয়ে ধনী।", exp: "Superlative থেকে Comparative করার নিয়ম।" },
+    { q: "He is the richest boy in the class. (Positive)", ans: "no other boy in the class is so rich as he", meaning: "ক্লাসের অন্য কোনো ছেলেই তার মতো এত ধনী নয়।", exp: "Superlative থেকে Positive করার নিয়ম।" },
+    { q: "Iron is the most useful metal. (Comparative)", ans: "iron is more useful than any other metal", meaning: "লোহা অন্য যেকোনো ধাতুর চেয়ে বেশি দরকারী।", exp: "Comparative রূপান্তর।" },
+    { q: "Iron is the most useful metal. (Positive)", ans: "no other metal is as useful as iron", meaning: "লোহার মতো এত দরকারী ধাতু আর নেই।", exp: "Positive রূপান্তর।" },
+    { q: "Asia is the largest continent. (Comparative)", ans: "asia is larger than any other continent", meaning: "এশিয়া অন্য যেকোনো মহাদেশের চেয়ে বড়।", exp: "Comparative রূপান্তর।" },
+    { q: "Asia is the largest continent. (Positive)", ans: "no other continent is as large as Asia", meaning: "এশিয়ার মতো এত বড় মহাদেশ আর নেই।", exp: "Positive রূপান্তর।" },
+    { q: " Dhaka is one of the biggest cities. (Comparative)", ans: "dhaka is bigger than most other cities", meaning: "ঢাকা অধিকাংশ শহরের চেয়ে বড়।" },
+    { q: "Dhaka is one of the biggest cities. (Positive)", ans: "very few cities are as big as Dhaka", meaning: "খুব কম শহরই ঢাকার মতো এত বড়।" },
+    { q: "He is as wise as his brother. (Comparative)", ans: "his brother is not wiser than he", meaning: "তার ভাই তার চেয়ে বেশি বুদ্ধিমান নয়।" },
+    { q: "She is not less intelligent than you. (Positive)", ans: "she is as intelligent as you", meaning: "সে তোমার মতোই বুদ্ধিমতী।" },
+    { q: "Gold is the most precious metal. (Comparative)", ans: "gold is more precious than any other metal", meaning: "স্বর্ণ অন্য যেকোনো ধাতুর চেয়ে দামি।" },
+    { q: "Gold is the most precious metal. (Positive)", ans: "no other metal is as precious as gold", meaning: "স্বর্ণের মতো দামি ধাতু নেই।" },
+    { q: "Badminton is less popular than cricket. (Positive)", ans: "badminton is not as popular as cricket", meaning: "ব্যাডমিন্টন ক্রিকেটের মতো এত জনপ্রিয় নয়।" },
+    { q: "Very few poets are as great as Shakespeare. (Superlative)", ans: "Shakespeare is one of the greatest poets", meaning: "শেক্সপিয়র অন্যতম শ্রেষ্ঠ কবি।" },
+    { q: "No other boy is as tall as Tom. (Superlative)", ans: "Tom is the tallest boy", meaning: "টম সবচেয়ে লম্বা ছেলে।" },
+    { q: "He runs faster than any other boy. (Superlative)", ans: "He runs the fastest", meaning: "সে সবচেয়ে দ্রুত দৌড়ায়।" },
+    { q: "This is the best book. (Positive)", ans: "no other book is as good as this", meaning: "এই বইটির মতো ভালো আর বই নেই।" },
+    { q: "This is the best book. (Comparative)", ans: "this book is better than any other book", meaning: "এই বইটি অন্য যেকোনো বইয়ের চেয়ে ভালো।" },
+    { q: "Lead is heavier than any other metal. (Superlative)", ans: "lead is the heaviest metal", meaning: "সিসা সবচেয়ে ভারী ধাতু।" },
+    { q: "Lead is heavier than any other metal. (Positive)", ans: "no other metal is as heavy as lead", meaning: "সিসার মতো ভারী ধাতু নেই।" }
+  ],
+  8: [
+    { q: "He writes a letter.", ans: "a letter is written by him", meaning: "তার দ্বারা একটি চিঠি লেখা হয়।", exp: "Present indefinite tense Passive রূপ।" },
+    { q: "She is cooking rice.", ans: "rice is being cooked by her", meaning: "তার দ্বারা ভাত রান্না করা হচ্ছে।", exp: "Present continuous tense Passive রূপ।" },
+    { q: "I have completed my work.", ans: "my work has been completed by me", meaning: "আমার কাজ আমার দ্বারা সম্পন্ন হয়েছে।", exp: "Present perfect tense Passive রূপ।" },
+    { q: "He ate an apple.", ans: "an apple was eaten by him", meaning: "একটি আপেল তার দ্বারা খাওয়া হয়েছিল।", exp: "Past indefinite tense Passive রূপ।" },
+    { q: "Close the door.", ans: "let the door be closed", meaning: "দরজাটি বন্ধ করা হোক।", exp: "Imperative sentence Passive রূপ।" },
+    { q: "They are playing football.", ans: "football is being played by them", meaning: "তাদের দ্বারা ফুটবল খেলা হচ্ছে।", exp: "Present continuous passive।" },
+    { q: "She had finished the book.", ans: "the book had been finished by her", meaning: "বইটি তার দ্বারা শেষ করা হয়েছিল।", exp: "Past perfect passive।" },
+    { q: "We will help you.", ans: "you will be helped by us", meaning: "তোমরা আমাদের দ্বারা সাহায্যপ্রাপ্ত হবে।", exp: "Future indefinite passive।" },
+    { q: "Can you solve the problem?", ans: "can the problem be solved by you", meaning: "সমস্যাটি কি তোমার দ্বারা সমাধান করা সম্ভব?", exp: "Interrogative passive।" },
+    { q: "Who broke the glass?", ans: "by whom was the glass broken", meaning: "কাঁচটি কার দ্বারা ভাঙা হয়েছিল?", exp: "Who যুক্ত Interrogative passive।" },
+    { q: "Open the window.", ans: "let the window be opened", meaning: "জানালাটি খোলা হোক।", exp: "Imperative passive।" },
+    { q: "Do not hate the poor.", ans: "let the poor not be hated", meaning: "গরিবদের ঘৃণা করা উচিত নয়।", exp: "Negative imperative passive।" },
+    { q: "He gave me a pen.", ans: "a pen was given to me by him / I was given a pen by him", meaning: "তিনি আমাকে একটি কলম দিলেন।", exp: "Two objects passive।" },
+    { q: "People speak English all over the world.", ans: "English is spoken all over the world", meaning: "সারাবিশ্বে ইংরেজি বলা হয়।", exp: "Agentless passive।" },
+    { q: "The teacher teaches us English.", ans: "English is taught us by the teacher", meaning: "শিক্ষক মহাশয় আমাদের ইংরেজি পড়ান।", exp: "Double object passive।" },
+    { q: "Smoking alarms me.", ans: "I am alarmed at smoking", meaning: "ধূমপান আমাকে শঙ্কিত করে।", exp: "Preposition at ব্যবহার।" },
+    { q: "Honey tastes sweet.", ans: "honey is sweet when it is tasted", meaning: "মধু মিষ্টি যখন এর স্বাদ নেওয়া হয়।", exp: "Quasi-passive।" },
+    { q: "The book prints well.", ans: "the book prints well / is printed well", meaning: "বইটি ভালো ছাপা হয়।", exp: "Quasi-passive।" },
+    { q: "We must obey our laws.", ans: "our laws must be obeyed by us", meaning: "আমাদের আইনগুলো অবশ্যই মান্য করতে হবে।", exp: "Modal passive।" },
+    { q: "Somebody has stolen my pen.", ans: "my pen has been stolen", meaning: "আমার কলমটি চুরি হয়ে গেছে।", exp: "Indefinite pronoun omission।" }
+  ]
+};
+
+// Render Quiz dynamically for each chapter
+function renderQuizzes() {
+  for (let ch = 1; ch <= 8; ch++) {
+    const container = document.getElementById(`quiz-container-${ch}`);
+    if(!container) continue;
+    container.innerHTML = "";
+    
+    if(quizData[ch]) {
+      quizData[ch].forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML = `
+          <div class="quiz-q">${index + 1}. ${item.q}</div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px;">
+            <input type="text" class="quiz-input" id="q-${ch}-${index}" placeholder="উত্তর লিখুন...">
+            <button class="btn" onclick="checkAnswer(${ch}, ${index})">সাবমিট</button>
+            <button class="btn btn-outline" onclick="toggleBox('ans', ${ch}, ${index})">উত্তর দেখতে</button>
+            <button class="btn btn-outline" onclick="toggleBox('exp', ${ch}, ${index})">ব্যাখ্যা</button>
+            <span class="result-msg" id="res-${ch}-${index}"></span>
+          </div>
+          <div class="ans-box" id="ans-box-${ch}-${index}">
+            <strong>সঠিক উত্তর:</strong> ${item.ans}
+          </div>
+          <div class="explanation-box" id="exp-box-${ch}-${index}">
+            <strong>বাংলা অর্থ:</strong> ${item.meaning}<br>
+            <strong>ব্যাখ্যা:</strong> ${item.exp}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+  }
+}
+
+function checkAnswer(ch, index) {
+  const input = document.getElementById(`q-${ch}-${index}`).value.trim().toLowerCase();
+  const correct = quizData[ch][index].ans.toLowerCase();
+  const resSpan = document.getElementById(`res-${ch}-${index}`);
+  
+  if(input === "") {
+    resSpan.innerText = "আগে উত্তর লিখুন!";
+    resSpan.className = "result-msg incorrect";
+    return;
+  }
+  
+  const cleanInput = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+  const cleanCorrect = correct.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+  
+  if(cleanInput === cleanCorrect) {
+    resSpan.innerText = "✔ সঠিক!";
+    resSpan.className = "result-msg correct";
+  } else {
+    resSpan.innerText = `✘ ভুল! সঠিক উত্তর দেখুন।`;
+    resSpan.className = "result-msg incorrect";
+  }
+}
+
+function toggleBox(type, ch, index) {
+  const box = document.getElementById(`${type}-box-${ch}-${index}`);
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+// Initial render call
+renderQuizzes();
+</script>
+</body>
+</html>

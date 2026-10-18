@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Reading Mastery & Interactive Story</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Hind Siliguri for Bengali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+                        bengali: ['Hind Siliguri', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-interactive {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-interactive:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(14, 165, 233, 0.3);
+        }
+
+        /* Highlight during speech */
+        .speaking-highlight {
+            background-color: rgba(234, 179, 8, 0.3);
+            border-left: 4px solid #eab308;
+            padding-left: 0.5rem;
+            border-radius: 0.25rem;
+            transition: all 0.2s ease;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.6);
+        }
+
+        /* Glowing Effects */
+        .glow-cyan {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.4);
+        }
+        .glow-purple {
+            box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.4);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-700/50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-cyan-500/30">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+                            Reading Mastery Lab
+                        </h1>
+                        <p class="text-xs text-slate-400 hidden sm:block">পড়া শেখা ও ইংরেজি দক্ষতা অর্জনের ইন্টারেক্টিভ হাব</p>
+                    </div>
+                </div>
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../Homepage.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 Homepage
+    </button>
+
+</div>
+                <!-- Navigation Tabs -->
+                <nav class="flex space-x-2 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800">
+                    <button id="tab-btn-guide" onclick="switchTab('guide')" 
+                            class="tab-btn active px-4 sm:px-6 py-2.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-300 flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25">
+                        <i class="fa-solid fa-compass"></i>
+                        <span>পড়া শেখার নির্দেশিকা</span>
+                    </button>
+                    <button id="tab-btn-story" onclick="switchTab('story')" 
+                            class="tab-btn px-4 sm:px-6 py-2.5 rounded-xl font-medium text-sm sm:text-base text-slate-400 hover:text-white transition-all duration-300 flex items-center space-x-2">
+                        <i class="fa-solid fa-feather-pointed"></i>
+                        <span>ইন্টারেক্টিভ গল্প</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+        
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ================= PAGE 1: READING GUIDE ================= -->
+        <section id="page-guide" class="space-y-10 transition-all duration-500">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl glass-card p-8 sm:p-12 border border-cyan-500/20 bg-gradient-to-r from-slate-900/90 via-indigo-950/50 to-slate-900/90">
+                <div class="absolute -top-24 -right-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 mb-4">
+                        <i class="fa-solid fa-sparkles mr-2"></i> পূর্ণাঙ্গ পঠন নির্দেশিকা
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
+                        কীভাবে হবেন একজন <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">পূর্ণাঙ্গ পাঠক?</span>
+                    </h2>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-6">
+                        পড়া বা Reading হলো জ্ঞানার্জন, চিন্তাশক্তির বিকাশ এবং যেকোনো ভাষা শেখার সবচেয়ে শক্তিশালী মাধ্যম। কেবল শব্দ উচ্চারণ করা নয়; পড়ার প্রকৃত অর্থ হলো লিখিত বাণীর গভীর অর্থ উদ্ধার করা এবং তা নিজের ভাবনার সাথে সংযুক্ত করা।
+                    </p>
+                    <button onclick="switchTab('story')" class="inline-flex items-center space-x-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/25 transform hover:-translate-y-0.5">
+                        <span>অনুশীলন গল্পে যান</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section 1: Stages of Reading -->
+            <div>
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">১. পড়ার চার ধাপ (Four Stages of Reading)</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Stage 1 -->
+                    <div class="glass-card-interactive p-6 rounded-2xl relative overflow-hidden group">
+                        <div class="text-5xl font-extrabold text-slate-800 absolute top-3 right-4 group-hover:text-cyan-500/20 transition-colors">01</div>
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-4 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all">
+                            <i class="fa-solid fa-font"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">অক্ষর ও শব্দ চেনা</h4>
+                        <p class="text-xs text-cyan-400 font-semibold mb-2">Phonetics & Vocabulary</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            বর্ণমালা, ধ্বনি (Phonics) এবং মৌলিক শব্দভান্ডারের সাথে গভীর পরিচিতি অর্জন করা।
+                        </p>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div class="glass-card-interactive p-6 rounded-2xl relative overflow-hidden group">
+                        <div class="text-5xl font-extrabold text-slate-800 absolute top-3 right-4 group-hover:text-blue-500/20 transition-colors">02</div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-4 group-hover:bg-blue-500 group-hover:text-slate-950 transition-all">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">উপলব্ধি বা বোধগম্যতা</h4>
+                        <p class="text-xs text-blue-400 font-semibold mb-2">Comprehension</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            বাক্য সহজভাবে পড়ে সেটির আসল মূল ভাব ও অন্তর্নিহিত অর্থ স্বতঃস্ফূর্তভাবে বুঝতে পারা।
+                        </p>
+                    </div>
+
+                    <!-- Stage 3 -->
+                    <div class="glass-card-interactive p-6 rounded-2xl relative overflow-hidden group">
+                        <div class="text-5xl font-extrabold text-slate-800 absolute top-3 right-4 group-hover:text-indigo-500/20 transition-colors">03</div>
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mb-4 group-hover:bg-indigo-500 group-hover:text-slate-950 transition-all">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">অনুধাবন ও বিশ্লেষণ</h4>
+                        <p class="text-xs text-indigo-400 font-semibold mb-2">Critical Reading</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            লেখক কী বলতে চেয়েছেন, কেন বলেছেন এবং তার যুক্তিগুলো কতটা যৌক্তিক তা বিচার-বিশ্লেষণ করা।
+                        </p>
+                    </div>
+
+                    <!-- Stage 4 -->
+                    <div class="glass-card-interactive p-6 rounded-2xl relative overflow-hidden group">
+                        <div class="text-5xl font-extrabold text-slate-800 absolute top-3 right-4 group-hover:text-purple-500/20 transition-colors">04</div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-4 group-hover:bg-purple-500 group-hover:text-slate-950 transition-all">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">বাস্তব প্রয়োগ</h4>
+                        <p class="text-xs text-purple-400 font-semibold mb-2">Application</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            পঠিত জ্ঞানকে নিজের দৈনন্দিন জীবনে, কর্মক্ষেত্রে বা ভাবনার জগতে বাস্তবে কাজে লাগানো।
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Reading Strategies & How to be complete reader -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Reading Strategies -->
+                <div class="glass-card p-8 rounded-3xl border border-slate-700/60 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                                <i class="fa-solid fa-chess-knight"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">২. কৌশলগত পঠন নীতি (Strategies)</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-emerald-400 text-lg">Skimming</h5>
+                                    <span class="text-xs bg-emerald-500/10 text-emerald-300 px-2.5 py-0.5 rounded-full">উপরে উপরে চোখ বুলানো</span>
+                                </div>
+                                <p class="text-slate-300 text-sm">কোনো লেখা পুরোটা গভীরভাব না পড়ে মূল ধারণা বা সারসংক্ষেপ পেতে দ্রুত চোখ বুলিয়ে যাওয়া।</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-cyan-400 text-lg">Scanning</h5>
+                                    <span class="text-xs bg-cyan-500/10 text-cyan-300 px-2.5 py-0.5 rounded-full">নির্দিষ্ট তথ্য খোঁজা</span>
+                                </div>
+                                <p class="text-slate-300 text-sm">পুরো লেখা না পড়ে কেবল কোনো নির্দিষ্ট নাম, তারিখ, সংখ্যা বা নির্দিষ্ট তথ্য খুঁজে বের করা।</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-purple-400 text-lg">Active Reading</h5>
+                                    <span class="text-xs bg-purple-500/10 text-purple-300 px-2.5 py-0.5 rounded-full">সক্রিয় পাঠ</span>
+                                </div>
+                                <p class="text-slate-300 text-sm">পড়ার সময় গুরুত্বপূর্ণ অংশে দাগ দেওয়া (Highlight), পাশে নিজস্ব নোট নেওয়া এবং নিজেকে প্রশ্ন করা।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How to become a Complete Reader -->
+                <div class="glass-card p-8 rounded-3xl border border-slate-700/60">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">৩. 'পূর্ণাঙ্গ পাঠক' হওয়ার অভ্যাস</h3>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs mt-1 shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-200">নিয়মিত দৈনিক অভ্যাস</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">প্রতিদিন নিয়ম করে অন্তত ২০–৩০ মিনিট সম্পূর্ণ মনোযোগ সহকারে পড়ার অভ্যাস গড়ে তুলুন।</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs mt-1 shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-200">বৈচিত্র্যময় বিষয় নির্বাচন</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">কেবল গল্প বা উপন্যাস নয়; বিজ্ঞান, ইতিহাস, আত্মউন্নয়নমূলক বই ও প্রবন্ধ পড়ুন।</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs mt-1 shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-200">শব্দভাণ্ডার বৃদ্ধি (Vocabulary)</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">নতুন কোনো শব্দ পেলেই সেটির সঠিক অর্থ ও উচ্চারণ জেনে নিন এবং নতুন বাক্য তৈরি করুন।</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs mt-1 shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-200">ভাবনা ও আলোচনা</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">পড়া শেষ করে কী শিখলেন তা সংক্ষেপে ডায়েরিতে লিখুন অথবা বন্ধুদের সাথে আলোচনা করুন।</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: INTERACTIVE STORY ================= -->
+        <section id="page-story" class="hidden space-y-8 transition-all duration-500">
+            <!-- Audio Controller Stickier Toolbar -->
+            <div class="glass-card p-6 rounded-3xl border border-cyan-500/30 sticky top-24 z-40 shadow-2xl">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                    
+                    <!-- Title & Accent Switcher -->
+                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-lg">Audio Voice Reader</h3>
+                                <p class="text-xs text-slate-400">এআই ভয়েস রিডার (British / American)</p>
+                            </div>
+                        </div>
+
+                        <!-- Accent Toggle -->
+                        <div class="flex bg-slate-900/80 p-1 rounded-xl border border-slate-700 w-full sm:w-auto justify-center">
+                            <button id="accent-us" onclick="setAccent('en-US')" 
+                                    class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center space-x-1.5 bg-cyan-500 text-slate-950 shadow">
+                                <span>🇺🇸 American</span>
+                            </button>
+                            <button id="accent-uk" onclick="setAccent('en-GB')" 
+                                    class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-all flex items-center space-x-1.5">
+                                <span>🇬🇧 British</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Audio Controls (Play, Pause, Stop) -->
+                    <div class="flex items-center justify-center space-x-4 w-full lg:w-auto">
+                        <button id="btn-play" onclick="playAudio()" 
+                                class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-500 text-slate-950 flex items-center justify-center text-xl font-bold shadow-lg shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all">
+                            <i class="fa-solid fa-play ml-0.5"></i>
+                        </button>
+
+                        <button id="btn-pause" onclick="pauseAudio()" 
+                                class="w-10 h-10 rounded-full bg-slate-800 text-slate-300 hover:text-white border border-slate-700 flex items-center justify-center text-base hover:bg-slate-700 transition-all">
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button id="btn-stop" onclick="stopAudio()" 
+                                class="w-10 h-10 rounded-full bg-slate-800 text-slate-300 hover:text-rose-400 border border-slate-700 flex items-center justify-center text-base hover:bg-slate-700 transition-all">
+                            <i class="fa-solid fa-square"></i>
+                        </button>
+                    </div>
+
+                    <!-- Speed Controller -->
+                    <div class="flex items-center space-x-3 w-full lg:w-auto justify-end bg-slate-900/40 px-4 py-2 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-gauge-high text-xs text-cyan-400"></i>
+                        <span class="text-xs font-medium text-slate-300">Speed:</span>
+                        <input type="range" id="speed-slider" min="0.6" max="1.4" step="0.1" value="1" 
+                               onchange="updateSpeed(this.value)" class="w-24 accent-cyan-400 cursor-pointer">
+                        <span id="speed-label" class="text-xs font-bold text-cyan-400 w-8">1.0x</span>
+                    </div>
+                </div>
+
+                <!-- Live Status Indicator -->
+                <div id="speech-status" class="mt-3 text-center text-xs font-medium text-cyan-300 hidden">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping mr-2"></span>
+                        <span id="status-text">পড়া হচ্ছে...</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- View Mode Switcher for Story (English / Pronunciation / Translation / Split) -->
+            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">The Mystery of the Talking Dog</h2>
+                    <p class="text-xs text-slate-400">ইংরেজি শেখা ও উচ্চারণ অনুশীলনের জন্য ইন্টারেক্টিভ প্যাসেজ</p>
+                </div>
+
+                <div class="flex items-center space-x-2 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
+                    <button onclick="switchStoryView('all')" id="view-btn-all" class="story-view-btn text-xs px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-bold transition-all">সবগুলো একসাথে</button>
+                    <button onclick="switchStoryView('english')" id="view-btn-english" class="story-view-btn text-xs px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition-all">শুধু English</button>
+                    <button onclick="switchStoryView('pronunciation')" id="view-btn-pronunciation" class="story-view-btn text-xs px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition-all">বাংলা উচ্চারণ</button>
+                    <button onclick="switchStoryView('translation')" id="view-btn-translation" class="story-view-btn text-xs px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition-all">বাংলা অনুবাদ</button>
+                </div>
+            </div>
+
+            <!-- Story Paragraph Cards Container -->
+            <div id="story-paragraphs-container" class="space-y-6">
+                <!-- Paragraphs inserted dynamically via JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-800 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 Reading Mastery Lab | Designed for English Learners & Readers</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Story Data Structure (Interactive Paragraphs)
+        const storyData = [
+            {
+                id: 1,
+                english: "Once upon a time, in a small town named Green Valley, lived a young student named Rahul. Rahul was very keen to learn English, but he found grammar extremely difficult. Tenses confused him, and spelling mistakes followed him everywhere.",
+                pronunciation: "ওয়ান্স আপন আ টাইম, ইন আ স্মল টাউন নেমড গ্রিন ভ্যালি, লিভড আ ইয়ং স্টুডেন্ট নেমড রাহুল। রাহুল ওয়াজ ভেরি কীন টু লার্ন ইংলিশ, বাট হি ফাউন্ড গ্রামার এক্সট্রিমলি ডিফিকাল্ট। টেনসেস কনফিউজড হিম, অ্যান্ড স্পেলিং মিসটেকস ফলোড হিম এভরিহোয়ার।",
+                translation: "একদা গ্রিন ভ্যালি নামের একটি ছোট শহরে রাহুল নামে এক তরুণ শিক্ষার্থী বাস করত। রাহুল ইংরেজি শেখার জন্য খুব আগ্রহী ছিল, কিন্তু ব্যাকরণ তার কাছে খুবই কঠিন মনে হতো। 'টেনস' তাকে বিভ্রান্ত করত এবং বানান ভুল যেন তার পিছু ছাড়ত না।"
+            },
+            {
+                id: 2,
+                english: "One sunlit afternoon, while walking in the local park, Rahul saw a strange sight. A brown dog was sitting under an oak tree, holding a book in its paws! Rahul walked closer and rubbed his eyes in disbelief. The dog was reading a book titled 'English Grammar Made Easy.'",
+                pronunciation: "ওয়ান সানলিট আফটারনুন, হোয়াইল ওয়াকিং ইন দ্য লোকাল পার্ক, রাহুল স আ স্ট্রেঞ্জ সাইট। আ ব্রাউন ডগ ওয়াজ সিটিং আন্ডার অ্যান ওক ট্রি, হোল্ডিং আ বুক ইন ইটস্ পজ! রাহুল ওয়াকড ক্লোজার অ্যান্ড রাবড হিজ আইজ ইন ডিসবিলিফ। দ্য ডগ ওয়াজ রিডিং আ বুক টাইটেলড 'ইংলিশ গ্রামার মেড ইজি।'",
+                translation: "এক ঝলমলে বিকেলে, স্থানীয় পার্কে হাঁটার সময় রাহুল একটি অদ্ভুত দৃশ্য দেখল। একটি বাদামী রঙের কুকুর ওক গাছের নিচে বসে তার থাবায় একটি বই ধরে ছিল! রাহুল কাছে এগিয়ে গেল এবং অবিশ্বাস্য দৃষ্টিতে চোখ কচলুল। কুকুরটি 'ইংলিশ গ্রামার মেড ইজি' নামের একটি বই পড়ছিল!"
+            },
+            {
+                id: 3,
+                english: "\"Hello there!\" said the dog, looking up from the book. Rahul gasped. \"A... a talking dog?\" he stammered.",
+                pronunciation: "\"হ্যালো দেয়ার!\" সেড দ্য ডগ, লুকিং আপ ফ্রম দ্য বুক। রাহুল গাসপড। \"আ... আ টকিং ডগ?\" হি স্ট্যামার্ড।",
+                translation: "\"হ্যালো!\" বই থেকে চোখ তুলে কুকুরটি বলল। রাহুল হাঁপিয়ে উঠল। \"এ... একটি কথা বলা কুকুর?\" সে তোতলাতে তোতলাতে বলল।"
+            },
+            {
+                id: 4,
+                english: "\"Of course,\" replied the dog cheerfully. \"My name is Barky. I realized that if I want to travel the world and talk to human beings, I must master the global language!\"",
+                pronunciation: "\"অফ কোর্স,\" রিপ্লাইড দ্য ডগ চেয়ারফুলি। \"মাই নেম ইজ বার্কি। আই রিয়ালাইজড দ্যাট ইফ আই ওয়ান্ট টু ট্রাভেল দ্য ওয়ার্ল্ড অ্যান্ড টক টু হিউম্যান বিইংস, আই মাস্ট মাস্টার দ্য গ্লোবাল ল্যাঙ্গুয়েজ!\"",
+                translation: "\"অবশ্যই,\" কুকুরটি আনন্দের সাথে উত্তর দিল। \"আমার নাম বার্কি। আমি বুঝতে পেরেছি যে আমি যদি বিশ্ব ভ্রমণ করতে চাই এবং মানুষের সাথে কথা বলতে চাই, তবে আমাকে অবশ্যই এই আন্তর্জাতিক ভাষাটি আয়ত্ত করতে হবে!\""
+            },
+            {
+                id: 5,
+                english: "Rahul sat next to Barky, still amazed. \"I want to learn English too, but I am scared of making mistakes,\" Rahul confessed.",
+                pronunciation: "রাহুল স্যাট নেক্সট টু বার্কি, স্টিল আমেজড। \"আই ওয়ান্ট টু লার্ন ইংলিশ টু, বাট আই অ্যাম স্কেয়ার্ড অব মেকিং মিসটেকস,\" রাহুল কনফেসড।",
+                translation: "রাহুল এখনও অবাক হয়ে বার্কির পাশে বসল। \"আমিও ইংরেজি শিখতে চাই, কিন্তু ভুল করার ভয় পাই,\" রাহুল স্বীকার করল।"
+            },
+            {
+                id: 6,
+                english: "Barky laughed, a sound like a small puppy yipping. \"Mistakes are the stepping stones of learning, my friend! When I started, I barked in wrong tenses all the time. Instead of saying 'I ate a bone,' I used to say 'I will eat a bone yesterday!' Everyone laughed, but I kept practicing.\"",
+                pronunciation: "বার্কি লাফড, আ সাউন্ড লাইক আ স্মল পাপ্পি ইয়িপিং। \"মিসটেকস আর দ্য স্টেপিং স্টোনস অব লার্নিং, মাই ফ্রেন্ড! হোয়েন আই স্টার্টেড, আই বার্কড ইন রং টেনসেস অল দ্য টাইম। ইনস্টেড অব সেয়িং 'আই এট আ বোন,' আই ইউজড টু সে 'আই উইল ইট আ বোন ইয়েস্টারডে!' এভরিওয়ান লাফড, বাট আই কেপ্ট প্র্যাকটিসিং।\"",
+                translation: "বার্কি হেসে উঠল—ছোট কুকুরের ছানার মতো ঘেউ ঘেউ শব্দ করে। \"ভুলগুলোই তো শেখার সিড়ি, আমার বন্ধু! আমি যখন শুরু করেছিলাম, তখন সব সময় ভুল টেনসে ঘেউ ঘেউ করতাম। 'আমি একটি হাড় খেয়েছিলাম' বলার বদলে আমি বলতাম 'আমি গতকাল একটি হাড় খাব!' সবাই হাসাহাসি করত, কিন্তু আমি চর্চা চালিয়ে গিয়েছি।\""
+            },
+            {
+                id: 7,
+                english: "Rahul smiled, feeling much better. \"So, what is your secret to learning fast?\" he asked. Barky tilted his head and shared three simple rules: Read every day, Speak without fear, Listen and repeat.",
+                pronunciation: "রাহুল স্মাইলড, ফিলিং মাচ বেটার। \"সো, হোয়াট ইজ ইউর সিক্রেট টু লার্নিং ফাস্ট?\" হি আসকড। বার্কি টিলটেড হিজ হেড অ্যান্ড শেয়ারড থ্রি সিম্পল রুলস: রিড এভরি ডে, স্পিক উইদাউট ফিয়ার, লিসেন অ্যান্ড রিপিট।",
+                translation: "রাহুল হাসল, তার আগের চেয়ে অনেক ভালো লাগল। \"তাহলে দ্রুত শেখার গোপন রহস্যটা কী?\" সে জিজ্ঞাসা করল। বার্কি মাথা একপাশে কাত করে তিনটি সহজ নিয়ম শেয়ার করল: প্রতিদিন পড়ুন, ভয় ছাড়া কথা বলুন, শুনুন এবং পুনরাবৃত্তি করুন।"
+            },
+            {
+                id: 8,
+                english: "From that day on, Rahul and Barky met in the park every afternoon. They read stories together, corrected each other's sentences, and played word games. Within a few months, Rahul's fear completely vanished. He realized that learning a new language was not a burden, but a wonderful adventure—especially when your study partner is a dog who loves grammar!",
+                pronunciation: "ফ্রম দ্যাট ডে অন, রাহুল অ্যান্ড বার্কি মেট ইন দ্য পার্ক এভরি আফটারনুন। দে রেড স্টোরিজ টুগেদার, কারেক্টেড ইচ আদার্স সেন্টেনসেস, অ্যান্ড প্লেড ওয়ার্ড গেমস। উইদিন আ ফিউ মান্থস, রাহুলের ফিয়ার কমপ্লিটলি ভ্যানিশড। হি রিয়ালাইজড দ্যাট লার্নিং আ নিউ ল্যাঙ্গুয়েজ ওয়াজ নট আ বার্ডেন, বাট আ ওয়ান্ডারফুল অ্যাডভেঞ্চার—এসপেশালি হোয়েন ইউর স্টাডি পার্টনার ইজ আ ডগ হু লাভস গ্রামার!",
+                translation: "সেই দিন থেকে রাহুল ও বার্কি প্রতিদিন বিকেলে পার্কে দেখা করত। তারা একসাথে গল্প পড়ত, একে অপরের বাক্য সংশোধন করত এবং শব্দের খেলা খেলত। কয়েক মাসের মধ্যে রাহুলের ভয় পুরোপুরি অদৃশ্য হয়ে গেল। সে বুঝতে পারল যে একটি নতুন ভাষা শেখা কোনো বোঝা নয়, বরং একটি চমৎকার রোমাঞ্চকর অভিযান—বিশেষ করে যখন আপনার পড়ার সঙ্গী হয় এমন একটি কুকুর, যে ব্যাকরণ ভালোবাসে!"
+            }
+        ];
+
+        // Speech Synthesis Global State
+        let synth = window.speechSynthesis;
+        let selectedAccent = 'en-US'; // Default American
+        let selectedSpeed = 1.0;
+        let currentUtterance = null;
+        let isPlaying = false;
+        let currentParagraphIndex = 0;
+        let activeViewMode = 'all';
+
+        // Initialize App on DOM Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStoryParagraphs();
+        });
+
+        // Switch Navigation Tabs
+        function switchTab(tab) {
+            const pageGuide = document.getElementById('page-guide');
+            const pageStory = document.getElementById('page-story');
+            const btnGuide = document.getElementById('tab-btn-guide');
+            const btnStory = document.getElementById('tab-btn-story');
+
+            if (tab === 'guide') {
+                pageGuide.classList.remove('hidden');
+                pageStory.classList.add('hidden');
+
+                btnGuide.className = "tab-btn active px-4 sm:px-6 py-2.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-300 flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25";
+                btnStory.className = "tab-btn px-4 sm:px-6 py-2.5 rounded-xl font-medium text-sm sm:text-base text-slate-400 hover:text-white transition-all duration-300 flex items-center space-x-2";
+            } else {
+                pageGuide.classList.add('hidden');
+                pageStory.classList.remove('hidden');
+
+                btnStory.className = "tab-btn active px-4 sm:px-6 py-2.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-300 flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25";
+                btnGuide.className = "tab-btn px-4 sm:px-6 py-2.5 rounded-xl font-medium text-sm sm:text-base text-slate-400 hover:text-white transition-all duration-300 flex items-center space-x-2";
+            }
+        }
+
+        // Render Paragraphs dynamically
+        function renderStoryParagraphs() {
+            const container = document.getElementById('story-paragraphs-container');
+            container.innerHTML = '';
+
+            storyData.forEach((para, index) => {
+                const card = document.createElement('div');
+                card.id = `para-card-${index}`;
+                card.className = "glass-card-interactive p-6 rounded-2xl transition-all duration-300 border border-slate-700/60 relative group";
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="space-y-3 w-full">
+                            <!-- English Text -->
+                            <div class="english-block flex items-start space-x-3">
+                                <button onclick="speakParagraph(${index})" title="Play this paragraph" 
+                                        class="mt-1 w-8 h-8 rounded-lg bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 text-cyan-400 flex items-center justify-center shrink-0 transition-all">
+                                    <i class="fa-solid fa-volume-low"></i>
+                                </button>
+                                <p id="english-text-${index}" class="text-slate-100 text-base sm:text-lg font-medium leading-relaxed">
+                                    ${para.english}
+                                </p>
+                            </div>
+
+                            <!-- Pronunciation (Bengali) -->
+                            <div class="pronunciation-block pl-11 pt-2 border-t border-slate-800/80">
+                                <span class="text-xs font-semibold text-amber-400 block mb-1">
+                                    <i class="fa-solid fa-language mr-1"></i> বাংলা উচ্চারণ:
+                                </span>
+                                <p class="text-amber-200/90 text-sm leading-relaxed font-bengali">
+                                    ${para.pronunciation}
+                                </p>
+                            </div>
+
+                            <!-- Translation (Bengali) -->
+                            <div class="translation-block pl-11 pt-2 border-t border-slate-800/80">
+                                <span class="text-xs font-semibold text-emerald-400 block mb-1">
+                                    <i class="fa-solid fa-globe mr-1"></i> বাংলা অনুবাদ:
+                                </span>
+                                <p class="text-emerald-200/90 text-sm leading-relaxed font-bengali">
+                                    ${para.translation}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            applyStoryViewMode(activeViewMode);
+        }
+
+        // View Mode Filter
+        function switchStoryView(mode) {
+            activeViewMode = mode;
+            const buttons = document.querySelectorAll('.story-view-btn');
+            buttons.forEach(btn => {
+                btn.className = "story-view-btn text-xs px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition-all";
+            });
+
+            const activeBtn = document.getElementById(`view-btn-${mode}`);
+            if (activeBtn) {
+                activeBtn.className = "story-view-btn text-xs px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-bold transition-all";
+            }
+
+            applyStoryViewMode(mode);
+        }
+
+        function applyStoryViewMode(mode) {
+            storyData.forEach((_, index) => {
+                const card = document.getElementById(`para-card-${index}`);
+                if (!card) return;
+
+                const engBlock = card.querySelector('.english-block');
+                const pronBlock = card.querySelector('.pronunciation-block');
+                const transBlock = card.querySelector('.translation-block');
+
+                if (mode === 'all') {
+                    engBlock.style.display = 'flex';
+                    pronBlock.style.display = 'block';
+                    transBlock.style.display = 'block';
+                } else if (mode === 'english') {
+                    engBlock.style.display = 'flex';
+                    pronBlock.style.display = 'none';
+                    transBlock.style.display = 'none';
+                } else if (mode === 'pronunciation') {
+                    engBlock.style.display = 'flex';
+                    pronBlock.style.display = 'block';
+                    transBlock.style.display = 'none';
+                } else if (mode === 'translation') {
+                    engBlock.style.display = 'none';
+                    pronBlock.style.display = 'none';
+                    transBlock.style.display = 'block';
+                }
+            });
+        }
+
+        // Accent Selection (en-US or en-GB)
+        function setAccent(accent) {
+            selectedAccent = accent;
+            const usBtn = document.getElementById('accent-us');
+            const ukBtn = document.getElementById('accent-uk');
+
+            if (accent === 'en-US') {
+                usBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center space-x-1.5 bg-cyan-500 text-slate-950 shadow";
+                ukBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-all flex items-center space-x-1.5";
+            } else {
+                ukBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center space-x-1.5 bg-cyan-500 text-slate-950 shadow";
+                usBtn.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-all flex items-center space-x-1.5";
+            }
+
+            if (isPlaying) {
+                stopAudio();
+                speakParagraph(currentParagraphIndex);
+            }
+        }
+
+        // Speed Control
+        function updateSpeed(val) {
+            selectedSpeed = parseFloat(val);
+            document.getElementById('speed-label').innerText = `${selectedSpeed.toFixed(1)}x`;
+            if (isPlaying) {
+                stopAudio();
+                speakParagraph(currentParagraphIndex);
+            }
+        }
+
+        // Speech Synthesis Engine
+        function speakParagraph(index) {
+            stopAudio();
+
+            if (!('speechSynthesis' in window)) {
+                alert('আপনার ব্রাউজারে Text-to-Speech সমর্থিত নয়। অনুগ্রহ করে Chrome বা Edge ব্যবহার করুন।');
+                return;
+            }
+
+            currentParagraphIndex = index;
+            const textToSpeak = storyData[index].english;
+
+            currentUtterance = new SpeechSynthesisUtterance(textToSpeak);
+            currentUtterance.lang = selectedAccent;
+            currentUtterance.rate = selectedSpeed;
+
+            // Find matching voice if available
+            const voices = synth.getVoices();
+            const accentVoice = voices.find(voice => voice.lang.includes(selectedAccent.replace('-', '_')) || voice.lang.includes(selectedAccent));
+            if (accentVoice) {
+                currentUtterance.voice = accentVoice;
+            }
+
+            // Events
+            currentUtterance.onstart = () => {
+                isPlaying = true;
+                updateSpeechUI(true, index);
+            };
+
+            currentUtterance.onend = () => {
+                isPlaying = false;
+                clearHighlights();
+                updateSpeechUI(false);
+                
+                // Auto play next paragraph if in continuous sequence
+                if (currentParagraphIndex < storyData.length - 1) {
+                    currentParagraphIndex++;
+                    speakParagraph(currentParagraphIndex);
+                }
+            };
+
+            currentUtterance.onerror = (e) => {
+                console.error("Speech Synthesis Error:", e);
+                isPlaying = false;
+                updateSpeechUI(false);
+                clearHighlights();
+            };
+
+            synth.speak(currentUtterance);
+        }
+
+        // Play All / Resume Audio
+        function playAudio() {
+            if (synth.paused) {
+                synth.resume();
+                isPlaying = true;
+                updateSpeechUI(true, currentParagraphIndex);
+            } else if (!synth.speaking) {
+                speakParagraph(0);
+            }
+        }
+
+        // Pause Audio
+        function pauseAudio() {
+            if (synth.speaking && !synth.paused) {
+                synth.pause();
+                isPlaying = false;
+                document.getElementById('status-text').innerText = "পজ করা হয়েছে";
+                document.getElementById('btn-play').innerHTML = '<i class="fa-solid fa-play ml-0.5"></i>';
+            }
+        }
+
+        // Stop Audio
+        function stopAudio() {
+            if (synth.speaking || synth.paused) {
+                synth.cancel();
+            }
+            isPlaying = false;
+            clearHighlights();
+            updateSpeechUI(false);
+        }
+
+        // Helper UI Updates
+        function updateSpeechUI(active, index = 0) {
+            const statusDiv = document.getElementById('speech-status');
+            const playBtn = document.getElementById('btn-play');
+
+            if (active) {
+                statusDiv.classList.remove('hidden');
+                document.getElementById('status-text').innerText = `পড়া হচ্ছে (${selectedAccent === 'en-US' ? 'American Accent' : 'British Accent'}) - অনুচ্ছেদ ${index + 1}`;
+                playBtn.innerHTML = '<i class="fa-solid fa-rotate-right"></i>';
+
+                // Highlight card
+                clearHighlights();
+                const activeCard = document.getElementById(`para-card-${index}`);
+                if (activeCard) {
+                    activeCard.classList.add('speaking-highlight');
+                    activeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else {
+                statusDiv.classList.add('hidden');
+                playBtn.innerHTML = '<i class="fa-solid fa-play ml-0.5"></i>';
+            }
+        }
+
+        function clearHighlights() {
+            storyData.forEach((_, i) => {
+                const card = document.getElementById(`para-card-${i}`);
+                if (card) {
+                    card.classList.remove('speaking-highlight');
+                }
+            });
+        }
+
+        // Load voices asynchronously for Chrome
+        if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = () => {
+                synth.getVoices();
+            };
+        }
+    </script>
+</body>
+</html>

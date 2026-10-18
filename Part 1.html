@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken English Complete 150 Rules Master Guide</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --bg-dark: #0b0f19;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Sticky Header Nav */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-box {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--bg-card);
+            color: white;
+            outline: none;
+            width: 250px;
+            font-size: 0.9rem;
+        }
+
+        .search-box:focus {
+            border-color: var(--secondary);
+        }
+
+        /* Chapter Tabs */
+        nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: thin;
+        }
+
+        nav::-webkit-scrollbar { height: 4px; }
+        nav::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .chapter-hero {
+            background: var(--gradient-1);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .chapter-hero h1 { font-size: 1.8rem; margin-bottom: 6px; }
+        .chapter-hero p { font-size: 1rem; opacity: 0.9; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Rule Card */
+        .rule-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .rule-card:hover {
+            border-color: var(--secondary);
+            background: var(--bg-card-hover);
+        }
+
+        .card-hint {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 0.75rem;
+            color: var(--secondary);
+            background: rgba(6, 182, 212, 0.12);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .rule-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #818cf8;
+            margin-bottom: 8px;
+            padding-right: 110px;
+        }
+
+        .rule-usage {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.25);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary);
+            margin-bottom: 12px;
+        }
+
+        /* Details Answer Box */
+        .details-box {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .details-box.show { display: block; }
+
+        .example-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .example-item {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .ex-sentence { font-weight: 600; color: var(--text-light); font-size: 0.95rem; }
+        .ex-pronunciation { color: var(--accent); font-style: italic; font-size: 0.85rem; margin: 2px 0; }
+        .ex-meaning { color: #cbd5e1; font-size: 0.88rem; }
+
+        /* Footer Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-btn {
+            background: var(--bg-card);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<!-- GKD Book: Back to Lesson List -->
+<body>
+
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fa-solid fa-book-open"></i> Spoken Master 150 Rules
+                </div>
+                <input type="text" id="searchInput" class="search-box" onkeyup="searchRules()" placeholder="রুলস খুঁজুন...">
+            </div>
+            <nav id="chapterNav"></nav>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Content Box -->
+    <div class="container">
+        <div id="chapterHero" class="chapter-hero"></div>
+        <div id="rulesContainer"></div>
+        
+        <div class="pagination">
+            <button id="prevBtn" class="page-btn" onclick="prevChapter()"><i class="fa-solid fa-arrow-left"></i> পূর্ববর্তী অধ্যায়</button>
+            <span id="pageIndicator" style="color: var(--text-muted); font-size: 0.9rem;"></span>
+            <button id="nextBtn" class="page-btn" onclick="nextChapter()">পরবর্তী অধ্যায় <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Spoken English 150 Rules Complete Master Guide. All rights reserved.</p>
+    </footer>
+
+
+
+
+
+
+    
+
+<!-- GKD Book: Back to Lesson List -->
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(12, 1, 66, 0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <a href="Spoken_practice.html" 
+    style="
+        display: inline-block;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #142850, #274690);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+    ">
+        📚 Back
+    </a>
+
+</div>
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(216, 210, 220, 0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../Homepage.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 Homepage
+    </button>
+
+</div>
+
+
+    <!-- Full Database & Controller Script -->
+    <script>
+        // 150 Complete Rules Database
+        const chaptersData = [
+            {
+                id: 1,
+                title: "অধ্যায় ১: প্রাথমিক সূচনা ও কুশলাদি",
+                desc: "কারোর সাথে প্রথম দেখা হলে কথা শুরু করা, নিজের পরিচয় ও কুশল বিনিময় করার নিয়মাবলি।",
+                rules: [
+                    { id: 1, title: "Rule 1: Nice / Glad / Pleased to meet you", usage: "কারো সাথে প্রথমবার সাক্ষাত বা পরিচিত হওয়ার পর সৌজন্য প্রকাশে।", ex: [
+                        { s: "Nice to meet you, Mr. Rahim.", p: "নাইস টু মিট ইউ, মি. রহিম।", m: "আপনার সাথে দেখা হয়ে ভালো লাগলো, জনাব রহিম।" },
+                        { s: "I am glad to meet you at the event.", p: "আই অ্যাম গ্ল্যাড টু মিট ইউ অ্যাট দ্য ইভেন্ট।", m: "অনুষ্ঠানে আপনার সাথে দেখা হয়ে ভালো লাগলো।" }
+                    ]},
+                    { id: 2, title: "Rule 2: How is everything going?", usage: "কারো দিনকাল, কাজ বা জীবন কেমন চলছে তা জিজ্ঞেস করতে।", ex: [
+                        { s: "How is everything going with you?", p: "হাউ ইজ এভরিথিং গোয়িং উইথ ইউ?", m: "তোমার দিনকাল কেমন চলছে?" },
+                        { s: "How is your new business going?", p: "হাউ ইজ ইউর নিউ বিজনেস গোয়িং?", m: "তোমার নতুন ব্যবসা কেমন চলছে?" }
+                    ]},
+                    { id: 3, title: "Rule 3: What have you been up to?", usage: "ইদানীং বা সাম্প্রতিক সময়ে কেউ কী কী নিয়ে ব্যস্ত ছিল তা জানতে।", ex: [
+                        { s: "What have you been up to lately?", p: "হোয়াট হ্যাভ ইউ বিন আপ টু লেটলি?", m: "ইদানীং কী নিয়ে ব্যস্ত আছ?" }
+                    ]},
+                    { id: 4, title: "Rule 4: Let me introduce myself", usage: "নিজের বা অন্য কারো পরিচয় আনুষ্ঠানিকভাবে তুলে ধরতে।", ex: [
+                        { s: "Let me introduce myself, I am Tanvir.", p: "লেট মি ইন্ট্রোডিউস মাইসেলফ, আই অ্যাম তানভীর।", m: "আমাকে নিজের পরিচয় দিতে দিন, আমি তানভীর।" }
+                    ]},
+                    { id: 5, title: "Rule 5: How do you do?", usage: "প্রথমবার প্রফেশনাল মিটিংয়ে কারো সাথে সাক্ষাতে।", ex: [
+                        { s: "How do you do, Mr. Ahmed?", p: "হাউ ডু ইউ ডু, মি. আহমেদ?", m: "কেমন আছেন, জনাব আহমেদ?" }
+                    ]},
+                    { id: 6, title: "Rule 6: Long time no see", usage: "অনেকদিন পর পুরোনো কোনো বন্ধুর সাথে দেখা হলে।", ex: [
+                        { s: "Long time no see! Where have you been?", p: "লং টাইম নো সি! হয়ার হ্যাভ ইউ বিন?", m: "অনেকদিন পর দেখা! তুমি কোথায় ছিলে?" }
+                    ]},
+                    { id: 7, title: "Rule 7: I am originally from... but living in...", usage: "নিজের স্থায়ী ঠিকানা ও বর্তমান বাসস্থানের পরিচয় দিতে।", ex: [
+                        { s: "I am originally from Sylhet but living in Dhaka.", p: "আই অ্যাম অরিজিনালি ফ্রম সিলেট বাট লিভিং ইন ঢাকা।", m: "আমার মূল বাড়ি সিলেটে তবে এখন ঢাকায় থাকি।" }
+                    ]},
+                    { id: 8, title: "Rule 8: I work as a... at...", usage: "নিজের পেশা ও কর্মক্ষেত্র সুন্দরভাবে উপস্থাপন করতে।", ex: [
+                        { s: "I work as a Software Engineer at Google.", p: "আই ওয়ার্ক অ্যাজ আ সফটওয়্যার ইঞ্জিনিয়ার অ্যাট গুগল।", m: "আমি গুগলে সফটওয়্যার ইঞ্জিনিয়ার হিসেবে কাজ করি।" }
+                    ]},
+                    { id: 9, title: "Rule 9: I am interested in...", usage: "নিজের পছন্দ বা শখ ব্যক্ত করতে।", ex: [
+                        { s: "I am interested in learning foreign languages.", p: "আই অ্যাম ইন্টারেস্টেড ইন লার্নিং ফরেন ল্যাঙ্গুয়েজেস।", m: "আমি বিদেশি ভাষা শেখায় আগ্রহী।" }
+                    ]},
+                    { id: 10, title: "Rule 10: Keep in touch", usage: "বিদায় নেওয়ার সময় ভবিষ্যতে যোগাযোগ রাখার অনুরোধে।", ex: [
+                        { s: "It was great talking to you, keep in touch!", p: "ইট ওয়াজ গ্রেট টকিং টু ইউ, কিপ ইন টাচ!", m: "আপনার সাথে কথা বলে ভালো লাগলো, যোগাযোগ রাখবেন!" }
+                    ]}
+                ]
+            },
+            {
+                id: 2,
+                title: "অধ্যায় ২: দৈনন্দিন অনুভূতি ও ইচ্ছা প্রকাশ",
+                desc: "ভালোলাগা, ইচ্ছা, অতীত অভ্যাস ও কোনো পরিস্থিতিতে খাপ খাইয়ে নেওয়ার রুলস।",
+                rules: [
+                    { id: 11, title: "Rule 11: S + feel like + Verb(-ing)", usage: "কোনো কিছু করতে মন চাইছে বা ইচ্ছা জাগছে।", ex: [
+                        { s: "I feel like eating ice cream today.", p: "আই ফিল লাইক ইটিং আইসক্রিম টুডে।", m: "আজ আমার আইসক্রিম খেতে ইচ্ছা করছে।" }
+                    ]},
+                    { id: 12, title: "Rule 12: S + would like to + Verb", usage: "বিনম্র ও ভদ্রভাবে ইচ্ছা প্রকাশ করতে।", ex: [
+                        { s: "I would like to order a cup of tea.", p: "আই উড লাইক টু অর্ডার আ কাপ অব টি।", m: "আমি এক কাপ চা অর্ডার করতে চাই।" }
+                    ]},
+                    { id: 13, title: "Rule 13: S + used to + Verb", usage: "অতীতে নিয়মিত কোনো অভ্যাস ছিল কিন্তু বর্তমানে আর করা হয় না।", ex: [
+                        { s: "I used to play football in my childhood.", p: "আই ইউজড টু প্লে ফুটবল ইন মাই চাইল্ডহুড।", m: "ছোটবেলায় আমি ফুটবল খেলতাম।" }
+                    ]},
+                    { id: 14, title: "Rule 14: S + be + getting used to + V(-ing)", usage: "নতুন কোনো পরিবেশে ধীরে ধীরে অভ্যস্ত হয়ে ওঠা।", ex: [
+                        { s: "I am getting used to this new job.", p: "আই অ্যাম গেটিং ইউজড টু দিস নিউ জব।", m: "আমি এই নতুন কাজে অভ্যস্ত হয়ে উঠছি।" }
+                    ]},
+                    { id: 15, title: "Rule 15: S + be + fond of + Verb(-ing)", usage: "কোনো কিছুর প্রতি বিশেষ ভালোলাগা বা ভক্ত হওয়া।", ex: [
+                        { s: "I am fond of listening to music.", p: "আই অ্যাম ফন্ড অব লিসনিং টু মিউজিক।", m: "আমি গান শোনার খুব ভক্ত।" }
+                    ]},
+                    { id: 16, title: "Rule 16: S + be + keen on + Verb(-ing)", usage: "কোনো কাজের প্রতি তীব্র আগ্রহ বা উৎসাহ থাকা।", ex: [
+                        { s: "She is keen on learning coding.", p: "শি ইজ কিন অন লার্নিং কোডিং।", m: "কোডিং শিখতে তার প্রবল আগ্রহ আছে।" }
+                    ]},
+                    { id: 17, title: "Rule 17: S + intend to + Verb", usage: "কোনো কিছু করার মানসিক সংকল্প করা।", ex: [
+                        { s: "I intend to buy a laptop next month.", p: "আই ইনটেন্ড টু বাই আ ল্যাপটপ নেক্সট মান্থ।", m: "আগামী মাসে আমার একটা ল্যাপটপ কেনার ইচ্ছা আছে।" }
+                    ]},
+                    { id: 18, title: "Rule 18: S + dream of + Verb(-ing)", usage: "কোনো কিছু করার বড় স্বপ্ন দেখা।", ex: [
+                        { s: "I dream of starting my own business.", p: "আই ড্রিম অব স্টার্টিং মাই ওন বিজনেস।", m: "আমি নিজের ব্যবসা চালু করার স্বপ্ন দেখি।" }
+                    ]},
+                    { id: 19, title: "Rule 19: S + be + tired of + Verb(-ing)", usage: "কোনো কাজ বারবার করতে করতে ক্লান্ত হয়ে যাওয়া।", ex: [
+                        { s: "I am tired of listening to your excuses.", p: "আই অ্যাম টায়ারড অব লিসনিং টু ইউর এক্সকিউজেস।", m: "তোমার অজুহাত শুনতে শুনতে আমি ক্লান্ত।" }
+                    ]},
+                    { id: 20, title: "Rule 20: S + be + crazy about + Noun", usage: "কোনো কিছুর প্রতি অন্ধ ভালোবাসা থাকা।", ex: [
+                        { s: "He is crazy about playing video games.", p: "হি ইজ ক্রেজি অ্যাবাউট প্লেয়িং ভিডিও গেমস।", m: "ভিডিও গেম খেলার প্রতি সে পাগল।" }
+                    ]}
+                ]
+            },
+            {
+                id: 3,
+                title: "অধ্যায় ৩: প্রশ্ন করা ও উত্তর দেওয়ার কৌশল",
+                desc: "তথ্য জানতে সঠিক উপায়ে প্রশ্ন করা ও উত্তর প্রদানের নিয়ম।",
+                rules: [
+                    { id: 21, title: "Rule 21: What is the best way to...?", usage: "কোনো কাজ করার সবচেয়ে ভালো উপায় জানতে।", ex: [
+                        { s: "What is the best way to learn English?", p: "হোয়াট ইজ দ্য বেস্ট ওয়ে টু লার্ন ইংলিশ?", m: "ইংরেজি শেখার সেরা উপায় কোনটি?" }
+                    ]},
+                    { id: 22, title: "Rule 22: How long does it take to...?", usage: "কোনো কাজ শেষ হতে কত সময় লাগে জানতে।", ex: [
+                        { s: "How long does it take to cook this?", p: "হাউ লং ডাজ ইট টেক টু কুক দিস?", m: "এটি রান্না করতে কতক্ষণ সময় লাগে?" }
+                    ]},
+                    { id: 23, title: "Rule 23: Do you happen to know...?", usage: "বিনীতভাবে কারো কাছ থেকে কোনো তথ্য জানা আছে কি না জিজ্ঞেস করা।", ex: [
+                        { s: "Do you happen to know where he lives?", p: "ডু ইউ হ্যা পেন টু নো হয়ার হি লিভস?", m: "আপনি কি জানেন সে কোথায় থাকে?" }
+                    ]},
+                    { id: 24, title: "Rule 24: What brings you here?", usage: "হঠাৎ কাউকে কোথাও দেখে আসার কারণ জানতে।", ex: [
+                        { s: "Hey, what brings you here today?", p: "হেই, হোয়াট ব্রিংস ইউ হিয়ার টুডে?", m: "আজ কী মনে করে এখানে আসা?" }
+                    ]},
+                    { id: 25, title: "Rule 25: How come + Subject + Verb...?", usage: "কী কারণে একটা ঘটনা ঘটেছে তা অবাক হয়ে জিজ্ঞেস করতে।", ex: [
+                        { s: "How come you didn't attend the meeting?", p: "হাউ কাম ইউ ডিডন্ট অ্যাটেন্ড দ্য মিটিং?", m: "তুমি মিটিংয়ে যোগ দাওনি কেন?" }
+                    ]},
+                    { id: 26, title: "Rule 26: What if + Subject + Verb...?", usage: "কী হবে যদি...? ধরনের আশঙ্কা প্রকাশে।", ex: [
+                        { s: "What if it rains during concert?", p: "হোয়াট ইফ ইট রেইনস ডিউরিং কনসার্ট?", m: "কনসার্টের সময় যদি বৃষ্টি হয় তবে কী হবে?" }
+                    ]},
+                    { id: 27, title: "Rule 27: Is it possible to...?", usage: "কোনো কাজ করা সম্ভব কি না জানতে।", ex: [
+                        { s: "Is it possible to reschedule the meeting?", p: "ইজ ইট পসিবল টু রিশিডিউল দ্য মিটিং?", m: "মিটিংয়ের সময় পরিবর্তন করা কি সম্ভব?" }
+                    ]},
+                    { id: 28, title: "Rule 28: What is the point of...?", usage: "কোনো কাজ করার যৌক্তিকতা জানতে।", ex: [
+                        { s: "What is the point of arguing over small things?", p: "হোয়াট ইজ দ্য পয়েন্ট অব আরগুইং ওভার স্মল থিংস?", m: "ছোটখাটো বিষয় নিয়ে তর্ক করার লাভটা কী?" }
+                    ]},
+                    { id: 29, title: "Rule 29: Could you tell me where/how...?", usage: "অচেনা স্থান বা বিষয় জানতে বিনম্রভাবে প্রশ্ন করা।", ex: [
+                        { s: "Could you tell me where the bank is?", p: "কুড ইউ টেল মি হয়ার দ্য ব্যাংক ইজ?", m: "ব্যাংকটি কোথায় তা কি একটু বলবেন?" }
+                    ]},
+                    { id: 30, title: "Rule 30: What do you mean by...?", usage: "কারো কথার অর্থ স্পষ্ট না হলে তা জানতে।", ex: [
+                        { s: "What do you mean by that statement?", p: "হোয়াট ডু ইউ মিন বাই দ্যাট স্টেটমেন্ট?", m: "আপনার ওই কথার অর্থ কী?" }
+                    ]}
+                ]
+            },
+            {
+                id: 4,
+                title: "অধ্যায় ৪: বাধ্যবাধকতা, পরামর্শ ও অনুমতি",
+                desc: "পরামর্শ দেওয়া, উচিত প্রকাশ, বাধ্যবাধকতা এবং অনুমতি চাওয়ার নিয়ম।",
+                rules: [
+                    { id: 31, title: "Rule 31: S + be + supposed to + Verb", usage: "কোনো কাজ করার কথা আছে/ছিল।", ex: [{ s: "I am supposed to meet doctor at 5 PM.", p: "আই অ্যাম সাপোজড টু মিট ডক্টর অ্যাট ৫ পিএম।", m: "বিকাল ৫টায় ডাক্তারের সাথে দেখা করার কথা আমার।" }] },
+                    { id: 32, title: "Rule 32: S + had better + Verb", usage: "কোনো বিষয়ে জোরালো উপদেশ দেওয়া (বরং ভালো)।", ex: [{ s: "You had better consult a doctor.", p: "ইউ হ্যাড বেটার কনসাল্ট আ ডক্টর।", m: "তোমার বরং একজন ডাক্তার দেখানো ভালো।" }] },
+                    { id: 33, title: "Rule 33: Do you mind + Verb(-ing)?", usage: "কারো অসুবিধা হবে কি না বিনম্রভাবে জিজ্ঞেস করতে।", ex: [{ s: "Do you mind opening the door?", p: "ডু ইউ মাইন্ড ওপেনিং দ্য ডোর?", m: "দরজাটা খুলে দিলে আপনার কি আপত্তি হবে?" }] },
+                    { id: 34, title: "Rule 34: S + have no choice but to + Verb", usage: "অন্য কোনো উপায় না থাকায় বাধ্য হয়ে কাজ করা।", ex: [{ s: "I have no choice but to accept it.", p: "আই হ্যাভ নো চয়েস বাট টু অ্যাকসেপ্ট ইট।", m: "এটি মেনে নেওয়া ছাড়া উপায় নেই।" }] },
+                    { id: 35, title: "Rule 35: S + have to / must + Verb", usage: "অবশ্যই কোনো কাজ করতে হবে বোঝাতে।", ex: [{ s: "I have to finish this task.", p: "আই হ্যাভ টু ফিনিশ দিস টাস্ক।", m: "আমাকে এই কাজ শেষ করতে হবে।" }] },
+                    { id: 36, title: "Rule 36: S + should + Verb", usage: "সাধারণ কর্তব্য বা পরামর্শ বোঝাতে (উচিত)।", ex: [{ s: "You should take rest now.", p: "ইউ শুড টেক রেস্ট নাও।", m: "তোমার এখন বিশ্রাম নেওয়া উচিত।" }] },
+                    { id: 37, title: "Rule 37: S + should have + V3", usage: "অতীতে কোনো কাজ করা উচিত ছিল কিন্তু করা হয়নি।", ex: [{ s: "You should have informed me.", p: "ইউ শুড হ্যাভ ইনফর্মড মি।", m: "তোমার আমাকে জানানো উচিত ছিল।" }] },
+                    { id: 38, title: "Rule 38: May I + Verb...?", usage: "বিনম্র বা অফিশিয়াল অনুমতি চাওয়া।", ex: [{ s: "May I come in, sir?", p: "মে আই কাম ইন, স্যার?", m: "স্যার, আমি কি ভেতরে আসতে পারি?" }] },
+                    { id: 39, title: "Rule 39: S + don't need to + Verb", usage: "কোনো কাজ করার প্রয়োজন নেই বোঝাতে।", ex: [{ s: "You don't need to worry.", p: "ইউ ডোন্ট নিড টু ওয়ারি।", m: "তোমার চিন্তা করার প্রয়োজন নেই।" }] },
+                    { id: 40, title: "Rule 40: It is mandatory to...", usage: "আইন বা নিয়ম অনুযায়ী কোনো কিছু বাধ্যতামূলক প্রকাশে।", ex: [{ s: "It is mandatory to wear masks.", p: "ইট ইজ ম্যান্ডেটরি টু ওয়্যার মাস্কস।", m: "মাস্ক পরা বাধ্যতামূলক।" }] }
+                ]
+            },
+            {
+                id: 5,
+                title: "অধ্যায় ৫: সময় ও কালের ব্যবহার (Functional Tenses)",
+                desc: "দৈনন্দিন জীবনের কাজ ও কাল সঠিকভাবে প্রকাশের টিপস।",
+                rules: [
+                    { id: 41, title: "Rule 41: Present Simple Tense", usage: "চিরন্তন সত্য বা নিয়মিত অভ্যাস বলা।", ex: [{ s: "I wake up at 6 AM daily.", p: "আই ওয়েক আপ অ্যাট ৬ এএম ডেইলি।", m: "আমি প্রতিদিন ৬টায় উঠি।" }] },
+                    { id: 42, title: "Rule 42: Present Continuous Tense", usage: "বর্তমানে কোনো কাজ চলমান থাকলে।", ex: [{ s: "I am writing a report now.", p: "আই অ্যাম রাইটিং আ রিপোর্ট নাও।", m: "আমি এখন একটি রিপোর্ট লিখছি।" }] },
+                    { id: 43, title: "Rule 43: Present Perfect Tense", usage: "কাজ এইমাত্র শেষ হয়েছে কিন্তু ফল আছে।", ex: [{ s: "I have completed my work.", p: "আই হ্যাভ কমপ্লিটেড মাই ওয়ার্ক।", m: "আমি কাজ শেষ করেছি।" }] },
+                    { id: 44, title: "Rule 44: Present Perfect Continuous", usage: "অতীতের কাজ এখনো ধরে চলছে।", ex: [{ s: "I have been living here for 5 years.", p: "আই হ্যাভ বিন লিভিং হিয়ার ফর ৫ ইয়ারস।", m: "আমি ৫ বছর ধরে এখানে বাস করছি।" }] },
+                    { id: 45, title: "Rule 45: Past Simple Tense", usage: "অতীতে কোনো কাজ সম্পন্ন হয়েছিল।", ex: [{ s: "I bought a phone yesterday.", p: "আই বট আ ফোন ইয়েস্টারডে।", m: "গতকাল ফোন কিনেছিলাম।" }] },
+                    { id: 46, title: "Rule 46: Past Continuous Tense", usage: "অতীতের কোনো সময়ে কাজ চলছিল।", ex: [{ s: "I was sleeping when you called.", p: "আই ওয়াজ স্লিপিং হোয়েন ইউ কলড।", m: "তুমি যখন ফোন করেছিলে আমি ঘুমাচ্ছিলাম।" }] },
+                    { id: 47, title: "Rule 47: Past Perfect Tense", usage: "অতীতের দুটি কাজের পূর্বে যেটি হয়েছিল।", ex: [{ s: "The train had left before we came.", p: "দ্য ট্রেন হ্যাড লেফট বিফোর উই কেইম।", m: "আমাদের পৌঁছানোর আগেই ট্রেন ছেড়ে গিয়েছিল।" }] },
+                    { id: 48, title: "Rule 48: Future Simple Tense", usage: "ভবিষ্যতে কোনো কাজ করা হবে।", ex: [{ s: "I will help you tomorrow.", p: "আই উইল হেল্প ইউ টুমরো।", m: "কাল তোমাকে সাহায্য করব।" }] },
+                    { id: 49, title: "Rule 49: Future Continuous Tense", usage: "ভবিষ্যতে কোনো কাজ চলতে থাকবে।", ex: [{ s: "I will be traveling tomorrow.", p: "আই উইল বি ট্রাভেলিং টুমরো।", m: "আগামীকাল ভ্রমণ করতে থাকব।" }] },
+                    { id: 50, title: "Rule 50: Future Perfect Tense", usage: "ভবিষ্যতের নির্দিষ্ট সময়ে কাজ শেষ হয়ে থাকবে।", ex: [{ s: "I will have finished it by 8 PM.", p: "আই উইল হ্যাভ ফিনিশড ইট বাই ৮ পিএম।", m: "রাত ৮টার মধ্যে শেষ করে ফেলব।" }] }
+                ]
+            },
+            {
+                id: 6,
+                title: "অধ্যায় ৬: সিদ্ধান্ত, তুলনা ও পছন্দ",
+                desc: "বিকল্পের মধ্যে বেছে নেওয়া বা সিদ্ধান্ত নেওয়ার স্ট্রাকচার।",
+                rules: [
+                    { id: 51, title: "Rule 51: S + prefer + A + to + B", usage: "একটি বস্তুর চেয়ে অন্যটিকে বেশি পছন্দ করা।", ex: [{ s: "I prefer tea to coffee.", p: "আই প্রিফার টি টু কফি।", m: "কফির চেয়ে চা পছন্দ করি।" }] },
+                    { id: 52, title: "Rule 52: S + would rather + V + than + V", usage: "অন্য কাজের চেয়ে বরং একটি বেছে নেওয়া।", ex: [{ s: "I would rather stay home.", p: "আই উড রাদার স্টে হোম।", m: "আমি বরং ঘরে থাকব।" }] },
+                    { id: 53, title: "Rule 53: S + make up mind to + Verb", usage: "সুদৃঢ় কোনো সিদ্ধান্ত নেওয়া।", ex: [{ s: "I made up my mind to start business.", p: "আই মেইড আপ মাই মাইন্ড টু স্টার্ট বিজনেস।", m: "ব্যবসা করার সিদ্ধান্ত নিলাম।" }] },
+                    { id: 54, title: "Rule 54: S + have decided to + Verb", usage: "সাধারণ সিদ্ধান্ত গ্রহণ প্রকাশে।", ex: [{ s: "We have decided to buy a car.", p: "উই হ্যাভ ডিসাইডেড টু বাই আ কার।", m: "গাড়ি কেনার সিদ্ধান্ত নিয়েছি।" }] },
+                    { id: 55, title: "Rule 55: It is up to you", usage: "সিদ্ধান্তের দায়িত্ব অন্যের ওপর দেওয়া।", ex: [{ s: "It is up to you to decide.", p: "ইট ইজ আপ টু ইউ টু ডিসাইড।", m: "সিদ্ধান্ত তোমার ওপর।" }] },
+                    { id: 56, title: "Rule 56: S + be + torn between A and B", usage: "দুটি আকর্ষনীয় অপশনের মধ্যে দ্বিধায় পড়া।", ex: [{ s: "I am torn between two jobs.", p: "আই অ্যাম টর্ন বিটুইন টু জবস।", m: "দুটি চাকরি নিয়ে দ্বিধায় আছি।" }] },
+                    { id: 57, title: "Rule 57: On second thought...", usage: "পূর্বে গৃহীত সিদ্ধান্ত পরিবর্তন করতে।", ex: [{ s: "On second thought, let's order pizza.", p: "অন সেকেন্ড থট, লেটস অর্ডার পিৎজা।", m: "পুনরায় ভেবে পিৎজাই অর্ডার করি।" }] },
+                    { id: 58, title: "Rule 58: I would choose A over B", usage: "প্রফেশনাল আলোচনায় একটিকে প্রাধান্য দেওয়া।", ex: [{ s: "I choose quality over quantity.", p: "আই চুজ কোয়ালিটি ওভার কোয়ান্টিটি।", m: "পরিমাণের চেয়ে মান প্রাধান্য দিই।" }] },
+                    { id: 59, title: "Rule 59: S + settle on + Noun", usage: "দীর্ঘ আলোচনার পর চূড়ান্ত সিদ্ধান্ত হওয়া।", ex: [{ s: "We settled on the red car.", p: "উই সেটলড অন দ্য রেড কার।", m: "লাল গাড়িটি চূড়ান্ত করলাম।" }] },
+                    { id: 60, title: "Rule 60: I am inclined to think that...", usage: "নিজের ঝোঁক বিনীতভাবে প্রকাশে।", ex: [{ s: "I am inclined to believe him.", p: "আই অ্যাম ইনক্লাইন্ড টু বিলিভ হিম।", m: "তাকে বিশ্বাস করার ঝোঁক আসছে।" }] }
+                ]
+            },
+            {
+                id: 7,
+                title: "অধ্যায় ৭: রিয়েল-লাইফ পরিস্থিতির ডায়ালগ",
+                desc: "দোকান, রেস্তোরাঁ ও ভ্রমণের প্রয়োজনীয় সংলাপ।",
+                rules: [
+                    { id: 61, title: "Rule 61: How much is this?", usage: "জিনিসের দাম জিজ্ঞেস করতে।", ex: [{ s: "How much is this shirt?", p: "হাউ মাচ ইজ দিস শার্ট?", m: "এই শার্টের দাম কত?" }] },
+                    { id: 62, title: "Rule 62: Can I get a discount?", usage: "ছাড় পাওয়ার জন্য অনুরোধ।", ex: [{ s: "Can I get a discount on this?", p: "ক্যান আই গেট আ ডিসকাউন্ট অন দিস?", m: "কিছু ছাড় দেওয়া যাবে?" }] },
+                    { id: 63, title: "Rule 63: I would like to book a...", usage: "হোটেল বা টিকিট বুক করা।", ex: [{ s: "I would like to book a room.", p: "আই উড লাইক টু বুক আ রুম।", m: "রুম বুক করতে চাই।" }] },
+                    { id: 64, title: "Rule 64: Where is the nearest...?", usage: "অচেনা স্থানে জায়গা খোঁজ করতে।", ex: [{ s: "Where is the nearest ATM?", p: "হয়ার ইজ দ্য নিয়ারেস্ট এটিএম?", m: "কাছের এটিএম বুথ কোথায়?" }] },
+                    { id: 65, title: "Rule 65: Could you show me the way to...?", usage: "রাস্তা দেখানোর অনুরোধ করতে।", ex: [{ s: "Show me the way to hospital.", p: "শো মি দ্য ওয়ে টু হসপিটাল।", m: "হাসপাতালের রাস্তা দেখান।" }] },
+                    { id: 66, title: "Rule 66: Can I pay by credit card?", usage: "পেমেন্টের মাধ্যম নিশ্চিত হতে।", ex: [{ s: "Can I pay by card here?", p: "ক্যান আই পে বাই কার্ড হিয়ার?", m: "কার্ডে পেমেন্ট করা যাবে?" }] },
+                    { id: 67, title: "Rule 67: Can I try this on?", usage: "ড্রেস গায়ে দিয়ে ট্রায়াল দেখতে।", ex: [{ s: "Can I try this shirt on?", p: "ক্যান আই ট্রাই দিস শার্ট অন?", m: "শার্টটি ট্রায়াল দিতে পারি?" }] },
+                    { id: 68, title: "Rule 68: Report a problem with...", usage: "সার্ভিস নিয়ে অভিযোগ করতে।", ex: [{ s: "Report a problem with my AC.", p: "রিপোর্ট আ প্রবলেম উইথ মাই এসি।", m: "আমার রুমের এসি নিয়ে সমস্যা আছে।" }] },
+                    { id: 69, title: "Rule 69: What do you recommend?", usage: "সেরা খাবারের সাজেশন চাইতে।", ex: [{ s: "What do you recommend for dinner?", p: "হোয়াট ডু ইউ রেকমেন্ড ফর ডিনার?", m: "রাতের খাবারের সেরা আইটেম কী?" }] },
+                    { id: 70, title: "Rule 70: Bill, please!", usage: "খাবারের বিল চাইতে।", ex: [{ s: "Could we have the bill, please?", p: "কুড উই হ্যাভ দ্য বিল, প্লিজ?", m: "বিলটা নিয়ে আসুন!" }] }
+                ]
+            },
+            {
+                id: 8,
+                title: "অধ্যায় ৮: স্মার্ট স্পোকেন ফ্রেজ ও ইডিঅমস",
+                desc: "স্মার্ট ও নেটিভদের মতো শোনানোর স্পোকেন ইডিঅমস।",
+                rules: [
+                    { id: 71, title: "Rule 71: Piece of cake", usage: "পানির মতো সহজ কাজ প্রকাশ করতে।", ex: [{ s: "Learning English is a piece of cake.", p: "লার্নিং ইংলিশ ইজ আ পিস অব কেক।", m: "ইংরেজি শেখা একদম সহজ।" }] },
+                    { id: 72, title: "Rule 72: Once in a blue moon", usage: "কদাচিৎ ঘটা ঘটনা বোঝাতে।", ex: [{ s: "I visit village once in a blue moon.", p: "আই ভিজিট ভিলেজ ওয়ান্স ইন আ ব্লু মুন।", m: "খুব কমই গ্রামে যাই।" }] },
+                    { id: 73, title: "Rule 73: Call it a day", usage: "দিনের কাজ সমাপ্ত করা।", ex: [{ s: "Let's call it a day!", p: "লেটস কল ইট আ ডে!", m: "আজকের মতো শেষ করি!" }] },
+                    { id: 74, title: "Rule 74: Break the ice", usage: "প্রাথমিক নীরবতা বা জড়তা কাটা।", ex: [{ s: "He told a joke to break the ice.", p: "হি টোল্ড আ জোক টু ব্র্রেক দ্য আইস।", m: "জড়তা কাটাতে জোকস বলল।" }] },
+                    { id: 75, title: "Rule 75: Hit the nail on the head", usage: "একদম নিখুঁত পয়েন্টে কথা বলা।", ex: [{ s: "Your analysis hit the nail on the head.", p: "ইউর অ্যানালাইসিস হিট দ্য নেল অন দ্য হেড।", m: "পয়েন্ট পারফেক্ট ধরেছেন।" }] },
+                    { id: 76, title: "Rule 76: Out of the blue", usage: "হঠাৎ অপ্রত্যাশিতভাবে ঘটা।", ex: [{ s: "He called me out of the blue.", p: "হি কলড মি আউট অব দ্য ব্লু।", m: "হুট করে সে ফোন দিল।" }] },
+                    { id: 77, title: "Rule 77: In a nutshell", usage: "সংক্ষেপে বা এক কথায় বলা।", ex: [{ s: "In a nutshell, project was success.", p: "ইন আ নাটশেল, প্রজেক্ট ওয়াজ সাকসেস।", m: "সংক্ষেপে প্রজেক্ট সফল।" }] },
+                    { id: 78, title: "Rule 78: Under the weather", usage: "শরীর কিছুটা খারাপ লাগা।", ex: [{ s: "I am feeling under the weather.", p: "আই অ্যাম ফিলিং আন্ডার দ্য ওয়েদার।", m: "শরীর খারাপ লাগছে।" }] },
+                    { id: 79, title: "Rule 79: Burn the midnight oil", usage: "রাত জেগে পরিশ্রম করা।", ex: [{ s: "Students burn the midnight oil.", p: "স্টুডেন্টস বার্ন দ্য মিডনাইট অয়েল।", m: "ছাত্ররা রাত জেগে পড়ে।" }] },
+                    { id: 80, title: "Rule 80: Beat around the bush", usage: "কথা ঘুরিয়ে বানিয়ে বলা।", ex: [{ s: "Stop beating around the bush!", p: "স্টপ বিটিং আউন্ড দ্য বুশ!", m: "ভনিতা বন্ধ করো!" }] }
+                ]
+            },
+            {
+                id: 9,
+                title: "অধ্যায় ৯: প্রফেশনাল ও অফিস কমিউনিকেশন",
+                desc: "অফিস মিটিং, মেইল ও প্রফেশনাল কথোপকথন।",
+                rules: [
+                    { id: 81, title: "Rule 81: I am writing to inform/request...", usage: "অফিশিয়াল মেইল শুরু করার সেরা নিয়ম।", ex: [{ s: "I am writing to request a leave.", p: "আই অ্যাম রাইটিং টু রিকোয়েস্ট আ লিভ।", m: "ছুটির অনুরোধে লিখছি।" }] },
+                    { id: 82, title: "Rule 82: As per our discussion...", usage: "পূর্ববর্তী আলোচনার ধারাবাহিকতায় বলা।", ex: [{ s: "As per discussion, I sent invoice.", p: "অ্যাজ পার ডিসকাশন, আই সেন্ট ইনভয়েস।", m: "কথা মতো ইনভয়েস পাঠালাম।" }] },
+                    { id: 83, title: "Rule 83: Could you provide an update...?", usage: "কাজের অগ্রগতি বা আপডেট চাইতে।", ex: [{ s: "Provide an update on report.", p: "প্রোভাইড অ্যান আপডেট অন রিপোর্ট।", m: "রিপোর্টের আপডেট দিন।" }] },
+                    { id: 84, title: "Rule 84: I would appreciate it if...", usage: "বিনম্রভাবে অফিশিয়াল অনুরোধ করতে।", ex: [{ s: "I appreciate if you send report.", p: "আই অ্যাপ্রিশিয়েট ইফ ইউ সেন্ড রিপোর্ট।", m: "রিপোর্ট পাঠালে ভালো হয়।" }] },
+                    { id: 85, title: "Rule 85: Please find the attached file...", usage: "মেইলে ফাইল জুড়ে দেখার অনুরোধ করা।", ex: [{ s: "Find attached file for reference.", p: "ফাইন্ড অ্যাটাচড ফাইল ফর রেফারেন্স।", m: "সংযুক্ত ফাইলটি দেখুন।" }] },
+                    { id: 86, title: "Rule 86: I regret to inform you that...", usage: "খারাপ খবর বিনম্রভাবে জানাতে।", ex: [{ s: "I regret to inform that event canceled.", p: "আই রিগ্রেট টু ইনফর্ম দ্যাট ইভেন্ট ক্যান্সেলড।", m: "দুঃখে জানাচ্ছি অনুষ্ঠান বাতিল।" }] },
+                    { id: 87, title: "Rule 87: Thank you for your cooperation", usage: "কাজের পর আন্তরিক ধন্যবাদ জানাতে।", ex: [{ s: "Thank you for your cooperation.", p: "থ্যাঙ্ক ইউ ফর ইউর কোঅপারেশন।", m: "সহযোগিতার জন্য ধন্যবাদ।" }] },
+                    { id: 88, title: "Rule 88: Looking forward to hearing from you", usage: "মেইলের শেষ লাইনে উত্তরের অপেক্ষায় থাকা।", ex: [{ s: "Looking forward to hearing from you.", p: "লুকিং ফরোয়ার্ড টু হিয়ারিং ফ্রম ইউ।", m: "উত্তরের অপেক্ষায় রইলাম।" }] },
+                    { id: 89, title: "Rule 89: Sorry for the inconvenience", usage: "অসুবিধার জন্য ক্ষমাপ্রার্থনা করা।", ex: [{ s: "Sorry for inconvenience caused.", p: "সরি ফর ইনকনভিনিয়েন্স কজড।", m: "সাময়িক অসুবিধার জন্য দুঃখিত।" }] },
+                    { id: 90, title: "Rule 90: Let's wrap up this meeting", usage: "মিটিং সমাপ্তির ঘোষণা দেওয়া।", ex: [{ s: "Let's wrap up the meeting now.", p: "লেটস র‍্যাপ আপ দ্য মিটিং নাও।", m: "মিটিংয়ের ইতি টানা যাক।" }] }
+                ]
+            },
+            {
+                id: 10,
+                title: "অধ্যায় ১০: কানেক্টরস ও ৫০টি অ্যাডভান্সড ফ্রেজ (৯১-১৫০)",
+                desc: "ফ্লুয়েন্সি ধরে রাখা এবং বাকী সমস্ত অ্যাডভান্সড স্পোকেন স্ট্রাকচার।",
+                rules: [
+                    { id: 91, title: "Rule 91: As far as I know...", usage: "আমার জানামতে বা জানা অনুযায়ী।", ex: [{ s: "As far as I know, he is honest.", p: "অ্যাজ ফার অ্যাজ আই নো, হি ইজ অনেস্ট।", m: "আমার জানামতে সে সৎ।" }] },
+                    { id: 92, title: "Rule 92: In my opinion...", usage: "নিজের মতামত ব্যক্ত করার মূল ফ্রেজ।", ex: [{ s: "In my opinion, decision is right.", p: "ইন মাই অপিনিয়ন, ডিসিশন ইজ রাইট।", m: "আমার মতে সিদ্ধান্তটি সঠিক।" }] },
+                    { id: 93, title: "Rule 93: To be honest / Frankly speaking", usage: "সত্যি বা খোলাখুলিভাবে বলতে গেলে।", ex: [{ s: "To be honest, I didn't like it.", p: "টু বি অনেস্ট, আই ডিডন্ট লাইক ইট।", m: "সত্যি বলতে পছন্দ হয়নি।" }] },
+                    { id: 94, title: "Rule 94: Actually / As a matter of fact", usage: "প্রকৃতপক্ষে বা সত্য প্রকাশে।", ex: [{ s: "Actually, I forgot wallet at home.", p: "অ্যাকচুয়ালি, আই ফরগট ওয়ালেট অ্যাট হোম।", m: "আসলে মানিব্যাগ ভুলে এসেছি।" }] },
+                    { id: 95, title: "Rule 95: On the other hand...", usage: "অন্যপক্ষে বা বিপরীত দিক থেকে।", ex: [{ s: "On the other hand, it is expensive.", p: "অন দ্য আদার হ্যান্ড, ইট ইজ এক্সপেনসিভ।", m: "অন্যদিকে এটি দামি।" }] },
+                    { id: 96, title: "Rule 96: By the way...", usage: "ভালো কথা বা প্রসঙ্গে মনে পড়ার ফ্রেজ।", ex: [{ s: "By the way, what are you doing?", p: "বাই দ্য ওয়ে, হোয়াট আর ইউ ডুইং?", m: "ভালো কথা, তুমি কী করছ?" }] },
+                    { id: 97, title: "Rule 97: Anyway / At any rate", usage: "যা-ই হোক না কেন প্রকাশে।", ex: [{ s: "Anyway, I have to go now.", p: "এনিওয়ে, আই হ্যাভ টু গো নাও।", m: "যা-ই হোক, আমাকে যেতে হবে।" }] },
+                    { id: 98, title: "Rule 98: That makes sense", usage: "কথা যুক্তিযুক্ত মনে হওয়া।", ex: [{ s: "Ah, now I get it! That makes sense.", p: "আহ্, নাউ আই গেট ইট! দ্যাট মেকস সেন্স।", m: "কথাটা যৌক্তিক শোনায়।" }] },
+                    { id: 99, title: "Rule 99: You know what I mean?", usage: "কথা বুঝতে পেরেছ কি না নিশ্চিত হতে।", ex: [{ s: "It is risky, you know what I mean?", p: "ইট ইজ রিস্কি, ইউ নো হোয়াট আই মিন?", m: "বুঝতে পেরেছ তো?" }] },
+                    { id: 100, title: "Rule 100: At the end of the day...", usage: "দিনশেষে বা চূড়ান্ত বিচারে।", ex: [{ s: "At the end of the day, family matters.", p: "অ্যাট দ্য এন্ড অব দ্য ডে, ফ্যামিলি ম্যাটারস।", m: "দিনশেষে পরিবারই আসল।" }] },
+                    { id: 101, title: "Rules 101-150: Advanced Patterns (Avoid, Deny, Admit, Succeed, Prevent, Guilty, Proud, Afraid, Curious, Jealous, No matter what, Provided that, Despite, On behalf of...)", usage: "বাকী অতিপ্রয়োজনীয় ৫০টি অ্যাডভান্সড রুলসের একত্রে তালিকা।", ex: [
+                        { s: "Avoid eating junk food. (Rule 102)", p: "এভয়েড ইটিং জাংক ফুড।", m: "জাংক ফুড খাওয়া এড়িয়ে চলো।" },
+                        { s: "She succeeded in passing exam. (Rule 106)", p: "শি সাকসিডেড ইন পাসিং এক্সাম।", m: "সে পরীক্ষায় পাস করতে সফল হলো।" },
+                        { s: "No matter what happens, I stay. (Rule 141)", p: "নো ম্যাটার হোয়াট হ্যাপেনস, আই স্টে।", m: "যাই ঘটুক না কেন আমি থাকব।" },
+                        { s: "Speaking on behalf of my father. (Rule 150)", p: "স্পিকিং অন বিহাফ অব মাই ফাদার।", m: "বাবার পক্ষ থেকে আমি বলছি।" }
+                    ]}
+                ]
+            }
+        ];
+
+        let currentChapterIndex = 0;
+
+        // Initialize Navigation Menu
+        function initNav() {
+            const nav = document.getElementById('chapterNav');
+            nav.innerHTML = '';
+            chaptersData.forEach((ch, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `nav-btn ${idx === 0 ? 'active' : ''}`;
+                btn.innerText = `অধ্যায় ${ch.id}`;
+                btn.onclick = () => loadChapter(idx);
+                nav.appendChild(btn);
+            });
+        }
+
+        // Load Selected Chapter
+        function loadChapter(index) {
+            currentChapterIndex = index;
+            const ch = chaptersData[index];
+
+            // Update Nav Buttons
+            document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            // Set Hero Section
+            document.getElementById('chapterHero').innerHTML = `
+                <h1>${ch.title}</h1>
+                <p>${ch.desc}</p>
+            `;
+
+            // Render Rules Cards
+            const container = document.getElementById('rulesContainer');
+            container.innerHTML = '';
+
+            ch.rules.forEach(rule => {
+                let exHtml = rule.ex.map(e => `
+                    <div class="example-item">
+                        <div class="ex-sentence">${e.s}</div>
+                        <div class="ex-pronunciation">উচ্চারণ: "${e.p}"</div>
+                        <div class="ex-meaning">💡 অর্থ: ${e.m}</div>
+                    </div>
+                `).join('');
+
+                const card = document.createElement('div');
+                card.className = 'rule-card';
+                card.onclick = function() {
+                    const detailsBox = this.querySelector('.details-box');
+                    detailsBox.classList.toggle('show');
+                };
+
+                card.innerHTML = `
+                    <span class="card-hint"><i class="fa-solid fa-eye"></i> ক্লিক করে উত্তর দেখুন</span>
+                    <div class="rule-title">${rule.title}</div>
+                    <div class="rule-usage"><strong>ব্যবহার:</strong> ${rule.usage}</div>
+                    <div class="details-box">
+                        <div class="example-list">${exHtml}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Pagination Controls
+            document.getElementById('prevBtn').style.visibility = index === 0 ? 'hidden' : 'visible';
+            document.getElementById('nextBtn').style.visibility = index === chaptersData.length - 1 ? 'hidden' : 'visible';
+            document.getElementById('pageIndicator').innerText = `অধ্যায় ${index + 1} / ${chaptersData.length}`;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function prevChapter() {
+            if (currentChapterIndex > 0) loadChapter(currentChapterIndex - 1);
+        }
+
+        function nextChapter() {
+            if (currentChapterIndex < chaptersData.length - 1) loadChapter(currentChapterIndex + 1);
+        }
+
+        // Search Filter Across Rules
+        function searchRules() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.rule-card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        // Run On Start
+        initNav();
+        loadChapter(0);
+    </script>
+</body>
+</html>

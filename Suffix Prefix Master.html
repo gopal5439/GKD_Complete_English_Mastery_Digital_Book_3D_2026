@@ -1,0 +1,734 @@
+<div id="master-ebook-practice-root">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+        #master-ebook-practice-root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #10b981;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 30px 15px;
+            box-sizing: border-box;
+        }
+
+        .ebook-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: floatUp 0.6s ease-out;
+        }
+
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ebook-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .ebook-header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .ebook-header p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .book-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            backdrop-filter: blur(5px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 2px solid var(--border-color);
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 130px;
+            padding: 16px 12px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            outline: none;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .nav-tab.active {
+            color: var(--primary);
+            background: #ffffff;
+        }
+
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px 3px 0 0;
+        }
+
+        .chapter-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .chapter-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chapter-title {
+            font-size: 24px;
+            color: var(--primary);
+            border-bottom: 3px solid #e0e7ff;
+            padding-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .section-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .section-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05);
+        }
+
+        .section-box h3 {
+            margin-top: 0;
+            color: var(--primary-hover);
+            font-size: 18px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 10px;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .custom-table th {
+            background: #e0e7ff;
+            color: #3730a3;
+            font-weight: 700;
+        }
+
+        .custom-table tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        ul.rule-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        ul.rule-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .badge-rule {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .formula-box {
+            background: #f0fdf4;
+            border-left: 4px solid var(--accent);
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: 600;
+            color: #166534;
+        }
+
+        /* Quiz Specific Styling */
+        .question-card {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: #fdfdfe;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border-color: #cbd5e1;
+        }
+
+        .q-text {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .q-input {
+            padding: 6px 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 140px;
+            margin-right: 8px;
+        }
+
+        .q-input:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn:hover { background-color: var(--primary-hover); }
+        .btn:active { transform: scale(0.98); }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            margin-left: 4px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .explanation-box {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            border-radius: 4px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .result-msg {
+            font-weight: bold;
+            margin-left: 8px;
+            font-size: 13px;
+        }
+
+        .correct { color: var(--success); }
+        .incorrect { color: var(--error); }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .btn-page {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-page:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+        @media (max-width: 768px) {
+            .chapter-content { padding: 20px; }
+            .ebook-header { padding: 30px 15px; }
+        }
+    </style>
+
+    <div class="ebook-container">
+        <!-- Header -->
+        <div class="ebook-header">
+            <span class="book-badge">Ultimate Master & Practice Book</span>
+            <h1>Suffix & Prefix কমপ্লিট মাস্টার গাইড</h1>
+            <p>একাডেমিক পরীক্ষা (SSC & HSC) ও প্রতিযোগিতামূলক প্রস্তুতি: সমস্ত রুলস, প্রিফিক্স, সাফিক্স ও ১০০টি টেস্ট প্র্যাকটিস</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+
+
+<!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:rgba(255,255,255,0.95);
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='../lesson_link.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 সূচিপত্র
+    </button>
+
+</div>
+
+
+
+            <button class="nav-tab active" onclick="switchTab(1)">অধ্যায় ১: Basic</button>
+            <button class="nav-tab" onclick="switchTab(2)">অধ্যায় ২: Prefix/ উপসর্গ</button>
+            <button class="nav-tab" onclick="switchTab(3)">অধ্যায় ৩: Suffix/ প্রত্যয়</button>
+            <button class="nav-tab" onclick="switchTab(4)">অধ্যায় ৪: Position/ অবস্থান</button>
+            <button class="nav-tab" onclick="switchTab(5)">অধ্যায় ৫: বানান</button>
+            <button class="nav-tab" onclick="switchTab(6)" style="color: var(--secondary); font-weight:700;">প্র্যাকটিস (১-১০০)</button>
+        </div>
+
+        <!-- CHAPTER 1 -->
+        <div id="tab-1" class="chapter-content active">
+            <h2 class="chapter-title">📖 অধ্যায় ১: মূল ধারণা ও শব্দ গঠন (Basic Concepts)</h2>
+            <div class="section-box">
+                <h3>১. Root / Base Word (মূল শব্দ)</h3>
+                <p>যে মূল শব্দটিকে আর কোনো ক্ষুদ্র অংশে ভাঙা যায় না এবং যার একটি সম্পূর্ণ স্বাধীন অর্থ থাকে, তাকে Root Word বা Base Word বলে[cite: 2]।</p>
+                <div class="formula-box">উদাহরণ: Happy, Read, Act, Friend ইত্যাদি[cite: 2]।</div>
+            </div>
+            <div class="section-box">
+                <h3>২. Affix (শব্দাংশ)</h3>
+                <p>যেসব বর্ণ বা বর্ণ সমষ্টি মূল শব্দের পূর্বে বা পরে যুক্ত হয়ে নতুন শব্দ ও পার্টস অফ স্পিচ তৈরি করে, তাদের Affix বলে[cite: 2]। Affix প্রধানত দুই প্রকার:</p>
+                <ul class="rule-list">
+                    <li><span class="badge-rule">Prefix (উপসর্গ):</span> মূল শব্দের পূর্বে বসে নতুন শব্দ তৈরি করে। (যেমন: Un + happy = Unhappy)[cite: 2]</li>
+                    <li><span class="badge-rule">Suffix (প্রত্যয়):</span> মূল শব্দের শেষে বসে নতুন শব্দ গঠন করে। (যেমন: Kind + ness = Kindness)[cite: 2]</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CHAPTER 2 -->
+        <div id="tab-2" class="chapter-content">
+            <h2 class="chapter-title">📖 অধ্যায় ২: সমস্ত Prefix (উপসর্গ)-এর বিস্তারিত তালিকা ও নিয়ম</h2>
+            <div class="section-box">
+                <h3>বিপরীতার্থক, অবস্থান ও রূপান্তরকারী সকল Prefix</h3>
+                <table class="custom-table">
+                    <thead>
+                        <tr><th>Prefix</th><th>ব্যবহারের নিয়ম</th><th>উদাহরণ (Base &rarr; New)</th><th>বাংলা অর্থ</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Un-</strong></td><td>সাধারণ বিপরীত বা অভাব অর্থে</td><td>Happy &rarr; Unhappy, Wise &rarr; Unwise</td><td>অসুখী, নির্বোধ</td></tr>
+                        <tr><td><strong>Dis-</strong></td><td>অনাস্থা, বিপরীত বা দূরীকরণ অর্থে</td><td>Honest &rarr; Dishonest, Agree &rarr; Disagree</td><td>অসৎ, অমত করা</td></tr>
+                        <tr><td><strong>Im-</strong></td><td>সাধারণত P, M, B দিয়ে শুরু শব্দের পূর্বে</td><td>Possible &rarr; Impossible, Mortal &rarr; Immortal</td><td>অসম্ভব, অমর</td></tr>
+                        <tr><td><strong>In-</strong></td><td>সাধারণ বিপরীত অর্থে</td><td>Complete &rarr; Incomplete, Correct &rarr; Incorrect</td><td>অসম্পূর্ণ, ভুল</td></tr>
+                        <tr><td><strong>Il-</strong></td><td>'L' দিয়ে শুরু শব্দের পূর্বে</td><td>Legal &rarr; Illegal, Logical &rarr; Illogical</td><td>বেআইনি, অবৈক্তিক</td></tr>
+                        <tr><td><strong>Ir-</strong></td><td>'R' দিয়ে শুরু শব্দের পূর্বে</td><td>Regular &rarr; Irregular, Responsible &rarr; Irresponsible</td><td>অনিয়মিত, দায়িত্বজ্ঞানহীন</td></tr>
+                        <tr><td><strong>Mis-</strong></td><td>ভুল বা মন্দ অর্থে</td><td>Use &rarr; Misuse, Conduct &rarr; Misconduct</td><td>অপব্যবহার, অসদাচরণ</td></tr>
+                        <tr><td><strong>Anti-</strong></td><td>বিরোধী বা প্রতিকূল অর্থে</td><td>Social &rarr; Antisocial, Virus &rarr; Antivirus</td><td>সামাজিকতাবিরোধী, ভাইরাসনাশক</td></tr>
+                        <tr><td><strong>Co-</strong></td><td>সহযোগী বা একসাথে কাজ করা অর্থে</td><td>Operation &rarr; Cooperation, Worker &rarr; Coworker</td><td>সহযোগিতা, সহকর্মী</td></tr>
+                        <tr><td><strong>Inter-</strong></td><td>পারস্পরিক বা মধ্যে অর্থে</td><td>National &rarr; International, Net &rarr; Internet</td><td>আন্তর্জাতিক, ইন্টারনেট</td></tr>
+                        <tr><td><strong>Sub-</strong></td><td>অধীন বা নিচে অর্থে</td><td>Marine &rarr; Submarine, Way &rarr; Subway</td><td>পানিতে ডুবোজাহাজ, পাতালপথ</td></tr>
+                        <tr><td><strong>Super-</strong></td><td>অতি বা উন্নত অর্থে</td><td>Natural &rarr; Supernatural, Power &rarr; Superpower</td><td>অলৌকিক, মহাশক্তি</td></tr>
+                        <tr><td><strong>Trans-</strong></td><td>এক স্থান থেকে অন্য স্থানে রূপান্তর</td><td>National &rarr; Transnational, Port &rarr; Transport</td><td>বহুজাতিক, পরিবহন</td></tr>
+                        <tr><td><strong>Over-</strong></td><td>অতিরিক্ত বা মাত্রাতিরিক্ত অর্থে</td><td>Load &rarr; Overload, Eat &rarr; Overeat</td><td>অতিরিক্ত বোঝা, বেশি খাওয়া</td></tr>
+                        <tr><td><strong>Under-</strong></td><td>কম বা নিচে অর্থে</td><td>Estimate &rarr; Underestimate, Value &rarr; Undervalue</td><td>কম মূল্যায়ন করা</td></tr>
+                        <tr><td><strong>Re-</strong></td><td>পুনরায় বা আবার করা অর্থে</td><td>Write &rarr; Rewrite, Build &rarr; Rebuild</td><td>পুনরায় লেখা, পুনর্নির্মাণ</td></tr>
+                        <tr><td><strong>Pre-</strong></td><td>পূর্ববর্তী বা আগে অর্থে</td><td>Paid &rarr; Prepaid, Caution &rarr; Precaution</td><td>পূর্ব পরিশোধিত, সতর্কতা</td></tr>
+                        <tr><td><strong>Post-</strong></td><td>পরবর্তী অর্থে</td><td>War &rarr; Postwar, Graduate &rarr; Postgraduate</td><td>যুদ্ধোত্তর, স্নাতকোত্তর</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CHAPTER 3 -->
+        <div id="tab-3" class="chapter-content">
+            <h2 class="chapter-title">📖 অধ্যায় ৩: সমস্ত Suffix (প্রত্যয়)-এর মাস্টার তালিকা</h2>
+            <div class="section-box">
+                <h3>Noun, Adjective, Verb ও Adverb গঠনের সুনির্দিষ্ট Suffix সমূহ</h3>
+                
+                <h4 style="color:var(--primary); margin-top:15px;">১. Noun গঠনকারী Suffix সমূহ:</h4>
+                <table class="custom-table">
+                    <thead><tr><th>Suffix</th><th>নিয়ম ও কাজ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>-tion / -sion</strong></td><td>verb থেকে noun গঠন</td><td>Educate &rarr; Education, Decide &rarr; Decision</td><td>শিক্ষা, সিদ্ধান্ত</td></tr>
+                        <tr><td><strong>-ment</strong></td><td>অবস্থা বা প্রক্রিয়া প্রকাশ</td><td>Develop &rarr; Development, Move &rarr; Movement</td><td>উন্নয়ন, আন্দোলন</td></tr>
+                        <tr><td><strong>-ness</strong></td><td>গুণ বা বৈশিষ্ট্য প্রকাশ</td><td>Kind &rarr; Kindness, Dark &rarr; Darkness</td><td>দয়া, অন্ধকার</td></tr>
+                        <tr><td><strong>-ity / -ty</strong></td><td>অবস্থা বা গুণ প্রকাশ</td><td>Pure &rarr; Purity, Active &rarr; Activity</td><td>বিশুদ্ধতা, কর্মতৎপরতা</td></tr>
+                        <tr><td><strong>-er / -or</strong></td><td>ব্যক্তি বা যন্ত্রবাচক noun</td><td>Teach &rarr; Teacher, Create &rarr; Creator</td><td>শিক্ষক, সৃষ্টিকর্তা</td></tr>
+                        <tr><td><strong>-ance / -ence</strong></td><td>অবস্থা বা ভাব প্রকাশ</td><td>Important &rarr; Importance, Differ &rarr; Difference</td><td>গুরুত্ব, পার্থক্য</td></tr>
+                        <tr><td><strong>-dom</strong></td><td>क्षेत्र বা অবস্থা প্রকাশ</td><td>Free &rarr; Freedom, Wise &rarr; Wisdom</td><td>স্বাধীনতা, প্রজ্ঞা</td></tr>
+                        <tr><td><strong>-ship</strong></td><td>সম্পর্ক বা পদবী প্রকাশ</td><td>Friend &rarr; Friendship, Member &rarr; Membership</td><td>বন্ধুত্ব, সদস্যপদ</td></tr>
+                        <tr><td><strong>-hood</strong></td><td>পর্যায় বা দশা প্রকাশ</td><td>Child &rarr; Childhood, Neighbor &rarr; Neighborhood</td><td>শৈশব, প্রতিবেশী এলাকা</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 style="color:var(--primary); margin-top:25px;">২. Adjective গঠনকারী Suffix সমূহ:</h4>
+                <table class="custom-table">
+                    <thead><tr><th>Suffix</th><th>নিয়ম ও কাজ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>-ful</strong></td><td>পূর্ণ বা যুক্ত অর্থে</td><td>Beauty &rarr; Beautiful, Use &rarr; Useful</td><td>সুন্দর, দরকারী</td></tr>
+                        <tr><td><strong>-less</strong></td><td>হীন বা অভাব অর্থে</td><td>Hope &rarr; Hopeless, Care &rarr; Careless</td><td>আশাভঙ্গ, অসতর্ক</td></tr>
+                        <tr><td><strong>-al</strong></td><td>সম্পর্কিত বা পাক্ষিক অর্থে</td><td>Nation &rarr; National, Nature &rarr; Natural</td><td>জাতীয়, প্রাকৃতিক</td></tr>
+                        <tr><td><strong>-able / -ible</strong></td><td>যোগ্য বা সক্ষম অর্থে</td><td>Read &rarr; Readable, Access &rarr; Accessible</td><td>পাঠযোগ্য, প্রবেশগম্য</td></tr>
+                        <tr><td><strong>-ive</strong></td><td>প্রবণতা অর্থে</td><td>Act &rarr; Active, Create &rarr; Creative</td><td>সক্রিয়, সৃজনশীল</td></tr>
+                        <tr><td><strong>-ous / -ious</strong></td><td>গুণসম্পন্ন অর্থে</td><td>Danger &rarr; Dangerous, Industry &rarr; Industrious</td><td>বিপদজনক, পরিশ্রমী</td></tr>
+                        <tr><td><strong>-y</strong></td><td>যুক্ত বা ভাবাপন্ন অর্থে</td><td>Health &rarr; Healthy, Salt &rarr; Salty</td><td>স্বাস্থ্যকর, লোনাবিযুক্ত</td></tr>
+                        <tr><td><strong>-ic / -ical</strong></td><td>বৈশিষ্ট্যসূচক অর্থে</td><td>Science &rarr; Scientific, History &rarr; Historical</td><td>বৈজ্ঞানিক, ঐতিহাসিক</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 style="color:var(--primary); margin-top:25px;">৩. Verb ও Adverb গঠনকারী Suffix সমূহ:</h4>
+                <table class="custom-table">
+                    <thead><tr><th>Suffix</th><th>নিয়ম ও কাজ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>-en</strong></td><td>Verb তৈরিতে (কোনো কিছু করা)</td><td>Wide &rarr; Widen, Short &rarr; Shorten</td><td>প্রশস্ত করা, ছোট করা</td></tr>
+                        <tr><td><strong>-fy</strong></td><td>Verb তৈরিতে (রূপ দেওয়া)</td><td>Beauty &rarr; Beautify, Pure &rarr; Purify</td><td>সুন্দর করা, বিশুদ্ধ করা</td></tr>
+                        <tr><td><strong>-ize / -ise</strong></td><td>Verb তৈরিতে (আধুনিক বা রূপান্তর)</td><td>Modern &rarr; Modernize, Real &rarr; Realize</td><td>আধুনিকায়ন করা, অনুধাবন করা</td></tr>
+                        <tr><td><strong>-ly</strong></td><td>Adjective থেকে Adverb তৈরিতে</td><td>Slow &rarr; Slowly, Quick &rarr; Quickly</td><td>ধীরে ধীরে, দ্রুত</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CHAPTER 4 -->
+        <div id="tab-4" class="chapter-content">
+            <h2 class="chapter-title">📖 অধ্যায় ৪: বাক্যে Parts of Speech চেনার অবস্থানগত নিয়ম (Position Rules)</h2>
+            <div class="section-box">
+                <h3>সঠিক শব্দ বসানোর সুনির্দিষ্ট কৌশল</h3>
+                <ul class="rule-list">
+                    <li><strong>Noun এর অবস্থান:</strong> Sentences এর Subject বা Object এর স্থানে, Preposition-এর পরে, এবং Determiner (a, an, the, this, my, some) এর ঠিক পরে Noun বসে[cite: 2]। <br><em>যেমন: I need your <span style="color:var(--primary); font-weight:bold;">cooperation</span>.</em></li>
+                    <li><strong>Adjective এর অবস্থান:</strong> Noun এর ঠিক পূর্বে Adjective বসে অথবা Linking Verb (am, is, are, was, were, look, feel, seem, become) এর পরে Adjective বসে[cite: 2]। <br><em>যেমন: She is an <span style="color:var(--primary); font-weight:bold;">intelligent</span> girl.</em></li>
+                    <li><strong>Verb এর অবস্থান:</strong> Subject এর ঠিক পরে মূল Verb বসে কিংবা Modal Auxiliary (can, could, shall, should, will, would, must) এর পর Verb এর Base form বসে[cite: 2]। <br><em>যেমন: We should <span style="color:var(--primary); font-weight:bold;">obey</span> our parents.</em></li>
+                    <li><strong>Adverb এর অবস্থান:</strong> Adverb সাধারণত Verb, Adjective বা অন্য কোনো Adverb কে modify করে। অনেক সময় বাক্যের শুরুতে কমার পূর্বে বসে পুরো বাক্যকে modify করে[cite: 2]। <br><em>যেমন: <span style="color:var(--primary); font-weight:bold;">Fortunately</span>, he survived the crash.</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CHAPTER 5 -->
+        <div id="tab-5" class="chapter-content">
+            <h2 class="chapter-title">📖 অধ্যায় ৫: বানンの গুরুত্বপূর্ণ পরিবর্তন ও নিয়ম (Spelling Rules)</h2>
+            <div class="section-box">
+                <h3>Suffix যুক্ত করার সময় বানান পরিবর্তনের ৩টি প্রধান নিয়ম</h3>
+                <ul class="rule-list">
+                    <li><strong>Rule 1 (y পরিবর্তন):</strong> Base word-এর শেষে যদি 'y' থাকে এবং তার আগে Consonant থাকে, তবে Suffix যোগ করার সময় 'y' উঠে গিয়ে 'i' হয় (তবে -ing যোগ করার সময় y ওঠে না)[cite: 2]। <br><em>উদাহরণ: Happy + ness = Happiness | Cry + ed = Cried (কিন্তু Cry + ing = Crying)।</em></li>
+                    <li><strong>Rule 2 (Silent 'e' লোপ):</strong> কোনো শব্দের শেষে নীরব বা Silent 'e' থাকলে এবং তার পরে Vowel দিয়ে শুরু হওয়া কোনো Suffix (-ed, -ing, -able, -er) যুক্ত হলে সেই 'e' সাধারণত বাদ যায়[cite: 2]। <br><em>উদাহরণ: Write + er = Writer | Care + ful = Careful (এখানে Consonant দিয়ে শুরু হওয়ায় e অপরিবর্তিত থাকে)।</em></li>
+                    <li><strong>Rule 3 (Consonant Double):</strong> Monosyllabic (এক সিলেবল বিশিষ্ট) শব্দে যদি শেষে একটি মাত্র Vowel এবং তার পরে একটি মাত্র Consonant থাকে, তবে Suffix যোগ করলে শেষের Consonant টি দ্বিত্ব (Double) হয়[cite: 2]। <br><em>উদাহরণ: Run + er = Runner | Big + est = Biggest।</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CHAPTER 6: 100 PRACTICE ITEMS -->
+        <div id="tab-6" class="chapter-content">
+            <h2 class="chapter-title">✍️ Suffix & Prefix চূড়ান্ত প্র্যাকটিস সেট (১ - ১০০)</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">প্রতি পেজে ১০টি করে প্রশ্ন দেওয়া হয়েছে। শূন্যস্থানে সঠিক রূপ লিখে সাবমিট করুন বা ব্যাখ্যা দেখুন[cite: 2]।</p>
+            
+            <div id="quiz-container">
+                <!-- Dynamic Quiz items loaded via JS -->
+            </div>
+
+            <div class="pagination">
+                <button class="btn-page" id="prev-btn" onclick="changeQuizPage(-1)">পূর্ববর্তী পেজ</button>
+                <span id="quiz-page-info" style="font-weight: 600;">পেজ ১ / ১০</span>
+                <button class="btn-page" id="next-btn" onclick="changeQuizPage(1)">পরবর্তী পেজ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switcher for E-Book
+        function switchTab(tabNum) {
+            for (let i = 1; i <= 6; i++) {
+                const content = document.getElementById(`tab-${i}`);
+                if (content) content.classList.remove('active');
+            }
+            const activeContent = document.getElementById(`tab-${tabNum}`);
+            if (activeContent) activeContent.classList.add('active');
+
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach((tab, index) => {
+                if (index + 1 === tabNum) tab.classList.add('active');
+                else tab.classList.remove('active');
+            });
+
+            document.querySelector('.ebook-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // 100 Practice Questions Dataset
+        const questions = [
+            { q: "Government takes steps for the [educate] — of all.", ans: "education", meaning: "শিক্ষা", exp: "Preposition ‘for’ এর পর Noun বসে[cite: 2]." },
+            { q: "Tolerance is a great [kind] —.", ans: "kindness", meaning: "দয়া", exp: "Article ও Adjective এর পর Noun বসে[cite: 2]." },
+            { q: "[Know] — is power.", ans: "knowledge", meaning: "জ্ঞান", exp: "Subject হিসেবে Noun বসে[cite: 2]." },
+            { q: "Acquire [wise] — from your elders.", ans: "wisdom", meaning: "প্রজ্ঞা", exp: "Object হিসেবে Noun বসে[cite: 2]." },
+            { q: "A [learn] — person is respected everywhere.", ans: "learned", meaning: "শিক্ষিত", exp: "Noun এর আগে Adjective বসে[cite: 2]." },
+            { q: "This book is very [read] —.", ans: "readable", meaning: "পাঠযোগ্য", exp: "Suffix -able যুক্ত হয়ে Adjective হয়েছে[cite: 2]." },
+            { q: "Give me some [inform] —.", ans: "information", meaning: "তথ্য", exp: "Determiner এর পরে Uncountable Noun বসে[cite: 2]." },
+            { q: "Follow the [instruct] — of your teacher.", ans: "instructions", meaning: "নির্দেশাবলি", exp: "Article ও Preposition এর মাঝখানে Noun বসে[cite: 2]." },
+            { q: "Listen to the teacher [attention] —.", ans: "attentively", meaning: "মনোযোগ সহকারে", exp: "Verb কে Modify করতে Adverb বসে[cite: 2]." },
+            { q: "Education [bright] — our future.", ans: "brightens", meaning: "উজ্জ্বল করে", exp: "Subject সিঙ্গুলার হওয়ায় Verb এর সাথে 's' যুক্ত হয়েছে[cite: 2]." },
+            // ১১-২০
+            { q: "Physical [health] — is essential for all.", ans: "fitness", meaning: "সুস্বাস্থ্য", exp: "Adjective এর পর Noun বসে[cite: 2]." },
+            { q: "[Pure] — of water is necessary.", ans: "purity", meaning: "বিশুদ্ধতা", exp: "Subject হিসেবে Noun বসে[cite: 2]." },
+            { q: "Water [pollute] — causes many diseases.", ans: "pollution", meaning: "দূষণ", exp: "Noun phrase তৈরিতে pollution বসেছে[cite: 2]." },
+            { q: "Smoking is [harm] — to health.", ans: "harmful", meaning: "ক্ষতিকর", exp: "Linking verb এর পর Adjective বসে[cite: 2]." },
+            { q: "Tigers are [danger] — animals.", ans: "dangerous", meaning: "বিপদজনক", exp: "Noun এর পূর্বে Adjective বসে[cite: 2]." },
+            { q: "[Tree] — is essential for our survival.", ans: "plantation", meaning: "বৃক্ষরোপণ", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "I have a severe head[ache] — in my head.", ans: "headache", meaning: "মাথা ব্যথা", exp: "Compound Noun তৈরিতে যুক্ত হয়েছে[cite: 2]." },
+            { q: "Proper [nurse] — can cure a patient.", ans: "nursing", meaning: "পরিচর্যা", exp: "Gerund/Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "[Active] — helps us to stay healthy.", ans: "activity", meaning: "কর্মতপরতা", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "Drug addiction leads to mental [sane] —.", ans: "insanity", meaning: "ভারসাম্যহীনতা", exp: "Prefix ও Suffix যুক্ত হয়ে Noun হয়েছে[cite: 2]." },
+            // ২১-৩০
+            { q: "[Honest] — is the best policy.", ans: "honesty", meaning: "সততা", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "Always speak the [truth] —.", ans: "truth", meaning: "সত্য", exp: "Article এর পর Noun বসে[cite: 2]." },
+            { q: "An [obey] — student is liked by all.", ans: "obedient", meaning: "বাধ্য", exp: "Noun এর পূর্বে Adjective বসেছে[cite: 2]." },
+            { q: "Show [kind] — to the poor.", ans: "kindness", meaning: "দয়া", exp: "Object হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "He is a [faith] — friend.", ans: "faithful", meaning: "বিশ্বস্ত", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "A [trust] — man never tells a lie.", ans: "trustworthy", meaning: "বিশ্বাসযোগ্য", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "[Sincere] — is the key to success.", ans: "sincerity", meaning: "আন্তরিকতা", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "We should perform our [duty] — properly.", ans: "duties", meaning: "কর্তব্যসমূহ", exp: "Possessive এর পর Plural Noun বসেছে[cite: 2]." },
+            { q: "[Patient] — has its reward.", ans: "patience", meaning: "ধৈর্য", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "His conduct is [praise] —.", ans: "praiseworthy", meaning: "প্রশংসনীয়", exp: "Adjective বসেছে[cite: 2]." },
+            // ৩১-৪০
+            { q: "Hard work brings [succeed] —.", ans: "success", meaning: "সাফল্য", exp: "Object হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "[Fail] — is the pillar of success.", ans: "failure", meaning: "ব্যর্থতা", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "He is a [fortune] — man.", ans: "fortunate", meaning: "সৌভাগ্যবান", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "Industry is the [active] — of success.", ans: "activity", meaning: "কার্যক্ষমতা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Fortune favors the [courage] —.", ans: "courageous", meaning: "সাহসী", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "Self-[depend] — is a great virtue.", ans: "dependence", meaning: "আত্মনির্ভরশীলতা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Slow and steady wins the race; it is a wise [move] —.", ans: "movement", meaning: "পদক্ষেপ", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Trees contribute to our economic [grow] —.", ans: "growth", meaning: "বৃদ্ধি", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Have you made any [decide] — yet?", ans: "decision", meaning: "সিদ্ধান্ত", exp: "Object হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "We need a permanent [solve] — to this problem.", ans: "solution", meaning: "সমাধান", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            // ৪১-৫০
+            { q: "We need good [friend] — in life.", ans: "friends", meaning: "বন্ধুগণ", exp: "Plural Noun বসেছে[cite: 2]." },
+            { q: "Man is a [society] — being.", ans: "social", meaning: "সামাজিক", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "A [peace] — life is desired by all.", ans: "peaceful", meaning: "শান্তিময়", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "[Happy] — does not lie in wealth.", ans: "happiness", meaning: "সুখ", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "Mankind should live in [kind] —.", ans: "harmony", meaning: "শান্তি", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "God is [mercy] — to us.", ans: "merciful", meaning: "দয়ালু", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "[Charity] — begins at home.", ans: "charity", meaning: "দানশীলতা", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "Government works for the removal of [poor] —.", ans: "poverty", meaning: "দারিদ্র্য", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Bangladesh is an independent [nation] —.", ans: "nation", meaning: "জাতি", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "His [hero] — act saved the boy.", ans: "heroic", meaning: "বীরত্বপূর্ণ", exp: "Adjective বসেছে[cite: 2]." },
+            // ৫১-৬০
+            { q: "[Science] — has changed our life.", ans: "science", meaning: "বিজ্ঞান", exp: "Subject হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "Newton was a great [scientist] —.", ans: "scientist", meaning: "বিজ্ঞানী", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Computer is a great [wonder] — of modern science.", ans: "wonder", meaning: "বিস্ময়", exp: "Noun হিসেবে ব্যবহৃত হয়েছে[cite: 2]." },
+            { q: "God is the [create] — of the universe.", ans: "creator", meaning: "সৃষ্টিকর্তা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "This theory has no [base] —.", ans: "basis", meaning: "ভিত্তি", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "[True] — speaking, science is a blessing.", ans: "truly", meaning: "সত্য বলতে", exp: "Adverb বসেছে[cite: 2]." },
+            { q: "Electricity is of great [use] — to us.", ans: "usefulness", meaning: "উপযোগিতা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Marconi made the [invent] — of radio.", ans: "invention", meaning: "আবিষ্কার", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Columbus [discover] — America.", ans: "discovered", meaning: "আবিষ্কার করেছিলেন", exp: "Past tense এ Verb বসেছে[cite: 2]." },
+            { q: "We must [modern] — our education system.", ans: "modernize", meaning: "আধুনিকায়ন করা", exp: "Modal verb এর পর Verb বসেছে[cite: 2]." },
+            // ৬১-৭০
+            { q: "Mass [communicate] — is very powerful.", ans: "communication", meaning: "যোগাযোগ", exp: "Noun বসেছে[cite: 2]." },
+            { q: "Internet is a global [connect] —.", ans: "connection", meaning: "সংযোগ", exp: "Noun বসেছে[cite: 2]." },
+            { q: "Language is a medium of [express] —.", ans: "expression", meaning: "প্রকাশ", exp: "Noun বসেছে[cite: 2]." },
+            { q: "English is an [speak] — language.", ans: "international", meaning: "আন্তর্জাতিক", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "What is the [mean] — of this word?", ans: "meaning", meaning: "অর্থ", exp: "Noun বসেছে[cite: 2]." },
+            { q: "Read the text [clear] —.", ans: "clearly", meaning: "স্পষ্টভাবে", exp: "Adverb বসেছে[cite: 2]." },
+            { q: "I am [sure] — of his success.", ans: "sure", meaning: "নিশ্চিত", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "[Regular] — brings success in life.", ans: "regularity", meaning: "নিয়মিত্ত্ব", exp: "Noun বসেছে[cite: 2]." },
+            { q: "[Polite] — wins friends.", ans: "politeness", meaning: "ভদ্রতা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "[Patient] — is necessary in hard times.", ans: "patience", meaning: "ধৈর্য", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            // ৭১-৮০
+            { q: "Bangladesh is a [develop] — country.", ans: "developing", meaning: "উন্নয়নশীল", exp: "Participial Adjective বসেছে[cite: 2]." },
+            { q: "[Poor] — is a curse for a nation.", ans: "poverty", meaning: "দারিদ্র্য", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Unemployment is a big [employ] — problem.", ans: "employment", meaning: "কর্মসংস্থান", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Rice is the chief [produce] — of our country.", ans: "product", meaning: "উৎপাদিত পণ্য", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "[Industry] — workers are the asset of a country.", ans: "industrial", meaning: "শিল্পসংক্রান্ত", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "Health is [compare] — to gold.", ans: "comparable", meaning: "তুলনীয়", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "Time once gone is gone forever; it is [value] —.", ans: "invaluable", meaning: "অমূল্য", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "Do not [waste] — your valuable time.", ans: "waste", meaning: "অপচয় করা", exp: "Verb বসেছে[cite: 2]." },
+            { q: "There are [differ] — opinions on this issue.", ans: "different", meaning: "ভিন্ন", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "We should not be [depend] — on others.", ans: "dependent", meaning: "নির্ভরশীল", exp: "Adjective বসেছে[cite: 2]." },
+            // ৮১-৯০
+            { q: "[Travel] — broadens our mind.", ans: "travelling", meaning: "ভ্রমণ", exp: "Gerund হিসেবে Noun বসেছে[cite: 2]." },
+            { q: "Natural beauty [nature] — us.", ans: "charms", meaning: "মুগ্ধ করে", exp: "Verb বসেছে[cite: 2]." },
+            { q: "Cox's Bazar is a very [attract] — place.", ans: "attractive", meaning: "আকর্ষণীয়", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "The journey was very [enjoy] —.", ans: "enjoyable", meaning: "উপভোগ্য", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "We were [excite] — at the news.", ans: "excited", meaning: "রোমাঞ্চিত", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "It was a [pleasure] — experience.", ans: "pleasant", meaning: "মনোরম", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "The scenery is [wonder] —.", ans: "wonderful", meaning: "চমৎকার", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "Beautiful [sight] — relieve our eyes.", ans: "sights", meaning: "দৃশ্যসমূহ", exp: "Plural Noun বসেছে[cite: 2]." },
+            { q: "A silent night brings [peace] — to mind.", ans: "peace", meaning: "শান্তি", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "[Free] — movement in nature refreshes us.", ans: "free", meaning: "মুক্ত", exp: "Adjective বসেছে[cite: 2]." },
+            // ৯১-১০০
+            { q: "Always keep your valuables in a [safe] — place.", ans: "safe", meaning: "নিরাপদ", exp: "Adjective বসেছে[cite: 2]." },
+            { q: "Do not put yourself in [danger] —.", ans: "danger", meaning: "বিপদ", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "There is no [true] — in his words.", ans: "truth", meaning: "সত্যতা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "[Just] — must prevail in society.", ans: "justice", meaning: "ন্যায়বিচার", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Act [wise] — in critical situations.", ans: "wisely", meaning: "বুদ্ধিমত্তার সাথে", exp: "Adverb বসেছে[cite: 2]." },
+            { q: "[Able] — is better than riches.", ans: "ability", meaning: "যোগ্যতা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "Inactivity leads to [active] —.", ans: "inactivity", meaning: "নিষ্ক্রিয়তা", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "[Fortunate] — he escaped the accident.", ans: "fortunately", meaning: "সৌভাগ্যবশত", exp: "Adverb বসেছে[cite: 2]." },
+            { q: "He got the [appoint] —.", ans: "appointment", meaning: "নিয়োগ", exp: "Noun হিসেবে বসেছে[cite: 2]." },
+            { q: "I am fully [satisfy] — with your work.", ans: "satisfied", meaning: "সন্তুষ্ট", exp: "Adjective বসেছে[cite: 2]." }
+        ];
+
+        let currentQuizPage = 1;
+        const itemsPerPage = 10;
+
+        function renderQuizPage() {
+            const container = document.getElementById("quiz-container");
+            container.innerHTML = "";
+
+            const start = (currentQuizPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = questions.slice(start, end);
+
+            pageItems.forEach((item, index) => {
+                const globalIndex = start + index;
+                let formattedQ = item.q.replace(/\[(.*?)\]/g, '<span style="color:var(--primary); font-weight:bold;">($1)</span> _________');
+
+                const card = document.createElement("div");
+                card.className = "question-card";
+                card.innerHTML = `
+                    <div class="q-text">${globalIndex + 1}. ${formattedQ}</div>
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 5px;">
+                        <input type="text" class="q-input" id="q-input-${globalIndex}" placeholder="উত্তর লিখুন">
+                        <button class="btn" onclick="checkQuizAnswer(${globalIndex})">সাবমিট</button>
+                        <button class="btn btn-outline" onclick="toggleExp(${globalIndex})">ব্যাখ্যা</button>
+                        <span class="result-msg" id="q-res-${globalIndex}"></span>
+                    </div>
+                    <div class="explanation-box" id="q-exp-${globalIndex}">
+                        <strong>বাংলা অর্থ:</strong> ${item.meaning}<br>
+                        <strong>ব্যাকরণগত ব্যাখ্যা:</strong> ${item.exp}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            const totalPages = Math.ceil(questions.length / itemsPerPage);
+            document.getElementById("quiz-page-info").innerText = `পেজ ${currentQuizPage} / ${totalPages}`;
+            document.getElementById("prev-btn").disabled = (currentQuizPage === 1);
+            document.getElementById("next-btn").disabled = (currentQuizPage === totalPages);
+        }
+
+        function checkQuizAnswer(index) {
+            const userVal = document.getElementById(`q-input-${index}`).value.trim().toLowerCase();
+            const correctVal = questions[index].ans.toLowerCase();
+            const resSpan = document.getElementById(`q-res-${index}`);
+
+            if (userVal === "") {
+                resSpan.innerText = "আগে উত্তর লিখুন!";
+                resSpan.className = "result-msg incorrect";
+                return;
+            }
+
+            if (userVal === correctVal) {
+                resSpan.innerText = "✔ সঠিক!";
+                resSpan.className = "result-msg correct";
+            } else {
+                resSpan.innerText = `✘ ভুল! সঠিক উত্তর: ${questions[index].ans}`;
+                resSpan.className = "result-msg incorrect";
+            }
+        }
+
+        function toggleExp(index) {
+            const box = document.getElementById(`q-exp-${index}`);
+            box.style.display = (box.style.display === "block") ? "none" : "block";
+        }
+
+        function changeQuizPage(dir) {
+            currentQuizPage += dir;
+            renderQuizPage();
+            document.getElementById("quiz-container").scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize quiz rendering
+        renderQuizPage();
+    </script>
+</div>
