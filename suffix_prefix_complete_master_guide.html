@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suffix &amp; Prefix কমপ্লিট মাস্টার গাইড</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+:root{--primary:#6366f1;--primary-hover:#4f46e5;--secondary:#ec4899;--accent:#10b981;--text-main:#0f172a;--text-muted:#475569;--border-color:#e2e8f0;--success:#059669;--error:#dc2626}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Hind Siliguri','Poppins',sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b 50%,#0f172a);color:var(--text-main);min-height:100vh}
+#master-ebook-practice-root{padding:30px 15px}
+.ebook-container{max-width:1100px;margin:auto;background:rgba(255,255,255,.97);border-radius:24px;box-shadow:0 25px 50px -12px #0008;overflow:hidden;animation:floatUp .6s ease-out}
+@keyframes floatUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.ebook-header{background:linear-gradient(135deg,#6366f1,#ec4899);color:white;padding:40px 25px;text-align:center}
+.ebook-header h1{margin:0;font-size:clamp(25px,4vw,36px);font-weight:700;text-shadow:0 2px 4px #0003}
+.ebook-header p{margin:12px auto 0;max-width:850px;font-size:16px;line-height:1.7}
+.book-badge{display:inline-block;background:#ffffff33;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:12px;letter-spacing:.3px}
+.nav-tabs{display:flex;align-items:stretch;background:#f8fafc;border-bottom:2px solid var(--border-color);overflow-x:auto;position:sticky;top:0;z-index:10}
+.nav-tab{flex:1;min-width:max-content;padding:15px 13px;text-align:center;background:transparent;border:0;font-family:inherit;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:.25s;white-space:nowrap}
+.nav-tab:hover{color:var(--primary);background:#6366f10d}.nav-tab.active{color:var(--primary);background:#fff;box-shadow:inset 0 -3px var(--secondary)}
+.nav-tab.toc{background:linear-gradient(135deg,#142850,#274690);color:white}
+.chapter-content{display:none;padding:clamp(18px,4vw,40px);animation:fadeIn .3s ease}.chapter-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.chapter-title{font-size:clamp(21px,3vw,27px);color:var(--primary);border-bottom:3px solid #e0e7ff;padding-bottom:12px;margin:0 0 25px}
+.section-box{background:#f8fafc;border:1px solid var(--border-color);border-radius:14px;padding:clamp(15px,3vw,24px);margin-bottom:24px;transition:.2s}
+.section-box:hover{box-shadow:0 8px 18px #0000000a}
+.section-box h3{margin:0 0 12px;color:var(--primary-hover);font-size:19px;border-left:4px solid var(--secondary);padding-left:10px}
+.section-box p,.section-box li{line-height:1.8}
+.custom-table{width:100%;border-collapse:collapse;margin-top:15px;background:#fff;box-shadow:0 2px 8px #00000008}
+.table-wrap{overflow-x:auto;border-radius:9px}
+.custom-table th,.custom-table td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--border-color);font-size:14px;line-height:1.6;vertical-align:top}
+.custom-table th{background:#e0e7ff;color:#3730a3;font-weight:700}.custom-table tr:hover td{background:#f8fafc}
+.rule-list{padding-left:22px;margin:10px 0}.rule-list li{margin-bottom:10px}
+.badge-rule{background:#e0e7ff;color:#3730a3;padding:2px 8px;border-radius:5px;font-weight:600;font-size:13px}
+.formula-box{background:#f0fdf4;border-left:4px solid var(--accent);padding:12px 16px;border-radius:7px;margin:10px 0;color:#166534;font-weight:600;line-height:1.7}
+.note-box{background:#fff7ed;border-left:4px solid #f97316;padding:12px 16px;border-radius:7px;line-height:1.7;margin:12px 0}
+.question-card{margin-bottom:17px;padding:16px;background:#fff;border:1px solid var(--border-color);border-radius:11px;transition:.2s}
+.question-card:hover{box-shadow:0 4px 12px #0000000a;border-color:#cbd5e1}
+.q-text{font-size:15px;font-weight:500;line-height:1.8;margin-bottom:12px}
+.q-input{padding:9px 12px;border:2px solid var(--border-color);border-radius:7px;font-family:inherit;font-size:14px;outline:none;width:180px;max-width:100%}
+.q-input:focus{border-color:var(--primary)}
+.btn,.btn-page{background:var(--primary);color:white;border:0;padding:9px 14px;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:600;font-size:13px;transition:.2s}
+.btn:hover,.btn-page:hover:not(:disabled){background:var(--primary-hover);transform:translateY(-1px)}
+.btn-outline{background:white;color:var(--primary);border:1px solid var(--primary)}.btn-outline:hover{background:var(--primary);color:white}
+.explanation-box{margin-top:12px;padding:12px 15px;background:#f1f5f9;border-left:4px solid var(--primary);border-radius:5px;font-size:14px;line-height:1.8;display:none}
+.result-msg{font-weight:700;font-size:13px}.correct{color:var(--success)}.incorrect{color:var(--error)}
+.pagination{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:25px;border-top:1px solid var(--border-color);padding-top:20px}
+.btn-page{padding:10px 18px;font-size:14px}.btn-page:disabled{background:#cbd5e1;cursor:not-allowed;transform:none}
+.footer{text-align:center;padding:18px;background:#f8fafc;color:#64748b;font-size:13px;border-top:1px solid var(--border-color)}
+@media(max-width:650px){#master-ebook-practice-root{padding:10px 6px}.ebook-container{border-radius:15px}.ebook-header{padding:30px 16px}.nav-tab{padding:13px 10px}.custom-table th,.custom-table td{padding:9px 10px;font-size:13px}.pagination{justify-content:center}.pagination span{order:-1;width:100%;text-align:center}}
+</style>
+</head>
+<body>
+<div id="master-ebook-practice-root">
+<div class="ebook-container">
+<header class="ebook-header">
+<span class="book-badge">Ultimate Master &amp; Practice Book</span>
+<h1>Suffix &amp; Prefix কমপ্লিট মাস্টার গাইড</h1>
+<p>একাডেমিক পরীক্ষা (SSC &amp; HSC) ও প্রতিযোগিতামূলক প্রস্তুতি: গুরুত্বপূর্ণ নিয়ম, Prefix, Suffix এবং ১০০টি অনুশীলন</p>
+</header>
+<nav class="nav-tabs" aria-label="অধ্যায় নির্বাচন">
+<button class="nav-tab toc" onclick="goToContents()">📚 সূচিপত্র</button>
+<button class="nav-tab active" onclick="switchTab(1)">অধ্যায় ১: Basic</button>
+<button class="nav-tab" onclick="switchTab(2)">অধ্যায় ২: Prefix</button>
+<button class="nav-tab" onclick="switchTab(3)">অধ্যায় ৩: Suffix</button>
+<button class="nav-tab" onclick="switchTab(4)">অধ্যায় ৪: Position</button>
+<button class="nav-tab" onclick="switchTab(5)">অধ্যায় ৫: বানান</button>
+<button class="nav-tab" onclick="switchTab(6)">✍️ প্র্যাকটিস (১–১০০)</button>
+</nav>
+
+<section id="tab-1" class="chapter-content active">
+<h2 class="chapter-title">📖 অধ্যায় ১: মূল ধারণা ও শব্দ গঠন (Basic Concepts)</h2>
+<div class="section-box"><h3>১. Root / Base Word (মূল শব্দ)</h3><p>যে শব্দের সঙ্গে Prefix বা Suffix যুক্ত করে নতুন শব্দ তৈরি করা যায়, তাকে Root Word বা Base Word বলা হয়। অনেক শব্দকে আরও ছোট অর্থবহ অংশে বিশ্লেষণ করা সম্ভব; তাই সব Root Word-ই যে আর ভাঙা যায় না, তা নয়।</p><div class="formula-box">উদাহরণ: happy, read, act, friend, kind।</div></div>
+<div class="section-box"><h3>২. Affix (শব্দাংশ)</h3><p>মূল শব্দের আগে বা পরে যুক্ত হয়ে অর্থ পরিবর্তন করে কিংবা নতুন শব্দ গঠন করে এমন শব্দাংশকে Affix বলে।</p><ul class="rule-list"><li><span class="badge-rule">Prefix (উপসর্গ)</span> মূল শব্দের আগে বসে। যেমন: un + happy = unhappy (অসুখী)।</li><li><span class="badge-rule">Suffix (প্রত্যয়)</span> মূল শব্দের পরে বসে। যেমন: kind + ness = kindness (দয়া)।</li></ul></div>
+<div class="section-box"><h3>৩. Word Formation ও Parts of Speech</h3><p>Prefix সাধারণত শব্দের অর্থ পরিবর্তন করে; Suffix অনেক সময় শব্দের অর্থের পাশাপাশি Parts of Speech-ও পরিবর্তন করে।</p><div class="formula-box">happy (Adjective) → happiness (Noun) → happily (Adverb)<br>possible → impossible (বিপরীত অর্থ)<br>modern → modernize (Verb)</div></div>
+<div class="section-box"><h3>৪. Word Family</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>Noun</th><th>Verb</th><th>Adjective</th><th>Adverb</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+<tr><td>beauty</td><td>beautify</td><td>beautiful</td><td>beautifully</td><td>সৌন্দর্য / সুন্দর করা / সুন্দর</td></tr>
+<tr><td>success</td><td>succeed</td><td>successful</td><td>successfully</td><td>সাফল্য / সফল হওয়া / সফল</td></tr>
+<tr><td>care</td><td>care for</td><td>careful</td><td>carefully</td><td>যত্ন / যত্নশীল</td></tr>
+<tr><td>decision</td><td>decide</td><td>decisive</td><td>decisively</td><td>সিদ্ধান্ত / সিদ্ধান্ত নেওয়া</td></tr>
+<tr><td>difference</td><td>differ</td><td>different</td><td>differently</td><td>পার্থক্য / ভিন্ন হওয়া / ভিন্ন</td></tr>
+</tbody></table></div></div>
+</section>
+
+<section id="tab-2" class="chapter-content">
+<h2 class="chapter-title">📖 অধ্যায় ২: Prefix (উপসর্গ)—গুরুত্বপূর্ণ তালিকা ও নিয়ম</h2>
+<div class="section-box"><h3>১. বিপরীতার্থক Prefix</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>Prefix</th><th>ব্যবহার / অর্থ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+<tr><td><b>un-</b></td><td>না, বিপরীত, অভাব</td><td>happy → unhappy; fair → unfair</td><td>অসুখী; অন্যায্য</td></tr>
+<tr><td><b>dis-</b></td><td>বিপরীত, অনুপস্থিতি, প্রত্যাখ্যান</td><td>agree → disagree; honest → dishonest</td><td>অমত করা; অসৎ</td></tr>
+<tr><td><b>in-</b></td><td>না / নয়</td><td>correct → incorrect; complete → incomplete</td><td>ভুল; অসম্পূর্ণ</td></tr>
+<tr><td><b>im-</b></td><td>অনেক ক্ষেত্রে p, b, m-এর আগে in-এর রূপ</td><td>possible → impossible; mature → immature</td><td>অসম্ভব; অপরিণত</td></tr>
+<tr><td><b>il-</b></td><td>সাধারণত l-এর আগে</td><td>legal → illegal; literate → illiterate</td><td>বেআইনি; নিরক্ষর</td></tr>
+<tr><td><b>ir-</b></td><td>সাধারণত r-এর আগে</td><td>regular → irregular; responsible → irresponsible</td><td>অনিয়মিত; দায়িত্বজ্ঞানহীন</td></tr>
+<tr><td><b>non-</b></td><td>নয় / অনুপস্থিত</td><td>fiction → nonfiction; stop → nonstop</td><td>কল্পকাহিনি নয়; বিরতিহীন</td></tr>
+<tr><td><b>mis-</b></td><td>ভুলভাবে / খারাপভাবে</td><td>understand → misunderstand; use → misuse</td><td>ভুল বোঝা; অপব্যবহার</td></tr>
+<tr><td><b>anti-</b></td><td>বিরোধী / প্রতিরোধী</td><td>social → antisocial; virus → antivirus</td><td>সমাজবিরোধী; ভাইরাস প্রতিরোধী</td></tr>
+<tr><td><b>de-</b></td><td>অপসারণ / বিপরীতমুখী করা</td><td>activate → deactivate; frost → defrost</td><td>নিষ্ক্রিয় করা; বরফমুক্ত করা</td></tr>
+</tbody></table></div></div>
+<div class="section-box"><h3>২. সময়, স্থান, মাত্রা ও সম্পর্ক বোঝানো Prefix</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>Prefix</th><th>অর্থ / কাজ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+<tr><td><b>re-</b></td><td>আবার / পুনরায়</td><td>write → rewrite; build → rebuild</td><td>আবার লেখা; পুনর্নির্মাণ</td></tr>
+<tr><td><b>pre-</b></td><td>আগে / পূর্বে</td><td>paid → prepaid; historic → prehistoric</td><td>আগে পরিশোধিত; প্রাগৈতিহাসিক</td></tr>
+<tr><td><b>post-</b></td><td>পরে / পরবর্তী</td><td>war → postwar; graduate → postgraduate</td><td>যুদ্ধোত্তর; স্নাতকোত্তর</td></tr>
+<tr><td><b>over-</b></td><td>অতিরিক্ত</td><td>eat → overeat; load → overload</td><td>অতিরিক্ত খাওয়া; অতিরিক্ত বোঝা</td></tr>
+<tr><td><b>under-</b></td><td>কম / নিচে</td><td>estimate → underestimate; ground → underground</td><td>কম অনুমান করা; ভূগর্ভস্থ</td></tr>
+<tr><td><b>sub-</b></td><td>নিচে / অধীন</td><td>marine → submarine; title → subtitle</td><td>ডুবোজাহাজ; উপশিরোনাম</td></tr>
+<tr><td><b>super-</b></td><td>অতি / উচ্চতর</td><td>human → superhuman; power → superpower</td><td>অতিমানবীয়; মহাশক্তি</td></tr>
+<tr><td><b>inter-</b></td><td>মধ্যে / পারস্পরিক</td><td>national → international; act → interact</td><td>আন্তর্জাতিক; পারস্পরিক যোগাযোগ করা</td></tr>
+<tr><td><b>trans-</b></td><td>এপার থেকে ওপার / পরিবর্তন</td><td>port → transport; form → transform</td><td>পরিবহন; রূপান্তর করা</td></tr>
+<tr><td><b>co-</b></td><td>একসঙ্গে / সহ</td><td>worker → coworker; operate → cooperate</td><td>সহকর্মী; সহযোগিতা করা</td></tr>
+<tr><td><b>anti-</b></td><td>বিরোধী</td><td>war → antiwar; clockwise → anticlockwise</td><td>যুদ্ধবিরোধী; ঘড়ির কাঁটার বিপরীত দিকে</td></tr>
+<tr><td><b>multi-</b></td><td>বহু / অনেক</td><td>national → multinational; media → multimedia</td><td>বহুজাতিক; বহুমাধ্যম</td></tr>
+<tr><td><b>bi-</b></td><td>দুই / দ্বি</td><td>cycle → bicycle; lingual → bilingual</td><td>দুই চাকার যান; দ্বিভাষিক</td></tr>
+<tr><td><b>mono-</b></td><td>এক / একক</td><td>rail → monorail; tone → monotone</td><td>এক রেলপথ; একঘেয়ে স্বর</td></tr>
+<tr><td><b>semi-</b></td><td>অর্ধেক / আংশিক</td><td>circle → semicircle; final → semifinal</td><td>অর্ধবৃত্ত; সেমিফাইনাল</td></tr>
+<tr><td><b>auto-</b></td><td>নিজে / স্বয়ংক্রিয়</td><td>biography → autobiography; pilot → autopilot</td><td>আত্মজীবনী; স্বয়ংক্রিয় চালনা</td></tr>
+</tbody></table></div><div class="note-box">মনে রাখুন: Prefix-এর বানান বা অর্থ দেখেই সব শব্দ অনুমান করা যায় না। প্রচলিত শব্দ ও তাদের ব্যবহারও শিখতে হবে।</div></div>
+</section>
+
+<section id="tab-3" class="chapter-content">
+<h2 class="chapter-title">📖 অধ্যায় ৩: Suffix (প্রত্যয়)—Noun, Adjective, Verb ও Adverb</h2>
+<div class="section-box"><h3>১. Noun গঠনকারী Suffix</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>Suffix</th><th>সাধারণ কাজ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+<tr><td><b>-tion / -sion</b></td><td>কাজ / অবস্থা</td><td>educate → education; decide → decision</td><td>শিক্ষা; সিদ্ধান্ত</td></tr>
+<tr><td><b>-ment</b></td><td>কাজ / ফল / প্রক্রিয়া</td><td>develop → development; move → movement</td><td>উন্নয়ন; চলন</td></tr>
+<tr><td><b>-ness</b></td><td>গুণ / অবস্থা</td><td>kind → kindness; dark → darkness</td><td>দয়া; অন্ধকার</td></tr>
+<tr><td><b>-ity / -ty</b></td><td>গুণ / অবস্থা</td><td>pure → purity; active → activity</td><td>বিশুদ্ধতা; কর্মতৎপরতা</td></tr>
+<tr><td><b>-er / -or</b></td><td>কাজকারী ব্যক্তি / যন্ত্র</td><td>teach → teacher; create → creator</td><td>শিক্ষক; স্রষ্টা</td></tr>
+<tr><td><b>-ance / -ence</b></td><td>অবস্থা / গুণ</td><td>important → importance; differ → difference</td><td>গুরুত্ব; পার্থক্য</td></tr>
+<tr><td><b>-dom</b></td><td>অবস্থা / ক্ষেত্র</td><td>free → freedom; wise → wisdom</td><td>স্বাধীনতা; প্রজ্ঞা</td></tr>
+<tr><td><b>-ship</b></td><td>সম্পর্ক / পদ</td><td>friend → friendship; member → membership</td><td>বন্ধুত্ব; সদস্যপদ</td></tr>
+<tr><td><b>-hood</b></td><td>জীবনের পর্যায় / অবস্থা</td><td>child → childhood; brother → brotherhood</td><td>শৈশব; ভ্রাতৃত্ব</td></tr>
+<tr><td><b>-ism</b></td><td>মতবাদ / পদ্ধতি</td><td>real → realism; social → socialism</td><td>বাস্তববাদ; সমাজতন্ত্র</td></tr>
+<tr><td><b>-ist</b></td><td>ব্যক্তি / পেশা / মতের অনুসারী</td><td>science → scientist; art → artist</td><td>বিজ্ঞানী; শিল্পী</td></tr>
+<tr><td><b>-ure</b></td><td>কাজ / ফল / অবস্থা</td><td>fail → failure; press → pressure</td><td>ব্যর্থতা; চাপ</td></tr>
+</tbody></table></div></div>
+<div class="section-box"><h3>২. Adjective গঠনকারী Suffix</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>Suffix</th><th>সাধারণ অর্থ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+<tr><td><b>-ful</b></td><td>পূর্ণ / গুণযুক্ত</td><td>beauty → beautiful; use → useful</td><td>সুন্দর; উপকারী</td></tr>
+<tr><td><b>-less</b></td><td>হীন / ছাড়া</td><td>hope → hopeless; care → careless</td><td>আশাহীন; অসতর্ক</td></tr>
+<tr><td><b>-al</b></td><td>সম্পর্কিত</td><td>nation → national; nature → natural</td><td>জাতীয়; প্রাকৃতিক</td></tr>
+<tr><td><b>-able / -ible</b></td><td>যোগ্য / সম্ভব</td><td>read → readable; access → accessible</td><td>পাঠযোগ্য; প্রবেশযোগ্য</td></tr>
+<tr><td><b>-ive</b></td><td>প্রবণ / বৈশিষ্ট্যপূর্ণ</td><td>act → active; create → creative</td><td>সক্রিয়; সৃজনশীল</td></tr>
+<tr><td><b>-ous / -ious</b></td><td>গুণসম্পন্ন</td><td>danger → dangerous; fame → famous</td><td>বিপজ্জনক; বিখ্যাত</td></tr>
+<tr><td><b>-y</b></td><td>যুক্ত / বৈশিষ্ট্যপূর্ণ</td><td>health → healthy; salt → salty</td><td>সুস্থ; লবণাক্ত</td></tr>
+<tr><td><b>-ic / -ical</b></td><td>সম্পর্কিত / বৈশিষ্ট্যসূচক</td><td>science → scientific; history → historical</td><td>বৈজ্ঞানিক; ঐতিহাসিক</td></tr>
+<tr><td><b>-ish</b></td><td>কিছুটা / সদৃশ</td><td>child → childish; green → greenish</td><td>শিশুসুলভ; সবুজাভ</td></tr>
+<tr><td><b>-ed</b></td><td>অবস্থা / অনুভূতি</td><td>interest → interested; tire → tired</td><td>আগ্রহী; ক্লান্ত</td></tr>
+<tr><td><b>-ing</b></td><td>সৃষ্টিকারী / বৈশিষ্ট্য</td><td>interest → interesting; excite → exciting</td><td>আকর্ষণীয়; উত্তেজনাকর</td></tr>
+</tbody></table></div></div>
+<div class="section-box"><h3>৩. Verb গঠনকারী Suffix</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>Suffix</th><th>কাজ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+<tr><td><b>-en</b></td><td>কোনো গুণ / অবস্থা তৈরি করা</td><td>wide → widen; short → shorten</td><td>প্রশস্ত করা; ছোট করা</td></tr>
+<tr><td><b>-fy / -ify</b></td><td>করা / রূপ দেওয়া</td><td>pure → purify; beauty → beautify</td><td>বিশুদ্ধ করা; সুন্দর করা</td></tr>
+<tr><td><b>-ize / -ise</b></td><td>করা / রূপান্তর করা</td><td>modern → modernize; real → realise</td><td>আধুনিক করা; উপলব্ধি করা</td></tr>
+<tr><td><b>-ate</b></td><td>কিছু ক্ষেত্রে Verb তৈরি</td><td>active → activate; motive → motivate</td><td>সক্রিয় করা; উৎসাহিত করা</td></tr>
+</tbody></table></div></div>
+<div class="section-box"><h3>৪. Adverb গঠনকারী Suffix</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>Suffix</th><th>কাজ</th><th>উদাহরণ</th><th>বাংলা অর্থ</th></tr></thead><tbody>
+<tr><td><b>-ly</b></td><td>অনেক Adjective থেকে Adverb</td><td>slow → slowly; quick → quickly</td><td>ধীরে; দ্রুত</td></tr>
+<tr><td><b>-ward / -wards</b></td><td>দিক / অভিমুখ</td><td>back → backward; home → homeward</td><td>পেছনের দিকে; বাড়ির দিকে</td></tr>
+<tr><td><b>-wise</b></td><td>দিক / পদ্ধতি / বিবেচনায়</td><td>clock → clockwise; length → lengthwise</td><td>ঘড়ির কাঁটার দিকে; দৈর্ঘ্য বরাবর</td></tr>
+</tbody></table></div><div class="note-box">সতর্কতা: সব -ly শব্দ Adverb নয়। যেমন friendly, lovely, lively সাধারণত Adjective। একইভাবে শব্দের শেষাংশ দেখেই Parts of Speech নিশ্চিত করা যাবে না; বাক্যে ব্যবহারও দেখতে হবে।</div></div>
+</section>
+
+<section id="tab-4" class="chapter-content">
+<h2 class="chapter-title">📖 অধ্যায় ৪: বাক্যে Parts of Speech চেনার Position Rules</h2>
+<div class="section-box"><h3>১. Noun-এর অবস্থান</h3><ul class="rule-list"><li>Subject বা Object হিসেবে Noun বসতে পারে।</li><li>Possessive / determiner-এর পরে Noun বসতে পারে: my book, the student, some water।</li><li>Preposition-এর পরে Noun বা Noun phrase বসতে পারে: in the room, for education।</li></ul><div class="formula-box">উদাহরণ: I need your <b>cooperation</b>. — আমার তোমার সহযোগিতা প্রয়োজন।</div></div>
+<div class="section-box"><h3>২. Adjective-এর অবস্থান</h3><ul class="rule-list"><li>সাধারণত Noun-এর আগে: an intelligent girl।</li><li>Linking verb-এর পরে: She is intelligent. / The food smells delicious.</li></ul><div class="formula-box">উদাহরণ: She is an <b>intelligent</b> girl. — সে একজন বুদ্ধিমতী মেয়ে।</div></div>
+<div class="section-box"><h3>৩. Verb-এর অবস্থান</h3><ul class="rule-list"><li>সাধারণ বাক্যে Subject-এর পরে Verb থাকে।</li><li>Modal verb-এর পরে Base Form: can go, should study, must obey।</li><li>Be / have / do auxiliary-এর পরে গঠন অনুযায়ী Verb-এর বিভিন্ন রূপ বসে।</li></ul><div class="formula-box">উদাহরণ: We should <b>obey</b> our parents. — আমাদের বাবা-মায়ের কথা মানা উচিত।</div></div>
+<div class="section-box"><h3>৪. Adverb-এর অবস্থান</h3><ul class="rule-list"><li>Verb-কে modify করে: He speaks clearly.</li><li>Adjective-কে modify করে: very beautiful।</li><li>অন্য Adverb-কে modify করে: quite slowly।</li><li>বাক্যের শুরুতে sentence adverb হতে পারে: Fortunately, he survived.</li></ul><div class="formula-box"><b>Fortunately</b>, he survived the crash. — সৌভাগ্যক্রমে, সে দুর্ঘটনা থেকে বেঁচে যায়।</div></div>
+<div class="section-box"><h3>৫. Word Form চেনার দ্রুত কৌশল</h3><div class="table-wrap"><table class="custom-table"><thead><tr><th>বাক্যের সংকেত</th><th>সম্ভাব্য শব্দের ধরন</th><th>উদাহরণ</th></tr></thead><tbody><tr><td>Article / possessive-এর পরে</td><td>Noun বা Adjective + Noun</td><td>a decision; my beautiful book</td></tr><tr><td>Noun-এর আগে</td><td>Adjective</td><td>a useful book</td></tr><tr><td>Modal-এর পরে</td><td>Base Verb</td><td>can work</td></tr><tr><td>Verb-এর কাজের ধরন বোঝায়</td><td>Adverb</td><td>work carefully</td></tr><tr><td>Preposition-এর পরে</td><td>Noun / Pronoun / Gerund</td><td>after lunch; by working</td></tr></tbody></table></div></div>
+</section>
+
+<section id="tab-5" class="chapter-content">
+<h2 class="chapter-title">📖 অধ্যায় ৫: Suffix যোগ করার সময় বানানের নিয়ম</h2>
+<div class="section-box"><h3>Rule 1: Consonant + y হলে y → i</h3><p>শব্দের শেষে y-এর আগে consonant থাকলে অনেক suffix যোগ করার সময় y বদলে i হয়। তবে -ing যোগ করলে সাধারণত y বদলায় না।</p><div class="formula-box">happy + ness → happiness<br>cry + ed → cried<br>cry + ing → crying</div><p>ব্যতিক্রম: vowel + y হলে y সাধারণত থাকে—play → played, enjoy → enjoyment।</p></div>
+<div class="section-box"><h3>Rule 2: Silent e বাদ পড়া</h3><p>শেষের নীরব e-এর পরে vowel দিয়ে শুরু suffix এলে অনেক ক্ষেত্রে e বাদ যায়।</p><div class="formula-box">write + ing → writing<br>make + ing → making<br>use + able → usable</div><p>তবে সব suffix-এ e বাদ যায় না: care + ful → careful; hope + less → hopeless।</p></div>
+<div class="section-box"><h3>Rule 3: শেষের consonant দ্বিত্ব হওয়া</h3><p>অনেক এক-সিলেবল শব্দে শেষে একটি vowel-এর পরে একটি consonant থাকলে vowel দিয়ে শুরু suffix যোগ করার আগে শেষ consonant দ্বিত্ব হয়। উচ্চারণের জোর ও শব্দের গঠনও গুরুত্বপূর্ণ।</p><div class="formula-box">run + er → runner<br>big + est → biggest<br>stop + ing → stopping</div><p>তুলনা করুন: open → opening; help → helping। সব শব্দে consonant দ্বিত্ব হয় না।</p></div>
+<div class="section-box"><h3>Rule 4: শব্দের শেষে -e বা -y থাকলে সতর্কতা</h3><div class="formula-box">true → truly (e বাদ)<br>easy → easily (y → i)<br>beauty → beautiful (y থাকে; -ful যুক্ত হয়)<br>happy → happier / happiness (y → i)</div></div>
+<div class="section-box"><h3>Rule 5: কিছু শব্দে রূপ পুরোপুরি বদলায়</h3><p>সব Word Formation নিয়মিত নয়; কিছু শব্দের বানান বা রূপ মুখস্থ রাখতে হয়।</p><div class="formula-box">long → length<br>strong → strength<br>wide → width<br>deep → depth<br>high → height</div></div>
+</section>
+
+<section id="tab-6" class="chapter-content">
+<h2 class="chapter-title">✍️ Suffix &amp; Prefix চূড়ান্ত প্র্যাকটিস সেট (১–১০০)</h2>
+<p style="margin-bottom:20px;color:var(--text-muted);line-height:1.8">প্রতি পেজে ১০টি প্রশ্ন। শূন্যস্থানে সঠিক শব্দরূপ লিখে <b>সাবমিট</b> করুন। ব্যাখ্যা বাটনে বাংলা অর্থ ও ব্যাকরণগত কারণ দেখুন। আলাদা উত্তরমালা নেই—প্রতিটি প্রশ্নের উত্তর সেখানেই দেখা যাবে।</p>
+<div id="quiz-container"></div>
+<div class="pagination"><button class="btn-page" id="prev-btn" onclick="changeQuizPage(-1)">← পূর্ববর্তী পেজ</button><span id="quiz-page-info">পেজ ১ / ১০</span><button class="btn-page" id="next-btn" onclick="changeQuizPage(1)">পরবর্তী পেজ →</button></div>
+</section>
+<footer class="footer">Suffix &amp; Prefix কমপ্লিট মাস্টার গাইড · শিখুন, অনুশীলন করুন, দক্ষতা বাড়ান</footer>
+</div>
+</div>
+
+<script>
+const questions = [
+{q:"Government takes steps for the [educate] of all.",ans:"education",meaning:"শিক্ষা",exp:"Preposition ‘for’-এর পরে এখানে Noun ‘education’ বসেছে।"},
+{q:"Tolerance is a great [kind].",ans:"kindness",meaning:"দয়া",exp:"Adjective ‘great’-এর পরে Noun ‘kindness’ বসেছে।"},
+{q:"[Know] is power.",ans:"knowledge",meaning:"জ্ঞান",exp:"বাক্যের Subject হিসেবে Noun ‘knowledge’ বসেছে।"},
+{q:"Acquire [wise] from your elders.",ans:"wisdom",meaning:"প্রজ্ঞা",exp:"Verb ‘Acquire’-এর Object হিসেবে Noun ‘wisdom’ বসেছে।"},
+{q:"A [learn] person is respected everywhere.",ans:"learned",meaning:"শিক্ষিত",exp:"Noun ‘person’-এর আগে Adjective ‘learned’ বসেছে।"},
+{q:"This book is very [read].",ans:"readable",meaning:"পাঠযোগ্য",exp:"Suffix -able যোগে Adjective ‘readable’ হয়েছে।"},
+{q:"Give me some [inform].",ans:"information",meaning:"তথ্য",exp:"‘some’-এর পরে Uncountable Noun ‘information’ বসেছে।"},
+{q:"Follow the [instruct] of your teacher.",ans:"instructions",meaning:"নির্দেশাবলি",exp:"এখানে একাধিক নির্দেশ বোঝাতে Plural Noun ‘instructions’ ব্যবহৃত হয়েছে।"},
+{q:"Listen to the teacher [attention].",ans:"attentively",meaning:"মনোযোগ সহকারে",exp:"কীভাবে শুনবে বোঝাতে Adverb ‘attentively’ ব্যবহৃত হয়েছে।"},
+{q:"Education [bright] our future.",ans:"brightens",meaning:"উজ্জ্বল করে",exp:"Singular Subject ‘Education’-এর Present Simple Verb ‘brightens’ হয়েছে।"},
+{q:"Physical [health] is essential for all.",ans:"fitness",meaning:"সুস্থতা / শারীরিক সক্ষমতা",exp:"এখানে ‘physical fitness’ একটি প্রচলিত Noun phrase।"},
+{q:"[Pure] of water is necessary.",ans:"purity",meaning:"বিশুদ্ধতা",exp:"Subject হিসেবে Noun ‘purity’ বসেছে।"},
+{q:"Water [pollute] causes many diseases.",ans:"pollution",meaning:"দূষণ",exp:"Noun ‘pollution’ পানি দূষণের বিষয়টি প্রকাশ করে।"},
+{q:"Smoking is [harm] to health.",ans:"harmful",meaning:"ক্ষতিকর",exp:"Linking verb ‘is’-এর পরে Adjective ‘harmful’ বসেছে।"},
+{q:"Tigers are [danger] animals.",ans:"dangerous",meaning:"বিপজ্জনক",exp:"Noun ‘animals’-এর আগে Adjective ‘dangerous’ বসেছে।"},
+{q:"[Tree] is essential for our survival. (গাছ লাগানোর কাজ বোঝাও)",ans:"plantation",meaning:"বৃক্ষরোপণ",exp:"বৃক্ষরোপণের কাজ বোঝাতে Noun ‘plantation’ ব্যবহৃত হয়েছে।"},
+{q:"I have a severe head[ache] in my head. (মাথাব্যথা বোঝাতে এক শব্দ)",ans:"headache",meaning:"মাথাব্যথা",exp:"‘Headache’ একটি প্রচলিত Compound Noun; বাক্যটির স্বাভাবিক রূপ: I have a severe headache."},
+{q:"Proper [nurse] can help a patient recover.",ans:"nursing",meaning:"সেবা / পরিচর্যা",exp:"‘Proper nursing’ Noun phrase হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"[Active] helps us to stay healthy. (কর্মতৎপরতা)",ans:"activity",meaning:"কর্মতৎপরতা",exp:"Subject হিসেবে Noun ‘activity’ বসেছে।"},
+{q:"Drug addiction may lead to mental [sane] (বিপরীত অর্থে).",ans:"insanity",meaning:"মানসিক ভারসাম্যহীনতা",exp:"Prefix in- ও Noun-forming ending মিলিয়ে ‘insanity’ হয়েছে; এটি অনিয়মিত শব্দরূপ।"},
+{q:"[Honest] is the best policy.",ans:"honesty",meaning:"সততা",exp:"Subject হিসেবে Noun ‘honesty’ বসেছে।"},
+{q:"Always speak the [truth].",ans:"truth",meaning:"সত্য",exp:"‘Truth’ নিজেই Noun; এখানে পরিবর্তন প্রয়োজন নেই।"},
+{q:"An [obey] student is liked by all.",ans:"obedient",meaning:"বাধ্য / অনুগত",exp:"Noun ‘student’-এর আগে Adjective ‘obedient’ বসেছে।"},
+{q:"Show [kind] to the poor.",ans:"kindness",meaning:"দয়া",exp:"Verb ‘Show’-এর Object হিসেবে Noun ‘kindness’ বসেছে।"},
+{q:"He is a [faith] friend.",ans:"faithful",meaning:"বিশ্বস্ত",exp:"Suffix -ful যোগে Adjective ‘faithful’ হয়েছে।"},
+{q:"A [trust] man never tells a lie. (বিশ্বাসযোগ্য)",ans:"trustworthy",meaning:"বিশ্বাসযোগ্য",exp:"‘Trustworthy’ একটি প্রচলিত Adjective।"},
+{q:"[Sincere] is the key to success.",ans:"sincerity",meaning:"আন্তরিকতা",exp:"Subject হিসেবে Noun ‘sincerity’ বসেছে।"},
+{q:"We should perform our [duty] properly. (একাধিক কর্তব্য)",ans:"duties",meaning:"কর্তব্যসমূহ",exp:"Plural করতে consonant + y-এর y বদলে ies হয়: duty → duties।"},
+{q:"[Patient] has its reward. (ধৈর্য)",ans:"patience",meaning:"ধৈর্য",exp:"এখানে Noun ‘patience’ প্রয়োজন।"},
+{q:"His conduct is [praise]. (প্রশংসার যোগ্য)",ans:"praiseworthy",meaning:"প্রশংসনীয়",exp:"Suffix -worthy যোগে Adjective ‘praiseworthy’ হয়েছে।"},
+{q:"Hard work brings [succeed].",ans:"success",meaning:"সাফল্য",exp:"Verb ‘brings’-এর Object হিসেবে Noun ‘success’ বসেছে।"},
+{q:"[Fail] is the pillar of success.",ans:"failure",meaning:"ব্যর্থতা",exp:"Subject হিসেবে Noun ‘failure’ বসেছে।"},
+{q:"He is a [fortune] man.",ans:"fortunate",meaning:"সৌভাগ্যবান",exp:"Noun ‘man’-এর আগে Adjective ‘fortunate’ বসেছে।"},
+{q:"Industry is the [active] of success. (কর্মতৎপরতা)",ans:"activity",meaning:"কর্মতৎপরতা",exp:"এখানে Noun ‘activity’ বসেছে।"},
+{q:"Fortune favours the [courage]. (সাহসী ব্যক্তি)",ans:"courageous",meaning:"সাহসী",exp:"Adjective ‘courageous’ সাহসী ব্যক্তিকে বোঝাচ্ছে; আরও স্বাভাবিক বাক্য: Fortune favours the courageous."},
+{q:"Self-[depend] is a great virtue.",ans:"dependence",meaning:"নির্ভরতা",exp:"‘Self-dependence’ Noun হিসেবে ব্যবহৃত; ‘self-reliance’ আরও প্রচলিত।"},
+{q:"Slow and steady wins the race; it is a wise [move].",ans:"movement",meaning:"চলন / আন্দোলন",exp:"‘Movement’ Noun, তবে এই বাক্যে ‘decision’ বা ‘approach’ আরও স্বাভাবিক হতে পারে।"},
+{q:"Trees contribute to our economic [grow].",ans:"growth",meaning:"বৃদ্ধি",exp:"Adjective ‘economic’-এর পরে Noun ‘growth’ বসেছে।"},
+{q:"Have you made any [decide] yet?",ans:"decision",meaning:"সিদ্ধান্ত",exp:"‘Make a decision’ প্রচলিত Noun phrase।"},
+{q:"We need a permanent [solve] to this problem.",ans:"solution",meaning:"সমাধান",exp:"Adjective ‘permanent’-এর পরে Noun ‘solution’ বসেছে।"},
+{q:"We need good [friend] in life. (একাধিক বন্ধু)",ans:"friends",meaning:"বন্ধুরা",exp:"Plural Noun ‘friends’ বসেছে।"},
+{q:"Man is a [society] being.",ans:"social",meaning:"সামাজিক",exp:"Noun ‘being’-এর আগে Adjective ‘social’ বসেছে।"},
+{q:"A [peace] life is desired by all.",ans:"peaceful",meaning:"শান্তিময়",exp:"Suffix -ful যোগে Adjective ‘peaceful’ হয়েছে।"},
+{q:"[Happy] does not lie in wealth.",ans:"happiness",meaning:"সুখ",exp:"Subject হিসেবে Noun ‘happiness’ বসেছে।"},
+{q:"Mankind should live in [harmony].",ans:"harmony",meaning:"সম্প্রীতি",exp:"‘Harmony’ নিজেই Noun; বাক্যটি সঠিকভাবে সম্পূর্ণ হয়েছে।"},
+{q:"God is [mercy] to us.",ans:"merciful",meaning:"দয়ালু",exp:"Linking verb ‘is’-এর পরে Adjective ‘merciful’ বসেছে।"},
+{q:"[Charity] begins at home.",ans:"charity",meaning:"দানশীলতা",exp:"‘Charity’ নিজেই Noun এবং Subject হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"Government works for the removal of [poor].",ans:"poverty",meaning:"দারিদ্র্য",exp:"‘Removal of poverty’ একটি প্রচলিত Noun phrase।"},
+{q:"Bangladesh is an independent [nation].",ans:"nation",meaning:"জাতি",exp:"‘Nation’ নিজেই Noun; বাক্যে এটি সঠিক।"},
+{q:"His [hero] act saved the boy.",ans:"heroic",meaning:"বীরত্বপূর্ণ",exp:"Noun ‘act’-এর আগে Adjective ‘heroic’ বসেছে।"},
+{q:"[Science] has changed our life.",ans:"science",meaning:"বিজ্ঞান",exp:"‘Science’ নিজেই Noun ও Subject।"},
+{q:"Newton was a great [science].",ans:"scientist",meaning:"বিজ্ঞানী",exp:"ব্যক্তি বোঝাতে Noun ‘scientist’ বসেছে।"},
+{q:"The computer is a great [wonder] of modern science.",ans:"wonder",meaning:"বিস্ময়",exp:"‘Wonder’ নিজেই Noun।"},
+{q:"God is the [create] of the universe.",ans:"creator",meaning:"সৃষ্টিকর্তা",exp:"কাজকারী ব্যক্তি বোঝাতে -or যোগে ‘creator’ হয়েছে।"},
+{q:"This theory has no [base]. (ভিত্তি বোঝাও)",ans:"basis",meaning:"ভিত্তি",exp:"এই অর্থে সঠিক Noun হলো ‘basis’; এটি অনিয়মিত রূপ।"},
+{q:"[True] speaking, science is a blessing.",ans:"truly",meaning:"সত্যি বলতে",exp:"‘Speaking’-কে modify করা introductory Adverb হিসেবে ‘truly’ ব্যবহৃত হয়েছে।"},
+{q:"Electricity is of great [use] to us. (উপযোগিতা)",ans:"usefulness",meaning:"উপযোগিতা",exp:"‘Of great usefulness’ বলা যায়; তবে ‘of great use’ নিজেও সঠিক।"},
+{q:"Marconi made the [invent] of radio.",ans:"invention",meaning:"আবিষ্কার",exp:"‘The invention of radio’ Noun phrase।"},
+{q:"Columbus [discover] America.",ans:"discovered",meaning:"আবিষ্কার করেছিলেন",exp:"অতীতের ঘটনা বোঝাতে Past Simple ‘discovered’ বসেছে।"},
+{q:"We must [modern] our education system.",ans:"modernize",meaning:"আধুনিক করা",exp:"Modal ‘must’-এর পরে Base Verb ‘modernize’ বসেছে।"},
+{q:"Mass [communicate] is very powerful.",ans:"communication",meaning:"যোগাযোগ",exp:"Subject phrase-এ Noun ‘communication’ বসেছে।"},
+{q:"The internet is a global [connect]. (সংযোগ)",ans:"connection",meaning:"সংযোগ",exp:"Adjective ‘global’-এর পরে Noun ‘connection’ বসেছে।"},
+{q:"Language is a medium of [express].",ans:"expression",meaning:"প্রকাশ",exp:"Preposition ‘of’-এর পরে Noun ‘expression’ বসেছে।"},
+{q:"English is an [nation] language used worldwide.",ans:"international",meaning:"আন্তর্জাতিক",exp:"Noun ‘language’-এর আগে Adjective ‘international’ বসেছে।"},
+{q:"What is the [mean] of this word?",ans:"meaning",meaning:"অর্থ",exp:"‘The’-এর পরে Noun ‘meaning’ বসেছে।"},
+{q:"Read the text [clear].",ans:"clearly",meaning:"স্পষ্টভাবে",exp:"Verb ‘Read’-কে modify করতে Adverb ‘clearly’ বসেছে।"},
+{q:"I am [sure] of his success.",ans:"sure",meaning:"নিশ্চিত",exp:"‘Sure’ নিজেই Adjective; Linking verb ‘am’-এর পরে বসেছে।"},
+{q:"[Regular] brings success in life. (নিয়মিত হওয়ার গুণ)",ans:"regularity",meaning:"নিয়মিততা",exp:"Subject হিসেবে Noun ‘regularity’ বসেছে।"},
+{q:"[Polite] wins friends.",ans:"politeness",meaning:"ভদ্রতা",exp:"Subject হিসেবে Noun ‘politeness’ বসেছে।"},
+{q:"[Patient] is necessary in hard times. (ধৈর্য)",ans:"patience",meaning:"ধৈর্য",exp:"এখানে Noun ‘patience’ প্রয়োজন।"},
+{q:"Bangladesh is a [develop] country. (উন্নয়নশীল)",ans:"developing",meaning:"উন্নয়নশীল",exp:"Present participle ‘developing’ এখানে Adjective হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"[Poor] is a curse for a nation. (দারিদ্র্য)",ans:"poverty",meaning:"দারিদ্র্য",exp:"Subject হিসেবে Noun ‘poverty’ বসেছে।"},
+{q:"Unemployment is a big [employ] problem. (কর্মসংস্থান)",ans:"employment",meaning:"কর্মসংস্থান",exp:"Noun ‘employment’ এখানে আরেকটি Noun ‘problem’-কে নির্দিষ্ট করছে।"},
+{q:"Rice is the chief [produce] of our country. (উৎপাদিত বস্তু)",ans:"product",meaning:"পণ্য / উৎপাদিত বস্তু",exp:"এখানে Noun ‘product’ বসেছে।"},
+{q:"[Industry] workers are the asset of a country. (শিল্পসংক্রান্ত)",ans:"industrial",meaning:"শিল্পসংক্রান্ত",exp:"Noun ‘workers’-এর আগে Adjective ‘industrial’ বসেছে।"},
+{q:"Health is [compare] to gold.",ans:"comparable",meaning:"তুলনীয়",exp:"‘Comparable to’ অর্থ তুলনীয়; Adjective প্রয়োজন।"},
+{q:"Time once gone is gone forever; it is [value]. (অমূল্য)",ans:"invaluable",meaning:"অমূল্য",exp:"Prefix in- দিয়ে ‘invaluable’—অমূল্য—হয়েছে; এর অর্থ valueless নয়।"},
+{q:"Do not [waste] your valuable time.",ans:"waste",meaning:"অপচয় করা",exp:"‘Do not’-এর পরে Base Verb ‘waste’ বসেছে।"},
+{q:"There are [differ] opinions on this issue.",ans:"different",meaning:"ভিন্ন",exp:"Noun ‘opinions’-এর আগে Adjective ‘different’ বসেছে।"},
+{q:"We should not be [depend] on others.",ans:"dependent",meaning:"নির্ভরশীল",exp:"‘Be’-এর পরে Adjective ‘dependent’ বসেছে।"},
+{q:"[Travel] broadens our mind.",ans:"travelling",meaning:"ভ্রমণ",exp:"Gerund ‘travelling’ Subject হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"Natural beauty [charm] us.",ans:"charms",meaning:"মুগ্ধ করে",exp:"Singular Subject ‘beauty’-এর সঙ্গে Present Simple Verb ‘charms’ বসেছে।"},
+{q:"Cox's Bazar is a very [attract] place.",ans:"attractive",meaning:"আকর্ষণীয়",exp:"Noun ‘place’-এর আগে Adjective ‘attractive’ বসেছে।"},
+{q:"The journey was very [enjoy].",ans:"enjoyable",meaning:"উপভোগ্য",exp:"Linking verb ‘was’-এর পরে Adjective ‘enjoyable’ বসেছে।"},
+{q:"We were [excite] at the news.",ans:"excited",meaning:"উত্তেজিত / রোমাঞ্চিত",exp:"ব্যক্তির অনুভূতি বোঝাতে Adjective ‘excited’ বসেছে।"},
+{q:"It was a [please] experience. (মনোরম)",ans:"pleasant",meaning:"মনোরম",exp:"‘Pleasure’ থেকে আলাদা Adjective ‘pleasant’ ব্যবহৃত হয়।"},
+{q:"The scenery is [wonder].",ans:"wonderful",meaning:"চমৎকার",exp:"Linking verb ‘is’-এর পরে Adjective ‘wonderful’ বসেছে।"},
+{q:"Beautiful [sight] relieve our eyes. (একাধিক দৃশ্য)",ans:"sights",meaning:"দৃশ্যসমূহ",exp:"Plural Subject ‘sights’-এর সঙ্গে Verb-ও plural ‘relieve’ হয়েছে।"},
+{q:"A silent night brings [peace] to mind.",ans:"peace",meaning:"শান্তি",exp:"‘Peace’ নিজেই Noun; ‘brings peace’ একটি স্বাভাবিক গঠন।"},
+{q:"[Free] movement in nature refreshes us. (মুক্ত)",ans:"free",meaning:"মুক্ত",exp:"‘Movement’-এর আগে Adjective ‘free’ বসেছে।"},
+{q:"Always keep your valuables in a [safe] place.",ans:"safe",meaning:"নিরাপদ",exp:"Noun ‘place’-এর আগে Adjective ‘safe’ বসেছে।"},
+{q:"Do not put yourself in [danger].",ans:"danger",meaning:"বিপদ",exp:"Preposition ‘in’-এর পরে Noun ‘danger’ বসেছে।"},
+{q:"There is no [true] in his words. (সত্যতা)",ans:"truth",meaning:"সত্যতা",exp:"‘No’-এর পরে Noun ‘truth’ বসেছে।"},
+{q:"[Just] must prevail in society. (ন্যায়বিচার)",ans:"justice",meaning:"ন্যায়বিচার",exp:"Subject হিসেবে Noun ‘justice’ বসেছে।"},
+{q:"Act [wise] in critical situations.",ans:"wisely",meaning:"বুদ্ধিমত্তার সঙ্গে",exp:"Verb ‘Act’-কে modify করতে Adverb ‘wisely’ বসেছে।"},
+{q:"[Able] is better than riches. (যোগ্যতা)",ans:"ability",meaning:"যোগ্যতা",exp:"Subject হিসেবে Noun ‘ability’ বসেছে।"},
+{q:"Inactivity leads to [active]. (নিষ্ক্রিয়তা)",ans:"inactivity",meaning:"নিষ্ক্রিয়তা",exp:"Prefix in- ও Suffix -ity-সহ Noun ‘inactivity’ হয়েছে।"},
+{q:"[Fortunate] he escaped the accident.",ans:"fortunately",meaning:"সৌভাগ্যবশত",exp:"পুরো বাক্যকে modify করতে Adverb ‘Fortunately’ বসেছে।"},
+{q:"He got the [appoint].",ans:"appointment",meaning:"নিয়োগ / সাক্ষাতের সময়",exp:"‘The’-এর পরে Noun ‘appointment’ বসেছে।"},
+{q:"I am fully [satisfy] with your work.",ans:"satisfied",meaning:"সন্তুষ্ট",exp:"‘Am’ ও ‘fully’-এর পরে Adjective ‘satisfied’ বসেছে।"}
+];
+
+let currentQuizPage=1;
+const itemsPerPage=10;
+function switchTab(tabNum){
+ document.querySelectorAll('.chapter-content').forEach(el=>el.classList.remove('active'));
+ const target=document.getElementById('tab-'+tabNum);
+ if(target)target.classList.add('active');
+ document.querySelectorAll('.nav-tab:not(.toc)').forEach((el,index)=>el.classList.toggle('active',index+1===tabNum));
+ document.querySelector('.ebook-container').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function goToContents(){window.location.href='../lesson_link.html';}
+function renderQuizPage(){
+ const container=document.getElementById('quiz-container');
+ container.innerHTML='';
+ const start=(currentQuizPage-1)*itemsPerPage;
+ questions.slice(start,start+itemsPerPage).forEach((item,index)=>{
+  const globalIndex=start+index;
+  const card=document.createElement('div');card.className='question-card';
+  const q=document.createElement('div');q.className='q-text';
+  q.innerHTML=(globalIndex+1)+'. '+item.q.replace(/\[(.*?)\]/g,'<span style="color:var(--primary);font-weight:700">($1)</span> ______');
+  const row=document.createElement('div');row.style.cssText='display:flex;align-items:center;flex-wrap:wrap;gap:8px';
+  const input=document.createElement('input');input.type='text';input.className='q-input';input.id='q-input-'+globalIndex;input.placeholder='উত্তর লিখুন';input.setAttribute('aria-label','প্রশ্ন '+(globalIndex+1)+'-এর উত্তর');
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')checkQuizAnswer(globalIndex)});
+  const submit=document.createElement('button');submit.className='btn';submit.textContent='সাবমিট';submit.onclick=()=>checkQuizAnswer(globalIndex);
+  const explain=document.createElement('button');explain.className='btn btn-outline';explain.textContent='ব্যাখ্যা';explain.onclick=()=>toggleExp(globalIndex);
+  const result=document.createElement('span');result.className='result-msg';result.id='q-res-'+globalIndex;
+  row.append(input,submit,explain,result);
+  const exp=document.createElement('div');exp.className='explanation-box';exp.id='q-exp-'+globalIndex;
+  const meaning=document.createElement('div');meaning.innerHTML='<strong>বাংলা অর্থ:</strong> ';meaning.append(document.createTextNode(item.meaning));
+  const explanation=document.createElement('div');explanation.innerHTML='<strong>ব্যাকরণগত ব্যাখ্যা:</strong> ';explanation.append(document.createTextNode(item.exp));
+  exp.append(meaning,explanation);card.append(q,row,exp);container.appendChild(card);
+ });
+ const totalPages=Math.ceil(questions.length/itemsPerPage);
+ document.getElementById('quiz-page-info').textContent=`পেজ ${currentQuizPage} / ${totalPages} · মোট ${questions.length}টি প্রশ্ন`;
+ document.getElementById('prev-btn').disabled=currentQuizPage===1;
+ document.getElementById('next-btn').disabled=currentQuizPage===totalPages;
+}
+function checkQuizAnswer(index){
+ const input=document.getElementById('q-input-'+index);
+ const userVal=input.value.trim().toLowerCase();
+ const item=questions[index];const res=document.getElementById('q-res-'+index);
+ if(!userVal){res.textContent='আগে উত্তর লিখুন!';res.className='result-msg incorrect';return;}
+ if(userVal===item.ans.toLowerCase()){res.textContent='✔ সঠিক উত্তর!';res.className='result-msg correct';}
+ else{res.textContent='✘ সঠিক উত্তর: '+item.ans;res.className='result-msg incorrect';}
+ const exp=document.getElementById('q-exp-'+index);exp.style.display='block';
+}
+function toggleExp(index){
+ const box=document.getElementById('q-exp-'+index);
+ box.style.display=box.style.display==='block'?'none':'block';
+}
+function changeQuizPage(dir){
+ const totalPages=Math.ceil(questions.length/itemsPerPage);
+ currentQuizPage=Math.max(1,Math.min(totalPages,currentQuizPage+dir));
+ renderQuizPage();
+ document.getElementById('quiz-container').scrollIntoView({behavior:'smooth',block:'start'});
+}
+renderQuizPage();
+</script>
+</body>
+</html>
