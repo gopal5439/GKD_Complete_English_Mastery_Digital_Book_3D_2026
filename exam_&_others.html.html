@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GKD Complete English Mastery - প্রফেশনাল এডুকেশন ও এক্সাম পোর্টাল</title>
+    <title>EduMaster Pro - ফায়ারবেজ কানেক্টেড পোর্টাল</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -34,36 +34,6 @@
         .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
         .dark .glass-panel { background: rgba(15, 23, 42, 0.85); }
     </style>
-
-    <!-- GKD Book: Back to Lesson List -->
-
-<div style="
-    position:sticky;
-    top:0;
-    z-index:9999;
-    padding:12px;
-    background:rgba(255,255,255,0.95);
-    text-align:center;
-    box-shadow:0 3px 12px #0002;
-">
-
-    <button onclick="window.location.href='index.html'"
-    style="
-        padding:12px 24px;
-        border:none;
-        border-radius:12px;
-        background:linear-gradient(135deg,#142850,#274690);
-        color:white;
-        font-size:16px;
-        font-weight:bold;
-        cursor:pointer;
-    ">
-        📚 Homepage
-    </button>
-
-</div>
-
-    
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
@@ -75,8 +45,8 @@
                     <i class="fa-solid fa-graduation-cap text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold bg-gradient-to-r from-brand-600 to-cyan-500 bg-clip-text text-transparent leading-none">GKD Complete English Mastery</h1>
-                    <span class="text-[11px] text-slate-400 font-medium">স্মার্ট এডুকেশন পোর্টাল</span>
+                    <h1 class="text-lg font-bold bg-gradient-to-r from-brand-600 to-cyan-500 bg-clip-text text-transparent leading-none">EduMaster Pro</h1>
+                    <span class="text-[11px] text-slate-400 font-medium">স্মার্ট এডুকেশন পোর্টাল (Live)</span>
                 </div>
             </div>
 
@@ -156,9 +126,9 @@
 
             <div class="p-8 bg-gradient-to-r from-brand-600 via-indigo-600 to-cyan-600 rounded-3xl text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="space-y-3 max-w-xl">
-                    <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold backdrop-blur-md">স্মার্ট লার্নিং ২০২৬</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold leading-tight">আপনার প্রয়োজনীয় পাঠ্যবই ও নোট নির্বাচন করুন</h2>
-                    <p class="text-brand-100 text-sm">নির্দিষ্ট বিষয় ও অধ্যায় সিলেক্ট করে সহজেই বিষয়ভিত্তিক মেটেরিয়াল খুঁজে নিন।</p>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold backdrop-blur-md">লাইভ ক্লাউড পোর্টাল</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold leading-tight">আপনার প্রয়োজনীয় পাঠ্যবই ও নোট নির্বাচন করুন</h2>
+                    <p class="text-brand-100 text-sm">নির্দিষ্ট বিষয় ও অধ্যায় সিলেক্ট করে অনলাইন এক্সেল বা ড্রাইভ লিংকগুলো এক্সপ্লোর করুন।</p>
                 </div>
                 <button onclick="switchMainTab('academic')" class="px-6 py-3 bg-white text-brand-600 font-bold rounded-2xl shadow-md hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-2">
                     <i class="fa-solid fa-arrow-right"></i> ক্লাসে প্রবেশ করুন
@@ -214,46 +184,33 @@
             <div id="devUploadPanel" class="hidden p-5 bg-brand-50/60 dark:bg-brand-950/30 rounded-2xl border border-brand-200 dark:border-brand-900/50 space-y-4">
                 <div class="flex items-center justify-between">
                     <h3 class="font-bold text-sm text-brand-800 dark:text-brand-300 flex items-center gap-2">
-                        <i class="fa-solid fa-cloud-arrow-up"></i> নতুন মেটেরিয়াল আপলোড (<span id="uploadTargetLabel">বই</span>)
+                        <i class="fa-solid fa-cloud-arrow-up"></i> ক্লাউড মেটেরিয়াল আপলোড (<span id="uploadTargetLabel">বই</span>)
                     </h3>
                     <span class="text-[11px] bg-brand-200 dark:bg-brand-900 text-brand-800 dark:text-brand-200 px-2.5 py-0.5 rounded-full font-bold">Developer Access Active</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold mb-1">বিষয় / টপিক <span class="text-red-500">*</span></label>
+                        <label class="block text-xs font-semibold mb-1">বিষয় / টপিক <span class="text-red-500">*</span></label>
                         <input type="text" id="pdfSubjectInput" placeholder="যেমন: পদার্থবিজ্ঞান..." class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold mb-1">অধ্যায় / চ্যাপ্টার <span class="text-red-500">*</span></label>
-                        <input type="text" id="pdfChapterInput" placeholder="যেমন: ১ম অধ্যায় (গতি)..." class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
+                        <label class="block text-xs font-semibold mb-1">অধ্যায় / চ্যাপ্টার <span class="text-red-500">*</span></label>
+                        <input type="text" id="pdfChapterInput" placeholder="যেমন: ১ম অধ্যায়..." class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1">ফাইলের শিরোনাম <span class="text-red-500">*</span></label>
-                        <input type="text" id="pdfTitleInput" placeholder="যেমন: মেইন বুক PDF..." class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
+                        <input type="text" id="pdfTitleInput" placeholder="যেমন: এক্সেল শিট ড্রাইভ লিংক..." class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-semibold mb-1">সোৰ্স টাইপ:</label>
-                        <select id="pdfSourceType" onchange="toggleSourceInput()" class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
-                            <option value="local">ডিভাইস মেমোরি থেকে আপলোড (PDF)</option>
-                            <option value="url">অনলাইন মেটেরিয়াল লিঙ্ক (URL)</option>
-                        </select>
-                    </div>
-                    <div id="wrapperLocalFile">
-                        <label class="block text-xs font-semibold mb-1">PDF ফাইল নির্বাচন করুন:</label>
-                        <input type="file" id="pdfFileInput" accept="application/pdf" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-600 file:text-white hover:file:bg-brand-700 cursor-pointer">
-                    </div>
-                    <div id="wrapperUrlLink" class="hidden">
-                        <label class="block text-xs font-semibold mb-1">মেটেরিয়াল URL / Drive Link:</label>
-                        <input type="url" id="pdfUrlInput" placeholder="https://example.com/document.pdf" class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
-                    </div>
+                <div>
+                    <label class="block text-xs font-semibold mb-1">মেটেরিয়াল URL / Drive / Excel Link <span class="text-red-500">*</span>:</label>
+                    <input type="url" id="pdfUrlInput" placeholder="https://drive.google.com/..." class="w-full p-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
                 </div>
 
-                <button onclick="handleSaveMaterial()" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition shadow flex items-center gap-2">
-                    <i class="fa-solid fa-save"></i> মেটেরিয়াল সেভ করুন
+                <button onclick="handleSaveMaterial()" id="saveBtn" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition shadow flex items-center gap-2">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> ক্লাউডে সেভ করুন
                 </button>
             </div>
 
@@ -262,7 +219,7 @@
                 <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-between shadow-xs">
                     <div>
                         <h4 class="font-bold text-sm">লাইভ মডেল টেস্ট - ১</h4>
-                        <p class="text-xs text-slate-400">সময়: ২৫ মিনিট | পূর্ণমান: ২৫</p>
+                        <p class="text-xs text-slate-400">সময়: ২৫ মিনিট | পূর্ণমান: ২৫</p>
                     </div>
                     <a href="https://forms.google.com" target="_blank" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-700 transition flex items-center gap-1.5">
                         পরীক্ষা দিন <i class="fa-solid fa-external-link text-[10px]"></i>
@@ -319,37 +276,14 @@
     <div id="devAuthModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="max-w-sm w-full bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-4 border border-slate-200 dark:border-slate-700 shadow-xl">
             <div class="flex items-center justify-between">
-                <h3 class="font-bold text-base flex items-center gap-2"><i class="fa-solid fa-lock text-brand-600"></i> ডেভলোপার পাসওয়ার্ড</h3>
+                <h3 class="font-bold text-base flex items-center gap-2"><i class="fa-solid fa-lock text-brand-600"></i> ডেভলোপার পাসওয়ার্ড</h3>
                 <button onclick="closeDevAuthModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <p class="text-xs text-slate-500">ডেভলোপার মোড অন করতে পাসওয়ার্ড প্রবেশ করান:</p>
-            <input type="password" id="devPasswordInput" placeholder="পাসওয়ার্ড লিখুন..." class="w-full p-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
+            <p class="text-xs text-slate-500">ডেভলোপার মোড অন করতে পাসওয়ার্ড প্রবেশ করান:</p>
+            <input type="password" id="devPasswordInput" placeholder="পাসওয়ার্ড লিখুন..." class="w-full p-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm focus:outline-none">
             <div class="flex justify-end gap-2">
                 <button onclick="closeDevAuthModal()" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-xl text-xs font-semibold">বাতিল</button>
                 <button onclick="verifyDevPassword()" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-semibold">সাবমিট</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- IN-APP PDF VIEWER MODAL -->
-    <div id="pdfViewerModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex flex-col p-3 sm:p-6">
-        <div class="max-w-5xl w-full mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-2xl flex flex-col h-full overflow-hidden border border-slate-200 dark:border-slate-700">
-            <div class="px-5 py-3 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between gap-2">
-                <div class="flex items-center gap-2 truncate pr-4">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
-                    <h3 id="modalPdfTitle" class="font-bold text-sm truncate">পিডিএফ ডক্যুমেন্ট</h3>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="openPdfInNewTab()" class="px-3 py-1.5 bg-brand-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 hover:bg-brand-700 transition">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> ফুল স্ক্রিনে ওপেন করুন
-                    </button>
-                    <button onclick="closePdfModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500 hover:text-slate-800 transition">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="flex-1 bg-slate-100 dark:bg-slate-900 relative">
-                <iframe id="pdfIframe" src="" class="w-full h-full border-0"></iframe>
             </div>
         </div>
     </div>
@@ -358,7 +292,7 @@
     <div id="shareModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="max-w-sm w-full bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-4 border border-slate-200 dark:border-slate-700 shadow-xl">
             <div class="flex items-center justify-between">
-                <h3 class="font-bold text-base flex items-center gap-2"><i class="fa-solid fa-share-nodes text-brand-600"></i> মেটেরিয়াল শেয়ার করুন</h3>
+                <h3 class="font-bold text-base flex items-center gap-2"><i class="fa-solid fa-share-nodes text-brand-600"></i> মেটেরিয়াল শেয়ার করুন</h3>
                 <button onclick="closeShareModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <p id="shareFileName" class="text-xs text-slate-400 truncate"></p>
@@ -386,22 +320,37 @@
         </div>
     </div>
 
-    <!-- SCRIPT LOGIC -->
-    <script>
-        // সিক্রেট ডেভেলপার পাসওয়ার্ড (আপনি ইচ্ছা করলে পরিবর্তন করতে পারেন)
-        const DEV_PASSWORD = "admin123"; 
+    <!-- FIREBASE MODULE & SCRIPT LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyDK3SWVSHqCeD8SGRzUYqPevsDo96Fr4yk",
+            authDomain: "books-link-form-excel-sheet.firebaseapp.com",
+            projectId: "books-link-form-excel-sheet",
+            storageBucket: "books-link-form-excel-sheet.firebasestorage.app",
+            messagingSenderId: "68944578896",
+            appId: "1:68944578896:web:dd29c1a7326392c5f9c455",
+            measurementId: "G-M18505NW5C"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const materialsCollection = collection(db, "materials");
+
+        const DEV_PASSWORD = "admin123"; 
         let isDevMode = false;
         let isSoundOn = true;
         let currentSelectedClass = null;
         let currentSubTab = 'book';
-        let activeViewerBlobUrl = null;
         let currentShareItem = null;
+        let pdfStore = [];
 
         const classes = [
             { id: 1, name: 'প্রথম শ্রেণি (Class 1)' },
-            { id: 2, name: 'দ্বিতীয় শ্রেণি (Class 2)' },
-            { id: 3, name: 'তৃতীয় শ্রেণি (Class 3)' },
+            { id: 2, name: 'দ্বিতীয় শ্রেণি (Class 2)' },
+            { id: 3, name: 'তৃতীয় শ্রেণি (Class 3)' },
             { id: 4, name: 'চতুর্থ শ্রেণি (Class 4)' },
             { id: 5, name: 'পঞ্চম শ্রেণি (Class 5)' },
             { id: 6, name: 'ষষ্ঠ শ্রেণি (Class 6)' },
@@ -413,13 +362,14 @@
             { id: 12, name: 'দ্বাদশ শ্রেণি (Class 12)' }
         ];
 
-        const dummyPdfBase64 = "data:application/pdf;base64,JVBERi0xLjQKJSDi48/GCjEgMCBvYmoKPDwvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlIC9QYWdlcyAvS2lkcyBbMyAwIFJdIC9Db3VudCAxPj4KZW5kb2JqCjMgMCBvYmoKPDwvVHlwZSAvUGFnZSAvUGFyZW50IDIgMCBSIC9NZWRpYUJveCBbMCAwIDYxMiA3OTJdIC9SZXNvdXJjZXMgPD4+PgplbmRvYmoKeHJlZgowIDQKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE5IDAwMDAwIG4gCjAwMDAwMDAwNjggMDAwMDAgbiAKMDAwMDAwMDEyNSAwMDAwMCBuIAp0cmFpbGVyCjw8L1NpemUgNCAvUm9vdCAxIDAgUj4+CnN0YXJ0eHJlZgoxOTMKJSVFT0Y=";
+        // REALTIME FIREBASE DATA SYNC
+        onSnapshot(materialsCollection, (snapshot) => {
+            pdfStore = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            updateGlobalStats();
+            if (currentSelectedClass) renderMaterialsList();
+        });
 
-        let pdfStore = JSON.parse(localStorage.getItem('edumaster_isolate_db')) || [
-            { id: 1, classId: 10, subject: 'পদার্থবিজ্ঞান', chapter: '১ম অধ্যায়', tabCategory: 'book', title: 'দশম শ্রেণি পদার্থবিজ্ঞান পাঠ্যবই', sourceType: 'local', fileData: dummyPdfBase64, date: '২০২৬-১০-১৯' }
-        ];
-
-        function playAudio() {
+        window.playAudio = function() {
             if (!isSoundOn) return;
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -434,14 +384,9 @@
                 osc.start();
                 osc.stop(ctx.currentTime + 0.05);
             } catch(e) {}
-        }
+        };
 
-        window.addEventListener('DOMContentLoaded', () => {
-            renderClassesGrid(classes);
-            updateGlobalStats();
-        });
-
-        function toggleDarkMode() {
+        window.toggleDarkMode = function() {
             playAudio();
             const html = document.documentElement;
             const icon = document.getElementById('themeIcon');
@@ -452,41 +397,39 @@
                 html.classList.add('dark');
                 icon.className = 'fa-solid fa-sun text-xs';
             }
-        }
+        };
 
-        function toggleSound() {
+        window.toggleSound = function() {
             isSoundOn = !isSoundOn;
             document.getElementById('soundIcon').className = isSoundOn ? 'fa-solid fa-volume-high text-xs' : 'fa-solid fa-volume-xmark text-xs';
-        }
+        };
 
-        // Developer Password Protection Logic
-        function requestDevAccess() {
+        window.requestDevAccess = function() {
             playAudio();
             if (isDevMode) {
-                // Turn off dev mode directly
                 applyDevModeState(false);
             } else {
                 document.getElementById('devPasswordInput').value = '';
                 document.getElementById('devAuthModal').classList.remove('hidden');
             }
-        }
+        };
 
-        function closeDevAuthModal() {
+        window.closeDevAuthModal = function() {
             playAudio();
             document.getElementById('devAuthModal').classList.add('hidden');
-        }
+        };
 
-        function verifyDevPassword() {
+        window.verifyDevPassword = function() {
             playAudio();
             const pass = document.getElementById('devPasswordInput').value;
             if (pass === DEV_PASSWORD) {
                 applyDevModeState(true);
                 closeDevAuthModal();
-                alert('ডেভলোপার মোড সফলভাবে সক্রিয় হয়েছে!');
+                alert('ডেভলোপার মোড সফলভাবে সক্রিয় হয়েছে!');
             } else {
-                alert('ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।');
+                alert('ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।');
             }
-        }
+        };
 
         function applyDevModeState(enable) {
             isDevMode = enable;
@@ -512,7 +455,7 @@
             if (currentSelectedClass) renderMaterialsList();
         }
 
-        function switchMainTab(tab) {
+        window.switchMainTab = function(tab) {
             playAudio();
             document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
             document.getElementById(`sec-${tab}`).classList.remove('hidden');
@@ -521,7 +464,7 @@
                 b.className = 'py-3 border-b-2 border-transparent text-slate-500 hover:text-brand-600 flex items-center gap-2';
             });
             document.getElementById(`navTab-${tab}`).className = 'py-3 border-b-2 border-brand-600 text-brand-600 flex items-center gap-2';
-        }
+        };
 
         function renderClassesGrid(list) {
             const grid = document.getElementById('classGrid');
@@ -538,13 +481,13 @@
             });
         }
 
-        function filterClassCards() {
+        window.filterClassCards = function() {
             const val = document.getElementById('classSearchInput').value.toLowerCase();
             const filtered = classes.filter(c => c.name.toLowerCase().includes(val));
             renderClassesGrid(filtered);
-        }
+        };
 
-        function openClassHub(classId, className) {
+        window.openClassHub = function(classId, className) {
             playAudio();
             currentSelectedClass = classId;
             document.getElementById('currentClassName').innerText = className;
@@ -553,9 +496,9 @@
             document.getElementById('sec-classHub').classList.remove('hidden');
 
             selectMaterialSubTab('book');
-        }
+        };
 
-        function selectMaterialSubTab(tab) {
+        window.selectMaterialSubTab = function(tab) {
             playAudio();
             currentSubTab = tab;
 
@@ -588,81 +531,48 @@
                 document.getElementById('materialsListContainer').classList.remove('hidden');
                 renderMaterialsList();
             }
-        }
+        };
 
-        function toggleSourceInput() {
-            const type = document.getElementById('pdfSourceType').value;
-            if (type === 'local') {
-                document.getElementById('wrapperLocalFile').classList.remove('hidden');
-                document.getElementById('wrapperUrlLink').classList.add('hidden');
-            } else {
-                document.getElementById('wrapperLocalFile').classList.add('hidden');
-                document.getElementById('wrapperUrlLink').classList.remove('hidden');
-            }
-        }
-
-        function handleSaveMaterial() {
+        window.handleSaveMaterial = async function() {
             playAudio();
             const subject = document.getElementById('pdfSubjectInput').value.trim();
             const chapter = document.getElementById('pdfChapterInput').value.trim();
             const title = document.getElementById('pdfTitleInput').value.trim();
-            const sourceType = document.getElementById('pdfSourceType').value;
+            const url = document.getElementById('pdfUrlInput').value.trim();
 
-            // টপিক ও অধ্যায় সিলেক্ট/ইনপুট বাধ্যবাধকতা
-            if (!subject || !chapter || !title) {
-                alert('অনুগ্রহ করে বিষয়, অধ্যায় এবং ফাইলের নাম সম্পূর্ণ পূরণ করুন!');
+            if (!subject || !chapter || !title || !url) {
+                alert('অনুগ্রহ করে বিষয়, অধ্যায়, টাইটেল এবং ইউআরএল সবগুলো ঘর ড্রাইভ/এক্সেল লিংক দিয়ে পূরণ করুন!');
                 return;
             }
 
-            if (sourceType === 'url') {
-                const url = document.getElementById('pdfUrlInput').value.trim();
-                if (!url) { alert('সঠিক URL প্রদান করুন।'); return; }
-                saveMaterialRecord(subject, chapter, title, 'url', url);
-            } else {
-                const fileInput = document.getElementById('pdfFileInput');
-                if (!fileInput.files || fileInput.files.length === 0) {
-                    alert('আপনার ডিভাইস থেকে একটি PDF সিলেক্ট করুন।');
-                    return;
-                }
-                const file = fileInput.files[0];
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    saveMaterialRecord(subject, chapter, title, 'local', e.target.result);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
+            const saveBtn = document.getElementById('saveBtn');
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> সেভ হচ্ছে...`;
 
-        function saveMaterialRecord(subject, chapter, title, sourceType, fileData) {
-            const newObj = {
-                id: Date.now(),
-                classId: currentSelectedClass,
-                subject: subject,
-                chapter: chapter,
-                tabCategory: currentSubTab,
-                title: title,
-                sourceType: sourceType,
-                fileData: fileData,
-                date: new Date().toISOString().split('T')[0]
-            };
-
-            pdfStore.push(newObj);
             try {
-                localStorage.setItem('edumaster_isolate_db', JSON.stringify(pdfStore));
+                await addDoc(materialsCollection, {
+                    classId: currentSelectedClass,
+                    subject: subject,
+                    chapter: chapter,
+                    tabCategory: currentSubTab,
+                    title: title,
+                    url: url,
+                    date: new Date().toISOString().split('T')[0]
+                });
+
+                document.getElementById('pdfSubjectInput').value = '';
+                document.getElementById('pdfChapterInput').value = '';
+                document.getElementById('pdfTitleInput').value = '';
+                document.getElementById('pdfUrlInput').value = '';
+
+                alert('ফায়ারবেজ ক্লাউডে মেটেরিয়ালটি সফলভাবে সেভ হয়েছে!');
             } catch (e) {
-                console.warn('Memory full, temporarily loaded in active session.');
+                alert('ক্লাউডে সেভ করতে সমস্যা হয়েছে: ' + e.message);
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> ক্লাউডে সেভ করুন`;
             }
-
-            document.getElementById('pdfSubjectInput').value = '';
-            document.getElementById('pdfChapterInput').value = '';
-            document.getElementById('pdfTitleInput').value = '';
-            document.getElementById('pdfUrlInput').value = '';
-            document.getElementById('pdfFileInput').value = '';
-
-            renderMaterialsList();
-            updateGlobalStats();
-            alert('মেটেরিয়ালটি সফলভাবে যুক্ত করা হয়েছে!');
-        }
+        };
 
         function renderMaterialsList() {
             const container = document.getElementById('materialsListContainer');
@@ -671,17 +581,16 @@
             const filteredItems = pdfStore.filter(i => i.classId === currentSelectedClass && i.tabCategory === currentSubTab);
 
             if (filteredItems.length === 0) {
-                container.innerHTML = `<div class="col-span-2 p-8 text-center text-xs text-slate-400 italic bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">এই ক্যাটেগরিতে এখনো কোনো ফাইল বা মেটেরিয়াল যুক্ত করা হয়নি।</div>`;
+                container.innerHTML = `<div class="col-span-2 p-8 text-center text-xs text-slate-400 italic bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">এই ক্যাটেগরিতে এখনো কোনো ক্লাউড মেটেরিয়াল যুক্ত করা হয়নি।</div>`;
                 return;
             }
 
             filteredItems.forEach(item => {
-                const isUrl = item.sourceType === 'url';
                 container.innerHTML += `
                     <div class="p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700/80 flex items-center justify-between shadow-xs hover:border-brand-500/50 transition">
                         <div onclick="openMaterialItem('${item.id}')" class="flex items-center gap-3 cursor-pointer overflow-hidden pr-2 flex-1">
-                            <div class="w-10 h-10 rounded-xl ${isUrl ? 'bg-cyan-50 text-cyan-600' : 'bg-red-50 text-red-500'} flex items-center justify-center font-bold shrink-0">
-                                <i class="fa-solid ${isUrl ? 'fa-link' : 'fa-file-pdf'} text-lg"></i>
+                            <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold shrink-0">
+                                <i class="fa-solid fa-link text-lg"></i>
                             </div>
                             <div class="truncate">
                                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-brand-600 dark:text-brand-400 mb-1 inline-block">
@@ -695,12 +604,8 @@
                             <button onclick="openShareModal('${item.id}')" title="শেয়ার করুন" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-emerald-500 hover:text-white transition flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-share-nodes"></i>
                             </button>
-                            ${!isUrl ? `
-                            <button onclick="downloadPdfFile('${item.id}')" title="ডাউনলোড করুন" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-brand-600 hover:text-white transition flex items-center justify-center text-xs">
-                                <i class="fa-solid fa-download"></i>
-                            </button>` : ''}
                             ${isDevMode ? `
-                                <button onclick="deleteMaterial(${item.id})" title="ডিলিট করুন" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-red-500 hover:text-white transition flex items-center justify-center text-xs">
+                                <button onclick="deleteMaterial('${item.id}')" title="ডিলিট করুন" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-red-500 hover:text-white transition flex items-center justify-center text-xs">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             ` : ''}
@@ -710,85 +615,34 @@
             });
         }
 
-        // Open Material Handler: URL opens direct in source, Local opens in Viewer
-        function openMaterialItem(id) {
+        window.openMaterialItem = function(id) {
             playAudio();
             const item = pdfStore.find(i => i.id == id);
             if (!item) return;
+            window.open(item.url, '_blank');
+        };
 
-            if (item.sourceType === 'url') {
-                window.open(item.fileData, '_blank');
-            } else {
-                openPdfViewerModal(id);
-            }
-        }
-
-        function getBlobUrlFromData(fileData) {
-            if (fileData.startsWith('http://') || fileData.startsWith('https://')) {
-                return fileData;
-            }
-            try {
-                const parts = fileData.split(';base64,');
-                const contentType = parts[0].split(':')[1] || 'application/pdf';
-                const raw = window.atob(parts[1]);
-                const rawLength = raw.length;
-                const uInt8Array = new Uint8Array(rawLength);
-                for (let i = 0; i < rawLength; ++i) {
-                    uInt8Array[i] = raw.charCodeAt(i);
-                }
-                const blob = new Blob([uInt8Array], { type: contentType });
-                return URL.createObjectURL(blob);
-            } catch (e) {
-                return fileData;
-            }
-        }
-
-        function openPdfViewerModal(id) {
-            const item = pdfStore.find(i => i.id == id);
-            if (!item) return;
-
-            document.getElementById('modalPdfTitle').innerText = `${item.subject} - ${item.title}`;
-            activeViewerBlobUrl = getBlobUrlFromData(item.fileData);
-
-            const iframe = document.getElementById('pdfIframe');
-            iframe.src = activeViewerBlobUrl;
-
-            document.getElementById('pdfViewerModal').classList.remove('hidden');
-        }
-
-        function openPdfInNewTab() {
-            if (activeViewerBlobUrl) {
-                window.open(activeViewerBlobUrl, '_blank');
-            }
-        }
-
-        function closePdfModal() {
-            playAudio();
-            document.getElementById('pdfViewerModal').classList.add('hidden');
-            document.getElementById('pdfIframe').src = '';
-        }
-
-        function openShareModal(id) {
+        window.openShareModal = function(id) {
             playAudio();
             currentShareItem = pdfStore.find(i => i.id == id);
             if (!currentShareItem) return;
 
             document.getElementById('shareFileName').innerText = `ফাইল: ${currentShareItem.title}`;
             document.getElementById('shareModal').classList.remove('hidden');
-        }
+        };
 
-        function closeShareModal() {
+        window.closeShareModal = function() {
             playAudio();
             document.getElementById('shareModal').classList.add('hidden');
             currentShareItem = null;
-        }
+        };
 
-        function shareToPlatform(platform) {
+        window.shareToPlatform = function(platform) {
             playAudio();
             if (!currentShareItem) return;
 
             const text = encodeURIComponent(`EduMaster Resource: ${currentShareItem.title}`);
-            const targetUrl = encodeURIComponent(currentShareItem.sourceType === 'url' ? currentShareItem.fileData : window.location.href);
+            const targetUrl = encodeURIComponent(currentShareItem.url);
 
             let shareUrl = '';
             if (platform === 'whatsapp') shareUrl = `https://api.whatsapp.com/send?text=${text}%20${targetUrl}`;
@@ -797,43 +651,35 @@
             else if (platform === 'telegram') shareUrl = `https://t.me/share/url?url=${targetUrl}&text=${text}`;
             else if (platform === 'email') shareUrl = `mailto:?subject=${text}&body=${targetUrl}`;
             else if (platform === 'copy') {
-                navigator.clipboard.writeText(currentShareItem.sourceType === 'url' ? currentShareItem.fileData : window.location.href);
-                alert('মেটেরিয়াল লিঙ্ক কপি করা হয়েছে!');
+                navigator.clipboard.writeText(currentShareItem.url);
+                alert('মেটেরিয়াল লিংক কপি করা হয়েছে!');
                 closeShareModal();
                 return;
             }
 
             if (shareUrl) window.open(shareUrl, '_blank');
             closeShareModal();
-        }
+        };
 
-        function downloadPdfFile(id) {
+        window.deleteMaterial = async function(id) {
             playAudio();
-            const item = pdfStore.find(i => i.id == id);
-            if (!item || item.sourceType === 'url') return;
-
-            const blobUrl = getBlobUrlFromData(item.fileData);
-            const a = document.createElement('a');
-            a.href = blobUrl;
-            a.download = `${item.title}.pdf`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        function deleteMaterial(id) {
-            playAudio();
-            if (confirm('আপনি কি নিশ্চিত যে ফাইলটি মুছে ফেলতে চান?')) {
-                pdfStore = pdfStore.filter(i => i.id !== id);
-                localStorage.setItem('edumaster_isolate_db', JSON.stringify(pdfStore));
-                renderMaterialsList();
-                updateGlobalStats();
+            if (confirm('আপনি কি নিশ্চিত যে এই ফাইলটি ক্লাউড থেকে মুছে ফেলতে চান?')) {
+                try {
+                    await deleteDoc(doc(db, "materials", id));
+                    alert('ফাইলটি ক্লাউড থেকে মুছে ফেলা হয়েছে!');
+                } catch (e) {
+                    alert('মুছে ফেলতে সমস্যা হয়েছে: ' + e.message);
+                }
             }
-        }
+        };
 
         function updateGlobalStats() {
             document.getElementById('statTotalFiles').innerText = pdfStore.length + 'টি';
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderClassesGrid(classes);
+        });
     </script>
 </body>
 </html>
