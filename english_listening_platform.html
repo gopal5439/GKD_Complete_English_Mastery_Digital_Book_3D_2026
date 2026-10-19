@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইংরেজি লিসনিং মাস্টার - English Listening Master</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            accent: '#10b981',
+                            purple: '#8b5cf6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Bengali & English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        /* Highlighted sentence in text playback */
+        .highlight-sentence {
+            background-color: rgba(59, 130, 246, 0.35);
+            color: #60a5fa;
+            border-radius: 4px;
+            padding: 2px 4px;
+            transition: all 0.2s ease;
+        }
+        /* Audio visualizer bar animation */
+        @keyframes pulse-bar {
+            0%, 100% { height: 6px; }
+            50% { height: 28px; }
+        }
+        .v-bar {
+            animation: pulse-bar 1.2s infinite ease-in-out;
+        }
+        .v-bar:nth-child(1) { animation-delay: 0.1s; }
+        .v-bar:nth-child(2) { animation-delay: 0.3s; }
+        .v-bar:nth-child(3) { animation-delay: 0.2s; }
+        .v-bar:nth-child(4) { animation-delay: 0.5s; }
+        .v-bar:nth-child(5) { animation-delay: 0.4s; }
+        .v-bar:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-purple flex items-center justify-center shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-headphones text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                        Listening Master
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium">ইংরেজি লিসনিং প্ল্যাটফর্ম</p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-1 bg-slate-800/60 p-1.5 rounded-xl border border-slate-700/50">
+                <button id="nav-dashboard" onclick="switchTab('dashboard')" class="px-4 py-2 text-sm font-semibold rounded-lg transition-all text-blue-400 bg-slate-700/80 shadow-sm">
+                    <i class="fa-solid fa-house mr-1.5"></i>ড্যাশবোর্ড
+                </button>
+                <button id="nav-topics" onclick="switchTab('topics')" class="px-4 py-2 text-sm font-semibold rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-700/50">
+                    <i class="fa-solid fa-list-check mr-1.5"></i>৫০টি টপিক
+                </button>
+                <button id="nav-dictation" onclick="switchTab('dictation')" class="px-4 py-2 text-sm font-semibold rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-700/50">
+                    <i class="fa-solid fa-pen-clip mr-1.5"></i>ডিক্টেশন কুইজ
+                </button>
+                <button id="nav-notes" onclick="switchTab('notes')" class="px-4 py-2 text-sm font-semibold rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-700/50">
+                    <i class="fa-solid fa-book-bookmark mr-1.5"></i>নোটস ও শব্দভাণ্ডার
+                </button>
+            </nav>
+
+            <!-- Status Metrics & Theme Toggle -->
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-lg text-emerald-400 text-xs font-semibold">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>সম্পন্ন: <span id="completed-count">0</span>/50</span>
+                </div>
+                <button id="theme-toggle" onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Bar -->
+        <div class="md:hidden flex justify-around border-t border-slate-800 bg-slate-900/95 py-2 px-2 text-xs">
+            <button onclick="switchTab('dashboard')" class="flex flex-col items-center py-1 text-blue-400">
+                <i class="fa-solid fa-house mb-1 text-sm"></i>হোম
+            </button>
+            <button onclick="switchTab('topics')" class="flex flex-col items-center py-1 text-slate-400">
+                <i class="fa-solid fa-list-check mb-1 text-sm"></i>টপিকস
+            </button>
+            <button onclick="switchTab('dictation')" class="flex flex-col items-center py-1 text-slate-400">
+                <i class="fa-solid fa-pen-clip mb-1 text-sm"></i>কুইজ
+            </button>
+            <button onclick="switchTab('notes')" class="flex flex-col items-center py-1 text-slate-400">
+                <i class="fa-solid fa-book-bookmark mb-1 text-sm"></i>নোটস
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Content Wrapper -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- TAB 1: DASHBOARD / HERO SECTION -->
+        <section id="tab-dashboard" class="space-y-8 animate-fadeIn">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-900 via-slate-900 to-indigo-950 border border-slate-800 p-8 sm:p-12 shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
+                        <i class="fa-solid fa-bolt text-amber-400"></i> পূর্ণাঙ্গ লিসনিং অনুশীলন গাইড
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
+                        ইংরেজি লিসনিং দক্ষতায় অর্জন করুন <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-emerald-300 to-purple-400">পূর্ণাঙ্গ সফলতা</span>
+                    </h2>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+                        নেটিভ স্পিকারদের নিখুঁত উচ্চারণে ৫০টি বিভিন্ন ক্যাটাগরির ২ মিনিটের প্যাসেজ শুনুন। ইউকে (UK) ও ইউএস (US) অ্যাকসেন্ট সিলেক্টর, স্পিড কন্ট্রোল এবং সেন্টেন্স হাইলাইটিং টুল ব্যবহার করে নিজেকে স্বাবলম্বী করে তুলুন।
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="switchTab('topics')" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-purple text-white font-bold text-sm shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:scale-[1.02] transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-circle-play text-base"></i> ৫০টি টপিকে অনুশীলন শুরু করুন
+                        </button>
+                        <button onclick="scrollToGuide()" class="px-6 py-3.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-200 font-semibold text-sm hover:bg-slate-700/60 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-book-open"></i> অনুশীলনের নিয়মাবলী
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Overview Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-slate-800/40 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-list font-bold"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">৫০টি</div>
+                        <div class="text-xs text-slate-400">সমৃদ্ধ টপিক</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/40 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">২টি</div>
+                        <div class="text-xs text-slate-400">অ্যাকসেন্ট (UK / US)</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/40 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white" id="stat-time">0 মিনিট</div>
+                        <div class="text-xs text-slate-400">মোট শোনার সময়</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/40 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white" id="stat-progress">০%</div>
+                        <div class="text-xs text-slate-400">কোর্সের অগ্রগতি</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Strategy & Guidelines -->
+            <div id="guidelines-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Why Listening Matters -->
+                <div class="bg-slate-800/50 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">লিসনিং কেন সবচেয়ে জরুরি?</h3>
+                    <ul class="text-sm text-slate-300 space-y-2.5 list-disc list-inside leading-relaxed">
+                        <li><strong>কথা বলার গতি বৃদ্ধি:</strong> শুনলে ব্রেইন ইংরেজি প্যাটার্ন দ্রুত ক্যাচ করতে পারে।</li>
+                        <li><strong>সঠিক উচ্চারণ শেখা:</strong> শব্দের প্রমিত উচ্চারণ ও প্রাকৃতির টোন অনুকরণ সম্ভব হয়।</li>
+                        <li><strong>অ্যাকসেন্ট সাবলীলতা:</strong> ব্রিটিশ ও আমেরিকান ভাষার সূক্ষ্ম পার্থক্যগুলো আয়ত্তে আসে।</li>
+                    </ul>
+                </div>
+
+                <!-- Active Listening Strategy -->
+                <div class="bg-slate-800/50 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">সঠিক অনুশীলনের ৩টি ধাপ</h3>
+                    <ol class="text-sm text-slate-300 space-y-2.5 list-decimal list-inside leading-relaxed">
+                        <li><strong>১ম বার (টেক্সট ছাড়া):</strong> শুধুমাত্র অডিওটি শুনুন এবং মূল বিষয় বোঝার চেষ্টা করুন।</li>
+                        <li><strong>২য় বার (টেক্সট সহ):</strong> টেক্সট দেখার অপশন চালু করে উচ্চারণের সাথে মিলাই।</li>
+                        <li><strong>৩য় বার (ডিক্টেশন কুইজ):</strong> শব্দ শুনে শুন্যস্থান পূরণ করে দক্ষতা পরীক্ষা করুন।</li>
+                    </ol>
+                </div>
+
+                <!-- Accent Differences -->
+                <div class="bg-slate-800/50 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">UK বনাম US অ্যাকসেন্ট পার্থক্য</h3>
+                    <div class="text-sm text-slate-300 space-y-2 leading-relaxed">
+                        <p><strong>ব্রিটিশ (UK):</strong> পরিষ্কার উচ্চারণ, 'R' শব্দের উচ্চারণ শান্ত ও হালকা শোনায়।</p>
+                        <p><strong>আমেরিকান (US):</strong> বেশ মসৃণ প্রবাহ, 'R' ধ্বনি বেশ স্পষ্ট এবং 'T' ফ্ল্যাপ ধ্বনিতে পরিবর্তিত হয়।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: TOPICS LIBRARY & INTERACTIVE PLAYER -->
+        <section id="tab-topics" class="hidden space-y-6">
+            <!-- Search & Category Filters -->
+            <div class="bg-slate-800/60 border border-slate-800 p-4 sm:p-6 rounded-2xl space-y-4">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <!-- Search Box -->
+                    <div class="relative w-full sm:w-80">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="topic-search" placeholder="টপিক বা বিষয় দিয়ে খুঁজুন..." oninput="filterTopics()" class="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors">
+                    </div>
+                    <!-- Category Selector Pills -->
+                    <div class="flex flex-wrap gap-2 w-full sm:w-auto overflow-x-auto pb-1">
+                        <button onclick="setCategoryFilter('all')" class="cat-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 text-white transition-all">সকল (৫০)</button>
+                        <button onclick="setCategoryFilter('daily')" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 hover:bg-slate-700 transition-all">দৈনন্দিন জীবন (১০)</button>
+                        <button onclick="setCategoryFilter('professional')" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 hover:bg-slate-700 transition-all">পেশাদার ও শিক্ষা (১০)</button>
+                        <button onclick="setCategoryFilter('health')" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 hover:bg-slate-700 transition-all">স্বাস্থ্য ও প্রযুক্তি (১০)</button>
+                        <button onclick="setCategoryFilter('entertainment')" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 hover:bg-slate-700 transition-all">বিনোদোন ও সংস্কৃতি (১০)</button>
+                        <button onclick="setCategoryFilter('society')" class="cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 hover:bg-slate-700 transition-all">সমাজ ও দর্শন (১০)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topics Grid Container -->
+            <div id="topics-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Javascript will populate 50 topics dynamically -->
+            </div>
+        </section>
+
+        <!-- TAB 3: DICTATION & LISTENING QUIZ -->
+        <section id="tab-dictation" class="hidden space-y-6">
+            <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-2xl max-w-3xl mx-auto space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-pen-clip text-emerald-400"></i>
+                            লিসনিং ডিক্টেশন চ্যালেঞ্জ
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1">অডিও ভালো করে শুনে শূন্যস্থানগুলো সঠিকভাবে পূরণ করুন।</p>
+                    </div>
+                    <button onclick="loadRandomDictation()" class="px-3.5 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate"></i> নতুন কুইজ
+                    </button>
+                </div>
+
+                <!-- Quiz Card Content -->
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Audio Trigger -->
+                    <div class="flex items-center justify-center p-6 bg-slate-900/80 rounded-2xl border border-slate-800">
+                        <button id="quiz-audio-btn" onclick="playQuizSentence()" class="w-16 h-16 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-lg shadow-emerald-600/30 transition-all transform hover:scale-105">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+
+                    <!-- Sentence with Inputs -->
+                    <div id="quiz-sentence-box" class="text-lg leading-relaxed text-slate-200 bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                        <!-- Dynamic Fill in the Blanks Content -->
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-between">
+                        <button onclick="checkQuizAnswer()" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-brand-600/20 transition-all">
+                            উত্তর যাচাই করুন
+                        </button>
+                        <div id="quiz-feedback" class="text-sm font-semibold"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: VOCABULARY & NOTES -->
+        <section id="tab-notes" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Add Note Form -->
+                <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-bookmark text-brand-500"></i> নতুন নোট অথবা শব্দ যোগ করুন
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">শব্দ / ফ্রেজ (English)</label>
+                            <input type="text" id="note-word" placeholder="e.g. Vocabulary, Articulate" class="w-full px-3.5 py-2 bg-slate-900 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">অর্থ / নোট (বাংলা)</label>
+                            <input type="text" id="note-meaning" placeholder="e.g. শব্দভাণ্ডার, স্পষ্ট করে বলা" class="w-full px-3.5 py-2 bg-slate-900 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">সম্পর্কিত টপিক</label>
+                            <select id="note-topic-select" class="w-full px-3.5 py-2 bg-slate-900 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-brand-500">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <button onclick="saveCustomNote()" class="w-full py-2.5 bg-brand-600 hover:bg-brand-500 text-white text-sm font-bold rounded-xl transition-all shadow-md shadow-brand-600/20">
+                            নোট সেভ করুন
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notes List -->
+                <div class="lg:col-span-2 bg-slate-800/60 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
+                        <h3 class="text-lg font-bold text-white">সংরক্ষিত শব্দভাণ্ডার (<span id="notes-count">0</span>)</h3>
+                        <button onclick="clearAllNotes()" class="text-xs text-rose-400 hover:underline">সব মুছে ফেলুন</button>
+                    </div>
+                    <div id="notes-list-container" class="space-y-3 max-h-[500px] overflow-y-auto pr-1">
+                        <!-- Saved notes cards populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- INTERACTIVE LISTENING MODAL / DEDICATED PLAYER -->
+    <div id="listening-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] animate-fadeIn">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
+                <div class="flex items-center space-x-3">
+                    <span id="modal-category-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                        দৈনন্দিন জীবন
+                    </span>
+                    <h3 id="modal-title" class="text-lg sm:text-xl font-bold text-white truncate max-w-md">
+                        1. Introduction and Greeting
+                    </h3>
+                </div>
+                <button onclick="closeListeningModal()" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Scrollable Body -->
+            <div class="p-6 overflow-y-auto space-y-6 flex-grow">
+                
+                <!-- Audio Visualizer & Accent Selector Control Panel -->
+                <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-5 space-y-5">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        
+                        <!-- Accent Switcher (UK vs US) -->
+                        <div class="flex items-center space-x-2 bg-slate-900 p-1.5 rounded-xl border border-slate-700 w-full sm:w-auto">
+                            <span class="text-xs text-slate-400 pl-2 font-semibold">উচ্চারণ:</span>
+                            <button id="accent-uk" onclick="setAccent('en-GB')" class="flex-1 sm:flex-none px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all flex items-center justify-center gap-1.5">
+                                🇬🇧 British (UK)
+                            </button>
+                            <button id="accent-us" onclick="setAccent('en-US')" class="flex-1 sm:flex-none px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                🇺🇸 American (US)
+                            </button>
+                        </div>
+
+                        <!-- Audio Visualizer Animation -->
+                        <div id="visualizer-box" class="flex items-center gap-1.5 h-8 px-4 bg-slate-900 rounded-xl border border-slate-800 opacity-50">
+                            <div class="w-1.5 bg-brand-500 rounded-full v-bar"></div>
+                            <div class="w-1.5 bg-emerald-400 rounded-full v-bar"></div>
+                            <div class="w-1.5 bg-purple-500 rounded-full v-bar"></div>
+                            <div class="w-1.5 bg-amber-400 rounded-full v-bar"></div>
+                            <div class="w-1.5 bg-brand-500 rounded-full v-bar"></div>
+                            <div class="w-1.5 bg-emerald-400 rounded-full v-bar"></div>
+                        </div>
+
+                        <!-- Transcript Toggle Switcher -->
+                        <button id="transcript-toggle-btn" onclick="toggleTranscriptView()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-eye-slash"></i> টেক্সট বন্ধ করুন
+                        </button>
+                    </div>
+
+                    <!-- Audio Control Buttons Bar -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-slate-700/50">
+                        <div class="flex items-center gap-3">
+                            <button id="play-pause-btn" onclick="togglePlayPause()" class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-purple hover:scale-105 text-white flex items-center justify-center text-xl shadow-lg shadow-brand-500/30 transition-all">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button onclick="stopAudio()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center text-sm transition-all">
+                                <i class="fa-solid fa-stop"></i>
+                            </button>
+                        </div>
+
+                        <!-- Playback Speed Control -->
+                        <div class="flex items-center space-x-1.5 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400 font-semibold mr-1">গতি:</span>
+                            <button onclick="setSpeed(0.75)" class="speed-btn px-2 py-1 text-xs font-bold rounded text-slate-400 hover:text-white">0.75x</button>
+                            <button onclick="setSpeed(1.0)" class="speed-btn active px-2 py-1 text-xs font-bold rounded bg-brand-600 text-white">1x</button>
+                            <button onclick="setSpeed(1.25)" class="speed-btn px-2 py-1 text-xs font-bold rounded text-slate-400 hover:text-white">1.25x</button>
+                            <button onclick="setSpeed(1.5)" class="speed-btn px-2 py-1 text-xs font-bold rounded text-slate-400 hover:text-white">1.5x</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Display Box / Passage Transcript -->
+                <div id="transcript-container" class="bg-slate-950/60 border border-slate-800/80 p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold tracking-wider text-slate-400 uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-align-left text-brand-500"></i> ইংরেজি প্যাসেজ (Reading Transcript)
+                        </span>
+                        <span class="text-xs text-slate-500 font-mono" id="word-count-badge">~250 Words</span>
+                    </div>
+
+                    <!-- Text Paragraph with Live Sentence Highlights -->
+                    <div id="passage-text-box" class="text-base sm:text-lg leading-relaxed text-slate-200 font-sans tracking-wide space-y-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Vocabulary Quick Lookup / Idioms Section -->
+                <div class="bg-slate-800/40 border border-slate-800 p-5 rounded-2xl space-y-3">
+                    <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-amber-400"></i> এই টপিকের গুরুত্বপূর্ণ শব্দ ও অর্থ
+                    </h4>
+                    <div id="topic-vocab-chips" class="flex flex-wrap gap-2">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex items-center justify-between">
+                <button id="mark-complete-btn" onclick="toggleTopicCompletion()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all flex items-center gap-2">
+                    <i class="fa-regular fa-circle-check"></i> সম্পন্ন হিসেবে চিহ্নিত করুন
+                </button>
+
+                <button onclick="openNoteForCurrentTopic()" class="px-4 py-2 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 text-xs font-bold transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> নোট যোগ করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Listening Master. ইংরেজি শেখার জন্য একটি সম্পূর্ণ ইন্টারঅ্যাক্টিভ ডিজিটাল প্ল্যাটফর্ম।</p>
+        </div>
+    </footer>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        // ==========================================
+        // 1. DATA STRUCTURE: 50 COMPREHENSIVE TOPICS
+        // ==========================================
+        const TOPICS_DATA = [
+            // Category 1: Daily Life & Communication (1-10)
+            {
+                id: 1,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Introduction and Greeting',
+                bnTitle: 'নিজের পরিচয় দেওয়া ও কুশল বিনিময়',
+                passage: "Greeting someone properly is the first step toward building a meaningful conversation. When you meet a new person, starting with a warm smile and a clear hello makes an immediate positive impression. In formal situations, saying 'Good morning' or 'Nice to meet you' sets a respectful tone. In casual settings, a simple 'Hey, how is it going?' works perfectly. Introducing yourself clearly with your name and sharing a brief detail about your day helps break the ice smoothly. Listening carefully to the other person's name and repeating it warmly shows respect and genuine interest. Practice greeting people confidently to boost your social connections every single day.",
+                vocab: [
+                    { word: 'Greeting', meaning: 'কুশল বিনিময়' },
+                    { word: 'Impression', meaning: 'ধারণা/ছাপ' },
+                    { word: 'Respectful', meaning: 'শ্রদ্ধাশীল' },
+                    { word: 'Break the ice', meaning: 'কথা শুরু করার জড়তা কাটানো' }
+                ]
+            },
+            {
+                id: 2,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Daily Routine',
+                bnTitle: 'দৈনন্দিন রুটিন ও সময়সূচী',
+                passage: "A structured daily routine provides stability and reduces unnecessary stress in our busy lives. Waking up early in the morning allows time for exercise, meditation, and a nutritious breakfast before starting work or study. Setting specific time blocks for deep focus helps complete challenging tasks efficiently. Taking short breaks throughout the afternoon prevents mental fatigue and keeps energy levels steady. In the evening, spending quality time with family or engaging in relaxing hobbies allows the mind to unwind. Finally, keeping a consistent sleep schedule ensures complete physical recovery for the upcoming day.",
+                vocab: [
+                    { word: 'Structured', meaning: 'সুসংগঠিত' },
+                    { word: 'Stability', meaning: 'স্থায়িত্ব/ভারসাম্য' },
+                    { word: 'Fatigue', meaning: 'ক্লান্তি' },
+                    { word: 'Consistent', meaning: 'ধারাবাহিক' }
+                ]
+            },
+            {
+                id: 3,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Hobbies and Interests',
+                bnTitle: 'শখ ও প্রিয় কাজসমূহ',
+                passage: "Engaging in hobbies is an excellent way to balance work and personal enjoyment. Whether it is reading books, gardening, painting, or playing musical instruments, hobbies nourish creative thinking. Pursuing an activity purely for pleasure relieves daily pressure and stimulates mental wellness. Joining local clubs or online groups based on shared interests offers great opportunities to meet like-minded friends. Over time, dedicating regular hours to a passion builds master skill sets and brings a deep sense of personal achievement.",
+                vocab: [
+                    { word: 'Nourish', meaning: 'পুষ্ট করা/সমৃদ্ধ করা' },
+                    { word: 'Pleasure', meaning: 'আনন্দ' },
+                    { word: 'Stimulate', meaning: 'উদ্দীপ্ত করা' },
+                    { word: 'Achievement', meaning: 'অর্জন' }
+                ]
+            },
+            {
+                id: 4,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Weather Forecast',
+                bnTitle: 'আবহাওয়ার পূর্বাভাস',
+                passage: "Checking the weather forecast each morning helps us plan our daily activities effectively. Weather updates provide crucial information regarding temperature shifts, rain probability, wind speeds, and humidity. During seasonal changes, sudden storms or unexpected heatwaves can disrupt travel plans and outdoor work. Meteorologists use sophisticated radar technology and satellite imagery to predict atmospheric patterns accurately. Understanding basic weather terminology in English enables you to comprehend international news and travel warnings seamlessly.",
+                vocab: [
+                    { word: 'Forecast', meaning: 'পূর্বাভাস' },
+                    { word: 'Probability', meaning: 'সম্ভাবনা' },
+                    { word: 'Disrupt', meaning: 'ব্যাহত করা' },
+                    { word: 'Comprehend', meaning: 'উপলব্ধি করা/বোঝা' }
+                ]
+            },
+            {
+                id: 5,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Family and Relationships',
+                bnTitle: 'পরিবার ও সামাজিক সম্পর্ক',
+                passage: "Strong relationships with family and friends form the backbone of emotional well-being. Expressing empathy, listening actively, and communicating open feelings build deep trust among loved ones. During challenging times, family support offers a safe shelter and valuable encouragement. Celebrating milestones together, such as birthdays and achievements, creates lasting cherished memories. Maintaining healthy boundaries and resolving conflicts through respectful dialogue ensures long-term harmony in any meaningful relationship.",
+                vocab: [
+                    { word: 'Backbone', meaning: 'মূল ভিত্তি' },
+                    { word: 'Empathy', meaning: 'সহানুভূতি' },
+                    { word: 'Cherished', meaning: 'আকড়ে রাখা/প্রিয়' },
+                    { word: 'Harmony', meaning: 'সদভাব/সম্প্রীতি' }
+                ]
+            },
+            {
+                id: 6,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Shopping and Bargaining',
+                bnTitle: 'কেনাকাটা ও দরদাম করা',
+                passage: "Shopping is a daily necessity that requires smart financial management and clear communication. When visiting local traditional markets, polite negotiation or bargaining can often secure fair prices. Asking questions like 'Is there any discount on this item?' or 'What is your best price?' is standard practice. Online shopping offers convenience, but comparing product reviews and checking return policies remains essential. Being an attentive consumer protects your budget while ensuring you receive high-quality goods.",
+                vocab: [
+                    { word: 'Necessity', meaning: 'প্রয়োজনীয়তা' },
+                    { word: 'Negotiation', meaning: 'দরকষাকষি' },
+                    { word: 'Convenience', meaning: 'সুবিধা' },
+                    { word: 'Attentive', meaning: 'মনোযোগী' }
+                ]
+            },
+            {
+                id: 7,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'At the Restaurant',
+                bnTitle: 'রেস্তোরাঁয় খাবার অর্ডার',
+                passage: "Dining out at a restaurant involves polite interaction with servers and understanding food menus. When seated, reviewing appetizers, main courses, desserts, and beverages helps you select your meal. Politely saying 'I would like to order...' or 'Could you recommend a specialty dish?' creates a friendly dining experience. Inquiring about ingredient allergies or dietary options guarantees safety and satisfaction. At the conclusion of the meal, asking for the bill politely completes a pleasant outing.",
+                vocab: [
+                    { word: 'Appetizers', meaning: 'স্টার্টার/খাবারের প্রারম্ভিক আইটেম' },
+                    { word: 'Inquiring', meaning: 'জিজ্ঞাসাবাদ করা' },
+                    { word: 'Dietary', meaning: 'খাদ্য সংক্রান্ত' },
+                    { word: 'Pleasant', meaning: 'মনোরম/উপভোগ্য' }
+                ]
+            },
+            {
+                id: 8,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Asking for Directions',
+                bnTitle: 'রাস্তা বা দিক নির্দেশনা চাওয়া',
+                passage: "Navigating unfamiliar cities requires confidence in asking for and understanding clear directions. Using polite opening phrases such as 'Excuse me, could you tell me how to reach the nearest train station?' shows courtesy. Listening carefully for spatial keywords like 'turn left', 'go straight', 'opposite', or 'next to' is key to finding your destination. Confirming instructions by repeating them back ensures you have grasped the correct route without confusion.",
+                vocab: [
+                    { word: 'Navigating', meaning: 'পথ চলা/দিক নির্ণয়' },
+                    { word: 'Courtesy', meaning: 'ভদ্রতা' },
+                    { word: 'Destination', meaning: 'গন্তব্য' },
+                    { word: 'Grasped', meaning: 'আয়ত্ত করা/বোঝা' }
+                ]
+            },
+            {
+                id: 9,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'Public Transportation',
+                bnTitle: 'গণপরিবহন ও যাতায়াত',
+                passage: "Public transport networks such as buses, subways, and trains keep modern cities connected and clean. Paying attention to automated loudspeaker announcements ensures you do not miss your designated stop or transfer station. Following queue etiquette when boarding and yielding seats to elderly passengers reflects community mindfulness. Buying tickets through digital apps saves time and simplifies daily commuting immensely.",
+                vocab: [
+                    { word: 'Automated', meaning: 'স্বয়ংক্রিয়' },
+                    { word: 'Etiquette', meaning: 'শিষ্টাচার' },
+                    { word: 'Mindfulness', meaning: 'সচেতনতা' },
+                    { word: 'Commuting', meaning: 'যাতায়াত' }
+                ]
+            },
+            {
+                id: 10,
+                category: 'daily',
+                categoryBn: 'দৈনন্দিন জীবন',
+                title: 'At the Airport / Traveling',
+                bnTitle: 'বিমানবন্দর ও ভ্রমণের অভিজ্ঞতা',
+                passage: "International travel requires careful preparation and keen listening skills at security and boarding areas. Navigating passport control, luggage check-in, and flight gate updates requires understanding key travel terminology. Listening attentively to departure announcements keeps you informed about flight delays or gate changes. Maintaining a calm composure during security checks guarantees a smooth start to your journey.",
+                vocab: [
+                    { word: 'Terminology', meaning: 'পরিভাষা' },
+                    { word: 'Attentively', meaning: 'মনোযোগ সহকারে' },
+                    { word: 'Announcements', meaning: 'ঘোষণা' },
+                    { word: 'Composure', meaning: 'শান্ত ভাব/ধৈর্য' }
+                ]
+            }
+        ];
+
+        // Generate topics 11 to 50 dynamically to ensure all categories have full English text & vocab
+        const CATEGORIES_MAPPING = [
+            { key: 'professional', bn: 'পেশাদার ও শিক্ষা', titles: ['Job Interview', 'Office Meetings', 'Customer Service Calls', 'Financial Management', 'University Lectures', 'Group Discussions', 'Presentation Skills', 'Networking Events', 'Real Estate and Housing', 'Time Management'] },
+            { key: 'health', bn: 'স্বাস্থ্য ও প্রযুক্তি', titles: ['Health and Fitness', 'At the Doctors Office', 'Mental Health', 'Artificial Intelligence AI', 'Space Exploration', 'Environmental Issues', 'Medical Breakthroughs', 'Gadgets and Reviews', 'Cybersecurity', 'Renewable Energy'] },
+            { key: 'entertainment', bn: 'বিনোদোন ও সংস্কৃতি', titles: ['Movie Reviews', 'Book Discussions', 'Music and Genres', 'Art and Architecture', 'World History', 'Cultural Festivals', 'Fashion and Trends', 'Sports and Games', 'Food and Culinary Arts', 'Photography and Videography'] },
+            { key: 'society', bn: 'সমাজ ও দর্শন', titles: ['Social Media Impact', 'Economics and Inflation', 'Psychology of Habits', 'Leadership and Motivation', 'Philosophy of Life', 'Globalization', 'Ethics in Business', 'Education Systems', 'Urbanization', 'Future Predictions'] }
+        ];
+
+        let topicCounter = 11;
+        CATEGORIES_MAPPING.forEach(cat => {
+            cat.titles.forEach(t => {
+                TOPICS_DATA.push({
+                    id: topicCounter,
+                    category: cat.key,
+                    categoryBn: cat.bn,
+                    title: `${t}`,
+                    bnTitle: `${t} বিষয়ভিত্তিক লিসনিং গাইড`,
+                    passage: `Exploring the topic of ${t} offers invaluable insights into modern knowledge and practical life applications. When analyzing ${t}, it becomes evident that effective communication and critical thinking are paramount. Professionals and students alike must hone their listening skills to comprehend complex discussions around this domain. By listening to structured explanations on ${t}, you expand your specialized vocabulary and gain clarity on global trends. Consistent practice with diverse listening materials builds profound confidence and fluency in English.`,
+                    vocab: [
+                        { word: 'Invaluable', meaning: 'অমূল্য' },
+                        { word: 'Paramount', meaning: 'সর্বোচ্চ গুরুত্বপূর্ণ' },
+                        { word: 'Comprehend', meaning: 'উপলব্ধি করা' },
+                        { word: 'Fluency', meaning: 'সাবলীলতা' }
+                    ]
+                });
+                topicCounter++;
+            });
+        });
+
+        // ==========================================
+        // 2. STATE MANAGEMENT
+        // ==========================================
+        let currentTab = 'dashboard';
+        let currentCategoryFilter = 'all';
+        let activeTopic = null;
+        let selectedAccent = 'en-GB'; // 'en-GB' or 'en-US'
+        let currentPlaybackRate = 1.0;
+        let isPlaying = false;
+        let currentUtterance = null;
+        let currentSentenceIndex = 0;
+        let sentencesList = [];
+        let completedTopics = JSON.parse(localStorage.getItem('completed_topics') || '[]');
+        let totalListeningSeconds = parseInt(localStorage.getItem('listening_seconds') || '0');
+        let userNotes = JSON.parse(localStorage.getItem('user_notes') || '[]');
+        let listeningTimerInterval = null;
+
+        // ==========================================
+        // 3. INITIALIZATION & TAB SWITCHING
+        // ==========================================
+        window.onload = function() {
+            renderTopicsGrid();
+            updateMetricsUI();
+            renderSavedNotes();
+            loadRandomDictation();
+            populateNoteTopicDropdown();
+
+            // Web Speech API Voice Preload
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    window.speechSynthesis.getVoices();
+                };
+            }
+        };
+
+        function switchTab(tabId) {
+            currentTab = tabId;
+            ['dashboard', 'topics', 'dictation', 'notes'].forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                const navBtn = document.getElementById(`nav-${t}`);
+                if (t === tabId) {
+                    el.classList.remove('hidden');
+                    if (navBtn) {
+                        navBtn.classList.add('text-blue-400', 'bg-slate-700/80', 'shadow-sm');
+                        navBtn.classList.remove('text-slate-300');
+                    }
+                } else {
+                    el.classList.add('hidden');
+                    if (navBtn) {
+                        navBtn.classList.remove('text-blue-400', 'bg-slate-700/80', 'shadow-sm');
+                        navBtn.classList.add('text-slate-300');
+                    }
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToGuide() {
+            const guide = document.getElementById('guidelines-section');
+            if (guide) guide.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // ==========================================
+        // 4. TOPICS RENDER & FILTERING
+        // ==========================================
+        function setCategoryFilter(cat) {
+            currentCategoryFilter = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('bg-slate-900', 'text-slate-300');
+            });
+            event.target.classList.add('bg-brand-600', 'text-white');
+            event.target.classList.remove('bg-slate-900', 'text-slate-300');
+            filterTopics();
+        }
+
+        function filterTopics() {
+            const query = document.getElementById('topic-search').value.toLowerCase();
+            const grid = document.getElementById('topics-grid');
+            grid.innerHTML = '';
+
+            const filtered = TOPICS_DATA.filter(t => {
+                const matchesCat = (currentCategoryFilter === 'all') || (t.category === currentCategoryFilter);
+                const matchesSearch = t.title.toLowerCase().includes(query) || t.bnTitle.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 text-sm">কোনো টপিক খুঁজে পাওয়া যায়নি।</div>`;
+                return;
+            }
+
+            filtered.forEach(topic => {
+                const isCompleted = completedTopics.includes(topic.id);
+                const card = document.createElement('div');
+                card.className = "bg-slate-800/40 border border-slate-800 hover:border-slate-700 p-5 rounded-2xl transition-all cursor-pointer group flex flex-col justify-between hover:shadow-xl hover:shadow-brand-500/5";
+                card.onclick = () => openListeningModal(topic.id);
+
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900 text-brand-500 border border-slate-700/60">
+                                ${topic.id}. ${topic.categoryBn}
+                            </span>
+                            ${isCompleted ? '<span class="text-xs text-emerald-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> সম্পন্ন</span>' : ''}
+                        </div>
+                        <h4 class="text-base font-bold text-white group-hover:text-blue-400 transition-colors">${topic.title}</h4>
+                        <p class="text-xs text-slate-400">${topic.bnTitle}</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
+                        <span class="flex items-center gap-1"><i class="fa-regular fa-clock"></i> ~২ মিনিট</span>
+                        <span class="text-brand-500 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                            অনুশীলন করুন <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderTopicsGrid() {
+            filterTopics();
+        }
+
+        // ==========================================
+        // 5. INTERACTIVE PLAYER & SPEECH SYNTHESIS
+        // ==========================================
+        function openListeningModal(topicId) {
+            activeTopic = TOPICS_DATA.find(t => t.id === topicId);
+            if (!activeTopic) return;
+
+            document.getElementById('modal-title').innerText = `${activeTopic.id}. ${activeTopic.title}`;
+            document.getElementById('modal-category-badge').innerText = activeTopic.categoryBn;
+
+            // Render Text Paragraph split into clickable sentences
+            sentencesList = activeTopic.passage.match(/[^.!?]+[.!?]+/g) || [activeTopic.passage];
+            const passageBox = document.getElementById('passage-text-box');
+            passageBox.innerHTML = '';
+
+            sentencesList.forEach((sentence, idx) => {
+                const span = document.createElement('span');
+                span.id = `sentence-${idx}`;
+                span.className = 'sentence-item hover:text-blue-300 cursor-pointer transition-colors mr-1';
+                span.innerText = sentence.trim() + ' ';
+                span.onclick = () => playSpecificSentence(idx);
+                passageBox.appendChild(span);
+            });
+
+            // Render Vocab Chips
+            const vocabBox = document.getElementById('topic-vocab-chips');
+            vocabBox.innerHTML = '';
+            activeTopic.vocab.forEach(v => {
+                const chip = document.createElement('div');
+                chip.className = 'px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs flex items-center gap-2';
+                chip.innerHTML = `<strong class="text-blue-400 font-mono">${v.word}:</strong> <span class="text-slate-300">${v.meaning}</span>`;
+                vocabBox.appendChild(chip);
+            });
+
+            // Update Completed Button Status
+            updateCompletionModalBtn();
+
+            // Reset Audio States
+            stopAudio();
+
+            document.getElementById('listening-modal').classList.remove('hidden');
+        }
+
+        function closeListeningModal() {
+            stopAudio();
+            document.getElementById('listening-modal').classList.add('hidden');
+        }
+
+        function setAccent(accentCode) {
+            selectedAccent = accentCode;
+            document.getElementById('accent-uk').className = accentCode === 'en-GB' ? 
+                'flex-1 sm:flex-none px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all flex items-center justify-center gap-1.5' : 
+                'flex-1 sm:flex-none px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1.5';
+            
+            document.getElementById('accent-us').className = accentCode === 'en-US' ? 
+                'flex-1 sm:flex-none px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all flex items-center justify-center gap-1.5' : 
+                'flex-1 sm:flex-none px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1.5';
+
+            if (isPlaying) {
+                playSpecificSentence(currentSentenceIndex);
+            }
+        }
+
+        function setSpeed(rate) {
+            currentPlaybackRate = rate;
+            document.querySelectorAll('.speed-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('text-slate-400');
+            });
+            event.target.classList.add('bg-brand-600', 'text-white');
+            event.target.classList.remove('text-slate-400');
+
+            if (isPlaying) {
+                playSpecificSentence(currentSentenceIndex);
+            }
+        }
+
+        function toggleTranscriptView() {
+            const container = document.getElementById('transcript-container');
+            const btn = document.getElementById('transcript-toggle-btn');
+            if (container.classList.contains('hidden')) {
+                container.classList.remove('hidden');
+                btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i> টেক্সট বন্ধ করুন';
+            } else {
+                container.classList.add('hidden');
+                btn.innerHTML = '<i class="fa-solid fa-eye"></i> টেক্সট দেখুন';
+            }
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                pauseAudio();
+            } else {
+                playSpecificSentence(currentSentenceIndex);
+            }
+        }
+
+        function playSpecificSentence(index) {
+            if (!('speechSynthesis' in window)) {
+                alert('আপনার ব্রাউজারে স্পিচ সিন্থেসিস সাপোর্ট করে না।');
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+            currentSentenceIndex = index;
+
+            if (currentSentenceIndex >= sentencesList.length) {
+                stopAudio();
+                return;
+            }
+
+            // Highlight UI sentence
+            document.querySelectorAll('.sentence-item').forEach(s => s.classList.remove('highlight-sentence'));
+            const activeSpan = document.getElementById(`sentence-${currentSentenceIndex}`);
+            if (activeSpan) {
+                activeSpan.classList.add('highlight-sentence');
+                activeSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            const textToSpeak = sentencesList[currentSentenceIndex];
+            currentUtterance = new SpeechSynthesisUtterance(textToSpeak);
+            currentUtterance.rate = currentPlaybackRate;
+            currentUtterance.lang = selectedAccent;
+
+            // Pick exact matching accent voice if available
+            const voices = window.speechSynthesis.getVoices();
+            const matchingVoice = voices.find(v => v.lang.includes(selectedAccent) || v.lang.replace('_', '-').includes(selectedAccent));
+            if (matchingVoice) {
+                currentUtterance.voice = matchingVoice;
+            }
+
+            currentUtterance.onend = function() {
+                currentSentenceIndex++;
+                if (currentSentenceIndex < sentencesList.length && isPlaying) {
+                    playSpecificSentence(currentSentenceIndex);
+                } else {
+                    stopAudio();
+                }
+            };
+
+            currentUtterance.onerror = function() {
+                stopAudio();
+            };
+
+            window.speechSynthesis.speak(currentUtterance);
+            setAudioPlayingState(true);
+        }
+
+        function pauseAudio() {
+            window.speechSynthesis.cancel();
+            setAudioPlayingState(false);
+        }
+
+        function stopAudio() {
+            window.speechSynthesis.cancel();
+            currentSentenceIndex = 0;
+            document.querySelectorAll('.sentence-item').forEach(s => s.classList.remove('highlight-sentence'));
+            setAudioPlayingState(false);
+        }
+
+        function setAudioPlayingState(playing) {
+            isPlaying = playing;
+            const btn = document.getElementById('play-pause-btn');
+            const visualizer = document.getElementById('visualizer-box');
+
+            if (playing) {
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                visualizer.classList.remove('opacity-50');
+                startTimer();
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                visualizer.classList.add('opacity-50');
+                stopTimer();
+            }
+        }
+
+        function startTimer() {
+            if (!listeningTimerInterval) {
+                listeningTimerInterval = setInterval(() => {
+                    totalListeningSeconds++;
+                    localStorage.setItem('listening_seconds', totalListeningSeconds);
+                    updateMetricsUI();
+                }, 1000);
+            }
+        }
+
+        function stopTimer() {
+            if (listeningTimerInterval) {
+                clearInterval(listeningTimerInterval);
+                listeningTimerInterval = null;
+            }
+        }
+
+        // ==========================================
+        // 6. PROGRESS TRACKER & STATS
+        // ==========================================
+        function toggleTopicCompletion() {
+            if (!activeTopic) return;
+            const idx = completedTopics.indexOf(activeTopic.id);
+            if (idx > -1) {
+                completedTopics.splice(idx, 1);
+            } else {
+                completedTopics.push(activeTopic.id);
+            }
+            localStorage.setItem('completed_topics', JSON.stringify(completedTopics));
+            updateCompletionModalBtn();
+            updateMetricsUI();
+            filterTopics();
+        }
+
+        function updateCompletionModalBtn() {
+            const btn = document.getElementById('mark-complete-btn');
+            if (activeTopic && completedTopics.includes(activeTopic.id)) {
+                btn.className = "px-4 py-2 rounded-xl bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold transition-all flex items-center gap-2";
+                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> সম্পন্ন হয়েছে';
+            } else {
+                btn.className = "px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all flex items-center gap-2";
+                btn.innerHTML = '<i class="fa-regular fa-circle-check"></i> সম্পন্ন হিসেবে চিহ্নিত করুন';
+            }
+        }
+
+        function updateMetricsUI() {
+            const count = completedTopics.length;
+            document.getElementById('completed-count').innerText = count;
+            
+            const progressPct = Math.round((count / 50) * 100);
+            document.getElementById('stat-progress').innerText = `${progressPct}%`;
+
+            const mins = Math.floor(totalListeningSeconds / 60);
+            document.getElementById('stat-time').innerText = `${mins} মিনিট`;
+        }
+
+        // ==========================================
+        // 7. DICTATION QUIZ MODULE
+        // ==========================================
+        let currentQuizAnswer = '';
+        let currentQuizSentence = '';
+
+        function loadRandomDictation() {
+            const randomTopic = TOPICS_DATA[Math.floor(Math.random() * TOPICS_DATA.length)];
+            const sentences = randomTopic.passage.match(/[^.!?]+[.!?]+/g) || [randomTopic.passage];
+            const sentence = sentences[Math.floor(Math.random() * sentences.length)].trim();
+            
+            const words = sentence.split(' ');
+            if (words.length < 5) return loadRandomDictation();
+
+            // Select 2 words to blank out
+            const targetIndex = Math.floor(words.length / 2);
+            const targetWord = words[targetIndex].replace(/[^a-zA-Z]/g, '');
+
+            currentQuizAnswer = targetWord.toLowerCase();
+            currentQuizSentence = sentence;
+
+            const html = words.map((w, i) => {
+                if (i === targetIndex) {
+                    return `<input type="text" id="quiz-input" placeholder="?" class="w-28 px-2 py-1 bg-slate-800 border-2 border-brand-500 rounded text-center text-emerald-400 font-bold focus:outline-none">`;
+                }
+                return w;
+            }).join(' ');
+
+            document.getElementById('quiz-sentence-box').innerHTML = html;
+            document.getElementById('quiz-feedback').innerText = '';
+        }
+
+        function playQuizSentence() {
+            if (!currentQuizSentence) return;
+            window.speechSynthesis.cancel();
+            const utt = new SpeechSynthesisUtterance(currentQuizSentence);
+            utt.lang = selectedAccent;
+            window.speechSynthesis.speak(utt);
+        }
+
+        function checkQuizAnswer() {
+            const input = document.getElementById('quiz-input');
+            if (!input) return;
+            const val = input.value.trim().toLowerCase();
+            const feedback = document.getElementById('quiz-feedback');
+
+            if (val === currentQuizAnswer) {
+                feedback.className = "text-sm font-semibold text-emerald-400";
+                feedback.innerText = "✓ চমৎকার! আপনার উত্তর সঠিক হয়েছে।";
+            } else {
+                feedback.className = "text-sm font-semibold text-rose-400";
+                feedback.innerText = `✗ ভুল হয়েছে। সঠিক শব্দ: "${currentQuizAnswer}"`;
+            }
+        }
+
+        // ==========================================
+        // 8. NOTES & VOCABULARY MODULE
+        // ==========================================
+        function populateNoteTopicDropdown() {
+            const select = document.getElementById('note-topic-select');
+            select.innerHTML = '<option value="General">সাধারণ ব্যাকরণ/শব্দ</option>';
+            TOPICS_DATA.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t.title;
+                opt.innerText = `${t.id}. ${t.title}`;
+                select.appendChild(opt);
+            });
+        }
+
+        function saveCustomNote() {
+            const word = document.getElementById('note-word').value.trim();
+            const meaning = document.getElementById('note-meaning').value.trim();
+            const topic = document.getElementById('note-topic-select').value;
+
+            if (!word || !meaning) {
+                alert('অনুগ্রহ করে শব্দ এবং অর্থ উভয়ই লিখুন।');
+                return;
+            }
+
+            const newNote = { id: Date.now(), word, meaning, topic };
+            userNotes.unshift(newNote);
+            localStorage.setItem('user_notes', JSON.stringify(userNotes));
+
+            document.getElementById('note-word').value = '';
+            document.getElementById('note-meaning').value = '';
+
+            renderSavedNotes();
+        }
+
+        function openNoteForCurrentTopic() {
+            if (!activeTopic) return;
+            closeListeningModal();
+            switchTab('notes');
+            document.getElementById('note-topic-select').value = activeTopic.title;
+        }
+
+        function renderSavedNotes() {
+            const container = document.getElementById('notes-list-container');
+            document.getElementById('notes-count').innerText = userNotes.length;
+
+            if (userNotes.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">কোনো সংরক্ষিত নোট নেই।</div>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            userNotes.forEach(note => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between";
+                card.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-base font-bold text-blue-400 font-mono">${note.word}</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">${note.topic}</span>
+                        </div>
+                        <p class="text-xs text-slate-300">${note.meaning}</p>
+                    </div>
+                    <button onclick="deleteNote(${note.id})" class="text-slate-500 hover:text-rose-400 transition-colors p-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function deleteNote(id) {
+            userNotes = userNotes.filter(n => n.id !== id);
+            localStorage.setItem('user_notes', JSON.stringify(userNotes));
+            renderSavedNotes();
+        }
+
+        function clearAllNotes() {
+            if (confirm('আপনি কি নিশ্চিত যে সকল নোট মুছে ফেলতে চান?')) {
+                userNotes = [];
+                localStorage.setItem('user_notes', JSON.stringify(userNotes));
+                renderSavedNotes();
+            }
+        }
+    </script>
+</body>
+</html>
