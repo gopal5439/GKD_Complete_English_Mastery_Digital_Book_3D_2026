@@ -10,15 +10,6 @@
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- EmailJS SDK for Direct Email Delivery -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function(){
-       // EmailJS Public Key initialization
-       emailjs.init("YOUR_PUBLIC_KEY"); // আপনার EmailJS Public Key এখানে বসাবেন
-    })();
-  </script>
 
   <style>
     /* Premium Color Palette & CSS Variables */
@@ -769,19 +760,19 @@
         </div>
       </div>
 
-      <!-- Updated Form with All Mandatory Fields & Options -->
-      <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+      <!-- Direct Email Endpoint via Formspree -->
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/gkdkhudeielts2026@gmail.com" method="POST">
         <div class="form-group">
-          <input type="text" id="clientName" placeholder="আপনার নাম *" required>
+          <input type="text" name="Name" id="clientName" placeholder="আপনার নাম *" required>
         </div>
         <div class="form-group">
-          <input type="tel" id="clientPhone" placeholder="আপনার মোবাইল নম্বর *" required>
+          <input type="tel" name="Phone" id="clientPhone" placeholder="আপনার মোবাইল নম্বর *" required>
         </div>
         <div class="form-group">
-          <input type="text" id="clientAddress" placeholder="আপনার পূর্ণাঙ্গ ঠিকানা *" required>
+          <input type="text" name="Address" id="clientAddress" placeholder="আপনার পূর্ণাঙ্গ ঠিকানা *" required>
         </div>
         <div class="form-group">
-          <textarea id="clientMessage" rows="4" placeholder="কী বিষয়ে জানতে চান লিখুন... *" required></textarea>
+          <textarea name="Message" id="clientMessage" rows="4" placeholder="কী বিষয়ে জানতে চান লিখুন... *" required></textarea>
         </div>
         
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -801,7 +792,6 @@
     <p>&copy; 2026 Gopal Krishna Das (GKD). All Rights Reserved | Designed for Excellence</p>
   </footer>
 
-  <!-- Scripts for Form Actions & Theme Switcher -->
   <script>
     // Theme Switcher Logic
     function toggleTheme() {
@@ -814,8 +804,8 @@
       }
     }
 
-    // Form Validation Helper
-    function validateForm() {
+    // WhatsApp Action
+    function sendToWhatsApp() {
       const name = document.getElementById('clientName').value.trim();
       const phone = document.getElementById('clientPhone').value.trim();
       const address = document.getElementById('clientAddress').value.trim();
@@ -823,54 +813,12 @@
 
       if (!name || !phone || !address || !message) {
         alert('দয়া করে প্রতিটি ঘর (নাম, মোবাইল, ঠিকানা এবং বার্তা) সঠিকভাবে পূরণ করুন।');
-        return false;
+        return;
       }
-      return { name, phone, address, message };
-    }
 
-    // WhatsApp Action
-    function sendToWhatsApp() {
-      const data = validateForm();
-      if (!data) return;
-
-      const text = `নাম: ${data.name}%0Aমোবাইল: ${data.phone}%0Aঠিকানা: ${data.address}%0Aবার্তা: ${data.message}`;
+      const text = `নাম: ${name}%0Aমোবাইল: ${phone}%0Aঠিকানা: ${address}%0Aবার্তা: ${message}`;
       const whatsappUrl = `https://wa.me/8801751905439?text=${text}`;
       window.open(whatsappUrl, '_blank');
-    }
-
-    // Direct Email Submission Action (EmailJS)
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      const data = validateForm();
-      if (!data) return;
-
-      // EmailJS Send Process
-      /*
-        আপনার EmailJS অ্যাকাউন্টের Service ID এবং Template ID নিচে বসাতে হবে:
-        EmailJS.org এ বিনামূল্যে একটি অ্যাকাউন্ট খুলে gkdkhudeielts2026@gmail.com সেট করে নিন।
-      */
-      const serviceID = "YOUR_SERVICE_ID";
-      const templateID = "YOUR_TEMPLATE_ID";
-
-      const templateParams = {
-        from_name: data.name,
-        phone_number: data.phone,
-        address: data.address,
-        message: data.message,
-        to_email: "gkdkhudeielts2026@gmail.com"
-      };
-
-      // Sending via EmailJS API
-      emailjs.send(serviceID, templateID, templateParams)
-        .then(function(response) {
-            alert('ধন্যবাদ! আপনার বার্তাটি সরাসরি ইমেইলে পাঠানো হয়েছে।');
-            document.getElementById('contactForm').reset();
-        }, function(error) {
-            // EmailJS সেটআপ না থাকলে ব্যাকআপ হিসেবে Mailto ট্রিগার হবে
-            const subject = encodeURIComponent(`নতুন বার্তা - ${data.name}`);
-            const body = encodeURIComponent(`নাম: ${data.name}\nমোবাইল: ${data.phone}\nঠিকানা: ${data.address}\n\nবার্তা:\n${data.message}`);
-            window.location.href = `mailto:gkdkhudeielts2026@gmail.com?subject=${subject}&body=${body}`;
-        });
     }
   </script>
 
