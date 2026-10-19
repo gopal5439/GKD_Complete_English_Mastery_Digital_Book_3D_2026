@@ -54,6 +54,55 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(5px);z-index:150;display:none}
 .overlay.active{display:block}
 
+/* Login Overlay Screen Style */
+#loginSection {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0b1a3b 0%, #030817 100%);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.login-card {
+  background: rgba(13, 30, 58, 0.95);
+  border: 1.5px solid var(--gold);
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 25px rgba(245,201,107,0.2);
+}
+.login-card h2 { color: var(--gold); margin-bottom: 8px; font-size: 1.5rem; }
+.login-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 25px; }
+.login-card input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  background: rgba(3, 8, 23, 0.8);
+  border: 1px solid rgba(245,201,107,0.4);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+}
+.login-card input:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(245,201,107,0.4); }
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #f5c96b, #bc8127);
+  border: none;
+  border-radius: 10px;
+  color: #030817;
+  font-weight: 900;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.login-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(245,201,107,0.5); }
+
 /* Main Section Styles */
 main{width:min(1250px,calc(100% - 36px));margin:auto;flex:1}
 .hero{min-height:calc(100vh - 86px);display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;padding:16px 0 40px}
@@ -83,7 +132,6 @@ h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
   padding: 35px 25px;
 }
 
-/* ব্যাকগ্রাউন্ড ছাড়া সম্পূর্ণ স্বচ্ছ পাতা এবং লেখার পজিশনিং */
 .page-left, .page-right{
   flex:1;
   background: transparent;
@@ -113,7 +161,6 @@ h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
   font-weight:700;
 }
 
-/* শেপহীন নরম ছড়ানো আলোর ইফেক্ট (Soft Glowing Spread Light) */
 .light-beam{
   position:absolute;
   bottom:35%;
@@ -132,7 +179,6 @@ h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
   100%{opacity:1; transform:translateX(-50%) scale(1.1);}
 }
 
-/* Floating Alphabet Stream Container */
 .alphabet-stream{position:absolute;inset:0;pointer-events:none;z-index:7;overflow:visible}
 .floating-letter{position:absolute;bottom:40%;font-size:1.8rem;font-weight:900;color:#fff7d2;text-shadow:0 0 12px #f5c96b, 0 0 25px #ffe49e;animation:riseAndFade 4s ease-out infinite;opacity:0}
 @keyframes riseAndFade{
@@ -142,7 +188,6 @@ h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
   100%{transform:translateY(-280px) scale(1.5) rotate(30deg);opacity:0}
 }
 
-/* Skills / Modules Section with High-Contrast 3D Headings */
 .skills{padding:40px 0 50px}
 .section-heading{text-align:center;margin:0 auto 35px;position:relative;z-index:2}
 .section-heading .mini{
@@ -168,7 +213,6 @@ h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
   letter-spacing:-0.02em;
 }
 
-/* 6 Items in Straight Row / Grid */
 .skill-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:15px}
 .skill-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:210px;padding:22px 10px;border:1.5px solid rgba(245,201,107,0.45);border-radius:20px;text-decoration:none;color:white;background:linear-gradient(145deg,rgba(23,53,91,0.9),rgba(6,19,41,0.95));box-shadow:0 15px 35px rgba(0,0,0,0.6);transition:0.3s ease}
 .skill-card:hover{border-color:var(--gold);transform:translateY(-8px);box-shadow:0 20px 45px rgba(245,201,107,0.3)}
@@ -176,7 +220,6 @@ h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
 .skill-card h3{font-size:0.95rem;margin:0 0 5px;color:#ffedb5;font-weight:900}
 .skill-card p{font-size:0.72rem;color:#b9c9e3;margin:0}
 
-/* Footer Styles */
 footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 23, 0.9);backdrop-filter:blur(10px);color:#91a6c5;font-size:.8rem;margin-top:auto;position:relative;z-index:10}
 .footer-container{width:min(1250px,calc(100% - 36px));margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding-bottom:25px;border-bottom:1px solid #e8bd6218}
 .footer-col h4{color:#f2d58a;font-size:.95rem;letter-spacing:.12em;margin:0 0 15px;text-transform:uppercase;font-weight:900}
@@ -185,7 +228,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 .contact-item a{color:#f2d58a;text-decoration:none}
 .footer-bottom{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-content:space-between;align-items:center;padding-top:20px;flex-wrap:wrap;gap:12px;font-size:.75rem}
 
-/* Modal Popup Box */
 .modal{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px}
 .modal-content{background:linear-gradient(145deg,#0d1e3a,#061329);border:1.5px solid var(--gold);border-radius:20px;padding:30px;max-width:550px;width:100%;color:#d9eaff;position:relative;box-shadow:0 0 50px rgba(245,201,107,0.3)}
 .close-btn{position:absolute;top:15px;right:20px;font-size:1.8rem;color:#f5ce70;cursor:pointer;line-height:1}
@@ -195,6 +237,20 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 </style>
 </head>
 <body>
+
+<!-- লগইন স্ক্রিন (লগইন না করা পর্যন্ত পুরো সাইট ঢাকা থাকবে) -->
+<div id="loginSection">
+  <div class="login-card">
+    <h2>GKD Khude IELTS</h2>
+    <p>অ্যাক্সেস করতে আপনার জিমেইল ও পাসওয়ার্ড দিন</p>
+    <input type="email" id="loginEmail" placeholder="আপনার জিমেইল লিখুন" required>
+    <input type="password" id="loginPass" placeholder="পাসওয়ার্ড লিখুন" required>
+    <button class="login-btn" onclick="checkLogin()">প্রবেশ করুন</button>
+  </div>
+</div>
+
+<!-- মূল সাইট কন্টেন্ট (শুরুতে লুকিয়ে থাকবে) -->
+<div id="mainContent" style="display:none; width:100%; display:flex; flex-direction:column; min-height:100vh;">
 
 <div class="space" aria-hidden="true"><div class="stars"></div></div>
 
@@ -221,9 +277,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     <li><a href="About author.html" onclick="toggleMenu(); openModal('About Owner')">👑 About Founder (Gopal Krishna Das)</a></li>
   </ul>
 </div>
-
-
-
 
 <!-- Header with Updated Logo -->
 <header>
@@ -280,11 +333,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       <div class="mini">Core Modules</div>
       <h2>Master Every Dimension of English</h2>
     </div>
-    
-
-
-
-
 
     <div class="skill-grid">
       <div class="skill-card" onclick="window.location.href='lesson_link.html'">
@@ -344,6 +392,8 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </div>
 </footer>
 
+</div> <!-- mainContent শেষ -->
+
 <!-- Modal Box -->
 <div class="modal" id="infoModal">
   <div class="modal-content">
@@ -353,8 +403,39 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </div>
 </div>
 
-<!-- JavaScript for 3D Earth & Alphabet Floating Effects -->
+<!-- JavaScript for Login System, 3D Earth & Alphabet Floating Effects -->
 <script>
+  // --- লগইন ভেরিফিকেশন ফাংশন ---
+  function checkLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPass').value.trim();
+
+    if(!email || !pass) {
+      alert("দয়া করে জিমেইল ও পাসওয়ার্ড দুটিই লিখুন!");
+      return;
+    }
+
+    // আপনার গুগল শিটের ওয়েব অ্যাপ ইউআরএল
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
+
+    // লোডিং মেসেজ বা ইফেক্ট চাইলে দিতে পারেন
+    fetch(scriptUrl + "?email=" + encodeURIComponent(email) + "&pass=" + encodeURIComponent(pass))
+      .then(response => response.text())
+      .then(data => {
+        if (data.trim() === "valid") {
+          // লগইন সফল হলে লগইন বক্স লুকিয়ে আসল সাইট দেখিয়ে দেওয়া হবে
+          document.getElementById('loginSection').style.display = 'none';
+          document.getElementById('mainContent').style.display = 'flex';
+        } else {
+          alert("ভুল জিমেইল অথবা পাসওয়ার্ড! দয়া করে সঠিক তথ্য দিন।");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("সার্ভার কানেকশনে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+      });
+  }
+
   // --- 1. Real 3D Earth using Three.js & Online Earth Texture ---
   const container = document.getElementById('earth-container');
   const scene = new THREE.Scene();
