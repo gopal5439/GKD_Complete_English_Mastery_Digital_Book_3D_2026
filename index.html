@@ -404,7 +404,16 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 </div>
 
 <!-- JavaScript for Login System, 3D Earth & Alphabet Floating Effects -->
+<!-- JavaScript for Login System (with Auto-Login & Logout), 3D Earth & Floating Effects -->
 <script>
+  // --- পেজ লোড হওয়ার সাথে সাথেই চেক করবে আগে থেকে লগইন করা আছে কিনা ---
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'flex';
+    }
+  });
+
   // --- লগইন ভেরিফিকেশন ফাংশন ---
   function checkLogin() {
     const email = document.getElementById('loginEmail').value.trim();
@@ -415,15 +424,17 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       return;
     }
 
-    // আপনার গুগল শিটের ওয়েব অ্যাপ ইউআরএল
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbxKCOgX2AuI-SjMVs-bwq4A_5kOXFLaDDIZRFjwo71WQsE8-OQx5vAUyHfog1romV_K/exec";
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
 
-    // লোডিং মেসেজ বা ইফেক্ট চাইলে দিতে পারেন
     fetch(scriptUrl + "?email=" + encodeURIComponent(email) + "&pass=" + encodeURIComponent(pass))
       .then(response => response.text())
       .then(data => {
         if (data.trim() === "valid") {
-          // লগইন সফল হলে লগইন বক্স লুকিয়ে আসল সাইট দেখিয়ে দেওয়া হবে
+          // লগইন তথ্য লোকাল স্টোরেজে সেভ করে রাখা হচ্ছে
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userEmail', email);
+
+          // লগইন সেকশন লুকিয়ে মূল কন্টেন্ট দেখানো হচ্ছে
           document.getElementById('loginSection').style.display = 'none';
           document.getElementById('mainContent').style.display = 'flex';
         } else {
@@ -434,6 +445,13 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
         console.error("Error:", error);
         alert("সার্ভার কানেকশনে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
       });
+  }
+
+  // --- লগআউট ফাংশন ---
+  function logout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userEmail');
+    location.reload(); // পেজ রিফ্রেশ হয়ে আবার লগইন স্ক্রিনে নিয়ে যাবে
   }
 
   // --- 1. Real 3D Earth using Three.js & Online Earth Texture ---
