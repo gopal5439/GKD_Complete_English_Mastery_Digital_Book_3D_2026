@@ -22,16 +22,11 @@
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.4s ease-out forwards',
-                        'pulse-subtle': 'pulseSubtle 3s infinite',
                     },
                     keyframes: {
                         fadeInUp: {
                             '0%': { opacity: '0', transform: 'translateY(15px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        pulseSubtle: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0.85' },
                         }
                     }
                 }
@@ -45,14 +40,6 @@
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-        }
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(12px);
         }
     </style>
 </head>
@@ -106,7 +93,7 @@
                     পরীক্ষার বর্ষ এবং আপনার বোর্ড নির্বাচন করুন
                 </h2>
                 <p class="text-sm sm:text-base text-slate-300">
-                    নিচের সাল থেকে আপনার কাঙ্ক্ষিত SSC পরীক্ষার বছরটি বেছে নিন, তারপর দিনাজপুরসহ বাংলাদেশের সকল শিক্ষাবোর্ডের প্রশ্নপত্র সহজেই ডাউনলোড বা দেখুন।
+                    নিচের সাল থেকে আপনার কাঙ্ক্ষিত SSC পরীক্ষার বছরটি বেছে নিন, তারপর আপনার শিক্ষাবোর্ডের প্রশ্নপত্র সহজেই দেখুন।
                 </p>
             </div>
             <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl pointer-events-none">
@@ -126,7 +113,7 @@
             </div>
         </section>
 
-        <!-- STEP 2: Board Selection Grid (Shows after selecting a year) -->
+        <!-- STEP 2: Board Selection Grid -->
         <section id="board-section" class="hidden animate-fade-in-up">
             <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-md">
                 
@@ -135,9 +122,9 @@
                         <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-bold text-sm">২</div>
                         <div>
                             <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
-                                <span id="selected-year-text" class="text-brand-600 dark:text-brand-500 font-extrabold">SSC 2026</span> এর বোর্ডসমূহ
+                                <span id="selected-year-text" class="text-brand-600 dark:text-brand-500 font-extrabold">SSC</span> এর বোর্ডসমূহ
                             </h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">আপনার শিক্ষাবোর্ড বেছে নিয়ে লিংকে প্রবেশ করুন</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">আপনার শিক্ষাবোর্ড বেছে নিয়ে লিংকে প্রবেশ করুন</p>
                         </div>
                     </div>
                     
@@ -158,37 +145,101 @@
     <!-- JavaScript Data Logic & UI Handling -->
     <script>
         /**
-         * ========================================================
-         * 1. DATA CONFIGURATION (সাল ও সকল বোর্ড ইনফরমেশন)
-         * ========================================================
+         * ========================================================================
+         * 📝 ডেটা কনফিগারেশন গাইডলাইন (ভবিষ্যতে পরিবর্তনের জন্য নির্দেশিকা):
+         * ========================================================================
+         * নিচে `archiveData` অবজেক্টের মধ্যে প্রতিটি সালের (যেমন: '2026', '2025' ইত্যাদি) 
+         * অধীনে বোর্ডগুলোর তালিকা দেওয়া আছে। 
+         * 
+         * প্রতিটি বোর্ডের পাশে `fileUrl: "..."` এর ভেতর আপনার কাঙ্ক্ষিত এইচটিএমএল (HTML) 
+         * বা ফাইলের লিংক বসিয়ে দিতে পারেন। 
+         * নতুন কোনো সাল যুক্ত করতে চাইলে নিচের ফরম্যাট অনুসরণ করে হুবহু কপি-পেস্ট করে 
+         * সাল পরিবর্তন করে নিতে পারবেন। কোডের অন্য কোথাও হাত দেওয়ার প্রয়োজন নেই।
+         * ========================================================================
          */
-        const yearsList = ["2026", "2025", "2024", "2023", "2022"];
 
-        // বাংলাদেশের সকল শিক্ষা বোর্ডসমূহ
-        const boardsList = [
-            { id: "dinajpur", name: "দিনাজপুর বোর্ড", icon: "fa-compass", code: "Dinajpur" },
-            { id: "dhaka", name: "ঢাকা বোর্ড", icon: "fa-landmark", code: "Dhaka" },
-            { id: "rajshahi", name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", code: "Rajshahi" },
-            { id: "chittagong", name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", code: "Chittagong" },
-            { id: "comilla", name: "কুমিল্লা বোর্ড", icon: "fa-tree", code: "Comilla" },
-            { id: "barisal", name: "বরিশাল বোর্ড", icon: "fa-water", code: "Barisal" },
-            { id: "sylhet", name: "সিলেট বোর্ড", icon: "fa-mountain", code: "Sylhet" },
-            { id: "jessore", name: "যশোর বোর্ড", icon: "fa-sun", code: "Jessore" },
-            { id: "mymensingh", name: "ময়মনসিংহ বোর্ড", icon: "fa-leaf", code: "Mymensingh" },
-            { id: "madrasah", name: "মাদ্রাসা বোর্ড", icon: "fa-mosque", code: "Madrasah" },
-            { id: "technical", name: "কারিগরি বোর্ড", icon: "fa-gears", code: "Technical" },
-            { id: "all_board", name: "সকল বোর্ড একত্রিত", icon: "fa-layer-group", code: "AllBoard" }
-        ];
+        const archiveData = {
+            "2026": [
+                { name: "দিনাজপুর বোর্ড", icon: "fa-compass", fileUrl: "SSC_2026_Dinajpur.html" },
+                { name: "ঢাকা বোর্ড", icon: "fa-landmark", fileUrl: "English_2nd_Dhaka_2026.html" },
+                { name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", fileUrl: "SSC_2026_Rajshahi.html" },
+                { name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", fileUrl: "SSC_2026_Chittagong.html" },
+                { name: "কুমিল্লা বোর্ড", icon: "fa-tree", fileUrl: "SSC_2026_Comilla.html" },
+                { name: "বরিশাল বোর্ড", icon: "fa-water", fileUrl: "SSC_2026_Barisal.html" },
+                { name: "সিলেট বোর্ড", icon: "fa-mountain", fileUrl: "SSC_2026_Sylhet.html" },
+                { name: "যশোর বোর্ড", icon: "fa-sun", fileUrl: "SSC_2026_Jessore.html" },
+                { name: "ময়মনসিংহ বোর্ড", icon: "fa-leaf", fileUrl: "SSC_2026_Mymensingh.html" },
+                { name: "মাদ্রাসা বোর্ড", icon: "fa-mosque", fileUrl: "SSC_2026_Madrasah.html" },
+                { name: "কারিগরি বোর্ড", icon: "fa-gears", fileUrl: "SSC_2026_Technical.html" },
+                { name: "সকল বোর্ড একত্রিত", icon: "fa-layer-group", fileUrl: "SSC_2026_AllBoard.html" }
+            ],
+            "2025": [
+                { name: "দিনাজপুর বোর্ড", icon: "fa-compass", fileUrl: "SSC_2025_Dinajpur.html" },
+                { name: "ঢাকা বোর্ড", icon: "fa-landmark", fileUrl: "SSC_2025_Dhaka.html" },
+                { name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", fileUrl: "SSC_2025_Rajshahi.html" },
+                { name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", fileUrl: "SSC_2025_Chittagong.html" },
+                { name: "কুমিল্লা বোর্ড", icon: "fa-tree", fileUrl: "SSC_2025_Comilla.html" },
+                { name: "বরিশাল বোর্ড", icon: "fa-water", fileUrl: "SSC_2025_Barisal.html" },
+                { name: "সিলেট বোর্ড", icon: "fa-mountain", fileUrl: "SSC_2025_Sylhet.html" },
+                { name: "যশোর বোর্ড", icon: "fa-sun", fileUrl: "SSC_2025_Jessore.html" },
+                { name: "ময়মনসিংহ বোর্ড", icon: "fa-leaf", fileUrl: "SSC_2025_Mymensingh.html" },
+                { name: "মাদ্রাসা বোর্ড", icon: "fa-mosque", fileUrl: "SSC_2025_Madrasah.html" },
+                { name: "কারিগরি বোর্ড", icon: "fa-gears", fileUrl: "SSC_2025_Technical.html" },
+                { name: "সকল বোর্ড একত্রিত", icon: "fa-layer-group", fileUrl: "SSC_2025_AllBoard.html" }
+            ],
+            "2024": [
+                { name: "দিনাজপুর বোর্ড", icon: "fa-compass", fileUrl: "SSC_2024_Dinajpur.html" },
+                { name: "ঢাকা বোর্ড", icon: "fa-landmark", fileUrl: "SSC_2024_Dhaka.html" },
+                { name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", fileUrl: "SSC_2024_Rajshahi.html" },
+                { name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", fileUrl: "SSC_2024_Chittagong.html" },
+                { name: "কুমিল্লা বোর্ড", icon: "fa-tree", fileUrl: "SSC_2024_Comilla.html" },
+                { name: "বরিশাল বোর্ড", icon: "fa-water", fileUrl: "SSC_2024_Barisal.html" },
+                { name: "সিলেট বোর্ড", icon: "fa-mountain", fileUrl: "SSC_2024_Sylhet.html" },
+                { name: "যশোর বোর্ড", icon: "fa-sun", fileUrl: "SSC_2024_Jessore.html" },
+                { name: "ময়মনসিংহ বোর্ড", icon: "fa-leaf", fileUrl: "SSC_2024_Mymensingh.html" },
+                { name: "মাদ্রাসা বোর্ড", icon: "fa-mosque", fileUrl: "SSC_2024_Madrasah.html" },
+                { name: "কারিগরি বোর্ড", icon: "fa-gears", fileUrl: "SSC_2024_Technical.html" },
+                { name: "সকল বোর্ড একত্রিত", icon: "fa-layer-group", fileUrl: "SSC_2024_AllBoard.html" }
+            ],
+            "2023": [
+                { name: "দিনাজপুর বোর্ড", icon: "fa-compass", fileUrl: "SSC_2023_Dinajpur.html" },
+                { name: "ঢাকা বোর্ড", icon: "fa-landmark", fileUrl: "SSC_2023_Dhaka.html" },
+                { name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", fileUrl: "SSC_2023_Rajshahi.html" },
+                { name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", fileUrl: "SSC_2023_Chittagong.html" },
+                { name: "কুমিল্লা বোর্ড", icon: "fa-tree", fileUrl: "SSC_2023_Comilla.html" },
+                { name: "বরিশাল বোর্ড", icon: "fa-water", fileUrl: "SSC_2023_Barisal.html" },
+                { name: "সিলেট বোর্ড", icon: "fa-mountain", fileUrl: "SSC_2023_Sylhet.html" },
+                { name: "যশোর বোর্ড", icon: "fa-sun", fileUrl: "SSC_2023_Jessore.html" },
+                { name: "ময়মনসিংহ বোর্ড", icon: "fa-leaf", fileUrl: "SSC_2023_Mymensingh.html" },
+                { name: "মাদ্রাসা বোর্ড", icon: "fa-mosque", fileUrl: "SSC_2023_Madrasah.html" },
+                { name: "কারিগরি বোর্ড", icon: "fa-gears", fileUrl: "SSC_2023_Technical.html" },
+                { name: "সকল বোর্ড একত্রিত", icon: "fa-layer-group", fileUrl: "SSC_2023_AllBoard.html" }
+            ],
+            "2022": [
+                { name: "দিনাজপুর বোর্ড", icon: "fa-compass", fileUrl: "SSC_2022_Dinajpur.html" },
+                { name: "ঢাকা বোর্ড", icon: "fa-landmark", fileUrl: "SSC_2022_Dhaka.html" },
+                { name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", fileUrl: "SSC_2022_Rajshahi.html" },
+                { name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", fileUrl: "SSC_2022_Chittagong.html" },
+                { name: "কুমিল্লা বোর্ড", icon: "fa-tree", fileUrl: "SSC_2022_Comilla.html" },
+                { name: "বরিশাল বোর্ড", icon: "fa-water", fileUrl: "SSC_2022_Barisal.html" },
+                { name: "সিলেট বোর্ড", icon: "fa-mountain", fileUrl: "SSC_2022_Sylhet.html" },
+                { name: "যশোর বোর্ড", icon: "fa-sun", fileUrl: "SSC_2022_Jessore.html" },
+                { name: "ময়মনসিংহ বোর্ড", icon: "fa-leaf", fileUrl: "SSC_2022_Mymensingh.html" },
+                { name: "মাদ্রাসা বোর্ড", icon: "fa-mosque", fileUrl: "SSC_2022_Madrasah.html" },
+                { name: "কারিগরি বোর্ড", icon: "fa-gears", fileUrl: "SSC_2022_Technical.html" },
+                { name: "সকল বোর্ড একত্রিত", icon: "fa-layer-group", fileUrl: "SSC_2022_AllBoard.html" }
+            ]
+        };
 
         let selectedYear = null;
 
         /**
-         * ========================================================
-         * 2. RENDER YEARS GRID
-         * ========================================================
+         * রেন্ডার ইয়ার্স গ্রিড (সালগুলো প্রদর্শন করার ফাংশন)
          */
         function renderYears() {
             const grid = document.getElementById("years-grid");
+            const yearsList = Object.keys(archiveData); // archiveData থেকে স্বয়ংক্রিয়ভাবে সালগুলো নিয়ে নেবে
+
             grid.innerHTML = yearsList.map(year => {
                 const isSelected = selectedYear === year;
                 return `
@@ -200,20 +251,18 @@
                         }">
                         <i class="fa-solid fa-calendar-days text-2xl ${isSelected ? 'text-white' : 'text-brand-500 group-hover:scale-110'} transition-transform"></i>
                         <span class="text-xl font-extrabold">SSC ${year}</span>
-                        <span class="text-[11px] opacity-80 font-medium">প্রশ্ন দেখতে ক্লিক করুন</span>
+                        <span class="text-[11px] opacity-80 font-medium">বোর্ড দেখতে ক্লিক করুন</span>
                     </button>
                 `;
             }).join('');
         }
 
         /**
-         * ========================================================
-         * 3. SELECT YEAR & RENDER BOARDS
-         * ========================================================
+         * সাল সিলেক্ট করার পর সংশ্লিষ্ট বোর্ডের তালিকা দেখানোর ফাংশন
          */
         function selectYear(year) {
             selectedYear = year;
-            renderYears(); // Update active state of year buttons
+            renderYears(); 
 
             const boardSection = document.getElementById("board-section");
             const selectedYearText = document.getElementById("selected-year-text");
@@ -221,13 +270,12 @@
 
             selectedYearText.textContent = `SSC ${year}`;
 
-            // Render Boards for Selected Year
-            boardsGrid.innerHTML = boardsList.map(board => {
-                // ফাইল লিংকের নাম অটো জেনারেট হবে (যেমন: SSC_2026_Dinajpur.html)
-                const generatedFileUrl = `SSC_${year}_${board.code}.html`;
+            // নির্দিষ্ট সালের বোর্ড ডেটা নিয়ে কার্ড রেন্ডার করা
+            const currentBoards = archiveData[year] || [];
 
+            boardsGrid.innerHTML = currentBoards.map(board => {
                 return `
-                    <div onclick="navigateToBoardPage('${generatedFileUrl}')" 
+                    <div onclick="navigateToBoardPage('${board.fileUrl}')" 
                         class="group p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-200 shadow-2xs hover:shadow-md cursor-pointer flex items-center justify-between">
                         
                         <div class="flex items-center gap-3">
@@ -247,36 +295,27 @@
                 `;
             }).join('');
 
-            // Show Board Section with animation
             boardSection.classList.remove("hidden");
             boardSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // Clear Selection
+        // নির্বাচন বাতিল করার ফাংশন
         function clearBoardSelection() {
             selectedYear = null;
             renderYears();
             document.getElementById("board-section").classList.add("hidden");
         }
 
-        /**
-         * ========================================================
-         * 4. NAVIGATION FUNCTION (লিংক ওপেন করবে)
-         * ========================================================
-         */
+        // নির্দিষ্ট লিংকে নেভিগেট করার ফাংশন
         function navigateToBoardPage(fileUrl) {
             if (fileUrl) {
                 window.location.href = fileUrl;
             } else {
-                alert("দুঃখিত! এই ফাইলের লিংকটি যুক্ত করা হয়নি।");
+                alert("দুঃখিত! এই ফাইলের লিংকটি এখনো যুক্ত করা হয়নি।");
             }
         }
 
-        /**
-         * ========================================================
-         * 5. DARK / LIGHT THEME TOGGLE
-         * ========================================================
-         */
+        // ডার্ক / লাইট থিম টগল
         const themeToggleBtn = document.getElementById('theme-toggle');
         const darkIcon = document.getElementById('theme-toggle-dark-icon');
         const lightIcon = document.getElementById('theme-toggle-light-icon');
@@ -287,7 +326,7 @@
             lightIcon.classList.toggle('hidden');
         });
 
-        // Initial Load
+        // পেজ লোড হওয়ার সময় ইনিশিয়ালাইজ করা
         window.onload = function() {
             renderYears();
         };
