@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="bn" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC All Exam Question Archive - SSC প্রশ্ন ব্যাংক</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.4s ease-out forwards',
+                        'pulse-subtle': 'pulseSubtle 3s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseSubtle: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.85' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Left Side: Back Button & Title -->
+            <div class="flex items-center space-x-3 gap-3">
+                <button onclick="window.location.href='study_resource_dashboard.html'"
+                    class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-medium text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 shadow-sm hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-arrow-left"></i> 
+                    <span>Back</span>
+                </button>
+
+                <div class="h-6 w-px bg-slate-200 dark:bg-slate-700"></div>
+
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-base sm:text-lg font-bold leading-tight bg-gradient-to-r from-brand-600 to-emerald-500 bg-clip-text text-transparent">
+                            SSC All Exam Question Archive
+                        </h1>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">সকল সালের বোর্ড পরীক্ষার প্রশ্নপত্র</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dark Mode Toggle Button -->
+            <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition text-slate-600 dark:text-slate-300">
+                <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-lg hidden"></i>
+                <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Hero Banner Section -->
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-brand-900 text-white p-6 sm:p-10 mb-10 shadow-xl border border-slate-700">
+            <div class="relative z-10 max-w-2xl">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/30 mb-3 inline-block">
+                    📚 SSC বোর্ড আর্কাইভ
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
+                    পরীক্ষার বর্ষ এবং আপনার বোর্ড নির্বাচন করুন
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300">
+                    নিচের সাল থেকে আপনার কাঙ্ক্ষিত SSC পরীক্ষার বছরটি বেছে নিন, তারপর দিনাজপুরসহ বাংলাদেশের সকল শিক্ষাবোর্ডের প্রশ্নপত্র সহজেই ডাউনলোড বা দেখুন।
+                </p>
+            </div>
+            <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl pointer-events-none">
+                <i class="fa-solid fa-book-open text-white"></i>
+            </div>
+        </div>
+
+        <!-- STEP 1: Year Selection Grid -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-600 flex items-center justify-center font-bold text-sm">১</div>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">SSC পরীক্ষার সাল নির্বাচন করুন:</h3>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4" id="years-grid">
+                <!-- Dynamic Years Will Render Here via JS -->
+            </div>
+        </section>
+
+        <!-- STEP 2: Board Selection Grid (Shows after selecting a year) -->
+        <section id="board-section" class="hidden animate-fade-in-up">
+            <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-md">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-bold text-sm">২</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                                <span id="selected-year-text" class="text-brand-600 dark:text-brand-500 font-extrabold">SSC 2026</span> এর বোর্ডসমূহ
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">আপনার শিক্ষাবোর্ড বেছে নিয়ে লিংকে প্রবেশ করুন</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="clearBoardSelection()" class="text-xs text-slate-500 hover:text-red-500 transition flex items-center gap-1 self-start sm:self-auto">
+                        <i class="fa-solid fa-xmark"></i> নির্বাচন বাতিল করুন
+                    </button>
+                </div>
+
+                <!-- Board Buttons Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="boards-grid">
+                    <!-- Dynamic Board Links Will Render Here via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript Data Logic & UI Handling -->
+    <script>
+        /**
+         * ========================================================
+         * 1. DATA CONFIGURATION (সাল ও সকল বোর্ড ইনফরমেশন)
+         * ========================================================
+         */
+        const yearsList = ["2026", "2025", "2024", "2023", "2022"];
+
+        // বাংলাদেশের সকল শিক্ষা বোর্ডসমূহ
+        const boardsList = [
+            { id: "dinajpur", name: "দিনাজপুর বোর্ড", icon: "fa-compass", code: "Dinajpur" },
+            { id: "dhaka", name: "ঢাকা বোর্ড", icon: "fa-landmark", code: "Dhaka" },
+            { id: "rajshahi", name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", code: "Rajshahi" },
+            { id: "chittagong", name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", code: "Chittagong" },
+            { id: "comilla", name: "কুমিল্লা বোর্ড", icon: "fa-tree", code: "Comilla" },
+            { id: "barisal", name: "বরিশাল বোর্ড", icon: "fa-water", code: "Barisal" },
+            { id: "sylhet", name: "সিলেট বোর্ড", icon: "fa-mountain", code: "Sylhet" },
+            { id: "jessore", name: "যশোর বোর্ড", icon: "fa-sun", code: "Jessore" },
+            { id: "mymensingh", name: "ময়মনসিংহ বোর্ড", icon: "fa-leaf", code: "Mymensingh" },
+            { id: "madrasah", name: "মাদ্রাসা বোর্ড", icon: "fa-mosque", code: "Madrasah" },
+            { id: "technical", name: "কারিগরি বোর্ড", icon: "fa-gears", code: "Technical" },
+            { id: "all_board", name: "সকল বোর্ড একত্রিত", icon: "fa-layer-group", code: "AllBoard" }
+        ];
+
+        let selectedYear = null;
+
+        /**
+         * ========================================================
+         * 2. RENDER YEARS GRID
+         * ========================================================
+         */
+        function renderYears() {
+            const grid = document.getElementById("years-grid");
+            grid.innerHTML = yearsList.map(year => {
+                const isSelected = selectedYear === year;
+                return `
+                    <button onclick="selectYear('${year}')" 
+                        class="group p-5 rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center gap-2 cursor-pointer relative overflow-hidden ${
+                            isSelected 
+                            ? 'bg-gradient-to-br from-brand-500 to-brand-600 text-white border-brand-500 shadow-lg shadow-brand-500/30 scale-105' 
+                            : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-brand-500 hover:shadow-md hover:-translate-y-1'
+                        }">
+                        <i class="fa-solid fa-calendar-days text-2xl ${isSelected ? 'text-white' : 'text-brand-500 group-hover:scale-110'} transition-transform"></i>
+                        <span class="text-xl font-extrabold">SSC ${year}</span>
+                        <span class="text-[11px] opacity-80 font-medium">প্রশ্ন দেখতে ক্লিক করুন</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        /**
+         * ========================================================
+         * 3. SELECT YEAR & RENDER BOARDS
+         * ========================================================
+         */
+        function selectYear(year) {
+            selectedYear = year;
+            renderYears(); // Update active state of year buttons
+
+            const boardSection = document.getElementById("board-section");
+            const selectedYearText = document.getElementById("selected-year-text");
+            const boardsGrid = document.getElementById("boards-grid");
+
+            selectedYearText.textContent = `SSC ${year}`;
+
+            // Render Boards for Selected Year
+            boardsGrid.innerHTML = boardsList.map(board => {
+                // ফাইল লিংকের নাম অটো জেনারেট হবে (যেমন: SSC_2026_Dinajpur.html)
+                const generatedFileUrl = `SSC_${year}_${board.code}.html`;
+
+                return `
+                    <div onclick="navigateToBoardPage('${generatedFileUrl}')" 
+                        class="group p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-200 shadow-2xs hover:shadow-md cursor-pointer flex items-center justify-between">
+                        
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-400 flex items-center justify-center shadow-xs group-hover:bg-brand-500 group-hover:text-white transition">
+                                <i class="fa-solid ${board.icon}"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                                    ${board.name}
+                                </h4>
+                                <p class="text-[11px] text-slate-400">SSC ${year} প্রশ্নপত্র</p>
+                            </div>
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-500 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                `;
+            }).join('');
+
+            // Show Board Section with animation
+            boardSection.classList.remove("hidden");
+            boardSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Clear Selection
+        function clearBoardSelection() {
+            selectedYear = null;
+            renderYears();
+            document.getElementById("board-section").classList.add("hidden");
+        }
+
+        /**
+         * ========================================================
+         * 4. NAVIGATION FUNCTION (লিংক ওপেন করবে)
+         * ========================================================
+         */
+        function navigateToBoardPage(fileUrl) {
+            if (fileUrl) {
+                window.location.href = fileUrl;
+            } else {
+                alert("দুঃখিত! এই ফাইলের লিংকটি যুক্ত করা হয়নি।");
+            }
+        }
+
+        /**
+         * ========================================================
+         * 5. DARK / LIGHT THEME TOGGLE
+         * ========================================================
+         */
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        themeToggleBtn.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+        });
+
+        // Initial Load
+        window.onload = function() {
+            renderYears();
+        };
+    </script>
+</body>
+</html>
