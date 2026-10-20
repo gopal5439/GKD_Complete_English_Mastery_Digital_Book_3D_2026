@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC Board Exam Digital Practice System</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalpurush&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- html2pdf.js for PDF Download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --board-paper: #ffffff;
+            --khata-bg: #fffdf9;
+            --margin-color: #ef4444; /* লালচে মার্জিন রেখা */
+            --theme-color: #2563eb;
+            --handwriting-font: 'Caveat', cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Kalpurush', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navigation */
+        header {
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10;
+            border-bottom: 2px solid #334155;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(37, 99, 235, 0.4);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.6);
+        }
+
+        .timer-box {
+            background: #0f172a;
+            padding: 6px 16px;
+            border-radius: 20px;
+            color: #f43f5e;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 1px solid #475569;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Main Container - Split View */
+        .main-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 65px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Left Side: Question Paper */
+        .question-section {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-color: var(--board-paper);
+            border-right: 3px solid #e2e8f0;
+            text-align: justify;
+            text-justify: inter-word;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .board-header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .board-header h2 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .board-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 4px;
+            color: #334155;
+        }
+
+        .board-meta {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #1e293b;
+        }
+
+        .instruction {
+            text-align: center;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin: 5px 0 20px 0;
+            color: #64748b;
+        }
+
+        .q-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8fafc;
+            border-left: 5px solid var(--theme-color);
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+
+        .q-block:hover {
+            transform: scale(1.002);
+        }
+
+        .q-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            color: #1e293b;
+        }
+
+        .q-marks {
+            white-space: nowrap;
+            background: #e2e8f0;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        /* Board Tables */
+        table.board-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.95rem;
+        }
+
+        table.board-table th, table.board-table td {
+            border: 1px solid #334155;
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        /* Right Side: Answer Script (Khata) */
+        .khata-section {
+            flex: 0;
+            width: 0;
+            background: var(--khata-bg);
+            overflow-y: auto;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: -10px 0 25px rgba(0,0,0,0.2);
+        }
+
+        .khata-section.active {
+            flex: 1;
+            width: 50%;
+            padding: 35px 30px 30px 75px; /* মার্জিনের জন্য বামে জায়গা */
+        }
+
+        /* Khata Margins (কোনো লাইন থাকবে না, শুধু বামে মার্জিন) */
+        .khata-paper {
+            position: relative;
+            min-height: 100%;
+            background-color: var(--khata-bg);
+            padding-top: 15px;
+        }
+
+        .khata-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -45px; /* মার্জিন পজিশন */
+            width: 2px;
+            height: 100%;
+            background-color: var(--margin-color);
+        }
+
+        /* Student Info Box */
+        .student-info-box {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+            padding: 18px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .student-info-box h4 {
+            margin-bottom: 12px;
+            color: #1e293b;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .info-grid input {
+            padding: 8px 12px;
+            border: 1px solid #94a3b8;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .info-grid input:focus {
+            border-color: var(--theme-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Start Writing Banner with Bottom Border */
+        .start-writing-banner {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #047857;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #10b981;
+            text-align: center;
+        }
+
+        .khata-input-group {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* Question Title in Khata (Centered & Underlined) */
+        .khata-q-title {
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            text-align: center;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-size: 1.05rem;
+        }
+
+        textarea.khata-textarea {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            outline: none;
+            resize: vertical;
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #0f172a;
+            font-family: 'Poppins', sans-serif;
+            min-height: 140px;
+            text-align: justify;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+            transition: border-color 0.2s;
+        }
+
+        textarea.khata-textarea:focus {
+            border-color: var(--theme-color);
+        }
+
+        /* Action Buttons on Khata */
+        .khata-footer {
+            margin-top: 40px;
+            display: flex;
+            gap: 12px;
+            padding-bottom: 60px;
+        }
+
+        .btn-submit {
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(22, 163, 74, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-submit:hover { transform: translateY(-2px); }
+
+        .btn-result {
+            background: #d97706;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            display: none;
+            box-shadow: 0 2px 5px rgba(217, 119, 6, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-result:hover { transform: translateY(-2px); }
+
+        .btn-pdf {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            display: none;
+            box-shadow: 0 2px 5px rgba(220, 38, 38, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-pdf:hover { transform: translateY(-2px); }
+
+        /* Margin Score Position (ਮਾਰ্জিন ও সাদা অংশের মাঝ বরাবর) */
+        .margin-score {
+            position: absolute;
+            left: -65px; 
+            top: 45px;
+            font-family: var(--handwriting-font);
+            font-size: 1.5rem;
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        /* Handwritten Marks inside text area */
+        .handwritten-mark {
+            font-family: var(--handwriting-font);
+            font-size: 1.8rem;
+            font-weight: bold;
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .mark-correct { color: #16a34a; }
+        .mark-wrong { color: #dc2626; }
+
+        .total-score-card {
+            display: none;
+            border: 3px double #dc2626;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            background: rgba(254, 226, 226, 0.6);
+            animation: popIn 0.5s ease-in-out;
+        }
+
+        .total-score-card h3 {
+            font-family: var(--handwriting-font);
+            font-size: 2.4rem;
+            color: #dc2626;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container { flex-direction: column; }
+            .khata-section.active { width: 100%; flex: 1; padding-left: 55px; }
+            .question-section { flex: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="header-title">
+            <i class="fa-solid fa-graduation-cap"></i> SSC Board Exam Portal
+        </div>
+        <div class="timer-box" id="timerDisplay">
+            <i class="fa-regular fa-clock"></i> <span id="timeRemaining">03:00:00</span>
+        </div>
+        <div>
+            <button class="header-btn" id="toggleKhataBtn" onclick="toggleKhata()">
+                <i class="fa-solid fa-book-open"></i> খাতা খুলুন
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        
+        <!-- Left Column: Question Paper -->
+        <div class="question-section" id="questionPaper">
+            <div class="board-header">
+                <h2 id="boardTitle">SSC Dhaka Board 2026</h2>
+                <h3 id="boardSubTitle">English 2nd Paper</h3>
+                <div class="board-meta">
+                    <span id="boardTime">Time— 3 Hours</span>
+                    <span id="boardMarks">Marks— 100</span>
+                </div>
+            </div>
+            <div class="instruction">
+                No marks, signs, or symbols are allowed on the question paper.
+            </div>
+
+            <!-- Dynamic Question List -->
+            <div id="questionsContainer"></div>
+        </div>
+
+        <!-- Right Column: Answer Script (Khata) -->
+        <div class="khata-section" id="khataSection">
+            <div class="khata-paper" id="khataContent">
+                
+                <!-- Total Score Display Card -->
+                <div class="total-score-card" id="totalScoreCard">
+                    <h3 id="totalScoreText">প্রাপ্ত নম্বর: 0 / 100</h3>
+                </div>
+
+                <!-- Student Information Form -->
+                <div class="student-info-box" id="studentInfoBox">
+                    <h4><i class="fa-solid fa-user-pen"></i> শিক্ষার্থীর তথ্য (অবশ্যই পূরণ করতে হবে)</h4>
+                    <div class="info-grid">
+                        <input type="text" id="stdName" placeholder="পূর্ণ নাম (Name)" required oninput="triggerTimerOnWriting()">
+                        <input type="text" id="stdClass" placeholder="শ্রেণি (Class)" required oninput="triggerTimerOnWriting()">
+                        <input type="text" id="stdRoll" placeholder="রোল নম্বর (Roll)" required oninput="triggerTimerOnWriting()">
+                        <input type="text" id="stdReg" placeholder="রেজিস্ট্রেশন নম্বর (Reg No)" required oninput="triggerTimerOnWriting()">
+                    </div>
+                </div>
+
+                <!-- Start Writing Banner -->
+                <div class="start-writing-banner">
+                    এখান থেকে লেখা শুরু করুন-
+                </div>
+
+                <!-- Dynamic Answer Inputs -->
+                <div id="khataInputsContainer"></div>
+
+                <!-- Footer Action Buttons -->
+                <div class="khata-footer">
+                    <button class="btn-submit" id="submitBtn" onclick="submitKhata()">
+                        <i class="fa-solid fa-paper-plane"></i> খাতা জমা দিন
+                    </button>
+                    <button class="btn-result" id="resultBtn" onclick="evaluateExam()">
+                        <i class="fa-solid fa-square-check"></i> রেজাল্ট দেখুন
+                    </button>
+                    <button class="btn-pdf" id="pdfBtn" onclick="downloadPDF()">
+                        <i class="fa-solid fa-file-pdf"></i> PDF ডাউনলোড
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Engine & Separated Question Data -->
+    <script>
+        /* =========================================================================
+           QUESTION & ANSWER DATA (আপনি এখানে যেকোনো সময় প্রশ্ন ও সঠিক উত্তর পরিবর্তন করতে পারবেন)
+           ========================================================================= */
+        const questionData = {
+            boardInfo: {
+                title: "SSC Dhaka Board 2026",
+                subTitle: "English 2nd Paper",
+                time: "Time— 3 Hours",
+                marks: "Marks— 100",
+                durationSeconds: 3 * 3600 // ৩ ঘণ্টা
+            },
+            questions: [
+                {
+                    id: 1,
+                    type: "table",
+                    title: "01. Make five sentences using parts of sentences from each column of the table below.",
+                    marks: "1 x 5 = 5",
+                    tableData: {
+                        col1: ["Man's dignity", "Man", "He"],
+                        col2: ["be", "depends", "should"],
+                        col3: [
+                            "to work for others.",
+                            "upon his works.",
+                            "a rational being on earth.",
+                            "not be proud if he is of blue blood.",
+                            "be ready to help any class of man."
+                        ]
+                    },
+                    sampleKeywords: ["depends", "works", "rational", "proud", "help", "dignity"]
+                },
+                {
+                    id: 2,
+                    type: "gap_box",
+                    title: "02. Complete the following text with right forms of the verbs given in the box.",
+                    marks: "1 x 10 = 10",
+                    boxWords: ["report", "learn", "replace", "earn", "come", "control", "manipulate", "paralyze", "take", "gallop"],
+                    text: "Price of essentials is such a crucial factor that it directly (a) ___ the life and living of the majority people. The measures so far (b) ___ by the government (c) ___ appreciation from the people. But it is (d) ___ by despair as the majority of the people (e) ___ under the crushing burden of (f) ___ prices. It (g) ___ that the business syndicate (h) ___ the market prices and so the retailers (i) ___ out of their evil mechanism. Some selfish men are (j) ___ to have been involved in illegal activities.",
+                    sampleKeywords: ["controls", "taken", "earned", "replaced", "paralyzing", "galloping", "reported", "manipulates", "coming", "learned"]
+                },
+                {
+                    id: 3,
+                    type: "text_list",
+                    title: "03. Change the sentence according to the directions.",
+                    marks: "1 x 10 = 10",
+                    items: [
+                        "(a) Success is the result of hard work. (Make Interrogative sentence)",
+                        "(b) Everyone wants success. (Make Negative sentence)",
+                        "(c) Hard work leads to success. (Make Complex sentence)",
+                        "(d) Success is earned through perseverance and determination. (Make Compound sentence)",
+                        "(e) Success requires dedication and everyone knows it. (Make Complex sentence)",
+                        "(f) We must continue working hard so that we can achieve success. (Make Simple sentence)",
+                        "(g) Success is not assured without effort. (Make Affirmative sentence)",
+                        "(h) The journey to success is very difficult. (Make Exclamatory sentence)",
+                        "(i) It takes time if we want to achieve success. (Make Simple sentence)",
+                        "(j) Success requires both patience and effort. (Make Negative sentence)"
+                    ],
+                    sampleKeywords: ["isn't", "success", "everyone", "hard work", "persevere", "dedication", "difficult", "patience"]
+                },
+                {
+                    id: 4,
+                    type: "text_list",
+                    title: "04. Make tag question of these statements.",
+                    marks: "1 x 5 = 5",
+                    items: [
+                        "(a) Life is very uncertain on earth, ___?",
+                        "(b) Nobody knows when death comes, ___?",
+                        "(c) But we hardly realize this truth, ___?",
+                        "(d) Our deeds and actions show probably we will never depart, ___?",
+                        "(e) We must do the well-being of mankind, ___?"
+                    ],
+                    sampleKeywords: ["isn't it", "do they", "do we", "won't we", "mustn't we"]
+                },
+                {
+                    id: 5,
+                    type: "text_paragraph",
+                    title: "05. Complete the following passage adding suffixes, prefixes or the both to the root words given in parenthesis.",
+                    marks: "1 x 5 = 5",
+                    text: "The true aim of education is the (a) (harmony) ___ development of body, soul and mind. But (b) (book) ___ knowledge is (c) (sufficient) ___ in this regard. Without (d) (curricular) ___ activities like debate, (e) (public) ___ of magazine and cultural activities, our education remains incomplete.",
+                    sampleKeywords: ["harmonious", "bookish", "insufficient", "co-curricular", "publication"]
+                },
+                {
+                    id: 6,
+                    type: "text_paragraph",
+                    title: "06. Fill in the blanks with suitable prepositions.",
+                    marks: "1 x 5 = 5",
+                    text: "The Olympic Games were named (a) ___ the town of Olympia in Greece. It was (b) ___ Olympia where the games were first held long before the Christian era began. In those days, Greece was divided (c) ___ many cities and men of different cities used to fight one another most (d) ___ the time. A man named Iphitos became concerned (e) ___ such wasteful strifes.",
+                    sampleKeywords: ["after", "at", "into", "of", "about"]
+                },
+                {
+                    id: 7,
+                    type: "text_paragraph",
+                    title: "07. Complete the passage using suitable connectors.",
+                    marks: "2 x 5 = 10",
+                    text: "a. Computer virus is a terror to the users of computer. (a) ___ it is not a biological virus, it disturbs the plain operation of a computer. Computer virus is usually a programme to delete the files which are saved (b) ___ useful memories. Sometimes the virus attacks the hard disk (c) ___ harms it. (d) ___ things happen (e) ___, no operation is possible after the attack.\n\nb. The man said to mohsin my family have been starving...",
+                    sampleKeywords: ["although", "though", "or", "and", "repeatedly"]
+                },
+                {
+                    id: 8,
+                    type: "essay",
+                    title: "08. Paragraph Writing.",
+                    marks: "1 x 10 = 10",
+                    text: "Load-shedding has become a part of our life. Write a paragraph on 'Load Shedding'.",
+                    sampleKeywords: ["load-shedding", "electricity", "supply", "darkness", "suffer", "generator"]
+                },
+                {
+                    id: 9,
+                    type: "essay",
+                    title: "09. Letter/Application Writing.",
+                    marks: "1 x 10 = 10",
+                    text: "Suppose, you are Rahul/Rosy. Your friend is Munna/Munni who lives in Jashore. Now, write an e-mail to your friend about your preparation for the coming SSC exam.",
+                    sampleKeywords: ["preparation", "exam", "english", "mathematics", "hope", "friend"]
+                },
+                {
+                    id: 10,
+                    type: "essay",
+                    title: "10. Composition Writing.",
+                    marks: "1 x 20 = 20",
+                    text: "Write a composition about 'Population Problem of Bangladesh / Population Explosion in Bangladesh'.",
+                    sampleKeywords: ["population", "bangladesh", "problem", "growth", "control", "education", "resources"]
+                }
+            ]
+        };
+
+        /* =========================================================================
+           CORE SYSTEM ENGINE (কোডের এই অংশে হাত দেওয়ার প্রয়োজন নেই)
+           ========================================================================= */
+
+        let timerInterval = null;
+        let isExamSubmitted = false;
+        let timerStarted = false;
+
+        window.onload = function() {
+            // প্রশ্নগুলো সিরিয়াল অনুযায়ী স্বয়ংক্রিয় সাজানো (Sorting by ID)
+            questionData.questions.sort((a, b) => a.id - b.id);
+            
+            renderQuestions();
+            renderKhataInputs();
+            loadSavedAnswers();
+        };
+
+        function renderQuestions() {
+            document.getElementById('boardTitle').innerText = questionData.boardInfo.title;
+            document.getElementById('boardSubTitle').innerText = questionData.boardInfo.subTitle;
+            document.getElementById('boardTime').innerText = questionData.boardInfo.time;
+            document.getElementById('boardMarks').innerText = questionData.boardInfo.marks;
+
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            questionData.questions.forEach((q) => {
+                let qHtml = `<div class="q-block">
+                    <div class="q-title">
+                        <span>${q.title}</span>
+                        <span class="q-marks">${q.marks}</span>
+                    </div>`;
+
+                if(q.type === 'table') {
+                    qHtml += `<table class="board-table"><tr>`;
+                    qHtml += `<td>${q.tableData.col1.join('<br>')}</td>`;
+                    qHtml += `<td>${q.tableData.col2.join('<br>')}</td>`;
+                    qHtml += `<td>${q.tableData.col3.join('<br>')}</td>`;
+                    qHtml += `</tr></table>`;
+                }
+
+                if(q.type === 'gap_box') {
+                    qHtml += `<div style="border:1px solid #334155; padding:6px; margin:10px 0; text-align:center; background:#fff; font-weight:600;">`;
+                    qHtml += q.boxWords.join(' | ');
+                    qHtml += `</div>`;
+                }
+
+                if(q.text) {
+                    qHtml += `<p style="white-space: pre-line; line-height: 1.6;">${q.text}</p>`;
+                }
+
+                if(q.items) {
+                    qHtml += `<ul style="list-style:none; padding-left:0;">`;
+                    q.items.forEach(item => {
+                        qHtml += `<li style="margin-bottom:6px;">${item}</li>`;
+                    });
+                    qHtml += `</ul>`;
+                }
+
+                qHtml += `</div>`;
+                container.innerHTML += qHtml;
+            });
+        }
+
+        function renderKhataInputs() {
+            const container = document.getElementById('khataInputsContainer');
+            container.innerHTML = '';
+
+            questionData.questions.forEach((q) => {
+                let defaultHeader = `Answer to the question No. ${q.id}`;
+                let inputHtml = `
+                <div class="khata-input-group" id="khataGroup_${q.id}">
+                    <div class="margin-score" id="marginScore_${q.id}"></div>
+                    <div class="handwritten-mark" id="handmark_${q.id}"></div>
+                    <div class="khata-q-title">${defaultHeader}</div>
+                    <textarea class="khata-textarea" id="khataInput_${q.id}" 
+                        placeholder="${defaultHeader} এখানে লেখা শুরু করুন..." 
+                        oninput="handleUserTyping(${q.id})"></textarea>
+                </div>`;
+                container.innerHTML += inputHtml;
+            });
+        }
+
+        function toggleKhata() {
+            const khata = document.getElementById('khataSection');
+            const btn = document.getElementById('toggleKhataBtn');
+            khata.classList.toggle('active');
+
+            if(khata.classList.contains('active')) {
+                btn.innerHTML = `<i class="fa-solid fa-book-bookmark"></i> খাতা বন্ধ করুন`;
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-book-open"></i> খাতা খুলুন`;
+            }
+        }
+
+        function triggerTimerOnWriting() {
+            if(!timerStarted) {
+                startTimer(questionData.boardInfo.durationSeconds);
+                timerStarted = true;
+            }
+        }
+
+        function handleUserTyping(qId) {
+            if(!timerStarted) {
+                startTimer(questionData.boardInfo.durationSeconds);
+                timerStarted = true;
+            }
+            if(isExamSubmitted) return;
+            const val = document.getElementById(`khataInput_${qId}`).value;
+            localStorage.setItem(`ssc_2026_q_${qId}`, val);
+        }
+
+        function startTimer(seconds) {
+            let timeRemaining = seconds;
+            const display = document.getElementById('timeRemaining');
+
+            timerInterval = setInterval(() => {
+                let hrs = Math.floor(timeRemaining / 3600);
+                let mins = Math.floor((timeRemaining % 3600) / 60);
+                let secs = timeRemaining % 60;
+
+                display.innerText = 
+                    `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+                if (--timeRemaining < 0) {
+                    clearInterval(timerInterval);
+                    alert("পরীক্ষার নির্ধারিত সময় শেষ! আপনার খাতা স্বয়ংক্রিয়ভাবে জমা নেওয়া হচ্ছে।");
+                    submitKhata();
+                }
+            }, 1000);
+        }
+
+        function loadSavedAnswers() {
+            questionData.questions.forEach((q) => {
+                const saved = localStorage.getItem(`ssc_2026_q_${qId}`);
+                if(saved) {
+                    document.getElementById(`khataInput_${q.id}`).value = saved;
+                }
+            });
+        }
+
+        function submitKhata() {
+            const name = document.getElementById('stdName').value.trim();
+            const cls = document.getElementById('stdClass').value.trim();
+            const roll = document.getElementById('stdRoll').value.trim();
+            const reg = document.getElementById('stdReg').value.trim();
+
+            if(!name || !cls || !roll || !reg) {
+                alert("দয়া করে খাতা জমা দেওয়ার আগে আপনার নাম, শ্রেণি, রোল এবং রেজিস্ট্রেশন নম্বর পূরণ করুন!");
+                return;
+            }
+
+            if(isExamSubmitted) return;
+            isExamSubmitted = true;
+            clearInterval(timerInterval);
+
+            questionData.questions.forEach((q) => {
+                document.getElementById(`khataInput_${q.id}`).readOnly = true;
+            });
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('resultBtn').style.display = 'inline-block';
+            document.getElementById('pdfBtn').style.display = 'inline-block';
+
+            alert("আপনার খাতা সফলভাবে জমা হয়েছে! এখন 'রেজাল্ট দেখুন' বাটনে ক্লিক করুন।");
+        }
+
+        // সঠিক উত্তর যাচাইকরণ ইঞ্জিন (Keywords Matching Evaluation Engine)
+        function evaluateExam() {
+            let totalObtainedMarks = 0;
+            let totalPossibleMarks = 100;
+
+            questionData.questions.forEach((q) => {
+                const userAns = document.getElementById(`khataInput_${q.id}`).value.trim().toLowerCase();
+                const markElem = document.getElementById(`handmark_${q.id}`);
+                const scoreElem = document.getElementById(`marginScore_${q.id}`);
+
+                let maxMark = 10;
+                if(q.marks.includes('=')) {
+                    maxMark = parseInt(q.marks.split('=').pop().trim());
+                }
+
+                // যাচাইকরণ: অযথা শব্দ (যেমন jdglrthr) দিলে ম্যাচ করবে না এবং ০ পাবে
+                let matchedKeywordsCount = 0;
+                if (q.sampleKeywords && q.sampleKeywords.length > 0) {
+                    q.sampleKeywords.forEach(keyword => {
+                        if (userAns.includes(keyword.toLowerCase())) {
+                            matchedKeywordsCount++;
+                        }
+                    });
+                }
+
+                let matchRatio = q.sampleKeywords ? (matchedKeywordsCount / q.sampleKeywords.length) : 0;
+
+                if(userAns.length > 10 && matchRatio >= 0.25) {
+                    // সঠিক বা কাছাকাছি উত্তরের জন্য প্রাপ্ত নম্বর
+                    let obtained = Math.round(maxMark * matchRatio);
+                    if(obtained < 1) obtained = 1;
+                    if(obtained > maxMark) obtained = maxMark;
+                    totalObtainedMarks += obtained;
+
+                    markElem.innerHTML = `<i class="fa-solid fa-check"></i>`;
+                    markElem.className = "handwritten-mark mark-correct";
+                    scoreElem.innerText = `+${obtained}`;
+                } else {
+                    // ভুল বা এলোমেলো লেখার জন্য গোল দাগ ও ০ নম্বর
+                    markElem.innerHTML = `◯`;
+                    markElem.className = "handwritten-mark mark-wrong";
+                    scoreElem.innerText = `0`;
+                }
+            });
+
+            const scoreCard = document.getElementById('totalScoreCard');
+            const scoreText = document.getElementById('totalScoreText');
+            scoreCard.style.display = 'block';
+            scoreText.innerText = `প্রাপ্ত নম্বর: ${totalObtainedMarks} / ${totalPossibleMarks}`;
+            
+            alert(`মূল্যায়ন সম্পন্ন হয়েছে! আপনার প্রাপ্ত নম্বর: ${totalObtainedMarks} / 100`);
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('khataContent');
+            const opt = {
+                margin:       10,
+                filename:     'SSC_2026_English2nd_AnswerScript.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>

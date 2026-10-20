@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="bn" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্টাডি রিসোর্স ও প্রশ্ন ব্যাংক</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-200">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 gap-2">
+                <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold leading-tight">ডিজিটাল প্রশ্ন ব্যাংক</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">সকল পরীক্ষার প্রশ্ন একসাথে</p>
+                </div>
+            </div>
+
+            <!-- GKD Book: Back to Lesson List -->
+
+<div style="
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px;
+    background:
+    text-align:center;
+    box-shadow:0 3px 12px #0002;
+">
+
+    <button onclick="window.location.href='exam_&_others.html.html'"
+    style="
+        padding:12px 24px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#142850,#274690);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    ">
+        📚 Back
+    </button>
+
+</div>
+
+            <!-- Dark Mode Toggle Button -->
+            <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition text-slate-600 dark:text-slate-300">
+                <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-lg hidden"></i>
+                <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Search & Filter Bar -->
+        <div class="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div class="relative w-full md:w-96">
+                <input type="text" id="search-input" placeholder="বিষয় বা বোর্ডের নাম দিয়ে খুঁজুন..." 
+                    class="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-xs text-sm transition">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-base"></i>
+            </div>
+
+            <!-- Stats/Info Badge -->
+            <div class="text-sm font-medium text-slate-500 dark:text-slate-400">
+                মোট প্রশ্ন পাওয়া গেছে: <span id="total-count" class="font-bold text-brand-600 dark:text-brand-500">0</span> টি
+            </div>
+        </div>
+
+        <!-- Category Navigation Tabs -->
+        <div class="flex items-center space-x-2 overflow-x-auto pb-4 mb-6 border-b border-slate-200 dark:border-slate-700 scrollbar-none" id="category-tabs">
+            <!-- Dynamic Category Buttons Will Render Here -->
+        </div>
+
+        <!-- Question Cards Grid -->
+        <div id="questions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Question Items Will Render Here -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div id="empty-state" class="hidden flex-col items-center justify-center py-16 text-center">
+            <i class="fa-solid fa-folder-open text-5xl text-slate-300 dark:text-slate-600 mb-4"></i>
+            <h3 class="text-lg font-bold text-slate-600 dark:text-slate-400">কোনো প্রশ্ন পাওয়া যায়নি!</h3>
+            <p class="text-sm text-slate-400 dark:text-slate-500">অন্য কোনো কি-ওয়ার্ড দিয়ে খুঁজে দেখুন</p>
+        </div>
+    </main>
+
+    <!-- JavaScript Data Logic & UI Handling -->
+    <script>
+        /**
+         * ========================================================
+         * 1. DATA CONFIGURATION (এখানে আপনার সমস্ত HTML লিংক যুক্ত করবেন)
+         * ========================================================
+         */
+        const questionData = [
+            // SSC Category
+            {
+                id: 1,
+                title: "English 2nd Paper",
+                board: "Dhaka Board 2026",
+                category: "ssc",
+                subject: "English",
+                year: "2026",
+                fileUrl: "English_2nd_Dhaka_2026.html",
+                icon: "fa-book-open-reader",
+                tagColor: "emerald"
+            },
+            {
+                id: 2,
+                title: "Mathematics",
+                board: "Rajshahi Board 2025",
+                category: "ssc",
+                subject: "Math",
+                year: "2025",
+                fileUrl: "Math_Rajshahi_2025.html",
+                icon: "fa-calculator",
+                tagColor: "emerald"
+            },
+            {
+                id: 3,
+                title: "Physics",
+                board: "Chittagong Board 2026",
+                category: "ssc",
+                subject: "Physics",
+                year: "2026",
+                fileUrl: "Physics_Chittagong_2026.html",
+                icon: "fa-atom",
+                tagColor: "emerald"
+            },
+            
+            // HSC Category
+            {
+                id: 4,
+                title: "English 1st Paper",
+                board: "Dhaka Board 2026",
+                category: "hsc",
+                subject: "English",
+                year: "2026",
+                fileUrl: "HSC_English_1st_Dhaka_2026.html",
+                icon: "fa-language",
+                tagColor: "blue"
+            },
+            {
+                id: 5,
+                title: "ICT",
+                board: "All Board 2025",
+                category: "hsc",
+                subject: "ICT",
+                year: "2025",
+                fileUrl: "HSC_ICT_AllBoard_2025.html",
+                icon: "fa-laptop-code",
+                tagColor: "blue"
+            },
+            {
+                id: 6,
+                title: "Chemistry 2nd Paper",
+                board: "Sylhet Board 2026",
+                category: "hsc",
+                subject: "Chemistry",
+                year: "2026",
+                fileUrl: "HSC_Chemistry_Sylhet_2026.html",
+                icon: "fa-flask",
+                tagColor: "blue"
+            },
+
+            // Admission Category
+            {
+                id: 7,
+                title: "Medical Admission Questions",
+                board: "Session 2025-26",
+                category: "admission",
+                subject: "Medical",
+                year: "2026",
+                fileUrl: "Medical_Admission_2026.html",
+                icon: "fa-user-doctor",
+                tagColor: "purple"
+            },
+            {
+                id: 8,
+                title: "DU A-Unit Question",
+                board: "Dhaka University 2025",
+                category: "admission",
+                subject: "DU A Unit",
+                year: "2025",
+                fileUrl: "DU_A_Unit_2025.html",
+                icon: "fa-building-columns",
+                tagColor: "purple"
+            }
+        ];
+
+        // Categories Configuration
+        const categories = [
+            { id: "all", label: "সব প্রশ্ন", icon: "fa-layer-group" },
+            { id: "ssc", label: "SSC পরীক্ষা", icon: "fa-school" },
+            { id: "hsc", label: "HSC পরীক্ষা", icon: "fa-graduation-cap" },
+            { id: "admission", label: "এডমিশন টেস্ট", icon: "fa-university" }
+        ];
+
+        // State Variables
+        let currentCategory = "all";
+        let searchQuery = "";
+
+        /**
+         * ========================================================
+         * 2. CORE NAVIGATION FUNCTION (বাটনে ক্লিক করলে নেভিগেট করার ফাংশন)
+         * ========================================================
+         */
+        function navigateToPage(fileUrl) {
+            if (fileUrl) {
+                window.location.href = fileUrl;
+            } else {
+                alert("দুঃখিত! এই ফাইলের লিংকটি এখনো যুক্ত করা হয়নি।");
+            }
+        }
+
+        /**
+         * ========================================================
+         * 3. RENDER UI COMPONENTS
+         * ========================================================
+         */
+
+        // Category Tabs Render
+        function renderCategories() {
+            const tabsContainer = document.getElementById("category-tabs");
+            tabsContainer.innerHTML = categories.map(cat => {
+                const isActive = cat.id === currentCategory;
+                return `
+                    <button onclick="setCategory('${cat.id}')" 
+                        class="px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition flex items-center gap-2 shadow-2xs ${
+                            isActive 
+                            ? 'bg-brand-500 text-white shadow-md shadow-brand-500/20' 
+                            : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-brand-500'
+                        }">
+                        <i class="fa-solid ${cat.icon}"></i> ${cat.label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        // Questions Grid Render
+        function renderQuestions() {
+            const gridContainer = document.getElementById("questions-grid");
+            const emptyState = document.getElementById("empty-state");
+            const totalCountEl = document.getElementById("total-count");
+
+            // Filter logic
+            const filtered = questionData.filter(item => {
+                const matchesCategory = currentCategory === "all" || item.category === currentCategory;
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      item.board.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.subject.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            totalCountEl.textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                gridContainer.innerHTML = "";
+                emptyState.classList.remove("hidden");
+                emptyState.classList.add("flex");
+                return;
+            }
+
+            emptyState.classList.add("hidden");
+            emptyState.classList.remove("flex");
+
+            gridContainer.innerHTML = filtered.map(item => `
+                <div onclick="navigateToPage('${item.fileUrl}')" 
+                    class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-200 shadow-xs hover:shadow-md cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-brand-500 flex items-center justify-center text-xl group-hover:bg-brand-500 group-hover:text-white transition duration-200">
+                                <i class="fa-solid ${item.icon}"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-500 uppercase tracking-wider">
+                                ${item.category}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-base text-slate-800 dark:text-slate-100 mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition">
+                            ${item.title}
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                            <i class="fa-solid fa-location-dot mr-1"></i> ${item.board}
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                        <span>অনুশীলন শুরু করুন</span>
+                        <i class="fa-solid fa-arrow-right text-brand-500 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * ========================================================
+         * 4. EVENT LISTENERS & FILTER LOGIC
+         * ========================================================
+         */
+        function setCategory(catId) {
+            currentCategory = catId;
+            renderCategories();
+            renderQuestions();
+        }
+
+        document.getElementById("search-input").addEventListener("input", (e) => {
+            searchQuery = e.target.value.trim();
+            renderQuestions();
+        });
+
+        // Dark/Light Theme Switching
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        themeToggleBtn.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+        });
+
+        // Initialize Page
+        window.onload = function() {
+            renderCategories();
+            renderQuestions();
+        };
+    </script>
+</body>
+</html>
