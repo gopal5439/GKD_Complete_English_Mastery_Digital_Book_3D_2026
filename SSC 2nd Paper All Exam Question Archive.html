@@ -225,35 +225,43 @@
             boardsGrid.innerHTML = boardsList.map(board => {
                 
                 // ====================================================================================
-                // 🔗 [LINK CONFIGURATION AREA]: আলাদা আলাদা সাল ও বোর্ডের জন্য আপনার কাস্টম লিংক বা ফাইলের নাম এখানে বসাবেন
+                // 🔗 [LINK CONFIGURATION AREA]: 
+                // এখানে আপনি খুব সহজেই কাস্টম লিংক বা ফাইলের নাম বসাতে পারবেন। 
+                // নতুন লিংক যোগ করতে চাইলে নিচের নিয়ম মেনে 'else if' কপি-পেস্ট করে বাড়িয়ে নিতে পারবেন।
                 // ====================================================================================
                 let customFileUrl = "";
 
-                // উদাহরণস্বরূপ: SSC 2026 এর ঢাকা বোর্ডের জন্য আপনার কাঙ্ক্ষিত ফাইল লিংক
+                // SSC 2026 ঢাকা বোর্ডের জন্য আপনার নির্দিষ্ট ফাইল লিংক
                 if (year === "2026" && board.code === "Dhaka") {
                     customFileUrl = "English_2nd_Dhaka_2026.html"; 
                 }
-                // উদাহরণস্বরূপ: SSC 2026 এর দিনাজপুর বোর্ডের জন্য
+                // SSC 2026 দিনাজপুর বোর্ড
                 else if (year === "2026" && board.code === "Dinajpur") {
                     customFileUrl = "SSC_2026_Dinajpur.html"; 
                 }
-                // উদাহরণস্বরূপ: SSC 2025 এর রাজশাহী বোর্ডের জন্য
+                // SSC 2025 রাজশাহী বোর্ড
                 else if (year === "2025" && board.code === "Rajshahi") {
                     customFileUrl = "SSC_2025_Rajshahi.html"; 
                 }
-                // উদাহরণস্বরূপ: SSC 2024 এর ঢাকা বোর্ডের জন্য
+                // SSC 2024 ঢাকা বোর্ড
                 else if (year === "2024" && board.code === "Dhaka") {
-                customFileUrl = "Dhaka_2024_Questions.html";
+                    customFileUrl = "Dhaka_2024_Questions.html";
                 }
-                // উদাহরণস্বরূপ: SSC 2023 এর সিলেট বোর্ডের জন্য
+                // SSC 2023 সিলেট বোর্ড
                 else if (year === "2023" && board.code === "Sylhet") {
-                customFileUrl = "Sylhet_2023_File.html";
+                    customFileUrl = "Sylhet_2023_File.html";
                 }
-                    / উদাহরণস্বরূপ: SSC 2022 এর সিলেট বোর্ডের জন্য
+                // SSC 2022 সিলেট বোর্ড
                 else if (year === "2022" && board.code === "Sylhet") {
-                customFileUrl = "Sylhet_2023_File.html";
+                    customFileUrl = "Sylhet_2022_File.html";
                 }
-                // অন্য যেকোনো সাল বা বোর্ডের জন্য যদি আলাদা লিংক না দেন, তবে নিচে অটো-জেনারেট হবে:
+                
+                // 💡 আপনি চাইলে ওপরের নিয়মে এভাবে আরও নতুন যোগ করতে পারেন:
+                // else if (year === "সাল" && board.code === "বোর্ডের_কোড") {
+                //     customFileUrl = "আপনার_ফাইলের_নাম.html";
+                // }
+
+                // অন্য যেকোনো সাল বা বোর্ডের জন্য যদি আলাদা লিংক না দেন, তবে স্বয়ংক্রিয়ভাবে এটি কাজ করবে:
                 else {
                     customFileUrl = `SSC_${year}_${board.code}.html`;
                 }
