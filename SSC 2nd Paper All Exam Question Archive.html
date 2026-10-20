@@ -137,7 +137,7 @@
                             <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
                                 <span id="selected-year-text" class="text-brand-600 dark:text-brand-500 font-extrabold">SSC 2026</span> এর বোর্ডসমূহ
                             </h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">আপনার শিক্ষাবোর্ড বেছে নিয়ে লিংকে প্রবেশ করুন</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">আপনার শিক্ষাবোর্ড বেছে নিয়ে লিংকে প্রবেশ করুন</p>
                         </div>
                     </div>
                     
@@ -167,7 +167,7 @@
         // বাংলাদেশের সকল শিক্ষা বোর্ডসমূহ
         const boardsList = [
             { id: "dinajpur", name: "দিনাজপুর বোর্ড", icon: "fa-compass", code: "Dinajpur" },
-            { id: "English_2nd_Dhaka_2026.html", name: "ঢাকা বোর্ড", icon: "fa-landmark", code: "Dhaka" },
+            { id: "dhaka", name: "ঢাকা বোর্ড", icon: "fa-landmark", code: "Dhaka" },
             { id: "rajshahi", name: "রাজশাহী বোর্ড", icon: "fa-graduation-cap", code: "Rajshahi" },
             { id: "chittagong", name: "চট্টগ্রাম বোর্ড", icon: "fa-ship", code: "Chittagong" },
             { id: "comilla", name: "কুমিল্লা বোর্ড", icon: "fa-tree", code: "Comilla" },
@@ -223,11 +223,44 @@
 
             // Render Boards for Selected Year
             boardsGrid.innerHTML = boardsList.map(board => {
-                // ফাইল লিংকের নাম অটো জেনারেট হবে (যেমন: SSC_2026_Dinajpur.html)
-                const generatedFileUrl = `SSC_${year}_${board.code}.html`;
+                
+                // ====================================================================================
+                // 🔗 [LINK CONFIGURATION AREA]: আলাদা আলাদা সাল ও বোর্ডের জন্য আপনার কাস্টম লিংক বা ফাইলের নাম এখানে বসাবেন
+                // ====================================================================================
+                let customFileUrl = "";
+
+                // উদাহরণস্বরূপ: SSC 2026 এর ঢাকা বোর্ডের জন্য আপনার কাঙ্ক্ষিত ফাইল লিংক
+                if (year === "2026" && board.code === "Dhaka") {
+                    customFileUrl = "English_2nd_Dhaka_2026.html"; 
+                }
+                // উদাহরণস্বরূপ: SSC 2026 এর দিনাজপুর বোর্ডের জন্য
+                else if (year === "2026" && board.code === "Dinajpur") {
+                    customFileUrl = "SSC_2026_Dinajpur.html"; 
+                }
+                // উদাহরণস্বরূপ: SSC 2025 এর রাজশাহী বোর্ডের জন্য
+                else if (year === "2025" && board.code === "Rajshahi") {
+                    customFileUrl = "SSC_2025_Rajshahi.html"; 
+                }
+                // উদাহরণস্বরূপ: SSC 2024 এর ঢাকা বোর্ডের জন্য
+                else if (year === "2024" && board.code === "Dhaka") {
+                customFileUrl = "Dhaka_2024_Questions.html";
+                }
+                // উদাহরণস্বরূপ: SSC 2023 এর সিলেট বোর্ডের জন্য
+                else if (year === "2023" && board.code === "Sylhet") {
+                customFileUrl = "Sylhet_2023_File.html";
+                }
+                    / উদাহরণস্বরূপ: SSC 2022 এর সিলেট বোর্ডের জন্য
+                else if (year === "2022" && board.code === "Sylhet") {
+                customFileUrl = "Sylhet_2023_File.html";
+                }
+                // অন্য যেকোনো সাল বা বোর্ডের জন্য যদি আলাদা লিংক না দেন, তবে নিচে অটো-জেনারেট হবে:
+                else {
+                    customFileUrl = `SSC_${year}_${board.code}.html`;
+                }
+                // ====================================================================================
 
                 return `
-                    <div onclick="navigateToBoardPage('${generatedFileUrl}')" 
+                    <div onclick="navigateToBoardPage('${customFileUrl}')" 
                         class="group p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-200 shadow-2xs hover:shadow-md cursor-pointer flex items-center justify-between">
                         
                         <div class="flex items-center gap-3">
@@ -268,7 +301,7 @@
             if (fileUrl) {
                 window.location.href = fileUrl;
             } else {
-                alert("দুঃখিত! এই ফাইলের লিংকটি যুক্ত করা হয়নি।");
+                alert("দুঃখিত! এই ফাইলের লিংকটি যুক্ত করা হয়নি।");
             }
         }
 
