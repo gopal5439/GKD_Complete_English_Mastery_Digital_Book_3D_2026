@@ -175,6 +175,40 @@
             color: #475569;
         }
 
+        /* Answer Button & Container Styles */
+        .ans-btn {
+            background-color: #059669;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .ans-btn:hover {
+            background-color: #047857;
+            transform: translateY(-1px);
+        }
+
+        .answer-box {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 15px;
+            background-color: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 6px;
+            color: #065f46;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         /* Board Tables */
         table.board-table {
             width: 100%;
@@ -368,7 +402,7 @@
 
         .btn-pdf:hover { transform: translateY(-2px); }
 
-        /* Margin Score Position (ਮਾਰ্জিন ও সাদা অংশের মাঝ বরাবর) */
+        /* Margin Score Position (মার্জিন ও সাদা অংশের মাঝ বরাবর) */
         .margin-score {
             position: absolute;
             left: -65px; 
@@ -515,7 +549,7 @@
     <!-- JavaScript Engine & Separated Question Data -->
     <script>
         /* =========================================================================
-           QUESTION & ANSWER DATA (আপনি এখানে যেকোনো সময় প্রশ্ন ও সঠিক উত্তর পরিবর্তন করতে পারবেন)
+           QUESTION & ANSWER DATA (এখানে প্রশ্ন ও সঠিক উত্তর সংরক্ষিত রয়েছে)
            ========================================================================= */
         const questionData = {
             boardInfo: {
@@ -542,7 +576,8 @@
                             "be ready to help any class of man."
                         ]
                     },
-                    sampleKeywords: ["depends", "works", "rational", "proud", "help", "dignity"]
+                    sampleKeywords: ["depends", "works", "rational", "proud", "help", "dignity"],
+                    correctAnswer: "(a) Man is a rational being on earth.<br>(b) Man's dignity depends upon his works.<br>(c) He should not be proud if he is of blue blood.<br>(d) He should be ready to help any class of man.<br>(e) Man should be born to work for others."
                 },
                 {
                     id: 2,
@@ -551,7 +586,8 @@
                     marks: "1 x 10 = 10",
                     boxWords: ["report", "learn", "replace", "earn", "come", "control", "manipulate", "paralyze", "take", "gallop"],
                     text: "Price of essentials is such a crucial factor that it directly (a) ___ the life and living of the majority people. The measures so far (b) ___ by the government (c) ___ appreciation from the people. But it is (d) ___ by despair as the majority of the people (e) ___ under the crushing burden of (f) ___ prices. It (g) ___ that the business syndicate (h) ___ the market prices and so the retailers (i) ___ out of their evil mechanism. Some selfish men are (j) ___ to have been involved in illegal activities.",
-                    sampleKeywords: ["controls", "taken", "earned", "replaced", "paralyzing", "galloping", "reported", "manipulates", "coming", "learned"]
+                    sampleKeywords: ["controls", "taken", "earned", "replaced", "paralyzing", "galloping", "reported", "manipulates", "coming", "learned"],
+                    correctAnswer: "(a) controls (b) taken (c) earned (d) replaced (e) are paralyzing (f) galloping (g) is reported (h) manipulates (i) are coming (j) learned"
                 },
                 {
                     id: 3,
@@ -570,7 +606,8 @@
                         "(i) It takes time if we want to achieve success. (Make Simple sentence)",
                         "(j) Success requires both patience and effort. (Make Negative sentence)"
                     ],
-                    sampleKeywords: ["isn't", "success", "everyone", "hard work", "persevere", "dedication", "difficult", "patience"]
+                    sampleKeywords: ["isn't", "success", "everyone", "hard work", "persevere", "dedication", "difficult", "patience"],
+                    correctAnswer: "(a) Isn't success the result of hard work?<br>(b) There is no one but wants success. / Who doesn't want success?<br>(c) It is hard work which leads to success.<br>(d) People show perseverance and determination, and thus success is earned.<br>(e) Everyone knows that success requires dedication.<br>(f) We must continue working hard to achieve success.<br>(g) Success is assured only through effort.<br>(h) How difficult the journey to success is!<br>(i) Achieving success takes time.<br>(j) Success requires not only patience but also effort."
                 },
                 {
                     id: 4,
@@ -584,7 +621,8 @@
                         "(d) Our deeds and actions show probably we will never depart, ___?",
                         "(e) We must do the well-being of mankind, ___?"
                     ],
-                    sampleKeywords: ["isn't it", "do they", "do we", "won't we", "mustn't we"]
+                    sampleKeywords: ["isn't it", "do they", "do we", "won't we", "mustn't we"],
+                    correctAnswer: "(a) isn't it?<br>(b) do they?<br>(c) do we?<br>(d) won't we?<br>(e) mustn't we?"
                 },
                 {
                     id: 5,
@@ -592,7 +630,8 @@
                     title: "05. Complete the following passage adding suffixes, prefixes or the both to the root words given in parenthesis.",
                     marks: "1 x 5 = 5",
                     text: "The true aim of education is the (a) (harmony) ___ development of body, soul and mind. But (b) (book) ___ knowledge is (c) (sufficient) ___ in this regard. Without (d) (curricular) ___ activities like debate, (e) (public) ___ of magazine and cultural activities, our education remains incomplete.",
-                    sampleKeywords: ["harmonious", "bookish", "insufficient", "co-curricular", "publication"]
+                    sampleKeywords: ["harmonious", "bookish", "insufficient", "co-curricular", "publication"],
+                    correctAnswer: "(a) harmonious (b) bookish (c) insufficient (d) co-curricular (e) publication"
                 },
                 {
                     id: 6,
@@ -600,7 +639,8 @@
                     title: "06. Fill in the blanks with suitable prepositions.",
                     marks: "1 x 5 = 5",
                     text: "The Olympic Games were named (a) ___ the town of Olympia in Greece. It was (b) ___ Olympia where the games were first held long before the Christian era began. In those days, Greece was divided (c) ___ many cities and men of different cities used to fight one another most (d) ___ the time. A man named Iphitos became concerned (e) ___ such wasteful strifes.",
-                    sampleKeywords: ["after", "at", "into", "of", "about"]
+                    sampleKeywords: ["after", "at", "into", "of", "about"],
+                    correctAnswer: "(a) after (b) at (c) into (d) of (e) about"
                 },
                 {
                     id: 7,
@@ -608,7 +648,8 @@
                     title: "07. Complete the passage using suitable connectors.",
                     marks: "2 x 5 = 10",
                     text: "a. Computer virus is a terror to the users of computer. (a) ___ it is not a biological virus, it disturbs the plain operation of a computer. Computer virus is usually a programme to delete the files which are saved (b) ___ useful memories. Sometimes the virus attacks the hard disk (c) ___ harms it. (d) ___ things happen (e) ___, no operation is possible after the attack.\n\nb. The man said to mohsin my family have been starving...",
-                    sampleKeywords: ["although", "though", "or", "and", "repeatedly"]
+                    sampleKeywords: ["although", "though", "or", "and", "repeatedly"],
+                    correctAnswer: "(a) Although / Though (b) or (c) and (d) If such (e) repeatedly"
                 },
                 {
                     id: 8,
@@ -616,7 +657,8 @@
                     title: "08. Paragraph Writing.",
                     marks: "1 x 10 = 10",
                     text: "Load-shedding has become a part of our life. Write a paragraph on 'Load Shedding'.",
-                    sampleKeywords: ["load-shedding", "electricity", "supply", "darkness", "suffer", "generator"]
+                    sampleKeywords: ["load-shedding", "electricity", "supply", "darkness", "suffer", "generator"],
+                    correctAnswer: "<b>Model Answer Hints:</b><br>Load shedding means the suspension of electricity supply for a time. It occurs when the demand for electricity is greater than the generation. It causes great suffering to students, factories, hospitals, and domestic life. To solve this problem, more power plants should be established, and systemic loss & wastage must be reduced."
                 },
                 {
                     id: 9,
@@ -624,7 +666,8 @@
                     title: "09. Letter/Application Writing.",
                     marks: "1 x 10 = 10",
                     text: "Suppose, you are Rahul/Rosy. Your friend is Munna/Munni who lives in Jashore. Now, write an e-mail to your friend about your preparation for the coming SSC exam.",
-                    sampleKeywords: ["preparation", "exam", "english", "mathematics", "hope", "friend"]
+                    sampleKeywords: ["preparation", "exam", "english", "mathematics", "hope", "friend"],
+                    correctAnswer: "<b>Model Answer Hints:</b><br>To: munna@email.com<br>Subject: Preparation for SSC Exam<br><br>Dear Munna,<br>I received your email yesterday. You wanted to know about my preparation for the upcoming SSC exam. My preparation is going well. I have completed all subjects including English and Mathematics. Please pray for me.<br><br>Your friend,<br>Rahul"
                 },
                 {
                     id: 10,
@@ -632,13 +675,14 @@
                     title: "10. Composition Writing.",
                     marks: "1 x 20 = 20",
                     text: "Write a composition about 'Population Problem of Bangladesh / Population Explosion in Bangladesh'.",
-                    sampleKeywords: ["population", "bangladesh", "problem", "growth", "control", "education", "resources"]
+                    sampleKeywords: ["population", "bangladesh", "problem", "growth", "control", "education", "resources"],
+                    correctAnswer: "<b>Model Answer Hints:</b><br><b>Introduction:</b> Bangladesh is a small country with a large population...<br><b>Causes:</b> Illiteracy, lack of family planning, early marriage...<br><b>Effects:</b> Food shortage, unemployment, health issues, poverty...<br><b>Solutions:</b> Educating people, creating awareness, empowering women, and strict population control measures."
                 }
             ]
         };
 
         /* =========================================================================
-           CORE SYSTEM ENGINE (কোডের এই অংশে হাত দেওয়ার প্রয়োজন নেই)
+           CORE SYSTEM ENGINE
            ========================================================================= */
 
         let timerInterval = null;
@@ -696,9 +740,30 @@
                     qHtml += `</ul>`;
                 }
 
+                // উত্তর দেখার বাটন এবং উত্তর কন্টেইনার যুক্ত করা হয়েছে
+                qHtml += `
+                <div>
+                    <button class="ans-btn" onclick="toggleAnswer(${q.id})">
+                        <i class="fa-solid fa-lightbulb"></i> উত্তর দেখুন
+                    </button>
+                    <div class="answer-box" id="answerBox_${q.id}">
+                        <strong>সঠিক উত্তর (Solution):</strong><br>
+                        ${q.correctAnswer}
+                    </div>
+                </div>`;
+
                 qHtml += `</div>`;
                 container.innerHTML += qHtml;
             });
+        }
+
+        function toggleAnswer(qId) {
+            const box = document.getElementById(`answerBox_${qId}`);
+            if (box.style.display === "none" || box.style.display === "") {
+                box.style.display = "block";
+            } else {
+                box.style.display = "none";
+            }
         }
 
         function renderKhataInputs() {
@@ -771,7 +836,7 @@
 
         function loadSavedAnswers() {
             questionData.questions.forEach((q) => {
-                const saved = localStorage.getItem(`ssc_2026_q_${qId}`);
+                const saved = localStorage.getItem(`ssc_2026_q_${q.id}`);
                 if(saved) {
                     document.getElementById(`khataInput_${q.id}`).value = saved;
                 }
@@ -819,7 +884,7 @@
                     maxMark = parseInt(q.marks.split('=').pop().trim());
                 }
 
-                // যাচাইকরণ: অযথা শব্দ (যেমন jdglrthr) দিলে ম্যাচ করবে না এবং ০ পাবে
+                // যাচাইকরণ: অযথা শব্দ দিলে ম্যাচ করবে না এবং ০ পাবে
                 let matchedKeywordsCount = 0;
                 if (q.sampleKeywords && q.sampleKeywords.length > 0) {
                     q.sampleKeywords.forEach(keyword => {
