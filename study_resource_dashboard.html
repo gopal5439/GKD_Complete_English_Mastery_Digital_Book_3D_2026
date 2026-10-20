@@ -56,7 +56,7 @@
                     </div>
                     <div>
                         <h1 class="text-base sm:text-lg font-bold leading-tight">ডিজিটাল প্রশ্ন ব্যাংক</h1>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">SSC, HSC ও এডমিশন রিসোর্স</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">Class 1-12 ও এডমিশন রিসোর্স</p>
                     </div>
                 </div>
             </div>
@@ -108,90 +108,67 @@
     <script>
         /**
          * ========================================================
-         * 1. DATA CONFIGURATION (এখানে আপনার পছন্দমতো ফাইল লিংক বসাতে পারবেন)
+         * 1. DATA CONFIGURATION
          * ========================================================
          */
         const questionData = [
+            // Class 1
+            { id: 101, title: "Class 1 English 1st Paper", subtitle: "প্রথম শ্রেণি ইংরেজি ১ম পত্র", category: "class1", subject: "English 1st Paper", fileUrl: "Class1_English_1st.html", icon: "fa-book-open" },
+            { id: 102, title: "Class 1 English 2nd Paper", subtitle: "প্রথম শ্রেণি ইংরেজি ২য় পত্র", category: "class1", subject: "English 2nd Paper", fileUrl: "Class1_English_2nd.html", icon: "fa-pen-nib" },
+
+            // Class 2
+            { id: 201, title: "Class 2 English 1st Paper", subtitle: "দ্বিতীয় শ্রেণি ইংরেজি ১ম পত্র", category: "class2", subject: "English 1st Paper", fileUrl: "Class2_English_1st.html", icon: "fa-book-open" },
+            { id: 202, title: "Class 2 English 2nd Paper", subtitle: "দ্বিতীয় শ্রেণি ইংরেজি ২য় পত্র", category: "class2", subject: "English 2nd Paper", fileUrl: "Class2_English_2nd.html", icon: "fa-pen-nib" },
+
+            // Class 3
+            { id: 301, title: "Class 3 English 1st Paper", subtitle: "তৃতীয় শ্রেণি ইংরেজি ১ম পত্র", category: "class3", subject: "English 1st Paper", fileUrl: "Class3_English_1st.html", icon: "fa-book-open" },
+            { id: 302, title: "Class 3 English 2nd Paper", subtitle: "তৃতীয় শ্রেণি ইংরেজি ২য় পত্র", category: "class3", subject: "English 2nd Paper", fileUrl: "Class3_English_2nd.html", icon: "fa-pen-nib" },
+
+            // Class 4
+            { id: 401, title: "Class 4 English 1st Paper", subtitle: "চতুর্থ শ্রেণি ইংরেজি ১ম পত্র", category: "class4", subject: "English 1st Paper", fileUrl: "Class4_English_1st.html", icon: "fa-book-open" },
+            { id: 402, title: "Class 4 English 2nd Paper", subtitle: "চতুর্থ শ্রেণি ইংরেজি ২য় পত্র", category: "class4", subject: "English 2nd Paper", fileUrl: "Class4_English_2nd.html", icon: "fa-pen-nib" },
+
+            // Class 5
+            { id: 501, title: "Class 5 English 1st Paper", subtitle: "পঞ্চম শ্রেণি ইংরেজি ১ম পত্র", category: "class5", subject: "English 1st Paper", fileUrl: "Class5_English_1st.html", icon: "fa-book-open" },
+            { id: 502, title: "Class 5 English 2nd Paper", subtitle: "পঞ্চম শ্রেণি ইংরেজি ২য় পত্র", category: "class5", subject: "English 2nd Paper", fileUrl: "Class5_English_2nd.html", icon: "fa-pen-nib" },
+
+            // Class 6
+            { id: 601, title: "Class 6 English 1st Paper", subtitle: "ষষ্ঠ শ্রেণি ইংরেজি ১ম পত্র", category: "class6", subject: "English 1st Paper", fileUrl: "Class6_English_1st.html", icon: "fa-book-open" },
+            { id: 602, title: "Class 6 English 2nd Paper", subtitle: "ষষ্ঠ শ্রেণি ইংরেজি ২য় পত্র", category: "class6", subject: "English 2nd Paper", fileUrl: "Class6_English_2nd.html", icon: "fa-pen-nib" },
+
+            // Class 7
+            { id: 701, title: "Class 7 English 1st Paper", subtitle: "সপ্তম শ্রেণি ইংরেজি ১ম পত্র", category: "class7", subject: "English 1st Paper", fileUrl: "Class7_English_1st.html", icon: "fa-book-open" },
+            { id: 702, title: "Class 7 English 2nd Paper", subtitle: "সপ্তম শ্রেণি ইংরেজি ২য় পত্র", category: "class7", subject: "English 2nd Paper", fileUrl: "Class7_English_2nd.html", icon: "fa-pen-nib" },
+
+            // Class 8
+            { id: 801, title: "Class 8 English 1st Paper", subtitle: "অষ্টম শ্রেণি ইংরেজি ১ম পত্র", category: "class8", subject: "English 1st Paper", fileUrl: "Class8_English_1st.html", icon: "fa-book-open" },
+            { id: 802, title: "Class 8 English 2nd Paper", subtitle: "অষ্টম শ্রেণি ইংরেজি ২য় পত্র", category: "class8", subject: "English 2nd Paper", fileUrl: "Class8_English_2nd.html", icon: "fa-pen-nib" },
+
             // SSC Items
-            {
-                id: 1,
-                title: "SSC English 1st Paper",
-                subtitle: "সকল বোর্ড প্রশ্ন ও উত্তরপত্র",
-                category: "ssc",
-                subject: "English 1st Paper",
-                
-                fileUrl: "SSC_English_1st_Paper_2026.html",
-                icon: "fa-book-open"
-            },
-            {
-                id: 2,
-                title: "SSC English 2nd Paper",
-                subtitle: "গ্রামার ও রাইটিং পার্ট ফাইল",
-                category: "ssc",
-                subject: "English 2nd Paper",
-                
-                fileUrl: "SSC 2nd Paper All Exam Question Archive.html",
-                icon: "fa-pen-nib"
-            },
+            { id: 1, title: "SSC English 1st Paper", subtitle: "সকল বোর্ড প্রশ্ন ও উত্তরপত্র", category: "ssc", subject: "English 1st Paper", fileUrl: "SSC_English_1st_Paper_2026.html", icon: "fa-book-open" },
+            { id: 2, title: "SSC English 2nd Paper", subtitle: "গ্রামার ও রাইটিং পার্ট ফাইল", category: "ssc", subject: "English 2nd Paper", fileUrl: "SSC 2nd Paper All Exam Question Archive.html", icon: "fa-pen-nib" },
             
             // HSC Items
-            {
-                id: 3,
-                title: "HSC English 1st Paper",
-                subtitle: "প্যাসেজ ও মডেল টেস্ট ফাইল",
-                category: "hsc",
-                subject: "English 1st Paper",
-                
-                fileUrl: "HSC_English_1st_Paper_2026.html",
-                icon: "fa-language"
-            },
-            {
-                id: 4,
-                title: "HSC English 2nd Paper",
-                subtitle: "এডভান্সড গ্রামার ও বোর্ড সলিউশন",
-                category: "hsc",
-                subject: "English 2nd Paper",
-                
-                fileUrl: "HSC_English_2nd_Paper_2026.html",
-                icon: "fa-file-signature"
-            },
+            { id: 3, title: "HSC English 1st Paper", subtitle: "প্যাসেজ ও মডেল টেস্ট ফাইল", category: "hsc", subject: "English 1st Paper", fileUrl: "HSC_English_1st_Paper_2026.html", icon: "fa-language" },
+            { id: 4, title: "HSC English 2nd Paper", subtitle: "এডভান্সড গ্রামার ও বোর্ড সলিউশন", category: "hsc", subject: "English 2nd Paper", fileUrl: "HSC_English_2nd_Paper_2026.html", icon: "fa-file-signature" },
 
             // Admission Items
-            {
-                id: 5,
-                title: "University Admission",
-                subtitle: "বিশ্ববিদ্যালয় ভর্তি পরীক্ষার প্রশ্ন ব্যাংক",
-                category: "admission",
-                subject: "University",
-                
-                fileUrl: "University_Admission_2026.html", // ইউনিভার্সিটি লিংক
-                icon: "fa-building-columns"
-            },
-            {
-                id: 6,
-                title: "Medical Admission",
-                subtitle: "মেডিকেল ভর্তি পরীক্ষার প্রশ্ন ও সমাধান",
-                category: "admission",
-                subject: "Medical",
-               
-                fileUrl: "Medical_Admission_2026.html", // মেডিকেল লিংক
-                icon: "fa-user-doctor"
-            },
-            {
-                id: 7,
-                title: "National University Admission",
-                subtitle: "জাতীয় বিশ্ববিদ্যালয় ভর্তি নির্দেশিকা ও প্রশ্ন",
-                category: "admission",
-                subject: "NU Admission",
-                
-                fileUrl: "NU_Admission_2026.html", // জাতীয় বিশ্ববিদ্যালয় লিংক
-                icon: "fa-university"
-            }
+            { id: 5, title: "University Admission", subtitle: "বিশ্ববিদ্যালয় ভর্তি পরীক্ষার প্রশ্ন ব্যাংক", category: "admission", subject: "University", fileUrl: "University_Admission_2026.html", icon: "fa-building-columns" },
+            { id: 6, title: "Medical Admission", subtitle: "মেডিকেল ভর্তি পরীক্ষার প্রশ্ন ও সমাধান", category: "admission", subject: "Medical", fileUrl: "Medical_Admission_2026.html", icon: "fa-user-doctor" },
+            { id: 7, title: "National University Admission", subtitle: "জাতীয় বিশ্ববিদ্যালয় ভর্তি নির্দেশিকা ও প্রশ্ন", category: "admission", subject: "NU Admission", fileUrl: "NU_Admission_2026.html", icon: "fa-university" }
         ];
 
         // Categories Configuration
         const categories = [
             { id: "all", label: "সব ফাইল", icon: "fa-layer-group" },
+            { id: "class1", label: "১ম শ্রেণি", icon: "fa-child" },
+            { id: "class2", label: "২য় শ্রেণি", icon: "fa-child" },
+            { id: "class3", label: "৩য় শ্রেণি", icon: "fa-child" },
+            { id: "class4", label: "৪র্থ শ্রেণি", icon: "fa-child" },
+            { id: "class5", label: "৫ম শ্রেণি", icon: "fa-child" },
+            { id: "class6", label: "৬ষ্ঠ শ্রেণি", icon: "fa-school" },
+            { id: "class7", label: "৭ম শ্রেণি", icon: "fa-school" },
+            { id: "class8", label: "৮ম শ্রেণি", icon: "fa-school" },
             { id: "ssc", label: "SSC ইংরেজি", icon: "fa-school" },
             { id: "hsc", label: "HSC ইংরেজি", icon: "fa-graduation-cap" },
             { id: "admission", label: "এডমিশন টেস্ট", icon: "fa-university" }
@@ -203,7 +180,7 @@
 
         /**
          * ========================================================
-         * 2. CORE NAVIGATION FUNCTION (ফাইলে নেভিগেট করার ফাংশন)
+         * 2. CORE NAVIGATION FUNCTION
          * ========================================================
          */
         function navigateToPage(fileUrl) {
@@ -248,8 +225,7 @@
             const filtered = questionData.filter(item => {
                 const matchesCategory = currentCategory === "all" || item.category === currentCategory;
                 const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                      item.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      item.year.includes(searchQuery);
+                                      item.subject.toLowerCase().includes(searchQuery.toLowerCase());
                 return matchesCategory && matchesSearch;
             });
 
