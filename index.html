@@ -403,27 +403,22 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </div>
 </div>
 
-<!-- JavaScript for Login System, 3D Earth & Alphabet Floating Effects -->
-<!-- JavaScript for Login System (with Auto-Login & Logout), 3D Earth & Floating Effects -->
 <script>
   const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
 
-  // --- পেজ লোড হওয়ার সাথে সাথেই সার্ভারে চেক করবে জিমেইল ও পাসওয়ার্ড এখনও সঠিক আছে কিনা ---
+  // --- পেজ লোড হওয়ার সাথে সাথেই চেক করবে ---
   window.addEventListener('DOMContentLoaded', () => {
     const savedEmail = localStorage.getItem('userEmail');
     const savedPass = localStorage.getItem('userPass');
 
     if (savedEmail && savedPass) {
-      // ব্যাকগ্রাউন্ডে সার্ভারে চেক করা হচ্ছে
-      fetch(scriptUrl + "?email=" + encodeURIComponent(savedEmail) + "&pass=" + encodeURIComponent(savedPass))
+      fetch(`${scriptUrl}?email=${encodeURIComponent(savedEmail)}&pass=${encodeURIComponent(savedPass)}`)
         .then(response => response.text())
         .then(data => {
           if (data.trim() === "valid") {
-            // যদি সার্ভারেও তথ্য সঠিক থাকে, তবেই সাইট দেখাবে
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('mainContent').style.display = 'flex';
           } else {
-            // যদি পাসওয়ার্ড বা জিমেইল পরিবর্তন করা হয়ে থাকে, তবে লগআউট করে দিবে
             logout();
           }
         })
@@ -432,6 +427,19 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
         });
     }
   });
+
+  // --- পাসওয়ার্ড শো/হাইড করার ফাংশন (চোখ আইকন) ---
+  function togglePasswordVisibility() {
+    const passInput = document.getElementById('loginPass');
+    const icon = document.getElementById('togglePassIcon');
+    if (passInput.type === "password") {
+      passInput.type = "text";
+      icon.innerText = "👁️"; // খোলা চোখ
+    } else {
+      passInput.type = "password";
+      icon.innerText = "👁️‍🗨️"; // বন্ধ চোখ
+    }
+  }
 
   // --- লগইন ভেরিফিকেশন ফাংশন ---
   function checkLogin() {
@@ -443,15 +451,13 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       return;
     }
 
-    fetch(scriptUrl + "?email=" + encodeURIComponent(email) + "&pass=" + encodeURIComponent(pass))
+    fetch(`${scriptUrl}?email=${encodeURIComponent(email)}&pass=${encodeURIComponent(pass)}`)
       .then(response => response.text())
       .then(data => {
         if (data.trim() === "valid") {
-          // জিমেইল এবং পাসওয়ার্ড লোকাল স্টোরেজে সেভ করে রাখা হচ্ছে ভবিষ্যতের অটো-চেকের জন্য
           localStorage.setItem('userEmail', email);
           localStorage.setItem('userPass', pass);
 
-          // লগইন সেকশন লুকিয়ে মূল কন্টেন্ট দেখানো হচ্ছে
           document.getElementById('loginSection').style.display = 'none';
           document.getElementById('mainContent').style.display = 'flex';
         } else {
@@ -472,7 +478,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     document.getElementById('mainContent').style.display = 'none';
   }
 
-  // --- বাকি থ্রি-জেএস এবং অন্যান্য ফাংশনসমূহ অপরিবর্তিত থাকবে ---
+  // --- 3D Earth Animation ---
   const container = document.getElementById('earth-container');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -487,7 +493,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   const earthTexture = textureLoader.load('https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg');
 
   const geometry = new THREE.SphereGeometry(1.1, 64, 64);
-  const material =::new THREE.MeshStandardMaterial({
+  const material = new THREE.MeshStandardMaterial({
     map: earthTexture,
     roughness: 0.7,
     metalness: 0.1
@@ -516,7 +522,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
-  // Floating A-Z Alphabet Stream Animation
+  // --- Floating A-Z Alphabet Stream Animation ---
   const alphabetStream = document.getElementById('alphabetStream');
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -538,7 +544,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 
   setInterval(createFloatingLetter, 300);
 
-  // Sidebar & Modal Functions
+  // --- Sidebar & Modal Functions ---
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('active');
     document.getElementById('overlay').classList.toggle('active');
