@@ -406,11 +406,30 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 <!-- JavaScript for Login System, 3D Earth & Alphabet Floating Effects -->
 <!-- JavaScript for Login System (with Auto-Login & Logout), 3D Earth & Floating Effects -->
 <script>
-  // --- পেজ লোড হওয়ার সাথে সাথেই চেক করবে আগে থেকে লগইন করা আছে কিনা ---
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
+
+  // --- পেজ লোড হওয়ার সাথে সাথেই সার্ভারে চেক করবে জিমেইল ও পাসওয়ার্ড এখনও সঠিক আছে কিনা ---
   window.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      document.getElementById('loginSection').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'flex';
+    const savedEmail = localStorage.getItem('userEmail');
+    const savedPass = localStorage.getItem('userPass');
+
+    if (savedEmail && savedPass) {
+      // ব্যাকগ্রাউন্ডে সার্ভারে চেক করা হচ্ছে
+      fetch(scriptUrl + "?email=" + encodeURIComponent(savedEmail) + "&pass=" + encodeURIComponent(savedPass))
+        .then(response => response.text())
+        .then(data => {
+          if (data.trim() === "valid") {
+            // যদি সার্ভারেও তথ্য সঠিক থাকে, তবেই সাইট দেখাবে
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'flex';
+          } else {
+            // যদি পাসওয়ার্ড বা জিমেইল পরিবর্তন করা হয়ে থাকে, তবে লগআউট করে দিবে
+            logout();
+          }
+        })
+        .catch(error => {
+          console.error("Auth Error:", error);
+        });
     }
   });
 
@@ -420,41 +439,40 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     const pass = document.getElementById('loginPass').value.trim();
 
     if(!email || !pass) {
-      alert("দয়া করে জিমেইল ও পাসওয়ার্ড দুটিই লিখুন!");
+      alert("দয়া করে জিমেইল ও পাসওয়ার্ড দুটিই লিখুন!");
       return;
     }
-
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
 
     fetch(scriptUrl + "?email=" + encodeURIComponent(email) + "&pass=" + encodeURIComponent(pass))
       .then(response => response.text())
       .then(data => {
         if (data.trim() === "valid") {
-          // লগইন তথ্য লোকাল স্টোরেজে সেভ করে রাখা হচ্ছে
-          localStorage.setItem('isLoggedIn', 'true');
+          // জিমেইল এবং পাসওয়ার্ড লোকাল স্টোরেজে সেভ করে রাখা হচ্ছে ভবিষ্যতের অটো-চেকের জন্য
           localStorage.setItem('userEmail', email);
+          localStorage.setItem('userPass', pass);
 
-          // লগইন সেকশন লুকিয়ে মূল কন্টেন্ট দেখানো হচ্ছে
+          // লগইন সেকশন লুকিয়ে মূল কন্টেন্ট দেখানো হচ্ছে
           document.getElementById('loginSection').style.display = 'none';
           document.getElementById('mainContent').style.display = 'flex';
         } else {
-          alert("ভুল জিমেইল অথবা পাসওয়ার্ড! দয়া করে সঠিক তথ্য দিন।");
+          alert("ভুল জিমেইল অথবা পাসওয়ার্ড! দয়া করে সঠিক তথ্য দিন।");
         }
       })
       .catch(error => {
         console.error("Error:", error);
-        alert("সার্ভার কানেকশনে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+        alert("সার্ভার কানেকশনে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
       });
   }
 
   // --- লগআউট ফাংশন ---
   function logout() {
-    localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userEmail');
-    location.reload(); // পেজ রিফ্রেশ হয়ে আবার লগইন স্ক্রিনে নিয়ে যাবে
+    localStorage.removeItem('userPass');
+    document.getElementById('loginSection').style.display = 'flex';
+    document.getElementById('mainContent').style.display = 'none';
   }
 
-  // --- 1. Real 3D Earth using Three.js & Online Earth Texture ---
+  // --- বাকি থ্রি-জেএস এবং অন্যান্য ফাংশনসমূহ অপরিবর্তিত থাকবে ---
   const container = document.getElementById('earth-container');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -469,7 +487,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   const earthTexture = textureLoader.load('https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg');
 
   const geometry = new THREE.SphereGeometry(1.1, 64, 64);
-  const material = new THREE.MeshStandardMaterial({
+  const material =::new THREE.MeshStandardMaterial({
     map: earthTexture,
     roughness: 0.7,
     metalness: 0.1
@@ -498,7 +516,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
-  // --- 2. Floating A-Z Alphabet Stream Animation ---
+  // Floating A-Z Alphabet Stream Animation
   const alphabetStream = document.getElementById('alphabetStream');
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -520,7 +538,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 
   setInterval(createFloatingLetter, 300);
 
-  // --- 3. Sidebar & Modal Functions ---
+  // Sidebar & Modal Functions
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('active');
     document.getElementById('overlay').classList.toggle('active');
