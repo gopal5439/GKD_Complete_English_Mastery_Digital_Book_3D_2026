@@ -159,8 +159,6 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
 }
 
 /* --- নোটিশের অ্যানিমেশনসমূহ --- */
-
-/* ১. ডান থেকে বামে স্ক্রোল (Right to Left Scroll) */
 .anim-right-to-left {
   padding-left: 100%;
   animation: scrollRightToLeft 15s linear infinite;
@@ -170,7 +168,6 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
   100% { transform: translate3d(-100%, 0, 0); }
 }
 
-/* ২. ব্লিঙ্কিং ঝলকানি (Blinking Effect) */
 .anim-blinking {
   padding-left: 0;
   animation: blinkNotice 1.2s ease-in-out infinite alternate;
@@ -180,7 +177,6 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
   100% { opacity: 0.2; transform: scale(0.98); }
 }
 
-/* ৩. জুম পালস (Zoom Pulse) */
 .anim-zoom-pulse {
   padding-left: 0;
   animation: zoomPulse 1.8s ease-in-out infinite alternate;
@@ -190,7 +186,6 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
   100% { transform: scale(1.06); filter: drop-shadow(0 0 12px var(--gold)); }
 }
 
-/* ৪. বাউন্স অ্যানিমেশন (Bounce) */
 .anim-bounce {
   padding-left: 0;
   animation: bounceNotice 1.5s infinite alternate;
@@ -200,7 +195,6 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
   100% { transform: translateY(-6px); }
 }
 
-/* ৫. ফেড ইন/আউট (Fade In Out) */
 .anim-fade {
   padding-left: 0;
   animation: fadeNotice 2s linear infinite alternate;
@@ -210,7 +204,6 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
   100% { opacity: 1; }
 }
 
-/* ৬. স্থির কেন্দ্র (Static Center) */
 .anim-static {
   padding-left: 0;
   animation: none;
@@ -228,7 +221,6 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
 .font-hind { font-family: 'Hind Siliguri', sans-serif; }
 .font-mina { font-family: 'Mina', sans-serif; }
 .font-atma { font-family: 'Atma', cursive; }
-
 /* ========================================================= */
 
 /* Main Section Styles */
@@ -427,14 +419,13 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 </head>
 <body>
 
-<!-- লগইন স্ক্রিন (লগইন না করা পর্যন্ত পুরো সাইট ঢাকা থাকবে) -->
+<!-- লগইন স্ক্রিন -->
 <div id="loginSection">
   <div class="login-card">
     <h2>GKD Khude IELTS</h2>
     <p>অ্যাক্সেস করতে আপনার জিমেইল ও পাসওয়ার্ড দিন</p>
     <input type="email" id="loginEmail" placeholder="আপনার জিমেইল লিখুন" required>
     
-    <!-- পাসওয়ার্ড এবং চোখ আইকন কন্টেইনার -->
     <div class="password-container">
       <input type="password" id="loginPass" placeholder="পাসওয়ার্ড লিখুন" required>
       <span class="eye-icon" id="togglePassIcon" onclick="togglePasswordVisibility()">👁️‍🗨️</span>
@@ -444,7 +435,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </div>
 </div>
 
-<!-- মূল সাইট কন্টেন্ট (শুরুতে লুকিয়ে থাকবে) -->
+<!-- মূল সাইট কন্টেন্ট -->
 <div id="mainContent" style="display:none; width:100%; display:flex; flex-direction:column; min-height:100vh;">
 
 <!-- =========================================================
@@ -459,13 +450,9 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 
 <div class="space" aria-hidden="true"><div class="stars"></div></div>
 
-<!-- Fullscreen Real 3D Earth Canvas -->
 <div id="earth-container"></div>
-
-<!-- Overlay for Sidebar -->
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-<!-- Sliding Sidebar Menu -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <h3>GKD Navigation</h3>
@@ -483,20 +470,16 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </ul>
 </div>
 
-<!-- Header with Updated Logo -->
 <header>
   <a href="#" class="brand">
     <img src="../gkdlogo.png" alt="GKD Logo">
     <span>GKD KHUDE IELTS</span>
   </a>
   <div class="menu-toggle" onclick="toggleMenu()" title="Open Menu">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </div>
 </header>
 
-<!-- Main Hero Section -->
 <main>
   <section class="hero">
     <div class="copy">
@@ -510,10 +493,8 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       <div class="motto">“Learn English, Achieve Your Dreams.”</div>
     </div>
     
-    <!-- 3D Open Notebook Container -->
     <div class="art">
       <div class="light-beam"></div>
-      
       <div class="open-book-3d">
         <div class="book-base">
           <div class="page-left">
@@ -526,13 +507,10 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
           </div>
         </div>
       </div>
-
-      <!-- Floating A-Z Stream -->
       <div class="alphabet-stream" id="alphabetStream"></div>
     </div>
   </section>
 
-  <!-- Modules Section with 6 Straight Row Items -->
   <section class="skills" id="courses">
     <div class="section-heading">
       <div class="mini">Core Modules</div>
@@ -574,7 +552,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </section>
 </main>
 
-<!-- Footer -->
 <footer>
   <div class="footer-container">
     <div class="footer-col">
@@ -592,7 +569,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     </div>
   </div>
 
-  <!-- ফুটারের মাঝবরাবর জরুরী নোটিশ বাটন -->
   <div class="admin-notice-btn-wrapper">
     <button class="urgent-notice-btn" onclick="accessAdminNotice()">
       <span id="noticeBtnEyeIcon">👁️</span> জরুরী নোটিশ
@@ -607,7 +583,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 
 </div> <!-- mainContent শেষ -->
 
-<!-- Info Modal Box -->
 <div class="modal" id="infoModal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -691,14 +666,10 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 <!-- ========================================================= -->
 
 <script>
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
-
-  // সিক্রেট অ্যাডমিন পাসওয়ার্ড
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbwWiOoEaDoTGuNZsJiNk0KOb7MsPqWfsVVZgNIqGTHjlmA2qQgkl9FvKV8i9bKuZ7JP/exec";
   const adminPassword = "1234";
-
   let isNoticeActive = false;
 
-  // --- পেজ লোড হওয়ার সাথে সাথেই লোকাল ডাটা ও সার্ভার থেকে নোটিশ চেক করবে ---
   window.addEventListener('DOMContentLoaded', () => {
     const savedEmail = localStorage.getItem('userEmail');
     const savedPass = localStorage.getItem('userPass');
@@ -717,11 +688,9 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
         .catch(error => console.error("Auth Error:", error));
     }
 
-    // গুগল শিট সার্ভার থেকে গ্লোবাল নোটিশ ডাটা লোড
     fetchNoticeFromServer();
   });
 
-  // --- পাসওয়ার্ড শো/হাইড করার ফাংশন (চোখ আইকন) ---
   function togglePasswordVisibility() {
     const passInput = document.getElementById('loginPass');
     const icon = document.getElementById('togglePassIcon');
@@ -734,7 +703,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     }
   }
 
-  // --- লগইন ভেরিফিকেশন ফাংশন ---
   function checkLogin() {
     const email = document.getElementById('loginEmail').value.trim();
     const pass = document.getElementById('loginPass').value.trim();
@@ -763,7 +731,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       });
   }
 
-  // --- লগআউট ফাংশন ---
   function logout() {
     localStorage.removeItem('userEmail');
     localStorage.removeItem('userPass');
@@ -774,7 +741,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   /* =========================================================
      [৪] জরুরী নোটিশ - JAVASCRIPT কন্ট্রোল সেকশন
   ========================================================= */
-
   function accessAdminNotice() {
     const inputPass = prompt("অ্যাডমিন এক্সেসের জন্য পাসওয়ার্ড প্রবেশ করান:");
     if (inputPass === null) return;
@@ -803,7 +769,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     }
   }
 
-  // গুগল শিটে নোটিশ সেভ ও পাবলিশ করার পদ্ধতি
   function saveAndPublishNotice() {
     const noticeConfig = {
       text: document.getElementById('adminNoticeInput').value.trim(),
@@ -815,7 +780,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       active: isNoticeActive
     };
 
-    // পোস্ট রিকোয়েস্ট পাঠিয়ে সার্ভারে সেভ করা
     fetch(`${scriptUrl}?action=saveNotice`, {
       method: 'POST',
       body: JSON.stringify(noticeConfig)
@@ -829,7 +793,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     .catch(err => alert("সেভ করতে সমস্যা হয়েছে। পুনরায় চেষ্টা করুন।"));
   }
 
-  // সার্ভার থেকে নোটিশ লোড করা (সব ইউজার দেখবে)
   function fetchNoticeFromServer() {
     fetch(`${scriptUrl}?action=getNotice`)
       .then(res => res.json())
@@ -852,7 +815,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       .catch(err => console.log("Notice fetch error:", err));
   }
 
-  // স্ক্রিনে নোটিশ দেখানোর ফাংশন
   function applyNoticeSettings(config) {
     const bar = document.getElementById('topNoticeBar');
     const textEl = document.getElementById('liveNoticeText');
@@ -864,7 +826,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       textEl.innerText = config.text;
       textEl.style.color = config.textColor || "#ffeb3b";
       
-      // অ্যানিমেশন ও ফন্ট ক্লাস প্রয়োগ
       textEl.className = `notice-marquee-text ${config.animType || 'anim-right-to-left'} ${config.font || 'font-default'}`;
       textEl.style.animationDuration = config.speed || "15s";
       
@@ -876,7 +837,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   }
   /* ========================================================= */
 
-  // --- 3D Earth Animation ---
   const container = document.getElementById('earth-container');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -920,7 +880,6 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
-  // --- Floating A-Z Alphabet Stream Animation ---
   const alphabetStream = document.getElementById('alphabetStream');
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -935,14 +894,11 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     
     alphabetStream.appendChild(letterEl);
 
-    setTimeout(() => {
-      letterEl.remove();
-    }, 4500);
+    setTimeout(() => { letterEl.remove(); }, 4500);
   }
 
   setInterval(createFloatingLetter, 300);
 
-  // --- Sidebar & Modal Functions ---
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('active');
     document.getElementById('overlay').classList.toggle('active');
