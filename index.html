@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#030817">
 <title>GKD | KHUDE IELTS - Complete English Mastery</title>
+
+<!-- Google Fonts for Notice Styles -->
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600;700&family=Mina:wght@700&family=Atma:wght@700&display=swap" rel="stylesheet">
 <!-- Three.js Library for Real 3D Globe -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <style>
 :root{--gold:#f5c96b;--gold2:#fff1bd;--navy:#030817;--ice:#d9eaff;--muted:#b9c9e3}
 *{box-sizing:border-box}
@@ -126,18 +130,18 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
 }
 .login-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(245,201,107,0.5); }
 
-/* ==========================================
-   লাইভ নোটিশ বার (হোম পেজের একদম উপরে)
-========================================== */
+/* =========================================================
+   [১] জরুরী নোটিশ - CSS সেকশন (সম্পূর্ণ কাস্টমাইজযোগ্য)
+========================================================= */
 #topNoticeBar {
   width: 100%;
   overflow: hidden;
   position: relative;
   z-index: 100;
-  padding: 10px 0;
+  padding: 12px 0;
   display: none;
   border-bottom: 1.5px solid var(--gold);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
   text-align: center;
 }
 
@@ -150,11 +154,11 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
 .notice-marquee-text {
   display: inline-block;
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: 0.5px;
 }
 
-/* --- অ্যানিমেশন ইফেক্টসমূহ --- */
+/* --- নোটিশের অ্যানিমেশনসমূহ --- */
 
 /* ১. ডান থেকে বামে স্ক্রোল (Right to Left Scroll) */
 .anim-right-to-left {
@@ -183,20 +187,49 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
 }
 @keyframes zoomPulse {
   0% { transform: scale(0.96); }
-  100% { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--gold)); }
+  100% { transform: scale(1.06); filter: drop-shadow(0 0 12px var(--gold)); }
 }
 
-/* ৪. স্থির কেন্দ্র (Static Center) */
+/* ৪. বাউন্স অ্যানিমেশন (Bounce) */
+.anim-bounce {
+  padding-left: 0;
+  animation: bounceNotice 1.5s infinite alternate;
+}
+@keyframes bounceNotice {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+/* ৫. ফেড ইন/আউট (Fade In Out) */
+.anim-fade {
+  padding-left: 0;
+  animation: fadeNotice 2s linear infinite alternate;
+}
+@keyframes fadeNotice {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+/* ৬. স্থির কেন্দ্র (Static Center) */
 .anim-static {
   padding-left: 0;
   animation: none;
 }
 
-/* নোটিশের থিম কালারসমূহ */
-.theme-red { background: linear-gradient(90deg, #780206, #061161); color: #ffeb3b; }
-.theme-gold { background: linear-gradient(90deg, #b993d6, #8ca6ce); color: #fff; }
-.theme-blue { background: linear-gradient(90deg, #000428, #004e92); color: #00f2fe; }
-.theme-green { background: linear-gradient(90deg, #11998e, #38ef7d); color: #000; }
+/* --- নোটিশের থিম কালারসমূহ --- */
+.theme-red { background: linear-gradient(90deg, #780206, #061161); }
+.theme-gold { background: linear-gradient(90deg, #41295a, #2F0743); }
+.theme-blue { background: linear-gradient(90deg, #000428, #004e92); }
+.theme-green { background: linear-gradient(90deg, #11998e, #38ef7d); }
+.theme-purple { background: linear-gradient(90deg, #8A2387, #E94057, #F27121); }
+
+/* --- ফন্ট স্টাইলসমূহ --- */
+.font-default { font-family: Inter, sans-serif; }
+.font-hind { font-family: 'Hind Siliguri', sans-serif; }
+.font-mina { font-family: 'Mina', sans-serif; }
+.font-atma { font-family: 'Atma', cursive; }
+
+/* ========================================================= */
 
 /* Main Section Styles */
 main{width:min(1250px,calc(100% - 36px));margin:auto;flex:1}
@@ -362,7 +395,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   color: var(--gold);
   font-weight: 700;
 }
-.admin-panel-form textarea, .admin-panel-form select {
+.admin-panel-form textarea, .admin-panel-form select, .admin-panel-form input[type="color"] {
   width: 100%;
   padding: 10px;
   background: rgba(3, 8, 23, 0.9);
@@ -414,12 +447,15 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 <!-- মূল সাইট কন্টেন্ট (শুরুতে লুকিয়ে থাকবে) -->
 <div id="mainContent" style="display:none; width:100%; display:flex; flex-direction:column; min-height:100vh;">
 
-<!-- হোম পেজের একদম উপরে ডাইনামিক লাইভ নোটিশ বার -->
+<!-- =========================================================
+     [২] জরুরী নোটিশ - HTML সেকশন (লাইভ বার)
+========================================================= -->
 <div id="topNoticeBar" class="theme-red">
   <div class="notice-marquee-wrapper">
-    <div class="notice-marquee-text anim-right-to-left" id="liveNoticeText">জরুরী নোটিশ এখানে দেখাবে...</div>
+    <div class="notice-marquee-text anim-right-to-left font-default" id="liveNoticeText">জরুরী নোটিশ এখানে দেখাবে...</div>
   </div>
 </div>
+<!-- ========================================================= -->
 
 <div class="space" aria-hidden="true"><div class="stars"></div></div>
 
@@ -580,9 +616,11 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </div>
 </div>
 
-<!-- Admin Notice Control Panel Modal -->
+<!-- =========================================================
+     [৩] জরুরী নোটিশ - অ্যাডমিন প্যানেল মোডাল HTML
+========================================================= -->
 <div class="modal" id="adminNoticeModal">
-  <div class="modal-content">
+  <div class="modal-content" style="max-width: 600px;">
     <span class="close-btn" onclick="closeAdminNoticeModal()">&times;</span>
     <h3 style="color:var(--gold); margin-top:0;">⚙️ জরুরী নোটিশ কন্ট্রোল প্যানেল</h3>
     
@@ -592,12 +630,29 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       
       <div class="admin-controls-grid">
         <div>
-          <label>থিম ও কালার:</label>
+          <label>টেক্সট কালার (Text Color):</label>
+          <input type="color" id="adminNoticeTextColor" value="#ffeb3b">
+        </div>
+        <div>
+          <label>ফন্ট স্টাইল (Font):</label>
+          <select id="adminNoticeFont">
+            <option value="font-default">Inter (Default)</option>
+            <option value="font-hind">Hind Siliguri (বাংলা স্ট্যান্ডার্ড)</option>
+            <option value="font-mina">Mina (বোল্ড লুক)</option>
+            <option value="font-atma">Atma (স্টাইলিশ)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="admin-controls-grid">
+        <div>
+          <label>ব্যাকগ্রাউন্ড থিম:</label>
           <select id="adminNoticeTheme">
-            <option value="theme-red">🔴 Red (জরুরী সতর্কতা)</option>
-            <option value="theme-gold">🟡 Gold (বিশেষ ঘোষণা)</option>
-            <option value="theme-blue">🔵 Blue (সাধারণ নোটিশ)</option>
-            <option value="theme-green">🟢 Green (নতুন আপডেট)</option>
+            <option value="theme-red">🔴 Red (জরুরী)</option>
+            <option value="theme-gold">🟡 Gold (বিশেষ)</option>
+            <option value="theme-blue">🔵 Blue (সাধারণ)</option>
+            <option value="theme-green">🟢 Green (আপডেট)</option>
+            <option value="theme-purple">🟣 Purple (উৎসব)</option>
           </select>
         </div>
         <div>
@@ -606,6 +661,8 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
             <option value="anim-right-to-left">⬅️ Right to Left (স্ক্রোল)</option>
             <option value="anim-blinking">✨ Blinking (ঝলকানি)</option>
             <option value="anim-zoom-pulse">🔍 Zoom Pulse (জুম)</option>
+            <option value="anim-bounce">🏀 Bounce (বাউন্স)</option>
+            <option value="anim-fade">🌫️ Fade (ডিমে লাইট)</option>
             <option value="anim-static">📌 Static Center (স্থির)</option>
           </select>
         </div>
@@ -631,16 +688,17 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     </div>
   </div>
 </div>
+<!-- ========================================================= -->
 
 <script>
   const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
 
   // সিক্রেট অ্যাডমিন পাসওয়ার্ড
-  const adminPassword = "admin1234";
+  const adminPassword = "1234";
 
   let isNoticeActive = false;
 
-  // --- পেজ লোড হওয়ার সাথে সাথেই লোকাল ডাটা ও সার্ভার চেক করবে ---
+  // --- পেজ লোড হওয়ার সাথে সাথেই লোকাল ডাটা ও সার্ভার থেকে নোটিশ চেক করবে ---
   window.addEventListener('DOMContentLoaded', () => {
     const savedEmail = localStorage.getItem('userEmail');
     const savedPass = localStorage.getItem('userPass');
@@ -656,13 +714,11 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
             logout();
           }
         })
-        .catch(error => {
-          console.error("Auth Error:", error);
-        });
+        .catch(error => console.error("Auth Error:", error));
     }
 
-    // নোটিশ লোড
-    loadSavedNoticeSettings();
+    // গুগল শিট সার্ভার থেকে গ্লোবাল নোটিশ ডাটা লোড
+    fetchNoticeFromServer();
   });
 
   // --- পাসওয়ার্ড শো/হাইড করার ফাংশন (চোখ আইকন) ---
@@ -715,9 +771,9 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     document.getElementById('mainContent').style.display = 'none';
   }
 
-  // ==========================================
-  //      জরুরী নোটিশ কন্ট্রোল অ্যান্ড সিকিউরিটি
-  // ==========================================
+  /* =========================================================
+     [৪] জরুরী নোটিশ - JAVASCRIPT কন্ট্রোল সেকশন
+  ========================================================= */
 
   function accessAdminNotice() {
     const inputPass = prompt("অ্যাডমিন এক্সেসের জন্য পাসওয়ার্ড প্রবেশ করান:");
@@ -747,48 +803,56 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     }
   }
 
+  // গুগল শিটে নোটিশ সেভ ও পাবলিশ করার পদ্ধতি
   function saveAndPublishNotice() {
-    const text = document.getElementById('adminNoticeInput').value.trim();
-    const theme = document.getElementById('adminNoticeTheme').value;
-    const animType = document.getElementById('adminNoticeAnimType').value;
-    const speed = document.getElementById('adminNoticeSpeed').value;
-
     const noticeConfig = {
-      text: text,
-      theme: theme,
-      animType: animType,
-      speed: speed,
+      text: document.getElementById('adminNoticeInput').value.trim(),
+      textColor: document.getElementById('adminNoticeTextColor').value,
+      font: document.getElementById('adminNoticeFont').value,
+      theme: document.getElementById('adminNoticeTheme').value,
+      animType: document.getElementById('adminNoticeAnimType').value,
+      speed: document.getElementById('adminNoticeSpeed').value,
       active: isNoticeActive
     };
 
-    localStorage.setItem('gkd_notice_config', JSON.stringify(noticeConfig));
-    applyNoticeSettings(noticeConfig);
-    
-    closeAdminNoticeModal();
-    alert("নোটিশ সফলভাবে পাবলিশ/সেভ করা হয়েছে!");
+    // পোস্ট রিকোয়েস্ট পাঠিয়ে সার্ভারে সেভ করা
+    fetch(`${scriptUrl}?action=saveNotice`, {
+      method: 'POST',
+      body: JSON.stringify(noticeConfig)
+    })
+    .then(res => res.text())
+    .then(res => {
+      applyNoticeSettings(noticeConfig);
+      closeAdminNoticeModal();
+      alert("নোটিশ সব ডিভাইসে সফলভাবে আপডেট করা হয়েছে!");
+    })
+    .catch(err => alert("সেভ করতে সমস্যা হয়েছে। পুনরায় চেষ্টা করুন।"));
   }
 
-  function loadSavedNoticeSettings() {
-    const saved = localStorage.getItem('gkd_notice_config');
-    if (saved) {
-      const config = JSON.parse(saved);
-      document.getElementById('adminNoticeInput').value = config.text || "";
-      document.getElementById('adminNoticeTheme').value = config.theme || "theme-red";
-      document.getElementById('adminNoticeAnimType').value = config.animType || "anim-right-to-left";
-      document.getElementById('adminNoticeSpeed').value = config.speed || "15s";
-      isNoticeActive = config.active || false;
+  // সার্ভার থেকে নোটিশ লোড করা (সব ইউজার দেখবে)
+  function fetchNoticeFromServer() {
+    fetch(`${scriptUrl}?action=getNotice`)
+      .then(res => res.json())
+      .then(config => {
+        if (config && config.text) {
+          document.getElementById('adminNoticeInput').value = config.text || "";
+          document.getElementById('adminNoticeTextColor').value = config.textColor || "#ffeb3b";
+          document.getElementById('adminNoticeFont').value = config.font || "font-default";
+          document.getElementById('adminNoticeTheme').value = config.theme || "theme-red";
+          document.getElementById('adminNoticeAnimType').value = config.animType || "anim-right-to-left";
+          document.getElementById('adminNoticeSpeed').value = config.speed || "15s";
+          isNoticeActive = config.active || false;
 
-      const btn = document.getElementById('toggleEyeBtn');
-      if (isNoticeActive) {
-        btn.innerText = "👁️ খোলা (ON)";
-      } else {
-        btn.innerText = "👁️‍🗨️ বন্ধ (OFF)";
-      }
+          const btn = document.getElementById('toggleEyeBtn');
+          btn.innerText = isNoticeActive ? "👁️ খোলা (ON)" : "👁️‍🗨️ বন্ধ (OFF)";
 
-      applyNoticeSettings(config);
-    }
+          applyNoticeSettings(config);
+        }
+      })
+      .catch(err => console.log("Notice fetch error:", err));
   }
 
+  // স্ক্রিনে নোটিশ দেখানোর ফাংশন
   function applyNoticeSettings(config) {
     const bar = document.getElementById('topNoticeBar');
     const textEl = document.getElementById('liveNoticeText');
@@ -796,12 +860,13 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 
     if (config.active && config.text !== "") {
       bar.style.display = 'block';
-      bar.className = config.theme;
+      bar.className = config.theme || "theme-red";
       textEl.innerText = config.text;
+      textEl.style.color = config.textColor || "#ffeb3b";
       
-      // পূর্বের সব অ্যানিমেশন ক্লাস রিমুভ করে নতুন ক্লাস অ্যাপ্লাই
-      textEl.className = "notice-marquee-text " + (config.animType || "anim-right-to-left");
-      textEl.style.animationDuration = config.speed;
+      // অ্যানিমেশন ও ফন্ট ক্লাস প্রয়োগ
+      textEl.className = `notice-marquee-text ${config.animType || 'anim-right-to-left'} ${config.font || 'font-default'}`;
+      textEl.style.animationDuration = config.speed || "15s";
       
       eyeIcon.innerText = "👁️";
     } else {
@@ -809,6 +874,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       eyeIcon.innerText = "👁️‍🗨️";
     }
   }
+  /* ========================================================= */
 
   // --- 3D Earth Animation ---
   const container = document.getElementById('earth-container');
