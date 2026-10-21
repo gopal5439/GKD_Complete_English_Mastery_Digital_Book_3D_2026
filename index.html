@@ -666,7 +666,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 <!-- ========================================================= -->
 
 <script>
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbwWiOoEaDoTGuNZsJiNk0KOb7MsPqWfsVVZgNIqGTHjlmA2qQgkl9FvKV8i9bKuZ7JP/exec";
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzIhyEEXd4a-Hjb-fcu8TCa5v5IRQiRAj5OKOB2M-BLV824xL4xIYwcryk5F0PryUg4/exec";
   const adminPassword = "1234";
   let isNoticeActive = false;
 
@@ -770,28 +770,35 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   }
 
   function saveAndPublishNotice() {
-    const noticeConfig = {
-      text: document.getElementById('adminNoticeInput').value.trim(),
-      textColor: document.getElementById('adminNoticeTextColor').value,
-      font: document.getElementById('adminNoticeFont').value,
-      theme: document.getElementById('adminNoticeTheme').value,
-      animType: document.getElementById('adminNoticeAnimType').value,
-      speed: document.getElementById('adminNoticeSpeed').value,
-      active: isNoticeActive
-    };
+  const noticeConfig = {
+    text: document.getElementById('adminNoticeInput').value.trim(),
+    textColor: document.getElementById('adminNoticeTextColor').value,
+    font: document.getElementById('adminNoticeFont').value,
+    theme: document.getElementById('adminNoticeTheme').value,
+    animType: document.getElementById('adminNoticeAnimType').value,
+    speed: document.getElementById('adminNoticeSpeed').value,
+    active: isNoticeActive
+  };
 
-    fetch(`${scriptUrl}?action=saveNotice`, {
-      method: 'POST',
-      body: JSON.stringify(noticeConfig)
-    })
-    .then(res => res.text())
-    .then(res => {
-      applyNoticeSettings(noticeConfig);
-      closeAdminNoticeModal();
-      alert("নোটিশ সব ডিভাইসে সফলভাবে আপডেট করা হয়েছে!");
-    })
-    .catch(err => alert("সেভ করতে সমস্যা হয়েছে। পুনরায় চেষ্টা করুন।"));
-  }
+  // Google Apps Script এ নোটিশ সেভ করার রিকোয়েস্ট
+  fetch(`${scriptUrl}?action=saveNotice`, {
+    method: 'POST',
+    mode: 'no-cors', // CORS সমস্যা এড়াতে এই ফ্ল্যাগ যোগ করা হয়েছে
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(noticeConfig)
+  })
+  .then(() => {
+    applyNoticeSettings(noticeConfig);
+    closeAdminNoticeModal();
+    alert("নোটিশ সব ডিভাইসে সফলভাবে আপডেট করা হয়েছে!");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("সেভ করতে সমস্যা হয়েছে। পুনরায় চেষ্টা করুন।");
+  });
+}
 
   function fetchNoticeFromServer() {
     fetch(`${scriptUrl}?action=getNotice`)
