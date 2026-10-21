@@ -126,6 +126,78 @@ header{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-cont
 }
 .login-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(245,201,107,0.5); }
 
+/* ==========================================
+   লাইভ নোটিশ বার (হোম পেজের একদম উপরে)
+========================================== */
+#topNoticeBar {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+  padding: 10px 0;
+  display: none;
+  border-bottom: 1.5px solid var(--gold);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.notice-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.notice-marquee-text {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* --- অ্যানিমেশন ইফেক্টসমূহ --- */
+
+/* ১. ডান থেকে বামে স্ক্রোল (Right to Left Scroll) */
+.anim-right-to-left {
+  padding-left: 100%;
+  animation: scrollRightToLeft 15s linear infinite;
+}
+@keyframes scrollRightToLeft {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* ২. ব্লিঙ্কিং ঝলকানি (Blinking Effect) */
+.anim-blinking {
+  padding-left: 0;
+  animation: blinkNotice 1.2s ease-in-out infinite alternate;
+}
+@keyframes blinkNotice {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.2; transform: scale(0.98); }
+}
+
+/* ৩. জুম পালস (Zoom Pulse) */
+.anim-zoom-pulse {
+  padding-left: 0;
+  animation: zoomPulse 1.8s ease-in-out infinite alternate;
+}
+@keyframes zoomPulse {
+  0% { transform: scale(0.96); }
+  100% { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--gold)); }
+}
+
+/* ৪. স্থির কেন্দ্র (Static Center) */
+.anim-static {
+  padding-left: 0;
+  animation: none;
+}
+
+/* নোটিশের থিম কালারসমূহ */
+.theme-red { background: linear-gradient(90deg, #780206, #061161); color: #ffeb3b; }
+.theme-gold { background: linear-gradient(90deg, #b993d6, #8ca6ce); color: #fff; }
+.theme-blue { background: linear-gradient(90deg, #000428, #004e92); color: #00f2fe; }
+.theme-green { background: linear-gradient(90deg, #11998e, #38ef7d); color: #000; }
+
 /* Main Section Styles */
 main{width:min(1250px,calc(100% - 36px));margin:auto;flex:1}
 .hero{min-height:calc(100vh - 86px);display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;padding:16px 0 40px}
@@ -243,17 +315,78 @@ h1{margin:20px 0 15px;line-height:.94;letter-spacing:-.055em}
 .skill-card h3{font-size:0.95rem;margin:0 0 5px;color:#ffedb5;font-weight:900}
 .skill-card p{font-size:0.72rem;color:#b9c9e3;margin:0}
 
+/* Footer & Urgent Notice Button Styles */
 footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 23, 0.9);backdrop-filter:blur(10px);color:#91a6c5;font-size:.8rem;margin-top:auto;position:relative;z-index:10}
 .footer-container{width:min(1250px,calc(100% - 36px));margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding-bottom:25px;border-bottom:1px solid #e8bd6218}
 .footer-col h4{color:#f2d58a;font-size:.95rem;letter-spacing:.12em;margin:0 0 15px;text-transform:uppercase;font-weight:900}
 .footer-col p{line-height:1.6;margin:0 0 10px;color:#b9c9e3}
 .contact-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;color:#b9c9e3}
 .contact-item a{color:#f2d58a;text-decoration:none}
+
+/* ফুটারের মাঝবরাবর জরুরী নোটিশ বাটন */
+.admin-notice-btn-wrapper {
+  text-align: center;
+  margin: 20px 0 10px;
+}
+.urgent-notice-btn {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: #fff;
+  border: 1.5px solid var(--gold);
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.urgent-notice-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(245, 201, 107, 0.5);
+}
+
 .footer-bottom{width:min(1250px,calc(100% - 36px));margin:auto;display:flex;justify-content:space-between;align-items:center;padding-top:20px;flex-wrap:wrap;gap:12px;font-size:.75rem}
 
 .modal{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px}
 .modal-content{background:linear-gradient(145deg,#0d1e3a,#061329);border:1.5px solid var(--gold);border-radius:20px;padding:30px;max-width:550px;width:100%;color:#d9eaff;position:relative;box-shadow:0 0 50px rgba(245,201,107,0.3)}
 .close-btn{position:absolute;top:15px;right:20px;font-size:1.8rem;color:#f5ce70;cursor:pointer;line-height:1}
+
+/* অ্যাডমিন নোটিশ মোডাল ফর্ম স্টাইল */
+.admin-panel-form label {
+  display: block;
+  font-size: 0.85rem;
+  margin: 12px 0 5px;
+  color: var(--gold);
+  font-weight: 700;
+}
+.admin-panel-form textarea, .admin-panel-form select {
+  width: 100%;
+  padding: 10px;
+  background: rgba(3, 8, 23, 0.9);
+  border: 1px solid rgba(245,201,107,0.4);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+}
+.admin-controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.status-toggle-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 1px solid rgba(245,201,107,0.2);
+}
 
 @media(max-width:1100px){.skill-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:750px){.skill-grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr;padding-top:10px}.art{min-height:380px}.gkd{font-size:3.5rem}.booktitle{font-size:2rem}}
@@ -280,6 +413,13 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 
 <!-- মূল সাইট কন্টেন্ট (শুরুতে লুকিয়ে থাকবে) -->
 <div id="mainContent" style="display:none; width:100%; display:flex; flex-direction:column; min-height:100vh;">
+
+<!-- হোম পেজের একদম উপরে ডাইনামিক লাইভ নোটিশ বার -->
+<div id="topNoticeBar" class="theme-red">
+  <div class="notice-marquee-wrapper">
+    <div class="notice-marquee-text anim-right-to-left" id="liveNoticeText">জরুরী নোটিশ এখানে দেখাবে...</div>
+  </div>
+</div>
 
 <div class="space" aria-hidden="true"><div class="stars"></div></div>
 
@@ -415,6 +555,14 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
       </div>
     </div>
   </div>
+
+  <!-- ফুটারের মাঝবরাবর জরুরী নোটিশ বাটন -->
+  <div class="admin-notice-btn-wrapper">
+    <button class="urgent-notice-btn" onclick="accessAdminNotice()">
+      <span id="noticeBtnEyeIcon">👁️</span> জরুরী নোটিশ
+    </button>
+  </div>
+
   <div class="footer-bottom">
     <div>&copy; 2026 <strong>GKD Khude IELTS</strong>. All rights reserved.</div>
     <div>Founder: Gopal Krishna Das</div>
@@ -423,7 +571,7 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
 
 </div> <!-- mainContent শেষ -->
 
-<!-- Modal Box -->
+<!-- Info Modal Box -->
 <div class="modal" id="infoModal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -432,10 +580,67 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
   </div>
 </div>
 
+<!-- Admin Notice Control Panel Modal -->
+<div class="modal" id="adminNoticeModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeAdminNoticeModal()">&times;</span>
+    <h3 style="color:var(--gold); margin-top:0;">⚙️ জরুরী নোটিশ কন্ট্রোল প্যানেল</h3>
+    
+    <div class="admin-panel-form">
+      <label>নোটিশ মেসেজ লিখুন:</label>
+      <textarea id="adminNoticeInput" rows="3" placeholder="এখানে আপনার গুরুত্বপূর্ণ নোটিশটি লিখুন..."></textarea>
+      
+      <div class="admin-controls-grid">
+        <div>
+          <label>থিম ও কালার:</label>
+          <select id="adminNoticeTheme">
+            <option value="theme-red">🔴 Red (জরুরী সতর্কতা)</option>
+            <option value="theme-gold">🟡 Gold (বিশেষ ঘোষণা)</option>
+            <option value="theme-blue">🔵 Blue (সাধারণ নোটিশ)</option>
+            <option value="theme-green">🟢 Green (নতুন আপডেট)</option>
+          </select>
+        </div>
+        <div>
+          <label>অ্যানিমেশন স্টাইল:</label>
+          <select id="adminNoticeAnimType">
+            <option value="anim-right-to-left">⬅️ Right to Left (স্ক্রোল)</option>
+            <option value="anim-blinking">✨ Blinking (ঝলকানি)</option>
+            <option value="anim-zoom-pulse">🔍 Zoom Pulse (জুম)</option>
+            <option value="anim-static">📌 Static Center (স্থির)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top: 10px;">
+        <label>অ্যানিমেশনের গতি (Speed):</label>
+        <select id="adminNoticeSpeed">
+          <option value="25s">ধীর (Slow)</option>
+          <option value="15s" selected>মাঝারি (Normal)</option>
+          <option value="8s">দ্রুত (Fast)</option>
+        </select>
+      </div>
+
+      <div class="status-toggle-box">
+        <span style="font-weight:700; color:#fff;">হোম পেজে প্রকাশ (Show Notice):</span>
+        <button id="toggleEyeBtn" onclick="toggleNoticeVisibilityStatus()" style="background:none; border:1px solid var(--gold); color:#fff; padding:5px 12px; border-radius:6px; cursor:pointer; font-weight:bold;">
+          👁️ খোলা (ON)
+        </button>
+      </div>
+
+      <button class="login-btn" style="margin-top:20px;" onclick="saveAndPublishNotice()">Public / Save করুন</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const scriptUrl = "https://script.google.com/macros/s/AKfycbxJ_JiV2kxWJAgE-Xzgaj9tklyJ9iJVUAtEpFXt6sDpzubIiwvM3pxboEQQjY_nQf6P/exec";
 
-  // --- পেজ লোড হওয়ার সাথে সাথেই সার্ভারে চেক করবে ---
+  // সিক্রেট অ্যাডমিন পাসওয়ার্ড
+  const adminPassword = "1234";
+
+  let isNoticeActive = false;
+
+  // --- পেজ লোড হওয়ার সাথে সাথেই লোকাল ডাটা ও সার্ভার চেক করবে ---
   window.addEventListener('DOMContentLoaded', () => {
     const savedEmail = localStorage.getItem('userEmail');
     const savedPass = localStorage.getItem('userPass');
@@ -455,6 +660,9 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
           console.error("Auth Error:", error);
         });
     }
+
+    // নোটিশ লোড
+    loadSavedNoticeSettings();
   });
 
   // --- পাসওয়ার্ড শো/হাইড করার ফাংশন (চোখ আইকন) ---
@@ -463,10 +671,10 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     const icon = document.getElementById('togglePassIcon');
     if (passInput.type === "password") {
       passInput.type = "text";
-      icon.innerText = "👁️"; // খোলা চোখ
+      icon.innerText = "👁️"; 
     } else {
       passInput.type = "password";
-      icon.innerText = "👁️‍🗨️"; // বন্ধ চোখ
+      icon.innerText = "👁️‍🗨️"; 
     }
   }
 
@@ -505,6 +713,101 @@ footer{border-top:1px solid #e8bd6228;padding:40px 0 30px;background:rgba(3, 8, 
     localStorage.removeItem('userPass');
     document.getElementById('loginSection').style.display = 'flex';
     document.getElementById('mainContent').style.display = 'none';
+  }
+
+  // ==========================================
+  //      জরুরী নোটিশ কন্ট্রোল অ্যান্ড সিকিউরিটি
+  // ==========================================
+
+  function accessAdminNotice() {
+    const inputPass = prompt("অ্যাডমিন এক্সেসের জন্য পাসওয়ার্ড প্রবেশ করান:");
+    if (inputPass === null) return;
+    
+    if (inputPass === adminPassword) {
+      document.getElementById('adminNoticeModal').style.display = 'flex';
+    } else {
+      alert("ভুল পাসওয়ার্ড! আপনি এই সুবিধা ব্যবহারের অধিকার রাখেন না।");
+    }
+  }
+
+  function closeAdminNoticeModal() {
+    document.getElementById('adminNoticeModal').style.display = 'none';
+  }
+
+  function toggleNoticeVisibilityStatus() {
+    const btn = document.getElementById('toggleEyeBtn');
+    isNoticeActive = !isNoticeActive;
+    
+    if (isNoticeActive) {
+      btn.innerText = "👁️ খোলা (ON)";
+      btn.style.borderColor = "var(--gold)";
+    } else {
+      btn.innerText = "👁️‍🗨️ বন্ধ (OFF)";
+      btn.style.borderColor = "#ff4757";
+    }
+  }
+
+  function saveAndPublishNotice() {
+    const text = document.getElementById('adminNoticeInput').value.trim();
+    const theme = document.getElementById('adminNoticeTheme').value;
+    const animType = document.getElementById('adminNoticeAnimType').value;
+    const speed = document.getElementById('adminNoticeSpeed').value;
+
+    const noticeConfig = {
+      text: text,
+      theme: theme,
+      animType: animType,
+      speed: speed,
+      active: isNoticeActive
+    };
+
+    localStorage.setItem('gkd_notice_config', JSON.stringify(noticeConfig));
+    applyNoticeSettings(noticeConfig);
+    
+    closeAdminNoticeModal();
+    alert("নোটিশ সফলভাবে পাবলিশ/সেভ করা হয়েছে!");
+  }
+
+  function loadSavedNoticeSettings() {
+    const saved = localStorage.getItem('gkd_notice_config');
+    if (saved) {
+      const config = JSON.parse(saved);
+      document.getElementById('adminNoticeInput').value = config.text || "";
+      document.getElementById('adminNoticeTheme').value = config.theme || "theme-red";
+      document.getElementById('adminNoticeAnimType').value = config.animType || "anim-right-to-left";
+      document.getElementById('adminNoticeSpeed').value = config.speed || "15s";
+      isNoticeActive = config.active || false;
+
+      const btn = document.getElementById('toggleEyeBtn');
+      if (isNoticeActive) {
+        btn.innerText = "👁️ খোলা (ON)";
+      } else {
+        btn.innerText = "👁️‍🗨️ বন্ধ (OFF)";
+      }
+
+      applyNoticeSettings(config);
+    }
+  }
+
+  function applyNoticeSettings(config) {
+    const bar = document.getElementById('topNoticeBar');
+    const textEl = document.getElementById('liveNoticeText');
+    const eyeIcon = document.getElementById('noticeBtnEyeIcon');
+
+    if (config.active && config.text !== "") {
+      bar.style.display = 'block';
+      bar.className = config.theme;
+      textEl.innerText = config.text;
+      
+      // পূর্বের সব অ্যানিমেশন ক্লাস রিমুভ করে নতুন ক্লাস অ্যাপ্লাই
+      textEl.className = "notice-marquee-text " + (config.animType || "anim-right-to-left");
+      textEl.style.animationDuration = config.speed;
+      
+      eyeIcon.innerText = "👁️";
+    } else {
+      bar.style.display = 'none';
+      eyeIcon.innerText = "👁️‍🗨️";
+    }
   }
 
   // --- 3D Earth Animation ---
