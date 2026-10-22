@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Z Proverbs Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            transition: background 0.5s ease, color 0.5s ease;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Animated Blobs */
+        .ambient-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #6366f1; }
+        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #ec4899; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Theme Styles */
+        body.theme-dark {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        body.theme-dark .glass-card {
+            background: rgba(30, 41, 59, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        body.theme-light {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: #0f172a;
+        }
+        body.theme-light .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        body.theme-emerald {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+            color: #ecfdf5;
+        }
+        body.theme-emerald .glass-card {
+            background: rgba(6, 78, 59, 0.75);
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        body.theme-indigo {
+            background: linear-gradient(135deg, #311b92 0%, #1a237e 100%);
+            color: #e8eaf6;
+        }
+        body.theme-indigo .glass-card {
+            background: rgba(49, 27, 146, 0.75);
+            border: 1px solid rgba(156, 39, 176, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Letter Button Active State */
+        .letter-btn.active {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff !important;
+            box-shadow: 0 8px 16px -4px rgba(99, 102, 241, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+        ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.5); border-radius: 4px; }
+
+        /* Speaking Pulse Effect */
+        .speaking-pulse {
+            animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="theme-dark relative selection:bg-indigo-500 selection:text-white">
+
+    <!-- Ambient Blobs -->
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+
+    <!-- Header / Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-card !rounded-none border-x-0 border-t-0 px-4 lg:px-8 py-3 mb-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <!-- Back Button -->
+            <a href="lesson_link.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-indigo-600/80 border border-slate-700/80 transition-all text-sm font-medium hover:scale-105 shadow-lg">
+                <i class="fa-solid fa-arrow-left text-indigo-400"></i>
+                <span class="hidden sm:inline">মূল সূচিপত্রে ফিরে যান</span>
+            </a>
+
+            <!-- Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    G
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">GKD English Mastery</h1>
+                    <p class="text-xs text-slate-400 hidden sm:block">A to Z Proverbs with Voice Pronunciation</p>
+                </div>
+            </div>
+
+            <!-- Controls (Theme & Voice Speed) -->
+            <div class="flex items-center gap-2">
+                <!-- Audio Speed Selector -->
+                <select id="speech-rate" class="bg-slate-800/80 border border-slate-700 text-xs text-slate-200 px-2.5 py-2 rounded-xl focus:outline-none cursor-pointer">
+                    <option value="0.8">🎙️ ০.৮x (ধীর)</option>
+                    <option value="1.0" selected>🎙️ ১.০x (সাধারণ)</option>
+                    <option value="1.2">🎙️ ১.২x (দ্রুত)</option>
+                </select>
+
+                <!-- Theme Switcher Dropdown -->
+                <select onchange="changeTheme(this.value)" class="bg-slate-800/80 border border-slate-700 text-xs text-slate-200 px-2.5 py-2 rounded-xl focus:outline-none cursor-pointer">
+                    <option value="theme-dark">🌙 Dark Glass</option>
+                    <option value="theme-light">☀️ Light Neon</option>
+                    <option value="theme-emerald">🌲 Emerald Mint</option>
+                    <option value="theme-indigo">🔮 Royal Indigo</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 pb-16 relative z-10">
+
+        <!-- Title & Mode Toggles -->
+        <div class="text-center mb-8">
+            <h2 class="text-3xl lg:text-4xl font-extrabold mb-2 tracking-tight">
+                A to Z Audio Proverbs Hub
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-6">
+                প্রবাদে ক্লিক করে সরাসরি নিখুঁত ইংরেজি উচ্চারণ শুনুন! বাংলা অনুবাদ, উদাহরণ, প্রিয় তালিকা সংরক্ষণ ও কুইজ মোড।
+            </p>
+
+            <!-- Mode Switchers (All, Favorites, Quiz Mode) -->
+            <div class="inline-flex p-1.5 rounded-2xl bg-slate-900/60 border border-slate-800 gap-2">
+                <button onclick="switchViewMode('all')" id="mode-all" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-lg transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-list"></i> সব প্রবাদ
+                </button>
+                <button onclick="switchViewMode('fav')" id="mode-fav" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-800 text-slate-300 hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-bookmark text-amber-400"></i> প্রিয় তালিকা (<span id="fav-count">0</span>)
+                </button>
+                <button onclick="switchViewMode('quiz')" id="mode-quiz" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-800 text-slate-300 hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad text-pink-400"></i> ফ্ল্যাশ-কার্ড কুইজ
+                </button>
+            </div>
+        </div>
+
+        <!-- SEARCH & COUNTER SECTION (Visible in All/Fav mode) -->
+        <div id="main-controls-sec">
+            <div class="glass-card p-4 mb-8 max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-4">
+                <div class="relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="search-input" onkeyup="filterProverbs()" placeholder="ইংরেজি প্রবাদ বা বাংলা অর্থ দিয়ে খুঁজুন..." class="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-900/50 border border-slate-700/60 focus:outline-none focus:border-indigo-500 text-sm text-slate-100 placeholder-slate-400">
+                </div>
+                <div class="shrink-0 px-4 py-2 bg-indigo-600/30 border border-indigo-500/40 rounded-xl text-xs font-semibold text-indigo-300">
+                    মোট প্রদর্শিত: <span id="count-badge">0</span> টি
+                </div>
+            </div>
+
+            <!-- A-Z Alphabet Navigation Bar -->
+            <div class="glass-card p-4 mb-10 overflow-x-auto">
+                <div class="flex items-center justify-start md:justify-center gap-2 min-w-max" id="alphabet-bar">
+                    <button onclick="filterByLetter('ALL')" class="letter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 border border-slate-700 transition-all">ALL</button>
+                    <!-- A-Z Generated Dynamically -->
+                </div>
+            </div>
+
+            <!-- Proverbs Grid Display -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="proverbs-container">
+                <!-- Dynamic Content Load -->
+            </div>
+        </div>
+
+        <!-- INTERACTIVE QUIZ SECTION (Hidden by default) -->
+        <div id="quiz-sec" class="hidden max-w-2xl mx-auto">
+            <div class="glass-card p-8 text-center relative overflow-hidden">
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">ফ্ল্যাশ-কার্ড প্র্যাকটিস</span>
+                <h3 class="text-2xl font-bold mt-4 mb-2 text-indigo-200" id="quiz-eng">Proverb loading...</h3>
+                <button onclick="speakText(document.getElementById('quiz-eng').innerText)" class="px-4 py-2 my-2 rounded-xl bg-indigo-600/80 text-white text-xs font-semibold inline-flex items-center gap-2">
+                    <i class="fa-solid fa-volume-high"></i> উচ্চারণ শুনুন
+                </button>
+                
+                <div class="my-6 p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hidden" id="quiz-ans-box">
+                    <p class="text-lg font-bold text-emerald-400 mb-2" id="quiz-ban">বাংলা অর্থ</p>
+                    <p class="text-xs text-slate-300 italic" id="quiz-ex">Example</p>
+                </div>
+
+                <div class="flex items-center justify-center gap-4 mt-6">
+                    <button onclick="toggleQuizAnswer()" class="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition-all">
+                        <i class="fa-solid fa-eye"></i> অর্থ ও উত্তর দেখুন
+                    </button>
+                    <button onclick="nextQuizCard()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-600 text-xs font-bold text-white shadow-lg transition-all hover:scale-105">
+                        পরবর্তী প্রবাদ <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript Engine -->
+    <script>
+        // Expanded A-Z Proverbs Data Repository
+        const proverbsData = [
+            // Letter A
+            { id: 1, letter: 'A', eng: 'A drowning man catches at a straw.', ban: 'ডুবন্ত মানুষ খড়কুটো ধরেও বাঁচতে চায়।', ex: 'Facing heavy loss in business, he invested in a risky scheme—a drowning man catches at a straw.' },
+            { id: 2, letter: 'A', eng: 'A guilty mind is always suspicious.', ban: 'চোরের মনে পুলিশ পুলিশ / ঠাকুর ঘরে কে, আমি কলা খাইনি।', ex: 'When the teacher looked at the broken glass, Hasan got nervous; a guilty mind is always suspicious.' },
+            { id: 3, letter: 'A', eng: 'A friend in need is a friend indeed.', ban: 'বিপদের বন্ধুই প্রকৃত বন্ধু।', ex: 'Rana stood by me during my illness; a friend in need is a friend indeed.' },
+            { id: 4, letter: 'A', eng: 'A burnt child dreads the fire.', ban: 'ঘরপোড়া গরু সিঁদুরে মেঘ দেখলে ডরায়।', ex: 'After failing once in online trading, he never invests again—a burnt child dreads the fire.' },
+            { id: 5, letter: 'A', eng: 'A little learning is a dangerous thing.', ban: 'অল্পবিদ্যা ভয়ংকরী।', ex: 'Without complete medical knowledge, treating someone is risky—a little learning is a dangerous thing.' },
+            { id: 6, letter: 'A', eng: 'A stitch in time saves nine.', ban: 'সময়ের এক ফোড়, অসময়ের দশ ফোড়।', ex: 'Repair the roof leak now before rain gets worse; a stitch in time saves nine.' },
+            { id: 7, letter: 'A', eng: 'A rolling stone gathers no moss.', ban: 'অস্থির ব্যক্তির ভাগ্যোন্নতি হয় না।', ex: 'Changing jobs every three months yields no savings; a rolling stone gathers no moss.' },
+            { id: 8, letter: 'A', eng: 'All that glitters is not gold.', ban: 'চকচক করলেই সোনা হয় না।', ex: 'Do not be tricked by flashy advertisements; all that glitters is not gold.' },
+
+            // Letter B
+            { id: 9, letter: 'B', eng: 'Barking dogs seldom bite.', ban: 'যে কুকুর বেশি ঘেউ ঘেউ করে, সে কামড়ায় না।', ex: 'Don\'t fear his loud threats; barking dogs seldom bite.' },
+            { id: 10, letter: 'B', eng: 'Beggars must not be choosers.', ban: 'ভিক্ষার চাল কাঁড়া আর আকাঁড়া।', ex: 'When receiving free help, accept what is given; beggars must not be choosers.' },
+            { id: 11, letter: 'B', eng: 'Better late than never.', ban: 'একেবারে না হওয়ার চেয়ে দেরিতে হওয়াও ভালো।', ex: 'He submitted his task late, but completed it—better late than never.' },
+            { id: 12, letter: 'B', eng: 'Birds of a feather flock together.', ban: 'চোরা চোরা মাস্তুতো ভাই।', ex: 'All the dishonest workers teamed up together; birds of a feather flock together.' },
+            { id: 13, letter: 'B', eng: 'Blood is thicker than water.', ban: 'রক্তের টান বড় টান।', ex: 'In severe trouble, his brother stood by him; blood is thicker than water.' },
+            { id: 14, letter: 'B', eng: 'Beauty is in the eye of the beholder.', ban: 'যার চোখ যাকে সুন্দর দেখে।', ex: 'You may dislike this art, but I love it; beauty is in the eye of the beholder.' },
+
+            // Letter C
+            { id: 15, letter: 'C', eng: 'Cut your coat according to your cloth.', ban: 'আয় বুঝে ব্যয় করো।', ex: 'Do not buy luxury items on loans; cut your coat according to your cloth.' },
+            { id: 16, letter: 'C', eng: 'Charity begins at home.', ban: 'আগে ঘর, তবে তো পর।', ex: 'Help your poor relatives first; charity begins at home.' },
+            { id: 17, letter: 'C', eng: 'Cleanliness is next to godliness.', ban: 'পরিষ্কার-পরিচ্ছন্নতা ঈমানের অঙ্গ।', ex: 'Always clean your living space; cleanliness is next to godliness.' },
+            { id: 18, letter: 'C', eng: 'Cowards die many times before their death.', ban: 'ভীরুরা মরার আগেই বারবার মরে।', ex: 'Face your challenges boldly; cowards die many times before their death.' },
+            { id: 19, letter: 'C', eng: 'Call a spade a spade.', ban: 'সত্যকে সত্য বলা / স্পটকথা বলা।', ex: 'I respect him because he always calls a spade a spade.' },
+
+            // Letter D
+            { id: 20, letter: 'D', eng: 'Diligence is the mother of good luck.', ban: 'পরিশ্রমই সৌভাগ্যের প্রসূতি।', ex: 'He worked hard and succeeded—diligence is the mother of good luck.' },
+            { id: 21, letter: 'D', eng: 'Do not put all your eggs in one basket.', ban: 'এক জায়গায় সব সম্পদ বা ঝুঁকি রেখো না।', ex: 'Invest in different businesses; do not put all your eggs in one basket.' },
+            { id: 22, letter: 'D', eng: 'Diamonds cut diamonds.', ban: 'রতনে রতন চেনে / শক্তে শক্তে যুদ্ধ।', ex: 'The two expert debaters argued intensely—diamonds cut diamonds.' },
+            { id: 23, letter: 'D', eng: 'Distance lends enchantment to the view.', ban: 'দূর হতে পর্বত সুন্দর দেখায়।', ex: 'Living abroad looks attractive from afar; distance lends enchantment to the view.' },
+
+            // Letter E
+            { id: 24, letter: 'E', eng: 'Early to bed and early to rise makes a man healthy, wealthy, and wise.', ban: 'ভোরে ঘুমাতে যাওয়া ও ভোরে ওঠা স্বাস্থ্যের জন্য ভালো।', ex: 'Maintain a disciplined morning routine; early to bed and early to rise makes a man healthy.' },
+            { id: 25, letter: 'E', eng: 'Every dog has his day.', ban: 'সবারই সুদিন আসে।', ex: 'Do not lose hope; every dog has his day.' },
+            { id: 26, letter: 'E', eng: 'Every cloud has a silver lining.', ban: 'অন্ধকারের শেষে আলোর বার্তা থাকে।', ex: 'Losing that job allowed him to start a firm; every cloud has a silver lining.' },
+            { id: 27, letter: 'E', eng: 'Experience is the best teacher.', ban: 'অভিজ্ঞতাই সর্বশ্রেষ্ঠ শিক্ষক।', ex: 'Real life challenges teach you lessons; experience is the best teacher.' },
+
+            // Letter F
+            { id: 28, letter: 'F', eng: 'Fortune favors the brave.', ban: 'ভাগ্য সাহসীদের পক্ষে থাকে।', ex: 'He took a brave step and won the contract—fortune favors the brave.' },
+            { id: 29, letter: 'F', eng: 'Failure is the pillar of success.', ban: 'ব্যর্থতাই সাফল্যের চাবিকাঠি।', ex: 'Learn from your mistakes; failure is the pillar of success.' },
+            { id: 30, letter: 'F', eng: 'Fools rush in where angels fear to tread.', ban: 'হাতি ঘোড়া ভেসে যায়, ভেড়া বলে কত জল।', ex: 'Without checking risks, he invested blindly—fools rush in where angels fear to tread.' },
+
+            // Letter G
+            { id: 31, letter: 'G', eng: 'God helps those who help themselves.', ban: 'ঈশ্বর তাদেরই সাহায্য করেন, যারা নিজেদের সাহায্য করে।', ex: 'Work hard before praying for results; God helps those who help themselves.' },
+            { id: 32, letter: 'G', eng: 'Great minds think alike.', ban: 'মহৎ মন একই রকম চিন্তা করে।', ex: 'Both of us came up with the same idea—great minds think alike.' },
+            { id: 33, letter: 'G', eng: 'Grasp all, lose all.', ban: 'অতি লোভে তাঁতি নষ্ট।', ex: 'Trying to steal everything left him empty handed—grasp all, lose all.' },
+
+            // Letter H
+            { id: 34, letter: 'H', eng: 'Honesty is the best policy.', ban: 'সততাই সর্বোত্তম পন্থা।', ex: 'Always speak the truth; honesty is the best policy.' },
+            { id: 35, letter: 'H', eng: 'Half a loaf is better than no bread.', ban: 'নাই মামার চেয়ে কানা মামা ভালো।', ex: 'Accepting a small job offer is better than remaining unemployed; half a loaf is better than no bread.' },
+            { id: 36, letter: 'H', eng: 'Haste makes waste.', ban: 'তাড়াহুড়োয় কাজ পণ্ড হয়।', ex: 'Drive carefully without rushing; haste makes waste.' },
+
+            // Letter I
+            { id: 37, letter: 'I', eng: 'It is no use crying over spilt milk.', ban: 'গতস্য শোচনা নাস্তি (ক্ষতি হয়ে গেলে কেঁদে লাভ নেই)।', ex: 'The exam is over; focus on the next test, as it is no use crying over spilt milk.' },
+            { id: 38, letter: 'I', eng: 'Idle brain is the devil\'s workshop.', ban: 'অলস মস্তিষ্ক শয়তানের কারখানা।', ex: 'Keep yourself busy with hobbies; an idle brain is the devil\'s workshop.' },
+
+            // Letter J
+            { id: 39, letter: 'J', eng: 'Jack of all trades, master of none.', ban: 'সব জান্তা কিন্তু কোনোটাতে পারদর্শী নয়।', ex: 'He tries plumbing and electrical work without mastery—Jack of all trades, master of none.' },
+            { id: 40, letter: 'J', eng: 'Judge not a book by its cover.', ban: 'বাহ্যিক রূপ দেখে চরিত্র বিচার করো না।', ex: 'He looks simple but is a genius; judge not a book by its cover.' },
+
+            // Letter K
+            { id: 41, letter: 'K', eng: 'Knowledge is power.', ban: 'জ্ঞানই শক্তি।', ex: 'Read informative books daily; knowledge is power.' },
+
+            // Letter L
+            { id: 42, letter: 'L', eng: 'Look before you leap.', ban: 'ভাবিয়া করিও কাজ, করিয়া ভাবিও না।', ex: 'Check all terms before signing the agreement; look before you leap.' },
+            { id: 43, letter: 'L', eng: 'Laughter is the best medicine.', ban: 'হাসিই সর্বোত্তম ওষুধ।', ex: 'Stay cheerful during hardship; laughter is the best medicine.' },
+
+            // Letter M
+            { id: 44, letter: 'M', eng: 'Make hay while the sun shines.', ban: 'ঝোপ বুঝে কোপ মারো।', ex: 'Demand is high, so launch your business now—make hay while the sun shines.' },
+            { id: 45, letter: 'M', eng: 'Man proposes, God disposes.', ban: 'মানুষ এক ভাবে, ঈশ্বর আর এক ভাবেন।', ex: 'We planned a trip, but heavy rain ruined it—man proposes, God disposes.' },
+
+            // Letter N
+            { id: 46, letter: 'N', eng: 'Necessity is the mother of invention.', ban: 'প্রয়োজনই আবিষ্কারের প্রসূতি।', ex: 'Lacking water, they built a rainwater filter—necessity is the mother of invention.' },
+            { id: 47, letter: 'N', eng: 'No pain, no gain.', ban: 'কষ্ট বিনে কেষ্ট মেলে না।', ex: 'Work hard to build your dream career; no pain, no gain.' },
+
+            // Letter O
+            { id: 48, letter: 'O', eng: 'Out of sight, out of mind.', ban: 'চোখের আড়াল হলে মনের আড়াল হয়।', ex: 'After moving abroad, he forgot old school friends—out of sight, out of mind.' },
+
+            // Letter P
+            { id: 49, letter: 'P', eng: 'Practice makes a man perfect.', ban: 'অনুশীলনেই দক্ষতা আসে।', ex: 'Practice grammar rules daily; practice makes a man perfect.' },
+            { id: 50, letter: 'P', eng: 'Pen is mightier than the sword.', ban: 'অসি অপেক্ষা মসি শ্রেষ্ঠ।', ex: 'The reporter\'s article exposed corruption—the pen is mightier than the sword.' },
+
+            // Letter Q
+            { id: 51, letter: 'Q', eng: 'Quick decisions lead to long regrets.', ban: 'দ্রুত সিদ্ধান্ত অনুতাপের কারণ হয়।', ex: 'Think thoroughly before switching jobs; quick decisions lead to long regrets.' },
+
+            // Letter R
+            { id: 52, letter: 'R', eng: 'Rome was not built in a day.', ban: 'বড় কাজ সম্পন্ন করতে সময় লাগে।', ex: 'Building a big company takes years; Rome was not built in a day.' },
+
+            // Letter S
+            { id: 53, letter: 'S', eng: 'Slow and steady wins the race.', ban: 'ধীর ও স্থির ব্যক্তিই শেষ পর্যন্ত বিজয়ী হয়।', ex: 'Study regularly for exams; slow and steady wins the race.' },
+
+            // Letter T
+            { id: 54, letter: 'T', eng: 'To err is human, to forgive divine.', ban: 'মানুষ মাত্রই ভুল করে, ক্ষমা করা স্বর্গীয় গুণ।', ex: 'Pardon his mistake; to err is human, to forgive divine.' },
+
+            // Letter U
+            { id: 55, letter: 'U', eng: 'Unity is strength.', ban: 'একতাই বল।', ex: 'If all members work together, success is sure—unity is strength.' },
+
+            // Letter V
+            { id: 56, letter: 'V', eng: 'Variety is the spice of life.', ban: 'বৈচিত্র্যই জীবনের আনন্দ।', ex: 'Trying new foods brings joy; variety is the spice of life.' },
+
+            // Letter W
+            { id: 57, letter: 'W', eng: 'Where there is a will, there is a way.', ban: 'ইচ্ছা থাকলেই উপায় হয়।', ex: 'Despite poverty, she qualified for medical—where there is a will, there is a way.' },
+
+            // Letter X
+            { id: 58, letter: 'X', eng: 'X-rays see through bones, but wisdom sees through hearts.', ban: 'এক্স-রে হাড় দেখে, কিন্তু প্রজ্ঞা মানুষের হৃদয় চেনে।', ex: 'Do not judge by wealth; wisdom sees through hearts.' },
+
+            // Letter Y
+            { id: 59, letter: 'Y', eng: 'You reap what you sow.', ban: 'যেমন কর্ম, তেমন ফল।', ex: 'Work hard in your young age; you reap what you sow.' },
+
+            // Letter Z
+            { id: 60, letter: 'Z', eng: 'Zeal without knowledge is a runaway horse.', ban: 'জ্ঞানহীন উৎসাহ নিয়ন্ত্রণহীন ঘোড়ার মতো।', ex: 'Learn the business rules before investing money; zeal without knowledge is a runaway horse.' }
+        ];
+
+        // State Management
+        let selectedLetter = 'ALL';
+        let viewMode = 'all'; // 'all', 'fav', 'quiz'
+        let favorites = JSON.parse(localStorage.getItem('gkd_fav_proverbs') || '[]');
+        let currentQuizIndex = 0;
+
+        // Initialize Alphabet Navigation
+        function initAlphabetBar() {
+            const bar = document.getElementById('alphabet-bar');
+            bar.innerHTML = `<button onclick="filterByLetter('ALL')" id="btn-letter-ALL" class="letter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 border border-slate-700 transition-all">ALL</button>`;
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                bar.innerHTML += `
+                    <button onclick="filterByLetter('${letter}')" id="btn-letter-${letter}" class="letter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800/80 hover:bg-indigo-600/60 border border-slate-700/80 transition-all">${letter}</button>
+                `;
+            }
+            updateFavCountBadge();
+        }
+
+        // Web Speech API Pronunciation Function
+        function speakText(text, btnElement = null) {
+            if (!('speechSynthesis' in window)) {
+                alert("দুঃখিত! আপনার ব্রাউজারে অডিও স্পিচ ফিচারটি সমর্থিত নয়।");
+                return;
+            }
+
+            // Cancel ongoing speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            
+            // Get speed rate from select
+            const rate = parseFloat(document.getElementById('speech-rate').value || 1.0);
+            utterance.rate = rate;
+
+            // Visual feedback on button if provided
+            if (btnElement) {
+                btnElement.classList.add('speaking-pulse', 'text-pink-400');
+                utterance.onend = () => {
+                    btnElement.classList.remove('speaking-pulse', 'text-pink-400');
+                };
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Render Proverbs Cards
+        function renderProverbs(data) {
+            const container = document.getElementById('proverbs-container');
+            const countBadge = document.getElementById('count-badge');
+            container.innerHTML = '';
+            countBadge.innerText = data.length;
+
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 glass-card">
+                        <i class="fa-solid fa-folder-open text-4xl text-slate-500 mb-3"></i>
+                        <p class="text-slate-400">কোনো প্রবাদ বাক্য পাওয়া যায়নি!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            data.forEach((item) => {
+                const isFav = favorites.includes(item.id);
+                const textToCopy = `English: ${item.eng}\nবাংলা অর্থ: ${item.ban}\nExample: ${item.ex}`;
+
+                container.innerHTML += `
+                    <div class="glass-card p-6 flex flex-col justify-between relative group hover:-translate-y-1 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-8 h-8 rounded-xl bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 font-extrabold text-sm flex items-center justify-center">
+                                        ${item.letter}
+                                    </span>
+                                    <!-- Audio Button -->
+                                    <button onclick="speakText('${item.eng.replace(/'/g, "\\'")}', this)" title="উচ্চারণ শুনুন" class="w-8 h-8 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/30 text-indigo-300 hover:text-white transition-all flex items-center justify-center">
+                                        <i class="fa-solid fa-volume-high text-xs"></i>
+                                    </button>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <!-- Bookmark Favorite Button -->
+                                    <button onclick="toggleFavorite(${item.id})" title="প্রিয় তালিকায় রাখুন" class="w-8 h-8 rounded-xl ${isFav ? 'bg-amber-500/30 text-amber-400 border-amber-500/50' : 'bg-slate-800/80 text-slate-400 border-slate-700'} border text-xs transition-all flex items-center justify-center hover:scale-110">
+                                        <i class="fa-${isFav ? 'solid' : 'regular'} fa-bookmark"></i>
+                                    </button>
+                                    <!-- Copy Button -->
+                                    <button onclick="copyToClipboard('${encodeURIComponent(textToCopy)}', this)" class="px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-indigo-600/80 border border-slate-700/80 text-xs font-medium transition-all flex items-center gap-1.5 text-slate-300">
+                                        <i class="fa-regular fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Proverb English Text (Clickable to Speak) -->
+                            <h3 onclick="speakText('${item.eng.replace(/'/g, "\\'")}')" class="text-lg font-bold text-indigo-200 mb-2 leading-snug cursor-pointer hover:text-indigo-400 transition-colors flex items-center gap-2" title="ক্লিক করে উচ্চারণ শুনুন">
+                                ${item.eng}
+                                <i class="fa-solid fa-circle-play text-xs text-indigo-400 opacity-60"></i>
+                            </h3>
+
+                            <!-- Bengali Translation -->
+                            <p class="text-sm font-semibold text-emerald-400 mb-3 bg-emerald-950/30 p-2.5 rounded-xl border border-emerald-500/20">
+                                <i class="fa-solid fa-language mr-1"></i> ${item.ban}
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-700/50">
+                            <p class="text-xs text-slate-400 italic font-mono">
+                                <strong>Example:</strong> "${item.ex}"
+                            </p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Toggle Favorite Bookmark
+        function toggleFavorite(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(favId => favId !== id);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('gkd_fav_proverbs', JSON.stringify(favorites));
+            updateFavCountBadge();
+            filterProverbs();
+        }
+
+        function updateFavCountBadge() {
+            document.getElementById('fav-count').innerText = favorites.length;
+        }
+
+        // Filter Proverbs by Letter
+        function filterByLetter(letter) {
+            selectedLetter = letter;
+            document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById(`btn-letter-${letter}`);
+            if (btn) btn.classList.add('active');
+            filterProverbs();
+        }
+
+        // Master Filter & Search Function
+        function filterProverbs() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = proverbsData.filter(item => {
+                const matchesLetter = selectedLetter === 'ALL' || item.letter === selectedLetter;
+                const matchesSearch = item.eng.toLowerCase().includes(query) || item.ban.toLowerCase().includes(query);
+                const matchesFav = viewMode === 'fav' ? favorites.includes(item.id) : true;
+                return matchesLetter && matchesSearch && matchesFav;
+            });
+            renderProverbs(filtered);
+        }
+
+        // View Mode Switcher (All / Favorites / Quiz)
+        function switchViewMode(mode) {
+            viewMode = mode;
+            document.getElementById('mode-all').className = `px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${mode === 'all' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800 text-slate-300'}`;
+            document.getElementById('mode-fav').className = `px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${mode === 'fav' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800 text-slate-300'}`;
+            document.getElementById('mode-quiz').className = `px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${mode === 'quiz' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800 text-slate-300'}`;
+
+            if (mode === 'quiz') {
+                document.getElementById('main-controls-sec').classList.add('hidden');
+                document.getElementById('quiz-sec').classList.remove('hidden');
+                loadQuizCard();
+            } else {
+                document.getElementById('main-controls-sec').classList.remove('hidden');
+                document.getElementById('quiz-sec').classList.add('hidden');
+                filterProverbs();
+            }
+        }
+
+        // Flashcard Quiz Logic
+        function loadQuizCard() {
+            const item = proverbsData[currentQuizIndex];
+            document.getElementById('quiz-eng').innerText = item.eng;
+            document.getElementById('quiz-ban').innerText = item.ban;
+            document.getElementById('quiz-ex').innerText = `Example: "${item.ex}"`;
+            document.getElementById('quiz-ans-box').classList.add('hidden');
+        }
+
+        function toggleQuizAnswer() {
+            document.getElementById('quiz-ans-box').classList.remove('hidden');
+        }
+
+        function nextQuizCard() {
+            currentQuizIndex = (currentQuizIndex + 1) % proverbsData.length;
+            loadQuizCard();
+        }
+
+        // Theme Switcher
+        function changeTheme(themeClass) {
+            document.body.className = `${themeClass} relative selection:bg-indigo-500 selection:text-white`;
+        }
+
+        // Copy Clipboard Helper
+        function copyToClipboard(encodedText, btnEl) {
+            const text = decodeURIComponent(encodedText);
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = btnEl.innerHTML;
+                btnEl.innerHTML = `<i class="fa-solid fa-check text-emerald-400"></i> Copied!`;
+                btnEl.classList.add('bg-emerald-600/80');
+                setTimeout(() => {
+                    btnEl.innerHTML = originalHTML;
+                    btnEl.classList.remove('bg-emerald-600/80');
+                }, 2000);
+            });
+        }
+
+        // Page Load Init
+        window.onload = function() {
+            initAlphabetBar();
+            renderProverbs(proverbsData);
+        };
+    </script>
+</body>
+</html>
