@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punctuation & Capitalization and Group Verbs</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Poppins', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* CSS Themes */
+        :root[data-theme="dark-glass"] {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            --glass-bg: rgba(30, 41, 59, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-hover-border: rgba(99, 102, 241, 0.5);
+            --accent-main: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.35);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --card-sub: rgba(15, 23, 42, 0.6);
+            --badge-bg: rgba(99, 102, 241, 0.2);
+            --badge-text: #a5b4fc;
+            --blob-1: #6366f1; --blob-2: #8b5cf6; --blob-3: #ec4899;
+        }
+
+        :root[data-theme="light-neon"] {
+            --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e0e7ff 50%, #f8fafc 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(99, 102, 241, 0.2);
+            --glass-hover-border: rgba(79, 70, 229, 0.8);
+            --accent-main: #4f46e5;
+            --accent-glow: rgba(79, 70, 229, 0.25);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --card-sub: rgba(241, 245, 249, 0.8);
+            --badge-bg: rgba(79, 70, 229, 0.15);
+            --badge-text: #3730a3;
+            --blob-1: #818cf8; --blob-2: #c084fc; --blob-3: #f472b6;
+        }
+
+        :root[data-theme="cyberpunk"] {
+            --bg-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #020617 100%);
+            --glass-bg: rgba(6, 78, 59, 0.65);
+            --glass-border: rgba(16, 185, 129, 0.3);
+            --glass-hover-border: rgba(52, 211, 153, 0.8);
+            --accent-main: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.4);
+            --text-primary: #ecfdf5;
+            --text-secondary: #6ee7b7;
+            --card-sub: rgba(2, 44, 34, 0.7);
+            --badge-bg: rgba(16, 185, 129, 0.25);
+            --badge-text: #a7f3d0;
+            --blob-1: #10b981; --blob-2: #059669; --blob-3: #06b6d4;
+        }
+
+        :root[data-theme="royal-indigo"] {
+            --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #311042 50%, #0f172a 100%);
+            --glass-bg: rgba(49, 16, 66, 0.7);
+            --glass-border: rgba(217, 70, 239, 0.25);
+            --glass-hover-border: rgba(236, 72, 153, 0.8);
+            --accent-main: #d946ef;
+            --accent-glow: rgba(217, 70, 239, 0.4);
+            --text-primary: #fdf4ff;
+            --text-secondary: #f0abfc;
+            --card-sub: rgba(30, 27, 75, 0.7);
+            --badge-bg: rgba(217, 70, 239, 0.25);
+            --badge-text: #f5d0fe;
+            --blob-1: #d946ef; --blob-2: #8b5cf6; --blob-3: #6366f1;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        /* Ambient Animated Mesh Blobs */
+        .ambient-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 22s infinite alternate ease-in-out;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 550px; height: 550px; background: var(--blob-1); }
+        .blob-2 { bottom: -10%; right: -10%; width: 650px; height: 650px; background: var(--blob-2); animation-delay: -6s; }
+        .blob-3 { top: 40%; left: 30%; width: 500px; height: 500px; background: var(--blob-3); animation-delay: -12s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(70px, 50px) scale(1.1) rotate(180deg); }
+            100% { transform: translate(-50px, 90px) scale(0.9) rotate(360deg); }
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: var(--glass-hover-border);
+            box-shadow: 0 25px 50px -12px var(--accent-glow);
+        }
+
+        .glass-subcard {
+            background: var(--card-sub);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.85rem;
+        }
+
+        .badge-custom {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-main); border-radius: 4px; }
+
+        /* Tabs & Buttons */
+        .mod-tab-btn.active {
+            background: var(--accent-main);
+            color: #ffffff !important;
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
+            border-color: transparent;
+        }
+
+        .sec-tab-btn.active {
+            border-bottom: 3px solid var(--accent-main);
+            color: var(--accent-main);
+            font-weight: 700;
+        }
+
+        .rule-card-accent {
+            border-left: 4px solid var(--accent-main);
+        }
+    </style>
+</head>
+<body class="relative selection:bg-indigo-500 selection:text-white" data-theme="dark-glass">
+
+    <!-- Ambient Blobs -->
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+    <div class="ambient-blob blob-3"></div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-card !rounded-none border-x-0 border-t-0 px-4 lg:px-8 py-3.5 mb-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <!-- Back Button -->
+            <a href="lesson_link.html" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl glass-subcard hover:border-indigo-400/60 transition-all text-xs sm:text-sm font-semibold hover:scale-105 active:scale-95 shadow-md">
+                <i class="fa-solid fa-house-chimney text-indigo-400"></i>
+                <span>Back</span>
+            </a>
+
+            <!-- Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/30">
+                    E
+                </div>
+                <div class="hidden md:block">
+                    <h1 class="text-base font-extrabold tracking-wide">English Grammar Masterclass</h1>
+                    <p class="text-xs opacity-75">3D Interactive Comprehensive Hub</p>
+                </div>
+            </div>
+
+            <!-- Theme Switcher Dropdown -->
+            <div class="flex items-center gap-3">
+                <div class="relative inline-block text-left">
+                    <button onclick="toggleThemeMenu()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl glass-subcard text-xs font-semibold hover:scale-105 transition-all">
+                        <i class="fa-solid fa-palette text-amber-400"></i>
+                        <span class="hidden sm:inline">থিম পরিবর্তন:</span>
+                        <span id="current-theme-label" class="font-bold text-indigo-400">Dark Glass</span>
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="theme-menu" class="hidden absolute right-0 mt-2 w-48 rounded-xl glass-card p-2 z-50 space-y-1 shadow-2xl">
+                        <button onclick="setTheme('dark-glass', 'Dark Glass')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-indigo-600/30 font-medium flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-slate-900 border border-indigo-400"></span> Dark Glass
+                        </button>
+                        <button onclick="setTheme('light-neon', 'Light Neon')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-indigo-600/30 font-medium flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-slate-100 border border-indigo-600"></span> Light Neon
+                        </button>
+                        <button onclick="setTheme('cyberpunk', 'Cyber Emerald')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-emerald-600/30 font-medium flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-950 border border-emerald-400"></span> Cyber Emerald
+                        </button>
+                        <button onclick="setTheme('royal-indigo', 'Royal Indigo')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-fuchsia-600/30 font-medium flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-purple-950 border border-fuchsia-400"></span> Royal Indigo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 pb-20 relative z-10">
+
+        <!-- Module Navigation Hub -->
+        <div class="text-center mb-8">
+            <h2 class="text-2xl sm:text-3xl font-extrabold mb-2 tracking-tight">
+                গ্রামার মডিউল নির্বাচন করুন
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
+                নিচের যেকোনো অধ্যায়ে ক্লিক করে পূর্ণাঙ্গ নিয়মাবলি, সকল এক্সেপশন, ৩০+ বাস্তব উদাহরণ ও বোর্ড অনুশীলনী বিস্তারিত ব্যাখ্যাসহ পড়ুন।
+            </p>
+        </div>
+
+        <!-- 3D Module Cards Header Tabs -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+            <!-- Module 1 -->
+            <button onclick="switchModule('punc')" id="mod-tab-punc" class="mod-tab-btn active glass-card p-5 text-left relative overflow-hidden group hover:-translate-y-1 transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
+                    <span class="badge-custom text-[11px] font-bold px-2.5 py-0.5 rounded-full">অধ্যায় ০১</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold mb-1">Punctuation & Capitalization</h3>
+                <p class="text-xs opacity-80">বিরামচিহ্ন ও ক্যাপিটালাইজেশনের সকল খুঁটিনাটি নিয়ম ও ব্যবহার</p>
+            </button>
+
+            <!-- Module 2 -->
+            <button onclick="switchModule('tag')" id="mod-tab-tag" class="mod-tab-btn glass-card p-5 text-left relative overflow-hidden group hover:-translate-y-1 transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+                    <span class="badge-custom text-[11px] font-bold px-2.5 py-0.5 rounded-full">অধ্যায় ০২</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold mb-1">Tag Questions Masterclass</h3>
+                <p class="text-xs opacity-80">সংযুক্ত প্রশ্ন গঠনের পূর্ণাঙ্গ নিয়ম, শর্টকাট টেবিল ও এক্সেপশন</p>
+            </button>
+
+            <!-- Module 3 -->
+            <button onclick="switchModule('gv')" id="mod-tab-gv" class="mod-tab-btn glass-card p-5 text-left relative overflow-hidden group hover:-translate-y-1 transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 text-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <span class="badge-custom text-[11px] font-bold px-2.5 py-0.5 rounded-full">অধ্যায় ০৩</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold mb-1">Group Verbs (Phrasal Verbs)</h3>
+                <p class="text-xs opacity-80">পরীক্ষামুখী ৫০+ গুরুত্বপূর্ণ Phrasal Verbs ও সার্চ ফিল্টার</p>
+            </button>
+        </div>
+
+        <!-- Section Navigation inside Module -->
+        <div class="glass-card p-2 mb-8 flex flex-wrap justify-center gap-2 border-indigo-500/20">
+            <button onclick="switchSection('rules')" id="sec-tab-rules" class="sec-tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2">
+                <i class="fa-solid fa-book-open text-indigo-400"></i>
+                <span>১. নিয়ম ও মাস্টার গাইড</span>
+            </button>
+            <button onclick="switchSection('examples')" id="sec-tab-examples" class="sec-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-purple-400"></i>
+                <span>২. ৩০টি উদাহরণ ভাণ্ডার</span>
+            </button>
+            <button onclick="switchSection('practice')" id="sec-tab-practice" class="sec-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square text-pink-400"></i>
+                <span>৩. ৩০টি অনুশীলনী ও ব্যাখ্যা</span>
+            </button>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- MODULE 1: PUNCTUATION & CAPITALIZATION -->
+        <!-- =================================================================== -->
+        <div id="mod-punc" class="module-block">
+            <!-- Section 1: Rules -->
+            <div id="punc-rules" class="sec-block space-y-6">
+                <!-- Overview Header -->
+                <div class="glass-card p-6 rule-card-accent">
+                    <h3 class="text-lg font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-heading text-indigo-400"></i> Capitalization-এর ১২টি পূর্ণাঙ্গ ও মৌলিক নিয়ম
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                        ইংরেজি ভাষায় Capital Letter (বড় হাতের অক্ষর) ব্যবহারের সুনির্দিষ্ট ১২টি নিয়ম রয়েছে। নিচে প্রতিটি নিয়মের বিস্তারিত ব্যাখ্যা তুলে ধরা হলো:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">১. বাক্যের সূচনায় (Start of Sentence):</span>
+                            <p class="text-slate-300">যেকোনো ইংরেজি বাক্যের প্রথম শব্দটি সবসময় Capital Letter হয়।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: **Honesty** is the best policy.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">২. Pronoun 'I' এবং Interjection 'O':</span>
+                            <p class="text-slate-300">একাকী বসা 'I' (আমি) এবং 'O' সবসময় Capital Letter হয়।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: If **I** go, **I** will tell him. Save me, **O** Lord!</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">৩. Proper Noun ও Proper Adjective:</span>
+                            <p class="text-slate-300">নির্দিষ্ট কোনো ব্যক্তি, স্থান, নদী, পাহাড় বা তাদের থেকে উদ্ভূত Adjective।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: **R**ahim, **D**haka, **B**angladesh, **B**angladeshi food.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">৪. দিন, মাস, বছর ও উৎসব:</span>
+                            <p class="text-slate-300">বার, মাসের নাম, জাতীয় বা ধর্মীয় ছুটির দিন।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: **S**unday, **J**anuary, **E**id-ul-Fitr, **C**hristmas.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">৫. ধর্ম, সম্প্রদায় ও পবিত্র গ্রন্থ:</span>
+                            <p class="text-slate-300">ধর্মীয় গ্রুপ, ধর্মগ্রন্থ ও সৃষ্টিকর্তার নাম বা Pronoun।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: **I**slam, **M**uslims, **T**he **H**oly **Q**uran, **A**llah and **H**is mercy.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">৬. পদবি ও উপাধি (Titles):</span>
+                            <p class="text-slate-300">নামের আগে থাকা পদবি বা উপাধির প্রথম বর্ণ।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: **P**rime **M**inister Sheikh Hasina, **D**r. Kamal.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">৭. কবিতা ও উক্তির সূচনা:</span>
+                            <p class="text-slate-300">কবিতার প্রতিটি লাইনের প্রথম অক্ষর ও Direct Quotation-এর সূচনা।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: He said, "**T**he sun is hot."</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">৮. সংক্ষিপ্ত রূপ (Acronyms & Degrees):</span>
+                            <p class="text-slate-300">সংক্ষিপ্ত শিক্ষাগত যোগ্যতা বা প্রতিষ্ঠানের সংক্ষিপ্ত রূপ।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: **M.A.**, **B.Sc.**, **U.N.O.**, **UNESCO**.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">৯. ঐতিহাসিক ঘটনা ও দলিল:</span>
+                            <p class="text-slate-300">বিখ্যাত বিপ্লব, যুদ্ধ, ও চুক্তি ইত্যাদি।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: The **L**anguage **M**ovement, **W**orld **W**ar II.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">১০. ভৌগোলিক দিক ও অঞ্চল:</span>
+                            <p class="text-slate-300">দিক যখন নির্দিষ্ট অঞ্চল বোঝায় (সাধারণ দিক হলে ছোট হাতের)।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: He lives in the **M**iddle **E**ast. (কিন্তু: go south)</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">১১. বই, সিনেমা ও পত্রিকার শিরোনাম:</span>
+                            <p class="text-slate-300">বই, পত্রিকা বা আর্টিকেলের শিরোনামের গুরুত্বপূর্ণ শব্দগুলো।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: **T**he **D**aily **S**tar, **G**itanjali.</p>
+                        </div>
+                        <div class="glass-subcard p-4 space-y-1">
+                            <span class="font-bold text-indigo-400">১২. Personification (বস্তুর ব্যক্তিত্বারোপ):</span>
+                            <p class="text-slate-300">অচেতন বস্তুকে কোনো ব্যক্তির রূপ দেওয়া হলে।</p>
+                            <p class="font-mono text-emerald-400 text-xs">যেমন: O **D**eath! Where is thy sting?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Punctuation Rules Guide -->
+                <div class="glass-card p-6 rule-card-accent">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-icons text-indigo-400"></i> Punctuation Marks-এর ব্যবহারের পূর্ণাঙ্গ গাইড
+                    </h3>
+                    
+                    <div class="space-y-4 text-xs sm:text-sm">
+                        <!-- Full Stop -->
+                        <div class="glass-subcard p-4">
+                            <h4 class="font-bold text-indigo-300 text-sm mb-1">১. Full Stop (.) [পূর্ণ বিরতি]</h4>
+                            <p class="text-slate-300 mb-1">• Assertive, Imperative ও Optative সেন্টেন্সের শেষে পূর্ণ বিরতি দিতে বসে।</p>
+                            <p class="text-slate-300 mb-1">• শব্দের সংক্ষিপ্ত রূপ বা Abbreviation-এ বসে (যেমন: Dr. Mr. U.S.A.)।</p>
+                            <p class="font-mono text-emerald-400">উদাহরণ: He goes to school. Prof. Karim is present.</p>
+                        </div>
+
+                        <!-- Comma -->
+                        <div class="glass-subcard p-4">
+                            <h4 class="font-bold text-indigo-300 text-sm mb-1">২. Comma (,) [স্বল্প বিরতি]</h4>
+                            <p class="text-slate-300 mb-1">• একই Parts of Speech ভুক্ত দুইয়ের অধিক শব্দ থাকলে শেষ শব্দটির আগে এবং বাকিগুলোর পর কমা বসে (যেমন: Rice, fish, and milk)।</p>
+                            <p class="text-slate-300 mb-1">• Vocative Case (সম্বোধন পদ)-কে আলাদা করতে (যেমন: Rahim, come here)।</p>
+                            <p class="text-slate-300 mb-1">• Reporting Verb-কে Reported Speech থেকে আলাদা করতে (যেমন: He said, "I am ill.")।</p>
+                            <p class="text-slate-300 mb-1">• Noun in Apposition-এর আগে ও পরে (যেমন: Mr. Kamal, the headmaster, spoke well)।</p>
+                        </div>
+
+                        <!-- Semicolon & Colon -->
+                        <div class="glass-subcard p-4">
+                            <h4 class="font-bold text-indigo-300 text-sm mb-1">৩. Semicolon (;) & Colon (:)</h4>
+                            <p class="text-slate-300 mb-1">• **Semicolon (;):** কমার চেয়ে বেশি এবং ফুল স্টপের চেয়ে কম থামার জন্য বসে। কোনো Conjunction ছাড়া দুটি Independent clause যুক্ত করতে বসে (যেমন: To err is human; to forgive, divine)।</p>
+                            <p class="text-slate-300 mb-1">• **Colon (:):** উদাহরণ বা তালিকা দেওয়ার পূর্বে বসে (যেমন: Follow the rules: 1, 2, 3)। সংলাপ বা নাটকে বক্তার নামের পর বসে।</p>
+                        </div>
+
+                        <!-- Question & Exclamation -->
+                        <div class="glass-subcard p-4">
+                            <h4 class="font-bold text-indigo-300 text-sm mb-1">৪. Question Mark (?) & Exclamation Mark (!)</h4>
+                            <p class="text-slate-300 mb-1">• **Question Mark (?):** প্রশ্নবোধক বাক্যের শেষে বসে (যেমন: What is your name?)।</p>
+                            <p class="text-slate-300 mb-1">• **Exclamation Mark (!):** আকস্মিক আবেগ, আনন্দ, দুঃখ বা বিস্ময় প্রকাশে ইন্টারজেকশন বা এক্সক্ল্যামেটরি বাক্যের শেষে বসে (যেমন: Alas! He is dead. What a lovely day!)</p>
+                        </div>
+
+                        <!-- Apostrophe & Quotation Marks -->
+                        <div class="glass-subcard p-4">
+                            <h4 class="font-bold text-indigo-300 text-sm mb-1">৫. Apostrophe (') & Quotation Marks (" ")</h4>
+                            <p class="text-slate-300 mb-1">• **Apostrophe ('):** মালিকানা বোঝাতে (Possessive Case) (যেমন: Rahim's book) এবং বর্ণ লোপ বা Contraction বোঝাতে (যেমন: don't, it's)।</p>
+                            <p class="text-slate-300 mb-1">• **Quotation Marks (" "):** বক্তার অবিকল উক্তি আবদ্ধ রাখতে (Direct Speech) বসে।</p>
+                        </div>
+
+                        <!-- Hyphen, Dash, Brackets, Ellipsis -->
+                        <div class="glass-subcard p-4">
+                            <h4 class="font-bold text-indigo-300 text-sm mb-1">৬. Hyphen (-), Dash (—), Brackets (), Ellipsis (...)</h4>
+                            <p class="text-slate-300 mb-1">• **Hyphen (-):** Compound word গঠনে বসে (যেমন: Brother-in-law, Passers-by)।</p>
+                            <p class="text-slate-300 mb-1">• **Dash (—):** চিন্তার আকস্মিক পরিবর্তন বা বিষদ ব্যাখ্যার জন্য বসে।</p>
+                            <p class="text-slate-300 mb-1">• **Brackets ():** অতিরিক্ত তথ্য বা ব্যাখ্যার জন্য বসে।</p>
+                            <p class="text-slate-300 mb-1">• **Ellipsis (...):** উক্তির অসম্পূর্ণতা বা বাদ পড়া অংশ নির্দেশ করতে বসে।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: 30 Examples -->
+            <div id="punc-examples" class="sec-block hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamically Populated via JS -->
+            </div>
+
+            <!-- Section 3: 30 Practice -->
+            <div id="punc-practice" class="sec-block hidden space-y-4">
+                <!-- Dynamically Populated via JS -->
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- MODULE 2: TAG QUESTIONS -->
+        <!-- =================================================================== -->
+        <div id="mod-tag" class="module-block hidden">
+            <!-- Section 1: Rules -->
+            <div id="tag-rules" class="sec-block space-y-6">
+                <!-- Golden Rules Summary -->
+                <div class="glass-card p-6 rule-card-accent">
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i> Tag Questions-এর ৫টি মূল সূত্র
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                        <div class="glass-subcard p-3 border-l-2 border-emerald-400">
+                            <strong>১. হা-বোধক বাক্য থাকলে:</strong> Tag হবে Negative (Auxiliary + n't + Pronoun?)
+                        </div>
+                        <div class="glass-subcard p-3 border-l-2 border-rose-400">
+                            <strong>২. না-বোধক বাক্য থাকলে:</strong> Tag হবে Positive (Auxiliary + Pronoun?)
+                        </div>
+                        <div class="glass-subcard p-3 border-l-2 border-indigo-400">
+                            <strong>৩. Subject পরিবর্তন:</strong> Tag-এর Subject সবসময় Noun-এর পরিবর্তে উপযুক্ত Pronoun হবে।
+                        </div>
+                        <div class="glass-subcard p-3 border-l-2 border-amber-400">
+                            <strong>৪. সংক্ষিপ্ত রূপ (Contraction):</strong> Negative Tag-এ সবসময় Verb-এর সাথে n't যুক্ত সংক্ষিপ্ত রূপ বসে।
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auxiliary Contraction Reference Table -->
+                <div class="glass-card p-6">
+                    <h4 class="text-base font-bold mb-3 text-purple-300">জরুরি Contraction তালিকার রেফারেন্স টেবিল</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+                        <div class="glass-subcard p-2">am not ➔ <span class="text-purple-400 font-bold">aren't / ain't</span></div>
+                        <div class="glass-subcard p-2">is not ➔ <span class="text-purple-400 font-bold">isn't</span></div>
+                        <div class="glass-subcard p-2">are not ➔ <span class="text-purple-400 font-bold">aren't</span></div>
+                        <div class="glass-subcard p-2">was not ➔ <span class="text-purple-400 font-bold">wasn't</span></div>
+                        <div class="glass-subcard p-2">were not ➔ <span class="text-purple-400 font-bold">weren't</span></div>
+                        <div class="glass-subcard p-2">do not ➔ <span class="text-purple-400 font-bold">don't</span></div>
+                        <div class="glass-subcard p-2">does not ➔ <span class="text-purple-400 font-bold">doesn't</span></div>
+                        <div class="glass-subcard p-2">did not ➔ <span class="text-purple-400 font-bold">didn't</span></div>
+                        <div class="glass-subcard p-2">will not ➔ <span class="text-purple-400 font-bold">won't</span></div>
+                        <div class="glass-subcard p-2">shall not ➔ <span class="text-purple-400 font-bold">shan't</span></div>
+                        <div class="glass-subcard p-2">can not ➔ <span class="text-purple-400 font-bold">can't</span></div>
+                        <div class="glass-subcard p-2">must not ➔ <span class="text-purple-400 font-bold">mustn't</span></div>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Rules Details -->
+                <div class="glass-card p-6 space-y-4">
+                    <h3 class="text-lg font-bold">ট্যাগ কোশ্চেনের সকল নিয়ম ও এক্সেপশন (বিস্তারিত)</h3>
+
+                    <!-- Rule 1 -->
+                    <div class="glass-subcard p-4">
+                        <h5 class="font-bold text-purple-300 mb-1 text-sm">নিয়ম ১: Indefinite Pronoun (ব্যক্তিবাচক)</h5>
+                        <p class="text-xs sm:text-sm text-slate-300">Everybody, Everyone, Somebody, Someone, Nobody, No one, Neither, Any, Anyone থাকলে Tag-এর Subject হিসেবে **'they'** বসে। এবং 'they' অনুযায়ী Verb Plural হয় (যেমন: don't, aren't, have)।</p>
+                        <p class="font-mono text-xs text-emerald-400 mt-2">উদাহরণ: Everybody loves him, **don't they?** / Nobody believed him, **did they?**</p>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="glass-subcard p-4">
+                        <h5 class="font-bold text-purple-300 mb-1 text-sm">নিয়ম ২: Indefinite Pronoun (বস্তুবাচক)</h5>
+                        <p class="text-xs sm:text-sm text-slate-300">Everything, Something, Anything, Nothing ইত্যাদি বস্তুবাচক Subject থাকলে Tag-এর Subject হিসেবে **'it'** বসে।</p>
+                        <p class="font-mono text-xs text-emerald-400 mt-2">উদাহরণ: Everything was fine, **wasn't it?** / Nothing is impossible, **is it?**</p>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="glass-subcard p-4">
+                        <h5 class="font-bold text-purple-300 mb-1 text-sm">নিয়ম ৩: Semi-negative Words (ছদ্মবেশী না-বোধক শব্দ)</h5>
+                        <p class="text-xs sm:text-sm text-slate-300">Hardly, Scarcely, Barely, Seldom, Few, Little, Never, Rare ইত্যাদি শব্দ বাক্যে থাকলে বাক্যটি Negative হিসেবে গণ্য হয়। তাই Tag হবে **Positive**।</p>
+                        <p class="font-mono text-xs text-emerald-400 mt-2">উদাহরণ: Barking dogs seldom bite, **do they?** / He has little money, **has he? / does he?**</p>
+                    </div>
+
+                    <!-- Rule 4 -->
+                    <div class="glass-subcard p-4">
+                        <h5 class="font-bold text-purple-300 mb-1 text-sm">নিয়ম ৪: Imperative Sentences (আদেশ, উপদেশ, অনুরোধ)</h5>
+                        <p class="text-xs sm:text-sm text-slate-300">• **Let's / Let us** দিয়ে প্রস্তাব বোঝালে Tag হবে $\rightarrow$ <span class="font-bold text-purple-400 font-mono">shall we?</span></p>
+                        <p class="text-xs sm:text-sm text-slate-300">• **Let him / Let her / Let them** ইত্যাদি অনুমতি বোঝালে $\rightarrow$ <span class="font-bold text-purple-400 font-mono">will you?</span></p>
+                        <p class="text-xs sm:text-sm text-slate-300">• সাধারণ Imperative (অনুরোধ/আদেশ/না-বোধক) $\rightarrow$ <span class="font-bold text-purple-400 font-mono">will you? / won't you?</span></p>
+                        <p class="font-mono text-xs text-emerald-400 mt-2">উদাহরণ: Let's do it, **shall we?** / Don't run in the sun, **will you?**</p>
+                    </div>
+
+                    <!-- Rule 5 -->
+                    <div class="glass-subcard p-4">
+                        <h5 class="font-bold text-purple-300 mb-1 text-sm">নিয়ম ৫: Abstract Noun & Emotion ("The mother in her")</h5>
+                        <p class="text-xs sm:text-sm text-slate-300">Subject হিসেবে 'The mother', 'The father', 'The beast' দ্বারা মানবীয় গুণ বা আবেগ বোঝালে Subject হিসেবে **'it'** বসে।</p>
+                        <p class="font-mono text-xs text-emerald-400 mt-2">উদাহরণ: The mother rose in her, **didn't it?**</p>
+                    </div>
+
+                    <!-- Rule 6 -->
+                    <div class="glass-subcard p-4">
+                        <h5 class="font-bold text-purple-300 mb-1 text-sm">নিয়ম ৬: 'I am' এবং Introductory 'There' / 'One'</h5>
+                        <p class="text-xs sm:text-sm text-slate-300">• Positive 'I am' থাকলে Tag হবে $\rightarrow$ <span class="font-bold text-purple-400 font-mono">aren't I?</span> (কিন্তু Negative 'I am not' থাকলে $\rightarrow$ <span class="font-bold text-purple-400 font-mono">am I?</span>)</p>
+                        <p class="text-xs sm:text-sm text-slate-300">• Subject হিসেবে 'There' বা 'One' থাকলে Tag-এর Subject-ও **'there'** বা **'one'** থাকবে।</p>
+                        <p class="font-mono text-xs text-emerald-400 mt-2">উদাহরণ: I am late, **aren't I?** / There is a school here, **isn't there?**</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: 30 Examples -->
+            <div id="tag-examples" class="sec-block hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamically Populated via JS -->
+            </div>
+
+            <!-- Section 3: 30 Practice -->
+            <div id="tag-practice" class="sec-block hidden space-y-4">
+                <!-- Dynamically Populated via JS -->
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- MODULE 3: GROUP VERBS -->
+        <!-- =================================================================== -->
+        <div id="mod-gv" class="module-block hidden">
+            <!-- Section 1: Rules & Exhaustive Repository -->
+            <div id="gv-rules" class="sec-block space-y-6">
+                <!-- Search & Filter Container -->
+                <div class="glass-card p-6">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-pink-300 flex items-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Phrasal Verbs মাস্টার সার্চ রিপোজিটরি
+                            </h3>
+                            <p class="text-xs text-slate-400">৫০+ অতি গুরুত্বপূর্ণ Phrasal Verbs-এর তালিকা থেকে দ্রুত সন্ধান করুন</p>
+                        </div>
+                        <input type="text" id="gv-search-input" onkeyup="filterGroupVerbs()" placeholder="ভার্ব বা অর্থ লিখে খুঁজুন (e.g. Act, Call, দেখা...)" class="w-full sm:w-72 px-4 py-2.5 rounded-xl glass-subcard border border-pink-500/30 text-xs focus:outline-none focus:border-pink-500">
+                    </div>
+
+                    <div id="gv-master-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <!-- Dynamically Populated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: 30 Examples -->
+            <div id="gv-examples" class="sec-block hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamically Populated via JS -->
+            </div>
+
+            <!-- Section 3: 30 Practice -->
+            <div id="gv-practice" class="sec-block hidden space-y-4">
+                <!-- Dynamically Populated via JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript Data & Interactivity Script -->
+    <script>
+        // State Management
+        let currentModule = 'punc';
+        let currentSection = 'rules';
+
+        // Dynamic Theme Handler
+        function setTheme(themeKey, themeLabel) {
+            document.documentElement.setAttribute('data-theme', themeKey);
+            document.getElementById('current-theme-label').innerText = themeLabel;
+            document.getElementById('theme-menu').classList.add('hidden');
+        }
+
+        function toggleThemeMenu() {
+            document.getElementById('theme-menu').classList.toggle('hidden');
+        }
+
+        // Module Switcher
+        function switchModule(modKey) {
+            currentModule = modKey;
+            
+            // Hide all modules
+            document.querySelectorAll('.module-block').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`mod-${modKey}`).classList.remove('hidden');
+
+            // Active tab state
+            document.querySelectorAll('.mod-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`mod-tab-${modKey}`).classList.add('active');
+
+            // Reset section to rules
+            switchSection('rules');
+        }
+
+        // Section Switcher inside module
+        function switchSection(secKey) {
+            currentSection = secKey;
+            const activeModuleEl = document.getElementById(`mod-${currentModule}`);
+            
+            activeModuleEl.querySelectorAll('.sec-block').forEach(el => el.classList.add('hidden'));
+            
+            const targetSec = document.getElementById(`${currentModule}-${secKey}`);
+            if (targetSec) targetSec.classList.remove('hidden');
+
+            document.querySelectorAll('.sec-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`sec-tab-${secKey}`).classList.add('active');
+        }
+
+        // Toggle Answer Reveal with Details
+        function toggleAns(id) {
+            const target = document.getElementById(id);
+            if (target) {
+                target.classList.toggle('hidden');
+            }
+        }
+
+        // DATABASE: Punctuation 30 Examples & 30 Practice
+        const puncData = [
+            { raw: "albert einstein was a great scientist", correct: "Albert Einstein was a great scientist.", exp: "ব্যক্তির নাম (Albert Einstein) Proper Noun হওয়ায় বড় হাতের বর্ণ এবং বাক্য শেষে Full Stop বসেছে।" },
+            { raw: "he said to me why are you crying my child", correct: "He said to me, \"Why are you crying, my child?\"", exp: "Direct Speech কমা ও Quotation Marks-এর ভেতরে রাখা হয়েছে। সম্বোধন পদ 'my child'-এর আগে কমা এবং প্রশ্ন থাকায় Question Mark বসেছে।" },
+            { raw: "dhaka the capital of bangladesh stands on the buriganga", correct: "Dhaka, the capital of Bangladesh, stands on the Buriganga.", exp: "Dhaka, Bangladesh, Buriganga হল Proper Noun। 'the capital of Bangladesh' অংশটি Apposition হওয়ায় কমা দিয়ে পৃথক করা হয়েছে।" },
+            { raw: "what a beautiful scenery it is said she", correct: "\"What a beautiful scenery it is!\" said she.", exp: "বিস্ময়সূচক উক্তিটি Quotation Marks-এর ভেতরে রাখা হয়েছে এবং শেষে Exclamation Mark (!) বসেছে।" },
+            { raw: "may allah bless you my son said the old man", correct: "\"May Allah bless you, my son,\" said the old man.", exp: "Allah এবং বাক্য সূচনায় M বড় হাতের হয়েছে। Reported speech-এর শেষে কমা ও ইনভার্টেড কমা ব্যবহৃত হয়েছে।" },
+            { raw: "i have bought a pen a pencil and an eraser", correct: "I have bought a pen, a pencil, and an eraser.", exp: "একইজাতীয় বস্তুর তালিকায় পদের মাঝে কমা এবং শেষ পদের আগে and বসে।" },
+            { raw: "yes i will attend the meeting on sunday", correct: "Yes, I will attend the meeting on Sunday.", exp: "Yes-এর পর কমা, Pronoun 'I' বড় হাতের এবং বার (Sunday) হওয়ার প্রথম বর্ণ S বড় হাতের হয়েছে।" },
+            { raw: "dr rahman is an m b b s", correct: "Dr. Rahman is an M.B.B.S.", exp: "সংক্ষিপ্ত পদবি Dr. এবং ডিগ্রির সংক্ষিপ্ত রূপ M.B.B.S.-এ ফুলস্টপ ও Capital Letter বসেছে।" },
+            { raw: "you arent going to Chittagong are you", correct: "You aren't going to Chittagong, are you?", exp: "aren't-এ Apostrophe, Chittagong Proper Noun হওয়ায় C বড় হাতের এবং শেষে Question Mark।" },
+            { raw: "the padma the jamuna and the meghna are big rivers", correct: "The Padma, the Jamuna, and the Meghna are big rivers.", exp: "নদীর নাম Proper Noun এবং আর্টিকেল The সহ নদীর নামের প্রথম বর্ণ বড় হাতের হয়।" },
+            { raw: "alas the freedom fighter is no more", correct: "Alas! The freedom fighter is no more.", exp: "Alas ইন্টারজেকশনের পর Exclamation mark (!) এবং পরবর্তী বাক্যের প্রথম বর্ণ T বড় হাতের।" },
+            { raw: "my brother lives in the u s a", correct: "My brother lives in the U.S.A.", exp: "দেশের সংক্ষিপ্ত রূপ U.S.A. বর্ণগুলো Capital Letter এ বসে।" },
+            { raw: "she said i am busy now", correct: "She said, \"I am busy now.\"", exp: "Reporting verb-এর পর কমা এবং উক্তিটি Quotation Marks-এ আবদ্ধ করা হয়েছে।" },
+            { raw: "where do you live my friend asked the stranger", correct: "\"Where do you live, my friend?\" asked the stranger.", exp: "Direct Question-এর জন্য ইনভার্টেড কমার ভেতরে Question Mark বসেছে।" },
+            { raw: "the daily star is a popular bangladeshi newspaper", correct: "The Daily Star is a popular Bangladeshi newspaper.", exp: "পত্রিকার নাম (The Daily Star) ও জাতিগত Adjective (Bangladeshi) Capital Letter হয়।" },
+            { raw: "hurrah we have won the trophy", correct: "Hurrah! We have won the trophy.", exp: "Hurrah-এর পর বিস্ময়সূচক চিহ্ন এবং পরবর্তী বাক্যটি Capital Letter দিয়ে শুরু।" },
+            { raw: "will you meet me on monday or tuesday", correct: "Will you meet me on Monday or Tuesday?", exp: "দিনের নাম (Monday, Tuesday) Proper Noun হওয়ায় বড় হাতের এবং প্রশ্নবোধক বাক্য।" },
+            { raw: "students common room should be spacious", correct: "Students' common room should be spacious.", exp: "Plural Noun-এর সাথে বহুবচনাত্মক মালিকানা বোঝাতে s-এর পর Apostrophe (') বসে।" },
+            { raw: "to err is human to forgive divine", correct: "To err is human; to forgive, divine.", exp: "Conjunction ছাড়া স্বাধীন দুটি ক্লজ যুক্ত করতে Semicolon (;) ও শব্দ লোপ বোঝাতে কমা বসেছে।" },
+            { raw: "rohit said where is my english book", correct: "Rohit said, \"Where is my English book?\"", exp: "ভাষার নাম (English) ও ব্যক্তির নাম Capital এবং ইনভার্টেড কমার ভেতর প্রশ্নচিহ্ন।" },
+            { raw: "shakespeares hamlet is a masterpiece", correct: "Shakespeare's Hamlet is a masterpiece.", exp: "Possessive apostrophe (Shakespeare's) এবং নাটকের নাম (Hamlet) Capital Letter।" },
+            { raw: "the holy quran is read by the muslims", correct: "The Holy Quran is read by the Muslims.", exp: "ধর্মগ্রন্থ (The Holy Quran) এবং ধর্মীয় সম্প্রদায় (Muslims) Capital Letter হয়।" },
+            { raw: "how time flies said the old grandfather", correct: "\"How time flies!\" said the old grandfather.", exp: "বিস্ময়সূচক উক্তি ইনভার্টেড কমার ভেতর ! চিহ্নসহ বসেছে।" },
+            { raw: "if you study hard you will pass the exam", correct: "If you study hard, you will pass the exam.", exp: "Subordinate clause (If...) বাক্যের শুরুতে থাকলে পরে কমা বসে।" },
+            { raw: "he is honest poor and kind-hearted", correct: "He is honest, poor, and kind-hearted.", exp: "একাধিক Adjective-এর মাঝে কমা এবং Compound Word-এ Hyphen (-) ব্যবহৃত হয়েছে।" },
+            { raw: "prof kabir gave a lecture on history", correct: "Prof. Kabir gave a lecture on History.", exp: "সংক্ষিপ্ত পদবি Prof. এবং ব্যক্তির নাম Kabir Capital Letter।" },
+            { raw: "we read english and french in college", correct: "We read English and French in college.", exp: "ভাষার নামগুলো (English, French) সবসময় Capital Letter দিয়ে শুরু হয়।" },
+            { raw: "no i cannot support this proposal", correct: "No, I cannot support this proposal.", exp: "No-এর পর কমা এবং একা বসা Pronoun 'I' Capital Letter হয়।" },
+            { raw: "the captain said march on soldiers", correct: "The captain said, \"March on, soldiers.\"", exp: "সম্বোধন পদ soldiers-এর আগে কমা ও ইনভার্টেড কমা ব্যবহার করা হয়েছে।" },
+            { raw: "happy new year to all of you", correct: "Happy New Year to all of you!", exp: "উৎসবের শুভকামনা ও শুভেচ্ছা বাক্যের শেষে Exclamation Mark বসে।" }
+        ];
+
+        // DATABASE: Tag Questions 30 Examples & 30 Practice
+        const tagData = [
+            { q: "He is a brilliant student,", ans: "isn't he?", exp: "Sentence-টি Positive Present Continuous/Simple tense-এ আছে, তাই Tag হবে Negative (isn't he)।" },
+            { q: "They played very well yesterday,", ans: "didn't they?", exp: "Sentence-টি Past Indefinite Tense-এ আছে। Auxiliary verb 'did' ধরে Negative Tag 'didn't they' হয়েছে।" },
+            { q: "I am ready for the examination,", ans: "aren't I?", exp: "Positive 'I am'-এর ক্ষেত্র ট্যাগ কোশ্চেনে 'aren't I' অথবা 'ain't I' বসে।" },
+            { q: "Let's arrange a grand picnic,", ans: "shall we?", exp: "Let's বা Let us দিয়ে প্রস্তাব বোঝালে Tag Question সবসময় 'shall we?' হয়।" },
+            { q: "Open the window immediately,", ans: "will you?", exp: "অনুরোধ/আদেশসূচক Imperative Sentence-এ Tag হবে 'will you?' বা 'won't you?'।" },
+            { q: "Don't make a noise in the class,", ans: "will you?", exp: "না-বোধক Imperative Sentence-এ ট্যাগ কোশ্চেন সবসময় 'will you?' হয়।" },
+            { q: "Everybody respects an honest man,", ans: "don't they?", exp: "Everybody-এর বদলে Tag-এ Subject 'they' বসে। 'they' plural হওয়ায় Verb 'don't' ব্যবহৃত হয়েছে।" },
+            { q: "Nobody came to help the poor boy,", ans: "did they?", exp: "Nobody শব্দটি না-বোধক এবং Subject 'they' হয়। তাই Tag হবে Positive 'did they?'।" },
+            { q: "A barking dog seldom bites,", ans: "does it?", exp: "Seldom শব্দটি Semi-negative শব্দ। তাই ট্যাগ হবে Positive। কুকুরের Pronoun 'it'।" },
+            { q: "Nothing is impossible in this world,", ans: "is it?", exp: "Nothing বস্তুনিরপেক্ষ না-বোধক শব্দ। Subject হিসেবে 'it' বসে এবং Tag Positive হয়।" },
+            { q: "There is a high school in our village,", ans: "isn't there?", exp: "Introductory 'There' বাক্যের Subject হলে Tag-এর Subject-ও 'there' বসে।" },
+            { q: "She wrote an excellent essay,", ans: "didn't she?", exp: "Past Indefinite Tense। Auxiliary verb হিসেবে did এবং Negative Tag 'didn't she'." },
+            { q: "You hardly know my elder brother,", ans: "do you?", exp: "Hardly শব্দটি না-বোধক অর্থ প্রকাশ করে। তাই Tag হবে Positive 'do you?'।" },
+            { q: "Let him solve the difficult math,", ans: "will you?", exp: "Let-এর পর me/him/them থাকলে প্রস্তাব না বুঝিয়ে অনুমতি বোঝায়, তাই Tag হবে 'will you?'।" },
+            { q: "Neither of the boys attended the class,", ans: "did they?", exp: "Neither না-বোধক শব্দ এবং ছেলেদের বোঝাতে Subject 'they' বসে। Tag হবে Positive 'did they?'।" },
+            { q: "We ought to love our country,", ans: "oughtn't we?", exp: "Modal Auxiliary 'ought to' থাকলে Tag-এ 'oughtn't we?' বসে।" },
+            { q: "He has little knowledge about physics,", ans: "has he? / does he?", exp: "Little শব্দটি না-বোধক। তাই Tag হবে Positive।" },
+            { q: "Everything looks very bright today,", ans: "doesn't it?", exp: "Everything-এর বদলে Subject 'it' বসে। Present Indefinite হওয়ায় 'doesn't it'।" },
+            { q: "One should perform one's duties,", ans: "shouldn't one?", exp: "Subject 'One' থাকলে Tag-এর Subject-ও 'one' থাকবে।" },
+            { q: "How sweetly the nightingale sings,", ans: "doesn't it?", exp: "Exclamatory sentence-কে মনে মনে Assertive ভেবে (The bird sings sweetly) Tag 'doesn't it' করা হয়।" },
+            { q: "What a tragic sight it was,", ans: "wasn't it?", exp: "Subject 'it' এবং Verb 'was' থাকায় Tag হবে 'wasn't it?'।" },
+            { q: "He has to work hard to succeed,", ans: "doesn't he?", exp: "Have to / Has to সাধারণ Verb-এর মতো কাজ করে, তাই Present Indefinite অনুযায়ী 'doesn't he'." },
+            { q: "Let's discuss the core problem,", ans: "shall we?", exp: "Let's থাকার কারণে নিয়ম অনুযায়ী 'shall we?' বসেছে।" },
+            { q: "He used to swim in the river daily,", ans: "didn't he? / usedn't he?", exp: "Used to অতীতের অভ্যাস বোঝায়, তাই Past Indefinite হিসেবে 'didn't he' গ্রহণীয়।" },
+            { q: "Please sit down and remain quiet,", ans: "will you?", exp: "Imperative sentence-এ বিনম্র অনুরোধ বোঝাতে 'will you?' ব্যবহৃত হয়।" },
+            { q: "The mother rose in her seeing the child,", ans: "didn't it?", exp: "The mother দ্বারা মাতৃত্ব (আবেগ) বোঝানো হয়েছে, তাই Subject 'it' হবে।" },
+            { q: "Who cares about a liar,", ans: "do they?", exp: "Who cares মানে Nobody cares (কেউ পরোয়া করে না)। না-বোধক অর্থে Tag হবে 'do they?'।" },
+            { q: "Fie! You are such a coward,", ans: "aren't you?", exp: "মূল Clause হল 'You are such a coward', তাই Tag হবে 'aren't you?'।" },
+            { q: "Birds fly freely in the blue sky,", ans: "don't they?", exp: "Birds (Plural Subject) এবং Present Indefinite Tense থাকায় Tag 'don't they'।" },
+            { q: "Fish can swim in water,", ans: "can't they?", exp: "Modal auxiliary 'can' থাকার কারণে Tag হবে 'can't they?'।" }
+        ];
+
+        // DATABASE: Group Verbs Master List (50+)
+        const groupVerbsDatabase = [
+            { v: "Act on/upon", m: "ক্ষতি করা / প্রভাব ফেলা", ex: "Hard work acting on his health." },
+            { v: "Bear out", m: "সমর্থন বা প্রমাণ করা", ex: "His evidence bears out the truth." },
+            { v: "Break down", m: "বিকল হওয়া / ভেঙে পড়া", ex: "The car broke down on the highway." },
+            { v: "Break out", m: "প্রাদুর্ভাব ঘটা (রোগ/আগুন)", ex: "Cholera broke out in the village." },
+            { v: "Bring up", m: "লালন-পালন করা", ex: "She was brought up by her aunt." },
+            { v: "Call in", m: "ডাক্তার বা বিশেষজ্ঞ ডাকা", ex: "Please call in a doctor immediately." },
+            { v: "Call off", m: "বাতিল বা প্রত্যাহার করা", ex: "The strike was called off." },
+            { v: "Carry out", m: "আদেশ পালন করা", ex: "You must carry out my orders." },
+            { v: "Come across", m: "হঠাৎ দেখা পাওয়া", ex: "I came across an old friend yesterday." },
+            { v: "Cut down", m: "কমানো বা ছাঁটাই করা", ex: "Try to cut down your daily expenses." },
+            { v: "Deal in", m: "ব্যবসা করা", ex: "He deals in rice and sugar." },
+            { v: "Deal with", m: "ব্যবহার বা আচরণ করা", ex: "He deals well with his customers." },
+            { v: "Do away with", m: "বিলোপ করা / দূর করা", ex: "We should do away with bad habits." },
+            { v: "Fall out", m: "ঝগড়া করা", ex: "Don't fall out with your friends." },
+            { v: "Get along", m: "সদ্ভাব থাকা", ex: "They get along very well." },
+            { v: "Give up", m: "ত্যাগ করা", ex: "Give up bad habits." },
+            { v: "Give in", m: "বশ্যতা স্বীকার করা", ex: "The enemy at last gave in." },
+            { v: "Go through", m: "মনোযোগ দিয়ে পড়া", ex: "Go through the article carefully." },
+            { v: "Look after", m: "দেখাLine/যত্ন নেওয়া", ex: "She looks after her elderly parents." },
+            { v: "Look for", m: "খোঁজা", ex: "I am looking for my missing keys." },
+            { v: "Look into", m: "তদন্ত করা", ex: "The police are looking into the case." },
+            { v: "Look down upon", m: "ঘৃণা করা / অবজ্ঞা করা", ex: "Do not look down upon the poor." },
+            { v: "Pass away", m: "মারা যাওয়া", ex: "The old man passed away last night." },
+            { v: "Put off", m: "স্থগিত রাখা", ex: "Never put off till tomorrow what you can do today." },
+            { v: "Put on", m: "পরিধান করা", ex: "Put on your new shirt." },
+            { v: "Put out", m: "আগুন নেভানো", ex: "Put out the candle." },
+            { v: "Put up with", m: "সহ্য করা", ex: "I cannot put up with such insolence." },
+            { v: "Run over", m: "গাড়ি চাপা পড়া", ex: "The dog was run over by a speeding car." },
+            { v: "Run out of", m: "ফুরিয়ে যাওয়া", ex: "We have run out of fuel." },
+            { v: "Set out", m: "যাত্রা শুরু করা", ex: "They set out for London early morning." },
+            { v: "Stand by", m: "পাশে দাঁড়ানো / সমর্থন দেওয়া", ex: "I will always stand by you in danger." },
+            { v: "Take after", m: "একই রকম দেখতে হওয়া (সদৃশ)", ex: "The girl takes after her mother." },
+            { v: "Take off", m: "কাপড় খোলা / বিমান উড্ডয়ন", ex: "The plane took off on time." },
+            { v: "Turn down", m: "প্রত্যাখ্যান করা", ex: "He turned down my proposal." },
+            { v: "Turn on/off", m: "চালু বা বন্ধ করা", ex: "Turn off the gas stove." },
+            { v: "Work out", m: "সমাধান করা", ex: "He worked out the difficult sum easily." }
+        ];
+
+        // Filter Function for Group Verbs
+        function filterGroupVerbs() {
+            const query = document.getElementById('gv-search-input').value.toLowerCase();
+            const grid = document.getElementById('gv-master-grid');
+            grid.innerHTML = '';
+
+            const filtered = groupVerbsDatabase.filter(item => 
+                item.v.toLowerCase().includes(query) || item.m.toLowerCase().includes(query)
+            );
+
+            filtered.forEach(item => {
+                grid.innerHTML += `
+                    <div class="glass-subcard p-3 border border-pink-500/20 text-xs hover:border-pink-500/50 transition-all">
+                        <div class="flex items-center justify-between font-bold text-pink-300 mb-1">
+                            <span>${item.v}</span>
+                            <span class="text-[10px] opacity-70 bg-pink-500/20 px-2 py-0.5 rounded">Phrasal</span>
+                        </div>
+                        <p class="text-slate-300 mb-1"><strong>অর্থ:</strong> ${item.m}</p>
+                        <p class="text-emerald-400 font-mono text-[11px]">Ex: ${item.ex}</p>
+                    </div>
+                `;
+            });
+        }
+
+        // Initialize Dynamic Renders
+        window.onload = function() {
+            // Render Punctuation Examples & Practice
+            const puncExEl = document.getElementById('punc-examples');
+            const puncPracEl = document.getElementById('punc-practice');
+
+            puncData.forEach((item, index) => {
+                // Example Item
+                puncExEl.innerHTML += `
+                    <div class="glass-subcard p-4 hover:border-indigo-500/40 transition-all">
+                        <span class="badge-custom text-[10px] font-bold px-2 py-0.5 rounded">উদাহরণ ${index + 1}</span>
+                        <p class="text-xs text-slate-400 mt-2"><strong>র' বাক্য:</strong> ${item.raw}</p>
+                        <p class="text-xs sm:text-sm font-semibold text-emerald-400 mt-1"><strong>সঠিক রূপ:</strong> ${item.correct}</p>
+                    </div>
+                `;
+
+                // Practice Item
+                puncPracEl.innerHTML += `
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="badge-custom text-[11px] font-bold px-2.5 py-1 rounded-full">অনুশীলনী ${index + 1}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-mono bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-slate-200 mb-3">${item.raw}</p>
+                        <button onclick="toggleAns('punc-ans-${index}')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold text-white transition-all flex items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-eye"></i> সঠিক উত্তর ও বিস্তারিত ব্যাখ্যা দেখুন
+                        </button>
+                        <div id="punc-ans-${index}" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-200 text-xs sm:text-sm space-y-1">
+                            <p><strong>সঠিক বাক্য:</strong> <span class="font-mono text-emerald-300">${item.correct}</span></p>
+                            <p class="text-slate-300 mt-1"><strong>বিস্তারিত ব্যাখ্যা:</strong> ${item.exp}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Render Tag Examples & Practice
+            const tagExEl = document.getElementById('tag-examples');
+            const tagPracEl = document.getElementById('tag-practice');
+
+            tagData.forEach((item, index) => {
+                tagExEl.innerHTML += `
+                    <div class="glass-subcard p-4 hover:border-purple-500/40 transition-all">
+                        <span class="badge-custom text-[10px] font-bold px-2 py-0.5 rounded">উদাহরণ ${index + 1}</span>
+                        <p class="text-xs sm:text-sm text-slate-200 mt-2">${item.q} <strong class="text-purple-400 font-mono">${item.ans}</strong></p>
+                    </div>
+                `;
+
+                tagPracEl.innerHTML += `
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="badge-custom text-[11px] font-bold px-2.5 py-1 rounded-full">অনুশীলনী ${index + 1}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-200 mb-3">${item.q} <span class="border-b-2 border-purple-400 px-4 font-bold text-purple-400">?</span></p>
+                        <button onclick="toggleAns('tag-ans-${index}')" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-xs font-semibold text-white transition-all flex items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-eye"></i> সঠিক উত্তর ও বিস্তারিত ব্যাখ্যা দেখুন
+                        </button>
+                        <div id="tag-ans-${index}" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-200 text-xs sm:text-sm space-y-1">
+                            <p><strong>সঠিক Tag Question:</strong> <span class="font-mono text-emerald-300">${item.ans}</span></p>
+                            <p class="text-slate-300 mt-1"><strong>বিস্তারিত ব্যাখ্যা:</strong> ${item.exp}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Initial Render of Group Verbs Grid
+            filterGroupVerbs();
+
+            // Render Group Verbs Examples & Practice
+            const gvExEl = document.getElementById('gv-examples');
+            const gvPracEl = document.getElementById('gv-practice');
+
+            groupVerbsDatabase.slice(0, 30).forEach((item, index) => {
+                gvExEl.innerHTML += `
+                    <div class="glass-subcard p-4 hover:border-pink-500/40 transition-all">
+                        <span class="badge-custom text-[10px] font-bold px-2 py-0.5 rounded">${item.v}</span>
+                        <p class="text-xs text-slate-300 mt-2"><strong>অর্থ:</strong> ${item.m}</p>
+                        <p class="text-xs font-mono text-emerald-400 mt-1">Example: ${item.ex}</p>
+                    </div>
+                `;
+
+                gvPracEl.innerHTML += `
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="badge-custom text-[11px] font-bold px-2.5 py-1 rounded-full">অনুশীলনী ${index + 1}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-200 mb-3">Fill in the blank with appropriate phrasal verb (অর্থ: ${item.m}): <br> <span class="font-mono text-pink-300">"The authority decided to ________ the matter."</span></p>
+                        <button onclick="toggleAns('gv-ans-${index}')" class="px-4 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-xs font-semibold text-white transition-all flex items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-eye"></i> সঠিক উত্তর ও বিস্তারিত ব্যাখ্যা দেখুন
+                        </button>
+                        <div id="gv-ans-${index}" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-200 text-xs sm:text-sm space-y-1">
+                            <p><strong>সঠিক Group Verb:</strong> <span class="font-mono text-emerald-300">${item.v}</span></p>
+                            <p class="text-slate-300 mt-1"><strong>বিস্তারিত ব্যাখ্যা:</strong> '${item.m}' অর্থ প্রকাশ করতে সঠিক Phrasal Verb হিসেবে '${item.v}' ব্যবহৃত হয়।</p>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+    </script>
+</body>
+</html>
