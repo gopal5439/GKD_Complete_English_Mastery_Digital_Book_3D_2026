@@ -203,8 +203,8 @@
 
                 <div>
                     <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">গুগল ড্রাইভ পিডিএফ লিংক (Google Drive URL)</label>
-                    <input type="url" id="inputDriveUrl" required placeholder="https://drive.google.com/file/d/..." class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500">
-                    <p class="text-[10px] text-slate-400 mt-1">গুগল ড্রাইভে ফাইল লিংক 'Anyone with the link' মুডে সেভ করে পেস্ট করুন।</p>
+                    <input type="url" id="inputDriveUrl" placeholder="https://drive.google.com/file/d/..." class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    <p class="text-[10px] text-slate-400 mt-1">ফাঁка রাখতে চাইলে খালি রাখুন। লিংক দিলে সেটি প্রিভিউ মোডে সেভ হবে।</p>
                 </div>
 
                 <div>
@@ -246,45 +246,45 @@
                         id: 'class-1',
                         name: 'প্রথম শ্রেণী (Class 1)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'প্রথম সাময়িক ও বার্ষিক সাজেশন' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Alphabet & Word Sheet' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'প্রাথমিক গণনা ও ছবি দেখে অংক' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'প্রথম সাময়িক ও বার্ষিক সাজেশন' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Alphabet & Word Sheet' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'প্রাথমিক গণনা ও ছবি দেখে অংক' }
                         ]
                     },
                     {
                         id: 'class-2',
                         name: 'দ্বিতীয় শ্রেণী (Class 2)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'শব্দার্থ ও বাক্য গঠন' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Rhymes & Reading Note' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'যোগ ও বিয়োগ কুইজ শিট' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'শব্দার্থ ও বাক্য গঠন' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Rhymes & Reading Note' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'যোগ ও বিয়োগ কুইজ শিট' }
                         ]
                     },
                     {
                         id: 'class-3',
                         name: 'তৃতীয় শ্রেণী (Class 3)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'প্রশ্নোত্তর ও অনুচ্ছেদ' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Model Question Paper' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'গুণ ও ভাগ শেখার সহজ উপায়' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'প্রশ্নোত্তর ও অনুচ্ছেদ' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Model Question Paper' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'গুণ ও ভাগ শেখার সহজ উপায়' }
                         ]
                     },
                     {
                         id: 'class-4',
                         name: 'চতুর্থ শ্রেণী (Class 4)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'ব্যাকরণ ও রচনার নোট' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Grammar & Paragraph Sheet' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'ভগ্নাংশ ও জ্যামিতির বেসিক' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'ব্যাকরণ ও রচনার নোট' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Grammar & Paragraph Sheet' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'ভগ্নাংশ ও জ্যামিতির বেসিক' }
                         ]
                     },
                     {
                         id: 'class-5',
                         name: 'পঞ্চম শ্রেণী (Class 5)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'প্রাথমিক সমাপনী মডেল টেস্ট' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Unseen Passage & Composition' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'অধ্যায়ভিত্তিক ১০০% কমন প্রশ্ন' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'প্রাথমিক সমাপনী মডেল টেস্ট' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Unseen Passage & Composition' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'অধ্যায়ভিত্তিক ১০০% কমন প্রশ্ন' }
                         ]
                     }
                 ]
@@ -302,27 +302,27 @@
                         id: 'class-6',
                         name: 'ষষ্ঠ শ্রেণী (Class 6)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'নতুন কারিকুলাম অভিজ্ঞতা ভিত্তিক নোট' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'English Activity Guide' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'অনুশীলনী ও সমাধান PDF' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'নতুন কারিকুলাম অভিজ্ঞতা ভিত্তিক নোট' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'English Activity Guide' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'অনুশীলনী ও সমাধান PDF' }
                         ]
                     },
                     {
                         id: 'class-7',
                         name: 'সপ্তম শ্রেণী (Class 7)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'সাহিত্য ও ব্যাকরণ প্রস্তুতি' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Writing Part All in One' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'বীজগণিত ও জ্যামিতির সহজ শিট' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'সাহিত্য ও ব্যাকরণ প্রস্তুতি' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Writing Part All in One' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'বীজগণিত ও জ্যামিতির সহজ শিট' }
                         ]
                     },
                     {
                         id: 'class-8',
                         name: 'অষ্টম শ্রেণী (Class 8)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'ফাইনাল মডেল টেস্ট ও সাজেশন' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Grammar Focus & Writing' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'বোর্ড প্রশ্ন সমাধান শিট' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'ফাইনাল মডেল টেস্ট ও সাজেশন' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Grammar Focus & Writing' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'বোর্ড প্রশ্ন সমাধান শিট' }
                         ]
                     }
                 ]
@@ -340,27 +340,27 @@
                         id: 'class-9',
                         name: 'নবম শ্রেণী (Class 9)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: '১ম ও ২য় পত্র একসাথে' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Grammar & Writing Bank' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'সৃজনশীল প্রশ্ন ও উত্তর' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: '১ম ও ২য় পত্র একসাথে' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Grammar & Writing Bank' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'সৃজনশীল প্রশ্ন ও উত্তর' }
                         ]
                     },
                     {
                         id: 'class-10',
                         name: 'দশম শ্রেণী (Class 10)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'প্রাক-নির্বাচনী পরীক্ষার প্রস্তুতি' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Top 10 Paragraph & Dialogue' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'বীজগণিত ও ত্রিকোণমিতি শর্টকাট' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'প্রাক-নির্বাচনী পরীক্ষার প্রস্তুতি' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'Top 10 Paragraph & Dialogue' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'বীজগণিত ও ত্রিকোণমিতি শর্টকাট' }
                         ]
                     },
                     {
                         id: 'ssc-special',
                         name: 'SSC চূড়ান্ত পরীক্ষার্থী (SSC Special)',
                         subjects: [                                                        
-                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'এসএসসি ১০০% নিশ্চিত কমন সাজেশন' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com/uc?export=download&id=1ljyP5bj8gd87F5W12ZSxuICHu-0bt6pZ', note: 'SSC 2027 Suggestion' },
-                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'এসএসসি বোর্ড সমাধান সাজেশন্স' }
+                            { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: '', note: 'এসএসসি ১০০% নিশ্চিত কমন সাজেশন' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: '', note: 'SSC 2027 Suggestion' },
+                            { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: '', note: 'এসএসসি বোর্ড সমাধান সাজেশন্স' }
                         ]
                     }
                 ]
@@ -378,27 +378,27 @@
                         id: 'hsc-1st',
                         name: 'একাদশ শ্রেণী (HSC 1st Year)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা ১ম ও ২য় পত্র', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'গদ্য ও পদ্যের মূলভাব ও প্রশ্ন' },
-                            { id: 'english', name: 'ইংরেজি ১ম ও ২য় পত্র', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'HSC First Year Passage Sheet' },
-                            { id: 'math', name: 'উচ্চতর গণিত ১ম পত্র', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'ম্যাট্রিক্স, নির্ণায়ক ও ক্যালকুলাস' }
+                            { id: 'bangla', name: 'বাংলা ১ম ও ২য় পত্র', icon: 'fa-book-open', driveLink: '', note: 'গদ্য ও পদ্যের মূলভাব ও প্রশ্ন' },
+                            { id: 'english', name: 'ইংরেজি ১ম ও ২য় পত্র', icon: 'fa-font', driveLink: '', note: 'HSC First Year Passage Sheet' },
+                            { id: 'math', name: 'উচ্চতর গণিত ১ম পত্র', icon: 'fa-calculator', driveLink: '', note: 'ম্যাট্রিক্স, নির্ণায়ক ও ক্যালকুলাস' }
                         ]
                     },
                     {
                         id: 'hsc-2nd',
                         name: 'দ্বাদশ শ্রেণী (HSC 2nd Year)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা ব্যাকরণ ও নির্মিতি', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'নির্বাচনী পরীক্ষার সেরা নোট' },
-                            { id: 'english', name: 'ইংরেজি Grammar & Writing', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'Formal Letter & Essay Sheet' },
-                            { id: 'math', name: 'উচ্চতর গণিত ২য় পত্র', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'জটিল সংখ্যা ও বলবিদ্যা নোট' }
+                            { id: 'bangla', name: 'বাংলা ব্যাকরণ ও নির্মিতি', icon: 'fa-book-open', driveLink: '', note: 'নির্বাচনী পরীক্ষার সেরা নোট' },
+                            { id: 'english', name: 'ইংরেজি Grammar & Writing', icon: 'fa-font', driveLink: '', note: 'Formal Letter & Essay Sheet' },
+                            { id: 'math', name: 'উচ্চতর গণিত ২য় পত্র', icon: 'fa-calculator', driveLink: '', note: 'জটিল সংখ্যা ও বলবিদ্যা নোট' }
                         ]
                     },
                     {
                         id: 'hsc-special',
                         name: 'HSC পরীক্ষা বিশেষ (HSC Exam Special)',
                         subjects: [
-                            { id: 'bangla', name: 'বাংলা চূড়ান্ত সুপার সাজেশন', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'এইচএসসি ফাইনাল রিভিশন শিট' },
-                            { id: 'english', name: 'ইংরেজি নিশ্চিত নম্বর সাজেশন', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'HSC Target A+ Guide' },
-                            { id: 'math', name: 'উচ্চতর গণিত A+ সিক্রেট নোট', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'বোর্ড CQ ও MCQ সমাধান' }
+                            { id: 'bangla', name: 'বাংলা চূড়ান্ত সুপার সাজেশন', icon: 'fa-book-open', driveLink: '', note: 'এইচএসসি ফাইনাল রিভিশন শিট' },
+                            { id: 'english', name: 'ইংরেজি নিশ্চিত নম্বর সাজেশন', icon: 'fa-font', driveLink: 'HSC Target A+ Guide' },
+                            { id: 'math', name: 'উচ্চতর গণিত A+ সিক্রেট নোট', icon: 'fa-calculator', driveLink: '', note: 'বোর্ড CQ ও MCQ সমাধান' }
                         ]
                     }
                 ]
@@ -429,6 +429,8 @@
                         cls.subjects.forEach(subject => {
                             if (links && links[subject.id]) {
                                 subject.driveLink = formatToPreviewLink(links[subject.id]);
+                            } else {
+                                subject.driveLink = ""; // লিংক না থাকলে ব্ল্যাঙ্ক রাখবে
                             }
                         });
                     });
@@ -460,8 +462,7 @@
             const rawLink = document.getElementById('inputDriveUrl').value.trim();
             const newNote = document.getElementById('inputNote').value.trim();
 
-            // যেকোনো ড্রাইভ লিংককে স্বয়ংক্রিয়ভাবে প্রিভিউ লিংকে কনভার্ট করা
-            const formattedLink = formatToPreviewLink(rawLink);
+            const formattedLink = rawLink ? formatToPreviewLink(rawLink) : "";
 
             const stage = curriculumData.find(s => s.id === stageId);
             const cls = stage ? stage.classes.find(c => c.id === classId) : null;
@@ -481,7 +482,7 @@
                             driveLink: formattedLink
                         })
                     });
-                    showToast('লিংক প্রিভিউ মোডে সফলভাবে সেভ ও আপডেট হয়েছে!');
+                    showToast('লিংক সফলভাবে সেভ ও আপডেট হয়েছে!');
                 } catch (err) {
                     showToast('গুগল শিটে সেভ করতে সমস্যা হয়েছে!');
                 }
@@ -697,6 +698,8 @@
             `;
 
             cls.subjects.forEach(sub => {
+                const hasLink = sub.driveLink && sub.driveLink.trim() !== "";
+
                 html += `
                     <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border-t-4 border-t-sky-500 relative group">
                         <div>
@@ -733,15 +736,21 @@
                         </div>
 
                         <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center gap-2">
-                            <a href="${sub.driveLink}" target="_blank" rel="noopener noreferrer" 
-                               class="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs flex items-center justify-center gap-2 transition shadow-sm">
-                                <i class="fa-brands fa-google-drive text-sm"></i>
-                                <span>ডাউনলোড / দেখুন</span>
-                            </a>
-
-                            <button onclick="copyLink('${sub.driveLink}')" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition" title="লিংক কপি">
-                                <i class="fa-regular fa-copy"></i>
-                            </button>
+                            ${hasLink ? `
+                                <a href="${sub.driveLink}" target="_blank" rel="noopener noreferrer" 
+                                   class="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs flex items-center justify-center gap-2 transition shadow-sm">
+                                    <i class="fa-brands fa-google-drive text-sm"></i>
+                                    <span>ডাউনলোড / দেখুন</span>
+                                </a>
+                                <button onclick="copyLink('${sub.driveLink}')" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition" title="লিংক কপি">
+                                    <i class="fa-regular fa-copy"></i>
+                                </button>
+                            ` : `
+                                <button disabled class="flex-1 py-2.5 px-3 rounded-xl bg-slate-300 dark:bg-slate-800 text-slate-500 dark:text-slate-500 font-medium text-xs flex items-center justify-center gap-2 cursor-not-allowed">
+                                    <i class="fa-solid fa-ban text-sm"></i>
+                                    <span>লিংক যুক্ত করা হয়নি</span>
+                                </button>
+                            `}
                         </div>
                     </div>
                 `;
@@ -822,6 +831,8 @@
             let html = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">`;
 
             results.forEach(res => {
+                const hasLink = res.subject.driveLink && res.subject.driveLink.trim() !== "";
+
                 html += `
                     <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border-t-4 border-t-sky-500">
                         <div>
@@ -843,10 +854,16 @@
                         </div>
 
                         <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center gap-2">
-                            <a href="${res.subject.driveLink}" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs flex items-center justify-center gap-2 transition">
-                                <i class="fa-brands fa-google-drive"></i>
-                                <span>সরাসরি দেখুন</span>
-                            </a>
+                            ${hasLink ? `
+                                <a href="${res.subject.driveLink}" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs flex items-center justify-center gap-2 transition">
+                                    <i class="fa-brands fa-google-drive"></i>
+                                    <span>সরাসরি দেখুন</span>
+                                </a>
+                            ` : `
+                                <button disabled class="flex-1 py-2 px-3 rounded-xl bg-slate-300 dark:bg-slate-800 text-slate-500 text-xs font-medium cursor-not-allowed">
+                                    <span>লিংক নেই</span>
+                                </button>
+                            `}
                             <button onclick="navigateTo('${res.stageId}', '${res.classId}')" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs hover:bg-slate-200 transition" title="ক্লাসে যান">
                                 <i class="fa-solid fa-arrow-right"></i>
                             </button>
@@ -871,7 +888,7 @@
             document.getElementById('editSubjectId').value = subjectId;
 
             document.getElementById('modalSubTitle').textContent = `${cls.name} • ${sub.name}`;
-            document.getElementById('inputDriveUrl').value = sub.driveLink;
+            document.getElementById('inputDriveUrl').value = sub.driveLink || '';
             document.getElementById('inputNote').value = sub.note || '';
 
             const modal = document.getElementById('linkModal');
@@ -886,6 +903,7 @@
         }
 
         function copyLink(url) {
+            if (!url) return;
             const dummy = document.createElement('input');
             document.body.appendChild(dummy);
             dummy.value = url;
