@@ -359,7 +359,7 @@
                         name: 'SSC চূড়ান্ত পরীক্ষার্থী (SSC Special)',
                         subjects: [                                                        
                             { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'এসএসসি ১০০% নিশ্চিত কমন সাজেশন' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'https://drive.google.com/uc?export=download&id=1ljyP5bj8gd87F5W12ZSxuICHu-0bt6pZ' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com/uc?export=download&id=1ljyP5bj8gd87F5W12ZSxuICHu-0bt6pZ', note: 'SSC 2027 Suggestion' },
                             { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'এসএসসি বোর্ড সমাধান সাজেশন্স' }
                         ]
                     }
@@ -405,7 +405,6 @@
             }
         ];
 
-        // State Machine Storage variables
         let curriculumData = JSON.parse(JSON.stringify(DEFAULT_CURRICULUM_DATA));
         let currentStageId = null;
         let currentClassId = null;
@@ -414,19 +413,17 @@
         // Google Sheet Web App URL
         const GOOGLE_SHEET_API = "https://script.google.com/macros/s/AKfycbwwsFhvFcaZ2oLhoK12Oj908vi7cdRbZxFun5blYUwpdnrrTM1xQK_B5giyZtKrYFy_/exec";
 
-        // Initialize App Engine
         document.addEventListener('DOMContentLoaded', () => {
             loadTheme();
             loadDriveLinksFromSheet();
         });
 
-        // ১. পেজ লোড হলে Google Sheet থেকে সব লিংক নিয়ে আসা
+        // Google Sheet থেকে লিংক ফেচ করা
         async function loadDriveLinksFromSheet() {
             try {
                 const res = await fetch(GOOGLE_SHEET_API);
                 const links = await res.json();
                 
-                // বিষয়গুলোর লিংক আপডেট করা
                 curriculumData.forEach(stage => {
                     stage.classes.forEach(cls => {
                         cls.subjects.forEach(subject => {
@@ -443,7 +440,7 @@
             }
         }
 
-        // ২. "✏️ লিংক পরিবর্তন" বাটনে ক্লিক করে নতুন লিংক সেভ করার ফাংশন
+        // "✏️ লিংক পরিবর্তন" বাটন থেকে ডাটা Google Sheet-এ সেভ করা
         async function saveSubjectDriveLink(event) {
             event.preventDefault();
 
@@ -461,6 +458,8 @@
                 sub.driveLink = newLink;
                 sub.note = newNote;
                 
+                showToast('অনলাইন ডেটাবেসে আপডেট হচ্ছে...', 'info');
+
                 try {
                     await fetch(GOOGLE_SHEET_API, {
                         method: "POST",
@@ -471,7 +470,7 @@
                     });
                     showToast('লিংক সফলভাবে সেভ হয়েছে এবং সবার জন্য আপডেট হয়ে গেছে!');
                 } catch (err) {
-                    showToast('অনলাইন সিঙ্কে সমস্যা হয়েছে, তবে লোকালি আপডেট হয়েছে।');
+                    showToast('গুগল শিটে সেভ করতে সমস্যা হয়েছে!');
                 }
 
                 closeLinkModal();
@@ -528,7 +527,6 @@
             }
         }
 
-        // Breadcrumb Trail Navigation Engine
         function renderBreadcrumb() {
             const nav = document.getElementById('breadcrumbNav');
             let html = `
@@ -570,7 +568,6 @@
             nav.innerHTML = html;
         }
 
-        // Dynamic Header Banner Text Switcher
         function renderHeaderBanner() {
             const title = document.getElementById('bannerTitle');
             const sub = document.getElementById('bannerSubtitle');
@@ -590,7 +587,6 @@
             }
         }
 
-        // 1. STAGES LEVEL VIEW
         function renderStagesView(container) {
             let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">`;
 
@@ -627,7 +623,6 @@
             container.innerHTML = html;
         }
 
-        // 2. CLASSES LEVEL VIEW
         function renderClassesView(container) {
             const stage = curriculumData.find(s => s.id === currentStageId);
             if (!stage) return;
@@ -670,7 +665,6 @@
             container.innerHTML = html;
         }
 
-        // 3. SUBJECTS LEVEL VIEW (Final Drive Links Cards)
         function renderSubjectsView(container) {
             const stage = curriculumData.find(s => s.id === currentStageId);
             if (!stage) return;
@@ -744,7 +738,6 @@
             container.innerHTML = html;
         }
 
-        // SEARCH ENGINE IMPLEMENTATION
         function handleSearch() {
             const query = document.getElementById('searchInput').value.trim();
             executeSearch(query);
@@ -853,7 +846,6 @@
             container.innerHTML = html;
         }
 
-        // ADMIN LINK MODAL ENGINE
         function openLinkModal(stageId, classId, subjectId) {
             const stage = curriculumData.find(s => s.id === stageId);
             const cls = stage ? stage.classes.find(c => c.id === classId) : null;
@@ -880,7 +872,6 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        // CLIPBOARD HELPER
         function copyLink(url) {
             const dummy = document.createElement('input');
             document.body.appendChild(dummy);
@@ -892,7 +883,6 @@
             showToast('ড্রাইভ লিংক কপি করা হয়েছে!');
         }
 
-        // TOAST ENGINE
         function showToast(message) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
