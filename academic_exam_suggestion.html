@@ -232,20 +232,6 @@
          MODULAR DATA STRUCTURE & APPLICATION LOGIC ENGINE
          ========================================================================================= -->
     <script>
-        /**
-         * =========================================================================
-         *  কাস্টমাইজেশন টিউটোরিয়াল (HOW TO ADD / EDIT / REMOVE CLASSES & SUBJECTS)
-         * =========================================================================
-         *১. নতুন বিষয় (Subject) বাড়াতে: 
-         *    যেকোনো ক্লাসের "subjects" অ্যারের মধ্যে কপি-পেস্ট করে নতুন অবজেক্ট বসান:
-         *    { id: 'physics', name: 'পদার্থবিজ্ঞান', icon: 'fa-flask', driveLink: 'লিংক', note: 'নোট' }
-         *
-         * ২. লিংক আপডেট করতে: 
-         *    সরাসরি ওয়েবসাইট ইন্টারফেস থেকেই "✏️ লিংক পরিবর্তন" বাটনে ক্লিক করে আপডেট করতে পারেন,
-         *    অথবা নিচের `driveLink` এ সরাসরি আপনার ড্রাইভ লিংক বসিয়ে দিতে পারেন।
-         * =========================================================================
-         */
-
         const DEFAULT_CURRICULUM_DATA = [
             {
                 id: 'primary',
@@ -373,7 +359,7 @@
                         name: 'SSC চূড়ান্ত পরীক্ষার্থী (SSC Special)',
                         subjects: [                                                        
                             { id: 'bangla', name: 'বাংলা', icon: 'fa-book-open', driveLink: 'https://drive.google.com', note: 'এসএসসি ১০০% নিশ্চিত কমন সাজেশন' },
-                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'SSC Final Composition & Grammar' },
+                            { id: 'english', name: 'ইংরেজি', icon: 'fa-font', driveLink: 'https://drive.google.com', note: 'https://drive.google.com/uc?export=download&id=1ljyP5bj8gd87F5W12ZSxuICHu-0bt6pZ' },
                             { id: 'math', name: 'গণিত', icon: 'fa-calculator', driveLink: 'https://drive.google.com', note: 'এসএসসি বোর্ড সমাধান সাজেশন্স' }
                         ]
                     }
@@ -420,55 +406,92 @@
         ];
 
         // State Machine Storage variables
-        let curriculumData = [];
+        let curriculumData = JSON.parse(JSON.stringify(DEFAULT_CURRICULUM_DATA));
         let currentStageId = null;
         let currentClassId = null;
         let isSearching = false;
 
+        // Google Sheet Web App URL
+        const GOOGLE_SHEET_API = "https://script.google.com/macros/s/AKfycbwwsFhvFcaZ2oLhoK12Oj908vi7cdRbZxFun5blYUwpdnrrTM1xQK_B5giyZtKrYFy_/exec";
+
         // Initialize App Engine
         document.addEventListener('DOMContentLoaded', () => {
-            loadCurriculumData();
             loadTheme();
-            renderView();
+            loadDriveLinksFromSheet();
         });
 
-        // Google Sheet থেকে পাওয়া Web App URL-টি এখানে বসান
-const GOOGLE_SHEET_API = "https://script.google.com/macros/s/AKfycbwwsFhvFcaZ2oLhoK12Oj908vi7cdRbZxFun5blYUwpdnrrTM1xQK_B5giyZtKrYFy_/exec";
+        // ১. পেজ লোড হলে Google Sheet থেকে সব লিংক নিয়ে আসা
+        async function loadDriveLinksFromSheet() {
+            try {
+                const res = await fetch(GOOGLE_SHEET_API);
+                const links = await res.json();
+                
+                // বিষয়গুলোর লিংক আপডেট করা
+                curriculumData.forEach(stage => {
+                    stage.classes.forEach(cls => {
+                        cls.subjects.forEach(subject => {
+                            if (links && links[subject.id]) {
+                                subject.driveLink = links[subject.id];
+                            }
+                        });
+                    });
+                });
+            } catch (err) {
+                console.error("Error loading links:", err);
+            } finally {
+                renderView();
+            }
+        }
 
-// ১. পেজ লোড হলে Google Sheet থেকে সব লিংক নিয়ে আসা
-async function loadDriveLinksFromSheet() {
-  try {
-    const res = await fetch(GOOGLE_SHEET_API);
-    const links = await res.json();
-    
-    // বিষয়গুলোর লিংক আপডেট করা
-    subjectsData.forEach(subject => {
-      if (links[subject.id]) {
-        subject.driveLink = links[subject.id];
-      }
-    });
-    renderSubjects(); // আপনার ইন্টারফেস রি-রেন্ডার করার ফাংশন
-  } catch (err) {
-    console.error("Error loading links:", err);
-  }
-}
+        // ২. "✏️ লিংক পরিবর্তন" বাটনে ক্লিক করে নতুন লিংক সেভ করার ফাংশন
+        async function saveSubjectDriveLink(event) {
+            event.preventDefault();
 
-// ২. "✏️ লিংক পরিবর্তন" বাটনে ক্লিক করে নতুন লিংক সেভ করার ফাংশন
-async function saveDriveLinkToSheet(subjectId, newLink) {
-  try {
-    await fetch(GOOGLE_SHEET_API, {
-      method: "POST",
-      body: JSON.stringify({
-        subjectId: subjectId,
-        driveLink: newLink
-      })
-    });
-    alert("লিংক সফলভাবে সেভ হয়েছে এবং সবার জন্য আপডেট হয়ে গেছে!");
-    loadDriveLinksFromSheet();
-  } catch (err) {
-    alert("লিংক সেভ করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-  }
-}
+            const stageId = document.getElementById('editStageId').value;
+            const classId = document.getElementById('editClassId').value;
+            const subjectId = document.getElementById('editSubjectId').value;
+            const newLink = document.getElementById('inputDriveUrl').value.trim();
+            const newNote = document.getElementById('inputNote').value.trim();
+
+            const stage = curriculumData.find(s => s.id === stageId);
+            const cls = stage ? stage.classes.find(c => c.id === classId) : null;
+            const sub = cls ? cls.subjects.find(s => s.id === subjectId) : null;
+
+            if (sub) {
+                sub.driveLink = newLink;
+                sub.note = newNote;
+                
+                try {
+                    await fetch(GOOGLE_SHEET_API, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            subjectId: subjectId,
+                            driveLink: newLink
+                        })
+                    });
+                    showToast('লিংক সফলভাবে সেভ হয়েছে এবং সবার জন্য আপডেট হয়ে গেছে!');
+                } catch (err) {
+                    showToast('অনলাইন সিঙ্কে সমস্যা হয়েছে, তবে লোকালি আপডেট হয়েছে।');
+                }
+
+                closeLinkModal();
+                renderView();
+            }
+        }
+
+        // Theme Toggle Controller
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        function loadTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
 
         // Navigation Controller
         function navigateTo(stageId = null, classId = null) {
@@ -476,7 +499,6 @@ async function saveDriveLinkToSheet(subjectId, newLink) {
             currentClassId = classId;
             isSearching = false;
 
-            // Reset search input fields
             document.getElementById('searchInput').value = '';
             document.getElementById('mobileSearchInput').value = '';
             document.getElementById('searchStatus').classList.add('hidden');
@@ -497,23 +519,14 @@ async function saveDriveLinkToSheet(subjectId, newLink) {
                 return;
             }
 
-            // LEVEL 1: Main Stages View
             if (!currentStageId) {
                 renderStagesView(container);
-            } 
-            // LEVEL 2: Classes View inside Selected Stage
-            else if (currentStageId && !currentClassId) {
+            } else if (currentStageId && !currentClassId) {
                 renderClassesView(container);
-            } 
-            // LEVEL 3: Subjects View inside Selected Class
-            else if (currentStageId && currentClassId) {
+            } else if (currentStageId && currentClassId) {
                 renderSubjectsView(container);
             }
         }
-
-        // ---------------------------------------------------------------------
-        // VIEW RENDERERS
-        // ---------------------------------------------------------------------
 
         // Breadcrumb Trail Navigation Engine
         function renderBreadcrumb() {
@@ -579,9 +592,7 @@ async function saveDriveLinkToSheet(subjectId, newLink) {
 
         // 1. STAGES LEVEL VIEW
         function renderStagesView(container) {
-            let html = `
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            `;
+            let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">`;
 
             curriculumData.forEach(stage => {
                 html += `
@@ -867,29 +878,6 @@ async function saveDriveLinkToSheet(subjectId, newLink) {
             const modal = document.getElementById('linkModal');
             modal.classList.add('opacity-0');
             setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-
-        function saveSubjectDriveLink(event) {
-            event.preventDefault();
-
-            const stageId = document.getElementById('editStageId').value;
-            const classId = document.getElementById('editClassId').value;
-            const subjectId = document.getElementById('editSubjectId').value;
-            const newLink = document.getElementById('inputDriveUrl').value.trim();
-            const newNote = document.getElementById('inputNote').value.trim();
-
-            const stage = curriculumData.find(s => s.id === stageId);
-            const cls = stage ? stage.classes.find(c => c.id === classId) : null;
-            const sub = cls ? cls.subjects.find(s => s.id === subjectId) : null;
-
-            if (sub) {
-                sub.driveLink = newLink;
-                sub.note = newNote;
-                saveCurriculumData();
-                showToast('ড্রাইভ লিংক সফলভাবে পরিবর্তন হয়েছে!');
-                closeLinkModal();
-                renderView();
-            }
         }
 
         // CLIPBOARD HELPER
