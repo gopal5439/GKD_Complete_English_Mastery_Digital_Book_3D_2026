@@ -428,7 +428,7 @@
                     stage.classes.forEach(cls => {
                         cls.subjects.forEach(subject => {
                             if (links && links[subject.id]) {
-                                subject.driveLink = links[subject.id];
+                                subject.driveLink = formatToPreviewLink(links[subject.id]);
                             }
                         });
                     });
@@ -440,6 +440,16 @@
             }
         }
 
+        // গুগল ড্রাইভ লিংক অটো-ফরম্যাট করে প্রিভিউ লিংকে রূপান্তর করার ফাংশন
+        function formatToPreviewLink(url) {
+            if (!url) return '';
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                return `https://drive.google.com/file/d/${match[1]}/view`;
+            }
+            return url;
+        }
+
         // "✏️ লিংক পরিবর্তন" বাটন থেকে ডাটা Google Sheet-এ সেভ করা
         async function saveSubjectDriveLink(event) {
             event.preventDefault();
@@ -447,15 +457,18 @@
             const stageId = document.getElementById('editStageId').value;
             const classId = document.getElementById('editClassId').value;
             const subjectId = document.getElementById('editSubjectId').value;
-            const newLink = document.getElementById('inputDriveUrl').value.trim();
+            const rawLink = document.getElementById('inputDriveUrl').value.trim();
             const newNote = document.getElementById('inputNote').value.trim();
+
+            // যেকোনো ড্রাইভ লিংককে স্বয়ংক্রিয়ভাবে প্রিভিউ লিংকে কনভার্ট করা
+            const formattedLink = formatToPreviewLink(rawLink);
 
             const stage = curriculumData.find(s => s.id === stageId);
             const cls = stage ? stage.classes.find(c => c.id === classId) : null;
             const sub = cls ? cls.subjects.find(s => s.id === subjectId) : null;
 
             if (sub) {
-                sub.driveLink = newLink;
+                sub.driveLink = formattedLink;
                 sub.note = newNote;
                 
                 showToast('অনলাইন ডেটাবেসে আপডেট হচ্ছে...', 'info');
@@ -465,10 +478,10 @@
                         method: "POST",
                         body: JSON.stringify({
                             subjectId: subjectId,
-                            driveLink: newLink
+                            driveLink: formattedLink
                         })
                     });
-                    showToast('লিংক সফলভাবে সেভ হয়েছে এবং সবার জন্য আপডেট হয়ে গেছে!');
+                    showToast('লিংক প্রিভিউ মোডে সফলভাবে সেভ ও আপডেট হয়েছে!');
                 } catch (err) {
                     showToast('গুগল শিটে সেভ করতে সমস্যা হয়েছে!');
                 }
