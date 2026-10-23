@@ -432,43 +432,43 @@
             renderView();
         });
 
-        // Local Storage Sync Loader
-        function loadCurriculumData() {
-            const saved = localStorage.getItem('edu_curriculum_data_v2');
-            if (saved) {
-                try {
-                    curriculumData = JSON.parse(saved);
-                } catch (e) {
-                    curriculumData = DEFAULT_CURRICULUM_DATA;
-                }
-            } else {
-                curriculumData = DEFAULT_CURRICULUM_DATA;
-                saveCurriculumData();
-            }
-        }
+        // Google Sheet থেকে পাওয়া Web App URL-টি এখানে বসান
+const GOOGLE_SHEET_API = "https://script.google.com/macros/s/AKfycbwwsFhvFcaZ2oLhoK12Oj908vi7cdRbZxFun5blYUwpdnrrTM1xQK_B5giyZtKrYFy_/exec";
 
-        function saveCurriculumData() {
-            localStorage.setItem('edu_curriculum_data_v2', JSON.stringify(curriculumData));
-        }
+// ১. পেজ লোড হলে Google Sheet থেকে সব লিংক নিয়ে আসা
+async function loadDriveLinksFromSheet() {
+  try {
+    const res = await fetch(GOOGLE_SHEET_API);
+    const links = await res.json();
+    
+    // বিষয়গুলোর লিংক আপডেট করা
+    subjectsData.forEach(subject => {
+      if (links[subject.id]) {
+        subject.driveLink = links[subject.id];
+      }
+    });
+    renderSubjects(); // আপনার ইন্টারফেস রি-রেন্ডার করার ফাংশন
+  } catch (err) {
+    console.error("Error loading links:", err);
+  }
+}
 
-        // Theme Toggle Engine
-        function loadTheme() {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        }
-
-        function toggleTheme() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        }
+// ২. "✏️ লিংক পরিবর্তন" বাটনে ক্লিক করে নতুন লিংক সেভ করার ফাংশন
+async function saveDriveLinkToSheet(subjectId, newLink) {
+  try {
+    await fetch(GOOGLE_SHEET_API, {
+      method: "POST",
+      body: JSON.stringify({
+        subjectId: subjectId,
+        driveLink: newLink
+      })
+    });
+    alert("লিংক সফলভাবে সেভ হয়েছে এবং সবার জন্য আপডেট হয়ে গেছে!");
+    loadDriveLinksFromSheet();
+  } catch (err) {
+    alert("লিংক সেভ করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+  }
+}
 
         // Navigation Controller
         function navigateTo(stageId = null, classId = null) {
