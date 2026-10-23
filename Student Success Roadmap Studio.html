@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Coaching Roadmap & Syllabus Studio Engine</title>
     
-    <!-- Google Fonts Suite: Bengali & English -->
+    <!-- Google Fonts Suite: Bengali & English (Regular, Calligraphic, Modern, Serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700&family=Atma:wght@500;700&family=Caveat:wght@600;700&family=Cinzel:wght@600;800&family=Dancing+Script:wght@700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Kalpurush&family=Lobster&family=Mina:wght@400;700&family=Montserrat:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=Orbitron:wght@600;800&family=Oswald:wght@500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
@@ -17,12 +17,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        /* Fallback SolaimanLipi Font Definition */
         @font-face {
             font-family: 'SolaimanLipi';
             src: local('SolaimanLipi'), url('https://cdn.jsdelivr.net/gh/mhasan/bangla-fonts@master/SolaimanLipi.ttf') format('truetype');
             font-display: swap;
         }
 
+        /* 3D Dynamic Theme Engine Variables */
         :root {
             --app-bg: radial-gradient(circle at 20% 20%, #0f172a, #020617);
             --panel-bg: rgba(15, 23, 42, 0.78);
@@ -31,6 +33,7 @@
             --accent-glow-alpha: rgba(56, 189, 248, 0.25);
             --text-ui: #f8fafc;
             
+            /* Page Print Specifics */
             --page-width: 210mm;
             --page-height: 297mm;
             --page-margin-top: 10mm;
@@ -38,6 +41,7 @@
             --page-margin-left: 10mm;
             --page-margin-right: 10mm;
 
+            /* Document Brand Variables */
             --doc-primary: #1e3a8a;
             --doc-secondary: #0284c7;
             --doc-accent-bg: #f0f9ff;
@@ -49,7 +53,7 @@
             --doc-letter-spacing: 0px;
         }
 
-        /* 3D Theme & Light/Dark Presets */
+        /* 3D & Light/Dark Theme Presets */
         body.theme-cyberpunk {
             --app-bg: radial-gradient(circle at 10% 20%, #180428, #050014);
             --panel-bg: rgba(25, 10, 45, 0.82);
@@ -76,7 +80,7 @@
 
         body.theme-light {
             --app-bg: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-            --panel-bg: rgba(255, 255, 255, 0.9);
+            --panel-bg: rgba(255, 255, 255, 0.88);
             --panel-border: rgba(148, 163, 184, 0.4);
             --accent-glow: #0284c7;
             --accent-glow-alpha: rgba(2, 132, 199, 0.2);
@@ -92,6 +96,7 @@
             transition: background 0.4s ease;
         }
 
+        /* Select Options Dark Styling Fix */
         #fontSelect optgroup, 
         #fontSelect option {
             background-color: #0f172a !important;
@@ -100,6 +105,12 @@
             padding: 6px 10px;
         }
 
+        #fontSelect optgroup {
+            color: #38bdf8 !important;
+            font-weight: bold;
+        }
+
+        /* 3D Glassmorphism UI Components */
         .glass-panel {
             background: var(--panel-bg);
             backdrop-filter: blur(18px);
@@ -113,14 +124,22 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--panel-border);
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         .glass-btn:hover {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
             transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px var(--accent-glow-alpha);
             border-color: var(--accent-glow);
         }
 
+        .glass-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 3D Paper Workspace Canvas Viewport */
         .workspace-viewport {
             perspective: 1400px;
             padding: 30px 15px;
@@ -138,10 +157,12 @@
             transition: transform 0.5s ease;
         }
 
+        /* 3D Tilt View Mode */
         .page-container.tilt-3d {
             transform: rotateX(16deg) rotateY(-8deg) rotateZ(1deg) scale(0.95);
         }
 
+        /* Printable Sheet Canvas Frame */
         .a4-page {
             width: var(--page-width);
             min-height: var(--page-height);
@@ -161,7 +182,12 @@
             letter-spacing: var(--doc-letter-spacing);
             border: 3px solid var(--doc-primary);
             border-radius: 4px;
+            transition: box-shadow 0.3s ease, border-color 0.2s ease;
             overflow: hidden;
+        }
+
+        .a4-page:hover {
+            box-shadow: 0 35px 70px -10px var(--accent-glow-alpha), 0 0 0 2px var(--accent-glow);
         }
 
         .inner-border {
@@ -176,6 +202,7 @@
             z-index: 1;
         }
 
+        /* Background Watermark Layer */
         .page-watermark {
             position: absolute;
             top: 50%;
@@ -191,6 +218,7 @@
             text-transform: uppercase;
         }
 
+        /* Document Headers */
         .header {
             text-align: center;
             border-bottom: 2px dashed var(--doc-primary);
@@ -223,8 +251,10 @@
             border-radius: 20px;
             margin-top: 8px;
             outline: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
+        /* Section Title Headers */
         .section-header {
             background: var(--doc-secondary);
             color: #ffffff;
@@ -237,8 +267,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            outline: none;
         }
 
+        /* Message / Callout Box */
         .message-box {
             background-color: var(--doc-accent-bg);
             border-left: 4px solid var(--doc-secondary);
@@ -246,10 +278,11 @@
             margin: 10px 0;
             font-size: calc(var(--doc-font-size) * 1.05);
             color: var(--doc-text);
-            border-radius: 0 6px 6px 0;
             outline: none;
+            border-radius: 0 6px 6px 0;
         }
 
+        /* Editable Roadmap Tables */
         .roadmap-table {
             width: 100%;
             border-collapse: collapse;
@@ -274,6 +307,7 @@
             position: relative;
         }
 
+        /* Suggestion Grid Cards */
         .suggestion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -321,6 +355,7 @@
             font-weight: bold;
         }
 
+        /* Checklist Styles */
         .checklist-item {
             display: flex;
             align-items: center;
@@ -329,6 +364,21 @@
             font-size: calc(var(--doc-font-size) * 1.02);
             padding: 2px 4px;
             border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .checklist-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .checklist-item .item-del-btn {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            margin-left: 8px;
+        }
+
+        .checklist-item:hover .item-del-btn {
+            opacity: 1;
         }
 
         .checklist-item input[type="checkbox"] {
@@ -339,14 +389,21 @@
             flex-shrink: 0;
         }
 
-        /* Interactive Floating Image & Logo Studio with Move, Resize & Rotation */
+        /* Advanced Dynamic Floating Image Engine (Move, Resize, Rotate) */
         .floating-element {
             position: absolute;
             cursor: move;
             user-select: none;
+            border: 1.5px dashed transparent;
+            transition: border-color 0.2s ease;
             display: inline-block;
             z-index: 20;
             touch-action: none;
+        }
+
+        .floating-element:hover, .floating-element.selected {
+            border-color: var(--doc-secondary);
+            box-shadow: 0 0 10px var(--accent-glow-alpha);
         }
 
         .floating-content {
@@ -366,45 +423,41 @@
             display: block;
         }
 
-        .floating-controls {
-            position: absolute;
-            inset: -4px;
-            border: 1.5px dashed var(--doc-secondary);
-            display: none;
-            pointer-events: none;
-        }
-
-        .floating-element.selected .floating-controls {
-            display: block;
-        }
-
         .resize-handle {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background: var(--doc-secondary);
             position: absolute;
-            right: -5px;
-            bottom: -5px;
+            right: -6px;
+            bottom: -6px;
             cursor: se-resize;
             border-radius: 50%;
-            pointer-events: auto;
-            border: 1.5px solid white;
+            display: none;
+            border: 2px solid white;
+            z-index: 30;
         }
 
         .rotate-handle {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background: #e11d48;
             position: absolute;
-            top: -16px;
+            top: -18px;
             left: 50%;
             transform: translateX(-50%);
             cursor: grab;
             border-radius: 50%;
-            pointer-events: auto;
-            border: 1.5px solid white;
+            display: none;
+            border: 2px solid white;
+            z-index: 30;
         }
 
+        .floating-element.selected .resize-handle,
+        .floating-element.selected .rotate-handle {
+            display: block;
+        }
+
+        /* Signature & Footer Section */
         .footer-section {
             border-top: 1px dashed #94a3b8;
             padding-top: 10px;
@@ -444,16 +497,32 @@
             outline: none;
         }
 
+        /* ContentEditable Polish */
+        [contenteditable="true"] {
+            transition: background 0.15s ease, outline 0.15s ease;
+            border-radius: 3px;
+        }
+
         [contenteditable="true"]:hover {
             background-color: rgba(56, 189, 248, 0.12) !important;
             cursor: text;
-            border-radius: 3px;
         }
 
         [contenteditable="true"]:focus {
             background-color: #ffffff !important;
             outline: 2px solid var(--doc-secondary) !important;
             color: #000000 !important;
+            box-shadow: 0 0 0 3px var(--accent-glow-alpha);
+        }
+
+        .row-action-btn, .card-action-btn {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        tr:hover .row-action-btn,
+        .sugg-card:hover .card-action-btn {
+            opacity: 1;
         }
 
         .page-break-indicator {
@@ -465,6 +534,7 @@
             color: #94a3b8;
             font-size: 12px;
             font-weight: 600;
+            user-select: none;
         }
 
         .page-break-indicator::before, .page-break-indicator::after {
@@ -474,25 +544,37 @@
             border-bottom: 2px dashed #475569;
         }
 
+        /* PRINT STYLING */
         @media print {
             @page {
                 size: var(--page-width) var(--page-height);
                 margin: 0;
             }
+
             html, body {
                 background: white !important;
                 color: black !important;
                 padding: 0 !important;
                 margin: 0 !important;
                 -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
-            .no-print, .top-toolbar, .formatting-bar, .page-break-indicator, .floating-controls, button {
+
+            .no-print, .top-toolbar, .formatting-bar, .page-break-indicator, .resize-handle, .rotate-handle, button {
                 display: none !important;
             }
+
             .workspace-viewport {
                 padding: 0 !important;
                 min-height: auto !important;
+                display: block !important;
             }
+
+            .page-container {
+                gap: 0 !important;
+                transform: none !important;
+            }
+
             .a4-page {
                 box-shadow: none !important;
                 border: 3px solid var(--doc-primary) !important;
@@ -500,18 +582,25 @@
                 height: var(--page-height) !important;
                 margin: 0 auto !important;
                 page-break-after: always !important;
+                page-break-inside: avoid !important;
+            }
+
+            [contenteditable="true"] {
+                outline: none !important;
+                background: transparent !important;
             }
         }
     </style>
 </head>
 <body class="flex flex-col">
 
-    <!-- Top Studio Toolbar -->
+    <!-- Top 3D Glassmorphism Studio Toolbar -->
     <header class="top-toolbar sticky top-0 z-50 glass-panel border-b px-4 py-2.5 no-print">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
             
+            <!-- App Logo & Title -->
             <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-sky-500/30">
+                <div class="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-sky-500/30 border border-sky-400/40">
                     <i class="fa-solid fa-cubes text-lg animate-pulse"></i>
                     <span class="tracking-wide text-sm font-extrabold">3D রোডম্যাপ স্টুডিও Pro</span>
                 </div>
@@ -520,53 +609,62 @@
                 </span>
             </div>
 
+            <!-- Page Setup & Live Software Theme Switcher -->
             <div class="flex flex-wrap items-center gap-2 text-xs">
-                <!-- Theme Select Engine -->
+                
+                <!-- 3D & Light/Dark Theme Picker -->
                 <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
                     <i class="fa-solid fa-palette text-amber-400"></i>
                     <select id="softwareThemeSelect" onchange="changeSoftwareTheme(this.value)" class="bg-transparent text-slate-200 focus:outline-none cursor-pointer text-xs">
                         <option value="dark" class="bg-slate-900">Modern Dark Studio</option>
-                        <option value="light" class="bg-slate-900">Minimal Light Theme</option>
+                        <option value="light" class="bg-slate-900">Minimal Light Studio</option>
                         <option value="cyberpunk" class="bg-slate-900">Cyberpunk Neon 3D</option>
                         <option value="gold" class="bg-slate-900">Royal Luxury Gold</option>
                         <option value="emerald" class="bg-slate-900">Emerald Glass 3D</option>
                     </select>
                 </div>
 
-                <!-- Paper Size -->
+                <!-- Page Format Selector -->
                 <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
                     <i class="fa-solid fa-file-lines text-sky-400"></i>
                     <select id="paperSizeSelect" onchange="changePaperSize(this.value)" class="bg-transparent text-slate-200 focus:outline-none cursor-pointer text-xs">
                         <option value="a4" class="bg-slate-900">A4 Portrait</option>
                         <option value="a4_landscape" class="bg-slate-900">A4 Landscape</option>
                         <option value="letter" class="bg-slate-900">US Letter</option>
+                        <option value="legal" class="bg-slate-900">Legal Sheet</option>
                     </select>
                 </div>
 
-                <button onclick="toggle3DTilt()" class="glass-btn px-2.5 py-1 rounded-lg text-slate-200 flex items-center gap-1.5 hover:text-sky-300">
+                <!-- 3D Canvas Tilt Toggle -->
+                <button onclick="toggle3DTilt()" title="3D রোটেশন প্রিভিউ toggler" class="glass-btn px-2.5 py-1 rounded-lg text-slate-200 flex items-center gap-1.5 hover:text-sky-300">
                     <i class="fa-solid fa-cube text-purple-400"></i> 3D ভিউ
                 </button>
 
+                <!-- Document Color Pickers -->
                 <div class="flex items-center gap-2 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                    <label class="flex items-center gap-1 cursor-pointer">
+                    <label title="Primary Color" class="flex items-center gap-1 cursor-pointer">
                         <span class="text-slate-400 text-[11px]">প্রাইমারি:</span>
                         <input type="color" id="primaryColorPicker" onchange="updateDocColors()" value="#1e3a8a" class="w-4 h-4 rounded cursor-pointer border-0 bg-transparent">
                     </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
+                    <label title="Secondary Color" class="flex items-center gap-1 cursor-pointer">
                         <span class="text-slate-400 text-[11px]">সেকেন্ডারি:</span>
                         <input type="color" id="secondaryColorPicker" onchange="updateDocColors()" value="#0284c7" class="w-4 h-4 rounded cursor-pointer border-0 bg-transparent">
                     </label>
                 </div>
             </div>
 
+            <!-- Print & Export Buttons -->
             <div class="flex items-center gap-2">
-                <button onclick="triggerPrint()" class="glass-btn bg-emerald-600/80 text-emerald-100 hover:text-white px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-1.5">
-                    <i class="fa-solid fa-print"></i> প্রিন্ট / PDF
+                <button onclick="triggerPrint()" class="glass-btn bg-emerald-600/80 text-emerald-100 hover:text-white px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-print"></i>
+                    <span>প্রিন্ট / PDF</span>
                 </button>
 
                 <div class="relative group">
                     <button class="glass-btn text-slate-200 px-3 py-1.5 rounded-xl font-medium flex items-center gap-1.5">
-                        <i class="fa-solid fa-download"></i> এক্সপোর্ট <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        <i class="fa-solid fa-download"></i>
+                        <span>এক্সপোর্ট</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
                     </button>
                     <div class="absolute right-0 mt-2 w-52 glass-panel rounded-xl shadow-2xl hidden group-hover:block z-50 py-1.5 border border-slate-700">
                         <button onclick="saveProjectJSON()" class="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80 flex items-center gap-2">
@@ -576,85 +674,167 @@
                             <i class="fa-solid fa-file-import text-emerald-400"></i> JSON প্রজেক্ট লোড
                         </button>
                         <input type="file" id="importJsonInput" onchange="loadProjectJSON(event)" class="hidden" accept=".json">
+                        <hr class="border-slate-700/80 my-1">
+                        <button onclick="exportHTML()" class="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80 flex items-center gap-2">
+                            <i class="fa-solid fa-code text-amber-400"></i> HTML ডাউনলোড
+                        </button>
                     </div>
                 </div>
 
-                <button onclick="resetDefaultTemplate()" title="রিসেট টেমপ্লেট" class="glass-btn text-rose-300 hover:text-rose-100 p-2 rounded-xl border-rose-500/30">
+                <button onclick="resetDefaultTemplate()" title="রিসেট টেমপ্লেট" class="glass-btn text-rose-300 hover:text-rose-100 p-2 rounded-xl border-rose-500/30 transition-colors">
                     <i class="fa-solid fa-rotate-left"></i>
                 </button>
             </div>
+
         </div>
     </header>
 
-    <!-- Formatting Toolbar -->
+    <!-- Font & Text Formatting Toolbar -->
     <div class="formatting-bar bg-slate-900/90 border-b border-slate-800 px-4 py-2 sticky top-[57px] z-40 glass-panel no-print">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2.5 text-xs">
             
+            <!-- Undo & Redo Controls -->
             <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                <button onclick="undoAction()" class="glass-btn px-2 py-1 rounded text-slate-200 hover:text-sky-300"><i class="fa-solid fa-rotate-left"></i> Undo</button>
-                <button onclick="redoAction()" class="glass-btn px-2 py-1 rounded text-slate-200 hover:text-sky-300"><i class="fa-solid fa-rotate-right"></i> Redo</button>
+                <button onclick="undoAction()" title="Undo (Ctrl+Z)" class="glass-btn px-2.5 py-1 rounded text-slate-200 hover:text-sky-300 flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-left"></i> Undo
+                </button>
+                <button onclick="redoAction()" title="Redo (Ctrl+Y)" class="glass-btn px-2.5 py-1 rounded text-slate-200 hover:text-sky-300 flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right"></i> Redo
+                </button>
             </div>
 
+            <!-- Font Engine Selector -->
             <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
                 <i class="fa-solid fa-font text-sky-400"></i>
-                <select id="fontSelect" onchange="updateDocFont(this.value)" class="bg-slate-900 text-slate-100 focus:outline-none cursor-pointer text-xs w-44 border border-slate-700 rounded px-1 py-0.5">
-                    <option value="'Hind Siliguri', sans-serif" selected>হিন্দ শিলিগুড়ি</option>
-                    <option value="'SolaimanLipi', sans-serif">সলাইমান লিপি</option>
-                    <option value="'Kalpurush', sans-serif">কালপুরুষ</option>
-                    <option value="'Inter', sans-serif">Inter Clean</option>
-                    <option value="'Poppins', sans-serif">Poppins</option>
+                <select id="fontSelect" onchange="updateDocFont(this.value)" class="bg-slate-900 text-slate-100 focus:outline-none cursor-pointer text-xs w-48 border border-slate-700 rounded px-1 py-0.5">
+                    <optgroup label="🇧🇩 বাংলা রেগুলার ফন্ট">
+                        <option value="'Hind Siliguri', sans-serif" selected>হিন্দ শিলিগুড়ি (Hind Siliguri)</option>
+                        <option value="'SolaimanLipi', sans-serif">সলাইমান লিপি (SolaimanLipi)</option>
+                        <option value="'Kalpurush', sans-serif">কালপুরুষ (Kalpurush)</option>
+                        <option value="'Noto Sans Bengali', sans-serif">নোটো সান্স বাংলা</option>
+                        <option value="'Anek Bangla', sans-serif">অনেক বাংলা (Anek Bangla)</option>
+                        <option value="'Mina', sans-serif">মিনা (Mina)</option>
+                        <option value="'Tiro Bangla', serif">তিরো বাংলা (Tiro Bangla)</option>
+                        <option value="'Noto Serif Bengali', serif">নোটো সেরিফ বাংলা</option>
+                    </optgroup>
+                    <optgroup label="🎨 বাংলা ডিজাইন ও ক্যালিগ্রাফি">
+                        <option value="'Galada', cursive">গলাদা (Galada Decorative)</option>
+                        <option value="'Atma', cursive">আত্মা (Atma Handwritten)</option>
+                    </optgroup>
+                    <optgroup label="🇬🇧 English Regular & Sans">
+                        <option value="'Inter', sans-serif">Inter Clean</option>
+                        <option value="'Poppins', sans-serif">Poppins Geometric</option>
+                        <option value="'Roboto', sans-serif">Roboto Modern</option>
+                        <option value="'Montserrat', sans-serif">Montserrat Bold</option>
+                    </optgroup>
+                    <optgroup label="📜 English Executive & Serif">
+                        <option value="'Playfair Display', serif">Playfair Display Luxury</option>
+                        <option value="'Cinzel', serif">Cinzel Executive</option>
+                    </optgroup>
+                    <optgroup label="✍️ English Decorative & Calligraphy">
+                        <option value="'Dancing Script', cursive">Dancing Script</option>
+                        <option value="'Great Vibes', cursive">Great Vibes Calligraphy</option>
+                        <option value="'Caveat', cursive">Caveat Handwritten</option>
+                        <option value="'Lobster', cursive">Lobster Display</option>
+                        <option value="'Orbitron', sans-serif">Orbitron Cyber 3D</option>
+                        <option value="'Oswald', sans-serif">Oswald Condensed</option>
+                    </optgroup>
                 </select>
             </div>
 
+            <!-- Font Size Controls -->
             <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                <button onclick="adjustFontSize(-0.5)" class="px-1.5 py-0.5 rounded text-slate-200 font-bold">-</button>
+                <button onclick="adjustFontSize(-0.5)" class="px-1.5 py-0.5 hover:bg-slate-700 rounded text-slate-200 font-bold">-</button>
                 <span id="fontSizeDisplay" class="px-1 text-sky-300 font-medium">11.5px</span>
-                <button onclick="adjustFontSize(0.5)" class="px-1.5 py-0.5 rounded text-slate-200 font-bold">+</button>
+                <button onclick="adjustFontSize(0.5)" class="px-1.5 py-0.5 hover:bg-slate-700 rounded text-slate-200 font-bold">+</button>
+                <div class="h-4 w-px bg-slate-700 mx-1"></div>
+                <button onclick="adjustLineHeight(0.1)" title="Line Height +" class="px-1 py-0.5 hover:bg-slate-700 rounded text-slate-300"><i class="fa-solid fa-arrows-vertical"></i>+</button>
+                <button onclick="adjustLineHeight(-0.1)" title="Line Height -" class="px-1 py-0.5 hover:bg-slate-700 rounded text-slate-300"><i class="fa-solid fa-arrows-vertical"></i>-</button>
             </div>
 
+            <!-- Formatting Actions -->
             <div class="flex items-center gap-1">
-                <button onclick="execCmd('bold')" class="glass-btn px-2 py-1 rounded text-slate-200"><i class="fa-solid fa-bold"></i></button>
-                <button onclick="execCmd('italic')" class="glass-btn px-2 py-1 rounded text-slate-200"><i class="fa-solid fa-italic"></i></button>
-                <button onclick="execCmd('underline')" class="glass-btn px-2 py-1 rounded text-slate-200"><i class="fa-solid fa-underline"></i></button>
-                <button onclick="execCmd('insertUnorderedList')" class="glass-btn px-2 py-1 rounded text-slate-200"><i class="fa-solid fa-list-ul"></i></button>
+                <button onclick="execCmd('bold')" title="Bold" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-bold"></i></button>
+                <button onclick="execCmd('italic')" title="Italic" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-italic"></i></button>
+                <button onclick="execCmd('underline')" title="Underline" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-underline"></i></button>
+                <button onclick="execCmd('strikeThrough')" title="Strikethrough" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-strikethrough"></i></button>
+                <div class="h-4 w-px bg-slate-700 mx-1"></div>
+                <button onclick="execCmd('justifyLeft')" title="Align Left" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-left"></i></button>
+                <button onclick="execCmd('justifyCenter')" title="Align Center" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-center"></i></button>
+                <button onclick="execCmd('justifyRight')" title="Align Right" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-right"></i></button>
+                <button onclick="execCmd('justifyFull')" title="Justify" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-justify"></i></button>
+                <div class="h-4 w-px bg-slate-700 mx-1"></div>
+                <button onclick="execCmd('insertUnorderedList')" title="Bullet List" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-list-ul"></i></button>
+                <button onclick="execCmd('insertOrderedList')" title="Numbered List" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-list-ol"></i></button>
+                <div class="h-4 w-px bg-slate-700 mx-1"></div>
+                <label title="Text Color" class="glass-btn px-2 py-1 rounded cursor-pointer text-slate-200 flex items-center gap-1">
+                    <i class="fa-solid fa-font"></i>
+                    <input type="color" onchange="execCmd('foreColor', this.value)" class="w-3 h-3 border-0 bg-transparent cursor-pointer">
+                </label>
+                <label title="Highlight Color" class="glass-btn px-2 py-1 rounded cursor-pointer text-slate-200 flex items-center gap-1">
+                    <i class="fa-solid fa-highlighter text-amber-400"></i>
+                    <input type="color" onchange="execCmd('hiliteColor', this.value)" value="#fef08a" class="w-3 h-3 border-0 bg-transparent cursor-pointer">
+                </label>
             </div>
 
+            <!-- Elements & Dynamic Image Upload -->
             <div class="flex items-center gap-2">
+                <div class="flex items-center bg-emerald-900/40 rounded-lg border border-emerald-500/30 overflow-hidden">
+                    <button onclick="insertChecklist()" title="নতুন চেকলিস্ট যুক্ত করুন" class="hover:bg-emerald-600/40 text-emerald-200 px-2.5 py-1 text-[11px] flex items-center gap-1 border-r border-emerald-500/30">
+                        <i class="fa-solid fa-square-check"></i> + চেকলিস্ট
+                    </button>
+                    <button onclick="deleteLastChecklist()" title="সর্বশেষ চেকলিস্ট মুছুন" class="hover:bg-rose-600/40 text-rose-300 px-2 py-1 text-[11px] flex items-center gap-1">
+                        <i class="fa-solid fa-trash"></i> মুছুন
+                    </button>
+                </div>
+
                 <button onclick="addPage()" class="glass-btn bg-sky-600/40 text-sky-200 hover:text-white px-2.5 py-1 rounded-lg flex items-center gap-1 text-[11px]">
                     <i class="fa-solid fa-plus-circle"></i> নতুন পেজ
                 </button>
                 
                 <label class="glass-btn bg-purple-600/40 text-purple-200 hover:text-white px-2.5 py-1 rounded-lg cursor-pointer flex items-center gap-1 text-[11px]">
-                    <i class="fa-solid fa-image"></i> ছবি/লোগো যোগ করুন
+                    <i class="fa-solid fa-image"></i> লোগো/ছবি যুক্ত করুন
                     <input type="file" accept="image/*" onchange="uploadFloatingImage(event)" class="hidden">
                 </label>
             </div>
+
         </div>
     </div>
 
-    <!-- Main Workspace Viewport -->
+    <!-- Main Dynamic Workspace Viewport -->
     <main class="workspace-viewport flex-grow">
+        
         <div id="pageContainer" class="page-container">
             
+            <!-- Printable Page Sheet 1 -->
             <div class="a4-page" id="page-1">
                 <div class="page-watermark">COACHING ROADMAP</div>
                 
                 <div class="inner-border">
+                    
+                    <!-- Header Branding Area -->
                     <div class="header">
                         <div contenteditable="true" class="coaching-title" onblur="autoSave()">[ আপনার কোচিং সেন্টারের নাম ]</div>
-                        <div contenteditable="true" class="coaching-sub" onblur="autoSave()">ঠিকানা: আপনার শাখা ও অবস্থান | মোবাইল: ০১XXXXXXXXX</div>
-                        <div contenteditable="true" class="badge" onblur="autoSave()">১ মাসের ক্র্যাশ কোর্স ও মাস্টার রোডম্যাপ</div>
+                        <div contenteditable="true" class="coaching-sub" onblur="autoSave()">ঠিকানা: আপনার শাখা ও অবস্থান | মোবাইল: ০১XXXXXXXXX | ইমেইল: info@coaching.com</div>
+                        <div contenteditable="true" class="badge" onblur="autoSave()">১ মাসের ক্র্যাশ কোর্স ও মাস্টার রোডম্যাপ (২০২৬)</div>
                     </div>
 
+                    <!-- Guardian / Student Message Callout -->
                     <div contenteditable="true" class="message-box" onblur="autoSave()">
-                        <strong>শ্রদ্ধেয় অভিভাবক,</strong> আপনার সন্তানের সেরা প্রস্তুতি নিশ্চিত করতে আগামী ১ মাসের স্পেশাল অ্যাকশন প্ল্যান তৈরি করা হয়েছে।
+                        <strong>শ্রদ্ধেয় অভিভাবক,</strong> আপনার সন্তানের SSC / HSC / বোর্ড পরীক্ষার সেরা প্রস্তুতি নিশ্চিত করতে আগামী ১ মাসের স্পেশাল অ্যাকশন প্ল্যান তৈরি করা হয়েছে। নিয়মিত উপস্থিতি ও গাইডলাইন মেনে চলা সফলতার চাবিকাঠি।
                     </div>
 
+                    <!-- Table Section (Syllabus & Routine) -->
                     <div>
                         <div class="section-header">
-                            <span contenteditable="true" onblur="autoSave()">📅 ৪ সপ্তাহের ক্লাস ও পরীক্ষা রুটিন</span>
+                            <span contenteditable="true" onblur="autoSave()">📅 ৪ সপ্তাহের ক্লাস, টপিক ও পরীক্ষা রুটিন</span>
                             <div class="no-print flex items-center gap-1">
-                                <button onclick="addTableRow(this)" class="bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded"><i class="fa-solid fa-plus"></i> সারি</button>
+                                <button onclick="addTableRow(this)" title="সারি যোগ করুন" class="bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+                                    <i class="fa-solid fa-plus"></i> সারি
+                                </button>
+                                <button onclick="addTableColumn(this)" title="কলাম যোগ করুন" class="bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+                                    <i class="fa-solid fa-table-columns"></i> কলাম
+                                </button>
                             </div>
                         </div>
                         
@@ -662,58 +842,117 @@
                             <thead>
                                 <tr>
                                     <th style="width: 15%;">সপ্তাহ</th>
-                                    <th style="width: 35%;">মূল বিষয়বস্তু</th>
-                                    <th style="width: 50%;">ক্লাসের লক্ষ্য ও পরীক্ষা পরিকল্পনা</th>
+                                    <th style="width: 35%;">মূল বিষয়বস্তু (Focus Area)</th>
+                                    <th style="width: 50%;">ক্লাসের মূল লক্ষ্য ও পরীক্ষা পরিকল্পনা</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td contenteditable="true" onblur="autoSave()"><strong>১ম সপ্তাহ</strong></td>
-                                    <td contenteditable="true" onblur="autoSave()">Grammar Foundations</td>
-                                    <td contenteditable="true" onblur="autoSave()">শর্টকাট রুলস ও সাপ্তাহিক পরীক্ষা-১</td>
+                                    <td contenteditable="true" onblur="autoSave()">Grammar Foundations & Hacks</td>
+                                    <td contenteditable="true" onblur="autoSave()">বোর্ড পরীক্ষার শর্টকাট রুলস, প্র্যাকটিস ও <strong>সাপ্তাহিক পরীক্ষা-১</strong></td>
                                 </tr>
                                 <tr>
                                     <td contenteditable="true" onblur="autoSave()"><strong>২য় সপ্তাহ</strong></td>
-                                    <td contenteditable="true" onblur="autoSave()">Reading Mastery</td>
-                                    <td contenteditable="true" onblur="autoSave()">প্যাসেজ ও সামারি টেকনিক + পরীক্ষা-২</td>
+                                    <td contenteditable="true" onblur="autoSave()">Reading & Passage Mastery</td>
+                                    <td contenteditable="true" onblur="autoSave()">প্যাসেজ থেকে সঠিক উত্তর ও সামারি করার টেকনিক + <strong>সাপ্তাহিক পরীক্ষা-২</strong></td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable="true" onblur="autoSave()"><strong>৩য় সপ্তাহ</strong></td>
+                                    <td contenteditable="true" onblur="autoSave()">Smart Freehand Writing</td>
+                                    <td contenteditable="true" onblur="autoSave()">শর্টকাট টেমপ্লেট দিয়ে Paragraph, Letter ইত্যাদি + <strong>সাপ্তাহিক পরীক্ষা-৩</strong></td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable="true" onblur="autoSave()"><strong>৪র্থ সপ্তাহ</strong></td>
+                                    <td contenteditable="true" onblur="autoSave()">Final Model Tests & Exam Hacks</td>
+                                    <td contenteditable="true" onblur="autoSave()">১০০ নম্বরের ৩টি পূর্ণাঙ্গ বোর্ড প্যাটার্ন <strong>স্পেশাল মডেল টেস্ট</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
+                    <!-- Suggestion Cards Grid -->
                     <div>
                         <div class="section-header">
-                            <span contenteditable="true" onblur="autoSave()">🎯 ফাইনাল সাজেশন</span>
+                            <span contenteditable="true" onblur="autoSave()">🎯 ১ মাসের ফাইনাল মাস্টার সাজেশন (Special Suggestion)</span>
+                            <button onclick="addSuggestionCard(this)" class="no-print bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+                                <i class="fa-solid fa-plus"></i> কার্ড
+                            </button>
                         </div>
+                        
                         <div class="suggestion-grid">
                             <div class="sugg-card">
-                                <h4 contenteditable="true" onblur="autoSave()">[১] Grammar</h4>
+                                <div class="flex justify-between items-center">
+                                    <h4 contenteditable="true" onblur="autoSave()">[১] Grammar Part (30)</h4>
+                                    <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
+                                </div>
                                 <ul>
                                     <li contenteditable="true" onblur="autoSave()">Right Forms of Verbs</li>
                                     <li contenteditable="true" onblur="autoSave()">Changing Sentences</li>
+                                    <li contenteditable="true" onblur="autoSave()">Articles & Prepositions</li>
                                 </ul>
+                                <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
                             </div>
+
                             <div class="sugg-card">
-                                <h4 contenteditable="true" onblur="autoSave()">[২] Passage</h4>
+                                <div class="flex justify-between items-center">
+                                    <h4 contenteditable="true" onblur="autoSave()">[২] Passage Part (40)</h4>
+                                    <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
+                                </div>
                                 <ul>
-                                    <li contenteditable="true" onblur="autoSave()">Seen Passages</li>
-                                    <li contenteditable="true" onblur="autoSave()">Summarizing</li>
+                                    <li contenteditable="true" onblur="autoSave()">Top 8 Seen Passages</li>
+                                    <li contenteditable="true" onblur="autoSave()">Unseen Passage Techniques</li>
+                                    <li contenteditable="true" onblur="autoSave()">Summarizing Formula</li>
                                 </ul>
+                                <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
                             </div>
+
                             <div class="sugg-card">
-                                <h4 contenteditable="true" onblur="autoSave()">[৩] Writing</h4>
+                                <div class="flex justify-between items-center">
+                                    <h4 contenteditable="true" onblur="autoSave()">[৩] Writing Part (30)</h4>
+                                    <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
+                                </div>
                                 <ul>
-                                    <li contenteditable="true" onblur="autoSave()">Paragraph Template</li>
-                                    <li contenteditable="true" onblur="autoSave()">Formal Letter</li>
+                                    <li contenteditable="true" onblur="autoSave()">Problem Paragraph Template</li>
+                                    <li contenteditable="true" onblur="autoSave()">Formal / Informal Email</li>
+                                    <li contenteditable="true" onblur="autoSave()">Dialogue Writing Tricks</li>
                                 </ul>
+                                <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Rules List (Checklist Area) -->
+                    <div>
+                        <div class="section-header">
+                            <span contenteditable="true" onblur="autoSave()">📌 অভিভাবক ও শিক্ষার্থীদের জন্য বাধ্যতামূলক নিয়মাবলী</span>
+                        </div>
+                        <div id="checklistContainer">
+                            <div class="checklist-item">
+                                <input type="checkbox" checked>
+                                <span contenteditable="true" onblur="autoSave()"><strong>উপস্থিতি:</strong> আগামী ৩০ দিন কোনো কারণ ছাড়া ক্লাস মিস দেওয়া সম্পূর্ণ নিষেধ।</span>
+                                <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" checked>
+                                <span contenteditable="true" onblur="autoSave()"><strong>বাড়ির কাজ:</strong> ক্লাসে দেওয়া শিট ও এইচডাব্লিউ প্রতিদিন নিয়মিত সম্পন্ন করতে হবে।</span>
+                                <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer & Signature -->
                     <div class="footer-section">
                         <div contenteditable="true" class="declaration" onblur="autoSave()">
-                            "আমি নিশ্চয়তা দিচ্ছি যে, আমার সন্তান রোডম্যাপ অনুযায়ী নিয়মিত পড়ালেখা করবে।"
+                            "আমি নিশ্চয়তা দিচ্ছি যে, আমার সন্তান আগামী ১ মাস এই রোডম্যাপ ও রুটিন অনুযায়ী নিয়মিত পড়ালেখা করবে।"
                         </div>
+
+                        <div class="info-inputs">
+                            <span contenteditable="true" onblur="autoSave()">শিক্ষার্থীর নাম: ___________________________</span>
+                            <span contenteditable="true" onblur="autoSave()">শ্রেণী: _________</span>
+                            <span contenteditable="true" onblur="autoSave()">রোল: _______</span>
+                        </div>
+
                         <div class="signatures">
                             <div contenteditable="true" class="sig-line" onblur="autoSave()">অভিভাবকের স্বাক্ষর</div>
                             <div contenteditable="true" class="sig-line" onblur="autoSave()">পরিচালকের স্বাক্ষর</div>
@@ -724,18 +963,31 @@
             </div>
 
         </div>
+
     </main>
 
+    <!-- JavaScript Application Engine -->
     <script>
         let baseFontSize = 11.5;
+        let baseLineHeight = 1.5;
         let pageCounter = 1;
-        const LOCAL_STORAGE_KEY = 'coaching_roadmap_pro_v4';
+        const LOCAL_STORAGE_KEY = 'coaching_roadmap_3d_pro_v5';
 
+        /* Undo & Redo Engine */
         let undoStack = [];
         let redoStack = [];
+        const MAX_HISTORY = 30;
         let isUndoRedoOperation = false;
 
+        const PAPER_FORMATS = {
+            a4: { width: '210mm', height: '297mm' },
+            a4_landscape: { width: '297mm', height: '210mm' },
+            letter: { width: '216mm', height: '279mm' },
+            legal: { width: '216mm', height: '356mm' }
+        };
+
         window.addEventListener('DOMContentLoaded', () => {
+            attachDynamicRowEvents();
             loadLocalStorage();
             setupGlobalListeners();
             saveHistoryState();
@@ -746,7 +998,7 @@
             const state = document.getElementById('pageContainer').innerHTML;
             if (undoStack.length === 0 || undoStack[undoStack.length - 1] !== state) {
                 undoStack.push(state);
-                if (undoStack.length > 30) undoStack.shift();
+                if (undoStack.length > MAX_HISTORY) undoStack.shift();
                 redoStack = [];
             }
         }
@@ -756,8 +1008,10 @@
                 isUndoRedoOperation = true;
                 const currentState = undoStack.pop();
                 redoStack.push(currentState);
-                document.getElementById('pageContainer').innerHTML = undoStack[undoStack.length - 1];
-                rebindInteractiveElements();
+                const prevState = undoStack[undoStack.length - 1];
+                document.getElementById('pageContainer').innerHTML = prevState;
+                attachDynamicRowEvents();
+                rebindFloatingElements();
                 autoSave();
                 isUndoRedoOperation = false;
             }
@@ -769,7 +1023,8 @@
                 const nextState = redoStack.pop();
                 undoStack.push(nextState);
                 document.getElementById('pageContainer').innerHTML = nextState;
-                rebindInteractiveElements();
+                attachDynamicRowEvents();
+                rebindFloatingElements();
                 autoSave();
                 isUndoRedoOperation = false;
             }
@@ -801,14 +1056,21 @@
                     secondaryColor: document.getElementById('secondaryColorPicker').value,
                     fontFamily: document.getElementById('fontSelect').value,
                     fontSize: baseFontSize,
+                    lineHeight: baseLineHeight,
                     paperSize: document.getElementById('paperSizeSelect').value,
-                    softwareTheme: document.getElementById('softwareThemeSelect').value
+                    softwareTheme: document.getElementById('softwareThemeSelect').value,
+                    pageCount: pageCounter
                 };
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(saveData));
+                
                 const statusEl = document.getElementById('saveStatus');
                 statusEl.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i> সেভ হয়েছে';
-                setTimeout(() => { statusEl.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i> অটো-সেভড'; }, 2000);
-            } catch(e) { console.error(e); }
+                setTimeout(() => {
+                    statusEl.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i> অটো-সেভড';
+                }, 2000);
+            } catch(e) {
+                console.error("Save error", e);
+            }
         }
 
         function loadLocalStorage() {
@@ -819,21 +1081,41 @@
                     if (data.htmlContent) document.getElementById('pageContainer').innerHTML = data.htmlContent;
                     if (data.primaryColor) document.getElementById('primaryColorPicker').value = data.primaryColor;
                     if (data.secondaryColor) document.getElementById('secondaryColorPicker').value = data.secondaryColor;
-                    if (data.fontFamily) { document.getElementById('fontSelect').value = data.fontFamily; updateDocFont(data.fontFamily); }
-                    if (data.fontSize) { baseFontSize = data.fontSize; document.getElementById('fontSizeDisplay').innerText = baseFontSize + 'px'; }
-                    if (data.softwareTheme) { document.getElementById('softwareThemeSelect').value = data.softwareTheme; changeSoftwareTheme(data.softwareTheme); }
+                    if (data.fontFamily) {
+                        document.getElementById('fontSelect').value = data.fontFamily;
+                        updateDocFont(data.fontFamily);
+                    }
+                    if (data.fontSize) {
+                        baseFontSize = data.fontSize;
+                        document.getElementById('fontSizeDisplay').innerText = baseFontSize + 'px';
+                    }
+                    if (data.paperSize) {
+                        document.getElementById('paperSizeSelect').value = data.paperSize;
+                        changePaperSize(data.paperSize);
+                    }
+                    if (data.softwareTheme) {
+                        document.getElementById('softwareThemeSelect').value = data.softwareTheme;
+                        changeSoftwareTheme(data.softwareTheme);
+                    }
+                    if (data.pageCount) pageCounter = data.pageCount;
+
                     updateDocColors();
-                    rebindInteractiveElements();
-                } catch(e) { console.error(e); }
+                    attachDynamicRowEvents();
+                    rebindFloatingElements();
+                } catch(e) {
+                    console.error("Load error", e);
+                }
             }
         }
 
         function updateDocColors() {
             const primary = document.getElementById('primaryColorPicker').value;
             const secondary = document.getElementById('secondaryColorPicker').value;
+            const accentBg = secondary + '15';
+
             document.documentElement.style.setProperty('--doc-primary', primary);
             document.documentElement.style.setProperty('--doc-secondary', secondary);
-            document.documentElement.style.setProperty('--doc-accent-bg', secondary + '15');
+            document.documentElement.style.setProperty('--doc-accent-bg', accentBg);
             autoSave();
         }
 
@@ -849,11 +1131,17 @@
             autoSave();
         }
 
+        function adjustLineHeight(delta) {
+            baseLineHeight = Math.max(1.0, Math.min(2.5, baseLineHeight + delta));
+            document.documentElement.style.setProperty('--doc-line-height', baseLineHeight);
+            autoSave();
+        }
+
         function changePaperSize(sizeKey) {
-            const formats = { a4: {w:'210mm', h:'297mm'}, a4_landscape: {w:'297mm', h:'210mm'}, letter: {w:'216mm', h:'279mm'} };
-            if (formats[sizeKey]) {
-                document.documentElement.style.setProperty('--page-width', formats[sizeKey].w);
-                document.documentElement.style.setProperty('--page-height', formats[sizeKey].h);
+            const format = PAPER_FORMATS[sizeKey];
+            if (format) {
+                document.documentElement.style.setProperty('--page-width', format.width);
+                document.documentElement.style.setProperty('--page-height', format.height);
                 autoSave();
             }
         }
@@ -861,9 +1149,10 @@
         function addPage() {
             pageCounter++;
             const container = document.getElementById('pageContainer');
+            
             const separator = document.createElement('div');
             separator.className = 'page-break-indicator no-print';
-            separator.innerHTML = `<span>পেজ ${pageCounter}</span>`;
+            separator.innerHTML = `<span>পেজ ${pageCounter} সূচনা</span>`;
             
             const newPage = document.createElement('div');
             newPage.className = 'a4-page';
@@ -873,25 +1162,164 @@
                 <div class="inner-border">
                     <div class="section-header">
                         <span contenteditable="true" onblur="autoSave()">নতুন পেজের শিরোনাম</span>
-                        <button onclick="this.closest('.a4-page').previousElementSibling.remove(); this.closest('.a4-page').remove(); autoSave();" class="bg-red-600/70 text-white text-[11px] px-2 py-0.5 rounded">মুছুন</button>
+                        <div class="no-print flex items-center gap-1">
+                            <button onclick="removePage(this)" title="পেজ মুছুন" class="bg-red-600/70 hover:bg-red-700 text-white text-[11px] px-2 py-0.5 rounded">
+                                <i class="fa-solid fa-trash"></i> মুছুন
+                            </button>
+                        </div>
                     </div>
-                    <div contenteditable="true" class="message-box" onblur="autoSave()">এখানে নোট লিখুন...</div>
+                    <div contenteditable="true" class="message-box" onblur="autoSave()">
+                        এখানে নতুন পেজের তথ্য বা নোটিশ প্রদান করুন...
+                    </div>
+                    <div class="footer-section">
+                        <div class="signatures">
+                            <div contenteditable="true" class="sig-line" onblur="autoSave()">স্বাক্ষর</div>
+                            <div contenteditable="true" class="sig-line" onblur="autoSave()">তারিখ</div>
+                        </div>
+                    </div>
                 </div>
             `;
+
             container.appendChild(separator);
             container.appendChild(newPage);
             autoSave();
         }
 
-        function addTableRow(btn) {
-            const tbody = btn.closest('.a4-page').querySelector('table tbody');
-            const tr = document.createElement('tr');
-            tr.innerHTML = `<td contenteditable="true" onblur="autoSave()">নতুন</td><td contenteditable="true" onblur="autoSave()">বিষয়</td><td contenteditable="true" onblur="autoSave()">বিবরণ</td>`;
-            tbody.appendChild(tr);
+        function removePage(btn) {
+            if (confirm('আপনি কি এই পেজটি মুছে ফেলতে চান?')) {
+                const page = btn.closest('.a4-page');
+                const prev = page.previousElementSibling;
+                if (prev && prev.classList.contains('page-break-indicator')) prev.remove();
+                page.remove();
+                autoSave();
+            }
+        }
+
+        function insertChecklist() {
+            let container = document.getElementById('checklistContainer');
+            if (!container) {
+                const activePage = document.querySelector('.a4-page .inner-border');
+                if (!activePage) return;
+                container = document.createElement('div');
+                container.id = 'checklistContainer';
+                activePage.appendChild(container);
+            }
+            
+            const div = document.createElement('div');
+            div.className = 'checklist-item';
+            div.innerHTML = `
+                <input type="checkbox">
+                <span contenteditable="true" onblur="autoSave()">নতুন গুরুত্বপূর্ণ চেকলিস্ট পয়েন্ট</span>
+                <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
+            `;
+            container.appendChild(div);
             autoSave();
         }
 
-        // --- Advanced Image Upload: Move, Resize & Rotation Engine ---
+        function deleteLastChecklist() {
+            const items = document.querySelectorAll('.checklist-item');
+            if (items.length > 0) {
+                items[items.length - 1].remove();
+                autoSave();
+            }
+        }
+
+        function addTableRow(btn) {
+            const table = btn.closest('.a4-page').querySelector('table');
+            if (!table) return;
+            const tbody = table.querySelector('tbody');
+            const colCount = table.querySelectorAll('thead th').length || 3;
+            
+            const tr = document.createElement('tr');
+            for (let i = 0; i < colCount; i++) {
+                const td = document.createElement('td');
+                td.contentEditable = "true";
+                td.innerText = i === 0 ? "নতুন সপ্তাহ/দিন" : "বিবরণ লিখুন";
+                td.setAttribute("onblur", "autoSave()");
+                tr.appendChild(td);
+            }
+            tbody.appendChild(tr);
+            attachDynamicRowEvents();
+            autoSave();
+        }
+
+        function addTableColumn(btn) {
+            const table = btn.closest('.a4-page').querySelector('table');
+            if (!table) return;
+            
+            const th = document.createElement('th');
+            th.contentEditable = "true";
+            th.innerText = "নতুন কলাম";
+            th.setAttribute("onblur", "autoSave()");
+            table.querySelector('thead tr').appendChild(th);
+
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const td = document.createElement('td');
+                td.contentEditable = "true";
+                td.innerText = "-";
+                td.setAttribute("onblur", "autoSave()");
+                row.appendChild(td);
+            });
+            attachDynamicRowEvents();
+            autoSave();
+        }
+
+        function attachDynamicRowEvents() {
+            const rows = document.querySelectorAll('.roadmap-table tbody tr');
+            rows.forEach(row => {
+                if (!row.querySelector('.row-action-btn')) {
+                    const lastTd = row.children[row.children.length - 1];
+                    if (lastTd) {
+                        lastTd.style.position = 'relative';
+                        const btnGroup = document.createElement('div');
+                        btnGroup.className = 'row-action-btn no-print absolute right-1 top-1 flex items-center gap-1 bg-slate-800/80 rounded px-1 py-0.5 border border-slate-600';
+                        btnGroup.innerHTML = `
+                            <button onclick="this.closest('tr').remove(); autoSave();" title="সারি মুছুন" class="text-rose-400 hover:text-rose-200 text-[10px]"><i class="fa-solid fa-trash"></i></button>
+                        `;
+                        lastTd.appendChild(btnGroup);
+                    }
+                }
+            });
+        }
+
+        function addSuggestionCard(btn) {
+            const grid = btn.closest('.a4-page').querySelector('.suggestion-grid');
+            if (!grid) return;
+            const card = document.createElement('div');
+            card.className = 'sugg-card';
+            card.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <h4 contenteditable="true" onblur="autoSave()">[নতুন] বিষয়</h4>
+                    <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <ul>
+                    <li contenteditable="true" onblur="autoSave()">আইটেম ১</li>
+                </ul>
+                <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
+            `;
+            grid.appendChild(card);
+            autoSave();
+        }
+
+        function removeCard(btn) {
+            if (confirm('কার্ডটি মুছে ফেলতে চান?')) {
+                btn.closest('.sugg-card').remove();
+                autoSave();
+            }
+        }
+
+        function addListItem(btn) {
+            const ul = btn.parentElement.querySelector('ul');
+            const li = document.createElement('li');
+            li.contentEditable = "true";
+            li.innerText = "নতুন টপিক";
+            li.setAttribute("onblur", "autoSave()");
+            ul.appendChild(li);
+            autoSave();
+        }
+
+        /* Full Featured Interactive Image Studio (Move, Resize & Rotate) */
         function uploadFloatingImage(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -901,21 +1329,19 @@
                 const targetPage = document.querySelector('.a4-page .inner-border');
                 const element = document.createElement('div');
                 element.className = 'floating-element selected';
-                element.style.left = '40px';
-                element.style.top = '40px';
+                element.style.left = '30px';
+                element.style.top = '30px';
                 element.style.width = '120px';
                 element.style.height = '120px';
-                element.style.transform = 'rotate(0deg)';
+                element.setAttribute('data-rotation', '0');
 
                 element.innerHTML = `
-                    <div class="floating-content" style="width:100%; height:100%;">
-                        <img src="${e.target.result}" alt="Uploaded Image">
-                        <div class="floating-controls">
-                            <div class="resize-handle"></div>
-                            <div class="rotate-handle"></div>
-                        </div>
+                    <div class="floating-content">
+                        <img src="${e.target.result}" alt="Logo Image">
                     </div>
-                    <button onclick="this.closest('.floating-element').remove(); autoSave();" class="no-print absolute -top-3 -right-3 bg-rose-600 text-white w-5 h-5 rounded-full text-[10px] flex items-center justify-center shadow"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="resize-handle"></div>
+                    <div class="rotate-handle"></div>
+                    <button onclick="this.parentElement.remove(); autoSave();" class="no-print absolute -top-3 -right-3 bg-rose-600 text-white w-5 h-5 rounded-full text-[10px] flex items-center justify-center shadow z-30"><i class="fa-solid fa-xmark"></i></button>
                 `;
 
                 targetPage.appendChild(element);
@@ -925,18 +1351,17 @@
             reader.readAsDataURL(file);
         }
 
-        function rebindInteractiveElements() {
-            document.querySelectorAll('.floating-element').forEach(el => makeElementInteractive(el));
+        function rebindFloatingElements() {
+            document.querySelectorAll('.floating-element').forEach(el => {
+                makeElementInteractive(el);
+            });
         }
 
         function makeElementInteractive(el) {
             let isDragging = false, isResizing = false, isRotating = false;
-            let startX, startY, startWidth, startHeight, initialAngle = 0, currentRotation = 0;
+            let startX, startY, startWidth, startHeight, startAngle = 0, currentRotation = parseFloat(el.getAttribute('data-rotation') || '0');
 
             el.addEventListener('mousedown', (e) => {
-                deselectAll();
-                el.classList.add('selected');
-
                 if (e.target.classList.contains('resize-handle')) {
                     isResizing = true;
                 } else if (e.target.classList.contains('rotate-handle')) {
@@ -944,17 +1369,18 @@
                     const rect = el.getBoundingClientRect();
                     const centerX = rect.left + rect.width / 2;
                     const centerY = rect.top + rect.height / 2;
-                    initialAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
-                    const match = el.style.transform.rotate ? el.style.transform.match(/rotate\((-?\d+\.?\d*)deg\)/) : null;
-                    if (match) currentRotation = parseFloat(match[1]);
-                } else {
+                    startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI) - currentRotation;
+                } else if (!e.target.tagName.toLowerCase().includes('button')) {
                     isDragging = true;
                 }
 
                 startX = e.clientX;
                 startY = e.clientY;
-                startWidth = el.offsetWidth;
-                startHeight = el.offsetHeight;
+                startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
+                startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
+
+                deselectFloating();
+                el.classList.add('selected');
                 e.stopPropagation();
             });
 
@@ -969,15 +1395,16 @@
                 } else if (isResizing) {
                     const dx = e.clientX - startX;
                     const dy = e.clientY - startY;
-                    el.style.width = Math.max(40, startWidth + dx) + 'px';
-                    el.style.height = Math.max(40, startHeight + dy) + 'px';
+                    el.style.width = Math.max(30, startWidth + dx) + 'px';
+                    el.style.height = Math.max(30, startHeight + dy) + 'px';
                 } else if (isRotating) {
                     const rect = el.getBoundingClientRect();
                     const centerX = rect.left + rect.width / 2;
                     const centerY = rect.top + rect.height / 2;
                     const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
-                    const rot = currentRotation + (angle - initialAngle);
-                    el.style.transform = `rotate(${rot}deg)`;
+                    currentRotation = angle - startAngle;
+                    el.style.transform = `rotate(${currentRotation}deg)`;
+                    el.setAttribute('data-rotation', currentRotation);
                 }
             });
 
@@ -991,36 +1418,54 @@
             });
         }
 
-        function deselectAll() {
+        function deselectFloating() {
             document.querySelectorAll('.floating-element').forEach(el => el.classList.remove('selected'));
         }
 
         function setupGlobalListeners() {
             document.addEventListener('click', (e) => {
-                if (!e.target.closest('.floating-element')) deselectAll();
+                if (!e.target.closest('.floating-element')) deselectFloating();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key.toLowerCase() === 'z') {
+                    e.preventDefault();
+                    undoAction();
+                } else if (e.ctrlKey && (e.key.toLowerCase() === 'y' || (e.shiftKey && e.key.toLowerCase() === 'z'))) {
+                    e.preventDefault();
+                    redoAction();
+                }
             });
         }
 
         function triggerPrint() {
-            deselectAll();
+            deselectFloating();
             document.getElementById('pageContainer').classList.remove('tilt-3d');
             window.print();
         }
 
         function resetDefaultTemplate() {
-            if (confirm('রিসেট করতে চান? সব পরিবর্তন মুছে যাবে।')) {
+            if (confirm('আপনি কি পূর্বের মূল টেমপ্লেটে রিসেট করতে চান? সব পরিবর্তন মুছে যাবে।')) {
                 localStorage.removeItem(LOCAL_STORAGE_KEY);
                 location.reload();
             }
         }
 
         function saveProjectJSON() {
-            const data = { htmlContent: document.getElementById('pageContainer').innerHTML };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const saveData = {
+                htmlContent: document.getElementById('pageContainer').innerHTML,
+                primaryColor: document.getElementById('primaryColorPicker').value,
+                secondaryColor: document.getElementById('secondaryColorPicker').value,
+                fontFamily: document.getElementById('fontSelect').value,
+                fontSize: baseFontSize,
+                paperSize: document.getElementById('paperSizeSelect').value,
+                softwareTheme: document.getElementById('softwareThemeSelect').value
+            };
+            const blob = new Blob([JSON.stringify(saveData, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `roadmap_project.json`;
+            a.download = `coaching_3d_roadmap_${new Date().toISOString().slice(0,10)}.json`;
             a.click();
             URL.revokeObjectURL(url);
         }
@@ -1028,19 +1473,70 @@
         function loadProjectJSON(event) {
             const file = event.target.files[0];
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     const data = JSON.parse(e.target.result);
-                    if (data.htmlContent) {
-                        document.getElementById('pageContainer').innerHTML = data.htmlContent;
-                        rebindInteractiveElements();
-                        autoSave();
-                        alert('প্রজেক্ট লোড সফল হয়েছে!');
+                    if (data.htmlContent) document.getElementById('pageContainer').innerHTML = data.htmlContent;
+                    if (data.primaryColor) document.getElementById('primaryColorPicker').value = data.primaryColor;
+                    if (data.secondaryColor) document.getElementById('secondaryColorPicker').value = data.secondaryColor;
+                    if (data.fontFamily) {
+                        document.getElementById('fontSelect').value = data.fontFamily;
+                        updateDocFont(data.fontFamily);
                     }
-                } catch(err) { alert('ভুল ফাইল!'); }
+                    if (data.fontSize) {
+                        baseFontSize = data.fontSize;
+                        document.getElementById('fontSizeDisplay').innerText = baseFontSize + 'px';
+                    }
+                    if (data.paperSize) {
+                        document.getElementById('paperSizeSelect').value = data.paperSize;
+                        changePaperSize(data.paperSize);
+                    }
+                    if (data.softwareTheme) {
+                        document.getElementById('softwareThemeSelect').value = data.softwareTheme;
+                        changeSoftwareTheme(data.softwareTheme);
+                    }
+                    updateDocColors();
+                    attachDynamicRowEvents();
+                    rebindFloatingElements();
+                    autoSave();
+                    alert('প্রজেক্ট সফলভাবে লোড হয়েছে!');
+                } catch(err) {
+                    alert('ভুল JSON ফাইল!');
+                }
             };
             reader.readAsText(file);
+        }
+
+        function exportHTML() {
+            const cleanHTML = `<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>কোচিং রোডম্যাপ ও রুটিন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @page { size: ${document.getElementById('paperSizeSelect').value} portrait; margin: 0; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: white; margin: 0; padding: 0; }
+        .no-print { display: none !important; }
+        ${document.querySelector('style').innerHTML}
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        ${document.getElementById('pageContainer').innerHTML}
+    </div>
+</body>
+</html>`;
+
+            const blob = new Blob([cleanHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `coaching_roadmap_standalone.html`;
+            a.click();
+            URL.revokeObjectURL(url);
         }
     </script>
 </body>
