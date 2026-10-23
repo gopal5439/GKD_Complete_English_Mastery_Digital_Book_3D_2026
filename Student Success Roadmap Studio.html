@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Coaching Roadmap & Syllabus Studio Engine</title>
     
-    <!-- Google Fonts Suite: Bengali & English (Regular, Calligraphic, Modern, Serif) -->
+    <!-- Google Fonts Suite: Bengali & English -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700&family=Atma:wght@500;700&family=Caveat:wght@600;700&family=Cinzel:wght@600;800&family=Dancing+Script:wght@700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Kalpurush&family=Lobster&family=Mina:wght@400;700&family=Montserrat:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=Orbitron:wght@600;800&family=Oswald:wght@500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
@@ -96,7 +96,6 @@
             transition: background 0.4s ease;
         }
 
-        /* Select Options Dark Styling Fix */
         #fontSelect optgroup, 
         #fontSelect option {
             background-color: #0f172a !important;
@@ -105,12 +104,6 @@
             padding: 6px 10px;
         }
 
-        #fontSelect optgroup {
-            color: #38bdf8 !important;
-            font-weight: bold;
-        }
-
-        /* 3D Glassmorphism UI Components */
         .glass-panel {
             background: var(--panel-bg);
             backdrop-filter: blur(18px);
@@ -134,12 +127,6 @@
             border-color: var(--accent-glow);
         }
 
-        .glass-btn:active {
-            transform: translateY(1px);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
-        }
-
-        /* 3D Paper Workspace Canvas Viewport */
         .workspace-viewport {
             perspective: 1400px;
             padding: 30px 15px;
@@ -157,12 +144,10 @@
             transition: transform 0.5s ease;
         }
 
-        /* 3D Tilt View Mode */
         .page-container.tilt-3d {
             transform: rotateX(16deg) rotateY(-8deg) rotateZ(1deg) scale(0.95);
         }
 
-        /* Printable Sheet Canvas Frame */
         .a4-page {
             width: var(--page-width);
             min-height: var(--page-height);
@@ -186,10 +171,6 @@
             overflow: hidden;
         }
 
-        .a4-page:hover {
-            box-shadow: 0 35px 70px -10px var(--accent-glow-alpha), 0 0 0 2px var(--accent-glow);
-        }
-
         .inner-border {
             border: 1.5px solid var(--doc-secondary);
             min-height: calc(var(--page-height) - (var(--page-margin-top) + var(--page-margin-bottom) + 8mm));
@@ -202,7 +183,6 @@
             z-index: 1;
         }
 
-        /* Background Watermark Layer */
         .page-watermark {
             position: absolute;
             top: 50%;
@@ -218,7 +198,6 @@
             text-transform: uppercase;
         }
 
-        /* Document Headers */
         .header {
             text-align: center;
             border-bottom: 2px dashed var(--doc-primary);
@@ -254,7 +233,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
-        /* Section Title Headers */
         .section-header {
             background: var(--doc-secondary);
             color: #ffffff;
@@ -270,7 +248,6 @@
             outline: none;
         }
 
-        /* Message / Callout Box */
         .message-box {
             background-color: var(--doc-accent-bg);
             border-left: 4px solid var(--doc-secondary);
@@ -282,7 +259,6 @@
             border-radius: 0 6px 6px 0;
         }
 
-        /* Editable Roadmap Tables */
         .roadmap-table {
             width: 100%;
             border-collapse: collapse;
@@ -307,7 +283,6 @@
             position: relative;
         }
 
-        /* Suggestion Grid Cards */
         .suggestion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -355,7 +330,6 @@
             font-weight: bold;
         }
 
-        /* Checklist Styles */
         .checklist-item {
             display: flex;
             align-items: center;
@@ -367,20 +341,6 @@
             transition: background-color 0.2s;
         }
 
-        .checklist-item:hover {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-
-        .checklist-item .item-del-btn {
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            margin-left: 8px;
-        }
-
-        .checklist-item:hover .item-del-btn {
-            opacity: 1;
-        }
-
         .checklist-item input[type="checkbox"] {
             width: 14px;
             height: 14px;
@@ -389,30 +349,22 @@
             flex-shrink: 0;
         }
 
-        /* Advanced Dynamic Floating Image Engine (Move, Resize, Rotate) */
+        /* Fixed Interactive Floating Image Box (Draggable, Resizable & Rotatable) */
         .floating-element {
             position: absolute;
             cursor: move;
             user-select: none;
+            -webkit-user-select: none;
             border: 1.5px dashed transparent;
-            transition: border-color 0.2s ease;
             display: inline-block;
-            z-index: 20;
+            z-index: 100;
+            box-sizing: border-box;
             touch-action: none;
         }
 
-        .floating-element:hover, .floating-element.selected {
-            border-color: var(--doc-secondary);
-            box-shadow: 0 0 10px var(--accent-glow-alpha);
-        }
-
-        .floating-content {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .floating-element.selected {
+            border-color: var(--doc-secondary) !important;
+            box-shadow: 0 0 12px var(--accent-glow-alpha);
         }
 
         .floating-element img {
@@ -424,32 +376,32 @@
         }
 
         .resize-handle {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             background: var(--doc-secondary);
             position: absolute;
-            right: -6px;
-            bottom: -6px;
-            cursor: se-resize;
+            right: -7px;
+            bottom: -7px;
+            cursor: nwse-resize;
             border-radius: 50%;
             display: none;
-            border: 2px solid white;
-            z-index: 30;
+            border: 2px solid #ffffff;
+            z-index: 110;
         }
 
         .rotate-handle {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             background: #e11d48;
             position: absolute;
-            top: -18px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
             cursor: grab;
             border-radius: 50%;
             display: none;
-            border: 2px solid white;
-            z-index: 30;
+            border: 2px solid #ffffff;
+            z-index: 110;
         }
 
         .floating-element.selected .resize-handle,
@@ -457,7 +409,6 @@
             display: block;
         }
 
-        /* Signature & Footer Section */
         .footer-section {
             border-top: 1px dashed #94a3b8;
             padding-top: 10px;
@@ -497,12 +448,6 @@
             outline: none;
         }
 
-        /* ContentEditable Polish */
-        [contenteditable="true"] {
-            transition: background 0.15s ease, outline 0.15s ease;
-            border-radius: 3px;
-        }
-
         [contenteditable="true"]:hover {
             background-color: rgba(56, 189, 248, 0.12) !important;
             cursor: text;
@@ -512,7 +457,6 @@
             background-color: #ffffff !important;
             outline: 2px solid var(--doc-secondary) !important;
             color: #000000 !important;
-            box-shadow: 0 0 0 3px var(--accent-glow-alpha);
         }
 
         .row-action-btn, .card-action-btn {
@@ -971,7 +915,7 @@
         let baseFontSize = 11.5;
         let baseLineHeight = 1.5;
         let pageCounter = 1;
-        const LOCAL_STORAGE_KEY = 'coaching_roadmap_3d_pro_v5';
+        const LOCAL_STORAGE_KEY = 'coaching_roadmap_3d_pro_v6';
 
         /* Undo & Redo Engine */
         let undoStack = [];
@@ -1319,7 +1263,7 @@
             autoSave();
         }
 
-        /* Full Featured Interactive Image Studio (Move, Resize & Rotate) */
+        /* Perfectly Fixed Drag, Resize & Rotate Event Engine */
         function uploadFloatingImage(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1329,19 +1273,17 @@
                 const targetPage = document.querySelector('.a4-page .inner-border');
                 const element = document.createElement('div');
                 element.className = 'floating-element selected';
-                element.style.left = '30px';
-                element.style.top = '30px';
+                element.style.left = '40px';
+                element.style.top = '40px';
                 element.style.width = '120px';
                 element.style.height = '120px';
-                element.setAttribute('data-rotation', '0');
+                element.style.transform = 'rotate(0deg)';
 
                 element.innerHTML = `
-                    <div class="floating-content">
-                        <img src="${e.target.result}" alt="Logo Image">
-                    </div>
+                    <img src="${e.target.result}" alt="Uploaded Logo">
                     <div class="resize-handle"></div>
                     <div class="rotate-handle"></div>
-                    <button onclick="this.parentElement.remove(); autoSave();" class="no-print absolute -top-3 -right-3 bg-rose-600 text-white w-5 h-5 rounded-full text-[10px] flex items-center justify-center shadow z-30"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="this.parentElement.remove(); autoSave();" class="no-print absolute -top-3 -right-3 bg-rose-600 text-white w-5 h-5 rounded-full text-[10px] flex items-center justify-center shadow"><i class="fa-solid fa-xmark"></i></button>
                 `;
 
                 targetPage.appendChild(element);
@@ -1358,61 +1300,79 @@
         }
 
         function makeElementInteractive(el) {
-            let isDragging = false, isResizing = false, isRotating = false;
-            let startX, startY, startWidth, startHeight, startAngle = 0, currentRotation = parseFloat(el.getAttribute('data-rotation') || '0');
+            let activeMode = null; // 'drag', 'resize', 'rotate'
+            let startX = 0, startY = 0;
+            let startLeft = 0, startTop = 0;
+            let startWidth = 0, startHeight = 0;
+            let startAngle = 0, currentRotation = 0;
 
-            el.addEventListener('mousedown', (e) => {
+            el.addEventListener('pointerdown', (e) => {
+                if (e.target.tagName.toLowerCase() === 'button' || e.target.closest('button')) return;
+
+                deselectFloating();
+                el.classList.add('selected');
+
+                startX = e.clientX;
+                startY = e.clientY;
+                startLeft = el.offsetLeft;
+                startTop = el.offsetTop;
+                startWidth = el.offsetWidth;
+                startHeight = el.offsetHeight;
+
+                // Extract existing rotation
+                const st = window.getComputedStyle(el);
+                const tr = st.getPropertyValue("transform");
+                if (tr && tr !== "none") {
+                    const values = tr.split('(')[1].split(')')[0].split(',');
+                    const a = values[0], b = values[1];
+                    currentRotation = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+                } else {
+                    currentRotation = 0;
+                }
+
                 if (e.target.classList.contains('resize-handle')) {
-                    isResizing = true;
+                    activeMode = 'resize';
                 } else if (e.target.classList.contains('rotate-handle')) {
-                    isRotating = true;
+                    activeMode = 'rotate';
                     const rect = el.getBoundingClientRect();
                     const centerX = rect.left + rect.width / 2;
                     const centerY = rect.top + rect.height / 2;
                     startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI) - currentRotation;
-                } else if (!e.target.tagName.toLowerCase().includes('button')) {
-                    isDragging = true;
+                } else {
+                    activeMode = 'drag';
                 }
 
-                startX = e.clientX;
-                startY = e.clientY;
-                startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
-                startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
-
-                deselectFloating();
-                el.classList.add('selected');
+                el.setPointerCapture(e.pointerId);
                 e.stopPropagation();
             });
 
-            document.addEventListener('mousemove', (e) => {
-                if (isDragging) {
+            el.addEventListener('pointermove', (e) => {
+                if (!activeMode) return;
+
+                if (activeMode === 'drag') {
                     const dx = e.clientX - startX;
                     const dy = e.clientY - startY;
-                    el.style.left = (el.offsetLeft + dx) + 'px';
-                    el.style.top = (el.offsetTop + dy) + 'px';
-                    startX = e.clientX;
-                    startY = e.clientY;
-                } else if (isResizing) {
+                    el.style.left = (startLeft + dx) + 'px';
+                    el.style.top = (startTop + dy) + 'px';
+                } else if (activeMode === 'resize') {
                     const dx = e.clientX - startX;
                     const dy = e.clientY - startY;
                     el.style.width = Math.max(30, startWidth + dx) + 'px';
                     el.style.height = Math.max(30, startHeight + dy) + 'px';
-                } else if (isRotating) {
+                } else if (activeMode === 'rotate') {
                     const rect = el.getBoundingClientRect();
                     const centerX = rect.left + rect.width / 2;
                     const centerY = rect.top + rect.height / 2;
                     const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
-                    currentRotation = angle - startAngle;
-                    el.style.transform = `rotate(${currentRotation}deg)`;
-                    el.setAttribute('data-rotation', currentRotation);
+                    const newRotation = angle - startAngle;
+                    el.style.transform = `rotate(${newRotation}deg)`;
                 }
             });
 
-            document.addEventListener('mouseup', () => {
-                if (isDragging || isResizing || isRotating) {
-                    isDragging = false;
-                    isResizing = false;
-                    isRotating = false;
+            el.addEventListener('pointerup', (e) => {
+                if (activeMode) {
+                    activeMode = null;
+                    try { el.releasePointerCapture(e.pointerId); } catch(err){}
                     autoSave();
                 }
             });
