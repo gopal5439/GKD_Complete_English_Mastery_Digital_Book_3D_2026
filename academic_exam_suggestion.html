@@ -405,19 +405,6 @@
             }
         ];
 
-
-        {
-                {
-  id: 'higher-secondary',
-  title: 'Student Success Roadmap Studio',
-  range: 'For any student',
-  color: 'from-amber-500 to-orange-600',
-  badgeBg: 'bg-amber-100 text-amber-700 dark:bg-amber-950/80 dark:text-amber-300',
-  icon: 'fa-building-columns',
-  description: 'শিক্ষার্থীদের জন্য পড়ার রুটিন ও সাজেশন তৈরী করুন',
-  link: 'Student Success Roadmap Studio.html' // <--- নতুন যুক্ত করা লিংক
-}
-
         let curriculumData = JSON.parse(JSON.stringify(DEFAULT_CURRICULUM_DATA));
         let currentStageId = null;
         let currentClassId = null;
@@ -428,6 +415,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             loadTheme();
+            renderView();
             loadDriveLinksFromSheet();
         });
 
@@ -922,14 +910,17 @@
 
         function copyLink(url) {
             if (!url) return;
-            const dummy = document.createElement('input');
-            document.body.appendChild(dummy);
-            dummy.value = url;
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-
-            showToast('ড্রাইভ লিংক কপি করা হয়েছে!');
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('ড্রাইভ লিংক কপি করা হয়েছে!');
+            }).catch(() => {
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = url;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                showToast('ড্রাইভ লিংক কপি করা হয়েছে!');
+            });
         }
 
         function showToast(message) {
