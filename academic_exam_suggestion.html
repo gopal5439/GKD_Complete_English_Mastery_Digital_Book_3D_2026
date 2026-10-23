@@ -402,6 +402,17 @@
                         ]
                     }
                 ]
+            },
+            {
+                id: 'roadmap-studio',
+                title: 'Student Success Roadmap Studio',
+                range: 'For Any Student',
+                color: 'from-rose-500 to-red-600',
+                badgeBg: 'bg-rose-100 text-rose-700 dark:bg-rose-950/80 dark:text-rose-300',
+                icon: 'fa-compass',
+                description: 'শিক্ষার্থীদের জন্য পড়ার রুটিন ও পার্সোনালাইজড সাজেশন রোডম্যাপ তৈরি করুন।',
+                directUrl: 'Student Success Roadmap Studio.html',
+                classes: []
             }
         ];
 
@@ -426,17 +437,18 @@
                 const links = await res.json();
                 
                 curriculumData.forEach(stage => {
-                    stage.classes.forEach(cls => {
-                        cls.subjects.forEach(subject => {
-                            // প্রতিটি ক্লাসের বিষয়ের জন্য ইউনিক কি (যেমন: class-1_english)
-                            const uniqueKey = `${cls.id}_${subject.id}`;
-                            if (links && links[uniqueKey]) {
-                                subject.driveLink = formatToPreviewLink(links[uniqueKey]);
-                            } else {
-                                subject.driveLink = ""; 
-                            }
+                    if (stage.classes) {
+                        stage.classes.forEach(cls => {
+                            cls.subjects.forEach(subject => {
+                                const uniqueKey = `${cls.id}_${subject.id}`;
+                                if (links && links[uniqueKey]) {
+                                    subject.driveLink = formatToPreviewLink(links[uniqueKey]);
+                                } else {
+                                    subject.driveLink = ""; 
+                                }
+                            });
                         });
-                    });
+                    }
                 });
             } catch (err) {
                 console.error("Error loading links:", err);
@@ -467,11 +479,10 @@
 
             const formattedLink = rawLink ? formatToPreviewLink(rawLink) : "";
             
-            // ইউনিক আইডি তৈরি করা হচ্ছে (যেমন: class-1_english, ssc-special_english)
             const uniqueSubjectKey = `${classId}_${subjectId}`;
 
             const stage = curriculumData.find(s => s.id === stageId);
-            const cls = stage ? stage.classes.find(c => c.id === classId) : null;
+            const cls = stage && stage.classes ? stage.classes.find(c => c.id === classId) : null;
             const sub = cls ? cls.subjects.find(s => s.id === subjectId) : null;
 
             if (sub) {
@@ -484,7 +495,7 @@
                     await fetch(GOOGLE_SHEET_API, {
                         method: "POST",
                         body: JSON.stringify({
-                            subjectId: uniqueSubjectKey, // ইউনিক আইডি পাঠানো হচ্ছে
+                            subjectId: uniqueSubjectKey,
                             driveLink: formattedLink
                         })
                     });
@@ -514,6 +525,14 @@
 
         // Navigation Controller
         function navigateTo(stageId = null, classId = null) {
+            if (stageId) {
+                const stage = curriculumData.find(s => s.id === stageId);
+                if (stage && stage.directUrl) {
+                    window.location.href = stage.directUrl;
+                    return;
+                }
+            }
+
             currentStageId = stageId;
             currentClassId = classId;
             isSearching = false;
@@ -574,7 +593,7 @@
 
             if (currentClassId && currentStageId) {
                 const stage = curriculumData.find(s => s.id === currentStageId);
-                if (stage) {
+                if (stage && stage.classes) {
                     const cls = stage.classes.find(c => c.id === currentClassId);
                     if (cls) {
                         html += `
@@ -601,16 +620,19 @@
                 sub.textContent = "আপনার কাঙ্ক্ষিত ক্লাসটি বেছে নিয়ে সকল বিষয়ের পিডিএফ ড্রাইভ লিংকগুলো দেখুন।";
             } else if (currentClassId) {
                 const stage = curriculumData.find(s => s.id === currentStageId);
-                const cls = stage ? stage.classes.find(c => c.id === currentClassId) : null;
+                const cls = stage && stage.classes ? stage.classes.find(c => c.id === currentClassId) : null;
                 title.textContent = cls ? `${cls.name} - এর সকল বিষয়` : "বিষয়সমূহ";
                 sub.textContent = "নিচে বিষয়ের ড্রাইভ সাজেশন লিংক দেওয়া হলো। চাইলে পরিবর্তন বাটনে ক্লিক করে নিজের লিংক যোগ করতে পারেন।";
             }
         }
 
         function renderStagesView(container) {
-            let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">`;
+            let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">`;
 
             curriculumData.forEach(stage => {
+                const isDirectLink = !!stage.directUrl;
+                const countText = isDirectLink ? "সরাসরি টুলস খুলুন" : `${stage.classes ? stage.classes.length : 0} টি ক্লাস ক্যাটাগরি`;
+
                 html += `
                     <div onclick="navigateTo('${stage.id}')" class="glass-card rounded-2xl p-6 flex flex-col justify-between cursor-pointer group hover:border-sky-500/50">
                         <div>
@@ -632,8 +654,8 @@
                         </div>
 
                         <div class="flex items-center justify-between pt-4 border-t border-slate-200/60 dark:border-slate-800/60 text-xs font-bold text-sky-600 dark:text-sky-400">
-                            <span>${stage.classes.length} টি ক্লাস ক্যাটাগরি</span>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            <span>${countText}</span>
+                            <i class="fa-solid ${isDirectLink ? 'fa-arrow-up-right-from-square' : 'fa-arrow-right'} group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
                 `;
@@ -645,7 +667,7 @@
 
         function renderClassesView(container) {
             const stage = curriculumData.find(s => s.id === currentStageId);
-            if (!stage) return;
+            if (!stage || !stage.classes) return;
 
             let html = `
                 <div class="mb-6 flex items-center justify-between">
@@ -687,7 +709,7 @@
 
         function renderSubjectsView(container) {
             const stage = curriculumData.find(s => s.id === currentStageId);
-            if (!stage) return;
+            if (!stage || !stage.classes) return;
             const cls = stage.classes.find(c => c.id === currentClassId);
             if (!cls) return;
 
@@ -802,23 +824,25 @@
             const results = [];
 
             curriculumData.forEach(stage => {
-                stage.classes.forEach(cls => {
-                    cls.subjects.forEach(sub => {
-                        if (
-                            sub.name.toLowerCase().includes(query) || 
-                            cls.name.toLowerCase().includes(query) ||
-                            stage.title.toLowerCase().includes(query)
-                        ) {
-                            results.push({
-                                stageTitle: stage.title,
-                                stageId: stage.id,
-                                className: cls.name,
-                                classId: cls.id,
-                                subject: sub
-                            });
-                        }
+                if (stage.classes) {
+                    stage.classes.forEach(cls => {
+                        cls.subjects.forEach(sub => {
+                            if (
+                                sub.name.toLowerCase().includes(query) || 
+                                cls.name.toLowerCase().includes(query) ||
+                                stage.title.toLowerCase().includes(query)
+                            ) {
+                                results.push({
+                                    stageTitle: stage.title,
+                                    stageId: stage.id,
+                                    className: cls.name,
+                                    classId: cls.id,
+                                    subject: sub
+                                });
+                            }
+                        });
                     });
-                });
+                }
             });
 
             if (results.length === 0) {
@@ -884,7 +908,7 @@
 
         function openLinkModal(stageId, classId, subjectId) {
             const stage = curriculumData.find(s => s.id === stageId);
-            const cls = stage ? stage.classes.find(c => c.id === classId) : null;
+            const cls = stage && stage.classes ? stage.classes.find(c => c.id === classId) : null;
             const sub = cls ? cls.subjects.find(s => s.id === subjectId) : null;
 
             if (!sub) return;
