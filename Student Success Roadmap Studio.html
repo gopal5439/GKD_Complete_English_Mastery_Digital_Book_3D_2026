@@ -134,10 +134,31 @@
             border-color: var(--accent-glow);
         }
 
+        /* Left Sidebar Layout Engine */
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+            width: 100vw;
+        }
+
+        .left-sidebar {
+            width: 320px;
+            min-width: 320px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            overflow-y: auto;
+            border-right: 1px solid var(--panel-border);
+        }
+
         .workspace-viewport {
             perspective: 1600px;
             padding: 30px 15px;
-            min-height: calc(100vh - 120px);
+            min-height: 100vh;
+            margin-left: 320px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -160,10 +181,11 @@
             cursor: grabbing;
         }
 
+        /* Fixed Page Height Constraint for Auto-Pagination */
         .a4-page {
             width: var(--page-width);
-            min-height: var(--page-height);
-            height: auto;
+            height: var(--page-height); /* Strict Page Height Fix */
+            max-height: var(--page-height);
             padding-top: var(--page-margin-top);
             padding-bottom: var(--page-margin-bottom);
             padding-left: var(--page-margin-left);
@@ -186,7 +208,8 @@
 
         .inner-border {
             border: 1.5px solid var(--doc-secondary);
-            min-height: calc(var(--page-height) - (var(--page-margin-top) + var(--page-margin-bottom) + 8mm));
+            height: calc(var(--page-height) - (var(--page-margin-top) + var(--page-margin-bottom) + 8mm));
+            max-height: calc(var(--page-height) - (var(--page-margin-top) + var(--page-margin-bottom) + 8mm));
             padding: 8mm;
             display: flex;
             flex-direction: column;
@@ -194,6 +217,15 @@
             box-sizing: border-box;
             position: relative;
             z-index: 1;
+            overflow: hidden;
+        }
+
+        .page-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-grow: 1;
+            overflow: hidden;
         }
 
         .custom-page-header, .custom-page-footer {
@@ -202,6 +234,7 @@
             padding: 4px 0;
             border-bottom: 1px dashed #cbd5e1;
             margin-bottom: 8px;
+            flex-shrink: 0;
         }
 
         .custom-page-footer {
@@ -211,6 +244,7 @@
             margin-bottom: 0;
             display: flex;
             justify-content: space-between;
+            flex-shrink: 0;
         }
 
         .header-hidden {
@@ -237,6 +271,7 @@
             border-bottom: 2px dashed var(--doc-primary);
             padding-bottom: 10px;
             position: relative;
+            flex-shrink: 0;
         }
 
         .coaching-title {
@@ -267,6 +302,10 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
+        .section-block {
+            flex-shrink: 0;
+        }
+
         .section-header {
             background: var(--doc-secondary);
             color: #ffffff;
@@ -291,6 +330,7 @@
             color: var(--doc-text);
             outline: none;
             border-radius: 0 6px 6px 0;
+            flex-shrink: 0;
         }
 
         .roadmap-table {
@@ -454,10 +494,12 @@
             display: block;
         }
 
+        /* Footer & Signatures Dynamic Bottom Positioning */
         .footer-section {
             border-top: 1px dashed #94a3b8;
             padding-top: 10px;
-            margin-top: 10px;
+            margin-top: auto; /* Push to bottom of flex page */
+            flex-shrink: 0;
         }
 
         .declaration {
@@ -537,6 +579,19 @@
             border-bottom: 2px dashed #475569;
         }
 
+        /* Unpublished / Private View Hidden State */
+        body.is-private:not(.is-admin) #pageContainer {
+            display: none !important;
+        }
+
+        #privateNotice {
+            display: none;
+        }
+
+        body.is-private:not(.is-admin) #privateNotice {
+            display: flex !important;
+        }
+
         /* PRINT STYLING */
         @media print {
             @page {
@@ -553,12 +608,13 @@
                 print-color-adjust: exact !important;
             }
 
-            .no-print, .top-toolbar, .formatting-bar, .controls-3d-panel, .page-break-indicator, .resize-handle, .rotate-handle, button {
+            .no-print, .left-sidebar, .page-break-indicator, .resize-handle, .rotate-handle, button {
                 display: none !important;
             }
 
             .workspace-viewport {
                 padding: 0 !important;
+                margin-left: 0 !important;
                 min-height: auto !important;
                 display: block !important;
             }
@@ -585,52 +641,62 @@
         }
     </style>
 </head>
-<body class="flex flex-col view-only">
+<body class="view-only">
 
-    <!-- Top 3D Glassmorphism Studio Toolbar -->
-    <header class="top-toolbar sticky top-0 z-50 glass-panel border-b px-4 py-2.5 no-print">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+    <div class="app-layout">
+        <!-- Left Unified Sidebar Toolbar -->
+        <aside class="left-sidebar glass-panel no-print p-4 flex flex-col gap-4 text-xs">
             
             <!-- App Logo & Title -->
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-sky-500/30 border border-sky-400/40">
+            <div class="flex flex-col gap-2 border-b border-slate-700/80 pb-3">
+                <div class="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 text-white px-3 py-2 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-sky-500/30 border border-sky-400/40">
                     <i class="fa-solid fa-cubes text-lg animate-pulse"></i>
                     <span class="tracking-wide text-sm font-extrabold">3D রোডম্যাপ স্টুডিও Pro</span>
                 </div>
-                <span id="saveStatus" class="text-xs bg-slate-800/80 text-slate-300 px-3 py-1 rounded-full border border-slate-700/80 flex items-center gap-1.5">
-                    <i class="fa-solid fa-eye text-sky-400"></i> ভিউ মোড
-                </span>
+                <div class="flex items-center justify-between mt-1">
+                    <span id="saveStatus" class="text-xs bg-slate-800/80 text-slate-300 px-3 py-1 rounded-full border border-slate-700/80 flex items-center gap-1.5">
+                        <i class="fa-solid fa-eye text-sky-400"></i> ভিউ মোড
+                    </span>
+                    <button id="editToggleBtn" onclick="toggleEditMode()" class="glass-btn bg-amber-600/80 text-amber-100 hover:text-white px-2.5 py-1 rounded-xl font-medium flex items-center gap-1">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>এডিট মোড</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Page Setup & Live Software Theme Switcher -->
-            <div class="flex flex-wrap items-center gap-2 text-xs">
+            <!-- Public/Private Publish Eye Toggle Button -->
+            <div class="flex flex-col gap-2 border-b border-slate-700/80 pb-3">
+                <span class="text-sky-400 font-bold">পাবলিশ স্ট্যাটাস (Public Visibility):</span>
+                <button id="publishToggleBtn" onclick="togglePublishStatus()" class="glass-btn bg-emerald-600/80 text-white px-3 py-2 rounded-xl font-medium flex items-center justify-between transition-all">
+                    <span class="flex items-center gap-2">
+                        <i id="publishEyeIcon" class="fa-solid fa-eye text-emerald-300"></i>
+                        <span id="publishStatusText">পাবলিশড (অন)</span>
+                    </span>
+                    <span id="publishBadge" class="bg-emerald-500/30 text-emerald-200 text-[10px] px-2 py-0.5 rounded-full border border-emerald-400/40">পাবলিক</span>
+                </button>
+            </div>
+
+            <!-- Page Controls & Theme Settings -->
+            <div class="flex flex-col gap-2.5 border-b border-slate-700/80 pb-3">
+                <span class="text-sky-400 font-bold">পেজ সেটিং ও থিম:</span>
                 
-                <!-- Password Edit Mode Toggle Button -->
-                <button id="editToggleBtn" onclick="toggleEditMode()" class="glass-btn bg-amber-600/80 text-amber-100 hover:text-white px-3 py-1.5 rounded-xl font-medium flex items-center gap-1.5">
-                    <i class="fa-solid fa-lock"></i>
-                    <span>এডিট মোড (পাসওয়ার্ড)</span>
+                <button onclick="toggleHeaderVisibility()" class="glass-btn px-2.5 py-1.5 rounded-lg text-slate-200 flex items-center justify-between hover:text-sky-300">
+                    <span><i class="fa-solid fa-heading text-sky-400 mr-1.5"></i> হেডার অন/অফ</span>
                 </button>
 
-                <!-- Header On/Off Toggle -->
-                <button onclick="toggleHeaderVisibility()" title="হেডার চালু/বন্ধ করুন" class="glass-btn px-2.5 py-1 rounded-lg text-slate-200 flex items-center gap-1 hover:text-sky-300">
-                    <i class="fa-solid fa-heading text-sky-400"></i> হেডার অন/অফ
-                </button>
-
-                <!-- 3D & Light/Dark Theme Picker -->
-                <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                    <i class="fa-solid fa-palette text-amber-400"></i>
+                <div class="flex items-center justify-between bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/80">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-palette text-amber-400"></i> থিম:</span>
                     <select id="softwareThemeSelect" onchange="changeSoftwareTheme(this.value)" class="bg-transparent text-slate-200 focus:outline-none cursor-pointer text-xs">
-                        <option value="dark" class="bg-slate-900">Modern Dark Studio</option>
-                        <option value="light" class="bg-slate-900">Minimal Light Studio</option>
-                        <option value="cyberpunk" class="bg-slate-900">Cyberpunk Neon 3D</option>
-                        <option value="gold" class="bg-slate-900">Royal Luxury Gold</option>
-                        <option value="emerald" class="bg-slate-900">Emerald Glass 3D</option>
+                        <option value="dark" class="bg-slate-900">Modern Dark</option>
+                        <option value="light" class="bg-slate-900">Minimal Light</option>
+                        <option value="cyberpunk" class="bg-slate-900">Cyberpunk Neon</option>
+                        <option value="gold" class="bg-slate-900">Royal Gold</option>
+                        <option value="emerald" class="bg-slate-900">Emerald Glass</option>
                     </select>
                 </div>
 
-                <!-- Page Format Selector -->
-                <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                    <i class="fa-solid fa-file-lines text-sky-400"></i>
+                <div class="flex items-center justify-between bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/80">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-file-lines text-sky-400"></i> সাইজ:</span>
                     <select id="paperSizeSelect" onchange="changePaperSize(this.value)" class="bg-transparent text-slate-200 focus:outline-none cursor-pointer text-xs">
                         <option value="a4" class="bg-slate-900">A4 Portrait</option>
                         <option value="a4_landscape" class="bg-slate-900">A4 Landscape</option>
@@ -639,361 +705,360 @@
                     </select>
                 </div>
 
-                <!-- Interactive 3D Canvas View Toggle -->
-                <button id="btn3DMode" onclick="toggle3DMode()" title="3D রোটেশন ও ফ্লিপ ভিউ" class="glass-btn px-2.5 py-1 rounded-lg text-slate-200 flex items-center gap-1.5 hover:text-sky-300">
-                    <i class="fa-solid fa-cube text-purple-400"></i> 3D ভিউ
-                </button>
-
-                <!-- Document Color Pickers -->
-                <div class="flex items-center gap-2 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                    <label title="Primary Color" class="flex items-center gap-1 cursor-pointer">
-                        <span class="text-slate-400 text-[11px]">প্রাইমারি:</span>
+                <div class="flex items-center justify-between bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/80">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <span class="text-slate-400">প্রাইমারি:</span>
                         <input type="color" id="primaryColorPicker" onchange="updateDocColors()" value="#1e3a8a" class="w-4 h-4 rounded cursor-pointer border-0 bg-transparent">
                     </label>
-                    <label title="Secondary Color" class="flex items-center gap-1 cursor-pointer">
-                        <span class="text-slate-400 text-[11px]">সেকেন্ডারি:</span>
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <span class="text-slate-400">সেকেন্ডারি:</span>
                         <input type="color" id="secondaryColorPicker" onchange="updateDocColors()" value="#0284c7" class="w-4 h-4 rounded cursor-pointer border-0 bg-transparent">
                     </label>
                 </div>
-            </div>
 
-            <!-- Print & PDF Download Button Only -->
-            <div class="flex items-center gap-2">
-                <button onclick="triggerPrint()" class="glass-btn bg-emerald-600/80 text-emerald-100 hover:text-white px-4 py-1.5 rounded-xl font-medium flex items-center gap-1.5 transition-colors">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    <span>প্রিন্ট / PDF ডাউনলোড</span>
-                </button>
-
-                <button onclick="resetDefaultTemplate()" title="রিসেট টেমপ্লেট" class="glass-btn text-rose-300 hover:text-rose-100 p-2 rounded-xl border-rose-500/30 transition-colors">
-                    <i class="fa-solid fa-rotate-left"></i>
+                <button id="btn3DMode" onclick="toggle3DMode()" class="glass-btn px-2.5 py-1.5 rounded-lg text-slate-200 flex items-center justify-between hover:text-sky-300">
+                    <span><i class="fa-solid fa-cube text-purple-400 mr-1.5"></i> 3D ভিউ মোড</span>
                 </button>
             </div>
 
-        </div>
-    </header>
+            <!-- Formatting & Text Tools -->
+            <div class="flex flex-col gap-2.5 border-b border-slate-700/80 pb-3">
+                <span class="text-sky-400 font-bold">টেক্সট ও ফন্ট ফরম্যাটিং:</span>
 
-    <!-- Font & Text Formatting Toolbar -->
-    <div class="formatting-bar bg-slate-900/90 border-b border-slate-800 px-4 py-2 sticky top-[57px] z-40 glass-panel no-print">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2.5 text-xs">
-            
-            <!-- Undo & Redo Controls -->
-            <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                <button onclick="undoAction()" title="Undo (Ctrl+Z)" class="glass-btn px-2.5 py-1 rounded text-slate-200 hover:text-sky-300 flex items-center gap-1">
-                    <i class="fa-solid fa-rotate-left"></i> Undo
-                </button>
-                <button onclick="redoAction()" title="Redo (Ctrl+Y)" class="glass-btn px-2.5 py-1 rounded text-slate-200 hover:text-sky-300 flex items-center gap-1">
-                    <i class="fa-solid fa-rotate-right"></i> Redo
-                </button>
+                <div class="flex items-center justify-between bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
+                    <button onclick="undoAction()" title="Undo (Ctrl+Z)" class="glass-btn px-2 py-1 rounded text-slate-200 flex items-center gap-1"><i class="fa-solid fa-rotate-left"></i> Undo</button>
+                    <button onclick="redoAction()" title="Redo (Ctrl+Y)" class="glass-btn px-2 py-1 rounded text-slate-200 flex items-center gap-1"><i class="fa-solid fa-rotate-right"></i> Redo</button>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <span class="text-slate-400 text-[11px]">ফন্ট নির্বাচন:</span>
+                    <select id="fontSelect" onchange="updateDocFont(this.value)" class="bg-slate-900 text-slate-100 focus:outline-none cursor-pointer text-xs w-full border border-slate-700 rounded p-1">
+                        <optgroup label="🇧🇩 বাংলা রেগুলার ফন্ট">
+                            <option value="'Hind Siliguri', sans-serif" selected>হিন্দ শিলিগুড়ি (Hind Siliguri)</option>
+                            <option value="'SolaimanLipi', sans-serif">সলাইমান লিপি (SolaimanLipi)</option>
+                            <option value="'Kalpurush', sans-serif">কালপুরুষ (Kalpurush)</option>
+                            <option value="'Noto Sans Bengali', sans-serif">নোটো সান্স বাংলা</option>
+                            <option value="'Anek Bangla', sans-serif">অনেক বাংলা (Anek Bangla)</option>
+                            <option value="'Mina', sans-serif">মিনা (Mina)</option>
+                            <option value="'Tiro Bangla', serif">তিরো বাংলা (Tiro Bangla)</option>
+                            <option value="'Noto Serif Bengali', serif">নোটো সেরিফ বাংলা</option>
+                        </optgroup>
+                        <optgroup label="🎨 বাংলা ডিজাইন ও ক্যালিগ্রাফি">
+                            <option value="'Galada', cursive">গলাদা (Galada Decorative)</option>
+                            <option value="'Atma', cursive">আত্মা (Atma Handwritten)</option>
+                        </optgroup>
+                        <optgroup label="🇬🇧 English Regular & Sans">
+                            <option value="'Inter', sans-serif">Inter Clean</option>
+                            <option value="'Poppins', sans-serif">Poppins Geometric</option>
+                            <option value="'Roboto', sans-serif">Roboto Modern</option>
+                            <option value="'Montserrat', sans-serif">Montserrat Bold</option>
+                        </optgroup>
+                        <optgroup label="📜 English Executive & Serif">
+                            <option value="'Playfair Display', serif">Playfair Display Luxury</option>
+                            <option value="'Cinzel', serif">Cinzel Executive</option>
+                        </optgroup>
+                        <optgroup label="✍️ English Decorative & Calligraphy">
+                            <option value="'Dancing Script', cursive">Dancing Script</option>
+                            <option value="'Great Vibes', cursive">Great Vibes Calligraphy</option>
+                            <option value="'Caveat', cursive">Caveat Handwritten</option>
+                            <option value="'Lobster', cursive">Lobster Display</option>
+                            <option value="'Orbitron', sans-serif">Orbitron Cyber 3D</option>
+                            <option value="'Oswald', sans-serif">Oswald Condensed</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="flex items-center justify-between bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
+                    <span class="text-slate-400">সাইজ:</span>
+                    <button onclick="adjustFontSize(-0.5)" class="px-2 py-0.5 hover:bg-slate-700 rounded font-bold">-</button>
+                    <span id="fontSizeDisplay" class="text-sky-300 font-medium">11.5px</span>
+                    <button onclick="adjustFontSize(0.5)" class="px-2 py-0.5 hover:bg-slate-700 rounded font-bold">+</button>
+                </div>
+
+                <div class="grid grid-cols-4 gap-1">
+                    <button onclick="execCmd('bold')" title="Bold" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-bold"></i></button>
+                    <button onclick="execCmd('italic')" title="Italic" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-italic"></i></button>
+                    <button onclick="execCmd('underline')" title="Underline" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-underline"></i></button>
+                    <button onclick="execCmd('strikeThrough')" title="Strikethrough" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-strikethrough"></i></button>
+                </div>
+
+                <div class="grid grid-cols-4 gap-1">
+                    <button onclick="execCmd('justifyLeft')" title="Align Left" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-align-left"></i></button>
+                    <button onclick="execCmd('justifyCenter')" title="Align Center" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-align-center"></i></button>
+                    <button onclick="execCmd('justifyRight')" title="Align Right" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-align-right"></i></button>
+                    <button onclick="execCmd('justifyFull')" title="Justify" class="glass-btn p-1.5 rounded text-center"><i class="fa-solid fa-align-justify"></i></button>
+                </div>
+
+                <div class="flex items-center justify-between gap-1">
+                    <button onclick="execCmd('insertUnorderedList')" title="Bullet List" class="glass-btn flex-1 p-1.5 rounded text-center"><i class="fa-solid fa-list-ul"></i></button>
+                    <button onclick="execCmd('insertOrderedList')" title="Numbered List" class="glass-btn flex-1 p-1.5 rounded text-center"><i class="fa-solid fa-list-ol"></i></button>
+                    <label class="glass-btn p-1.5 rounded cursor-pointer text-center flex-1 flex justify-center">
+                        <i class="fa-solid fa-font"></i>
+                        <input type="color" onchange="execCmd('foreColor', this.value)" class="w-0 h-0 opacity-0">
+                    </label>
+                    <label class="glass-btn p-1.5 rounded cursor-pointer text-center flex-1 flex justify-center">
+                        <i class="fa-solid fa-highlighter text-amber-400"></i>
+                        <input type="color" onchange="execCmd('hiliteColor', this.value)" value="#fef08a" class="w-0 h-0 opacity-0">
+                    </label>
+                </div>
             </div>
 
-            <!-- Font Engine Selector -->
-            <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                <i class="fa-solid fa-font text-sky-400"></i>
-                <select id="fontSelect" onchange="updateDocFont(this.value)" class="bg-slate-900 text-slate-100 focus:outline-none cursor-pointer text-xs w-48 border border-slate-700 rounded px-1 py-0.5">
-                    <optgroup label="🇧🇩 বাংলা রেগুলার ফন্ট">
-                        <option value="'Hind Siliguri', sans-serif" selected>হিন্দ শিলিগুড়ি (Hind Siliguri)</option>
-                        <option value="'SolaimanLipi', sans-serif">সলাইমান লিপি (SolaimanLipi)</option>
-                        <option value="'Kalpurush', sans-serif">কালপুরুষ (Kalpurush)</option>
-                        <option value="'Noto Sans Bengali', sans-serif">নোটো সান্স বাংলা</option>
-                        <option value="'Anek Bangla', sans-serif">অনেক বাংলা (Anek Bangla)</option>
-                        <option value="'Mina', sans-serif">মিনা (Mina)</option>
-                        <option value="'Tiro Bangla', serif">তিরো বাংলা (Tiro Bangla)</option>
-                        <option value="'Noto Serif Bengali', serif">নোটো সেরিফ বাংলা</option>
-                    </optgroup>
-                    <optgroup label="🎨 বাংলা ডিজাইন ও ক্যালিগ্রাফি">
-                        <option value="'Galada', cursive">গলাদা (Galada Decorative)</option>
-                        <option value="'Atma', cursive">আত্মা (Atma Handwritten)</option>
-                    </optgroup>
-                    <optgroup label="🇬🇧 English Regular & Sans">
-                        <option value="'Inter', sans-serif">Inter Clean</option>
-                        <option value="'Poppins', sans-serif">Poppins Geometric</option>
-                        <option value="'Roboto', sans-serif">Roboto Modern</option>
-                        <option value="'Montserrat', sans-serif">Montserrat Bold</option>
-                    </optgroup>
-                    <optgroup label="📜 English Executive & Serif">
-                        <option value="'Playfair Display', serif">Playfair Display Luxury</option>
-                        <option value="'Cinzel', serif">Cinzel Executive</option>
-                    </optgroup>
-                    <optgroup label="✍️ English Decorative & Calligraphy">
-                        <option value="'Dancing Script', cursive">Dancing Script</option>
-                        <option value="'Great Vibes', cursive">Great Vibes Calligraphy</option>
-                        <option value="'Caveat', cursive">Caveat Handwritten</option>
-                        <option value="'Lobster', cursive">Lobster Display</option>
-                        <option value="'Orbitron', sans-serif">Orbitron Cyber 3D</option>
-                        <option value="'Oswald', sans-serif">Oswald Condensed</option>
-                    </optgroup>
-                </select>
-            </div>
-
-            <!-- Font Size Controls -->
-            <div class="flex items-center gap-1 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700/80">
-                <button onclick="adjustFontSize(-0.5)" class="px-1.5 py-0.5 hover:bg-slate-700 rounded text-slate-200 font-bold">-</button>
-                <span id="fontSizeDisplay" class="px-1 text-sky-300 font-medium">11.5px</span>
-                <button onclick="adjustFontSize(0.5)" class="px-1.5 py-0.5 hover:bg-slate-700 rounded text-slate-200 font-bold">+</button>
-                <div class="h-4 w-px bg-slate-700 mx-1"></div>
-                <button onclick="adjustLineHeight(0.1)" title="Line Height +" class="px-1 py-0.5 hover:bg-slate-700 rounded text-slate-300"><i class="fa-solid fa-arrows-vertical"></i>+</button>
-                <button onclick="adjustLineHeight(-0.1)" title="Line Height -" class="px-1 py-0.5 hover:bg-slate-700 rounded text-slate-300"><i class="fa-solid fa-arrows-vertical"></i>-</button>
-            </div>
-
-            <!-- Formatting Actions -->
-            <div class="flex items-center gap-1">
-                <button onclick="execCmd('bold')" title="Bold" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-bold"></i></button>
-                <button onclick="execCmd('italic')" title="Italic" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-italic"></i></button>
-                <button onclick="execCmd('underline')" title="Underline" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-underline"></i></button>
-                <button onclick="execCmd('strikeThrough')" title="Strikethrough" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-strikethrough"></i></button>
-                <div class="h-4 w-px bg-slate-700 mx-1"></div>
-                <button onclick="execCmd('justifyLeft')" title="Align Left" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-left"></i></button>
-                <button onclick="execCmd('justifyCenter')" title="Align Center" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-center"></i></button>
-                <button onclick="execCmd('justifyRight')" title="Align Right" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-right"></i></button>
-                <button onclick="execCmd('justifyFull')" title="Justify" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-align-justify"></i></button>
-                <div class="h-4 w-px bg-slate-700 mx-1"></div>
-                <button onclick="execCmd('insertUnorderedList')" title="Bullet List" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-list-ul"></i></button>
-                <button onclick="execCmd('insertOrderedList')" title="Numbered List" class="glass-btn px-2 py-1 rounded text-slate-200 hover:bg-slate-700"><i class="fa-solid fa-list-ol"></i></button>
-                <div class="h-4 w-px bg-slate-700 mx-1"></div>
-                <label title="Text Color" class="glass-btn px-2 py-1 rounded cursor-pointer text-slate-200 flex items-center gap-1">
-                    <i class="fa-solid fa-font"></i>
-                    <input type="color" onchange="execCmd('foreColor', this.value)" class="w-3 h-3 border-0 bg-transparent cursor-pointer">
-                </label>
-                <label title="Highlight Color" class="glass-btn px-2 py-1 rounded cursor-pointer text-slate-200 flex items-center gap-1">
-                    <i class="fa-solid fa-highlighter text-amber-400"></i>
-                    <input type="color" onchange="execCmd('hiliteColor', this.value)" value="#fef08a" class="w-3 h-3 border-0 bg-transparent cursor-pointer">
-                </label>
-            </div>
-
-            <!-- Elements & Dynamic Image Upload -->
-            <div class="flex items-center gap-2">
-                <button onclick="addTextBox()" title="যেকোনো জায়গায় লেখার জন্য টেক্সট বক্স" class="glass-btn bg-indigo-600/40 text-indigo-200 hover:text-white px-2.5 py-1 rounded-lg flex items-center gap-1 text-[11px]">
+            <!-- Dynamic Elements Creation Controls -->
+            <div class="flex flex-col gap-2 border-b border-slate-700/80 pb-3">
+                <span class="text-sky-400 font-bold">এলিমেন্ট উপাদান যুক্ত করুন:</span>
+                
+                <button onclick="addTextBox()" class="glass-btn bg-indigo-600/40 text-indigo-200 hover:text-white px-2.5 py-1.5 rounded-lg flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-i-cursor"></i> + টেক্সট বক্স
                 </button>
 
-                <div class="flex items-center bg-emerald-900/40 rounded-lg border border-emerald-500/30 overflow-hidden">
-                    <button onclick="insertChecklist()" title="নতুন চেকলিস্ট যুক্ত করুন" class="hover:bg-emerald-600/40 text-emerald-200 px-2.5 py-1 text-[11px] flex items-center gap-1 border-r border-emerald-500/30">
+                <div class="flex items-center gap-1">
+                    <button onclick="insertChecklist()" class="glass-btn bg-emerald-600/40 text-emerald-200 hover:text-white flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1">
                         <i class="fa-solid fa-square-check"></i> + চেকলিস্ট
                     </button>
-                    <button onclick="deleteLastChecklist()" title="সর্বশেষ চেকলিস্ট মুছুন" class="hover:bg-rose-600/40 text-rose-300 px-2 py-1 text-[11px] flex items-center gap-1">
-                        <i class="fa-solid fa-trash"></i> মুছুন
+                    <button onclick="deleteLastChecklist()" class="glass-btn bg-rose-600/40 text-rose-200 hover:text-white p-1.5 rounded-lg">
+                        <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
 
-                <button onclick="addPage()" class="glass-btn bg-sky-600/40 text-sky-200 hover:text-white px-2.5 py-1 rounded-lg flex items-center gap-1 text-[11px]">
-                    <i class="fa-solid fa-plus-circle"></i> নতুন পেজ
+                <button onclick="addPage()" class="glass-btn bg-sky-600/40 text-sky-200 hover:text-white px-2.5 py-1.5 rounded-lg flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-plus-circle"></i> নতুন ম্যানুয়াল পেজ
                 </button>
                 
-                <label class="glass-btn bg-purple-600/40 text-purple-200 hover:text-white px-2.5 py-1 rounded-lg cursor-pointer flex items-center gap-1 text-[11px]">
+                <label class="glass-btn bg-purple-600/40 text-purple-200 hover:text-white px-2.5 py-1.5 rounded-lg cursor-pointer flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-image"></i> লোগো/ছবি যুক্ত করুন
                     <input type="file" accept="image/*" onchange="uploadFloatingImage(event)" class="hidden">
                 </label>
             </div>
 
-        </div>
-    </div>
-
-    <!-- Live Interactive 3D Control Bar (When 3D Mode Active) -->
-    <div id="panel3DControls" class="controls-3d-panel hidden bg-slate-900/90 border-b border-purple-500/30 px-4 py-2 sticky top-[102px] z-30 glass-panel no-print text-xs">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-slate-200">
-            <div class="flex items-center gap-2">
-                <span class="text-purple-400 font-bold flex items-center gap-1"><i class="fa-solid fa-cube"></i> 3D রোটেশন কন্ট্রোল:</span>
-                <span class="text-[11px] text-slate-400">(মাউস দিয়ে পেজ ঘুরান বা স্লাইডার ব্যবহার করুন)</span>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-4">
-                <label class="flex items-center gap-1.5">
+            <!-- 3D Controls Subpanel (Shown when 3D Active) -->
+            <div id="panel3DControls" class="hidden flex-col gap-2 bg-slate-800/80 p-2.5 rounded-lg border border-purple-500/30">
+                <span class="text-purple-400 font-bold flex items-center gap-1"><i class="fa-solid fa-cube"></i> 3D রোটেশন:</span>
+                <label class="flex justify-between items-center text-[11px]">
                     <span>Rot X:</span>
-                    <input type="range" id="sliderRotX" min="-60" max="60" value="0" oninput="update3DRotation()" class="w-20 accent-purple-500 cursor-pointer">
+                    <input type="range" id="sliderRotX" min="-60" max="60" value="0" oninput="update3DRotation()" class="w-28 accent-purple-500">
                 </label>
-                <label class="flex items-center gap-1.5">
+                <label class="flex justify-between items-center text-[11px]">
                     <span>Rot Y:</span>
-                    <input type="range" id="sliderRotY" min="-60" max="60" value="0" oninput="update3DRotation()" class="w-20 accent-purple-500 cursor-pointer">
+                    <input type="range" id="sliderRotY" min="-60" max="60" value="0" oninput="update3DRotation()" class="w-28 accent-purple-500">
                 </label>
-                <label class="flex items-center gap-1.5">
+                <label class="flex justify-between items-center text-[11px]">
                     <span>Rot Z:</span>
-                    <input type="range" id="sliderRotZ" min="-45" max="45" value="0" oninput="update3DRotation()" class="w-20 accent-purple-500 cursor-pointer">
+                    <input type="range" id="sliderRotZ" min="-45" max="45" value="0" oninput="update3DRotation()" class="w-28 accent-purple-500">
                 </label>
-                <button onclick="toggleFlipY()" class="glass-btn px-2 py-0.5 rounded text-xs hover:text-purple-300">
-                    <i class="fa-solid fa-arrows-rotate"></i> 180° Flip
-                </button>
-                <button onclick="reset3DTransforms()" class="glass-btn text-rose-300 px-2 py-0.5 rounded text-xs hover:text-rose-100">
-                    <i class="fa-solid fa-rotate-left"></i> রিসেট 3D
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Dynamic Workspace Viewport -->
-    <main class="workspace-viewport flex-grow">
-        
-        <div id="pageContainer" class="page-container" oninput="checkPageOverflow()">
-            
-            <!-- Printable Page Sheet 1 -->
-            <div class="a4-page" id="page-1">
-                <div class="page-watermark">COACHING ROADMAP</div>
-                
-                <div class="inner-border">
-                    
-                    <!-- Header Option -->
-                    <div class="custom-page-header" contenteditable="true" onblur="autoSave()">
-                        [ পেজ হেডার: এখানে আপনার কোচিংয়ের স্লোগান বা শিরোনাম লিখুন ]
-                    </div>
-
-                    <!-- Header Branding Area -->
-                    <div class="header">
-                        <div contenteditable="true" class="coaching-title" onblur="autoSave()">[ আপনার কোচিং সেন্টারের নাম ]</div>
-                        <div contenteditable="true" class="coaching-sub" onblur="autoSave()">ঠিকানা: আপনার শাখা ও অবস্থান | মোবাইল: ০১XXXXXXXXX | ইমেইল: info@coaching.com</div>
-                        <div contenteditable="true" class="badge" onblur="autoSave()">১ মাসের ক্র্যাশ কোর্স ও মাস্টার রোডম্যাপ (২০২৬)</div>
-                    </div>
-
-                    <!-- Guardian / Student Message Callout -->
-                    <div contenteditable="true" class="message-box" onblur="autoSave()">
-                        <strong>শ্রদ্ধেয় অভিভাবক,</strong> আপনার সন্তানের SSC / HSC / বোর্ড পরীক্ষার সেরা প্রস্তুতি নিশ্চিত করতে আগামী ১ মাসের স্পেশাল অ্যাকশন প্ল্যান তৈরি করা হয়েছে। নিয়মিত উপস্থিতি ও গাইডলাইন মেনে চলা সফলতার চাবিকাঠি।
-                    </div>
-
-                    <!-- Table Section (Syllabus & Routine) -->
-                    <div>
-                        <div class="section-header">
-                            <span contenteditable="true" onblur="autoSave()">📅 ৪ সপ্তাহের ক্লাস, টপিক ও পরীক্ষা রুটিন</span>
-                            <div class="no-print flex items-center gap-1">
-                                <button onclick="addTableRow(this)" title="সারি যোগ করুন" class="bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
-                                    <i class="fa-solid fa-plus"></i> সারি
-                                </button>
-                                <button onclick="addTableColumn(this)" title="কলাম যোগ করুন" class="bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
-                                    <i class="fa-solid fa-table-columns"></i> কলাম
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <table class="roadmap-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 15%;">সপ্তাহ</th>
-                                    <th style="width: 35%;">মূল বিষয়বস্তু (Focus Area)</th>
-                                    <th style="width: 50%;">ক্লাসের মূল লক্ষ্য ও পরীক্ষা পরিকল্পনা</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td contenteditable="true" onblur="autoSave()"><strong>১ম সপ্তাহ</strong></td>
-                                    <td contenteditable="true" onblur="autoSave()">Grammar Foundations & Hacks</td>
-                                    <td contenteditable="true" onblur="autoSave()">বোর্ড পরীক্ষার শর্টকাট রুলস, প্র্যাকটিস ও <strong>সাপ্তাহিক পরীক্ষা-১</strong></td>
-                                </tr>
-                                <tr>
-                                    <td contenteditable="true" onblur="autoSave()"><strong>২য় সপ্তাহ</strong></td>
-                                    <td contenteditable="true" onblur="autoSave()">Reading & Passage Mastery</td>
-                                    <td contenteditable="true" onblur="autoSave()">প্যাসেজ থেকে সঠিক উত্তর ও সামারি করার টেকনিক + <strong>সাপ্তাহিক পরীক্ষা-২</strong></td>
-                                </tr>
-                                <tr>
-                                    <td contenteditable="true" onblur="autoSave()"><strong>৩য় সপ্তাহ</strong></td>
-                                    <td contenteditable="true" onblur="autoSave()">Smart Freehand Writing</td>
-                                    <td contenteditable="true" onblur="autoSave()">শর্টকাট টেমপ্লেট দিয়ে Paragraph, Letter ইত্যাদি + <strong>সাপ্তাহিক পরীক্ষা-৩</strong></td>
-                                </tr>
-                                <tr>
-                                    <td contenteditable="true" onblur="autoSave()"><strong>৪র্থ সপ্তাহ</strong></td>
-                                    <td contenteditable="true" onblur="autoSave()">Final Model Tests & Exam Hacks</td>
-                                    <td contenteditable="true" onblur="autoSave()">১০০ নম্বরের ৩টি পূর্ণাঙ্গ বোর্ড প্যাটার্ন <strong>স্পেশাল মডেল টেস্ট</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Suggestion Cards Grid -->
-                    <div>
-                        <div class="section-header">
-                            <span contenteditable="true" onblur="autoSave()">🎯 ১ মাসের ফাইনাল মাস্টার সাজেশন (Special Suggestion)</span>
-                            <button onclick="addSuggestionCard(this)" class="no-print bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
-                                <i class="fa-solid fa-plus"></i> কার্ড
-                            </button>
-                        </div>
-                        
-                        <div class="suggestion-grid">
-                            <div class="sugg-card">
-                                <div class="flex justify-between items-center">
-                                    <h4 contenteditable="true" onblur="autoSave()">[১] Grammar Part (30)</h4>
-                                    <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
-                                </div>
-                                <ul>
-                                    <li contenteditable="true" onblur="autoSave()">Right Forms of Verbs</li>
-                                    <li contenteditable="true" onblur="autoSave()">Changing Sentences</li>
-                                    <li contenteditable="true" onblur="autoSave()">Articles & Prepositions</li>
-                                </ul>
-                                <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
-                            </div>
-
-                            <div class="sugg-card">
-                                <div class="flex justify-between items-center">
-                                    <h4 contenteditable="true" onblur="autoSave()">[২] Passage Part (40)</h4>
-                                    <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
-                                </div>
-                                <ul>
-                                    <li contenteditable="true" onblur="autoSave()">Top 8 Seen Passages</li>
-                                    <li contenteditable="true" onblur="autoSave()">Unseen Passage Techniques</li>
-                                    <li contenteditable="true" onblur="autoSave()">Summarizing Formula</li>
-                                </ul>
-                                <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
-                            </div>
-
-                            <div class="sugg-card">
-                                <div class="flex justify-between items-center">
-                                    <h4 contenteditable="true" onblur="autoSave()">[৩] Writing Part (30)</h4>
-                                    <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
-                                </div>
-                                <ul>
-                                    <li contenteditable="true" onblur="autoSave()">Problem Paragraph Template</li>
-                                    <li contenteditable="true" onblur="autoSave()">Formal / Informal Email</li>
-                                    <li contenteditable="true" onblur="autoSave()">Dialogue Writing Tricks</li>
-                                </ul>
-                                <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Rules List (Checklist Area) -->
-                    <div>
-                        <div class="section-header">
-                            <span contenteditable="true" onblur="autoSave()">📌 অভিভাবক ও শিক্ষার্থীদের জন্য বাধ্যতামূলক নিয়মাবলী</span>
-                        </div>
-                        <div id="checklistContainer">
-                            <div class="checklist-item">
-                                <input type="checkbox" checked>
-                                <span contenteditable="true" onblur="autoSave()"><strong>উপস্থিতি:</strong> আগামী ৩০ দিন কোনো কারণ ছাড়া ক্লাস মিস দেওয়া সম্পূর্ণ নিষেধ।</span>
-                                <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" checked>
-                                <span contenteditable="true" onblur="autoSave()"><strong>বাড়ির কাজ:</strong> ক্লাসে দেওয়া শিট ও এইচডাব্লিউ প্রতিদিন নিয়মিত সম্পন্ন করতে হবে।</span>
-                                <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Footer & Signature -->
-                    <div class="footer-section">
-                        <div contenteditable="true" class="declaration" onblur="autoSave()">
-                            "আমি নিশ্চয়তা দিচ্ছি যে, আমার সন্তান আগামী ১ মাস এই রোডম্যাপ ও রুটিন অনুযায়ী নিয়মিত পড়ালেখা করবে।"
-                        </div>
-
-                        <div class="info-inputs">
-                            <span contenteditable="true" onblur="autoSave()">শিক্ষার্থীর নাম: ___________________________</span>
-                            <span contenteditable="true" onblur="autoSave()">শ্রেণী: _________</span>
-                            <span contenteditable="true" onblur="autoSave()">রোল: _______</span>
-                        </div>
-
-                        <div class="signatures">
-                            <div contenteditable="true" class="sig-line" onblur="autoSave()">অভিভাবকের স্বাক্ষর</div>
-                            <div contenteditable="true" class="sig-line" onblur="autoSave()">পরিচালকের স্বাক্ষর</div>
-                        </div>
-                    </div>
-
-                    <!-- Footer Option -->
-                    <div class="custom-page-footer">
-                        <span contenteditable="true" onblur="autoSave()">[ পেজ ফুটার তথ্য ]</span>
-                        <span>পেজ: ১</span>
-                    </div>
-
+                <div class="flex items-center gap-1 mt-1">
+                    <button onclick="toggleFlipY()" class="glass-btn flex-1 py-1 rounded text-[10px]">180° Flip</button>
+                    <button onclick="reset3DTransforms()" class="glass-btn text-rose-300 flex-1 py-1 rounded text-[10px]">3D রিসেট</button>
                 </div>
             </div>
 
-        </div>
+            <!-- Actions: Print & Reset -->
+            <div class="flex flex-col gap-2 mt-auto pt-2">
+                <button onclick="triggerPrint()" class="glass-btn bg-emerald-600 text-white px-4 py-2 rounded-xl font-medium flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>প্রিন্ট / PDF ডাউনলোড</span>
+                </button>
 
-    </main>
+                <button onclick="resetDefaultTemplate()" title="রিসেট টেমপ্লেট" class="glass-btn text-rose-300 hover:text-rose-100 p-1.5 rounded-xl border-rose-500/30 text-center">
+                    <i class="fa-solid fa-rotate-left mr-1"></i> টেমপ্লেট রিসেট
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- Main Dynamic Workspace Viewport -->
+        <main class="workspace-viewport">
+            
+            <!-- Private Un-published State Notice Container -->
+            <div id="privateNotice" class="flex-col items-center justify-center text-center p-8 bg-slate-900/90 border border-slate-700/80 rounded-2xl glass-panel max-w-lg my-auto shadow-2xl">
+                <div class="w-16 h-16 bg-rose-500/20 text-rose-400 rounded-full flex items-center justify-center text-3xl mb-4 border border-rose-500/30">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2">পেজটি বর্তমানে প্রাইভেট রয়েছে</h2>
+                <p class="text-slate-400 text-sm mb-4">অ্যাডমিন এটি পাবলিশ না করা পর্যন্ত সাধারণ ভিজিটররা কনটেন্ট দেখতে পারবেন না। আপনি যদি অ্যাডমিন হন, তবে বাম পাশের এডিট মোড থেকে পাসওয়ার্ড দিয়ে লগইন করুন।</p>
+                <button onclick="toggleEditMode()" class="glass-btn bg-amber-600 text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>এডমিন লগইন (1234)</span>
+                </button>
+            </div>
+
+            <div id="pageContainer" class="page-container" oninput="handleContentInput()">
+                
+                <!-- Printable Page Sheet 1 -->
+                <div class="a4-page" id="page-1">
+                    <div class="page-watermark">COACHING ROADMAP</div>
+                    
+                    <div class="inner-border">
+                        
+                        <!-- Header Option -->
+                        <div class="custom-page-header" contenteditable="true" onblur="autoSave()">
+                            [ পেজ হেডার: এখানে আপনার কোচিংয়ের স্লোগান বা শিরোনাম লিখুন ]
+                        </div>
+
+                        <!-- Inner Dynamic Scroll Content Box -->
+                        <div class="page-content-wrapper">
+                            
+                            <!-- Header Branding Area -->
+                            <div class="header section-block">
+                                <div contenteditable="true" class="coaching-title" onblur="autoSave()">[ আপনার কোচিং সেন্টারের নাম ]</div>
+                                <div contenteditable="true" class="coaching-sub" onblur="autoSave()">ঠিকানা: আপনার শাখা ও অবস্থান | মোবাইল: ০১XXXXXXXXX | ইমেইল: info@coaching.com</div>
+                                <div contenteditable="true" class="badge" onblur="autoSave()">১ মাসের ক্র্যাশ কোর্স ও মাস্টার রোডম্যাপ (২০২৬)</div>
+                            </div>
+
+                            <!-- Guardian / Student Message Callout -->
+                            <div contenteditable="true" class="message-box section-block" onblur="autoSave()">
+                                <strong>শ্রদ্ধেয় অভিভাবক,</strong> আপনার সন্তানের SSC / HSC / বোর্ড পরীক্ষার সেরা প্রস্তুতি নিশ্চিত করতে আগামী ১ মাসের স্পেশাল অ্যাকশন প্ল্যান তৈরি করা হয়েছে। নিয়মিত উপস্থিতি ও গাইডলাইন মেনে চলা সফলতার চাবিকাঠি।
+                            </div>
+
+                            <!-- Table Section (Syllabus & Routine) -->
+                            <div class="section-block">
+                                <div class="section-header">
+                                    <span contenteditable="true" onblur="autoSave()">📅 ৪ সপ্তাহের ক্লাস, টপিক ও পরীক্ষা রুটিন</span>
+                                    <div class="no-print flex items-center gap-1">
+                                        <button onclick="addTableRow(this)" title="সারি যোগ করুন" class="bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+                                            <i class="fa-solid fa-plus"></i> সারি
+                                        </button>
+                                        <button onclick="addTableColumn(this)" title="কলাম যোগ করুন" class="bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+                                            <i class="fa-solid fa-table-columns"></i> কলাম
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <table class="roadmap-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%;">সপ্তাহ</th>
+                                            <th style="width: 35%;">মূল বিষয়বস্তু (Focus Area)</th>
+                                            <th style="width: 50%;">ক্লাসের মূল লক্ষ্য ও পরীক্ষা পরিকল্পনা</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td contenteditable="true" onblur="autoSave()"><strong>১ম সপ্তাহ</strong></td>
+                                            <td contenteditable="true" onblur="autoSave()">Grammar Foundations & Hacks</td>
+                                            <td contenteditable="true" onblur="autoSave()">বোর্ড পরীক্ষার শর্টকাট রুলস, প্র্যাকটিস ও <strong>সাপ্তাহিক পরীক্ষা-১</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td contenteditable="true" onblur="autoSave()"><strong>২য় সপ্তাহ</strong></td>
+                                            <td contenteditable="true" onblur="autoSave()">Reading & Passage Mastery</td>
+                                            <td contenteditable="true" onblur="autoSave()">প্যাসেজ থেকে সঠিক উত্তর ও সামারি করার টেকনিক + <strong>সাপ্তাহিক পরীক্ষা-২</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td contenteditable="true" onblur="autoSave()"><strong>৩য় সপ্তাহ</strong></td>
+                                            <td contenteditable="true" onblur="autoSave()">Smart Freehand Writing</td>
+                                            <td contenteditable="true" onblur="autoSave()">শর্টকাট টেমপ্লেট দিয়ে Paragraph, Letter ইত্যাদি + <strong>সাপ্তাহিক পরীক্ষা-৩</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td contenteditable="true" onblur="autoSave()"><strong>৪র্থ সপ্তাহ</strong></td>
+                                            <td contenteditable="true" onblur="autoSave()">Final Model Tests & Exam Hacks</td>
+                                            <td contenteditable="true" onblur="autoSave()">১০০ নম্বরের ৩টি পূর্ণাঙ্গ বোর্ড প্যাটার্ন <strong>স্পেশাল মডেল টেস্ট</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Suggestion Cards Grid -->
+                            <div class="section-block">
+                                <div class="section-header">
+                                    <span contenteditable="true" onblur="autoSave()">🎯 ১ মাসের ফাইনাল মাস্টার সাজেশন (Special Suggestion)</span>
+                                    <button onclick="addSuggestionCard(this)" class="no-print bg-white/20 hover:bg-white/30 text-white text-[11px] px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+                                        <i class="fa-solid fa-plus"></i> কার্ড
+                                    </button>
+                                </div>
+                                
+                                <div class="suggestion-grid">
+                                    <div class="sugg-card">
+                                        <div class="flex justify-between items-center">
+                                            <h4 contenteditable="true" onblur="autoSave()">[১] Grammar Part (30)</h4>
+                                            <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                        <ul>
+                                            <li contenteditable="true" onblur="autoSave()">Right Forms of Verbs</li>
+                                            <li contenteditable="true" onblur="autoSave()">Changing Sentences</li>
+                                            <li contenteditable="true" onblur="autoSave()">Articles & Prepositions</li>
+                                        </ul>
+                                        <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
+                                    </div>
+
+                                    <div class="sugg-card">
+                                        <div class="flex justify-between items-center">
+                                            <h4 contenteditable="true" onblur="autoSave()">[২] Passage Part (40)</h4>
+                                            <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                        <ul>
+                                            <li contenteditable="true" onblur="autoSave()">Top 8 Seen Passages</li>
+                                            <li contenteditable="true" onblur="autoSave()">Unseen Passage Techniques</li>
+                                            <li contenteditable="true" onblur="autoSave()">Summarizing Formula</li>
+                                        </ul>
+                                        <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
+                                    </div>
+
+                                    <div class="sugg-card">
+                                        <div class="flex justify-between items-center">
+                                            <h4 contenteditable="true" onblur="autoSave()">[৩] Writing Part (30)</h4>
+                                            <button onclick="removeCard(this)" class="card-action-btn no-print text-red-500 hover:text-red-700 text-xs px-1" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                        <ul>
+                                            <li contenteditable="true" onblur="autoSave()">Problem Paragraph Template</li>
+                                            <li contenteditable="true" onblur="autoSave()">Formal / Informal Email</li>
+                                            <li contenteditable="true" onblur="autoSave()">Dialogue Writing Tricks</li>
+                                        </ul>
+                                        <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rules List (Checklist Area) -->
+                            <div class="section-block">
+                                <div class="section-header">
+                                    <span contenteditable="true" onblur="autoSave()">📌 অভিভাবক ও শিক্ষার্থীদের জন্য বাধ্যতামূলক নিয়মাবলী</span>
+                                </div>
+                                <div id="checklistContainer">
+                                    <div class="checklist-item">
+                                        <input type="checkbox" checked>
+                                        <span contenteditable="true" onblur="autoSave()"><strong>উপস্থিতি:</strong> আগামী ৩০ দিন কোনো কারণ ছাড়া ক্লাস মিস দেওয়া সম্পূর্ণ নিষেধ।</span>
+                                        <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <input type="checkbox" checked>
+                                        <span contenteditable="true" onblur="autoSave()"><strong>বাড়ির কাজ:</strong> ক্লাসে দেওয়া শিট ও এইচডাব্লিউ প্রতিদিন নিয়মিত সম্পন্ন করতে হবে।</span>
+                                        <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer & Signatures (Fixed Dynamic Element) -->
+                        <div class="footer-section">
+                            <div contenteditable="true" class="declaration" onblur="autoSave()">
+                                "আমি নিশ্চয়তা দিচ্ছি যে, আমার সন্তান আগামী ১ মাস এই রোডম্যাপ ও রুটিন অনুযায়ী নিয়মিত পড়ালেখা করবে।"
+                            </div>
+
+                            <div class="info-inputs">
+                                <span contenteditable="true" onblur="autoSave()">শিক্ষার্থীর নাম: ___________________________</span>
+                                <span contenteditable="true" onblur="autoSave()">শ্রেণী: _________</span>
+                                <span contenteditable="true" onblur="autoSave()">রোল: _______</span>
+                            </div>
+
+                            <div class="signatures">
+                                <div contenteditable="true" class="sig-line" onblur="autoSave()">অভিভাবকের স্বাক্ষর</div>
+                                <div contenteditable="true" class="sig-line" onblur="autoSave()">পরিচালকের স্বাক্ষর</div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Option -->
+                        <div class="custom-page-footer">
+                            <span contenteditable="true" onblur="autoSave()">[ পেজ ফুটার তথ্য ]</span>
+                            <span class="page-number-display">পেজ: ১</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
 
     <!-- JavaScript Application Engine -->
     <script>
@@ -1001,17 +1066,18 @@
         let baseLineHeight = 1.5;
         let pageCounter = 1;
         let isAdminLoggedIn = false;
+        let isPublished = true;
         let isHeadersVisible = true;
         let is3DActive = false;
         let isFlipY = false;
-        const ADMIN_PASSWORD = "1234"; // আপনার অ্যাডমিন পাসওয়ার্ড
+        const ADMIN_PASSWORD = "1234"; // পাসওয়ার্ড: ১২৩৪
 
         /* 3D Drag Transformation Variables */
         let rotX = 0, rotY = 0, rotZ = 0;
         let isDragging3D = false;
         let startMouseX = 0, startMouseY = 0;
 
-        /* Central Cloud Data Storage API Endpoint */
+        /* Central Cloud Data Storage API Endpoint (No LocalStorage) */
         const CLOUD_API_URL = "https://api.jsonbin.io/v3/b/65f0a00001554e07f77f0001";
 
         /* Undo & Redo Engine */
@@ -1040,18 +1106,57 @@
             if (isAdminLoggedIn) {
                 isAdminLoggedIn = false;
                 document.body.classList.add('view-only');
-                document.getElementById('editToggleBtn').innerHTML = `<i class="fa-solid fa-lock"></i> <span>এডিট মোড (পাসওয়ার্ড)</span>`;
+                document.body.classList.remove('is-admin');
+                document.getElementById('editToggleBtn').innerHTML = `<i class="fa-solid fa-lock"></i> <span>এডিট মোড</span>`;
                 document.getElementById('saveStatus').innerHTML = `<i class="fa-solid fa-eye text-sky-400"></i> ভিউ মোড`;
+                updatePublishUI();
             } else {
                 const pass = prompt("এডিট করতে পাসওয়ার্ড দিন:");
                 if (pass === ADMIN_PASSWORD) {
                     isAdminLoggedIn = true;
                     document.body.classList.remove('view-only');
-                    document.getElementById('editToggleBtn').innerHTML = `<i class="fa-solid fa-lock-open text-emerald-400"></i> <span>এডিট মোড চালু</span>`;
+                    document.body.classList.add('is-admin');
+                    document.getElementById('editToggleBtn').innerHTML = `<i class="fa-solid fa-lock-open text-emerald-400"></i> <span>এডিটিং চালু</span>`;
                     document.getElementById('saveStatus').innerHTML = `<i class="fa-solid fa-pen-to-square text-amber-400"></i> এডিটিং মোড`;
+                    updatePublishUI();
                 } else if (pass !== null) {
                     alert("ভুল পাসওয়ার্ড! কেবল অ্যাডমিন এডিট করতে পারবেন।");
                 }
+            }
+        }
+
+        /* Toggle Public/Private Publish Eye Button System with Password Protection */
+        function togglePublishStatus() {
+            const pass = prompt("পাবলিশ অবস্থা পরিবর্তন করতে পাসওয়ার্ড (1234) দিন:");
+            if (pass === ADMIN_PASSWORD) {
+                isPublished = !isPublished;
+                updatePublishUI();
+                autoSave();
+            } else if (pass !== null) {
+                alert("ভুল পাসওয়ার্ড! কেবল অ্যাডমিন এটি পরিবর্তন করতে পারবেন।");
+            }
+        }
+
+        function updatePublishUI() {
+            const btn = document.getElementById('publishToggleBtn');
+            const icon = document.getElementById('publishEyeIcon');
+            const text = document.getElementById('publishStatusText');
+            const badge = document.getElementById('publishBadge');
+
+            if (isPublished) {
+                document.body.classList.remove('is-private');
+                btn.className = "glass-btn bg-emerald-600/80 text-white px-3 py-2 rounded-xl font-medium flex items-center justify-between transition-all";
+                icon.className = "fa-solid fa-eye text-emerald-300";
+                text.innerText = "পাবলিশড (অন)";
+                badge.className = "bg-emerald-500/30 text-emerald-200 text-[10px] px-2 py-0.5 rounded-full border border-emerald-400/40";
+                badge.innerText = "পাবলিক";
+            } else {
+                document.body.classList.add('is-private');
+                btn.className = "glass-btn bg-rose-600/80 text-white px-3 py-2 rounded-xl font-medium flex items-center justify-between transition-all";
+                icon.className = "fa-solid fa-eye-slash text-rose-300";
+                text.innerText = "আনপাবলিশড (অফ)";
+                badge.className = "bg-rose-500/30 text-rose-200 text-[10px] px-2 py-0.5 rounded-full border border-rose-400/40";
+                badge.innerText = "প্রাইভেট";
             }
         }
 
@@ -1078,11 +1183,13 @@
             if (is3DActive) {
                 container.classList.add('mode-3d');
                 panel.classList.remove('hidden');
+                panel.classList.add('flex');
                 rotX = 15; rotY = -15; rotZ = 0;
                 update3DRotation();
             } else {
                 container.classList.remove('mode-3d');
                 panel.classList.add('hidden');
+                panel.classList.remove('flex');
                 container.style.transform = '';
             }
         }
@@ -1146,19 +1253,117 @@
             });
         }
 
-        /* Auto Page Break Engine when Overflown */
+        /* Line-by-Line Dynamic Page Granular Pagination & Footer Control */
+        function handleContentInput() {
+            checkPageOverflow();
+            autoSave();
+        }
+
         function checkPageOverflow() {
             const pages = document.querySelectorAll('.a4-page');
-            pages.forEach((page) => {
-                const inner = page.querySelector('.inner-border');
-                if (inner.scrollHeight > inner.clientHeight) {
-                    const lastChild = inner.lastElementChild;
-                    if (lastChild && !lastChild.classList.contains('custom-page-footer') && !lastChild.classList.contains('header')) {
+            
+            pages.forEach((page, index) => {
+                const contentWrapper = page.querySelector('.page-content-wrapper');
+                if (!contentWrapper) return;
+
+                // Line and Element Granular Overflow Logic
+                while (contentWrapper.scrollHeight > contentWrapper.clientHeight) {
+                    let lastBlock = contentWrapper.lastElementChild;
+                    if (!lastBlock) break;
+
+                    let targetPage = page.nextElementSibling;
+                    if (targetPage && targetPage.classList.contains('page-break-indicator')) {
+                        targetPage = targetPage.nextElementSibling;
+                    }
+
+                    if (!targetPage || !targetPage.classList.contains('a4-page')) {
                         addPage();
-                        const newPageInner = document.querySelector(`#page-${pageCounter} .inner-border`);
-                        if (newPageInner) {
-                            newPageInner.insertBefore(lastChild, newPageInner.querySelector('.custom-page-footer'));
+                        targetPage = document.getElementById(`page-${pageCounter}`);
+                    }
+
+                    const targetWrapper = targetPage.querySelector('.page-content-wrapper');
+                    
+                    // Case A: Granular Table Row Split (Do not break whole table)
+                    if (lastBlock.querySelector('table')) {
+                        const table = lastBlock.querySelector('table');
+                        const tbody = table.querySelector('tbody');
+                        if (tbody && tbody.children.length > 1) {
+                            let targetTableBlock = targetWrapper.querySelector('.section-block table');
+                            if (!targetTableBlock) {
+                                const newTableBlock = lastBlock.cloneNode(true);
+                                newTableBlock.querySelector('tbody').innerHTML = '';
+                                targetWrapper.insertBefore(newTableBlock, targetWrapper.firstChild);
+                                targetTableBlock = newTableBlock.querySelector('table');
+                            }
+                            const lastRow = tbody.lastElementChild;
+                            targetTableBlock.querySelector('tbody').insertBefore(lastRow, targetTableBlock.querySelector('tbody').firstChild);
+                            continue;
                         }
+                    }
+
+                    // Case B: Granular Suggestion Card Grid Split
+                    if (lastBlock.querySelector('.suggestion-grid')) {
+                        const grid = lastBlock.querySelector('.suggestion-grid');
+                        if (grid && grid.children.length > 1) {
+                            let targetGrid = targetWrapper.querySelector('.suggestion-grid');
+                            if (!targetGrid) {
+                                const newGridBlock = lastBlock.cloneNode(true);
+                                newGridBlock.querySelector('.suggestion-grid').innerHTML = '';
+                                targetWrapper.insertBefore(newGridBlock, targetWrapper.firstChild);
+                                targetGrid = newGridBlock.querySelector('.suggestion-grid');
+                            }
+                            const lastCard = grid.lastElementChild;
+                            targetGrid.insertBefore(lastCard, targetGrid.firstChild);
+                            continue;
+                        }
+                    }
+
+                    // Case C: Regular Block Move
+                    if (targetWrapper) {
+                        targetWrapper.insertBefore(lastBlock, targetWrapper.firstChild);
+                    }
+                }
+            });
+
+            // Ensure Signatures/Declaration Footer exists ONLY on the LAST Page
+            updateFooterPosition();
+        }
+
+        function updateFooterPosition() {
+            const allPages = document.querySelectorAll('.a4-page');
+            const totalPages = allPages.length;
+
+            allPages.forEach((page, idx) => {
+                let footerSec = page.querySelector('.footer-section');
+                const pageNumDisplay = page.querySelector('.page-number-display');
+                if (pageNumDisplay) pageNumDisplay.innerText = `পেজ: ${idx + 1}`;
+
+                if (idx === totalPages - 1) {
+                    // Last Page: Ensure footer is attached
+                    if (!footerSec) {
+                        const inner = page.querySelector('.inner-border');
+                        const footerTemplate = document.createElement('div');
+                        footerTemplate.className = 'footer-section';
+                        footerTemplate.innerHTML = `
+                            <div contenteditable="true" class="declaration" onblur="autoSave()">
+                                "আমি নিশ্চয়তা দিচ্ছি যে, আমার সন্তান আগামী ১ মাস এই রোডম্যাপ ও রুটিন অনুযায়ী নিয়মিত পড়ালেখা করবে।"
+                            </div>
+                            <div class="info-inputs">
+                                <span contenteditable="true" onblur="autoSave()">শিক্ষার্থীর নাম: ___________________________</span>
+                                <span contenteditable="true" onblur="autoSave()">শ্রেণী: _________</span>
+                                <span contenteditable="true" onblur="autoSave()">রোল: _______</span>
+                            </div>
+                            <div class="signatures">
+                                <div contenteditable="true" class="sig-line" onblur="autoSave()">অভিভাবকের স্বাক্ষর</div>
+                                <div contenteditable="true" class="sig-line" onblur="autoSave()">পরিচালকের স্বাক্ষর</div>
+                            </div>
+                        `;
+                        inner.insertBefore(footerTemplate, page.querySelector('.custom-page-footer'));
+                    }
+                } else {
+                    // Non-Last Page: Remove footer section entirely
+                    if (footerSec) {
+                        footerSec.remove();
                     }
                 }
             });
@@ -1237,14 +1442,15 @@
         }
 
         function changeSoftwareTheme(themeKey) {
-            document.body.className = isAdminLoggedIn ? '' : 'view-only';
+            document.body.className = isAdminLoggedIn ? 'is-admin' : 'view-only';
             if (themeKey !== 'dark') {
                 document.body.classList.add(`theme-${themeKey}`);
             }
+            updatePublishUI();
             autoSave();
         }
 
-        /* Centralized Auto Save to Cloud */
+        /* Automatic Cloud Storage Save Engine (No LocalStorage) */
         function autoSave() {
             if (!isAdminLoggedIn) return;
             saveHistoryState();
@@ -1259,7 +1465,8 @@
                 paperSize: document.getElementById('paperSizeSelect').value,
                 softwareTheme: document.getElementById('softwareThemeSelect').value,
                 pageCount: pageCounter,
-                headersVisible: isHeadersVisible
+                headersVisible: isHeadersVisible,
+                isPublished: isPublished
             };
 
             const statusEl = document.getElementById('saveStatus');
@@ -1276,7 +1483,7 @@
             });
         }
 
-        /* Load Cloud Data for All Devices */
+        /* Automatic Load Cloud Data */
         function loadCloudData() {
             fetch(CLOUD_API_URL)
                 .then(res => res.json())
@@ -1302,6 +1509,10 @@
                         changeSoftwareTheme(data.softwareTheme);
                     }
                     if (data.pageCount) pageCounter = data.pageCount;
+                    if (data.isPublished !== undefined) {
+                        isPublished = data.isPublished;
+                    }
+
                     if (data.headersVisible !== undefined) {
                         isHeadersVisible = data.headersVisible;
                         const headers = document.querySelectorAll('.custom-page-header');
@@ -1312,8 +1523,10 @@
                     }
 
                     updateDocColors();
+                    updatePublishUI();
                     attachDynamicRowEvents();
                     rebindFloatingElements();
+                    updateFooterPosition();
                 }).catch(err => {
                     console.log("Using Default Template", err);
                 });
@@ -1360,7 +1573,6 @@
         }
 
         function addPage() {
-            if (!isAdminLoggedIn) return;
             pageCounter++;
             const container = document.getElementById('pageContainer');
             
@@ -1377,32 +1589,29 @@
                     <div class="custom-page-header ${isHeadersVisible ? '' : 'header-hidden'}" contenteditable="true" onblur="autoSave()">
                         [ পেজ হেডার: এখানে আপনার শিরোনাম লিখুন ]
                     </div>
-                    <div class="section-header">
-                        <span contenteditable="true" onblur="autoSave()">নতুন পেজের শিরোনাম</span>
-                        <div class="no-print flex items-center gap-1">
-                            <button onclick="removePage(this)" title="পেজ মুছুন" class="bg-red-600/70 hover:bg-red-700 text-white text-[11px] px-2 py-0.5 rounded">
-                                <i class="fa-solid fa-trash"></i> মুছুন
-                            </button>
+                    <div class="page-content-wrapper">
+                        <div class="section-block">
+                            <div class="section-header">
+                                <span contenteditable="true" onblur="autoSave()">নতুন পেজের বিষয়বস্তু</span>
+                                <div class="no-print flex items-center gap-1">
+                                    <button onclick="removePage(this)" title="পেজ মুছুন" class="bg-red-600/70 hover:bg-red-700 text-white text-[11px] px-2 py-0.5 rounded">
+                                        <i class="fa-solid fa-trash"></i> মুছুন
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div contenteditable="true" class="message-box" onblur="autoSave()">
-                        এখানে নতুন পেজের তথ্য বা নোটিশ প্রদান করুন...
-                    </div>
-                    <div class="footer-section">
-                        <div class="signatures">
-                            <div contenteditable="true" class="sig-line" onblur="autoSave()">স্বাক্ষর</div>
-                            <div contenteditable="true" class="sig-line" onblur="autoSave()">তারিখ</div>
-                        </div>
-                    </div>
+
                     <div class="custom-page-footer">
                         <span contenteditable="true" onblur="autoSave()">[ পেজ ফুটার তথ্য ]</span>
-                        <span>পেজ: ${pageCounter}</span>
+                        <span class="page-number-display">পেজ: ${pageCounter}</span>
                     </div>
                 </div>
             `;
 
             container.appendChild(separator);
             container.appendChild(newPage);
+            updateFooterPosition();
             autoSave();
         }
 
@@ -1413,6 +1622,7 @@
                 const prev = page.previousElementSibling;
                 if (prev && prev.classList.contains('page-break-indicator')) prev.remove();
                 page.remove();
+                updateFooterPosition();
                 autoSave();
             }
         }
@@ -1421,11 +1631,12 @@
             if (!isAdminLoggedIn) return;
             let container = document.getElementById('checklistContainer');
             if (!container) {
-                const activePage = document.querySelector('.a4-page .inner-border');
-                if (!activePage) return;
+                const activeWrapper = document.querySelector('.a4-page .page-content-wrapper');
+                if (!activeWrapper) return;
                 container = document.createElement('div');
                 container.id = 'checklistContainer';
-                activePage.appendChild(container);
+                container.className = 'section-block';
+                activeWrapper.appendChild(container);
             }
             
             const div = document.createElement('div');
@@ -1436,7 +1647,7 @@
                 <button onclick="this.closest('.checklist-item').remove(); autoSave();" title="মুছুন" class="item-del-btn no-print text-rose-500 hover:text-rose-700 text-xs px-1"><i class="fa-solid fa-trash"></i></button>
             `;
             container.appendChild(div);
-            autoSave();
+            handleContentInput();
         }
 
         function deleteLastChecklist() {
@@ -1465,7 +1676,7 @@
             }
             tbody.appendChild(tr);
             attachDynamicRowEvents();
-            autoSave();
+            handleContentInput();
         }
 
         function addTableColumn(btn) {
@@ -1488,7 +1699,7 @@
                 row.appendChild(td);
             });
             attachDynamicRowEvents();
-            autoSave();
+            handleContentInput();
         }
 
         function attachDynamicRowEvents() {
@@ -1526,7 +1737,7 @@
                 <button onclick="addListItem(this)" class="no-print text-[10px] text-sky-600 hover:underline mt-1 block">+ আইটেম</button>
             `;
             grid.appendChild(card);
-            autoSave();
+            handleContentInput();
         }
 
         function removeCard(btn) {
@@ -1545,7 +1756,7 @@
             li.innerText = "নতুন টপিক";
             li.setAttribute("onblur", "autoSave()");
             ul.appendChild(li);
-            autoSave();
+            handleContentInput();
         }
 
         function uploadFloatingImage(event) {
