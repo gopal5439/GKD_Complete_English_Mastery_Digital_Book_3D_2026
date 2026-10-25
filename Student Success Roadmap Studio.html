@@ -58,6 +58,9 @@
             --rot-z: 0deg;
             --scale-3d: 1;
             --flip-y: 1;
+
+            /* Watermark Controls */
+            --wm-opacity: 0.05;
         }
 
         /* Theme Presets */
@@ -251,19 +254,33 @@
             display: none !important;
         }
 
+        /* Dynamic Watermark Engine (Text & Image) */
         .page-watermark {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(-30deg);
-            font-size: 55px;
+            font-size: 45px;
             font-weight: 800;
-            color: rgba(0, 0, 0, 0.035);
+            color: rgba(0, 0, 0, var(--wm-opacity));
+            opacity: var(--wm-opacity);
             white-space: nowrap;
             pointer-events: none;
             user-select: none;
             z-index: 0;
             text-transform: uppercase;
+            max-width: 80%;
+            max-height: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-watermark img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            opacity: var(--wm-opacity);
         }
 
         .header {
@@ -676,6 +693,29 @@
                 </button>
             </div>
 
+            <!-- Dynamic Watermark Settings (Text/Image + Opacity) -->
+            <div class="flex flex-col gap-2.5 border-b border-slate-700/80 pb-3">
+                <span class="text-sky-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-stamp text-amber-400"></i> ওয়াটারমার্ক সেটিংস:</span>
+                
+                <div class="flex items-center gap-1">
+                    <input type="text" id="watermarkTextInput" oninput="updateWatermarkText(this.value)" placeholder="ওয়াটারমার্ক লিখুন..." class="bg-slate-900 text-slate-100 px-2 py-1 rounded border border-slate-700 focus:outline-none w-full text-xs">
+                    <button onclick="clearWatermark()" title="মুছুন" class="glass-btn px-2 py-1 text-rose-300 hover:text-rose-100 rounded"><i class="fa-solid fa-trash"></i></button>
+                </div>
+
+                <label class="glass-btn bg-slate-800/80 text-slate-200 hover:text-white px-2.5 py-1.5 rounded-lg cursor-pointer flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-image text-emerald-400"></i> ছবি ওয়াটারমার্ক আপলোড
+                    <input type="file" accept="image/*" onchange="uploadWatermarkImage(event)" class="hidden">
+                </label>
+
+                <div class="flex flex-col gap-1 bg-slate-800/80 p-2 rounded-lg border border-slate-700/80">
+                    <div class="flex justify-between items-center text-[11px] text-slate-300">
+                        <span>অপাসিটি (ঝাপসা ভাব):</span>
+                        <span id="wmOpacityVal" class="text-amber-400 font-bold">5%</span>
+                    </div>
+                    <input type="range" id="wmOpacitySlider" min="0" max="100" value="5" oninput="updateWatermarkOpacity(this.value)" class="w-full accent-amber-400 cursor-pointer">
+                </div>
+            </div>
+
             <!-- Page Controls & Theme Settings -->
             <div class="flex flex-col gap-2.5 border-b border-slate-700/80 pb-3">
                 <span class="text-sky-400 font-bold">পেজ সেটিং ও থিম:</span>
@@ -877,7 +917,7 @@
                 <p class="text-slate-400 text-sm mb-4">অ্যাডমিন এটি পাবলিশ না করা পর্যন্ত সাধারণ ভিজিটররা কনটেন্ট দেখতে পারবেন না। আপনি যদি অ্যাডমিন হন, তবে বাম পাশের এডিট মোড থেকে পাসওয়ার্ড দিয়ে লগইন করুন।</p>
                 <button onclick="toggleEditMode()" class="glass-btn bg-amber-600 text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2">
                     <i class="fa-solid fa-lock"></i>
-                    <span>এডমিন লগইন (1234)</span>
+                    <span>এডমিন লগইন</span>
                 </button>
             </div>
 
@@ -1070,14 +1110,21 @@
         let isHeadersVisible = true;
         let is3DActive = false;
         let isFlipY = false;
-        const ADMIN_PASSWORD = "1234"; // পাসওয়ার্ড: ১২৩৪
+        
+        /* Security Constant (Strict Password 1234) */
+        const ADMIN_PASSWORD = "1234";
+
+        /* Watermark State Variables */
+        let watermarkContent = "COACHING ROADMAP";
+        let watermarkType = "text"; // 'text' or 'image'
+        let watermarkOpacity = 0.05;
 
         /* 3D Drag Transformation Variables */
         let rotX = 0, rotY = 0, rotZ = 0;
         let isDragging3D = false;
         let startMouseX = 0, startMouseY = 0;
 
-        /* Central Cloud Data Storage API Endpoint (No LocalStorage) */
+        /* Universal Cloud Storage Engine API Endpoint */
         const CLOUD_API_URL = "https://api.jsonbin.io/v3/b/65f0a00001554e07f77f0001";
 
         /* Undo & Redo Engine */
@@ -1111,7 +1158,7 @@
                 document.getElementById('saveStatus').innerHTML = `<i class="fa-solid fa-eye text-sky-400"></i> ভিউ মোড`;
                 updatePublishUI();
             } else {
-                const pass = prompt("এডিট করতে পাসওয়ার্ড দিন:");
+                const pass = prompt("এডিট মোড চালু করতে এডমিন পাসওয়ার্ড দিন:");
                 if (pass === ADMIN_PASSWORD) {
                     isAdminLoggedIn = true;
                     document.body.classList.remove('view-only');
@@ -1120,20 +1167,20 @@
                     document.getElementById('saveStatus').innerHTML = `<i class="fa-solid fa-pen-to-square text-amber-400"></i> এডিটিং মোড`;
                     updatePublishUI();
                 } else if (pass !== null) {
-                    alert("ভুল পাসওয়ার্ড! কেবল অ্যাডমিন এডিট করতে পারবেন।");
+                    alert("ভুল পাসওয়ার্ড! সঠিক পাসওয়ার্ড দিয়ে এডিট মোডে লগইন করুন।");
                 }
             }
         }
 
-        /* Toggle Public/Private Publish Eye Button System with Password Protection */
+        /* Toggle Public/Private Publish System with Password Protection */
         function togglePublishStatus() {
-            const pass = prompt("পাবলিশ অবস্থা পরিবর্তন করতে পাসওয়ার্ড (1234) দিন:");
+            const pass = prompt("পাবলিশ স্ট্যাটাস পরিবর্তন করতে এডমিন পাসওয়ার্ড দিন:");
             if (pass === ADMIN_PASSWORD) {
                 isPublished = !isPublished;
                 updatePublishUI();
                 autoSave();
             } else if (pass !== null) {
-                alert("ভুল পাসওয়ার্ড! কেবল অ্যাডমিন এটি পরিবর্তন করতে পারবেন।");
+                alert("ভুল পাসওয়ার্ড! আপনার পরিবর্তন গৃহীত হয়নি।");
             }
         }
 
@@ -1158,6 +1205,55 @@
                 badge.className = "bg-rose-500/30 text-rose-200 text-[10px] px-2 py-0.5 rounded-full border border-rose-400/40";
                 badge.innerText = "প্রাইভেট";
             }
+        }
+
+        /* Watermark Update Engine */
+        function updateWatermarkText(val) {
+            watermarkType = 'text';
+            watermarkContent = val;
+            applyWatermarkToAllPages();
+            autoSave();
+        }
+
+        function uploadWatermarkImage(event) {
+            if (!isAdminLoggedIn) return;
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                watermarkType = 'image';
+                watermarkContent = e.target.result;
+                applyWatermarkToAllPages();
+                autoSave();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearWatermark() {
+            if (!isAdminLoggedIn) return;
+            watermarkContent = '';
+            document.getElementById('watermarkTextInput').value = '';
+            applyWatermarkToAllPages();
+            autoSave();
+        }
+
+        function updateWatermarkOpacity(val) {
+            watermarkOpacity = parseFloat(val) / 100;
+            document.getElementById('wmOpacityVal').innerText = val + '%';
+            document.documentElement.style.setProperty('--wm-opacity', watermarkOpacity);
+            autoSave();
+        }
+
+        function applyWatermarkToAllPages() {
+            const wmElements = document.querySelectorAll('.page-watermark');
+            wmElements.forEach(el => {
+                if (watermarkType === 'image' && watermarkContent) {
+                    el.innerHTML = `<img src="${watermarkContent}" alt="Watermark Image">`;
+                } else {
+                    el.innerText = watermarkContent || '';
+                }
+            });
         }
 
         /* Header Toggle Option */
@@ -1450,7 +1546,7 @@
             autoSave();
         }
 
-        /* Automatic Cloud Storage Save Engine (No LocalStorage) */
+        /* Automatic Cloud Storage Save Engine (Accessible Everywhere) */
         function autoSave() {
             if (!isAdminLoggedIn) return;
             saveHistoryState();
@@ -1466,7 +1562,10 @@
                 softwareTheme: document.getElementById('softwareThemeSelect').value,
                 pageCount: pageCounter,
                 headersVisible: isHeadersVisible,
-                isPublished: isPublished
+                isPublished: isPublished,
+                watermarkContent: watermarkContent,
+                watermarkType: watermarkType,
+                watermarkOpacity: watermarkOpacity
             };
 
             const statusEl = document.getElementById('saveStatus');
@@ -1522,6 +1621,22 @@
                         });
                     }
 
+                    /* Watermark Cloud Restore */
+                    if (data.watermarkContent !== undefined) watermarkContent = data.watermarkContent;
+                    if (data.watermarkType !== undefined) watermarkType = data.watermarkType;
+                    if (data.watermarkOpacity !== undefined) {
+                        watermarkOpacity = data.watermarkOpacity;
+                        const perc = Math.round(watermarkOpacity * 100);
+                        document.getElementById('wmOpacitySlider').value = perc;
+                        document.getElementById('wmOpacityVal').innerText = perc + '%';
+                        document.documentElement.style.setProperty('--wm-opacity', watermarkOpacity);
+                    }
+
+                    if (watermarkType === 'text' && watermarkContent) {
+                        document.getElementById('watermarkTextInput').value = watermarkContent;
+                    }
+
+                    applyWatermarkToAllPages();
                     updateDocColors();
                     updatePublishUI();
                     attachDynamicRowEvents();
@@ -1584,7 +1699,7 @@
             newPage.className = 'a4-page';
             newPage.id = `page-${pageCounter}`;
             newPage.innerHTML = `
-                <div class="page-watermark">PAGE ${pageCounter}</div>
+                <div class="page-watermark"></div>
                 <div class="inner-border">
                     <div class="custom-page-header ${isHeadersVisible ? '' : 'header-hidden'}" contenteditable="true" onblur="autoSave()">
                         [ পেজ হেডার: এখানে আপনার শিরোনাম লিখুন ]
@@ -1611,6 +1726,7 @@
 
             container.appendChild(separator);
             container.appendChild(newPage);
+            applyWatermarkToAllPages();
             updateFooterPosition();
             autoSave();
         }
