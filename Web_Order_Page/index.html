@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GKD Complete English Mastery & LMS Platform</title>
 
-    <!-- External CSS Icons & Google Fonts Loading -->
+    <!-- External CSS Icons & Google Fonts Loading (Hind Siliguri & Tiro Bangla) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700;800&family=Tiro+Bangla:ital@0;1&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- Chart.js for Dashboard Visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -62,13 +62,13 @@
         }
 
         /* ==========================================================================
-           ২. জেনারেল রিসেট ও বেস স্টাইল (General Reset & Base Styles)
+           ২. জেনারেল রিসেট ও বেস স্টাইল (Hind Siliguri & Tiro Bangla Fonts)
            ========================================================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            font-family: 'Hind Siliguri', 'Tiro Bangla', 'Poppins', sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -86,7 +86,7 @@
         }
 
         /* ==========================================================================
-           ৩. হেডার ও নেভিগেশন (Header Controls - Only Theme, Dev, & 3-Line Menu)
+           ৩. হেডার ও নেভিগেশন (Header Controls - Theme, Dev, & 3-Line Menu)
            ========================================================================== */
         header {
             background: var(--bg-nav);
@@ -211,7 +211,7 @@
             margin-top: 10px;
         }
 
-        .drawer-menu a {
+        .drawer-menu a, .drawer-menu .custom-menu-item {
             padding: 12px 16px;
             border-radius: 12px;
             text-decoration: none;
@@ -219,17 +219,58 @@
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
             background: var(--bg-body);
             border: 1px solid var(--border-color);
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .drawer-menu a:hover, .drawer-menu a.active {
+        .drawer-menu a:hover, .drawer-menu a.active, .drawer-menu .custom-menu-item:hover {
             background: var(--primary-gradient);
             color: white;
             border-color: transparent;
+        }
+
+        .drawer-menu .menu-link-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .btn-del-nav {
+            font-size: 14px;
+            color: #ef4444;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-del-nav:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ff0000;
+        }
+
+        .btn-add-drawer {
+            margin-top: 15px;
+            padding: 12px 16px;
+            background: var(--button-gradient-1);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-add-drawer:hover {
+            transform: scale(1.02);
         }
 
         /* ==========================================================================
@@ -427,21 +468,8 @@
         }
 
         /* ==========================================================================
-           ৭. এলএমএস একডেমিক ক্লাস মডিউল (Academic LMS Classes 1 to 12)
+           ৭. সফটওয়্যার ফিচারসমূহ (Features Hub)
            ========================================================================== */
-        .lms-wrapper {
-            padding: 60px 0;
-        }
-
-        .class-selector-bar {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            scrollbar-width: thin;
-        }
-
         .btn-class-chip {
             padding: 10px 22px;
             background: var(--bg-card);
@@ -452,6 +480,10 @@
             white-space: nowrap;
             cursor: pointer;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
         }
 
         .btn-class-chip:hover, .btn-class-chip.active {
@@ -461,51 +493,9 @@
             box-shadow: 0 4px 15px rgba(99,102,241,0.3);
         }
 
-        .lms-grid {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 25px;
-        }
-
-        @media (max-width: 900px) {
-            .lms-grid { grid-template-columns: 1fr; }
-        }
-
-        .sidebar-tree {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            padding: 20px;
-        }
-
-        .chapter-item {
-            padding: 12px 15px;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--bg-body);
-            font-weight: 600;
-        }
-
-        .chapter-item:hover, .chapter-item.active {
-            background: #6366f1;
-            color: white;
-        }
-
-        .lesson-viewer {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            padding: 30px;
-        }
-
         /* ==========================================================================
            ৮. এনালিটিক্স ড্যাশবোর্ড (3 Charts Single Row & Metric Counter Cards)
            ========================================================================== */
-        /* Strict Single Row Layout for 3 Charts on Desktop */
         .dashboard-row-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -545,7 +535,6 @@
             height: 220px;
         }
 
-        /* Summary Metric Counter Grid */
         .summary-metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -819,23 +808,27 @@
         </div>
     </header>
 
-    <!-- 3-Line Mobile & Desktop Drawer Navigation -->
+    <!-- 3-Line Mobile & Desktop Drawer Navigation (Removed Class 1-12, Added Dynamic Buttons) -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
     <div class="drawer" id="mobileDrawer">
         <div class="drawer-header">
             <h3><i class="fa-solid fa-compass"></i> মূল নেভিগেশন মেনু</h3>
             <button class="btn-icon" onclick="toggleDrawer()"><i class="fa-solid fa-xmark"></i></button>
         </div>
+        
+        <!-- Default Navigation Links -->
         <div class="drawer-menu" id="drawerMenuList">
             <a onclick="showTab('home'); toggleDrawer();" id="drawer-nav-home" class="active"><i class="fa-solid fa-house"></i> হোম পেজ</a>
-            <a onclick="showTab('lms'); toggleDrawer();" id="drawer-nav-lms"><i class="fa-solid fa-graduation-cap"></i> ক্লাস ১ - ১২ লার্নিং বই</a>
             <a onclick="showTab('features'); toggleDrawer();" id="drawer-nav-features"><i class="fa-solid fa-list-check"></i> সফটওয়্যার ফিচার</a>
             <a onclick="showTab('dashboard'); toggleDrawer();" id="drawer-nav-dashboard"><i class="fa-solid fa-chart-line"></i> এনালিটিক্স ড্যাশবোর্ড</a>
             <a onclick="showTab('order'); toggleDrawer();" id="drawer-nav-order"><i class="fa-solid fa-wallet"></i> অর্ডার ও পেমেন্ট</a>
         </div>
-        
-        <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);" id="devMenuManager">
-            <!-- Dynamic Link Adder for Dev Mode -->
+
+        <!-- Custom Add New Button Section at the Bottom -->
+        <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);" id="drawerAddArea">
+            <button onclick="promptAddNewButton()" class="btn-add-drawer" style="width:100%;">
+                <i class="fa-solid fa-plus"></i> এড নিউ বাটন
+            </button>
         </div>
     </div>
 
@@ -867,7 +860,7 @@
                     <div class="touch-card" onclick="triggerCardAudio('সহজ শিক্ষণ পদ্ধতি')">
                         <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                         <h3>সহজ শিক্ষণ পদ্ধতি</h3>
-                        <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন।</p>
+                        <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন।</p>
                     </div>
 
                     <div class="touch-card" onclick="triggerCardAudio('ডিজিটাল লার্নিং টুলস')">
@@ -894,41 +887,7 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 3]: এলএমএস একডেমিক বুকস (Class 1-12 Academic Books Hub)
-         ========================================================================== -->
-    <div id="tab-lms" class="page-tab">
-        <section class="lms-wrapper">
-            <div class="container">
-                <div class="section-header">
-                    <h2>ক্লাস ১ - ১২ ইংরেজি ও একাডেমিক কোর্স মডিউল</h2>
-                </div>
-
-                <!-- Horizontal Class Selector Selector -->
-                <div class="class-selector-bar" id="classList">
-                    <!-- Dynamic Class Chips generated by JS -->
-                </div>
-
-                <div class="lms-grid">
-                    <!-- Chapter Tree Sidebar -->
-                    <div class="sidebar-tree">
-                        <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-folder-open"></i> অধ্যায় সূচিপত্র</h4>
-                        <div id="chapterListContainer">
-                            <!-- Dynamic Chapters -->
-                        </div>
-                    </div>
-
-                    <!-- Lesson Viewer Box -->
-                    <div class="lesson-viewer" id="lessonViewer">
-                        <h3 id="lessonTitle" style="color:#6366f1; margin-bottom: 10px;">অধ্যায় সিলেক্ট করুন</h3>
-                        <p id="lessonContent" style="color: var(--text-light);">বাম পাশের তালিকা থেকে যেকোনো অধ্যায় বেছে নিয়ে পড়া শুরু করুন।</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ==========================================================================
-         [SECTION 4]: সফটওয়্যার ফিচারসমূহ (Software Features Hub)
+         [SECTION 3]: সফটওয়্যার ফিচারসমূহ (Software Features Hub)
          ========================================================================== -->
     <div id="tab-features" class="page-tab">
         <section class="interactive-section">
@@ -974,7 +933,7 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 5]: এনালিটিক্স ড্যাশবোর্ড (3 Charts Side-by-Side & Detailed Metrics)
+         [SECTION 4]: এনালিটিক্স ড্যাশবোর্ড (3 Charts Side-by-Side & Detailed Metrics)
          ========================================================================== -->
     <div id="tab-dashboard" class="page-tab">
         <section class="interactive-section">
@@ -1086,7 +1045,7 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 6]: অর্ডার ও পেমেন্ট (Order & Payment Hub)
+         [SECTION 5]: অর্ডার ও পেমেন্ট (Order & Payment Hub)
          ========================================================================== -->
     <div id="tab-order" class="page-tab">
         <section class="interactive-section">
@@ -1118,7 +1077,7 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 7]: গ্লসি ইউটিউব ভিডিও মোডাল (Glossy Video Modal Player)
+         [SECTION 6]: গ্লসি ইউটিউব ভিডিও মোডাল (Glossy Video Modal Player)
          ========================================================================== -->
     <div class="modal" id="videoModal">
         <div class="modal-content">
@@ -1131,7 +1090,7 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 8]: ফিমেল ভয়েস এআই অ্যাসিস্ট্যান্ট (Female Voice AI Widget)
+         [SECTION 7]: ফিমেল ভয়েস এআই অ্যাসিস্ট্যান্ট (Female Voice AI Widget)
          ========================================================================== -->
     <div class="ai-bot-widget">
         <div class="ai-speech-bubble" id="aiSpeechBubble">হ্যালো! আমি GKD AI সহকারী। আপনাকে কীভাবে সাহায্য করতে পারি?</div>
@@ -1141,7 +1100,7 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 9]: ফুটার সেকশন (Footer)
+         [SECTION 8]: ফুটার সেকশন (Footer)
          ========================================================================== -->
     <footer>
         <div class="container">
@@ -1150,18 +1109,17 @@
     </footer>
 
     <!-- ==========================================================================
-         [SECTION 10]: সম্পূর্ণ জাভাস্ক্রিপ্ট কন্ট্রোল ও ডাটা লজিক (JavaScript Architecture)
+         [SECTION 9]: সম্পূর্ণ জাভাস্ক্রিপ্ট কন্ট্রোল ও ডাটা লজিক (JavaScript Architecture)
          ========================================================================== -->
     <script>
         /* --------------------------------------------------------------------------
-           ১. গ্লোবাল অ্যাপ স্টেট ও থিম ম্যানেজমেন্ট (State Management)
+           ১. গ্লোবাল অ্যাপ স্টেট ও লোকাল স্টোরেজ (State & Saved Buttons Management)
            -------------------------------------------------------------------------- */
         const state = {
             currentTheme: 'light',
             isDevMode: false,
-            selectedClass: 1,
             audioSynth: window.speechSynthesis,
-            customLinks: []
+            drawerButtons: JSON.parse(localStorage.getItem('gkd_drawer_buttons')) || []
         };
 
         /* --------------------------------------------------------------------------
@@ -1179,7 +1137,6 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Trigger Leaflet Map resize if switching to dashboard
             if (tabName === 'dashboard' && window.leafletMap) {
                 setTimeout(() => window.leafletMap.invalidateSize(), 300);
             }
@@ -1214,39 +1171,73 @@
             const pin = prompt("ডেভেলপার মোড চালু করতে PIN টাইপ করুন (Default: 1234):");
             if (pin === "1234") {
                 state.isDevMode = true;
-                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে! আপনি এখন ড্রয়ার মেনুতে কাস্টম লিংক যোগ করতে পারবেন।");
-                renderDevMenuControls();
+                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে!");
             } else if(pin !== null) {
                 alert("ভুল PIN code!");
             }
         }
 
-        function renderDevMenuControls() {
-            const container = document.getElementById('devMenuManager');
-            if (!state.isDevMode) return;
-            container.innerHTML = `
-                <button onclick="addCustomLink()" class="btn-class-chip" style="width:100%;"><i class="fa-solid fa-plus"></i> কাস্টম লিংক যোগ করুন</button>
-            `;
+        /* --------------------------------------------------------------------------
+           ৫. ডাইনামিক বাটন সিস্টেম (Add New Button & Save to LocalStorage)
+           -------------------------------------------------------------------------- */
+        function promptAddNewButton() {
+            const name = prompt("নতুন বাটনের নাম টাইপ করুন:");
+            if (!name) return;
+            const url = prompt("বাটনের লিংক (URL বা #tabName) দিন:");
+            if (!url) return;
+
+            state.drawerButtons.push({ name, url });
+            localStorage.setItem('gkd_drawer_buttons', JSON.stringify(state.drawerButtons));
+            renderDrawerCustomButtons();
         }
 
-        function addCustomLink() {
-            const title = prompt("লিংকের নাম (Title):");
-            const url = prompt("ইউআরএল (URL বা #tabName):");
-            if (title && url) {
-                state.customLinks.push({ title, url });
-                const menu = document.getElementById('drawerMenuList');
-                const a = document.createElement('a');
-                a.href = url.startsWith('#') ? 'javascript:void(0)' : url;
-                if(url.startsWith('#')) {
-                    a.onclick = () => { showTab(url.replace('#','')); toggleDrawer(); };
-                }
-                a.innerHTML = `<i class="fa-solid fa-link"></i> ${title}`;
-                menu.appendChild(a);
+        function removeDrawerButton(index) {
+            if (confirm("আপনি কি নিশ্চিত যে এই বাটনটি মুছে ফেলতে চান?")) {
+                state.drawerButtons.splice(index, 1);
+                localStorage.setItem('gkd_drawer_buttons', JSON.stringify(state.drawerButtons));
+                renderDrawerCustomButtons();
             }
         }
 
+        function renderDrawerCustomButtons() {
+            const menu = document.getElementById('drawerMenuList');
+            
+            // Clear existing custom items
+            document.querySelectorAll('.custom-menu-item').forEach(el => el.remove());
+
+            // Render saved custom buttons
+            state.drawerButtons.forEach((btn, idx) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'custom-menu-item';
+
+                const linkSpan = document.createElement('div');
+                linkSpan.className = 'menu-link-content';
+                linkSpan.innerHTML = `<i class="fa-solid fa-link"></i> ${btn.name}`;
+                linkSpan.onclick = () => {
+                    if(btn.url.startsWith('#')) {
+                        showTab(btn.url.replace('#',''));
+                    } else {
+                        window.open(btn.url, '_blank');
+                    }
+                    toggleDrawer();
+                };
+
+                const delBtn = document.createElement('i');
+                delBtn.className = 'fa-solid fa-trash-can btn-del-nav';
+                delBtn.title = 'ডিলিট করুন';
+                delBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    removeDrawerButton(idx);
+                };
+
+                itemDiv.appendChild(linkSpan);
+                itemDiv.appendChild(delBtn);
+                menu.appendChild(itemDiv);
+            });
+        }
+
         /* --------------------------------------------------------------------------
-           ৫. জেমীন টাইটেল অ্যানিমেশন স্ক্রিপ্ট (Wave Title Animation)
+           ৬. টাইটেল অ্যানিমেশন স্ক্রিপ্ট (Wave Title Animation)
            -------------------------------------------------------------------------- */
         function initWaveText() {
             const textElement = document.getElementById('wave-text');
@@ -1260,7 +1251,7 @@
         }
 
         /* --------------------------------------------------------------------------
-           ৬. ভিডিও মোডাল প্লেয়ার লজিক (Glossy Modal & Youtube Embed)
+           ৭. ভিডিও মোডাল প্লেয়ার লজিক (Glossy Modal & Youtube Embed)
            -------------------------------------------------------------------------- */
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
@@ -1277,15 +1268,12 @@
         }
 
         /* --------------------------------------------------------------------------
-           ৭. স্পর্শ অনুভূতি অডিও ফিডব্যাক (Web Audio Feedback)
+           ৮. স্পর্শ অনুভূতি অডিও ফিডব্যাক ও ভয়েস এআই (Audio Feedback)
            -------------------------------------------------------------------------- */
         function triggerCardAudio(cardTitle) {
             speakBengali(`${cardTitle} সেকশনে স্বাগতম!`);
         }
 
-        /* --------------------------------------------------------------------------
-           ৮. ফিমেল ভয়েস এআই অ্যাসিস্ট্যান্ট (SpeechSynthesis API Integration)
-           -------------------------------------------------------------------------- */
         function speakBengali(text) {
             if (!state.audioSynth) return;
             state.audioSynth.cancel();
@@ -1311,77 +1299,9 @@
         }
 
         /* --------------------------------------------------------------------------
-           ৯. একাডেমিক লার্নিং মডিউল ডাটা (Classes 1 to 12 Academic Books)
-           -------------------------------------------------------------------------- */
-        const lmsData = {
-            1: [
-                { title: "Lesson 1: Alphabet Fun & Phonetics", content: "ইংরেজি ২৬টি বর্ণমালা সঠিক উচ্চারণে শিখুন। A for Apple, B for Ball..." },
-                { title: "Lesson 2: Simple Words & Greetings", content: "Hello, Good Morning, Thank You ইত্যাদি দৈনন্দিন সম্ভাষণ বাক্যের নিয়ম।" }
-            ],
-            5: [
-                { title: "Chapter 1: Primary Grammar & Tense", content: "Present, Past & Future Tense এর সহজ গঠন প্রণালী ও প্র্যাকটিক্যাল উদাহরণ।" },
-                { title: "Chapter 2: Sentence Structure", content: "Subject + Verb + Object ব্যবহার করে সহজে বাক্য তৈরি করার টেকনিক।" }
-            ],
-            10: [
-                { title: "SSC Board Grammar Special", content: "Right form of verbs, Tag Questions, Transformation of Sentences এর এক্সক্লুসিভ রুলস।" },
-                { title: "SSC Model Test & Board Questions", content: "গত ৫ বছরের বোর্ড পরীক্ষার বাছাইকৃত প্রশ্নপত্র ও উত্তর ব্যাখ্যা।" }
-            ],
-            12: [
-                { title: "HSC Grammar Mastery & Composition", content: "Modifier, Preposition, Connectors এবং Formal Report লেখার সহজ গাইড।" },
-                { title: "IELTS & HSC Smart Vocabulary", content: "উচ্চশিক্ষার জন্য প্রয়োজনীয় ২৫০টি হাই-ফ্রিকোয়েন্সি শব্দার্থ ও বাক্যে প্রয়োগ।" }
-            ]
-        };
-
-        function initLMS() {
-            const list = document.getElementById('classList');
-            list.innerHTML = '';
-            for (let i = 1; i <= 12; i++) {
-                const btn = document.createElement('button');
-                btn.className = `btn-class-chip ${i === state.selectedClass ? 'active' : ''}`;
-                btn.innerText = `ক্লাস ${i}`;
-                btn.onclick = (e) => selectClass(i, e);
-                list.appendChild(btn);
-            }
-            loadChapters(state.selectedClass);
-        }
-
-        function selectClass(clsNum, evt) {
-            state.selectedClass = clsNum;
-            document.querySelectorAll('.btn-class-chip').forEach(b => b.classList.remove('active'));
-            if(evt && evt.target) evt.target.classList.add('active');
-            loadChapters(clsNum);
-        }
-
-        function loadChapters(clsNum) {
-            const container = document.getElementById('chapterListContainer');
-            container.innerHTML = '';
-            const chapters = lmsData[clsNum] || [
-                { title: `Class ${clsNum} English Module 1`, content: `এই মডিউলে রয়েছে ক্লাস ${clsNum} এর বোর্ড সিলেবাস অনুযায়ী গ্রামার ও পাঠ্যবই সমাধান।` },
-                { title: `Class ${clsNum} Exam Suggestion`, content: `পরীক্ষায় ভালো ফলাফলের জন্য বিশেষ স্পেশাল রিভিশন শিট ও কুইজ।` }
-            ];
-
-            chapters.forEach((ch, index) => {
-                const div = document.createElement('div');
-                div.className = `chapter-item ${index === 0 ? 'active' : ''}`;
-                div.innerHTML = `<span><i class="fa-solid fa-file-lines"></i> ${ch.title}</span> <i class="fa-solid fa-chevron-right"></i>`;
-                div.onclick = () => {
-                    document.querySelectorAll('.chapter-item').forEach(el => el.classList.remove('active'));
-                    div.classList.add('active');
-                    document.getElementById('lessonTitle').innerText = ch.title;
-                    document.getElementById('lessonContent').innerText = ch.content;
-                };
-                container.appendChild(div);
-            });
-
-            document.getElementById('lessonTitle').innerText = chapters[0].title;
-            document.getElementById('lessonContent').innerText = chapters[0].content;
-        }
-
-        /* --------------------------------------------------------------------------
-           ১০. ড্যাশবোর্ড চার্টস ও ম্যাপ (3 Charts Single Row Initialization)
+           ৯. ড্যাশবোর্ড চার্টস ও ম্যাপ (3 Charts Side-by-Side Initialization)
            -------------------------------------------------------------------------- */
         function initCharts() {
-            // Visitors Line Chart
             new Chart(document.getElementById('chartVisitors'), {
                 type: 'line',
                 data: {
@@ -1398,7 +1318,6 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
             });
 
-            // Course Ratio Doughnut Chart
             new Chart(document.getElementById('chartCourses'), {
                 type: 'doughnut',
                 data: {
@@ -1411,7 +1330,6 @@
                 options: { responsive: true, maintainAspectRatio: false }
             });
 
-            // Devices Bar Chart
             new Chart(document.getElementById('chartDevices'), {
                 type: 'bar',
                 data: {
@@ -1437,7 +1355,7 @@
             const students = [
                 { name: "মেহেদী হাসান", area: "রাজারহাট, কুড়িগ্রাম", lat: 25.8072, lng: 89.5441, phone: "01751905439", device: "Android (Chrome)", ip: "103.145.xx.1" },
                 { name: "সুমাইয়া আক্তার", area: "কুড়িগ্রাম সদর", lat: 25.8103, lng: 89.6467, phone: "01711000000", device: "Windows PC", ip: "103.112.xx.4" },
-                { name: "রাকিvalid ইসলাম", area: "রংপুর সিটি", lat: 25.7439, lng: 89.2752, phone: "01822000000", device: "iPhone (Safari)", ip: "27.147.xx.8" }
+                { name: "রাকিবুল ইসলাম", area: "রংপুর সিটি", lat: 25.7439, lng: 89.2752, phone: "01822000000", device: "iPhone (Safari)", ip: "27.147.xx.8" }
             ];
 
             const tbody = document.getElementById('studentTableBody');
@@ -1475,11 +1393,11 @@
         }
 
         /* --------------------------------------------------------------------------
-           ১১. অ্যাপ্লিকেশন উইন্ডো অনলোড ইনিশিয়ালাইজেশন (Onload Handler)
+           ১০. অ্যাপ্লিকেশন অনলোড ইনিশিয়ালাইজেশন (Onload Handler)
            -------------------------------------------------------------------------- */
         window.onload = function () {
             initWaveText();
-            initLMS();
+            renderDrawerCustomButtons();
             initCharts();
             initMapAndStudents();
         };
