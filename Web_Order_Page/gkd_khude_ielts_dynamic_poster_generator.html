@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GKD KHUDE IELTS - 3D Interactive Poster Generator</title>
+    <title>GKD KHUDE IELTS - Dynamic Poster Generator</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Multiple Bengali & English Fonts -->
+    <!-- Google Fonts: Multiple Bengali & English Fonts with Full Glyph Coverage -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700;800&family=Baloo+Da+2:wght@400;600;700;800&family=Cinzel:wght@600;800&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800;900&family=Noto+Sans+Bengali:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@400;600;700;800&family=Tiro+Bangla&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700;800&family=Baloo+Da+2:wght@400;600;700;800&family=Cinzel:wght@600;800&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800;900&family=Noto+Sans+Bengali:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&family=Times+New+Roman&display=swap" rel="stylesheet">
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,19 +47,43 @@
             overflow-x: hidden;
         }
 
-        /* Aspect Ratios */
+        /* Essential Typography Fixes to Prevent Bengali Diacritics/Vowel Clipping */
+        .prevent-clip {
+            line-height: 1.55 !important;
+            padding-top: 4px !important;
+            padding-bottom: 6px !important;
+            padding-left: 2px;
+            padding-right: 2px;
+            overflow: visible !important;
+            word-break: break-word;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .prevent-clip-block {
+            line-height: 1.55 !important;
+            padding-top: 4px !important;
+            padding-bottom: 6px !important;
+            overflow: visible !important;
+            word-break: break-word;
+            display: block;
+        }
+
+        /* Aspect Ratios & Container Scaling */
         .poster-wrapper-16-9 {
             width: 100%;
             aspect-ratio: 16 / 9;
+            min-height: 480px;
         }
         .poster-wrapper-9-16 {
             width: 100%;
-            max-width: 440px;
+            max-width: 450px;
             aspect-ratio: 9 / 16;
+            min-height: 640px;
             margin: 0 auto;
         }
 
-        /* 3D Visual Themes (Static 2D Display with 3D Depth Styling) */
+        /* 3D Visual Themes (High Contrast & Clear Glyphs) */
         
         /* 1. Royal Gold & Navy */
         .theme-royal-gold {
@@ -70,7 +94,7 @@
         }
         .theme-royal-gold .card-inner {
             background: rgba(15, 28, 63, 0.85);
-            border: 1px solid rgba(234, 179, 8, 0.4);
+            border: 1.5px solid rgba(234, 179, 8, 0.5);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .theme-royal-gold .accent-badge {
@@ -90,7 +114,7 @@
         }
         .theme-crimson-elegance .card-inner {
             background: rgba(88, 12, 12, 0.85);
-            border: 1px solid rgba(248, 113, 113, 0.4);
+            border: 1.5px solid rgba(248, 113, 113, 0.5);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .theme-crimson-elegance .accent-badge {
@@ -110,7 +134,7 @@
         }
         .theme-emerald-glass .card-inner {
             background: rgba(6, 78, 59, 0.85);
-            border: 1px solid rgba(52, 211, 153, 0.4);
+            border: 1.5px solid rgba(52, 211, 153, 0.5);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .theme-emerald-glass .accent-badge {
@@ -130,7 +154,7 @@
         }
         .theme-cyber-dark .card-inner {
             background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(56, 189, 248, 0.4);
+            border: 1.5px solid rgba(56, 189, 248, 0.5);
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
         .theme-cyber-dark .accent-badge {
@@ -150,7 +174,7 @@
         }
         .theme-midnight-gold .card-inner {
             background: rgba(24, 24, 27, 0.9);
-            border: 1px solid rgba(250, 204, 21, 0.45);
+            border: 1.5px solid rgba(250, 204, 21, 0.5);
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
         .theme-midnight-gold .accent-badge {
@@ -180,7 +204,7 @@
                         <span>GKD KHUDE IELTS</span>
                         <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Poster Generator</span>
                     </h2>
-                    <p class="text-xs text-slate-400">অটোমেটেড সোশ্যাল মিডিয়া ওয়েলকাম পোস্টার মেকার</p>
+                    <p class="text-xs text-slate-400">অটোমেটেড সোশ্যাল মিডিয়া ওয়েলকাম পোস্টার মেকার (No-Clipping Typography)</p>
                 </div>
             </div>
 
@@ -369,10 +393,10 @@
                 </div>
 
                 <!-- POSTER CONTAINER WRAPPER -->
-                <div class="w-full flex justify-center bg-slate-950/80 p-4 md:p-8 rounded-2xl border border-slate-800/80 shadow-2xl overflow-hidden">
+                <div class="w-full flex justify-center bg-slate-950/80 p-3 md:p-6 rounded-2xl border border-slate-800/80 shadow-2xl overflow-hidden">
                     
                     <!-- POSTER ROOT CANVAS ELEMENT -->
-                    <div id="posterCanvas" class="poster-wrapper-16-9 theme-royal-gold relative rounded-2xl p-6 md:p-8 overflow-hidden flex flex-col justify-between transition-all duration-300">
+                    <div id="posterCanvas" class="poster-wrapper-16-9 theme-royal-gold relative rounded-2xl p-5 md:p-7 overflow-hidden flex flex-col justify-between transition-all duration-300">
                         
                         <!-- Glow Effects -->
                         <div class="absolute -top-16 -right-16 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -385,10 +409,10 @@
                             <div class="flex items-center gap-3">
                                 <img id="posterLogo" src="https://i.ibb.co/3s2XJ4H/gkdlogo.jpg" onerror="this.src='https://placehold.co/100x100/0f2c59/f8de22?text=GKD'" alt="GKD Logo" class="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-amber-400 shadow-xl object-cover">
                                 <div>
-                                    <h1 id="brandTitle" class="font-times font-extrabold text-base md:text-xl tracking-wider uppercase leading-none text-highlight">
+                                    <h1 id="brandTitle" class="font-times font-extrabold text-base md:text-xl tracking-wider uppercase leading-none text-highlight prevent-clip">
                                         GKD KHUDE IELTS
                                     </h1>
-                                    <p id="brandSub" class="font-times text-[10px] md:text-xs font-bold text-accent tracking-widest uppercase mt-1">
+                                    <p id="brandSub" class="font-times text-[10px] md:text-xs font-bold text-accent tracking-widest uppercase mt-0.5 prevent-clip">
                                         GKD Complete English Mastery
                                     </p>
                                 </div>
@@ -397,47 +421,51 @@
                             <!-- Welcome Badge -->
                             <div class="accent-badge px-3 py-1 md:px-4 md:py-1 rounded-full text-[10px] md:text-xs font-extrabold uppercase tracking-wider shadow-lg flex items-center gap-1.5">
                                 <i class="fa-solid fa-award"></i>
-                                <span>ভর্তি অভিনন্দন!</span>
+                                <span class="prevent-clip">ভর্তি অভিনন্দন!</span>
                             </div>
                         </div>
 
                         <!-- MIDDLE BODY CONTENT: STUDENT INFO & PHOTO -->
-                        <div id="posterBody" class="grid grid-cols-12 gap-4 items-center my-auto z-10 relative py-2">
+                        <div id="posterBody" class="grid grid-cols-12 gap-3 md:gap-4 items-center my-auto z-10 relative py-2">
                             
                             <!-- Student Details Panel -->
-                            <div id="detailsCol" class="col-span-8 space-y-2 md:space-y-2.5">
+                            <div id="detailsCol" class="col-span-8 space-y-2">
                                 
                                 <div class="inline-block">
-                                    <span class="text-[10px] md:text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                                    <span class="text-[10px] md:text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 prevent-clip">
                                         নতুন ব্যাচে শুভ আগমন
                                     </span>
                                 </div>
 
-                                <h2 id="prevName" class="text-xl md:text-3xl font-extrabold tracking-tight text-accent">
-                                    মোঃ রফিকুল ইসলাম
-                                </h2>
+                                <div>
+                                    <h2 id="prevName" class="text-lg md:text-2xl font-extrabold tracking-tight text-accent prevent-clip">
+                                        মোঃ রফিকুল ইসলাম
+                                    </h2>
+                                </div>
 
-                                <p id="prevMessage" class="text-xs md:text-sm opacity-95 italic font-medium line-clamp-2 text-highlight">
-                                    "GKD KHUDE IELTS পরিবারে আপনাকে স্বাগতম! আপনার আইইএলটিএস জয়ের যাত্রায় আমরা পাশে আছি।"
-                                </p>
+                                <div>
+                                    <p id="prevMessage" class="text-xs md:text-sm opacity-95 italic font-medium text-highlight prevent-clip-block">
+                                        "GKD KHUDE IELTS পরিবারে আপনাকে স্বাগতম! আপনার আইইএলটিএস জয়ের যাত্রায় আমরা পাশে আছি।"
+                                    </p>
+                                </div>
 
                                 <!-- Student Info Cards -->
                                 <div class="grid grid-cols-2 gap-2 pt-1 text-[11px] md:text-xs">
-                                    <div class="card-inner p-2 rounded-xl">
-                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">কোর্স / প্রোগ্রাম:</span>
-                                        <strong id="prevCourse" class="block font-bold truncate text-highlight">IELTS Academic Masterclass</strong>
+                                    <div class="card-inner p-2 rounded-xl flex flex-col justify-center">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold prevent-clip">কোর্স / প্রোগ্রাম:</span>
+                                        <strong id="prevCourse" class="block font-bold text-highlight prevent-clip">IELTS Academic Masterclass</strong>
                                     </div>
-                                    <div class="card-inner p-2 rounded-xl">
-                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">ব্যাচ ও স্টুডেন্ট আইডি:</span>
-                                        <strong id="prevBatchId" class="block font-bold truncate text-highlight">ব্যাচ - ১২ | ID: GKD-2026-042</strong>
+                                    <div class="card-inner p-2 rounded-xl flex flex-col justify-center">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold prevent-clip">ব্যাচ ও স্টুডেন্ট আইডি:</span>
+                                        <strong id="prevBatchId" class="block font-bold text-highlight prevent-clip">ব্যাচ - ১২ | ID: GKD-2026-042</strong>
                                     </div>
-                                    <div class="card-inner p-2 rounded-xl">
-                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">শাখা / ঠিকানা:</span>
-                                        <strong id="prevAddress" class="block font-bold truncate text-highlight">রাজারহাট, কুড়িগ্রাম</strong>
+                                    <div class="card-inner p-2 rounded-xl flex flex-col justify-center">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold prevent-clip">শাখা / ঠিকানা:</span>
+                                        <strong id="prevAddress" class="block font-bold text-highlight prevent-clip">রাজারহাট, কুড়িগ্রাম</strong>
                                     </div>
-                                    <div class="card-inner p-2 rounded-xl">
-                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">ভর্তির তারিখ:</span>
-                                        <strong id="prevDate" class="block font-bold truncate text-highlight">২৮ অক্টোবর, ২০২৬</strong>
+                                    <div class="card-inner p-2 rounded-xl flex flex-col justify-center">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold prevent-clip">ভর্তির তারিখ:</span>
+                                        <strong id="prevDate" class="block font-bold text-highlight prevent-clip">২৮ অক্টোবর, ২০২৬</strong>
                                     </div>
                                 </div>
 
@@ -446,7 +474,7 @@
                             <!-- Student Photo Frame -->
                             <div id="photoCol" class="col-span-4 flex justify-center items-center">
                                 <div class="relative group">
-                                    <div class="w-26 h-26 md:w-36 md:h-36 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-2xl bg-slate-900">
+                                    <div class="w-24 h-24 md:w-34 md:h-34 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-2xl bg-slate-900">
                                         <img id="prevPhoto" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Student Photo" class="w-full h-full object-cover">
                                     </div>
                                     <div class="absolute -bottom-2 inset-x-0 mx-auto w-max px-2.5 py-0.5 rounded-md bg-amber-400 text-slate-950 font-black text-[9px] md:text-[10px] text-center shadow-md">
@@ -458,13 +486,13 @@
                         </div>
 
                         <!-- FOOTER BAR -->
-                        <div class="pt-2.5 border-t border-white/20 flex flex-wrap justify-between items-center text-[10px] md:text-xs text-highlight z-10 relative">
+                        <div class="pt-2 border-t border-white/20 flex flex-wrap justify-between items-center text-[10px] md:text-xs text-highlight z-10 relative">
                             <div class="flex flex-wrap items-center gap-3">
-                                <span class="font-bold"><i class="fa-solid fa-phone text-amber-400 mr-1"></i> 01751905439</span>
-                                <span class="font-bold"><i class="fa-solid fa-envelope text-amber-400 mr-1"></i> gkdkhudeielts2026@gmail.com</span>
+                                <span class="font-bold prevent-clip"><i class="fa-solid fa-phone text-amber-400 mr-1"></i> 01751905439</span>
+                                <span class="font-bold prevent-clip"><i class="fa-solid fa-envelope text-amber-400 mr-1"></i> gkdkhudeielts2026@gmail.com</span>
                             </div>
                             <div>
-                                <span class="font-bold"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> প্রধান শাখা, রাজারহাট, কুড়িগ্রাম</span>
+                                <span class="font-bold prevent-clip"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> প্রধান শাখা, রাজারহাট, কুড়িগ্রাম</span>
                             </div>
                         </div>
 
@@ -525,12 +553,12 @@
             const brandTitle = document.getElementById('brandTitle');
             const brandSub = document.getElementById('brandSub');
 
-            // Apply fonts dynamically
-            prevName.className = `text-xl md:text-3xl font-extrabold tracking-tight text-accent ${banglaFont}`;
-            prevMessage.className = `text-xs md:text-sm opacity-95 italic font-medium line-clamp-2 text-highlight ${banglaFont}`;
+            // Apply fonts dynamically with no-clip classes preserved
+            prevName.className = `text-lg md:text-2xl font-extrabold tracking-tight text-accent prevent-clip ${banglaFont}`;
+            prevMessage.className = `text-xs md:text-sm opacity-95 italic font-medium text-highlight prevent-clip-block ${banglaFont}`;
             
-            brandTitle.className = `${englishFont} font-extrabold text-base md:text-xl tracking-wider uppercase leading-none text-highlight`;
-            brandSub.className = `${englishFont} text-[10px] md:text-xs font-bold text-accent tracking-widest uppercase mt-1`;
+            brandTitle.className = `${englishFont} font-extrabold text-base md:text-xl tracking-wider uppercase leading-none text-highlight prevent-clip`;
+            brandSub.className = `${englishFont} text-[10px] md:text-xs font-bold text-accent tracking-widest uppercase mt-0.5 prevent-clip`;
         }
 
         // 3. Image Upload Handlers
@@ -568,16 +596,16 @@
             const photoCol = document.getElementById('photoCol');
 
             if (aspect === '16-9') {
-                canvas.className = `poster-wrapper-16-9 ${currentTheme} relative rounded-2xl p-6 md:p-8 overflow-hidden flex flex-col justify-between transition-all duration-300`;
+                canvas.className = `poster-wrapper-16-9 ${currentTheme} relative rounded-2xl p-5 md:p-7 overflow-hidden flex flex-col justify-between transition-all duration-300`;
                 
-                posterBody.className = "grid grid-cols-12 gap-4 items-center my-auto z-10 relative py-2";
-                detailsCol.className = "col-span-8 space-y-2 md:space-y-2.5";
+                posterBody.className = "grid grid-cols-12 gap-3 md:gap-4 items-center my-auto z-10 relative py-2";
+                detailsCol.className = "col-span-8 space-y-2";
                 photoCol.className = "col-span-4 flex justify-center items-center";
 
                 btn169.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all bg-amber-500 text-slate-950 shadow-md";
                 btn916.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800";
             } else {
-                canvas.className = `poster-wrapper-9-16 ${currentTheme} relative rounded-2xl p-6 md:p-8 overflow-hidden flex flex-col justify-between transition-all duration-300`;
+                canvas.className = `poster-wrapper-9-16 ${currentTheme} relative rounded-2xl p-6 md:p-7 overflow-hidden flex flex-col justify-between transition-all duration-300`;
                 
                 posterBody.className = "flex flex-col gap-3 items-center justify-center my-auto text-center z-10 relative py-2";
                 detailsCol.className = "w-full space-y-2 text-center";
@@ -594,18 +622,19 @@
             setAspectRatio(currentAspect);
         }
 
-        // 6. Image Exporting (PNG / JPG)
+        // 6. High Precision Image Exporting (PNG / JPG)
         function exportPoster(format) {
             const posterElement = document.getElementById('posterCanvas');
 
             html2canvas(posterElement, {
-                scale: 3, // High Resolution
+                scale: 3, // Ultra HD Quality
                 useCORS: true,
                 logging: false,
+                allowTaint: true,
                 backgroundColor: null
             }).then(canvas => {
                 const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
-                const image = canvas.toDataURL(mimeType, 0.95);
+                const image = canvas.toDataURL(mimeType, 0.98);
                 
                 const link = document.createElement('a');
                 const studentName = document.getElementById('inputName').value.replace(/\s+/g, '_') || 'Student';
