@@ -323,17 +323,17 @@
                     </div>
 
                     <div>
-                        <label class="block text-[11px] text-slate-300 mb-1">শিক্ষার্থীর পূর্ণ নাম</label>
+                        <label class="block text-[11px] text-slate-300 mb-1">শিক্ষার্থীর পূর্ণ নাম *</label>
                         <input type="text" id="inputName" value="গোবিন্দ বল্লভ" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-[11px] text-slate-300 mb-1">Roll/ Student ID</label>
+                            <label class="block text-[11px] text-slate-300 mb-1">Roll/ Student ID *</label>
                             <input type="text" id="inputId" value="GKD-2026-001-001" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                         </div>
                         <div>
-                            <label class="block text-[11px] text-slate-300 mb-1">Batch No</label>
+                            <label class="block text-[11px] text-slate-300 mb-1">Batch No *</label>
                             <input type="text" id="inputBatch" value="Batch - 001 (Regular)" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                         </div>
                     </div>
@@ -343,9 +343,21 @@
                         <input type="text" id="inputCourse" value="IELTS Academic Masterclass" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                     </div>
 
+                    <!-- 追加: Google Sheet Data Collection Fields -->
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-[11px] text-slate-300 mb-1">Adress</label>
+                            <label class="block text-[11px] text-slate-300 mb-1">Mobile Number *</label>
+                            <input type="text" id="inputMobile" value="01712345678" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400" placeholder="017xxxxxxxx">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">Email *</label>
+                            <input type="email" id="inputEmail" value="student@gmail.com" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400" placeholder="name@domain.com">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">Address *</label>
                             <input type="text" id="inputAddress" value="রাজারহাট, কুড়িগ্রাম" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                         </div>
                         <div>
@@ -357,6 +369,14 @@
                     <div>
                         <label class="block text-[11px] text-slate-300 mb-1">Welcome Message</label>
                         <textarea id="inputMessage" rows="2" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">GKD KHUDE IELTS পরিবারে আপনাকে স্বাগতম! আপনার আইইএলটিএস জয়ের যাত্রায় আমরা পাশে আছি।</textarea>
+                    </div>
+
+                    <!-- SAVE TO GOOGLE SHEET BUTTON -->
+                    <div class="pt-2">
+                        <button id="btnSaveSheet" onclick="saveToGoogleSheet()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs py-2.5 px-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2 border border-emerald-400">
+                            <i class="fa-solid fa-file-excel text-amber-300 text-sm"></i> 
+                            <span id="saveBtnText">গুগল শিটে ডেটা সেভ করুন</span>
+                        </button>
                     </div>
                 </div>
 
@@ -512,6 +532,9 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // 🛑 আপনার গুগল অ্যাপস স্ক্রিপ্ট (Web App URL) নিচে বসিয়ে দিন
+        const GOOGLE_SHEET_WEB_APP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
         let currentAspect = '16-9';
         let currentTheme = 'theme-royal-gold';
 
@@ -544,6 +567,73 @@
                 `#GKDKHUDEIELTS #GKDCompleteEnglishMastery #IELTSPreparation #AdmissionOpen`;
 
             document.getElementById('socialCaption').value = caption;
+        }
+
+        // Save Student Data to Google Sheet (Auto-Numbering Support)
+        async function saveToGoogleSheet() {
+            const name = document.getElementById('inputName').value.trim();
+            const studentId = document.getElementById('inputId').value.trim();
+            const batch = document.getElementById('inputBatch').value.trim();
+            const course = document.getElementById('inputCourse').value.trim();
+            const address = document.getElementById('inputAddress').value.trim();
+            const mobile = document.getElementById('inputMobile').value.trim();
+            const email = document.getElementById('inputEmail').value.trim();
+            const date = document.getElementById('inputDate').value.trim();
+
+            if (!name || !studentId || !mobile) {
+                alert("দয়া করে নাম, স্টুডেন্ট আইডি এবং মোবাইল নম্বর পুরন করুন!");
+                return;
+            }
+
+            if (GOOGLE_SHEET_WEB_APP_URL === "https://script.google.com/macros/s/AKfycby_Bx0hknlKnBht-6O6Fav9GZhFzSJMa9jzCc2DM5jQlJytO97Rbm-rvVHEKKBKFVk/exec") {
+                alert("দয়া করে গুগল অ্যাপস স্ক্রিপ্ট Web App URL কোডের 'GOOGLE_SHEET_WEB_APP_URL' স্থানে বসিয়ে নিন।");
+                return;
+            }
+
+            const btn = document.getElementById('btnSaveSheet');
+            const btnText = document.getElementById('saveBtnText');
+            btn.disabled = true;
+            btnText.innerText = "সেভ হচ্ছে...";
+
+            const payload = {
+                name: name,
+                studentId: studentId,
+                batch: batch,
+                course: course,
+                address: address,
+                mobile: mobile,
+                email: email,
+                date: date
+            };
+
+            try {
+                // CORS বাইপাস করার জন্য no-cors মোড ব্যবহার
+                await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                btnText.innerText = "সফলভাবে সেভ হয়েছে! ✓";
+                btn.classList.remove('bg-emerald-600');
+                btn.classList.add('bg-blue-600');
+
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btnText.innerText = "গুগল শিটে ডেটা সেভ করুন";
+                    btn.classList.remove('bg-blue-600');
+                    btn.classList.add('bg-emerald-600');
+                }, 3000);
+
+            } catch (err) {
+                console.error("Sheet Save Error: ", err);
+                alert("গুগল শিটে ডাটা সেভ করতে সমস্যা হয়েছে। ইন্টারনেট কানেকশন বা ওয়েব অ্যাপ URL চেক করুন।");
+                btn.disabled = false;
+                btnText.innerText = "গুগল শিটে ডেটা সেভ করুন";
+            }
         }
 
         // Font Swapper
