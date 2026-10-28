@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GKD Complete English Mastery & LMS Platform</title>
 
-    <!-- External CSS Icons & Google Fonts Loading (Hind Siliguri & Tiro Bangla) -->
+    <!-- External CSS Icons & Google Fonts Loading -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700;800&family=Tiro+Bangla:ital@0;1&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -21,9 +21,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <style>
-        /* ==========================================================================
-           ১. গ্লোবাল কালার থিম ও ভেরিয়েবল
-           ========================================================================== */
         :root {
             --primary-gradient: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
             --button-gradient-1: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
@@ -32,7 +29,6 @@
             --bkash-color: #e2136e;
             --nagad-color: #f7921e;
 
-            /* Light Mode Default */
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
             --bg-nav: rgba(255, 255, 255, 0.92);
@@ -84,9 +80,6 @@
             margin: 0 auto;
         }
 
-        /* ==========================================================================
-           ২. হেডার ও নেভিগেশন
-           ========================================================================== */
         header {
             background: var(--bg-nav);
             backdrop-filter: blur(12px);
@@ -122,9 +115,7 @@
             transition: transform 0.5s ease;
         }
 
-        .logo-brand:hover .logo-img {
-            transform: rotate(360deg);
-        }
+        .logo-brand:hover .logo-img { transform: rotate(360deg); }
 
         .logo-text {
             font-size: 20px;
@@ -155,23 +146,13 @@
             transition: all 0.2s;
         }
 
-        .btn-icon:hover {
-            transform: scale(1.08);
-            border-color: #6366f1;
-        }
-
-        .btn-icon.dev-active {
-            background: #6366f1;
-            color: #ffffff;
-            box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
-        }
+        .btn-icon:hover { transform: scale(1.08); border-color: #6366f1; }
+        .btn-icon.dev-active { background: #6366f1; color: #ffffff; box-shadow: 0 0 12px rgba(99, 102, 241, 0.6); }
 
         .drawer {
             position: fixed;
-            top: 0;
-            right: -320px;
-            width: 300px;
-            height: 100vh;
+            top: 0; right: -320px;
+            width: 300px; height: 100vh;
             background: var(--bg-card);
             box-shadow: -5px 0 25px rgba(0,0,0,0.2);
             z-index: 1050;
@@ -182,101 +163,43 @@
             gap: 15px;
             overflow-y: auto;
         }
-
         .drawer.open { right: 0; }
 
         .drawer-overlay {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background: rgba(0,0,0,0.5);
             backdrop-filter: blur(3px);
             z-index: 1040;
             display: none;
         }
-
         .drawer-overlay.open { display: block; }
 
         .drawer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+            padding-bottom: 15px; border-bottom: 1px solid var(--border-color);
         }
 
-        .drawer-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
+        .drawer-menu { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
         .drawer-menu a, .drawer-menu .custom-menu-item {
-            padding: 12px 16px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 12px 16px; border-radius: 12px; text-decoration: none; color: var(--text-dark);
+            font-weight: 700; display: flex; align-items: center; justify-content: space-between;
+            background: var(--bg-body); border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s;
         }
-
         .drawer-menu a:hover, .drawer-menu a.active, .drawer-menu .custom-menu-item:hover {
-            background: var(--primary-gradient);
-            color: white;
-            border-color: transparent;
+            background: var(--primary-gradient); color: white; border-color: transparent;
         }
+        .drawer-menu .menu-link-content { display: flex; align-items: center; gap: 12px; flex-grow: 1; }
 
-        .drawer-menu .menu-link-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-grow: 1;
-        }
-
-        .btn-del-nav {
-            font-size: 14px;
-            color: #ef4444;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: all 0.2s;
-            display: none;
-        }
-
-        .btn-del-nav:hover {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ff0000;
-        }
+        .btn-del-nav { font-size: 14px; color: #ef4444; padding: 4px 8px; border-radius: 6px; transition: all 0.2s; display: none; }
+        .btn-del-nav:hover { background: rgba(239, 68, 68, 0.2); color: #ff0000; }
 
         .btn-add-drawer {
-            margin-top: 15px;
-            padding: 12px 16px;
-            background: var(--button-gradient-1);
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-            transition: transform 0.2s;
+            margin-top: 15px; padding: 12px 16px; background: var(--button-gradient-1); color: #ffffff;
+            border: none; border-radius: 12px; font-weight: 700; cursor: pointer; display: none;
+            align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
         }
 
-        .btn-add-drawer:hover { transform: scale(1.02); }
-
-        .page-tab {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
+        .page-tab { display: none; animation: fadeIn 0.4s ease-in-out; }
         .page-tab.active { display: block; }
 
         @keyframes fadeIn {
@@ -284,37 +207,18 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ==========================================================================
-           ৩. হিরো সেকশন
-           ========================================================================== */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.88)), 
-            url('gkd-khude-english-ielts-preparation.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #ffffff;
-            padding: 100px 0;
-            text-align: center;
-            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+            background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.88)), url('gkd-khude-english-ielts-preparation.png');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #ffffff; padding: 100px 0; text-align: center; border-bottom: 2px solid rgba(99, 102, 241, 0.3);
         }
 
-        .animated-3d-title {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.4;
-            margin-bottom: 20px;
-            white-space: pre-wrap;
-        }
-
+        .animated-3d-title { font-size: 42px; font-weight: 800; line-height: 1.4; margin-bottom: 20px; white-space: pre-wrap; }
         .animated-3d-title span {
             display: inline-block;
             background: linear-gradient(120deg, #00ffff 0%, #ff00ff 30%, #ffff00 70%, #00ffcc 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 3px 10px rgba(0, 255, 255, 0.25);
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: geminiWaterWave 1.6s ease-in-out infinite alternate, colorFlow 5s ease infinite;
         }
 
@@ -322,560 +226,127 @@
             0% { transform: translateY(0px) scale(1) rotate(0deg); }
             100% { transform: translateY(-10px) scale(1.06) rotate(1.5deg); }
         }
-
         @keyframes colorFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
         }
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 35px;
-            color: #cbd5e1;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .hero p { font-size: 18px; margin-bottom: 35px; color: #cbd5e1; max-width: 800px; margin-left: auto; margin-right: auto; }
 
         .btn-live-demo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--button-gradient-1);
-            color: #ffffff;
-            padding: 15px 36px;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
-            transition: all 0.3s ease;
-            animation: pulseGlow 2s infinite;
-            cursor: pointer;
-            border: none;
+            display: inline-flex; align-items: center; gap: 12px; background: var(--button-gradient-1);
+            color: #ffffff; padding: 15px 36px; font-size: 18px; font-weight: 700; text-decoration: none;
+            border-radius: 50px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); cursor: pointer; border: none;
         }
 
-        .btn-live-demo:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.6);
-        }
+        .interactive-section { padding: 80px 0; background: var(--bg-body); }
+        .section-header { text-align: center; margin-bottom: 45px; }
+        .section-header h2 { font-size: 32px; color: var(--text-dark); position: relative; display: inline-block; font-weight: 800; }
+        .section-header h2::after { content: ''; display: block; width: 60%; height: 4px; background: var(--primary-gradient); margin: 8px auto 0; border-radius: 2px; }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-        }
-
-        /* ==========================================================================
-           ৪. ইন্টারঅ্যাকটিভ কার্ডস ও ফিচারস
-           ========================================================================== */
-        .interactive-section {
-            padding: 80px 0;
-            background: var(--bg-body);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .section-header h2 {
-            font-size: 32px;
-            color: var(--text-dark);
-            position: relative;
-            display: inline-block;
-            font-weight: 800;
-        }
-
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 4px;
-            background: var(--primary-gradient);
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .touch-card {
-            background: var(--bg-card);
-            padding: 35px 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow-color);
-            border: 1px solid var(--border-color);
-            transition: all 0.35s ease;
-            text-align: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            background: var(--bg-card); padding: 35px 25px; border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color); border: 1px solid var(--border-color);
+            transition: all 0.35s ease; text-align: center; cursor: pointer; position: relative; overflow: hidden;
         }
-
-        .touch-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 5px;
-            background: var(--primary-gradient);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .touch-card:hover::before { opacity: 1; }
-
-        .touch-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-            border-color: #6366f1;
-        }
-
+        .touch-card:hover { transform: translateY(-8px) scale(1.02); border-color: #6366f1; }
         .touch-card .icon-box {
-            width: 70px;
-            height: 70px;
-            background: var(--primary-gradient);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+            width: 70px; height: 70px; background: var(--primary-gradient); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px auto;
         }
-
-        .touch-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-
-        .touch-card p {
-            color: var(--text-light);
-            font-size: 14px;
-        }
+        .touch-card h3 { font-size: 20px; margin-bottom: 10px; color: var(--text-dark); }
+        .touch-card p { color: var(--text-light); font-size: 14px; }
 
         .btn-class-chip {
-            padding: 10px 22px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            color: var(--text-dark);
-            font-weight: 700;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
+            padding: 10px 22px; background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 30px; color: var(--text-dark); font-weight: 700; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
         }
+        .btn-class-chip:hover { background: var(--primary-gradient); color: white; border-color: transparent; }
 
-        .btn-class-chip:hover, .btn-class-chip.active {
-            background: var(--primary-gradient);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(99,102,241,0.3);
-        }
-
-        /* ==========================================================================
-           ৫. এনালিটিক্স ড্যাশবোর্ড ও ম্যাপ কাস্টমাইজেশন (Compact Half-screen Map)
-           ========================================================================== */
-        .dashboard-row-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 1024px) {
-            .dashboard-row-3 { grid-template-columns: 1fr; }
-        }
+        .dashboard-row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        @media (max-width: 1024px) { .dashboard-row-3 { grid-template-columns: 1fr; } }
 
         .chart-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 8px 25px var(--shadow-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px;
+            padding: 20px; box-shadow: 0 8px 25px var(--shadow-color); display: flex; flex-direction: column; justify-content: space-between;
         }
+        .chart-card h4 { font-size: 16px; margin-bottom: 12px; color: var(--text-dark); display: flex; align-items: center; gap: 8px; }
+        .chart-wrapper-box { position: relative; width: 100%; height: 220px; }
 
-        .chart-card h4 {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .chart-wrapper-box {
-            position: relative;
-            width: 100%;
-            height: 220px;
-        }
-
-        .summary-metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-            margin-bottom: 35px;
-        }
-
+        .summary-metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 35px; }
         .metric-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px 15px;
-            text-align: center;
-            box-shadow: 0 6px 18px var(--shadow-color);
-            transition: all 0.3s ease;
-            position: relative;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+            padding: 20px 15px; text-align: center; box-shadow: 0 6px 18px var(--shadow-color); position: relative;
         }
-
-        .metric-box:hover {
-            transform: translateY(-5px);
-            border-color: #6366f1;
-            box-shadow: 0 12px 25px rgba(99, 102, 241, 0.2);
-        }
-
-        .metric-icon {
-            font-size: 24px;
-            margin-bottom: 8px;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .metric-number {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text-dark);
-            line-height: 1.2;
-        }
-
-        .metric-label {
-            font-size: 13px;
-            color: var(--text-light);
-            font-weight: 600;
-            margin-top: 4px;
-        }
+        .metric-icon { font-size: 24px; margin-bottom: 8px; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .metric-number { font-size: 28px; font-weight: 800; color: var(--text-dark); line-height: 1.2; }
+        .metric-label { font-size: 13px; color: var(--text-light); font-weight: 600; margin-top: 4px; }
 
         .btn-edit-metric {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: transparent;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            font-size: 14px;
-            padding: 4px;
-            border-radius: 50%;
-            display: none; /* Only visible in Developer Mode */
+            position: absolute; top: 10px; right: 10px; background: transparent; border: none;
+            color: var(--text-light); cursor: pointer; font-size: 14px; padding: 4px; display: none;
         }
-
         .btn-edit-metric:hover { color: #6366f1; }
+        .dev-only-btn { display: none; }
 
-        .dev-only-btn {
-            display: none; /* Only visible in Developer Mode */
-        }
+        #mapContainer { height: 230px; width: 100%; border-radius: 18px; border: 1px solid var(--border-color); box-shadow: 0 8px 25px var(--shadow-color); }
 
-        /* Compact Map Box (Half Screen Display) */
-        #mapContainer {
-            height: 230px;
-            width: 100%;
-            border-radius: 18px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 25px var(--shadow-color);
-        }
+        .table-responsive { width: 100%; overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px; padding: 20px; margin-top: 25px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); }
+        th { background: var(--bg-body); color: var(--text-dark); font-weight: 700; }
 
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            padding: 20px;
-            margin-top: 25px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            background: var(--bg-body);
-            color: var(--text-dark);
-            font-weight: 700;
-        }
-
-        .action-btns {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-action {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
+        .action-btns { display: flex; gap: 8px; align-items: center; }
+        .btn-action { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 14px; }
         .btn-call { background: #10b981; }
         .btn-sms { background: #3b82f6; }
         .btn-wa { background: #25d366; }
-        .btn-tg { background: #0088cc; }
-        .btn-fb { background: #1877f2; }
+        .btn-edit-row { background: #f59e0b; border: none; cursor: pointer; }
+        .btn-del-row { background: #ef4444; border: none; cursor: pointer; }
 
-        /* ==========================================================================
-           ৬. মোডাল, অর্ডার ও এআই চ্যাট
-           ========================================================================== */
         .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px);
+            z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
         }
-
         .modal.open { display: flex; }
+        .modal-content { background: var(--bg-card); border-radius: 20px; width: 100%; max-width: 800px; padding: 25px; position: relative; border: 1px solid var(--border-color); }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 24px; color: var(--text-dark); cursor: pointer; }
 
-        .modal-content {
-            background: var(--bg-card);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 800px;
-            padding: 25px;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid var(--border-color);
-        }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        .modal-close {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 24px;
-            color: var(--text-dark);
-            cursor: pointer;
-        }
+        .payment-card { background: var(--bg-card); border-radius: 20px; padding: 35px; border: 1px solid var(--border-color); max-width: 800px; margin: 0 auto; }
+        .payment-instructions { background: rgba(99, 102, 241, 0.08); border-left: 5px solid #6366f1; padding: 25px; border-radius: 12px; margin-bottom: 30px; }
+        .badge-bkash { background: var(--bkash-color); color: white; padding: 8px 18px; border-radius: 30px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 0;
-        }
-
-        .payment-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 35px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px var(--shadow-color);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .payment-instructions {
-            background: rgba(99, 102, 241, 0.08);
-            border-left: 5px solid #6366f1;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-
-        .badge-bkash {
-            background: var(--bkash-color);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ai-bot-widget {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .ai-bot-widget { position: fixed; bottom: 25px; right: 25px; z-index: 1000; display: flex; align-items: center; gap: 10px; }
         .btn-ai-voice {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
-            cursor: pointer;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: floatBot 3s ease-in-out infinite;
+            width: 58px; height: 58px; border-radius: 50%; background: var(--primary-gradient); color: white; border: none;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5); cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center;
         }
-
-        @keyframes floatBot {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .ai-speech-bubble {
-            background: var(--bg-card);
-            color: var(--text-dark);
-            padding: 12px 18px;
-            border-radius: 18px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 1px solid var(--border-color);
-            font-size: 14px;
-            font-weight: 600;
-            max-width: 220px;
-            cursor: pointer;
-        }
+        .ai-speech-bubble { background: var(--bg-card); color: var(--text-dark); padding: 12px 18px; border-radius: 18px; border: 1px solid var(--border-color); font-size: 14px; font-weight: 600; cursor: pointer; }
 
         .gemini-chat-modal {
-            position: fixed;
-            bottom: 95px;
-            right: 25px;
-            width: 360px;
-            height: 480px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
+            position: fixed; bottom: 95px; right: 25px; width: 360px; height: 480px;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px;
+            z-index: 2000; display: none; flex-direction: column; overflow: hidden;
         }
-
         .gemini-chat-modal.open { display: flex; }
+        .gemini-chat-header { background: var(--primary-gradient); color: white; padding: 15px; display: flex; justify-content: space-between; font-weight: 700; }
+        .gemini-chat-body { flex-grow: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+        .gemini-msg { padding: 10px 14px; border-radius: 12px; max-width: 85%; }
+        .gemini-msg.bot { background: var(--bg-body); color: var(--text-dark); align-self: flex-start; border: 1px solid var(--border-color); }
+        .gemini-msg.user { background: #6366f1; color: white; align-self: flex-end; }
+        .gemini-chat-footer { padding: 10px; border-top: 1px solid var(--border-color); display: flex; gap: 8px; background: var(--bg-card); }
+        .gemini-chat-footer input { flex-grow: 1; padding: 10px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-body); color: var(--text-dark); outline: none; }
+        .gemini-chat-footer button { background: #6366f1; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
 
-        .gemini-chat-header {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .gemini-chat-body {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .gemini-msg {
-            padding: 10px 14px;
-            border-radius: 12px;
-            max-width: 85%;
-            line-height: 1.5;
-        }
-
-        .gemini-msg.bot {
-            background: var(--bg-body);
-            color: var(--text-dark);
-            align-self: flex-start;
-            border: 1px solid var(--border-color);
-        }
-
-        .gemini-msg.user {
-            background: #6366f1;
-            color: white;
-            align-self: flex-end;
-        }
-
-        .gemini-chat-footer {
-            padding: 10px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            gap: 8px;
-            background: var(--bg-card);
-        }
-
-        .gemini-chat-footer input {
-            flex-grow: 1;
-            padding: 10px 14px;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-body);
-            color: var(--text-dark);
-            outline: none;
-        }
-
-        .gemini-chat-footer button {
-            background: #6366f1;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 30px 0;
-            text-align: center;
-            font-size: 14px;
-            border-top: 1px solid #1e293b;
-            margin-top: 60px;
-        }
+        footer { background: #0f172a; color: #94a3b8; padding: 30px 0; text-align: center; font-size: 14px; border-top: 1px solid #1e293b; margin-top: 60px; }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================================================
-         [SECTION 1]: হেডার (Top Bar: Logo, Theme, Dev PIN, & 3-Line Menu)
-         ========================================================================== -->
     <header>
         <div class="container nav-container">
             <a onclick="showTab('home')" class="logo-brand">
@@ -887,17 +358,16 @@
                 <button class="btn-icon" onclick="toggleTheme()" title="কালার থিম পরিবর্তন করুন">
                     <i class="fa-solid fa-palette"></i>
                 </button>
-               <button class="btn-icon" id="btnDevToggle" onclick="promptDevMode()" title="Devloper Mood">
+                <button class="btn-icon" id="btnDevToggle" onclick="promptDevMode()" title="Developer Mode">
                     <i class="fa-solid fa-code"></i>
                 </button>
-                <button class="btn-icon" onclick="toggleDrawer()" title="মেনু খুলুন (৩-লাইন)">
+                <button class="btn-icon" onclick="toggleDrawer()" title="মেনু খুলুন">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- 3-Line Drawer Navigation -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
     <div class="drawer" id="mobileDrawer">
         <div class="drawer-header">
@@ -919,15 +389,12 @@
         </div>
     </div>
 
-    <!-- ==========================================================================
-         [SECTION 2]: হোম পেজ
-         ========================================================================== -->
+    <!-- HOME TAB -->
     <div id="tab-home" class="page-tab active">
         <section class="hero">
             <div class="container">
                 <h1 class="animated-3d-title" id="wave-text">Welcome to GKD Khude IELTS</h1>
-                <p>ইংরেজি গ্রামার, ফ্লুয়েন্ট স্পোকেন এবং ভোকাবুলারি আয়ত্ত করার এক আধুনিক ও কার্যকর ইন্টারেক্টিভ ডিজিটাল প্ল্যাটফর্ম। খুব সহজেই ফ্লুয়েন্টলি ইংরেজি শেখার অভিজ্ঞতায় প্রবেশ করুন।</p>
-                
+                <p>ইংরেজি গ্রামার, ফ্লুয়েন্ট স্পোকেন এবং ভোকাবুলারি আয়ত্ত করার এক আধুনিক ও কার্যকর ইন্টারেক্টিভ ডিজিটাল প্ল্যাটফর্ম।</p>
                 <button class="btn-live-demo" onclick="openVideoModal()">
                     <i class="fa-solid fa-circle-play"></i> সরাসরি লাইভ ডেমো ভিডিও দেখুন
                 </button>
@@ -936,29 +403,23 @@
 
         <section class="interactive-section">
             <div class="container">
-                <div class="section-header">
-                    <h2>আমাদের প্রধান শিক্ষণ সুবিধা</h2>
-                </div>
-
+                <div class="section-header"><h2>আমাদের প্রধান শিক্ষণ সুবিধা</h2></div>
                 <div class="cards-grid">
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                         <h3>সহজ শিক্ষণ পদ্ধতি</h3>
                         <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন।</p>
                     </div>
-
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
                         <h3>ডিজিটাল লার্নিং টুলস</h3>
                         <p>যেকোনো ডিভাইস থেকে খুব সহজেই অনুশীলনের সুবিধা ও স্মার্ট ট্র্যাকিং ড্যাশবোর্ড।</p>
                     </div>
-
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-award"></i></div>
                         <h3>প্রমাণিত ফলাফল</h3>
                         <p>হাজারো শিক্ষার্থী এই প্ল্যাটফর্ম ব্যবহার করে তাদের ইংরেজি দক্ষতার দ্রুত উন্নতি ঘটিয়েছে।</p>
                     </div>
-
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
                         <h3>স্মার্ট এআই গাইড</h3>
@@ -969,183 +430,124 @@
         </section>
     </div>
 
-    <!-- ==========================================================================
-         [SECTION 3]: সফটওয়্যার ফিচারসমূহ
-         ========================================================================== -->
+    <!-- FEATURES TAB -->
     <div id="tab-features" class="page-tab">
         <section class="interactive-section">
             <div class="container">
-                <div class="section-header">
-                    <h2>GKD English Mastery এর মূল ফিচারসমূহ</h2>
-                </div>
-
+                <div class="section-header"><h2>GKD English Mastery এর মূল ফিচারসমূহ</h2></div>
                 <div class="cards-grid">
-                    <div class="touch-card">
-                        <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
-                        <h3>১. স্টেপ-বাই-স্টেপ লেসন গাইড</h3>
-                        <p>বিগিনার থেকে এডভান্সড লেভেল পর্যন্ত সুন্দরভাবে চ্যাপ্টার অনুযায়ী ধাপে ধাপে সাজানো লার্নিং মডিউল।</p>
-                    </div>
-                    <div class="touch-card">
-                        <div class="icon-box"><i class="fa-solid fa-microphone-lines"></i></div>
-                        <h3>২. স্পোকেন অনুশীলনের বিশেষ সুবিধা</h3>
-                        <p>দৈনন্দিন জীবনের প্রয়োজনীয় বাক্য ও কথোপকথন অডিও শুনে এবং উচ্চারণ অনুশীলনের সহজ ব্যবস্থা।</p>
-                    </div>
-                    <div class="touch-card">
-                        <div class="icon-box"><i class="fa-solid fa-spell-check"></i></div>
-                        <h3>৩. স্মার্ট ভোকাবুলারি বিল্ডার</h3>
-                        <p>স্মার্ট কার্ড ও কুইজের মাধ্যমে গুরুত্বপূর্ণ শব্দের অর্থ, বাক্য ব্যবহার ও সঠিক উচ্চারণ শেখার টুল।</p>
-                    </div>
-                    <div class="touch-card">
-                        <div class="icon-box"><i class="fa-solid fa-pen-ruler"></i></div>
-                        <h3>৪. প্র্যাকটিক্যাল গ্রামার ল্যাব</h3>
-                        <p>কঠিন নিয়মের বদলে সহজ টেকনিক ও উদাহরণের মাধ্যমে গ্রামার আত্মস্থ করার সুবিধা।</p>
-                    </div>
-                    <div class="touch-card">
-                        <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
-                        <h3>৫. সেলফ-অ্যাসেসমেন্ট কুইজ</h3>
-                        <p>প্রতিটি অধ্যায় শেষে নিজের অগ্রগতির লেভেল যাচাই করতে অটোমেটিক কুইজ ও ফলাফল পাওয়ার সুযোগ।</p>
-                    </div>
-                    <div class="touch-card">
-                        <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                        <h3>৬. মোবাইল ও পিসি ফ্রেন্ডলি</h3>
-                        <p>যেকোনো সাইজের স্মার্টফোন, ট্যাবলেট কিংবা কম্পিউটারে মসৃণভাবে সফটওয়্যারটি ব্যবহারের সুযোগ।</p>
-                    </div>
+                    <div class="touch-card"><div class="icon-box"><i class="fa-solid fa-book-open"></i></div><h3>১. স্টেপ-বাই-স্টেপ লেসন গাইড</h3><p>বিগিনার থেকে এডভান্সড লেভেল পর্যন্ত সাজানো লার্নিং মডিউল।</p></div>
+                    <div class="touch-card"><div class="icon-box"><i class="fa-solid fa-microphone-lines"></i></div><h3>২. স্পোকেন অনুশীলনের সুবিধা</h3><p>অডিও শুনে এবং উচ্চারণ অনুশীলনের সহজ ব্যবস্থা।</p></div>
+                    <div class="touch-card"><div class="icon-box"><i class="fa-solid fa-spell-check"></i></div><h3>৩. স্মার্ট ভোকাবুলারি বিল্ডার</h3><p>গুরুত্বপূর্ণ শব্দের অর্থ ও বাক্য ব্যবহারের টুল।</p></div>
+                    <div class="touch-card"><div class="icon-box"><i class="fa-solid fa-pen-ruler"></i></div><h3>৪. প্র্যাকটিক্যাল গ্রামার ল্যাব</h3><p>সহজ টেকনিকের মাধ্যমে গ্রামার আত্মস্থ করার সুবিধা।</p></div>
+                    <div class="touch-card"><div class="icon-box"><i class="fa-solid fa-chart-line"></i></div><h3>৫. সেলফ-অ্যাসেসমেন্ট কুইজ</h3><p>অগ্রগতির লেভেল যাচাই করতে অটোমেটিক কুইজ।</p></div>
+                    <div class="touch-card"><div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div><h3>৬. মোবাইল ও পিসি ফ্রেন্ডলি</h3><p>যেকোনো ডিভাইসে মসৃণভাবে ব্যবহারের সুযোগ।</p></div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ==========================================================================
-         [SECTION 4]: রিয়েল-টাইম এনালিটিক্স ড্যাশবোর্ড
-         ========================================================================== -->
+    <!-- DASHBOARD TAB -->
     <div id="tab-dashboard" class="page-tab">
         <section class="interactive-section">
             <div class="container">
-                <div class="section-header">
-                    <h2>সিস্টেম ও স্টুডেন্ট এনালিটিক্স ড্যাশবোর্ড (রিয়েল-টাইম ডেটা)</h2>
-                </div>
+                <div class="section-header"><h2>সিস্টেম ও স্টুডেন্ট এনালিটিক্স ড্যাশবোর্ড</h2></div>
 
                 <div class="dashboard-row-3">
                     <div class="chart-card">
                         <h4><i class="fa-solid fa-chart-line"></i> লাইভ ট্রাফিক ও হিট কাউন্ট</h4>
-                        <div class="chart-wrapper-box">
-                            <canvas id="chartVisitors"></canvas>
-                        </div>
+                        <div class="chart-wrapper-box"><canvas id="chartVisitors"></canvas></div>
                     </div>
-
                     <div class="chart-card">
                         <h4><i class="fa-solid fa-pie-chart"></i> কোর্স এনরোলমেন্ট অনুপাত</h4>
-                        <div class="chart-wrapper-box">
-                            <canvas id="chartCourses"></canvas>
-                        </div>
+                        <div class="chart-wrapper-box"><canvas id="chartCourses"></canvas></div>
                     </div>
-
                     <div class="chart-card">
                         <h4><i class="fa-solid fa-mobile-screen"></i> ডিভাইস ব্যবহারের অনুপাত</h4>
-                        <div class="chart-wrapper-box">
-                            <canvas id="chartDevices"></canvas>
-                        </div>
+                        <div class="chart-wrapper-box"><canvas id="chartDevices"></canvas></div>
                     </div>
                 </div>
 
-                <!-- Editable Metric Cards Row -->
                 <div class="summary-metrics-grid">
                     <div class="metric-box">
-                        <button class="btn-edit-metric" onclick="editMetric('totalUsers')" title="সম্পাদনা করুন"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn-edit-metric" onclick="editMetric('totalUsers')"><i class="fa-solid fa-pen"></i></button>
                         <div class="metric-icon"><i class="fa-solid fa-users"></i></div>
                         <div class="metric-number" id="liveTotalUsers">1,450</div>
                         <div class="metric-label" id="labelTotalUsers">মোট নিবন্ধিত শিক্ষার্থী</div>
                     </div>
-
                     <div class="metric-box">
                         <div class="metric-icon"><i class="fa-solid fa-user-check"></i></div>
                         <div class="metric-number" id="liveActiveVisitors">১</div>
-                        <div class="metric-label">বর্তমান লাইভ ভিজিটর (রিয়েল-টাইম)</div>
+                        <div class="metric-label">বর্তমান লাইভ ভিজিটর</div>
                     </div>
-
                     <div class="metric-box">
-                        <button class="btn-edit-metric" onclick="editMetric('spokenBatch')" title="সম্পাদনা করুন"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn-edit-metric" onclick="editMetric('spokenBatch')"><i class="fa-solid fa-pen"></i></button>
                         <div class="metric-icon"><i class="fa-solid fa-comments"></i></div>
                         <div class="metric-number" id="liveSpokenBatch">580</div>
                         <div class="metric-label" id="labelSpokenBatch">স্পোকেন ইংলিশ ব্যাচ</div>
                     </div>
-
                     <div class="metric-box">
-                        <button class="btn-edit-metric" onclick="editMetric('ieltsPrep')" title="সম্পাদনা করুন"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn-edit-metric" onclick="editMetric('ieltsPrep')"><i class="fa-solid fa-pen"></i></button>
                         <div class="metric-icon"><i class="fa-solid fa-globe"></i></div>
                         <div class="metric-number" id="liveIeltsPrep">261</div>
                         <div class="metric-label" id="labelIeltsPrep">আইইএলটিএস প্রিপারেশন</div>
                     </div>
                 </div>
 
-                <!-- Compact Map Box & Add Student Feature -->
                 <div class="section-header" style="margin-top: 30px; margin-bottom: 15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                     <h3 style="font-size:20px;"><i class="fa-solid fa-map-location-dot"></i> লাইভ ভিজিটর ও স্টুডেন্ট ম্যাপ</h3>
                     <button class="btn-class-chip dev-only-btn" id="btnAddStudentMap" onclick="promptAddStudent()"><i class="fa-solid fa-user-plus"></i> নতুন স্টুডেন্ট যুক্ত করুন</button>
                 </div>
                 <div id="mapContainer"></div>
 
-                <!-- Live Directory & Contact Table -->
                 <div class="table-responsive">
                     <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-users"></i> রিয়েল-টাইম ভিজিটর ও রেজিস্টার্ড স্টুডেন্ট ডিরেক্টরি</h4>
                     <table>
                         <thead>
                             <tr>
-                                <th>নাম / সেশন আইডি</th>
+                                <th>নাম / সেশন</th>
                                 <th>ঠিকানা / লোকেশন</th>
                                 <th>মোবাইল নম্বর</th>
                                 <th>ডিভাইস ও আইপি</th>
                                 <th>স্ট্যাটাস</th>
-                                <th>সরাসরি যোগাযোগ</th>
+                                <th>সরাসরি যোগাযোগ / এডিট</th>
                             </tr>
                         </thead>
-                        <tbody id="studentTableBody">
-                            <!-- JS Dynamic Entry -->
-                        </tbody>
+                        <tbody id="studentTableBody"></tbody>
                     </table>
                 </div>
 
-                <!-- Editable & Dynamic Social Post Generator -->
                 <div class="chart-card" style="margin-top: 30px;">
                     <h4><i class="fa-solid fa-share-nodes"></i> অটোমেটেড সোশ্যাল মিডিয়া পোস্ট জেনারেটর</h4>
-                    <p style="font-size:14px; color:var(--text-light); margin-bottom:10px;">ওয়েবসাইটের প্রমোশন টেক্সট এখানে এডিট করে সেভ করুন ও শেয়ার করুন:</p>
+                    <p style="font-size:14px; color:var(--text-light); margin-bottom:10px;">ওয়েবসাইটের প্রমোশন টেক্সট এডিট করে সেভ করুন:</p>
                     <textarea id="socialText" rows="3" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-body); color:var(--text-dark); font-size:15px; outline:none;" readonly></textarea>
-                    
                     <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
                         <button class="btn-class-chip dev-only-btn" id="btnSaveSocialText" onclick="saveSocialText()"><i class="fa-solid fa-floppy-disk"></i> টেক্সট সেভ করুন</button>
                         <button class="btn-class-chip" onclick="copySocialText()"><i class="fa-solid fa-copy"></i> কপি টেক্সট</button>
                         <button class="btn-class-chip" onclick="shareSocial('fb')"><i class="fa-brands fa-facebook"></i> ফেবু শেয়ার</button>
                         <button class="btn-class-chip" onclick="shareSocial('wa')"><i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপ</button>
-                        <button class="btn-class-chip" onclick="shareSocial('tw')"><i class="fa-brands fa-x-twitter"></i> টুইটার</button>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ==========================================================================
-         [SECTION 5]: অর্ডার ও পেমেন্ট
-         ========================================================================== -->
+    <!-- ORDER TAB -->
     <div id="tab-order" class="page-tab">
         <section class="interactive-section">
             <div class="container">
                 <div class="payment-card">
                     <h2 style="text-align: center; margin-bottom: 25px; color: var(--text-dark); font-weight: 800;">অর্ডার ও পেমেন্ট তথ্য জমা দিন</h2>
-
                     <div class="payment-instructions">
-                        <h3 style="color:#6366f1; margin-bottom:12px;"><i class="fa-solid fa-wallet"></i> পেমেন্ট করার সহজ পদ্ধতি:</h3>
-                        <div style="margin-bottom: 15px;">
-                            <span class="badge-bkash"><i class="fa-solid fa-mobile-screen"></i> বিকাশ পার্সোনাল: 01751905439</span>
-                        </div>
+                        <h3 style="color:#6366f1; margin-bottom:12px;"><i class="fa-solid fa-wallet"></i> পেমেন্ট করার পদ্ধতি:</h3>
+                        <div style="margin-bottom: 15px;"><span class="badge-bkash"><i class="fa-solid fa-mobile-screen"></i> বিকাশ পার্সোনাল: 01751905439</span></div>
                         <ol style="padding-left: 20px; color: var(--text-dark);">
-                            <li>উপরে দেওয়া বিকাশ নম্বরে নির্ধারিত ফি <strong>Send Money</strong> করুন।</li>
-                            <li>পেমেন্ট সম্পন্ন হওয়ার পর ট্রানজেকশন আইডি (TrxID) বা <strong>স্ক্রিনশট</strong> সংরক্ষণ করুন।</li>
-                            <li>নিচের বাটনে ক্লিক করে ফর্মের মাধ্যমে তথ্য ও স্ক্রিনশট জমা দিন।</li>
+                            <li>বিকাশ নম্বরে নির্ধারিত ফি Send Money করুন।</li>
+                            <li>লেনদেন শেষে TrxID বা স্ক্রিনশট সংরক্ষণ করুন।</li>
+                            <li>নিচের বাটনে ক্লিক করে ফর্ম পূরণ করুন।</li>
                         </ol>
                     </div>
-
                     <div style="text-align: center; padding: 30px; background: var(--bg-body); border-radius: 16px; border: 2px dashed #6366f1;">
-                        <h4 style="margin-bottom: 15px;">অর্ডার ফর্মে তথ্য পূরণ করতে সরাসরি ক্লিক করুন</h4>
                         <a href="https://forms.gle/cH34ie7pemTzeSNw5" target="_blank" class="btn-live-demo" style="background: var(--button-gradient-2); color: #0f172a;">
                             <i class="fa-solid fa-file-lines"></i> পেমেন্ট ও অর্ডার ফর্ম খুলুন
                         </a>
@@ -1155,51 +557,38 @@
         </section>
     </div>
 
-    <!-- Modals & AI Chat Widget -->
     <div class="modal" id="videoModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeVideoModal()">&times;</span>
             <h3 style="margin-bottom: 15px;"><i class="fa-brands fa-youtube" style="color:red;"></i> GKD Live Demo Video</h3>
-            <div class="video-container">
-                <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+            <div class="video-container"><iframe id="videoIframe" src="" allowfullscreen></iframe></div>
         </div>
     </div>
 
     <div class="ai-bot-widget">
-        <div class="ai-speech-bubble" id="aiSpeechBubble" onclick="toggleGeminiChat()">গুগল জেমিনি এআই সহকারীর সাথে চ্যাট করুন!</div>
-        <button class="btn-ai-voice" onclick="toggleGeminiChat()" title="Google Gemini AI ওপেন করুন">
-            <i class="fa-solid fa-robot"></i>
-        </button>
+        <div class="ai-speech-bubble" onclick="toggleGeminiChat()">গুগল জেমিনি এআই সহকারীর সাথে চ্যাট করুন!</div>
+        <button class="btn-ai-voice" onclick="toggleGeminiChat()"><i class="fa-solid fa-robot"></i></button>
     </div>
 
     <div class="gemini-chat-modal" id="geminiChatModal">
         <div class="gemini-chat-header">
-            <span><i class="fa-solid fa-brain"></i> Google Gemini AI Live Assistant</span>
+            <span><i class="fa-solid fa-brain"></i> Google Gemini AI</span>
             <span style="cursor:pointer;" onclick="toggleGeminiChat()"><i class="fa-solid fa-xmark"></i></span>
         </div>
         <div class="gemini-chat-body" id="geminiChatBody">
-            <div class="gemini-msg bot">নমস্কার! আমি Google Gemini AI। এই সফটওয়্যার এবং ইংরেজি শিক্ষা সংক্রান্ত যেকোনো প্রশ্ন আমাকে করুন।</div>
+            <div class="gemini-msg bot">নমস্কার! আমি Google Gemini AI। যেকোনো প্রশ্ন করতে পারেন।</div>
         </div>
         <div class="gemini-chat-footer">
-            <input type="text" id="geminiInput" placeholder="আপনার প্রশ্ন এখানে লিখুন..." onkeypress="handleGeminiKey(event)">
+            <input type="text" id="geminiInput" placeholder="এখানে লিখুন..." onkeypress="handleGeminiKey(event)">
             <button onclick="sendGeminiMessage()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 GKD Complete English Mastery। সর্বস্বত্ব সংরক্ষিত।</p>
-        </div>
+        <div class="container"><p>&copy; 2026 GKD Complete English Mastery। সর্বস্বত্ব সংরক্ষিত।</p></div>
     </footer>
 
-    <!-- ==========================================================================
-         [SECTION 6]: জাভাস্ক্রিপ্ট আর্কিটেকচার
-         ========================================================================== -->
     <script>
-        /* --------------------------------------------------------------------------
-           ১. ফায়ারবেস রিয়েল-টাইম ডাটাবেজ
-           -------------------------------------------------------------------------- */
         const firebaseConfig = {
             apiKey: "AIzaSyDummyKeyForGKDApp",
             authDomain: "gkdenglish.firebaseapp.com",
@@ -1209,15 +598,11 @@
             messagingSenderId: "1234567890",
             appId: "1:1234567890:web:abcdef"
         };
-
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const db = firebase.database();
         const activeVisitorsRef = db.ref('stats/activeVisitors');
 
-        const connectionRef = db.ref('.info/connected');
-        connectionRef.on('value', (snap) => {
+        db.ref('.info/connected').on('value', (snap) => {
             if (snap.val() === true) {
                 const userRef = activeVisitorsRef.push();
                 userRef.onDisconnect().remove();
@@ -1228,27 +613,22 @@
         activeVisitorsRef.on('value', (snapshot) => {
             const activeCount = snapshot.numChildren();
             const counterEl = document.getElementById('liveActiveVisitors');
-            if (counterEl) {
-                counterEl.innerText = activeCount > 0 ? activeCount : 1;
-            }
+            if (counterEl) { counterEl.innerText = activeCount > 0 ? activeCount : 1; }
         });
 
-        /* --------------------------------------------------------------------------
-           ২. অ্যাপ স্টেট ও এডুকেশনাল কাস্টমাইজেশন (Card & Post Editing)
-           -------------------------------------------------------------------------- */
         const state = {
             currentTheme: 'light',
             isDevMode: false,
             drawerButtons: JSON.parse(localStorage.getItem('gkd_drawer_buttons')) || [],
             students: JSON.parse(localStorage.getItem('gkd_student_list')) || [
-                { name: "গোপাল কৃষ্ণ দাস (Admin)", area: "রাজারহাট, কুড়িগ্রাম", lat: 25.8072, lng: 89.5441, phone: "01751905439", device: navigator.platform, ip: "103.145.xx.1" }
+                { id: 1, name: "গোপাল কৃষ্ণ দাস (Admin)", area: "রাজারহাট, কুড়িগ্রাম", lat: 25.8072, lng: 89.5441, phone: "01751905439", device: navigator.platform, ip: "自动 (Auto)" }
             ],
             metrics: JSON.parse(localStorage.getItem('gkd_metrics')) || {
                 totalUsers: { num: "1,450", label: "মোট নিবন্ধিত শিক্ষার্থী" },
                 spokenBatch: { num: "580", label: "স্পোকেন ইংলিশ ব্যাচ" },
                 ieltsPrep: { num: "261", label: "আইইএলটিএস প্রিপারেশন" }
             },
-            socialPostText: localStorage.getItem('gkd_social_text') || "GKD Complete English Mastery সফটওয়্যারের মাধ্যমে খুব সহজেই ইংরেজি গ্রামার ও স্পোকেন শিখুন! বিস্তারিত দেখুন: https://forms.gle/cH34ie7pemTzeSNw5"
+            socialPostText: localStorage.getItem('gkd_social_text') || "GKD Complete English Mastery সফটওয়্যারের মাধ্যমে খুব সহজেই ইংরেজি গ্রামার ও স্পোকেন শিখুন! বিস্তারিত: https://forms.gle/cH34ie7pemTzeSNw5"
         };
 
         function initMetrics() {
@@ -1262,68 +642,47 @@
 
         function editMetric(key) {
             if (!state.isDevMode) return;
-            const currentNum = state.metrics[key].num;
-            const currentLabel = state.metrics[key].label;
-
-            const newNum = prompt("নতুন সংখ্যা লিখুন:", currentNum);
+            const newNum = prompt("নতুন সংখ্যা লিখুন:", state.metrics[key].num);
             if (newNum === null) return;
-            const newLabel = prompt("লেবেল / শিরোনাম লিখুন:", currentLabel);
+            const newLabel = prompt("লেবেল লিখুন:", state.metrics[key].label);
             if (newLabel === null) return;
-
             state.metrics[key] = { num: newNum, label: newLabel };
             localStorage.setItem('gkd_metrics', JSON.stringify(state.metrics));
             initMetrics();
         }
 
-        function initSocialText() {
-            document.getElementById('socialText').value = state.socialPostText;
-        }
-
+        function initSocialText() { document.getElementById('socialText').value = state.socialPostText; }
         function saveSocialText() {
             if (!state.isDevMode) return;
-            const text = document.getElementById('socialText').value;
-            state.socialPostText = text;
-            localStorage.setItem('gkd_social_text', text);
+            state.socialPostText = document.getElementById('socialText').value;
+            localStorage.setItem('gkd_social_text', state.socialPostText);
             alert('পোস্ট টেক্সট সফলভাবে সেভ করা হয়েছে!');
         }
-
         function copySocialText() {
             const textarea = document.getElementById('socialText');
             textarea.select();
             document.execCommand('copy');
-            alert('সোশ্যাল মিডিয়া টেক্সট কপি করা হয়েছে!');
+            alert('টেক্সট কপি করা হয়েছে!');
         }
-
         function shareSocial(platform) {
             const text = encodeURIComponent(document.getElementById('socialText').value);
-            let url = '';
-            if(platform === 'fb') url = `https://www.facebook.com/sharer/sharer.php?quote=${text}&u=${encodeURIComponent(window.location.href)}`;
-            else if(platform === 'wa') url = `https://api.whatsapp.com/send?text=${text}`;
-            else if(platform === 'tw') url = `https://twitter.com/intent/tweet?text=${text}`;
+            let url = platform === 'fb' ? `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}` : `https://api.whatsapp.com/send?text=${text}`;
             window.open(url, '_blank');
         }
 
-        /* --------------------------------------------------------------------------
-           ৩. পাসওয়ার্ড সুরক্ষিত ডেভেলপার মোড (Toggle On / Off)
-           -------------------------------------------------------------------------- */
         function promptDevMode() {
-            // যদি ইতিমধ্যে ডেভেলপার মোড চালু থাকে তবে বন্ধ করা হবে
             if (state.isDevMode) {
                 state.isDevMode = false;
                 applyDevModeUI();
-                alert("ভিউ মোড চালু হয়েছে (ডেভেলপার মোড বন্ধ)!");
+                alert("ভিউ মোড চালু হয়েছে!");
                 return;
             }
-
-            // বন্ধ থাকলে পাসওয়ার্ড চাওয়া হবে
-            const pin = prompt("ডেভেলপার মোড চালু করতে PIN টাইপ করুন");
-            if (pin === "admin1234") {
+            const pin = prompt("ডেভেলপার মোড চালু করতে PIN টাইপ করুন (Default: 1234):");
+            if (pin === "1234") {
                 state.isDevMode = true;
                 applyDevModeUI();
-                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে! এখন আপনি তথ্য সম্পাদনা করতে পারবেন।");
-            } else if(pin !== null) {
-                alert("ভুল PIN code!");
-            }
+                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে!");
+            } else if(pin !== null) { alert("ভুল PIN code!"); }
         }
 
         function applyDevModeUI() {
@@ -1346,12 +705,10 @@
                 if (addDrawerBtn) addDrawerBtn.style.display = 'none';
                 if (socialText) socialText.setAttribute('readonly', 'true');
             }
+            renderMapAndDirectory();
             renderDrawerCustomButtons();
         }
 
-        /* --------------------------------------------------------------------------
-           ৪. ম্যাপ ও লাইভ রিয়েল-টাইম আইপি/লোকেশন ট্র্যাকিং
-           -------------------------------------------------------------------------- */
         let leafletMap = null;
         let markersGroup = null;
 
@@ -1368,48 +725,45 @@
             fetch('https://ipapi.co/json/')
                 .then(res => res.json())
                 .then(data => {
-                    if (data && data.latitude && data.longitude) {
-                        const currentVisitor = {
-                            name: "বর্তমান ভিজিটর (আপনি)",
-                            area: `${data.city || 'রংপুর/কুড়িগ্রাম'}, ${data.country_name}`,
-                            lat: data.latitude,
-                            lng: data.longitude,
-                            phone: "N/A",
-                            device: navigator.platform,
-                            ip: data.ip || "103.xx.xx.xx"
-                        };
-                        renderMapAndTable([currentVisitor, ...state.students]);
-                    } else {
-                        renderMapAndTable(state.students);
-                    }
+                    const clientIp = (data && data.ip) ? data.ip : "103.145.xx.x";
+                    const clientDevice = navigator.platform || "Browser";
+                    renderMapAndTable(clientIp, clientDevice);
                 })
-                .catch(() => renderMapAndTable(state.students));
+                .catch(() => renderMapAndTable("103.145.xx.x", navigator.platform || "Browser"));
         }
 
-        function renderMapAndTable(list) {
+        function renderMapAndTable(detectedIp, detectedDevice) {
             markersGroup.clearLayers();
             const tbody = document.getElementById('studentTableBody');
             tbody.innerHTML = '';
 
-            list.forEach(st => {
-                L.marker([st.lat, st.lng]).addTo(markersGroup)
-                    .bindPopup(`<b>${st.name}</b><br>${st.area}<br>IP: ${st.ip}`);
+            state.students.forEach((st, index) => {
+                L.marker([st.lat || 25.8072, st.lng || 89.5441]).addTo(markersGroup)
+                    .bindPopup(`<b>${st.name}</b><br>${st.area}`);
 
                 const tr = document.createElement('tr');
+                let actionButtonsHTML = `
+                    <div class="action-btns">
+                        <a href="tel:${st.phone}" class="btn-action btn-call" title="কল করুন"><i class="fa-solid fa-phone"></i></a>
+                        <a href="sms:${st.phone}" class="btn-action btn-sms" title="এসএমএস"><i class="fa-solid fa-comment-sms"></i></a>
+                        <a href="https://wa.me/88${st.phone}" target="_blank" class="btn-action btn-wa" title="হোয়াটসঅ্যাপ"><i class="fa-brands fa-whatsapp"></i></a>
+                `;
+
+                if (state.isDevMode) {
+                    actionButtonsHTML += `
+                        <button class="btn-action btn-edit-row" onclick="editStudent(${index})" title="এডিট করুন"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn-action btn-del-row" onclick="deleteStudent(${index})" title="ডিলিট করুন"><i class="fa-solid fa-trash"></i></button>
+                    `;
+                }
+                actionButtonsHTML += `</div>`;
+
                 tr.innerHTML = `
                     <td><strong>${st.name}</strong></td>
                     <td>${st.area}</td>
                     <td><strong style="color:var(--text-dark);">${st.phone}</strong></td>
-                    <td>${st.device} <br><small style="color:var(--text-light);">${st.ip}</small></td>
-                    <td><span style="color:#10b981; font-weight:700;">● Active Location</span></td>
-                    <td>
-                        <div class="action-btns">
-                            <a href="tel:${st.phone}" class="btn-action btn-call" title="কল করুন"><i class="fa-solid fa-phone"></i></a>
-                            <a href="sms:${st.phone}" class="btn-action btn-sms" title="এসএমএস পাঠান"><i class="fa-solid fa-comment-sms"></i></a>
-                            <a href="https://wa.me/88${st.phone}" target="_blank" class="btn-action btn-wa" title="হোয়াটসঅ্যাপ"><i class="fa-brands fa-whatsapp"></i></a>
-                            <a href="https://t.me/gkdenglish" target="_blank" class="btn-action btn-tg" title="টেলিগ্রাম"><i class="fa-brands fa-telegram"></i></a>
-                        </div>
-                    </td>
+                    <td>${detectedDevice} <br><small style="color:var(--text-light);">${detectedIp}</small></td>
+                    <td><span style="color:#10b981; font-weight:700;">● Active</span></td>
+                    <td>${actionButtonsHTML}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -1417,24 +771,44 @@
 
         function promptAddStudent() {
             if (!state.isDevMode) return;
-            const name = prompt("শিক্ষার্থীর নাম টাইপ করুন:");
+            const name = prompt("শিক্ষার্থীর নাম লিখুন:");
             if (!name) return;
-            const phone = prompt("ফোন নম্বর দিন:", "017XXXXXXXX");
-            const area = prompt("ঠিকানা / এলাকা:", "রাজারহাট, কুড়িগ্রাম");
-            const lat = parseFloat(prompt("Latitude (অক্ষাংশ):", "25.8072")) || 25.8072;
-            const lng = parseFloat(prompt("Longitude (দ্রাঘিমাংশ):", "89.5441")) || 89.5441;
-            const ip = prompt("আইপি অ্যাড্রেস:", "103.145.24.12");
+            const phone = prompt("মোবাইল নম্বর দিন:", "017XXXXXXXX");
+            const area = prompt("ঠিকানা / এলাকা লিখুন:", "রাজারহাট, কুড়িগ্রাম");
+            const lat = parseFloat(prompt("Latitude (ঐচ্ছিক, ডিফল্ট 25.8072):", "25.8072")) || 25.8072;
+            const lng = parseFloat(prompt("Longitude (ঐচ্ছিক, ডিফল্ট 89.5441):", "89.5441")) || 89.5441;
 
-            const newStudent = { name, phone, area, lat, lng, device: "Mobile/PC", ip };
+            const newStudent = { name, phone, area, lat, lng };
             state.students.push(newStudent);
             localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
             initMapAndDirectory();
-            alert("নতুন শিক্ষার্থী সফলভাবে ম্যাপে ও টেবিল ডিরেক্টরিতে যুক্ত হয়েছে!");
+            alert("নতুন শিক্ষার্থী সফলভাবে যুক্ত হয়েছে এবং ডিভাইস/আইপি অটোমেটিক ডিটেক্ট করা হয়েছে!");
         }
 
-        /* --------------------------------------------------------------------------
-           ৫. নেভিগেশন, থিম ও ড্যাশবোর্ড লজিক
-           -------------------------------------------------------------------------- */
+        function editStudent(index) {
+            if (!state.isDevMode) return;
+            const st = state.students[index];
+            const name = prompt("নাম পরিবর্তন করুন:", st.name);
+            if (name === null) return;
+            const phone = prompt("মোবাইল নম্বর পরিবর্তন করুন:", st.phone);
+            const area = prompt("ঠিকানা পরিবর্তন করুন:", st.area);
+
+            state.students[index] = { ...st, name, phone, area };
+            localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
+            initMapAndDirectory();
+            alert("শিক্ষার্থীর তথ্য সফলভাবে আপডেট করা হয়েছে!");
+        }
+
+        function deleteStudent(index) {
+            if (!state.isDevMode) return;
+            if (confirm(`আপনি কি "${state.students[index].name}" কে তালিকা থেকে মুছে ফেলতে চান?`)) {
+                state.students.splice(index, 1);
+                localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
+                initMapAndDirectory();
+                alert("শিক্ষার্থী সফলভাবে ডিলিট করা হয়েছে!");
+            }
+        }
+
         function showTab(tabName) {
             document.querySelectorAll('.page-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.drawer-menu a').forEach(link => link.classList.remove('active'));
@@ -1446,7 +820,6 @@
             if (targetNav) targetNav.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
             if (tabName === 'dashboard' && window.leafletMap) {
                 setTimeout(() => window.leafletMap.invalidateSize(), 300);
             }
@@ -1454,16 +827,9 @@
 
         function toggleTheme() {
             const html = document.documentElement;
-            if (html.classList.contains('theme-light')) {
-                html.className = 'theme-dark';
-                state.currentTheme = 'dark';
-            } else if (html.classList.contains('theme-dark')) {
-                html.className = 'theme-cyberpunk';
-                state.currentTheme = 'cyberpunk';
-            } else {
-                html.className = 'theme-light';
-                state.currentTheme = 'light';
-            }
+            if (html.classList.contains('theme-light')) { html.className = 'theme-dark'; }
+            else if (html.classList.contains('theme-dark')) { html.className = 'theme-cyberpunk'; }
+            else { html.className = 'theme-light'; }
         }
 
         function toggleDrawer() {
@@ -1472,15 +838,11 @@
         }
 
         function promptAddNewButton() {
-            if (!state.isDevMode) {
-                alert("দুঃখিত! সাধারণ ব্যবহারকারীদের জন্য অনুমতি নেই। পিন দিয়ে ডেভেলপার মোড চালু করুন।");
-                return;
-            }
-            const name = prompt("নতুন বাটনের নাম টাইপ করুন:");
+            if (!state.isDevMode) return;
+            const name = prompt("নতুন বাটনের নাম:");
             if (!name) return;
-            const url = prompt("বাটনের লিংক (URL বা #tabName) দিন:");
+            const url = prompt("লিংক দিন (URL বা #tabName):");
             if (!url) return;
-
             state.drawerButtons.push({ name, url });
             localStorage.setItem('gkd_drawer_buttons', JSON.stringify(state.drawerButtons));
             renderDrawerCustomButtons();
@@ -1488,7 +850,7 @@
 
         function removeDrawerButton(index) {
             if (!state.isDevMode) return;
-            if (confirm("আপনি কি নিশ্চিত যে এই বাটনটি মুছে ফেলতে চান?")) {
+            if (confirm("বাটনটি মুছে ফেলতে চান?")) {
                 state.drawerButtons.splice(index, 1);
                 localStorage.setItem('gkd_drawer_buttons', JSON.stringify(state.drawerButtons));
                 renderDrawerCustomButtons();
@@ -1502,17 +864,12 @@
             state.drawerButtons.forEach((btn, idx) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'custom-menu-item';
-
-                const linkSpan = document.createElement('div');
-                linkSpan.className = 'menu-link-content';
-                linkSpan.innerHTML = `<i class="fa-solid fa-link"></i> ${btn.name}`;
-                linkSpan.onclick = () => {
+                itemDiv.innerHTML = `<div class="menu-link-content"><i class="fa-solid fa-link"></i> ${btn.name}</div>`;
+                itemDiv.onclick = () => {
                     if(btn.url.startsWith('#')) showTab(btn.url.replace('#',''));
                     else window.open(btn.url, '_blank');
                     toggleDrawer();
                 };
-                itemDiv.appendChild(linkSpan);
-
                 if (state.isDevMode) {
                     const delBtn = document.createElement('i');
                     delBtn.className = 'fa-solid fa-trash-can btn-del-nav';
@@ -1539,48 +896,24 @@
             document.getElementById('videoIframe').src = "https://www.youtube.com/embed/LkKctp9SKx8?autoplay=1";
             document.getElementById('videoModal').classList.add('open');
         }
-
         function closeVideoModal() {
             document.getElementById('videoIframe').src = "";
             document.getElementById('videoModal').classList.remove('open');
         }
 
-        function toggleGeminiChat() {
-            document.getElementById('geminiChatModal').classList.toggle('open');
-        }
-
-        function handleGeminiKey(event) {
-            if (event.key === 'Enter') sendGeminiMessage();
-        }
-
+        function toggleGeminiChat() { document.getElementById('geminiChatModal').classList.toggle('open'); }
+        function handleGeminiKey(event) { if (event.key === 'Enter') sendGeminiMessage(); }
         function sendGeminiMessage() {
             const input = document.getElementById('geminiInput');
             const text = input.value.trim();
             if (!text) return;
-
             const chatBody = document.getElementById('geminiChatBody');
-            const userMsg = document.createElement('div');
-            userMsg.className = 'gemini-msg user';
-            userMsg.innerText = text;
-            chatBody.appendChild(userMsg);
-
+            chatBody.innerHTML += `<div class="gemini-msg user">${text}</div>`;
             input.value = '';
-            chatBody.scrollTop = chatBody.scrollHeight;
-
             setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'gemini-msg bot';
-                botMsg.innerText = getGeminiSmartResponse(text);
-                chatBody.appendChild(botMsg);
+                chatBody.innerHTML += `<div class="gemini-msg bot">আপনার প্রশ্নটি গ্রহণ করা হয়েছে।</div>`;
                 chatBody.scrollTop = chatBody.scrollHeight;
             }, 600);
-        }
-
-        function getGeminiSmartResponse(query) {
-            const q = query.toLowerCase();
-            if (q.includes('hello') || q.includes('হাই')) return "হ্যালো! আমি গুগল জেমিনি এআই। বলুন আপনাকে কীভাবে সাহায্য করতে পারি?";
-            if (q.includes('english') || q.includes('ইংরেজি')) return "ইংরেজি ভাষা শিখতে নিয়মিত অনুশীলন করুন। আমাদের প্ল্যাটফর্মে বিভিন্ন লেসন সাজানো রয়েছে।";
-            return `আপনার প্রশ্নটি আমি বুঝতে পেরেছি ("${query}")। এটি প্রক্রিয়াকরণ করা হচ্ছে।`;
         }
 
         function initCharts() {
@@ -1595,29 +928,20 @@
 
             new Chart(document.getElementById('chartVisitors'), {
                 type: 'line',
-                data: {
-                    labels: timeLabels,
-                    datasets: [{ label: 'লাইভ হিটস', data: trafficData, borderColor: '#6366f1', fill: true }]
-                },
+                data: { labels: timeLabels, datasets: [{ label: 'লাইভ হিটস', data: trafficData, borderColor: '#6366f1', fill: true }] },
                 options: { responsive: true, maintainAspectRatio: false }
             });
 
             new Chart(document.getElementById('chartCourses'), {
                 type: 'doughnut',
-                data: {
-                    labels: ['স্পোকেন', 'গ্রামার', 'IELTS', 'ভোকাবুলারি'],
-                    datasets: [{ data: [40, 30, 18, 12], backgroundColor: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981'] }]
-                },
+                data: { labels: ['স্পোকেন', 'গ্রামার', 'IELTS', 'ভোকাবুলারি'], datasets: [{ data: [40, 30, 18, 12], backgroundColor: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981'] }] },
                 options: { responsive: true, maintainAspectRatio: false }
             });
 
             const isMobileUA = /Mobi|Android/i.test(navigator.userAgent);
             new Chart(document.getElementById('chartDevices'), {
                 type: 'bar',
-                data: {
-                    labels: ['মোবাইল', 'পিসি', 'ট্যাব'],
-                    datasets: [{ label: '%', data: [isMobileUA ? 85 : 45, isMobileUA ? 12 : 50, 5], backgroundColor: ['#06b6d4', '#6366f1', '#f59e0b'] }]
-                },
+                data: { labels: ['মোবাইল', 'পিসি', 'ট্যাব'], datasets: [{ label: '%', data: [isMobileUA ? 85 : 45, isMobileUA ? 12 : 50, 5], backgroundColor: ['#06b6d4', '#6366f1', '#f59e0b'] }] },
                 options: { responsive: true, maintainAspectRatio: false }
             });
         }
