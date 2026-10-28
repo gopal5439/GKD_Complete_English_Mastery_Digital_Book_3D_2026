@@ -210,7 +210,7 @@
         <!-- HEADER TOP BAR -->
         <div class="flex flex-col lg:flex-row items-center justify-between gap-3 bg-slate-900/95 backdrop-blur p-4 rounded-2xl border border-slate-800 shadow-2xl">
             <div class="flex items-center gap-3">
-                <img id="headerLogo" src="https://i.ibb.co/3s2XJ4H/gkdlogo.jpg" onerror="this.src='https://placehold.co/100x100/0f2c59/f8de22?text=GKD'" alt="GKD Logo" class="w-12 h-12 rounded-full border-2 border-amber-400 shadow-lg object-cover">
+                <img id="headerLogo" src="gkdlogo.png" onerror="this.src='https://placehold.co/100x100/0f2c59/f8de22?text=GKD'" alt="GKD Logo" class="w-12 h-12 rounded-full border-2 border-amber-400 shadow-lg object-cover">
                 <div>
                     <h2 class="text-lg md:text-2xl font-extrabold text-white tracking-wide flex items-center gap-2">
                         <span>GKD KHUDE IELTS</span>
@@ -324,38 +324,38 @@
 
                     <div>
                         <label class="block text-[11px] text-slate-300 mb-1">শিক্ষার্থীর পূর্ণ নাম</label>
-                        <input type="text" id="inputName" value="মোঃ রফিকুল ইসলাম" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                        <input type="text" id="inputName" value="গোবিন্দ বল্লভ" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-[11px] text-slate-300 mb-1">রোল / স্টুডেন্ট ID</label>
+                            <label class="block text-[11px] text-slate-300 mb-1">Roll/ Student ID</label>
                             <input type="text" id="inputId" value="GKD-2026-042" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                         </div>
                         <div>
-                            <label class="block text-[11px] text-slate-300 mb-1">ব্যাচ নং</label>
-                            <input type="text" id="inputBatch" value="ব্যাচ - ১২ (Regular)" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                            <label class="block text-[11px] text-slate-300 mb-1">Batch No</label>
+                            <input type="text" id="inputBatch" value="Batch - 001 (Regular)" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-[11px] text-slate-300 mb-1">কোর্স / প্রোগ্রাম</label>
+                        <label class="block text-[11px] text-slate-300 mb-1">Course</label>
                         <input type="text" id="inputCourse" value="IELTS Academic Masterclass" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-[11px] text-slate-300 mb-1">ঠিকানা / শাখা</label>
+                            <label class="block text-[11px] text-slate-300 mb-1">Adress</label>
                             <input type="text" id="inputAddress" value="রাজারহাট, কুড়িগ্রাম" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                         </div>
                         <div>
-                            <label class="block text-[11px] text-slate-300 mb-1">ভর্তির তারিখ</label>
-                            <input type="text" id="inputDate" value="২৮ অক্টোবর, ২০২৬" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                            <label class="block text-[11px] text-slate-300 mb-1">Admission Date</label>
+                            <input type="text" id="inputDate" value="28 July 2026" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-[11px] text-slate-300 mb-1">ওয়েলকাম মেসেজ</label>
+                        <label class="block text-[11px] text-slate-300 mb-1">Welcome Message</label>
                         <textarea id="inputMessage" rows="2" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">GKD KHUDE IELTS পরিবারে আপনাকে স্বাগতম! আপনার আইইএলটিএস জয়ের যাত্রায় আমরা পাশে আছি।</textarea>
                     </div>
                 </div>
@@ -374,7 +374,7 @@
                             <i class="fa-solid fa-copy text-amber-400"></i> ক্যাপশন কপি
                         </button>
                         <button onclick="shareSocial('fb')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs py-2 px-3 rounded-lg font-bold transition flex items-center justify-center gap-1">
-                            <i class="fa-brands fa-facebook"></i> ফেবু
+                            <i class="fa-brands fa-facebook"></i> ফেসবুক
                         </button>
                         <button onclick="shareSocial('wa')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs py-2 px-3 rounded-lg font-bold transition flex items-center justify-center gap-1">
                             <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপ
