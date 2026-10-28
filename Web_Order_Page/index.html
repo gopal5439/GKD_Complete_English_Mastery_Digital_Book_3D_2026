@@ -160,6 +160,12 @@
             border-color: #6366f1;
         }
 
+        .btn-icon.dev-active {
+            background: #6366f1;
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+        }
+
         .drawer {
             position: fixed;
             top: 0;
@@ -573,9 +579,14 @@
             font-size: 14px;
             padding: 4px;
             border-radius: 50%;
+            display: none; /* Only visible in Developer Mode */
         }
 
         .btn-edit-metric:hover { color: #6366f1; }
+
+        .dev-only-btn {
+            display: none; /* Only visible in Developer Mode */
+        }
 
         /* Compact Map Box (Half Screen Display) */
         #mapContainer {
@@ -876,8 +887,8 @@
                 <button class="btn-icon" onclick="toggleTheme()" title="কালার থিম পরিবর্তন করুন">
                     <i class="fa-solid fa-palette"></i>
                 </button>
-               <button class="btn-icon" onclick="promptDevMode()" title="Devloper Mood">
-                <i class="fa-solid fa-code"></i>
+               <button class="btn-icon" id="btnDevToggle" onclick="promptDevMode()" title="Devloper Mood">
+                    <i class="fa-solid fa-code"></i>
                 </button>
                 <button class="btn-icon" onclick="toggleDrawer()" title="মেনু খুলুন (৩-লাইন)">
                     <i class="fa-solid fa-bars"></i>
@@ -1070,7 +1081,7 @@
                 <!-- Compact Map Box & Add Student Feature -->
                 <div class="section-header" style="margin-top: 30px; margin-bottom: 15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                     <h3 style="font-size:20px;"><i class="fa-solid fa-map-location-dot"></i> লাইভ ভিজিটর ও স্টুডেন্ট ম্যাপ</h3>
-                    <button class="btn-class-chip" onclick="promptAddStudent()"><i class="fa-solid fa-user-plus"></i> নতুন স্টুডেন্ট যুক্ত করুন</button>
+                    <button class="btn-class-chip dev-only-btn" id="btnAddStudentMap" onclick="promptAddStudent()"><i class="fa-solid fa-user-plus"></i> নতুন স্টুডেন্ট যুক্ত করুন</button>
                 </div>
                 <div id="mapContainer"></div>
 
@@ -1082,6 +1093,7 @@
                             <tr>
                                 <th>নাম / সেশন আইডি</th>
                                 <th>ঠিকানা / লোকেশন</th>
+                                <th>মোবাইল নম্বর</th>
                                 <th>ডিভাইস ও আইপি</th>
                                 <th>স্ট্যাটাস</th>
                                 <th>সরাসরি যোগাযোগ</th>
@@ -1097,10 +1109,10 @@
                 <div class="chart-card" style="margin-top: 30px;">
                     <h4><i class="fa-solid fa-share-nodes"></i> অটোমেটেড সোশ্যাল মিডিয়া পোস্ট জেনারেটর</h4>
                     <p style="font-size:14px; color:var(--text-light); margin-bottom:10px;">ওয়েবসাইটের প্রমোশন টেক্সট এখানে এডিট করে সেভ করুন ও শেয়ার করুন:</p>
-                    <textarea id="socialText" rows="3" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-body); color:var(--text-dark); font-size:15px; outline:none;"></textarea>
+                    <textarea id="socialText" rows="3" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-body); color:var(--text-dark); font-size:15px; outline:none;" readonly></textarea>
                     
                     <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                        <button class="btn-class-chip" onclick="saveSocialText()"><i class="fa-solid fa-floppy-disk"></i> টেক্সট সেভ করুন</button>
+                        <button class="btn-class-chip dev-only-btn" id="btnSaveSocialText" onclick="saveSocialText()"><i class="fa-solid fa-floppy-disk"></i> টেক্সট সেভ করুন</button>
                         <button class="btn-class-chip" onclick="copySocialText()"><i class="fa-solid fa-copy"></i> কপি টেক্সট</button>
                         <button class="btn-class-chip" onclick="shareSocial('fb')"><i class="fa-brands fa-facebook"></i> ফেবু শেয়ার</button>
                         <button class="btn-class-chip" onclick="shareSocial('wa')"><i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপ</button>
@@ -1249,6 +1261,7 @@
         }
 
         function editMetric(key) {
+            if (!state.isDevMode) return;
             const currentNum = state.metrics[key].num;
             const currentLabel = state.metrics[key].label;
 
@@ -1267,6 +1280,7 @@
         }
 
         function saveSocialText() {
+            if (!state.isDevMode) return;
             const text = document.getElementById('socialText').value;
             state.socialPostText = text;
             localStorage.setItem('gkd_social_text', text);
@@ -1290,19 +1304,49 @@
         }
 
         /* --------------------------------------------------------------------------
-           ৩. পাসওয়ার্ড মাস্কড ডেভেলপার মোড
+           ৩. পাসওয়ার্ড সুরক্ষিত ডেভেলপার মোড (Toggle On / Off)
            -------------------------------------------------------------------------- */
         function promptDevMode() {
-            // Secret Masked Password Prompt
+            // যদি ইতিমধ্যে ডেভেলপার মোড চালু থাকে তবে বন্ধ করা হবে
+            if (state.isDevMode) {
+                state.isDevMode = false;
+                applyDevModeUI();
+                alert("ভিউ মোড চালু হয়েছে (ডেভেলপার মোড বন্ধ)!");
+                return;
+            }
+
+            // বন্ধ থাকলে পাসওয়ার্ড চাওয়া হবে
             const pin = prompt("ডেভেলপার মোড চালু করতে PIN টাইপ করুন (Default: 1234):");
             if (pin === "1234") {
                 state.isDevMode = true;
-                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে!");
-                document.getElementById('btnAddDrawerCustom').style.display = 'flex';
-                renderDrawerCustomButtons();
+                applyDevModeUI();
+                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে! এখন আপনি তথ্য সম্পাদনা করতে পারবেন।");
             } else if(pin !== null) {
                 alert("ভুল PIN code!");
             }
+        }
+
+        function applyDevModeUI() {
+            const devBtn = document.getElementById('btnDevToggle');
+            const editMetrics = document.querySelectorAll('.btn-edit-metric');
+            const devOnlyBtns = document.querySelectorAll('.dev-only-btn');
+            const addDrawerBtn = document.getElementById('btnAddDrawerCustom');
+            const socialText = document.getElementById('socialText');
+
+            if (state.isDevMode) {
+                if (devBtn) devBtn.classList.add('dev-active');
+                editMetrics.forEach(el => el.style.display = 'inline-block');
+                devOnlyBtns.forEach(el => el.style.display = 'inline-flex');
+                if (addDrawerBtn) addDrawerBtn.style.display = 'flex';
+                if (socialText) socialText.removeAttribute('readonly');
+            } else {
+                if (devBtn) devBtn.classList.remove('dev-active');
+                editMetrics.forEach(el => el.style.display = 'none');
+                devOnlyBtns.forEach(el => el.style.display = 'none');
+                if (addDrawerBtn) addDrawerBtn.style.display = 'none';
+                if (socialText) socialText.setAttribute('readonly', 'true');
+            }
+            renderDrawerCustomButtons();
         }
 
         /* --------------------------------------------------------------------------
@@ -1321,7 +1365,6 @@
             }
             window.leafletMap = leafletMap;
 
-            // Fetch visitor's actual IP & location automatically
             fetch('https://ipapi.co/json/')
                 .then(res => res.json())
                 .then(data => {
@@ -1349,15 +1392,14 @@
             tbody.innerHTML = '';
 
             list.forEach(st => {
-                // Add Marker on map
                 L.marker([st.lat, st.lng]).addTo(markersGroup)
                     .bindPopup(`<b>${st.name}</b><br>${st.area}<br>IP: ${st.ip}`);
 
-                // Add Table Row
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td><strong>${st.name}</strong></td>
                     <td>${st.area}</td>
+                    <td><strong style="color:var(--text-dark);">${st.phone}</strong></td>
                     <td>${st.device} <br><small style="color:var(--text-light);">${st.ip}</small></td>
                     <td><span style="color:#10b981; font-weight:700;">● Active Location</span></td>
                     <td>
@@ -1374,6 +1416,7 @@
         }
 
         function promptAddStudent() {
+            if (!state.isDevMode) return;
             const name = prompt("শিক্ষার্থীর নাম টাইপ করুন:");
             if (!name) return;
             const phone = prompt("ফোন নম্বর দিন:", "017XXXXXXXX");
@@ -1581,7 +1624,7 @@
 
         window.onload = function () {
             initWaveText();
-            renderDrawerCustomButtons();
+            applyDevModeUI();
             initMetrics();
             initSocialText();
             initCharts();
