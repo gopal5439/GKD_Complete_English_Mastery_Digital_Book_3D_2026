@@ -493,50 +493,153 @@
     </div>
 
     <!-- ENGLISH LEARNING LAB TAB -->
-    <div id="tab-learning-lab" class="page-tab">
-        <section class="interactive-section">
-            <div class="container">
-                <div class="section-header"><h2>ইন্টারেক্টিভ ইংলিশ লার্নিং ল্যাব</h2></div>
-                <div class="learning-lab-grid">
-                    <!-- Spoken Audio Practice -->
-                    <div class="lab-card">
-                        <h3><i class="fa-solid fa-volume-high" style="color:#6366f1;"></i> স্পোকেন অডিও অনুশীলন</h3>
-                        <p style="font-size:14px; color:var(--text-light); margin-bottom:15px;">যেকোনো ইংরেজি বাক্য লিখে স্পিকার বাটনে চাপ দিয়ে সঠিক উচ্চারণ শুনুন:</p>
-                        <div class="form-group">
-                            <input type="text" id="speechInputText" value="Welcome to GKD Complete English Mastery. Practice speaking every day!">
-                        </div>
-                        <button class="btn-class-chip" onclick="playTextToSpeech()" style="background:var(--primary-gradient); color:white;">
-                            <i class="fa-solid fa-play"></i> উচ্চারণ শুনুন (Listen Audio)
-                        </button>
-                    </div>
-
-                    <!-- Vocabulary Lab -->
-                    <div class="lab-card">
-                        <h3><i class="fa-solid fa-book-bookmark" style="color:#06b6d4;"></i> ভোকাবুলারি সার্চ ল্যাব</h3>
-                        <p style="font-size:14px; color:var(--text-light); margin-bottom:15px;">ইংরেজি শব্দের অর্থ ও উচ্চারণ শিখুন:</p>
-                        <div class="form-group">
-                            <input type="text" id="vocabSearchInput" placeholder="যেমন: Mastery, Fluent, Preparation" onkeyup="filterVocab()">
-                        </div>
-                        <div id="vocabResultBox" style="font-size:14px; font-weight:600; background:var(--bg-body); padding:12px; border-radius:10px; border:1px solid var(--border-color);">
-                            শব্দ খুঁজুন...
-                        </div>
-                    </div>
-
-                    <!-- Grammar Self Quiz -->
-                    <div class="lab-card">
-                        <h3><i class="fa-solid fa-clipboard-question" style="color:#f59e0b;"></i> গ্রামার সেলফ-অ্যাসেসমেন্ট কুইজ</h3>
-                        <p style="font-size:14px; color:var(--text-light); margin-bottom:10px;" id="quizQuestion">১. He ___ to school every day.</p>
-                        <div style="display:flex; flex-direction:column; gap:8px;" id="quizOptions">
-                            <button class="btn-class-chip" onclick="checkQuiz(this, false)">go</button>
-                            <button class="btn-class-chip" onclick="checkQuiz(this, true)">goes</button>
-                            <button class="btn-class-chip" onclick="checkQuiz(this, false)">going</button>
-                        </div>
-                        <div id="quizFeedback" style="margin-top:10px; font-weight:700; font-size:14px;"></div>
-                    </div>
-                </div>
+<div id="tab-learning-lab" class="page-tab">
+    <section class="interactive-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>শুরু থেকে ইংরেজি শেখার কমপ্লিট ৬টি প্রধান ধাপ (Complete Roadmap)</h2>
             </div>
-        </section>
-    </div>
+            
+            <!-- 3D Roadmap Header & Edit Control -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+                <p style="color: var(--text-light); font-size: 16px; font-weight: 600;">
+                    <i class="fa-solid fa-route" style="color: #6366f1; margin-right: 6px;"></i>
+                    জিরো থেকে এডভান্সড মাস্টার হওয়ার ধাপে ধাপে নীল নকশা:
+                </p>
+                <button class="btn-class-chip dev-only-btn" id="btnEdit6Steps" onclick="edit6StepsRoadmap()" style="background: #f59e0b; color: white; display: none; border: none; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);">
+                    <i class="fa-solid fa-pen-to-square"></i> ৬টি ধাপ এডিট ও সেভ করুন
+                </button>
+            </div>
+
+            <!-- 6 Main Steps Grid Container (3 on Top Row, 3 on Bottom Row) -->
+            <div id="grid6StepsContainer" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; perspective: 1000px;">
+                
+                <!-- Step 1 -->
+                <div class="step-3d-card" style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 28px 22px; position: relative; box-shadow: 0 15px 30px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateZ(0); transition: all 0.35s ease-in-out; cursor: pointer;">
+                    <div style="width: 46px; height: 46px; background: var(--primary-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; margin-bottom: 18px; box-shadow: 0 8px 18px rgba(99,102,241,0.4);">১</div>
+                    <h3 class="step-title" style="font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">১. বেসিক আলফাবেট ও ফোনেটিক্স</h3>
+                    <p class="step-desc" style="font-size: 14px; color: var(--text-light); line-height: 1.6;">সঠিক উচ্চারণবিধি (Phonics), বর্ণমালার শুদ্ধ উচ্চারণ এবং প্রতিদিনের সাধারণ ইংরেজি শব্দ পরিচিতি দিয়ে সূচনা করুন।</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-3d-card" style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 28px 22px; position: relative; box-shadow: 0 15px 30px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateZ(0); transition: all 0.35s ease-in-out; cursor: pointer;">
+                    <div style="width: 46px; height: 46px; background: var(--primary-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; margin-bottom: 18px; box-shadow: 0 8px 18px rgba(99,102,241,0.4);">২</div>
+                    <h3 class="step-title" style="font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">২. প্রয়োজনীয় ভোকাবুলারি</h3>
+                    <p class="step-desc" style="font-size: 14px; color: var(--text-light); line-height: 1.6;">দৈনন্দিন প্রয়োজনীয় ১০০০+ হাই-ফ্রিকোয়েন্সি শব্দার্থ, বাক্য ব্যবহার এবং সমার্থক শব্দ (Synonyms) মুখস্থ করুন।</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-3d-card" style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 28px 22px; position: relative; box-shadow: 0 15px 30px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateZ(0); transition: all 0.35s ease-in-out; cursor: pointer;">
+                    <div style="width: 46px; height: 46px; background: var(--primary-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; margin-bottom: 18px; box-shadow: 0 8px 18px rgba(99,102,241,0.4);">৩</div>
+                    <h3 class="step-title" style="font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">৩. স্ট্রাকচারাল গ্রামার ল্যাব</h3>
+                    <p class="step-desc" style="font-size: 14px; color: var(--text-light); line-height: 1.6;">কঠিন নিয়ম ছাড়া Tense, Parts of Speech, Sentence Making ও Verb-এর সঠিক প্রয়োগ সহজে শিখুন।</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-3d-card" style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 28px 22px; position: relative; box-shadow: 0 15px 30px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateZ(0); transition: all 0.35s ease-in-out; cursor: pointer;">
+                    <div style="width: 46px; height: 46px; background: var(--primary-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; margin-bottom: 18px; box-shadow: 0 8px 18px rgba(99,102,241,0.4);">৪</div>
+                    <h3 class="step-title" style="font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">৪. ১৫০+ স্পোকেন ইংলিশ প্যাটার্ন</h3>
+                    <p class="step-desc" style="font-size: 14px; color: var(--text-light); line-height: 1.6;">রিয়েল-লাইফ কনভারসেশনের জন্য ১৫০টি রেডিমেড সেন্টেন্স প্যাটার্ন ও স্ট্রাকচার চর্চা করুন।</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-3d-card" style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 28px 22px; position: relative; box-shadow: 0 15px 30px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateZ(0); transition: all 0.35s ease-in-out; cursor: pointer;">
+                    <div style="width: 46px; height: 46px; background: var(--primary-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; margin-bottom: 18px; box-shadow: 0 8px 18px rgba(99,102,241,0.4);">৫</div>
+                    <h3 class="step-title" style="font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">৫. লিসেনিং ও ফ্লুয়েন্সি প্র্যাকটিস</h3>
+                    <p class="step-desc" style="font-size: 14px; color: var(--text-light); line-height: 1.6;">নেটিভ স্পিকারদের অডিও শোনা, উচ্চারণ অনুকরণ (Shadowing) এবং ভীতি কাটিয়ে অনর্গল কথা বলার অভ্যাস গড়ে তুলুন।</p>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step-3d-card" style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 20px; padding: 28px 22px; position: relative; box-shadow: 0 15px 30px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateZ(0); transition: all 0.35s ease-in-out; cursor: pointer;">
+                    <div style="width: 46px; height: 46px; background: var(--primary-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; margin-bottom: 18px; box-shadow: 0 8px 18px rgba(99,102,241,0.4);">৬</div>
+                    <h3 class="step-title" style="font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">৬. অ্যাডভান্সড আইইএলটিএস প্রিপারেশন</h3>
+                    <p class="step-desc" style="font-size: 14px; color: var(--text-light); line-height: 1.6;">কুইজ অ্যাসেসমেন্ট, রাইটিং ও স্প্যাকিং টেস্ট দিয়ে নিজেকে তৈরি করে IELTS-এ কাঙ্ক্ষিত ব্যান্ড স্কোর অর্জন করুন।</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CSS Animation for Hover 3D Shift & Responsive Grid -->
+    <style>
+        @media (max-width: 992px) {
+            #grid6StepsContainer {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        @media (max-width: 640px) {
+            #grid6StepsContainer {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        .step-3d-card:hover {
+            transform: translateY(-10px) rotateX(4deg) scale(1.02) !important;
+            border-color: #6366f1 !important;
+            box-shadow: 0 25px 45px rgba(99, 102, 241, 0.25) !important;
+        }
+    </style>
+
+    <!-- JavaScript for Dynamic Dev-Mode Editing and LocalStorage Persistence -->
+    <script>
+        const default6Steps = [
+            { title: "১. বেসিক আলফাবেট ও ফোনেটিক্স", desc: "সঠিক উচ্চারণবিধি (Phonics), বর্ণমালার শুদ্ধ উচ্চারণ এবং প্রতিদিনের সাধারণ ইংরেজি শব্দ পরিচিতি দিয়ে সূচনা করুন।" },
+            { title: "২. প্রয়োজনীয় ভোকাবুলারি", desc: "দৈনন্দিন প্রয়োজনীয় ১০০০+ হাই-ফ্রিকোয়েন্সি শব্দার্থ, বাক্য ব্যবহার এবং সমার্থক শব্দ (Synonyms) মুখস্থ করুন।" },
+            { title: "৩. স্ট্রাকচারাল গ্রামার ল্যাব", desc: "কঠিন নিয়ম ছাড়া Tense, Parts of Speech, Sentence Making ও Verb-এর সঠিক প্রয়োগ সহজে শিখুন।" },
+            { title: "৪. ১৫০+ স্পোকেন ইংলিশ প্যাটার্ন", desc: "রিয়েল-লাইফ কনভারসেশনের জন্য ১৫০টি রেডিমেড সেন্টেন্স প্যাটার্ন ও স্ট্রাকচার চর্চা করুন।" },
+            { title: "৫. লিসেনিং ও ফ্লুয়েন্সি প্র্যাকটিস", desc: "নেটিভ স্পিকারদের অডিও শোনা, উচ্চারণ অনুকরণ (Shadowing) এবং ভীতি কাটিয়ে অনর্গল কথা বলার অভ্যাস গড়ে তুলুন।" },
+            { title: "৬. অ্যাডভান্সড আইইএলটিএস প্রিপারেশন", desc: "কুইজ অ্যাসেসমেন্ট, রাইটিং ও স্প্যাকিং টেস্ট দিয়ে নিজেকে তৈরি করে IELTS-এ কাঙ্ক্ষিত ব্যান্ড স্কোর অর্জন করুন।" }
+        ];
+
+        let site6Steps = JSON.parse(localStorage.getItem('gkd_6steps_roadmap')) || default6Steps;
+
+        function render6StepsUI() {
+            const container = document.getElementById('grid6StepsContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            site6Steps.forEach((step, idx) => {
+                const card = document.createElement('div');
+                card.className = 'step-3d-card';
+                card.style.cssText = `
+                    background: var(--bg-card);
+                    border: 2px solid var(--border-color);
+                    border-radius: 20px;
+                    padding: 28px 22px;
+                    position: relative;
+                    box-shadow: 0 15px 30px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.2);
+                    transition: all 0.35s ease-in-out;
+                    cursor: pointer;
+                `;
+                card.innerHTML = `
+                    <div style="width: 46px; height: 46px; background: var(--primary-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; margin-bottom: 18px; box-shadow: 0 8px 18px rgba(99,102,241,0.4);">${idx + 1}</div>
+                    <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">${step.title}</h3>
+                    <p style="font-size: 14px; color: var(--text-light); line-height: 1.6;">${step.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function edit6StepsRoadmap() {
+            if (typeof state !== 'undefined' && !state.isDevMode) return;
+            
+            for (let i = 0; i < site6Steps.length; i++) {
+                const newTitle = prompt(`${i + 1} নম্বর ধাপের শিরোনাম পরিবর্তন করুন:`, site6Steps[i].title);
+                if (newTitle === null) return;
+                const newDesc = prompt(`${i + 1} নম্বর ধাপের বিবরণ দিন:`, site6Steps[i].desc);
+                if (newDesc === null) return;
+                site6Steps[i] = { title: newTitle, desc: newDesc };
+            }
+            
+            localStorage.setItem('gkd_6steps_roadmap', JSON.stringify(site6Steps));
+            render6StepsUI();
+            alert('৬টি ধাপের নতুন রোডম্যাপ সফলভাবে এডিট ও সেভ করা হয়েছে!');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            render6StepsUI();
+        });
+    </script>
+</div>
 
     <!-- DASHBOARD TAB -->
     <div id="tab-dashboard" class="page-tab">
