@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKD KHUDE IELTS - 3D Interactive Poster Generator</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Multiple Bengali & English Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700;800&family=Baloo+Da+2:wght@400;600;700;800&family=Cinzel:wght@600;800&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800;900&family=Noto+Sans+Bengali:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@400;600;700;800&family=Tiro+Bangla&family=Times+New+Roman&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- html2canvas for Exporting Canvas to Image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        hind: ['Hind Siliguri', 'sans-serif'],
+                        anek: ['Anek Bangla', 'sans-serif'],
+                        noto: ['Noto Sans Bengali', 'sans-serif'],
+                        tiro: ['Tiro Bangla', 'serif'],
+                        baloo: ['Baloo Da 2', 'cursive'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        times: ['Times New Roman', 'Times', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: #090d16;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Aspect Ratios */
+        .poster-wrapper-16-9 {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+        .poster-wrapper-9-16 {
+            width: 100%;
+            max-width: 440px;
+            aspect-ratio: 9 / 16;
+            margin: 0 auto;
+        }
+
+        /* 3D Visual Themes (Static 2D Display with 3D Depth Styling) */
+        
+        /* 1. Royal Gold & Navy */
+        .theme-royal-gold {
+            background: linear-gradient(135deg, #060b14 0%, #0f1c3f 50%, #172a5a 100%);
+            color: #ffffff;
+            border: 3px solid #eab308;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(234, 179, 8, 0.25);
+        }
+        .theme-royal-gold .card-inner {
+            background: rgba(15, 28, 63, 0.85);
+            border: 1px solid rgba(234, 179, 8, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .theme-royal-gold .accent-badge {
+            background: linear-gradient(90deg, #ca8a04, #fef08a, #ca8a04);
+            color: #070d19;
+            font-weight: 900;
+        }
+        .theme-royal-gold .text-accent { color: #facc15; }
+        .theme-royal-gold .text-highlight { color: #ffffff; }
+
+        /* 2. Crimson Executive */
+        .theme-crimson-elegance {
+            background: linear-gradient(135deg, #1f0303 0%, #580c0c 50%, #881313 100%);
+            color: #ffffff;
+            border: 3px solid #f87171;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(248, 113, 113, 0.2);
+        }
+        .theme-crimson-elegance .card-inner {
+            background: rgba(88, 12, 12, 0.85);
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .theme-crimson-elegance .accent-badge {
+            background: linear-gradient(90deg, #dc2626, #fca5a5, #dc2626);
+            color: #ffffff;
+            font-weight: 900;
+        }
+        .theme-crimson-elegance .text-accent { color: #fecdd3; }
+        .theme-crimson-elegance .text-highlight { color: #ffffff; }
+
+        /* 3. Emerald Glass Glow */
+        .theme-emerald-glass {
+            background: linear-gradient(135deg, #021a14 0%, #064e3b 50%, #047857 100%);
+            color: #ffffff;
+            border: 3px solid #34d399;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(52, 211, 153, 0.2);
+        }
+        .theme-emerald-glass .card-inner {
+            background: rgba(6, 78, 59, 0.85);
+            border: 1px solid rgba(52, 211, 153, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .theme-emerald-glass .accent-badge {
+            background: linear-gradient(90deg, #059669, #a7f3d0, #059669);
+            color: #022c22;
+            font-weight: 900;
+        }
+        .theme-emerald-glass .text-accent { color: #6ee7b7; }
+        .theme-emerald-glass .text-highlight { color: #ffffff; }
+
+        /* 4. Cyber Neon Platinum */
+        .theme-cyber-dark {
+            background: linear-gradient(135deg, #050505 0%, #0f172a 50%, #1e293b 100%);
+            color: #ffffff;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        .theme-cyber-dark .card-inner {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .theme-cyber-dark .accent-badge {
+            background: linear-gradient(90deg, #0284c7, #bae6fd, #0284c7);
+            color: #090d16;
+            font-weight: 900;
+        }
+        .theme-cyber-dark .text-accent { color: #38bdf8; }
+        .theme-cyber-dark .text-highlight { color: #ffffff; }
+
+        /* 5. Prestige Midnight Black */
+        .theme-midnight-gold {
+            background: linear-gradient(135deg, #09090b 0%, #18181b 50%, #27272a 100%);
+            color: #fef08a;
+            border: 3px solid #facc15;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(250, 204, 21, 0.25);
+        }
+        .theme-midnight-gold .card-inner {
+            background: rgba(24, 24, 27, 0.9);
+            border: 1px solid rgba(250, 204, 21, 0.45);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .theme-midnight-gold .accent-badge {
+            background: linear-gradient(90deg, #eab308, #fef08a, #eab308);
+            color: #000000;
+            font-weight: 900;
+        }
+        .theme-midnight-gold .text-accent { color: #fef08a; }
+        .theme-midnight-gold .text-highlight { color: #ffffff; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    </style>
+</head>
+<body class="min-h-screen p-3 md:p-6">
+
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- HEADER TOP BAR -->
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-4 bg-slate-900/90 backdrop-blur p-4 md:p-5 rounded-2xl border border-slate-800 shadow-2xl">
+            <div class="flex items-center gap-3">
+                <img id="headerLogo" src="https://i.ibb.co/3s2XJ4H/gkdlogo.jpg" onerror="this.src='https://placehold.co/100x100/0f2c59/f8de22?text=GKD'" alt="GKD Logo" class="w-12 h-12 rounded-full border-2 border-amber-400 shadow-lg object-cover">
+                <div>
+                    <h2 class="text-lg md:text-2xl font-extrabold text-white tracking-wide flex items-center gap-2">
+                        <span>GKD KHUDE IELTS</span>
+                        <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Poster Generator</span>
+                    </h2>
+                    <p class="text-xs text-slate-400">অটোমেটেড সোশ্যাল মিডিয়া ওয়েলকাম পোস্টার মেকার</p>
+                </div>
+            </div>
+
+            <!-- Controls: Aspect Ratio Switcher -->
+            <div class="flex items-center gap-1 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+                <button id="btn169" onclick="setAspectRatio('16-9')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all bg-amber-500 text-slate-950 shadow-md">
+                    <i class="fa-solid fa-tv"></i> 16:9 Landscape
+                </button>
+                <button id="btn916" onclick="setAspectRatio('9-16')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i class="fa-solid fa-mobile-screen-button"></i> 9:16 Portrait
+                </button>
+            </div>
+        </div>
+
+        <!-- MAIN WORKSPACE CONTAINER -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- LEFT CONTROL PANEL -->
+            <div class="lg:col-span-5 bg-slate-900/90 backdrop-blur p-5 md:p-6 rounded-2xl border border-slate-800 shadow-2xl space-y-5 max-h-[85vh] overflow-y-auto">
+                
+                <!-- 1. Theme Selection (5 Themes) -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-palette text-amber-400 mr-1"></i> পোস্টার থিম নির্বাচন করুন (৫টি অপশন)
+                    </label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="setTheme('theme-royal-gold')" class="p-2.5 rounded-xl border border-slate-700 bg-slate-950 text-left hover:border-amber-400 transition flex items-center gap-2">
+                            <span class="w-4 h-4 rounded-full bg-gradient-to-r from-blue-900 to-amber-400"></span>
+                            <span class="text-xs font-semibold text-slate-200 truncate">Royal Gold & Navy</span>
+                        </button>
+                        <button onclick="setTheme('theme-crimson-elegance')" class="p-2.5 rounded-xl border border-slate-700 bg-slate-950 text-left hover:border-rose-400 transition flex items-center gap-2">
+                            <span class="w-4 h-4 rounded-full bg-gradient-to-r from-red-950 to-rose-400"></span>
+                            <span class="text-xs font-semibold text-slate-200 truncate">Crimson Executive</span>
+                        </button>
+                        <button onclick="setTheme('theme-emerald-glass')" class="p-2.5 rounded-xl border border-slate-700 bg-slate-950 text-left hover:border-emerald-400 transition flex items-center gap-2">
+                            <span class="w-4 h-4 rounded-full bg-gradient-to-r from-emerald-950 to-emerald-400"></span>
+                            <span class="text-xs font-semibold text-slate-200 truncate">Emerald Glass</span>
+                        </button>
+                        <button onclick="setTheme('theme-cyber-dark')" class="p-2.5 rounded-xl border border-slate-700 bg-slate-950 text-left hover:border-sky-400 transition flex items-center gap-2">
+                            <span class="w-4 h-4 rounded-full bg-gradient-to-r from-slate-950 to-sky-400"></span>
+                            <span class="text-xs font-semibold text-slate-200 truncate">Cyber Platinum</span>
+                        </button>
+                        <button onclick="setTheme('theme-midnight-gold')" class="p-2.5 rounded-xl border border-slate-700 bg-slate-950 text-left hover:border-yellow-400 transition flex items-center gap-2 col-span-2">
+                            <span class="w-4 h-4 rounded-full bg-gradient-to-r from-neutral-900 to-yellow-400"></span>
+                            <span class="text-xs font-semibold text-slate-200 truncate">Prestige Midnight Black</span>
+                        </button>
+                    </div>
+                </div>
+
+                <hr class="border-slate-800">
+
+                <!-- 2. Font Selection (Bengali & English with Times New Roman) -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
+                            <i class="fa-solid fa-font text-amber-400 mr-1"></i> বাংলা ফন্ট
+                        </label>
+                        <select id="fontBangla" onchange="updatePosterFonts()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                            <option value="font-hind">Hind Siliguri (Modern)</option>
+                            <option value="font-anek">Anek Bangla (Bold)</option>
+                            <option value="font-noto">Noto Sans Bengali</option>
+                            <option value="font-tiro">Tiro Bangla (Classic)</option>
+                            <option value="font-baloo">Baloo Da 2 (Stylish)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
+                            <i class="fa-solid fa-italic text-amber-400 mr-1"></i> ইংরেজি ফন্ট
+                        </label>
+                        <select id="fontEnglish" onchange="updatePosterFonts()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                            <option value="font-times">Times New Roman (Classic)</option>
+                            <option value="font-montserrat">Montserrat (Stylish)</option>
+                            <option value="font-poppins">Poppins (Clean)</option>
+                            <option value="font-inter">Inter (Minimal)</option>
+                            <option value="font-playfair">Playfair Display (Serif)</option>
+                            <option value="font-cinzel">Cinzel (Prestige)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="border-slate-800">
+
+                <!-- 3. Student Data Inputs -->
+                <div class="space-y-3.5">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">
+                        <i class="fa-solid fa-user-gear text-amber-400 mr-1"></i> শিক্ষার্থী তথ্য সম্পাদনা
+                    </label>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">শিক্ষার্থীর ছবি</label>
+                            <input type="file" id="studentPhotoInput" accept="image/*" onchange="handleStudentPhoto(event)" class="hidden">
+                            <button onclick="document.getElementById('studentPhotoInput').click()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs py-1.5 px-2 rounded-lg font-medium transition flex items-center justify-center gap-1 border border-slate-700">
+                                <i class="fa-solid fa-camera text-amber-400"></i> ছবি আপলোড
+                            </button>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">লোগো পরিবর্তন</label>
+                            <input type="file" id="logoPhotoInput" accept="image/*" onchange="handleLogoPhoto(event)" class="hidden">
+                            <button onclick="document.getElementById('logoPhotoInput').click()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs py-1.5 px-2 rounded-lg font-medium transition flex items-center justify-center gap-1 border border-slate-700">
+                                <i class="fa-solid fa-shield-halved text-amber-400"></i> নতুন লোগো
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] text-slate-300 mb-1">শিক্ষার্থীর পূর্ণ নাম</label>
+                        <input type="text" id="inputName" value="মোঃ রফিকুল ইসলাম" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">রোল / স্টুডেন্ট ID</label>
+                            <input type="text" id="inputId" value="GKD-2026-042" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">ব্যাচ নং</label>
+                            <input type="text" id="inputBatch" value="ব্যাচ - ১২ (Regular)" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] text-slate-300 mb-1">কোর্স / প্রোগ্রাম</label>
+                        <input type="text" id="inputCourse" value="IELTS Academic Masterclass" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">ঠিকানা / শাখা</label>
+                            <input type="text" id="inputAddress" value="রাজারহাট, কুড়িগ্রাম" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-300 mb-1">ভর্তির তারিখ</label>
+                            <input type="text" id="inputDate" value="২৮ অক্টোবর, ২০২৬" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] text-slate-300 mb-1">ওয়েলকাম মেসেজ</label>
+                        <textarea id="inputMessage" rows="2" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">GKD KHUDE IELTS পরিবারে আপনাকে স্বাগতম! আপনার আইইএলটিএস জয়ের যাত্রায় আমরা পাশে আছি।</textarea>
+                    </div>
+                </div>
+
+                <hr class="border-slate-800">
+
+                <!-- 4. Social Share Caption Generator -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">
+                        <i class="fa-solid fa-share-nodes text-amber-400 mr-1"></i> সোশ্যাল ক্যাপশন টেক্সট
+                    </label>
+                    <textarea id="socialCaption" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-[11px] text-slate-300 focus:outline-none font-mono" readonly></textarea>
+                    
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <button onclick="copyCaption()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 px-3 rounded-lg font-bold transition flex items-center justify-center gap-1 border border-slate-700">
+                            <i class="fa-solid fa-copy text-amber-400"></i> ক্যাপশন কপি
+                        </button>
+                        <button onclick="shareSocial('fb')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs py-2 px-3 rounded-lg font-bold transition flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-facebook"></i> ফেবু
+                        </button>
+                        <button onclick="shareSocial('wa')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs py-2 px-3 rounded-lg font-bold transition flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপ
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT PREVIEW & DOWNLOAD SECTION -->
+            <div class="lg:col-span-7 flex flex-col items-center space-y-4">
+                
+                <!-- Action Bar -->
+                <div class="w-full flex flex-wrap justify-between items-center gap-2 px-1">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Poster Canvas View
+                    </span>
+                    
+                    <!-- Download Buttons -->
+                    <div class="flex items-center gap-2">
+                        <button onclick="exportPoster('png')" class="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-extrabold text-xs px-3.5 py-2 rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-image"></i> PNG ডাউনলোড
+                        </button>
+                        <button onclick="exportPoster('jpeg')" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold text-xs px-3.5 py-2 rounded-xl shadow-lg shadow-blue-600/20 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-download"></i> JPG ডাউনলোড
+                        </button>
+                    </div>
+                </div>
+
+                <!-- POSTER CONTAINER WRAPPER -->
+                <div class="w-full flex justify-center bg-slate-950/80 p-4 md:p-8 rounded-2xl border border-slate-800/80 shadow-2xl overflow-hidden">
+                    
+                    <!-- POSTER ROOT CANVAS ELEMENT -->
+                    <div id="posterCanvas" class="poster-wrapper-16-9 theme-royal-gold relative rounded-2xl p-6 md:p-8 overflow-hidden flex flex-col justify-between transition-all duration-300">
+                        
+                        <!-- Glow Effects -->
+                        <div class="absolute -top-16 -right-16 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- TOP BRANDING HEADER -->
+                        <div class="flex justify-between items-center z-10 relative">
+                            
+                            <!-- Logo & Main Titles -->
+                            <div class="flex items-center gap-3">
+                                <img id="posterLogo" src="https://i.ibb.co/3s2XJ4H/gkdlogo.jpg" onerror="this.src='https://placehold.co/100x100/0f2c59/f8de22?text=GKD'" alt="GKD Logo" class="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-amber-400 shadow-xl object-cover">
+                                <div>
+                                    <h1 id="brandTitle" class="font-times font-extrabold text-base md:text-xl tracking-wider uppercase leading-none text-highlight">
+                                        GKD KHUDE IELTS
+                                    </h1>
+                                    <p id="brandSub" class="font-times text-[10px] md:text-xs font-bold text-accent tracking-widest uppercase mt-1">
+                                        GKD Complete English Mastery
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Welcome Badge -->
+                            <div class="accent-badge px-3 py-1 md:px-4 md:py-1 rounded-full text-[10px] md:text-xs font-extrabold uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                                <i class="fa-solid fa-award"></i>
+                                <span>ভর্তি অভিনন্দন!</span>
+                            </div>
+                        </div>
+
+                        <!-- MIDDLE BODY CONTENT: STUDENT INFO & PHOTO -->
+                        <div id="posterBody" class="grid grid-cols-12 gap-4 items-center my-auto z-10 relative py-2">
+                            
+                            <!-- Student Details Panel -->
+                            <div id="detailsCol" class="col-span-8 space-y-2 md:space-y-2.5">
+                                
+                                <div class="inline-block">
+                                    <span class="text-[10px] md:text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                                        নতুন ব্যাচে শুভ আগমন
+                                    </span>
+                                </div>
+
+                                <h2 id="prevName" class="text-xl md:text-3xl font-extrabold tracking-tight text-accent">
+                                    মোঃ রফিকুল ইসলাম
+                                </h2>
+
+                                <p id="prevMessage" class="text-xs md:text-sm opacity-95 italic font-medium line-clamp-2 text-highlight">
+                                    "GKD KHUDE IELTS পরিবারে আপনাকে স্বাগতম! আপনার আইইএলটিএস জয়ের যাত্রায় আমরা পাশে আছি।"
+                                </p>
+
+                                <!-- Student Info Cards -->
+                                <div class="grid grid-cols-2 gap-2 pt-1 text-[11px] md:text-xs">
+                                    <div class="card-inner p-2 rounded-xl">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">কোর্স / প্রোগ্রাম:</span>
+                                        <strong id="prevCourse" class="block font-bold truncate text-highlight">IELTS Academic Masterclass</strong>
+                                    </div>
+                                    <div class="card-inner p-2 rounded-xl">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">ব্যাচ ও স্টুডেন্ট আইডি:</span>
+                                        <strong id="prevBatchId" class="block font-bold truncate text-highlight">ব্যাচ - ১২ | ID: GKD-2026-042</strong>
+                                    </div>
+                                    <div class="card-inner p-2 rounded-xl">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">শাখা / ঠিকানা:</span>
+                                        <strong id="prevAddress" class="block font-bold truncate text-highlight">রাজারহাট, কুড়িগ্রাম</strong>
+                                    </div>
+                                    <div class="card-inner p-2 rounded-xl">
+                                        <span class="block opacity-75 text-[9px] uppercase tracking-wider font-semibold">ভর্তির তারিখ:</span>
+                                        <strong id="prevDate" class="block font-bold truncate text-highlight">২৮ অক্টোবর, ২০২৬</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Student Photo Frame -->
+                            <div id="photoCol" class="col-span-4 flex justify-center items-center">
+                                <div class="relative group">
+                                    <div class="w-26 h-26 md:w-36 md:h-36 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-2xl bg-slate-900">
+                                        <img id="prevPhoto" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Student Photo" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="absolute -bottom-2 inset-x-0 mx-auto w-max px-2.5 py-0.5 rounded-md bg-amber-400 text-slate-950 font-black text-[9px] md:text-[10px] text-center shadow-md">
+                                        STUDENT
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- FOOTER BAR -->
+                        <div class="pt-2.5 border-t border-white/20 flex flex-wrap justify-between items-center text-[10px] md:text-xs text-highlight z-10 relative">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <span class="font-bold"><i class="fa-solid fa-phone text-amber-400 mr-1"></i> 01751905439</span>
+                                <span class="font-bold"><i class="fa-solid fa-envelope text-amber-400 mr-1"></i> gkdkhudeielts2026@gmail.com</span>
+                            </div>
+                            <div>
+                                <span class="font-bold"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> প্রধান শাখা, রাজারহাট, কুড়িগ্রাম</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let currentAspect = '16-9';
+        let currentTheme = 'theme-royal-gold';
+
+        // 1. Live Text Update
+        function updatePosterText() {
+            const name = document.getElementById('inputName').value || 'শিক্ষার্থীর নাম';
+            const id = document.getElementById('inputId').value || 'N/A';
+            const batch = document.getElementById('inputBatch').value || 'Regular';
+            const course = document.getElementById('inputCourse').value || 'IELTS Program';
+            const address = document.getElementById('inputAddress').value || 'বাংলাদেশ';
+            const date = document.getElementById('inputDate').value || 'আজ';
+            const message = document.getElementById('inputMessage').value || '';
+
+            document.getElementById('prevName').innerText = name;
+            document.getElementById('prevMessage').innerText = `"${message}"`;
+            document.getElementById('prevCourse').innerText = course;
+            document.getElementById('prevBatchId').innerText = `${batch} | ID: ${id}`;
+            document.getElementById('prevAddress').innerText = address;
+            document.getElementById('prevDate').innerText = date;
+
+            // Generate Social Caption Text
+            const caption = `🎉 GKD KHUDE IELTS (GKD Complete English Mastery) পরিবারে নতুন সদস্যকে অভিনন্দন! 🎉\n\n` +
+                `👤 নাম: ${name}\n` +
+                `🆔 রোল/আইডি: ${id}\n` +
+                `📚 কোর্স: ${course}\n` +
+                `🎓 ব্যাচ: ${batch}\n` +
+                `📍 ঠিকানা: ${address}\n\n` +
+                `আমরা আপনার উজ্জ্বল ভবিষ্যৎ ও IELTS পরীক্ষায় প্রত্যাশিত স্কোর অর্জনে শুভকামনা জানাই। ❤️\n\n` +
+                `📞 যোগাযোগ: 01751905439\n` +
+                `✉️ ইমেইল: gkdkhudeielts2026@gmail.com\n\n` +
+                `#GKDKHUDEIELTS #GKDCompleteEnglishMastery #IELTSPreparation #AdmissionOpen`;
+
+            document.getElementById('socialCaption').value = caption;
+        }
+
+        // 2. Font Swapper (Bangla + English including Times New Roman)
+        function updatePosterFonts() {
+            const banglaFont = document.getElementById('fontBangla').value;
+            const englishFont = document.getElementById('fontEnglish').value;
+            
+            const prevName = document.getElementById('prevName');
+            const prevMessage = document.getElementById('prevMessage');
+            const brandTitle = document.getElementById('brandTitle');
+            const brandSub = document.getElementById('brandSub');
+
+            // Apply fonts dynamically
+            prevName.className = `text-xl md:text-3xl font-extrabold tracking-tight text-accent ${banglaFont}`;
+            prevMessage.className = `text-xs md:text-sm opacity-95 italic font-medium line-clamp-2 text-highlight ${banglaFont}`;
+            
+            brandTitle.className = `${englishFont} font-extrabold text-base md:text-xl tracking-wider uppercase leading-none text-highlight`;
+            brandSub.className = `${englishFont} text-[10px] md:text-xs font-bold text-accent tracking-widest uppercase mt-1`;
+        }
+
+        // 3. Image Upload Handlers
+        function handleStudentPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('prevPhoto').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleLogoPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('posterLogo').src = e.target.result;
+                    document.getElementById('headerLogo').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // 4. Switch Aspect Ratio (16:9 vs 9:16)
+        function setAspectRatio(aspect) {
+            currentAspect = aspect;
+            const canvas = document.getElementById('posterCanvas');
+            const btn169 = document.getElementById('btn169');
+            const btn916 = document.getElementById('btn916');
+            const posterBody = document.getElementById('posterBody');
+            const detailsCol = document.getElementById('detailsCol');
+            const photoCol = document.getElementById('photoCol');
+
+            if (aspect === '16-9') {
+                canvas.className = `poster-wrapper-16-9 ${currentTheme} relative rounded-2xl p-6 md:p-8 overflow-hidden flex flex-col justify-between transition-all duration-300`;
+                
+                posterBody.className = "grid grid-cols-12 gap-4 items-center my-auto z-10 relative py-2";
+                detailsCol.className = "col-span-8 space-y-2 md:space-y-2.5";
+                photoCol.className = "col-span-4 flex justify-center items-center";
+
+                btn169.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all bg-amber-500 text-slate-950 shadow-md";
+                btn916.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800";
+            } else {
+                canvas.className = `poster-wrapper-9-16 ${currentTheme} relative rounded-2xl p-6 md:p-8 overflow-hidden flex flex-col justify-between transition-all duration-300`;
+                
+                posterBody.className = "flex flex-col gap-3 items-center justify-center my-auto text-center z-10 relative py-2";
+                detailsCol.className = "w-full space-y-2 text-center";
+                photoCol.className = "w-full flex justify-center items-center my-1";
+
+                btn916.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all bg-amber-500 text-slate-950 shadow-md";
+                btn169.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-slate-400 hover:text-white hover:bg-slate-800";
+            }
+        }
+
+        // 5. Preset Theme Swapper
+        function setTheme(themeName) {
+            currentTheme = themeName;
+            setAspectRatio(currentAspect);
+        }
+
+        // 6. Image Exporting (PNG / JPG)
+        function exportPoster(format) {
+            const posterElement = document.getElementById('posterCanvas');
+
+            html2canvas(posterElement, {
+                scale: 3, // High Resolution
+                useCORS: true,
+                logging: false,
+                backgroundColor: null
+            }).then(canvas => {
+                const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
+                const image = canvas.toDataURL(mimeType, 0.95);
+                
+                const link = document.createElement('a');
+                const studentName = document.getElementById('inputName').value.replace(/\s+/g, '_') || 'Student';
+                link.download = `GKD_Welcome_${studentName}_${currentAspect}.${format}`;
+                link.href = image;
+                link.click();
+            }).catch(err => {
+                console.error("Export Error: ", err);
+                alert("পোস্টার ফাইলটি এক্সপোর্ট করতে সমস্যা হয়েছে। দয়া করে পুনরায় চেষ্টা করুন।");
+            });
+        }
+
+        // 7. Copy Social Caption
+        function copyCaption() {
+            const copyText = document.getElementById("socialCaption");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-check text-emerald-400"></i> কপি করা হয়েছে!`;
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+            }, 2000);
+        }
+
+        // 8. Direct Social Sharer
+        function shareSocial(platform) {
+            const text = encodeURIComponent(document.getElementById('socialCaption').value);
+            let url = '';
+
+            if (platform === 'fb') {
+                url = `https://www.facebook.com/sharer/sharer.php?quote=${text}`;
+            } else if (platform === 'wa') {
+                url = `https://api.whatsapp.com/send?text=${text}`;
+            }
+
+            if (url) {
+                window.open(url, '_blank', 'width=600,height=500');
+            }
+        }
+
+        // Load Initial State
+        window.onload = function() {
+            updatePosterText();
+            updatePosterFonts();
+        };
+    </script>
+</body>
+</html>
