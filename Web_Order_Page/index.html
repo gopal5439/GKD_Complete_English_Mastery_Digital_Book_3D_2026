@@ -926,24 +926,38 @@
                 trafficData.push(Math.floor(Math.random() * 20) + 100);
             }
 
-            new Chart(document.getElementById('chartVisitors'), {
-                type: 'line',
-                data: { labels: timeLabels, datasets: [{ label: 'লাইভ হিটস', data: trafficData, borderColor: '#6366f1', fill: true }] },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
+            // Purge existing charts if any to prevent canvas reuse error
+            if (window.visitorsChartInstance) window.visitorsChartInstance.destroy();
+            if (window.coursesChartInstance) window.coursesChartInstance.destroy();
+            if (window.devicesChartInstance) window.devicesChartInstance.destroy();
 
-            new Chart(document.getElementById('chartCourses'), {
-                type: 'doughnut',
-                data: { labels: ['স্পোকেন', 'গ্রামার', 'IELTS', 'ভোকাবুলারি'], datasets: [{ data: [40, 30, 18, 12], backgroundColor: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981'] }] },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
+            const ctxVisitors = document.getElementById('chartVisitors');
+            if (ctxVisitors) {
+                window.visitorsChartInstance = new Chart(ctxVisitors, {
+                    type: 'line',
+                    data: { labels: timeLabels, datasets: [{ label: 'লাইভ হিটস', data: trafficData, borderColor: '#6366f1', fill: true, tension: 0.4 }] },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
 
-            const isMobileUA = /Mobi|Android/i.test(navigator.userAgent);
-            new Chart(document.getElementById('chartDevices'), {
-                type: 'bar',
-                data: { labels: ['মোবাইল', 'পিসি', 'ট্যাব'], datasets: [{ label: '%', data: [isMobileUA ? 85 : 45, isMobileUA ? 12 : 50, 5], backgroundColor: ['#06b6d4', '#6366f1', '#f59e0b'] }] },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
+            const ctxCourses = document.getElementById('chartCourses');
+            if (ctxCourses) {
+                window.coursesChartInstance = new Chart(ctxCourses, {
+                    type: 'doughnut',
+                    data: { labels: ['স্পোকেন', 'গ্রামার', 'IELTS', 'ভোকাবুলারি'], datasets: [{ data: [40, 30, 18, 12], backgroundColor: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981'] }] },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            const ctxDevices = document.getElementById('chartDevices');
+            if (ctxDevices) {
+                const isMobileUA = /Mobi|Android/i.test(navigator.userAgent);
+                window.devicesChartInstance = new Chart(ctxDevices, {
+                    type: 'bar',
+                    data: { labels: ['মোবাইল', 'পিসি', 'ট্যাব'], datasets: [{ label: '%', data: [isMobileUA ? 85 : 45, isMobileUA ? 12 : 50, 5], backgroundColor: ['#06b6d4', '#6366f1', '#f59e0b'] }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                });
+            }
         }
 
         window.onload = function () {
