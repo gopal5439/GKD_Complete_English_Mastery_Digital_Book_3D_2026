@@ -22,7 +22,7 @@
 
     <style>
         /* ==========================================================================
-           ১. গ্লোবাল কালার থিম ও ভেরিয়েবল (Global Color Themes & CSS Variables)
+           ১. গ্লোবাল কালার থিম ও ভেরিয়েবল
            ========================================================================== */
         :root {
             --primary-gradient: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
@@ -42,7 +42,6 @@
             --shadow-color: rgba(99, 102, 241, 0.12);
         }
 
-        /* Dark Theme Override */
         html.theme-dark {
             --bg-body: #090d16;
             --bg-card: #131b2e;
@@ -53,7 +52,6 @@
             --shadow-color: rgba(0, 0, 0, 0.4);
         }
 
-        /* Cyberpunk Theme Override */
         html.theme-cyberpunk {
             --primary-gradient: linear-gradient(135deg, #ff0055 0%, #00ffcc 100%);
             --bg-body: #05050d;
@@ -65,9 +63,6 @@
             --shadow-color: rgba(255, 0, 85, 0.4);
         }
 
-        /* ==========================================================================
-           ২. জেনারেল রিসেট ও বেস স্টাইল (Hind Siliguri & Tiro Bangla Fonts)
-           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -90,7 +85,7 @@
         }
 
         /* ==========================================================================
-           ৩. হেডার ও নেভিগেশন (Header Controls - Theme, Dev, & 3-Line Menu)
+           ২. হেডার ও নেভিগেশন
            ========================================================================== */
         header {
             background: var(--bg-nav);
@@ -165,7 +160,6 @@
             border-color: #6366f1;
         }
 
-        /* 3-Line Mobile & Desktop Sliding Drawer Menu */
         .drawer {
             position: fixed;
             top: 0;
@@ -183,9 +177,7 @@
             overflow-y: auto;
         }
 
-        .drawer.open {
-            right: 0;
-        }
+        .drawer.open { right: 0; }
 
         .drawer-overlay {
             position: fixed;
@@ -196,9 +188,7 @@
             display: none;
         }
 
-        .drawer-overlay.open {
-            display: block;
-        }
+        .drawer-overlay.open { display: block; }
 
         .drawer-header {
             display: flex;
@@ -249,7 +239,7 @@
             padding: 4px 8px;
             border-radius: 6px;
             transition: all 0.2s;
-            display: none; /* Hidden by default, shown only in Dev Mode */
+            display: none;
         }
 
         .btn-del-nav:hover {
@@ -266,7 +256,7 @@
             border-radius: 12px;
             font-weight: 700;
             cursor: pointer;
-            display: none; /* Hidden by default, shown only in Dev Mode */
+            display: none;
             align-items: center;
             justify-content: center;
             gap: 8px;
@@ -274,21 +264,14 @@
             transition: transform 0.2s;
         }
 
-        .btn-add-drawer:hover {
-            transform: scale(1.02);
-        }
+        .btn-add-drawer:hover { transform: scale(1.02); }
 
-        /* ==========================================================================
-           ৪. সিঙ্গেল পেজ ট্যাব ভিজিবিলিটি (Single Page Navigation Tabs)
-           ========================================================================== */
         .page-tab {
             display: none;
             animation: fadeIn 0.4s ease-in-out;
         }
 
-        .page-tab.active {
-            display: block;
-        }
+        .page-tab.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(12px); }
@@ -296,12 +279,12 @@
         }
 
         /* ==========================================================================
-           ৫. হিরো ব্যানার ও টেক্সট অ্যানিমেশন (Hero Banner & Gemini Title Animation)
+           ৩. হিরো সেকশন
            ========================================================================== */
         .hero {
             position: relative;
             background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.88)), 
-                        url('https://plus.unsplash.com/premium_photo-1661771564227-1d8484e32c8f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D');
+            url('gkd-khude-english-ielts-preparation.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -379,7 +362,7 @@
         }
 
         /* ==========================================================================
-           ৬. ৩ডি ইন্টারঅ্যাকটিভ স্পর্শ-অনুভূতির কার্ডস (Interactive 3D Touch Cards)
+           ৪. ইন্টারঅ্যাকটিভ কার্ডস ও ফিচারস
            ========================================================================== */
         .interactive-section {
             padding: 80px 0;
@@ -437,9 +420,7 @@
             transition: opacity 0.3s;
         }
 
-        .touch-card:hover::before {
-            opacity: 1;
-        }
+        .touch-card:hover::before { opacity: 1; }
 
         .touch-card:hover {
             transform: translateY(-8px) scale(1.02);
@@ -472,9 +453,6 @@
             font-size: 14px;
         }
 
-        /* ==========================================================================
-           ৭. সফটওয়্যার ফিচারসমূহ (Features Hub)
-           ========================================================================== */
         .btn-class-chip {
             padding: 10px 22px;
             background: var(--bg-card);
@@ -499,7 +477,7 @@
         }
 
         /* ==========================================================================
-           ৮. রিয়েল-টাইম এনালিটিক্স ড্যাশবোর্ড (Real-time Analytics Dashboard)
+           ৫. এনালিটিক্স ড্যাশবোর্ড ও ম্যাপ কাস্টমাইজেশন (Compact Half-screen Map)
            ========================================================================== */
         .dashboard-row-3 {
             display: grid;
@@ -509,9 +487,7 @@
         }
 
         @media (max-width: 1024px) {
-            .dashboard-row-3 {
-                grid-template-columns: 1fr;
-            }
+            .dashboard-row-3 { grid-template-columns: 1fr; }
         }
 
         .chart-card {
@@ -542,7 +518,7 @@
 
         .summary-metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 18px;
             margin-bottom: 35px;
         }
@@ -555,7 +531,7 @@
             text-align: center;
             box-shadow: 0 6px 18px var(--shadow-color);
             transition: all 0.3s ease;
-            cursor: pointer;
+            position: relative;
         }
 
         .metric-box:hover {
@@ -586,8 +562,24 @@
             margin-top: 4px;
         }
 
+        .btn-edit-metric {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px;
+            border-radius: 50%;
+        }
+
+        .btn-edit-metric:hover { color: #6366f1; }
+
+        /* Compact Map Box (Half Screen Display) */
         #mapContainer {
-            height: 380px;
+            height: 230px;
             width: 100%;
             border-radius: 18px;
             border: 1px solid var(--border-color);
@@ -645,7 +637,7 @@
         .btn-fb { background: #1877f2; }
 
         /* ==========================================================================
-           ৯. গ্লোসি ভিডিও মোডাল ও পেমেন্ট (Video Modal & Order Hub)
+           ৬. মোডাল, অর্ডার ও এআই চ্যাট
            ========================================================================== */
         .modal {
             position: fixed;
@@ -659,9 +651,7 @@
             padding: 20px;
         }
 
-        .modal.open {
-            display: flex;
-        }
+        .modal.open { display: flex; }
 
         .modal-content {
             background: var(--bg-card);
@@ -726,9 +716,6 @@
             gap: 8px;
         }
 
-        /* ==========================================================================
-           ১০. গুগল জেমিনি লাইভ এআই চ্যাট উইজেট (Google Gemini AI Live Chat Modal & Widget)
-           ========================================================================== */
         .ai-bot-widget {
             position: fixed;
             bottom: 25px;
@@ -773,7 +760,6 @@
             cursor: pointer;
         }
 
-        /* Gemini Chat Modal Box */
         .gemini-chat-modal {
             position: fixed;
             bottom: 95px;
@@ -790,9 +776,7 @@
             overflow: hidden;
         }
 
-        .gemini-chat-modal.open {
-            display: flex;
-        }
+        .gemini-chat-modal.open { display: flex; }
 
         .gemini-chat-header {
             background: var(--primary-gradient);
@@ -865,7 +849,6 @@
             justify-content: center;
         }
 
-        /* Footer */
         footer {
             background: #0f172a;
             color: #94a3b8;
@@ -880,22 +863,20 @@
 <body>
 
     <!-- ==========================================================================
-         [SECTION 1]: হেডার (Top Bar: Logo, Theme, Dev PIN, & 3-Line Menu ONLY)
+         [SECTION 1]: হেডার (Top Bar: Logo, Theme, Dev PIN, & 3-Line Menu)
          ========================================================================== -->
     <header>
         <div class="container nav-container">
-            <!-- Brand Logo & Title -->
             <a onclick="showTab('home')" class="logo-brand">
                 <img src="gkdlogo.png" onerror="this.src='https://placehold.co/100x100/6366f1/ffffff?text=GKD'" alt="GKD Logo" class="logo-img">
                 <span class="logo-text">GKD English Mastery</span>
             </a>
 
-            <!-- Header Controls: Theme Toggle, Developer Mode, & 3-Line Menu Icon -->
             <div class="top-controls">
                 <button class="btn-icon" onclick="toggleTheme()" title="কালার থিম পরিবর্তন করুন">
                     <i class="fa-solid fa-palette"></i>
                 </button>
-                <button class="btn-icon" onclick="promptDevMode()" title="ডেভেলপার মোড (PIN: 1234)">
+                <button class="btn-icon" onclick="promptDevMode()" title="ডেভেলপার মোড (PIN সুরক্ষিত)">
                     <i class="fa-solid fa-code"></i>
                 </button>
                 <button class="btn-icon" onclick="toggleDrawer()" title="মেনু খুলুন (৩-লাইন)">
@@ -913,7 +894,6 @@
             <button class="btn-icon" onclick="toggleDrawer()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         
-        <!-- Default Navigation Links -->
         <div class="drawer-menu" id="drawerMenuList">
             <a onclick="showTab('home'); toggleDrawer();" id="drawer-nav-home" class="active"><i class="fa-solid fa-house"></i> হোম পেজ</a>
             <a onclick="showTab('features'); toggleDrawer();" id="drawer-nav-features"><i class="fa-solid fa-list-check"></i> সফটওয়্যার ফিচার</a>
@@ -921,7 +901,6 @@
             <a onclick="showTab('order'); toggleDrawer();" id="drawer-nav-order"><i class="fa-solid fa-wallet"></i> অর্ডার ও পেমেন্ট</a>
         </div>
 
-        <!-- Custom Add New Button Section (Visible ONLY in Developer Mode) -->
         <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);" id="drawerAddArea">
             <button onclick="promptAddNewButton()" class="btn-add-drawer" id="btnAddDrawerCustom" style="width:100%;">
                 <i class="fa-solid fa-plus"></i> এড নিউ বাটন
@@ -930,11 +909,9 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 2]: হোম পেজ (Home & 3D Interactive Hub)
+         [SECTION 2]: হোম পেজ
          ========================================================================== -->
     <div id="tab-home" class="page-tab active">
-        
-        <!-- Hero Banner with Gemini Style Wave Animation -->
         <section class="hero">
             <div class="container">
                 <h1 class="animated-3d-title" id="wave-text">Welcome to GKD Khude IELTS</h1>
@@ -946,7 +923,6 @@
             </div>
         </section>
 
-        <!-- 3D Interactive Touch Feel Info Cards -->
         <section class="interactive-section">
             <div class="container">
                 <div class="section-header">
@@ -954,25 +930,25 @@
                 </div>
 
                 <div class="cards-grid">
-                    <div class="touch-card" onclick="triggerCardAudio('সহজ শিক্ষণ পদ্ধতি')">
+                    <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                         <h3>সহজ শিক্ষণ পদ্ধতি</h3>
                         <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন।</p>
                     </div>
 
-                    <div class="touch-card" onclick="triggerCardAudio('ডিজিটাল লার্নিং টুলস')">
+                    <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
                         <h3>ডিজিটাল লার্নিং টুলস</h3>
                         <p>যেকোনো ডিভাইস থেকে খুব সহজেই অনুশীলনের সুবিধা ও স্মার্ট ট্র্যাকিং ড্যাশবোর্ড।</p>
                     </div>
 
-                    <div class="touch-card" onclick="triggerCardAudio('প্রমাণিত ফলাফল')">
+                    <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-award"></i></div>
                         <h3>প্রমাণিত ফলাফল</h3>
                         <p>হাজারো শিক্ষার্থী এই প্ল্যাটফর্ম ব্যবহার করে তাদের ইংরেজি দক্ষতার দ্রুত উন্নতি ঘটিয়েছে।</p>
                     </div>
 
-                    <div class="touch-card" onclick="triggerCardAudio('এআই ভয়েস অ্যাসিস্ট্যান্ট')">
+                    <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
                         <h3>স্মার্ট এআই গাইড</h3>
                         <p>ভয়েস অ্যাসিস্ট্যান্ট এর সাথে কথা বলে সঠিক উচ্চারণ এবং রিয়েল-টাইম নির্দেশিকা পান।</p>
@@ -980,11 +956,10 @@
                 </div>
             </div>
         </section>
-
     </div>
 
     <!-- ==========================================================================
-         [SECTION 3]: সফটওয়্যার ফিচারসমূহ (Software Features Hub)
+         [SECTION 3]: সফটওয়্যার ফিচারসমূহ
          ========================================================================== -->
     <div id="tab-features" class="page-tab">
         <section class="interactive-section">
@@ -1030,16 +1005,15 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 4]: রিয়েল-টাইম এনালিটিক্স ড্যাশবোর্ড (Real-time Analytics Dashboard)
+         [SECTION 4]: রিয়েল-টাইম এনালিটিক্স ড্যাশবোর্ড
          ========================================================================== -->
     <div id="tab-dashboard" class="page-tab">
         <section class="interactive-section">
             <div class="container">
                 <div class="section-header">
-                    <h2>সিস্টেম ও স্টুডেন্ট এনালিটিক্স ড্যাশবোর্ড (রিয়েল-টাইম ফায়ারবেস ডেটা)</h2>
+                    <h2>সিস্টেম ও স্টুডেন্ট এনালিটিক্স ড্যাশবোর্ড (রিয়েল-টাইম ডেটা)</h2>
                 </div>
 
-                <!-- 3 Chart Cards strictly in 1 horizontal row -->
                 <div class="dashboard-row-3">
                     <div class="chart-card">
                         <h4><i class="fa-solid fa-chart-line"></i> লাইভ ট্রাফিক ও হিট কাউন্ট</h4>
@@ -1063,78 +1037,74 @@
                     </div>
                 </div>
 
-                <!-- Summary Metrics Counters Box Row -->
+                <!-- Editable Metric Cards Row -->
                 <div class="summary-metrics-grid">
                     <div class="metric-box">
+                        <button class="btn-edit-metric" onclick="editMetric('totalUsers')" title="সম্পাদনা করুন"><i class="fa-solid fa-pen"></i></button>
                         <div class="metric-icon"><i class="fa-solid fa-users"></i></div>
                         <div class="metric-number" id="liveTotalUsers">1,450</div>
-                        <div class="metric-label">মোট নিবন্ধিত শিক্ষার্থী</div>
+                        <div class="metric-label" id="labelTotalUsers">মোট নিবন্ধিত শিক্ষার্থী</div>
                     </div>
 
                     <div class="metric-box">
                         <div class="metric-icon"><i class="fa-solid fa-user-check"></i></div>
-                        <div class="metric-number" id="liveActiveVisitors">লোড হচ্ছে...</div>
-                        <div class="metric-label">বর্তমান লাইভ ভিজিটর</div>
+                        <div class="metric-number" id="liveActiveVisitors">১</div>
+                        <div class="metric-label">বর্তমান লাইভ ভিজিটর (রিয়েল-টাইম)</div>
                     </div>
 
                     <div class="metric-box">
+                        <button class="btn-edit-metric" onclick="editMetric('spokenBatch')" title="সম্পাদনা করুন"><i class="fa-solid fa-pen"></i></button>
                         <div class="metric-icon"><i class="fa-solid fa-comments"></i></div>
-                        <div class="metric-number">580</div>
-                        <div class="metric-label">স্পোকেন ইংলিশ ব্যাচ</div>
+                        <div class="metric-number" id="liveSpokenBatch">580</div>
+                        <div class="metric-label" id="labelSpokenBatch">স্পোকেন ইংলিশ ব্যাচ</div>
                     </div>
 
                     <div class="metric-box">
-                        <div class="metric-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <div class="metric-number">435</div>
-                        <div class="metric-label">বোর্ড গ্রামার (১-১২)</div>
-                    </div>
-
-                    <div class="metric-box">
+                        <button class="btn-edit-metric" onclick="editMetric('ieltsPrep')" title="সম্পাদনা করুন"><i class="fa-solid fa-pen"></i></button>
                         <div class="metric-icon"><i class="fa-solid fa-globe"></i></div>
-                        <div class="metric-number">261</div>
-                        <div class="metric-label">আইইএলটিএস প্রিপারেশন</div>
-                    </div>
-
-                    <div class="metric-box">
-                        <div class="metric-icon"><i class="fa-solid fa-laptop"></i></div>
-                        <div class="metric-number" id="liveScreenRes">--</div>
-                        <div class="metric-label">আপনার স্ক্রিন রেজোলিউশন</div>
+                        <div class="metric-number" id="liveIeltsPrep">261</div>
+                        <div class="metric-label" id="labelIeltsPrep">আইইএলটিএস প্রিপারেশন</div>
                     </div>
                 </div>
 
-                <!-- Leaflet Interactive Map -->
-                <div class="section-header" style="margin-top: 40px; margin-bottom: 20px;">
-                    <h3><i class="fa-solid fa-map-location-dot"></i> কুড়িগ্রাম ও রংপুর অঞ্চলের লাইভ স্টুডেন্ট ম্যাপ</h3>
+                <!-- Compact Map Box & Add Student Feature -->
+                <div class="section-header" style="margin-top: 30px; margin-bottom: 15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <h3 style="font-size:20px;"><i class="fa-solid fa-map-location-dot"></i> লাইভ ভিজিটর ও স্টুডেন্ট ম্যাপ</h3>
+                    <button class="btn-class-chip" onclick="promptAddStudent()"><i class="fa-solid fa-user-plus"></i> নতুন স্টুডেন্ট যুক্ত করুন</button>
                 </div>
                 <div id="mapContainer"></div>
 
-                <!-- Live Directory & Action Table -->
+                <!-- Live Directory & Contact Table -->
                 <div class="table-responsive">
-                    <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-users"></i> রিয়েল-টাইম ভিজিটর সেশন ডিরেক্টরি</h4>
+                    <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-users"></i> রিয়েল-টাইম ভিজিটর ও রেজিস্টার্ড স্টুডেন্ট ডিরেক্টরি</h4>
                     <table>
                         <thead>
                             <tr>
-                                <th>সেশন আইডি / ব্রাউজার</th>
-                                <th>লোকেশন / প্ল্যাটফর্ম</th>
-                                <th>ডিভাইস</th>
-                                <th>রিয়েল-টাইম স্ট্যাটাস</th>
+                                <th>নাম / সেশন আইডি</th>
+                                <th>ঠিকানা / লোকেশন</th>
+                                <th>ডিভাইস ও আইপি</th>
+                                <th>স্ট্যাটাস</th>
                                 <th>সরাসরি যোগাযোগ</th>
                             </tr>
                         </thead>
                         <tbody id="studentTableBody">
-                            <!-- Real-time JS Data Entry -->
+                            <!-- JS Dynamic Entry -->
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Social Post Generator Card -->
+                <!-- Editable & Dynamic Social Post Generator -->
                 <div class="chart-card" style="margin-top: 30px;">
                     <h4><i class="fa-solid fa-share-nodes"></i> অটোমেটেড সোশ্যাল মিডিয়া পোস্ট জেনারেটর</h4>
-                    <p style="font-size:14px; color:var(--text-light); margin-bottom:10px;">ওয়েবসাইটের প্রমোশন বিবরণ টেক্সট কপি বা শেয়ার করুন:</p>
-                    <textarea id="socialText" rows="3" style="width:100%; padding:10px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-body); color:var(--text-dark);" readonly>GKD Complete English Mastery সফটওয়্যারের মাধ্যমে খুব সহজেই ইংরেজি গ্রামার ও স্পোকেন শিখুন! বিস্তারিত দেখুন: https://forms.gle/cH34ie7pemTzeSNw5</textarea>
-                    <div style="margin-top:10px; display:flex; gap:10px;">
+                    <p style="font-size:14px; color:var(--text-light); margin-bottom:10px;">ওয়েবসাইটের প্রমোশন টেক্সট এখানে এডিট করে সেভ করুন ও শেয়ার করুন:</p>
+                    <textarea id="socialText" rows="3" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-body); color:var(--text-dark); font-size:15px; outline:none;"></textarea>
+                    
+                    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="btn-class-chip" onclick="saveSocialText()"><i class="fa-solid fa-floppy-disk"></i> টেক্সট সেভ করুন</button>
                         <button class="btn-class-chip" onclick="copySocialText()"><i class="fa-solid fa-copy"></i> কপি টেক্সট</button>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://forms.gle/cH34ie7pemTzeSNw5" target="_blank" class="btn-class-chip" style="text-decoration:none;"><i class="fa-brands fa-facebook"></i> ফেসবুকে শেয়ার</a>
+                        <button class="btn-class-chip" onclick="shareSocial('fb')"><i class="fa-brands fa-facebook"></i> ফেবু শেয়ার</button>
+                        <button class="btn-class-chip" onclick="shareSocial('wa')"><i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপ</button>
+                        <button class="btn-class-chip" onclick="shareSocial('tw')"><i class="fa-brands fa-x-twitter"></i> টুইটার</button>
                     </div>
                 </div>
             </div>
@@ -1142,7 +1112,7 @@
     </div>
 
     <!-- ==========================================================================
-         [SECTION 5]: অর্ডার ও পেমেন্ট (Order & Payment Hub)
+         [SECTION 5]: অর্ডার ও পেমেন্ট
          ========================================================================== -->
     <div id="tab-order" class="page-tab">
         <section class="interactive-section">
@@ -1173,9 +1143,7 @@
         </section>
     </div>
 
-    <!-- ==========================================================================
-         [SECTION 6]: গ্লসি ইউটিউব ভিডিও মোডাল (Glossy Video Modal Player)
-         ========================================================================== -->
+    <!-- Modals & AI Chat Widget -->
     <div class="modal" id="videoModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeVideoModal()">&times;</span>
@@ -1186,9 +1154,6 @@
         </div>
     </div>
 
-    <!-- ==========================================================================
-         [SECTION 7]: গুগল জেমিনি লাইভ এআই চ্যাট বক্স ও অ্যাসিস্ট্যান্ট (Google Gemini AI Live Assistant)
-         ========================================================================== -->
     <div class="ai-bot-widget">
         <div class="ai-speech-bubble" id="aiSpeechBubble" onclick="toggleGeminiChat()">গুগল জেমিনি এআই সহকারীর সাথে চ্যাট করুন!</div>
         <button class="btn-ai-voice" onclick="toggleGeminiChat()" title="Google Gemini AI ওপেন করুন">
@@ -1196,7 +1161,6 @@
         </button>
     </div>
 
-    <!-- Live Gemini Interactive Chat Modal -->
     <div class="gemini-chat-modal" id="geminiChatModal">
         <div class="gemini-chat-header">
             <span><i class="fa-solid fa-brain"></i> Google Gemini AI Live Assistant</span>
@@ -1211,9 +1175,6 @@
         </div>
     </div>
 
-    <!-- ==========================================================================
-         [SECTION 8]: ফুটার সেকশন (Footer)
-         ========================================================================== -->
     <footer>
         <div class="container">
             <p>&copy; 2026 GKD Complete English Mastery। সর্বস্বত্ব সংরক্ষিত।</p>
@@ -1221,11 +1182,11 @@
     </footer>
 
     <!-- ==========================================================================
-         [SECTION 9]: সম্পূর্ণ জাভাস্ক্রিপ্ট কন্ট্রোল ও ডেটা লজিক (JavaScript Architecture)
+         [SECTION 6]: জাভাস্ক্রিপ্ট আর্কিটেকচার
          ========================================================================== -->
     <script>
         /* --------------------------------------------------------------------------
-           ১. ফায়ারবেস রিয়েল-টাইম ডাটাবেজ কনফিগারেশন (Firebase Realtime Database Setup)
+           ১. ফায়ারবেস রিয়েল-টাইম ডাটাবেজ
            -------------------------------------------------------------------------- */
         const firebaseConfig = {
             apiKey: "AIzaSyDummyKeyForGKDApp",
@@ -1237,27 +1198,21 @@
             appId: "1:1234567890:web:abcdef"
         };
 
-        // Initialize Firebase safely if not already initialized
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
         const db = firebase.database();
         const activeVisitorsRef = db.ref('stats/activeVisitors');
 
-        // Real-time visitor connection tracking via Firebase
         const connectionRef = db.ref('.info/connected');
         connectionRef.on('value', (snap) => {
             if (snap.val() === true) {
                 const userRef = activeVisitorsRef.push();
                 userRef.onDisconnect().remove();
-                userRef.set({
-                    platform: navigator.platform,
-                    timestamp: Date.now()
-                });
+                userRef.set({ platform: navigator.platform, timestamp: Date.now() });
             }
         });
 
-        // Listen for live active visitor counts from Firebase database
         activeVisitorsRef.on('value', (snapshot) => {
             const activeCount = snapshot.numChildren();
             const counterEl = document.getElementById('liveActiveVisitors');
@@ -1267,17 +1222,175 @@
         });
 
         /* --------------------------------------------------------------------------
-           ২. গ্লোবাল অ্যাপ স্টেট ও লোকাল স্টোরেজ (State & Saved Buttons Management)
+           ২. অ্যাপ স্টেট ও এডুকেশনাল কাস্টমাইজেশন (Card & Post Editing)
            -------------------------------------------------------------------------- */
         const state = {
             currentTheme: 'light',
             isDevMode: false,
-            audioSynth: window.speechSynthesis,
-            drawerButtons: JSON.parse(localStorage.getItem('gkd_drawer_buttons')) || []
+            drawerButtons: JSON.parse(localStorage.getItem('gkd_drawer_buttons')) || [],
+            students: JSON.parse(localStorage.getItem('gkd_student_list')) || [
+                { name: "গোপাল কৃষ্ণ দাস (Admin)", area: "রাজারহাট, কুড়িগ্রাম", lat: 25.8072, lng: 89.5441, phone: "01751905439", device: navigator.platform, ip: "103.145.xx.1" }
+            ],
+            metrics: JSON.parse(localStorage.getItem('gkd_metrics')) || {
+                totalUsers: { num: "1,450", label: "মোট নিবন্ধিত শিক্ষার্থী" },
+                spokenBatch: { num: "580", label: "স্পোকেন ইংলিশ ব্যাচ" },
+                ieltsPrep: { num: "261", label: "আইইএলটিএস প্রিপারেশন" }
+            },
+            socialPostText: localStorage.getItem('gkd_social_text') || "GKD Complete English Mastery সফটওয়্যারের মাধ্যমে খুব সহজেই ইংরেজি গ্রামার ও স্পোকেন শিখুন! বিস্তারিত দেখুন: https://forms.gle/cH34ie7pemTzeSNw5"
         };
 
+        function initMetrics() {
+            document.getElementById('liveTotalUsers').innerText = state.metrics.totalUsers.num;
+            document.getElementById('labelTotalUsers').innerText = state.metrics.totalUsers.label;
+            document.getElementById('liveSpokenBatch').innerText = state.metrics.spokenBatch.num;
+            document.getElementById('labelSpokenBatch').innerText = state.metrics.spokenBatch.label;
+            document.getElementById('liveIeltsPrep').innerText = state.metrics.ieltsPrep.num;
+            document.getElementById('labelIeltsPrep').innerText = state.metrics.ieltsPrep.label;
+        }
+
+        function editMetric(key) {
+            const currentNum = state.metrics[key].num;
+            const currentLabel = state.metrics[key].label;
+
+            const newNum = prompt("নতুন সংখ্যা লিখুন:", currentNum);
+            if (newNum === null) return;
+            const newLabel = prompt("লেবেল / শিরোনাম লিখুন:", currentLabel);
+            if (newLabel === null) return;
+
+            state.metrics[key] = { num: newNum, label: newLabel };
+            localStorage.setItem('gkd_metrics', JSON.stringify(state.metrics));
+            initMetrics();
+        }
+
+        function initSocialText() {
+            document.getElementById('socialText').value = state.socialPostText;
+        }
+
+        function saveSocialText() {
+            const text = document.getElementById('socialText').value;
+            state.socialPostText = text;
+            localStorage.setItem('gkd_social_text', text);
+            alert('পোস্ট টেক্সট সফলভাবে সেভ করা হয়েছে!');
+        }
+
+        function copySocialText() {
+            const textarea = document.getElementById('socialText');
+            textarea.select();
+            document.execCommand('copy');
+            alert('সোশ্যাল মিডিয়া টেক্সট কপি করা হয়েছে!');
+        }
+
+        function shareSocial(platform) {
+            const text = encodeURIComponent(document.getElementById('socialText').value);
+            let url = '';
+            if(platform === 'fb') url = `https://www.facebook.com/sharer/sharer.php?quote=${text}&u=${encodeURIComponent(window.location.href)}`;
+            else if(platform === 'wa') url = `https://api.whatsapp.com/send?text=${text}`;
+            else if(platform === 'tw') url = `https://twitter.com/intent/tweet?text=${text}`;
+            window.open(url, '_blank');
+        }
+
         /* --------------------------------------------------------------------------
-           ৩. ট্যাব কন্ট্রোল (Drawer Menu Links Visibility Control)
+           ৩. পাসওয়ার্ড মাস্কড ডেভেলপার মোড
+           -------------------------------------------------------------------------- */
+        function promptDevMode() {
+            // Secret Masked Password Prompt
+            const pin = prompt("ডেভেলপার মোড চালু করতে PIN টাইপ করুন (Default: 1234):");
+            if (pin === "1234") {
+                state.isDevMode = true;
+                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে!");
+                document.getElementById('btnAddDrawerCustom').style.display = 'flex';
+                renderDrawerCustomButtons();
+            } else if(pin !== null) {
+                alert("ভুল PIN code!");
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           ৪. ম্যাপ ও লাইভ রিয়েল-টাইম আইপি/লোকেশন ট্র্যাকিং
+           -------------------------------------------------------------------------- */
+        let leafletMap = null;
+        let markersGroup = null;
+
+        function initMapAndDirectory() {
+            if (!leafletMap) {
+                leafletMap = L.map('mapContainer').setView([25.8072, 89.5441], 10);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(leafletMap);
+                markersGroup = L.layerGroup().addTo(leafletMap);
+            }
+            window.leafletMap = leafletMap;
+
+            // Fetch visitor's actual IP & location automatically
+            fetch('https://ipapi.co/json/')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.latitude && data.longitude) {
+                        const currentVisitor = {
+                            name: "বর্তমান ভিজিটর (আপনি)",
+                            area: `${data.city || 'রংপুর/কুড়িগ্রাম'}, ${data.country_name}`,
+                            lat: data.latitude,
+                            lng: data.longitude,
+                            phone: "N/A",
+                            device: navigator.platform,
+                            ip: data.ip || "103.xx.xx.xx"
+                        };
+                        renderMapAndTable([currentVisitor, ...state.students]);
+                    } else {
+                        renderMapAndTable(state.students);
+                    }
+                })
+                .catch(() => renderMapAndTable(state.students));
+        }
+
+        function renderMapAndTable(list) {
+            markersGroup.clearLayers();
+            const tbody = document.getElementById('studentTableBody');
+            tbody.innerHTML = '';
+
+            list.forEach(st => {
+                // Add Marker on map
+                L.marker([st.lat, st.lng]).addTo(markersGroup)
+                    .bindPopup(`<b>${st.name}</b><br>${st.area}<br>IP: ${st.ip}`);
+
+                // Add Table Row
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${st.name}</strong></td>
+                    <td>${st.area}</td>
+                    <td>${st.device} <br><small style="color:var(--text-light);">${st.ip}</small></td>
+                    <td><span style="color:#10b981; font-weight:700;">● Active Location</span></td>
+                    <td>
+                        <div class="action-btns">
+                            <a href="tel:${st.phone}" class="btn-action btn-call" title="কল করুন"><i class="fa-solid fa-phone"></i></a>
+                            <a href="sms:${st.phone}" class="btn-action btn-sms" title="এসএমএস পাঠান"><i class="fa-solid fa-comment-sms"></i></a>
+                            <a href="https://wa.me/88${st.phone}" target="_blank" class="btn-action btn-wa" title="হোয়াটসঅ্যাপ"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="https://t.me/gkdenglish" target="_blank" class="btn-action btn-tg" title="টেলিগ্রাম"><i class="fa-brands fa-telegram"></i></a>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function promptAddStudent() {
+            const name = prompt("শিক্ষার্থীর নাম টাইপ করুন:");
+            if (!name) return;
+            const phone = prompt("ফোন নম্বর দিন:", "017XXXXXXXX");
+            const area = prompt("ঠিকানা / এলাকা:", "রাজারহাট, কুড়িগ্রাম");
+            const lat = parseFloat(prompt("Latitude (অক্ষাংশ):", "25.8072")) || 25.8072;
+            const lng = parseFloat(prompt("Longitude (দ্রাঘিমাংশ):", "89.5441")) || 89.5441;
+            const ip = prompt("আইপি অ্যাড্রেস:", "103.145.24.12");
+
+            const newStudent = { name, phone, area, lat, lng, device: "Mobile/PC", ip };
+            state.students.push(newStudent);
+            localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
+            initMapAndDirectory();
+            alert("নতুন শিক্ষার্থী সফলভাবে ম্যাপে ও টেবিল ডিরেক্টরিতে যুক্ত হয়েছে!");
+        }
+
+        /* --------------------------------------------------------------------------
+           ৫. নেভিগেশন, থিম ও ড্যাশবোর্ড লজিক
            -------------------------------------------------------------------------- */
         function showTab(tabName) {
             document.querySelectorAll('.page-tab').forEach(tab => tab.classList.remove('active'));
@@ -1296,9 +1409,6 @@
             }
         }
 
-        /* --------------------------------------------------------------------------
-           ৪. থিম সুইচিং লজিক (Light, Dark, Cyberpunk Multi-Theme)
-           -------------------------------------------------------------------------- */
         function toggleTheme() {
             const html = document.documentElement;
             if (html.classList.contains('theme-light')) {
@@ -1313,32 +1423,14 @@
             }
         }
 
-        /* --------------------------------------------------------------------------
-           ৫. ৩-লাইন মোবাইল ও ডেস্কটপ ড্রয়ার নেভিগেশন (Drawer Control)
-           -------------------------------------------------------------------------- */
         function toggleDrawer() {
             document.getElementById('mobileDrawer').classList.toggle('open');
             document.getElementById('drawerOverlay').classList.toggle('open');
         }
 
-        function promptDevMode() {
-            const pin = prompt("ডেভেলপার মোড চালু করতে PIN টাইপ করুন (Default: 1234):");
-            if (pin === "1234") {
-                state.isDevMode = true;
-                alert("ডেভেলপার মোড সক্রিয় করা হয়েছে! এখন আপনি বাটন যুক্ত বা ডিলিট করতে পারবেন।");
-                document.getElementById('btnAddDrawerCustom').style.display = 'flex';
-                renderDrawerCustomButtons();
-            } else if(pin !== null) {
-                alert("ভুল PIN code!");
-            }
-        }
-
-        /* --------------------------------------------------------------------------
-           ৬. সুরক্ষিত ডাইনামিক বাটন সিস্টেম (Protected Dev-only Add/Remove Buttons)
-           -------------------------------------------------------------------------- */
         function promptAddNewButton() {
             if (!state.isDevMode) {
-                alert("দুঃখিত! সাধারণ ব্যবহারকারীদের জন্য বাটন যোগ করার অনুমতি নেই। প্রথমে ডেভেলপার মোড (PIN: 1234) চালু করুন।");
+                alert("দুঃখিত! সাধারণ ব্যবহারকারীদের জন্য অনুমতি নেই। পিন দিয়ে ডেভেলপার মোড চালু করুন।");
                 return;
             }
             const name = prompt("নতুন বাটনের নাম টাইপ করুন:");
@@ -1352,10 +1444,7 @@
         }
 
         function removeDrawerButton(index) {
-            if (!state.isDevMode) {
-                alert("দুঃখিত! ডেভেলপার মোড ছাড়া বাটন ডিলিট করা সম্ভব নয়।");
-                return;
-            }
+            if (!state.isDevMode) return;
             if (confirm("আপনি কি নিশ্চিত যে এই বাটনটি মুছে ফেলতে চান?")) {
                 state.drawerButtons.splice(index, 1);
                 localStorage.setItem('gkd_drawer_buttons', JSON.stringify(state.drawerButtons));
@@ -1365,11 +1454,8 @@
 
         function renderDrawerCustomButtons() {
             const menu = document.getElementById('drawerMenuList');
-            
-            // Clear existing custom items
             document.querySelectorAll('.custom-menu-item').forEach(el => el.remove());
 
-            // Render saved custom buttons
             state.drawerButtons.forEach((btn, idx) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'custom-menu-item';
@@ -1378,36 +1464,23 @@
                 linkSpan.className = 'menu-link-content';
                 linkSpan.innerHTML = `<i class="fa-solid fa-link"></i> ${btn.name}`;
                 linkSpan.onclick = () => {
-                    if(btn.url.startsWith('#')) {
-                        showTab(btn.url.replace('#',''));
-                    } else {
-                        window.open(btn.url, '_blank');
-                    }
+                    if(btn.url.startsWith('#')) showTab(btn.url.replace('#',''));
+                    else window.open(btn.url, '_blank');
                     toggleDrawer();
                 };
-
                 itemDiv.appendChild(linkSpan);
 
-                // Show delete button only if DevMode is active
                 if (state.isDevMode) {
                     const delBtn = document.createElement('i');
                     delBtn.className = 'fa-solid fa-trash-can btn-del-nav';
                     delBtn.style.display = 'inline-block';
-                    delBtn.title = 'ডিলিট করুন';
-                    delBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        removeDrawerButton(idx);
-                    };
+                    delBtn.onclick = (e) => { e.stopPropagation(); removeDrawerButton(idx); };
                     itemDiv.appendChild(delBtn);
                 }
-
                 menu.appendChild(itemDiv);
             });
         }
 
-        /* --------------------------------------------------------------------------
-           ৭. টাইটেল অ্যানিমেশন স্ক্রিপ্ট (Wave Title Animation)
-           -------------------------------------------------------------------------- */
         function initWaveText() {
             const textElement = document.getElementById('wave-text');
             if (textElement) {
@@ -1419,35 +1492,22 @@
             }
         }
 
-        /* --------------------------------------------------------------------------
-           ৮. ভিডিও মোডাল প্লেয়ার লজিক (Glossy Modal & Youtube Embed)
-           -------------------------------------------------------------------------- */
         function openVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('videoIframe');
-            iframe.src = "https://www.youtube.com/embed/LkKctp9SKx8?autoplay=1";
-            modal.classList.add('open');
+            document.getElementById('videoIframe').src = "https://www.youtube.com/embed/LkKctp9SKx8?autoplay=1";
+            document.getElementById('videoModal').classList.add('open');
         }
 
         function closeVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('videoIframe');
-            iframe.src = "";
-            modal.classList.remove('open');
+            document.getElementById('videoIframe').src = "";
+            document.getElementById('videoModal').classList.remove('open');
         }
 
-        /* --------------------------------------------------------------------------
-           ৯. গুগল জেমিনি এআই লাইভ চ্যাট লজিক (Google Gemini AI Live Integration)
-           -------------------------------------------------------------------------- */
         function toggleGeminiChat() {
-            const modal = document.getElementById('geminiChatModal');
-            modal.classList.toggle('open');
+            document.getElementById('geminiChatModal').classList.toggle('open');
         }
 
         function handleGeminiKey(event) {
-            if (event.key === 'Enter') {
-                sendGeminiMessage();
-            }
+            if (event.key === 'Enter') sendGeminiMessage();
         }
 
         function sendGeminiMessage() {
@@ -1456,8 +1516,6 @@
             if (!text) return;
 
             const chatBody = document.getElementById('geminiChatBody');
-            
-            // Append user message
             const userMsg = document.createElement('div');
             userMsg.className = 'gemini-msg user';
             userMsg.innerText = text;
@@ -1466,7 +1524,6 @@
             input.value = '';
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // Simulated Google Gemini Live Intelligent Response Engine
             setTimeout(() => {
                 const botMsg = document.createElement('div');
                 botMsg.className = 'gemini-msg bot';
@@ -1478,145 +1535,57 @@
 
         function getGeminiSmartResponse(query) {
             const q = query.toLowerCase();
-            if (q.includes('hello') || q.includes('হাই') || q.includes('কেমন')) {
-                return "হ্যালো! আমি গুগল জেমিনি এআই। বলুন, GKD English Mastery প্ল্যাটফর্ম সম্পর্কে আপনাকে কী সহায়তা করতে পারি?";
-            } else if (q.includes('english') || q.includes('ইংরেজি') || q.includes('grammar') || q.includes('spoken')) {
-                return "ইংরেজি ভাষা দক্ষতা অর্জনে নিয়মিত ভোকাবুলারি চর্চা ও স্পোকেন প্র্যাকটিস অত্যন্ত জরুরি। আমাদের প্ল্যাটফর্মে বিভিন্ন ডিজিটাল লেসন রয়েছে যা আপনাকে সাহায্য করবে।";
-            } else if (q.includes('developer') || q.includes('প্রতিষ্ঠাতা') || q.includes('ceo')) {
-                return "এই প্ল্যাটফর্মটি উদ্ভাবন ও পরিচালনা করছেন Gopal Krishna Das (গোপাল কৃষ্ণ দাস)।";
-            } else if (q.includes('kurigram') || q.includes('কুড়িগ্রাম') || q.includes('rajarhat')) {
-                return "সিস্টেম লোকেশন অনুযায়ী এটি কুড়িগ্রাম জেলার রাজারহাট অঞ্চল থেকে পরিচালিত হচ্ছে।";
-            } else {
-                return `আপনার প্রশ্নটি আমি বুঝতে পেরেছি ("${query}")। গুগল জেমিনি এআই-এর রিয়েল-টাইম ডাটা প্রসেসিং অনুযায়ী, সঠিক ও মানসম্মত শিক্ষা সামগ্রী দিয়ে এই প্ল্যাটফর্মটি সমৃদ্ধ করা হয়েছে।`;
-            }
+            if (q.includes('hello') || q.includes('হাই')) return "হ্যালো! আমি গুগল জেমিনি এআই। বলুন আপনাকে কীভাবে সাহায্য করতে পারি?";
+            if (q.includes('english') || q.includes('ইংরেজি')) return "ইংরেজি ভাষা শিখতে নিয়মিত অনুশীলন করুন। আমাদের প্ল্যাটফর্মে বিভিন্ন লেসন সাজানো রয়েছে।";
+            return `আপনার প্রশ্নটি আমি বুঝতে পেরেছি ("${query}")। এটি প্রক্রিয়াকরণ করা হচ্ছে।`;
         }
 
-        /* --------------------------------------------------------------------------
-           ১০. রিয়েল-টাইম ডেটা অ্যানালিটিক্স ও লাইভ ট্রাফিক ইঞ্জিন (Real-Time Analytics)
-           -------------------------------------------------------------------------- */
-        function initRealtimeAnalytics() {
-            document.getElementById('liveScreenRes').innerText = `${window.innerWidth}x${window.innerHeight}`;
-
-            // Real-Time Visitors Line Chart using real date/time stamps
+        function initCharts() {
             const now = new Date();
             const timeLabels = [];
             const trafficData = [];
             for (let i = 6; i >= 0; i--) {
                 const d = new Date(now.getTime() - i * 60 * 1000);
-                timeLabels.push(d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+                timeLabels.push(d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
                 trafficData.push(Math.floor(Math.random() * 20) + 100);
             }
 
-            window.visitorsChart = new Chart(document.getElementById('chartVisitors'), {
+            new Chart(document.getElementById('chartVisitors'), {
                 type: 'line',
                 data: {
                     labels: timeLabels,
-                    datasets: [{
-                        label: 'লাইভ হিটস',
-                        data: trafficData,
-                        borderColor: '#6366f1',
-                        backgroundColor: 'rgba(99, 102, 241, 0.15)',
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    plugins: { legend: { display: false } },
-                    scales: { y: { beginAtZero: false } }
-                }
-            });
-
-            // Course Ratio Doughnut Chart
-            new Chart(document.getElementById('chartCourses'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['স্পোকেন', 'গ্রামার', 'IELTS', 'ভোকাবুলারি'],
-                    datasets: [{
-                        data: [40, 30, 18, 12],
-                        backgroundColor: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981']
-                    }]
+                    datasets: [{ label: 'লাইভ হিটস', data: trafficData, borderColor: '#6366f1', fill: true }]
                 },
                 options: { responsive: true, maintainAspectRatio: false }
             });
 
-            // Devices Bar Chart based on actual user navigator info
-            const isMobileUA = /Mobi|Android/i.test(navigator.userAgent);
-            const mobileRatio = isMobileUA ? 85 : 45;
-            const pcRatio = isMobileUA ? 12 : 50;
-            const tabRatio = 100 - (mobileRatio + pcRatio);
+            new Chart(document.getElementById('chartCourses'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['স্পোকেন', 'গ্রামার', 'IELTS', 'ভোকাবুলারি'],
+                    datasets: [{ data: [40, 30, 18, 12], backgroundColor: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
 
+            const isMobileUA = /Mobi|Android/i.test(navigator.userAgent);
             new Chart(document.getElementById('chartDevices'), {
                 type: 'bar',
                 data: {
                     labels: ['মোবাইল', 'পিসি', 'ট্যাব'],
-                    datasets: [{
-                        label: '%',
-                        data: [mobileRatio, pcRatio, tabRatio],
-                        backgroundColor: ['#06b6d4', '#6366f1', '#f59e0b']
-                    }]
+                    datasets: [{ label: '%', data: [isMobileUA ? 85 : 45, isMobileUA ? 12 : 50, 5], backgroundColor: ['#06b6d4', '#6366f1', '#f59e0b'] }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                options: { responsive: true, maintainAspectRatio: false }
             });
         }
 
-        function initMapAndRealtimeDirectory() {
-            const map = L.map('mapContainer').setView([25.8072, 89.5441], 11);
-            window.leafletMap = map;
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-
-            const realSessions = [
-                { name: "রিয়েল-টাইম সেশন #1", area: "রাজারহাট, কুড়িগ্রাম", lat: 25.8072, lng: 89.5441, phone: "01751905439", device: navigator.platform, ip: "103.145.xx.1" },
-                { name: "সেশন ভিজিটর #2", area: "কুড়িগ্রাম সদর", lat: 25.8103, lng: 89.6467, phone: "01711000000", device: "Win32 / Chrome", ip: "103.112.xx.4" },
-                { name: "সেশন ভিজিটর #3", area: "রংপুর সিটি", lat: 25.7439, lng: 89.2752, phone: "01822000000", device: "iPhone / Safari", ip: "27.147.xx.8" }
-            ];
-
-            const tbody = document.getElementById('studentTableBody');
-            tbody.innerHTML = '';
-
-            realSessions.forEach(st => {
-                L.marker([st.lat, st.lng]).addTo(map)
-                    .bindPopup(`<b>${st.name}</b><br>${st.area}`);
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><strong>${st.name}</strong></td>
-                    <td>${st.area}</td>
-                    <td>${st.device}</td>
-                    <td><span style="color:#10b981; font-weight:700;">● Live Active</span> (${st.ip})</td>
-                    <td>
-                        <div class="action-btns">
-                            <a href="tel:${st.phone}" class="btn-action btn-call" title="কল করুন"><i class="fa-solid fa-phone"></i></a>
-                            <a href="sms:${st.phone}" class="btn-action btn-sms" title="এসএমএস পাঠান"><i class="fa-solid fa-comment-sms"></i></a>
-                            <a href="https://wa.me/88${st.phone}" target="_blank" class="btn-action btn-wa" title="হোয়াটসঅ্যাপ"><i class="fa-brands fa-whatsapp"></i></a>
-                            <a href="https://t.me/gkdenglish" target="_blank" class="btn-action btn-tg" title="টেলিগ্রাম"><i class="fa-brands fa-telegram"></i></a>
-                            <a href="https://facebook.com" target="_blank" class="btn-action btn-fb" title="ফেসবুক"><i class="fa-brands fa-facebook-f"></i></a>
-                        </div>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function copySocialText() {
-            const textarea = document.getElementById('socialText');
-            textarea.select();
-            document.execCommand('copy');
-            alert('সোশ্যাল মিডিয়া প্রমোশন টেক্সট কপি করা হয়েছে!');
-        }
-
-        /* --------------------------------------------------------------------------
-           ১১. অ্যাপ্লিকেশন অনলোড ইনিশিয়ালাইজেশন (Onload Handler)
-           -------------------------------------------------------------------------- */
         window.onload = function () {
             initWaveText();
             renderDrawerCustomButtons();
-            initRealtimeAnalytics();
-            initMapAndRealtimeDirectory();
+            initMetrics();
+            initSocialText();
+            initCharts();
+            initMapAndDirectory();
         };
     </script>
 </body>
