@@ -408,7 +408,7 @@
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                         <h3>সহজ শিক্ষণ পদ্ধতি</h3>
-                        <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন。</p>
+                        <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন।</p>
                     </div>
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
@@ -782,7 +782,7 @@
             state.students.push(newStudent);
             localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
             initMapAndDirectory();
-            alert("নতুন শিক্ষার্থী সফলভাবে যুক্ত হয়েছে!");
+            alert("নতুন শিক্ষার্থী সফলভাবে যুক্ত হয়েছে এবং পার্মানেন্টলি সেভ করা হয়েছে!");
         }
 
         function editStudent(index) {
@@ -791,17 +791,19 @@
             const name = prompt("নাম পরিবর্তন করুন:", st.name);
             if (name === null) return;
             const phone = prompt("মোবাইল নম্বর পরিবর্তন করুন:", st.phone);
+            if (phone === null) return;
             const area = prompt("ঠিকানা পরিবর্তন করুন:", st.area);
+            if (area === null) return;
 
             state.students[index] = { ...st, name, phone, area };
             localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
             initMapAndDirectory();
-            alert("শিক্ষার্থীর তথ্য সফলভাবে আপডেট করা হয়েছে!");
+            alert("শিক্ষার্থীর তথ্য সফলভাবে আপডেট এবং সেভ করা হয়েছে!");
         }
 
         function deleteStudent(index) {
             if (!state.isDevMode) return;
-            if (confirm(`আপনি কি "${state.students[index].name}" কে তালিকা থেকে মুছে ফেলতে চান?`)) {
+            if (confirm(`আপনি কি "${state.students[index].name}" কে তালিকা থেকে স্থায়ীভাবে মুছে ফেলতে চান?`)) {
                 state.students.splice(index, 1);
                 localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
                 initMapAndDirectory();
