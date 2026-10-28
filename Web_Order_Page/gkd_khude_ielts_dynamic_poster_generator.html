@@ -69,6 +69,21 @@
             display: block;
         }
 
+/* সঠিক অ্যাসপেক্ট রেশিও মেইনটেইন করার জন্য */
+.poster-preview-wrapper {
+    position: relative;
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+}
+.poster-preview-wrapper.ratio-16-9 {
+    aspect-ratio: 16 / 9;
+}
+.poster-preview-wrapper.ratio-9-16 {
+    aspect-ratio: 9 / 16;
+    max-width: 450px;
+    margin: 0 auto;
+}
+        
         /* ব্যাজ এলিমেন্টের সঠিক সংশোধন */
 .poster-badge {
     background: linear-gradient(135deg, #d4af37, #f7ef8a, #aa771c);
