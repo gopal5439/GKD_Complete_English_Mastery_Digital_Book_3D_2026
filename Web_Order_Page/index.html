@@ -408,7 +408,7 @@
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                         <h3>সহজ শিক্ষণ পদ্ধতি</h3>
-                        <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন।</p>
+                        <p>জটিল নিয়ম ছাড়াই বাস্তব জীবনের কথোপকথন এবং সহজ উদাহরণের মাধ্যমে ইংলিশ মাস্টার করুন。</p>
                     </div>
                     <div class="touch-card">
                         <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
@@ -782,7 +782,7 @@
             state.students.push(newStudent);
             localStorage.setItem('gkd_student_list', JSON.stringify(state.students));
             initMapAndDirectory();
-            alert("নতুন শিক্ষার্থী সফলভাবে যুক্ত হয়েছে এবং ডিভাইস/আইপি অটোমেটিক ডিটেক্ট করা হয়েছে!");
+            alert("নতুন শিক্ষার্থী সফলভাবে যুক্ত হয়েছে!");
         }
 
         function editStudent(index) {
@@ -823,9 +823,13 @@
             
             if (tabName === 'dashboard') {
                 setTimeout(() => {
-                    if (window.leafletMap) window.leafletMap.invalidateSize();
-                    initCharts(); // Refresh charts to prevent blank display
-                }, 200);
+                    if (window.leafletMap) {
+                        window.leafletMap.invalidateSize();
+                    } else {
+                        initMapAndDirectory();
+                    }
+                    initCharts();
+                }, 250);
             }
         }
 
