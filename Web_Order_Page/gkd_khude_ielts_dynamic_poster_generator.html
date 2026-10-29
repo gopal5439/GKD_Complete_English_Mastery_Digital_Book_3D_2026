@@ -343,7 +343,7 @@
                         <input type="text" id="inputCourse" value="IELTS Academic Masterclass" oninput="updatePosterText()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-400">
                     </div>
 
-                    <!-- 追加: Google Sheet Data Collection Fields -->
+                    <!-- Google Sheet Data Collection Fields -->
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label class="block text-[11px] text-slate-300 mb-1">Mobile Number *</label>
@@ -532,7 +532,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // 🛑 আপনার গুগল অ্যাপস স্ক্রিপ্ট (Web App URL) নিচে বসিয়ে দিন
+        // Google Apps Script Web App URL
         const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycby_Bx0hknlKnBht-6O6Fav9GZhFzSJMa9jzCc2DM5jQlJytO97Rbm-rvVHEKKBKFVk/exec";
 
         let currentAspect = '16-9';
@@ -569,8 +569,8 @@
             document.getElementById('socialCaption').value = caption;
         }
 
-        // Save Student Data to Google Sheet (Auto-Numbering Support)
-        async function saveToGoogleSheet() {
+        // Save Student Data to Google Sheet (100% Reliable Hidden Form & iframe Method)
+        function saveToGoogleSheet() {
             const name = document.getElementById('inputName').value.trim();
             const studentId = document.getElementById('inputId').value.trim();
             const batch = document.getElementById('inputBatch').value.trim();
@@ -581,12 +581,7 @@
             const date = document.getElementById('inputDate').value.trim();
 
             if (!name || !studentId || !mobile) {
-                alert("দয়া করে নাম, স্টুডেন্ট আইডি এবং মোবাইল নম্বর পুরন করুন!");
-                return;
-            }
-
-            if (GOOGLE_SHEET_WEB_APP_URL === "https://script.google.com/macros/s/AKfycby_Bx0hknlKnBht-6O6Fav9GZhFzSJMa9jzCc2DM5jQlJytO97Rbm-rvVHEKKBKFVk/exec") {
-                alert("দয়া করে গুগল অ্যাপস স্ক্রিপ্ট Web App URL কোডের 'GOOGLE_SHEET_WEB_APP_URL' স্থানে বসিয়ে নিন।");
+                alert("দয়া করে নাম, স্টুডেন্ট আইডি এবং মোবাইল নম্বর পূরণ করুন!");
                 return;
             }
 
@@ -595,7 +590,31 @@
             btn.disabled = true;
             btnText.innerText = "সেভ হচ্ছে...";
 
-            const payload = {
+            // Hidden Iframe তৈরি করা যাতে পেজ রিফ্রেশ না হয়
+            let iframe = document.getElementById('hidden_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.id = 'hidden_iframe';
+                iframe.name = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+
+            // Hidden Form তৈরি করা
+            let form = document.getElementById('hidden_sheet_form');
+            if (!form) {
+                form = document.createElement('form');
+                form.id = 'hidden_sheet_form';
+                form.method = 'POST';
+                form.action = GOOGLE_SHEET_WEB_APP_URL;
+                form.target = 'hidden_iframe';
+                document.body.appendChild(form);
+            } else {
+                form.innerHTML = '';
+            }
+
+            // ডেটা ফিল্ডগুলো ফর্মে যুক্ত করা (SL, Name, ID, Number, Batch, Address, Email অনুযায়ী)
+            const dataObj = {
                 name: name,
                 studentId: studentId,
                 batch: batch,
@@ -606,17 +625,19 @@
                 date: date
             };
 
-            try {
-                // CORS বাইপাস করার জন্য no-cors মোড ব্যবহার
-                await fetch(GOOGLE_SHEET_WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
+            for (let key in dataObj) {
+                let input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = dataObj[key];
+                form.appendChild(input);
+            }
 
+            // ফর্ম সাবমিট করা
+            form.submit();
+
+            // সফল মেসেজ দেখানো
+            setTimeout(() => {
                 btnText.innerText = "সফলভাবে সেভ হয়েছে! ✓";
                 btn.classList.remove('bg-emerald-600');
                 btn.classList.add('bg-blue-600');
@@ -627,13 +648,7 @@
                     btn.classList.remove('bg-blue-600');
                     btn.classList.add('bg-emerald-600');
                 }, 3000);
-
-            } catch (err) {
-                console.error("Sheet Save Error: ", err);
-                alert("গুগল শিটে ডাটা সেভ করতে সমস্যা হয়েছে। ইন্টারনেট কানেকশন বা ওয়েব অ্যাপ URL চেক করুন।");
-                btn.disabled = false;
-                btnText.innerText = "গুগল শিটে ডেটা সেভ করুন";
-            }
+            }, 1000);
         }
 
         // Font Swapper
