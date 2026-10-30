@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken Master - Professional Spoken English Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Tiro Bangla -->
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for custom links & easy management */
+        :root {
+            --font-bangla: 'Tiro Bangla', serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
+        /* Font application rules */
+        body, p, span, h1, h2, h3, h4, h5, h6, button, div, li {
+            font-family: var(--font-bangla);
+        }
+
+        /* Specific English class for crisp Times New Roman text */
+        .en-text {
+            font-family: var(--font-english) !important;
+        }
+
+        * {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Dark background with rich radial gradient */
+        body {
+            background: radial-gradient(circle at 50% 15%, #1e1b4b 0%, #0f172a 55%, #020617 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Interactive Particle Canvas Background */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Background Audio Wave Animation Overlay */
+        .bg-audio-waves {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.14;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cpath d='M0,300 C150,200 350,400 500,250 C650,100 800,350 950,200 C1100,50 1200,200 1200,200 L1200,800 L0,800 Z' fill='none' stroke='%236366f1' stroke-width='4'/%3E%3Cpath d='M0,450 C200,350 400,500 600,400 C800,300 1000,450 1200,350' fill='none' stroke='%2338bdf8' stroke-width='3'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        /* 3D Dynamic Bounce & Shimmer Title Effect */
+        .title-3d-wrapper {
+            perspective: 800px;
+            display: inline-block;
+        }
+
+        .title-3d {
+            display: inline-block;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.6), 0 2px 4px rgba(56, 189, 248, 0.4);
+            transform-style: preserve-3d;
+            animation: periodicJump 4s infinite ease-in-out;
+        }
+
+        @keyframes periodicJump {
+            0%, 75%, 100% {
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+            82% {
+                transform: translateY(-16px) scale(1.05) rotateX(10deg);
+                text-shadow: 0 22px 30px rgba(56, 189, 248, 0.6), 0 4px 10px rgba(168, 85, 247, 0.6);
+            }
+            88% {
+                transform: translateY(2px) scale(0.98) rotateX(-5deg);
+            }
+            93% {
+                transform: translateY(-6px) scale(1.02);
+            }
+        }
+
+        /* 3D Button Container & Base Card */
+        .btn-3d-wrapper {
+            perspective: 1000px;
+        }
+
+        .btn-3d {
+            transition: transform 0.18s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.55), inset 0 2px 3px rgba(255,255,255,0.2), inset 0 -4px 0 rgba(0,0,0,0.4);
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.96) 100%);
+            backdrop-filter: blur(14px);
+        }
+
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .btn-3d:active {
+            transform: translateY(5px) scale(0.98) !important;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 3px 5px rgba(0,0,0,0.7) !important;
+        }
+
+        /* Custom Hover Border Glows */
+        .theme-step1 {
+            border: 2px solid rgba(56, 189, 248, 0.45);
+        }
+        .theme-step1:hover {
+            border-color: rgba(56, 189, 248, 0.95);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.45), inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+
+        .theme-step2 {
+            border: 2px solid rgba(168, 85, 247, 0.45);
+        }
+        .theme-step2:hover {
+            border-color: rgba(168, 85, 247, 0.95);
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.45), inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+
+        .theme-step3 {
+            border: 2px solid rgba(245, 158, 11, 0.45);
+        }
+        .theme-step3:hover {
+            border-color: rgba(245, 158, 11, 0.95);
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.45), inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+
+        .theme-step4 {
+            border: 2px solid rgba(236, 72, 153, 0.5);
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+        }
+        .theme-step4:hover {
+            border-color: rgba(236, 72, 153, 0.95);
+            box-shadow: 0 0 40px rgba(236, 72, 153, 0.5), inset 0 2px 4px rgba(255,255,255,0.35);
+        }
+
+        /* Note Paper Aesthetic */
+        .note-paper {
+            background: #fefce8;
+            background-image: 
+                radial-gradient(#e2e8f0 10%, transparent 11%),
+                linear-gradient(to bottom, transparent 29px, #cbd5e1 30px);
+            background-size: 100% 30px;
+            color: #1e293b;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 10px rgba(255,255,255,0.06);
+            position: relative;
+            border-radius: 18px;
+            transform-style: preserve-3d;
+            transition: transform 0.25s ease-out, box-shadow 0.3s ease;
+        }
+
+        .note-paper:hover {
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(251, 191, 36, 0.25);
+        }
+
+        .ring-binder {
+            position: absolute;
+            top: -18px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 0 20px;
+            z-index: 20;
+        }
+
+        .ring {
+            width: 14px;
+            height: 36px;
+            background: linear-gradient(135deg, #94a3b8, #334155, #cbd5e1);
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(0);
+            animation: ripple-anim 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Speaker Logo Pulse */
+        @keyframes pulse-speaker {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.08) rotate(3deg); }
+        }
+        .pulse-logo {
+            animation: pulse-speaker 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="relative flex flex-col min-h-screen justify-between overflow-x-hidden select-none">
+
+    <!-- Interactive Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+    <div class="bg-audio-waves"></div>
+
+    <!-- Header / Navbar -->
+    <header class="relative z-10 w-full px-4 sm:px-8 py-4 backdrop-blur-md bg-slate-900/70 border-b border-slate-800 shadow-xl">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            
+            <!-- Logo & Brand Name -->
+            <div class="flex items-center gap-3.5 cursor-pointer" onclick="playHeaderSound()">
+                <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-fuchsia-500 p-[2px] shadow-lg shadow-indigo-500/30 pulse-logo">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-microphone-lines text-2xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-400"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-200 to-fuchsia-400 en-text">
+                        Spoken Master
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium">স্মার্ট ইংরেজি শেখার সেরা প্ল্যাটফর্ম</p>
+                </div>
+            </div>
+
+            <!-- Sound Switch -->
+            <div class="flex items-center gap-3">
+                <button id="soundToggleBtn" onclick="toggleSound()" class="px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-300 text-sm flex items-center gap-2 transition duration-200">
+                    <i id="soundIcon" class="fa-solid fa-volume-high text-cyan-400"></i>
+                    <span class="hidden sm:inline">সাউন্ড অন</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 max-w-5xl mx-auto px-4 py-8 flex-1 flex flex-col items-center w-full">
+        
+        <!-- Animated 3D Hero Heading -->
+        <div class="text-center mb-10">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 mb-4 backdrop-blur-md">
+                <i class="fa-solid fa-sparkles text-amber-400"></i> ৩D ইন্টারঅ্যাক্টিভ স্পোকেন গাইড
+            </span>
+            
+            <div class="block">
+                <div class="title-3d-wrapper">
+                    <h2 class="title-3d text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+                        <span class="text-white">সহজ ধাপে </span>
+                        <span class="en-text text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-fuchsia-400">English Fluency</span>
+                        <span class="text-white"> অর্জনের যাত্রা</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOP 3 BUTTONS GRID -->
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            
+            <অবশ্যই! আপনার প্রথম বাটনটির জন্য শুধুমাত্র `<div> ... </div>` অংশটুকু নিচে দেওয়া হলো, যেখানে পুরো বাটনে **`Spoken Mastery 2026.html`** লিংকটি যুক্ত করা আছে এবং "অনুশীলন শুরু করুন" লেখাটি পুরোপুরি ফিট করা আছে:
+
+```html
+            <!-- 1. Foundational Spoken Track Button -->
+            <div class="btn-3d-wrapper">
+                <div id="btnStep1" class="btn-3d theme-step1 rounded-2xl p-6 cursor-pointer flex flex-col justify-between h-56 transition-all duration-200"
+                     onmousemove="handle3DTilt(event, this)" 
+                     onmouseleave="reset3DTilt(this)"
+                     onclick="window.location.href='Spoken Mastery 2026.html'">
+                    
+                    <div class="flex items-start justify-between">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 text-xl shadow-inner">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <span class="en-text text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">Step 01</span>
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-semibold text-cyan-400 mb-1">প্রাথমিক লেভেল</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-1.5 en-text">Foundational Spoken Track</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">শব্দভাণ্ডার ও সহজ বাক্য তৈরির প্রাথমিক ভিত গড়ার কোর্স।</p>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs text-cyan-300 font-bold pt-3 border-t border-slate-800/80 whitespace-nowrap">
+                        <span class="whitespace-nowrap">অনুশীলন শুরু করুন</span>
+                        <i class="fa-solid fa-arrow-right-long ml-2 shrink-0"></i>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 2. Intermediate Practice Hub Button -->
+            <div class="btn-3d-wrapper">
+                <div id="btnStep2" class="btn-3d theme-step2 rounded-2xl p-6 cursor-pointer flex flex-col justify-between h-56 transition-all duration-200"
+                     onmousemove="handle3DTilt(event, this)" 
+                     onmouseleave="reset3DTilt(this)"
+                     onclick="window.location.href='Spoken Mastery 2026.html'">
+                    
+                    <div class="flex items-start justify-between">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 text-xl shadow-inner">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <span class="en-text text-xs font-bold px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30">Step 02</span>
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-semibold text-purple-400 mb-1">মধ্যবর্তী লেভেল</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-1.5 en-text">Intermediate Practice Hub</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">দৈনন্দিন কথোপকথন ও অনর্গল কথা বলার বিশেষ চর্চা কেন্দ্র।</p>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs text-purple-300 font-bold pt-3 border-t border-slate-800/80 whitespace-nowrap">
+                        <span class="whitespace-nowrap">অনুশীলন শুরু করুন</span>
+                        <i class="fa-solid fa-arrow-right-long ml-2 shrink-0"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Advanced Fluency Mastery Button -->
+            <div class="btn-3d-wrapper">
+                <div id="btnStep3" class="btn-3d theme-step3 rounded-2xl p-6 cursor-pointer flex flex-col justify-between h-56 transition-all duration-200"
+                     onmousemove="handle3DTilt(event, this)" 
+                     onmouseleave="reset3DTilt(this)"
+                     onclick="window.location.href='english_pronunciation_mastery_2026.html'">
+                    
+                    <div class="flex items-start justify-between">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 text-xl shadow-inner">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <span class="en-text text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">Step 03</span>
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-semibold text-amber-400 mb-1">এডভান্সড লেভেল</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-1.5 en-text">Advanced Fluency Mastery</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">পাবলিক স্পিকিং, প্রেজেন্টেশন ও প্রফেশনাল স্পোকেন দক্ষতা।</p>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs text-amber-300 font-bold pt-3 border-t border-slate-800/80 whitespace-nowrap">
+                        <span class="whitespace-nowrap">অনুশীলন শুরু করুন</span>
+                        <i class="fa-solid fa-arrow-right-long ml-2 shrink-0"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 4. FULL-WIDTH 4TH BUTTON -->
+        <div class="w-full btn-3d-wrapper mb-12">
+            <div id="btnStep4" class="btn-3d theme-step4 rounded-2xl p-6 sm:p-7 cursor-pointer flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-200"
+                 onmousemove="handle3DTilt(event, this)" 
+                 onmouseleave="reset3DTilt(this)"
+                 onclick="navigateToLink('step4')">
+                
+                <div class="flex items-center gap-5 w-full sm:w-auto">
+                    <div class="w-14 h-14 rounded-2xl bg-pink-500/20 border border-pink-400/40 flex items-center justify-center text-pink-300 text-2xl shadow-inner shrink-0">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="en-text text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-400/30 uppercase">Live Practice</span>
+                            <span class="text-xs font-bold text-pink-400">লাইভ সেশন</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white en-text tracking-wide">
+                            Real-Life Spoken Practice Session
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                            বাস্তব জীবনে মানুষের সাথে সরাসরি ইংরেজিতে কথা বলার প্র্যাকটিস জোন।
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full sm:w-auto flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-pink-500/20 shrink-0">
+                    <span class="whitespace-nowrap">অনুশীলন শুরু করুন</span>
+                    <i class="fa-solid fa-circle-play text-base shrink-0"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTEBOOK / NOTE PAPER SECTION -->
+        <div class="w-full relative">
+            
+            <!-- Note Paper Pad Outer -->
+            <div id="notePaperCard" class="note-paper p-6 sm:p-10 relative overflow-hidden"
+                 onmousemove="handleNoteTilt(event, this)"
+                 onmouseleave="resetNoteTilt(this)">
+                
+                <!-- Binder Rings Top Effect -->
+                <div class="ring-binder">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                </div>
+
+                <!-- Note Header Area with Refined Smart Learning Guide Badge -->
+                <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-amber-300/80 pb-6 mb-8 gap-6">
+                    <div class="flex-1">
+                        <div class="inline-block px-3.5 py-1 bg-amber-200/80 text-amber-950 rounded-md text-xs font-bold uppercase tracking-wider mb-2.5 border border-amber-300/90">
+                            <i class="fa-solid fa-book-bookmark mr-1.5"></i> মাস্টার লার্নিং রোডম্যাপ
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+                            ইংরেজী শেখার পূর্ণাঙ্গ ধাপসমূহ
+                        </h2>
+                        <p class="text-base sm:text-lg font-bold text-slate-700 mt-1.5">
+                            <span class="en-text">Spoken English</span> কীভাবে শিখবে শুরু থেকে তার পূর্ণাঙ্গ নির্দেশনা
+                        </p>
+                    </div>
+
+                    <!-- Refined Elegant Smart Learning Guide Widget -->
+                    <div class="flex items-center gap-3.5 bg-gradient-to-r from-amber-100 to-orange-100/90 p-3.5 rounded-2xl border border-amber-300/80 shadow-sm max-w-xs shrink-0">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 to-amber-500 p-0.5 shadow shrink-0">
+                            <div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-pink-300">
+                                <i class="fa-solid fa-graduation-cap text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-amber-900 bg-amber-200/80 px-2 py-0.5 rounded inline-block mb-0.5">
+                                <i class="fa-solid fa-lightbulb text-amber-600 mr-1"></i>স্মার্ট লার্নিং গাইড
+                            </div>
+                            <p class="text-xs font-extrabold text-slate-800 leading-tight">
+                                "প্রতিদিন মাত্র ২০ মিনিট সময় দিয়ে নিজের ফ্লুয়েন্সি গড়ে তুলুন!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step-by-Step Guide Sections Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-slate-800">
+                    
+                    <!-- Section 1 -->
+                    <div class="bg-amber-100/70 p-5 rounded-2xl border border-amber-200/90 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3 text-cyan-900">
+                            <span class="w-8 h-8 rounded-full bg-cyan-600 text-white font-bold flex items-center justify-center text-sm shadow">১</span>
+                            <h4 class="font-bold text-lg">শুরু করার প্রাথমিক ধাপ</h4>
+                        </div>
+                        <ul class="space-y-2.5 text-sm text-slate-800 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-cyan-600 mt-1"></i>
+                                <span><strong class="en-text">Daily Words:</strong> প্রতিদিন অন্তত ৫ টি শব্দ শিখে বাক্যে প্রয়োগ করার অভ্যাস।</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-cyan-600 mt-1"></i>
+                                <span><strong class="en-text">Basic Sentences:</strong> ছোট ছোট দৈনন্দিন প্রয়োজনীয় বাক্য তৈরি শেখা।</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-cyan-600 mt-1"></i>
+                                <span><strong class="en-text">Self Introduction:</strong> নিজের এবং নিজের পরিবারের পরিচয় ইংরেজিতে দেওয়া।</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <div class="bg-purple-100/70 p-5 rounded-2xl border border-purple-200/90 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3 text-purple-900">
+                            <span class="w-8 h-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm shadow">২</span>
+                            <h4 class="font-bold text-lg">নিয়মিত চর্চা ও ফ্লুয়েন্সি</h4>
+                        </div>
+                        <ul class="space-y-2.5 text-sm text-slate-800 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-purple-600 mt-1"></i>
+                                <span><strong class="en-text">Mirror Technique:</strong> আয়নার সামনে দাঁড়িয়ে নিজের সাথেই ১০ মিনিট কথা বলা।</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-purple-600 mt-1"></i>
+                                <span><strong class="en-text">Listening Drill:</strong> সাবটাইটেল সহ ছোট ছোট ইংরেজি ভিডিও বা পডকাস্ট শোনা।</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-purple-600 mt-1"></i>
+                                <span><strong class="en-text">Think in English:</strong> মনে মনে চিন্তাগুলোকে বাংলায় না ভেবে ইংরেজিতে ভাবা।</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <div class="bg-orange-100/70 p-5 rounded-2xl border border-orange-200/90 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3 text-amber-900">
+                            <span class="w-8 h-8 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-sm shadow">৩</span>
+                            <h4 class="font-bold text-lg">আত্মবিশ্বাস ও মাস্টারি</h4>
+                        </div>
+                        <ul class="space-y-2.5 text-sm text-slate-800 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-amber-600 mt-1"></i>
+                                <span><strong class="en-text">Public Speaking:</strong> ছোট ছোট যেকোনো টপিকের ওপর না থেমে কথা বলা।</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-amber-600 mt-1"></i>
+                                <span><strong class="en-text">Real Conversation:</strong> বন্ধু বা স্টাডি পার্টনারের সাথে নিয়মিত কথা বলা।</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-amber-600 mt-1"></i>
+                                <span><strong class="en-text">No Fear of Mistakes:</strong> ভুল হওয়াকে স্বাভাবিক ভেবে দ্বিধাহীন বলা।</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Bottom Motto inside Note -->
+                <div class="mt-8 p-4 rounded-xl bg-amber-200/70 border border-amber-300 text-center">
+                    <p class="font-bold text-amber-950 text-base sm:text-lg">
+                        💡 মূলমন্ত্র: "স্পোকেন ইংরেজিতে কোনো শর্টকাট নেই—প্রতিদিনের নিয়মিত চর্চাই আপনাকে করবে অনর্গল ও আত্মবিশ্বাসী!"
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full py-6 text-center text-xs text-slate-400 border-t border-slate-800/80 mt-12 backdrop-blur-md bg-slate-950/60">
+        <p class="en-text">© 2026 Spoken Master — All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT LOGIC & LINKS -->
+    <script>
+        /************************************************************************
+         *  DIRECT IN-CODE LINKS FOR THE 4 BUTTONS
+         *  আপনি এখান থেকে খুব সহজেই আপনার পছন্দমতো লিংক পরিবর্তন করতে পারবেন।
+         ************************************************************************/
+        const BUTTON_URLS = {
+            step1: "https://example.com/foundational-spoken-track",   // Foundational Spoken Track Link
+            step2: "https://example.com/intermediate-practice-hub",   // Intermediate Practice Hub Link
+            step3: "https://example.com/advanced-fluency-mastery",    // Advanced Fluency Mastery Link
+            step4: "https://example.com/real-life-practice-session"   // Real-Life Spoken Practice Session Link
+        };
+
+        // Sound State
+        let soundEnabled = true;
+
+        // Web Audio API Audio Effects
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playTone(freq, type, duration) {
+            if (!soundEnabled) return;
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type || 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log('Audio error ignored');
+            }
+        }
+
+        function playClickSound() {
+            playTone(480, 'triangle', 0.12);
+        }
+
+        function playHeaderSound() {
+            playTone(640, 'sine', 0.18);
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('soundToggleBtn');
+            const icon = document.getElementById('soundIcon');
+            if (soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-cyan-400';
+                btn.querySelector('span').innerText = 'সাউন্ড অন';
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-rose-400';
+                btn.querySelector('span').innerText = 'সাউন্ড অফ';
+            }
+        }
+
+        function navigateToLink(stepKey) {
+            playClickSound();
+            const targetUrl = BUTTON_URLS[stepKey];
+            if (targetUrl) {
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 150);
+            }
+        }
+
+        // Smooth 3D Tilt Effect on mouse movement for Note Paper
+        function handleNoteTilt(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -4; 
+            const rotateY = ((x - centerX) / centerX) * 4;
+
+            card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(4px)`;
+        }
+
+        function resetNoteTilt(card) {
+            card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        }
+
+        // Smooth 3D Tilt Effect on mouse movement
+        function handle3DTilt(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top; 
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -10; 
+            const rotateY = ((x - centerX) / centerX) * 10;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
+        }
+
+        function reset3DTilt(card) {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        }
+
+        // Ripple Effect on Touch / Click
+        document.querySelectorAll('.btn-3d').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.left = `${e.clientX - rect.left}px`;
+                ripple.style.top = `${e.clientY - rect.top}px`;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Dynamic Interactive Canvas Particles Background
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.7;
+                this.speedY = (Math.random() - 0.5) * 0.7;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(56, 189, 248, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor(window.innerWidth / 18), 65);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>
