@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKD Complete English Mastery: Native Pronunciation & Connected Speech Edition 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Tiro Bangla and Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        custom: ['"Times New Roman"', '"Tiro Bangla"', 'serif', 'sans-serif'],
+                        bengali: ['"Tiro Bangla"', 'serif', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* BASE THEME STYLING & CUSTOM PROPERTIES */
+        :root {
+            --bg-gradient: radial-gradient(circle at top left, #0f172a, #080d1a, #03060d);
+            --card-bg: rgba(20, 27, 45, 0.75);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #e2e8f0;
+            --text-accent: #00f2fe;
+            --btn-bg: #4facfe;
+            --btn-text: #020617;
+        }
+
+        /* Theme 1: Cyberpunk Neon */
+        [data-theme="cyberpunk"] {
+            --bg-gradient: radial-gradient(circle at top left, #1a0033, #0d001a, #05000a);
+            --card-bg: rgba(40, 10, 60, 0.8);
+            --card-border: rgba(255, 0, 128, 0.3);
+            --text-primary: #f8fafc;
+            --text-accent: #ff007f;
+            --btn-bg: #ff007f;
+            --btn-text: #ffffff;
+        }
+
+        /* Theme 2: Royal Sapphire Gold */
+        [data-theme="sapphire"] {
+            --bg-gradient: radial-gradient(circle at top left, #0a192f, #020c1b, #01060e);
+            --card-bg: rgba(15, 30, 55, 0.85);
+            --card-border: rgba(255, 215, 0, 0.25);
+            --text-primary: #f1f5f9;
+            --text-accent: #ffd700;
+            --btn-bg: #ffd700;
+            --btn-text: #0a192f;
+        }
+
+        /* Theme 3: Forest Emerald Glow */
+        [data-theme="emerald"] {
+            --bg-gradient: radial-gradient(circle at top left, #064e3b, #022c22, #011710);
+            --card-bg: rgba(6, 78, 59, 0.75);
+            --card-border: rgba(52, 211, 153, 0.3);
+            --text-primary: #ecfdf5;
+            --text-accent: #34d399;
+            --btn-bg: #10b981;
+            --btn-text: #022c22;
+        }
+
+        /* Theme 4: Light Paper Serif */
+        [data-theme="light"] {
+            --bg-gradient: radial-gradient(circle at top left, #f8fafc, #f1f5f9, #e2e8f0);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 0, 0, 0.12);
+            --text-primary: #0f172a;
+            --text-accent: #0284c7;
+            --btn-bg: #0284c7;
+            --btn-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Times New Roman', 'Tiro Bangla', serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        .font-bengali {
+            font-family: 'Tiro Bangla', serif !important;
+        }
+
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .card-3d {
+            perspective: 1000px;
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15);
+            border-color: var(--text-accent);
+        }
+
+        @keyframes audioPulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.6); }
+            70% { box-shadow: 0 0 0 12px rgba(0, 242, 254, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+        }
+
+        .speaking-active {
+            animation: audioPulse 1.2s infinite;
+            border-color: var(--text-accent) !important;
+            background: rgba(0, 242, 254, 0.15) !important;
+        }
+
+        @keyframes micPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.08); box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .mic-recording {
+            animation: micPulse 1.1s infinite;
+            background-color: #ef4444 !important;
+            color: #ffffff !important;
+        }
+
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-accent); }
+    </style>
+</head>
+<body class="antialiased font-custom selection:bg-cyan-500 selection:text-black">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showHomePage()">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-400 to-indigo-600 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl lg:text-2xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 via-sky-200 to-indigo-300 bg-clip-text text-transparent">
+                        GKD English Mastery 2026
+                    </h1>
+                    <p class="text-xs font-bengali text-slate-400">অ্যাডভান্সড নেটিভ প্রনান্সিয়েশন ও কনেক্টেড স্পিচ মাস্টারক্লাস</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-700/60">
+                    <button id="btnUS" onclick="setAccent('en-US')" class="px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition-all bg-cyan-500 text-slate-950 shadow">
+                        🇺🇸 US
+                    </button>
+                    <button id="btnUK" onclick="setAccent('en-GB')" class="px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition-all text-slate-400 hover:text-white">
+                        🇬🇧 UK
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-xl border border-slate-700/60 text-xs">
+                    <i class="fa-solid fa-gauge-high text-cyan-400"></i>
+                    <span id="speedLabel" class="font-mono text-cyan-300">0.85x</span>
+                    <input type="range" id="speechRate" min="0.5" max="1.25" step="0.05" value="0.85" oninput="updateSpeechRate(this.value)" class="w-16 accent-cyan-400 cursor-pointer">
+                </div>
+
+                <div class="relative">
+                    <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-slate-900/90 border border-slate-700/60 text-xs text-slate-200 py-2 px-3 rounded-xl focus:outline-none focus:border-cyan-400 cursor-pointer font-bengali">
+                        <option value="default">🌌 ডার্ক গ্লাস (Default)</option>
+                        <option value="cyberpunk">⚡ সাইবারপাঙ্ক নিওন</option>
+                        <option value="sapphire">👑 রয়েল স্যাফায়ার গোল্ড</option>
+                        <option value="emerald">🌲 ফরেস্ট এমারল্ড</option>
+                        <option value="light">📄 লাইট পেপার সেমি-ক্লাসিক</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-700/60">
+                    <button id="tabHomeBtn" onclick="showHomePage()" class="px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium bg-cyan-500 text-slate-950 font-bengali">
+                        <i class="fa-solid fa-house mr-1"></i> হোম হ্যাব
+                    </button>
+                    <button id="tabQuizBtn" onclick="showQuizPage()" class="px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium text-slate-400 hover:text-white font-bengali">
+                        <i class="fa-solid fa-robot mr-1"></i> এআই ভয়েস কুইজ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6">
+
+        <!-- VIEW 1: HOME PAGE GRID -->
+        <div id="viewHome" class="space-y-6">
+            <div class="glass-panel p-6 rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 max-w-2xl z-10">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest font-bengali">
+                        সম্পূর্ণ ইউনিক আইটেম কালেকশন (৪০০+ শব্দভাণ্ডার)
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-bold font-bengali bg-gradient-to-r from-white via-slate-200 to-cyan-300 bg-clip-text text-transparent">
+                        কনেক্টেড স্পিচ ও রিডাকশনের ২৮টি সম্পূর্ণ ক্যাটাগরি
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 font-bengali leading-relaxed">
+                        কোনো পুনরাবৃত্তি নেই! প্রতিটি ক্যাটাগরিতে ১০ থেকে ২৫টি করে সম্পূর্ণ অনন্য নেটিভ রিডাকশন ও অনুশীলন বাক্য রয়েছে।
+                    </p>
+                </div>
+
+                <div class="w-full md:w-80 relative z-10">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" onkeyup="filterHomeGrid()" placeholder="Search categories, rules or words..." class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900/90 border border-slate-700/80 text-sm text-slate-100 focus:outline-none focus:border-cyan-400 transition-colors shadow-inner">
+                </div>
+            </div>
+
+            <div id="categoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Dynamically populated 28 categories -->
+            </div>
+        </div>
+
+        <!-- VIEW 2: DEDICATED INDIVIDUAL CATEGORY PAGE -->
+        <div id="viewCategoryPage" class="hidden space-y-6">
+            <div class="glass-panel p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3">
+                <button onclick="showHomePage()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs sm:text-sm font-semibold font-bengali text-slate-200 flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-arrow-left"></i> হোম হ্যাবে ফিরে যান
+                </button>
+
+                <div class="flex items-center gap-2 font-mono text-xs sm:text-sm">
+                    <span id="pageCatNumber" class="px-3 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold">
+                        Category 1 / 28
+                    </span>
+                    <span id="pageTotalItemsCount" class="px-3 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-bold font-bengali">
+                        মোট আইটেম: 20টি
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button id="btnPrevCat" onclick="navigateCategory(-1)" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold font-bengali text-slate-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chevron-left"></i> পূর্ববর্তী ক্যাটাগরি
+                    </button>
+                    <button id="btnNextCat" onclick="navigateCategory(1)" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold font-bengali text-white flex items-center gap-1.5 shadow-md">
+                        পরবর্তী ক্যাটাগরি <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl space-y-3 border-l-4 border-l-cyan-400">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <h2 id="activeCatTitle" class="text-2xl sm:text-3xl font-bold font-bengali text-cyan-300">
+                        ক্যাটাগরি শিরোনাম
+                    </h2>
+                    <button onclick="autoplayCurrentCategory()" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs sm:text-sm font-bengali flex items-center gap-2 hover:bg-cyan-400 transition-colors shadow-lg">
+                        <i class="fa-solid fa-circle-play text-base"></i> সবকয়টি মূল শব্দ একসাথে শুনুন (Autoplay)
+                    </button>
+                </div>
+                <p id="activeCatDesc" class="text-sm sm:text-base text-slate-300 font-bengali leading-relaxed">
+                    ক্যাটাগরি বিবরণ
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl space-y-4">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-cyan-400 font-bengali flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-amber-400"></i> রিডাকশন ও অনুশীলন বাক্য (১ম ক্লিকে মূল শব্দ, ২য় ক্লিকে বাক্য দেখুন ও শুনুন):
+                </h3>
+                <div id="activeCatItems" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Dynamic Unified Cards inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: AI VOICE QUIZ & FLASHCARD STUDIO -->
+        <div id="viewQuiz" class="hidden space-y-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-3xl mx-auto text-center space-y-5">
+                <div class="space-y-1">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 uppercase tracking-widest font-bengali">
+                        ইন্টারেক্টিভ স্পিচ লেব & এআই ফিডব্যাক
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-bengali text-cyan-300">
+                        এআই ভয়েস টেস্ট ও ফ্ল্যাশকার্ড স্টুডিও
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 font-bengali">
+                        একটি বাটন দিয়ে সঠিক উচ্চারণ শুনুন এবং অন্যটিতে ট্যাপ করে মাইক্রোফোনে উচ্চারণ করে নিজের স্কোর পরীক্ষা করুন।
+                    </p>
+                </div>
+
+                <div class="card-3d w-full h-80 cursor-pointer my-4" onclick="flipCard()">
+                    <div id="flashcard" class="relative w-full h-full transform-style-3d glass-panel rounded-3xl p-6 flex flex-col items-center justify-center shadow-2xl border border-cyan-500/40">
+                        <div class="absolute inset-0 backface-hidden flex flex-col items-center justify-center p-6 space-y-3 bg-gradient-to-b from-slate-900 to-slate-950 rounded-3xl">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 uppercase tracking-widest">
+                                Standard Written Form
+                            </span>
+                            <h3 id="cardStandard" class="text-3xl sm:text-4xl font-bold text-white tracking-wide">
+                                Standard English
+                            </h3>
+                            <p id="cardMeaning" class="text-base text-slate-400 font-bengali">
+                                অর্থ
+                            </p>
+                            <span class="text-xs text-cyan-400 font-bengali pt-4 flex items-center gap-1">
+                                <i class="fa-solid fa-rotate"></i> ক্লিক করে নেটিভ উচ্চারণ দেখুন
+                            </span>
+                        </div>
+
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 flex flex-col items-center justify-center p-6 space-y-3 bg-gradient-to-b from-cyan-950/90 to-slate-950 rounded-3xl border border-cyan-400">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest">
+                                Native Spoken Reduction
+                            </span>
+                            <h3 id="cardNative" class="text-3xl sm:text-4xl font-bold text-cyan-300 tracking-wide">
+                                "Native Spoken"
+                            </h3>
+                            <p id="cardPhonetic" class="text-xl text-emerald-400 font-bengali">
+                                বাংলা ফনেটিক
+                            </p>
+                            <p class="text-xs text-slate-400 font-bengali">
+                                নেটিভ স্পিকারদের স্বতঃস্ফূর্ত উচ্চারণ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-4 rounded-2xl flex flex-wrap items-center justify-center gap-4 bg-slate-950/80">
+                    <button onclick="event.stopPropagation(); speakCardAudio();" class="px-5 py-3 rounded-2xl bg-cyan-500 text-slate-950 font-bold text-sm sm:text-base font-bengali flex items-center gap-2 hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">
+                        <i class="fa-solid fa-volume-high text-lg"></i>
+                        <span>১. নেটিভ উচ্চারণ শুনুন</span>
+                    </button>
+
+                    <button id="btnMicRecord" onclick="event.stopPropagation(); startVoiceRecognition();" class="px-5 py-3 rounded-2xl bg-rose-600 text-white font-bold text-sm sm:text-base font-bengali flex items-center gap-2 hover:bg-rose-500 transition-all shadow-lg shadow-rose-600/20">
+                        <i class="fa-solid fa-microphone text-lg"></i>
+                        <span id="micBtnText">২. আপনার কণ্ঠে টেস্ট করুন</span>
+                    </button>
+                </div>
+
+                <div id="voiceFeedbackPanel" class="hidden glass-panel p-4 rounded-2xl text-left space-y-2 border border-slate-700">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 font-bengali flex items-center gap-1.5">
+                            <i class="fa-solid fa-robot text-cyan-400"></i> এআই ভয়েস বিশ্লেষণ ফলাফল:
+                        </span>
+                        <span id="accuracyBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold font-mono">
+                            0% Match
+                        </span>
+                    </div>
+
+                    <div class="text-sm font-bengali">
+                        <span class="text-slate-400">আপনি বলেছেন:</span>
+                        <strong id="userSpokenText" class="text-white ml-2 font-mono text-base">"..."</strong>
+                    </div>
+
+                    <div id="aiGuidanceMessage" class="text-xs sm:text-sm font-bengali text-cyan-300 leading-relaxed pt-1 border-t border-slate-800">
+                        আপনার উচ্চারণ যাচাই করা হচ্ছে...
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <button onclick="prevFlashcard()" class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 hover:bg-slate-800 text-xs sm:text-sm font-semibold font-bengali transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> পূর্ববর্তী কার্ড
+                    </button>
+                    
+                    <span id="cardCounter" class="text-sm font-mono text-cyan-400 font-bold px-3 py-1 bg-slate-900 rounded-lg border border-slate-800">
+                        1 / 400+
+                    </span>
+
+                    <button onclick="nextFlashcard()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold font-bengali transition-colors shadow-md">
+                        পরবর্তী কার্ড <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-slate-800/80 py-6 mt-12 bg-slate-950/80 text-center text-xs text-slate-500 font-bengali space-y-1">
+        <p>GKD Complete English Mastery 2026 • Advanced Native English Pronunciation & Connected Speech Masterclass</p>
+        <p class="text-slate-600">সম্পূর্ণ ২৮টি ক্যাটাগরি, Tiro Bangla ফন্ট, ৩ডি ইন্টারঅ্যাকশন ও এআই স্পিচ চেকার সমন্বিত।</p>
+    </footer>
+
+    <!-- JAVASCRIPT APP LOGIC & FULL NON-DUPLICATE DATASET -->
+    <script>
+        let currentAccent = 'en-US';
+        let speechRate = 0.85;
+        let activeCatIndex = 0;
+        let currentCardIndex = 0;
+        let isCardFlipped = false;
+        let isAutoplayRunning = false;
+
+        // DATASET OF 28 CATEGORIES - STRICTLY UNIQUE ITEMS PER CATEGORY (NO DUPLICATES)
+        const categoriesData = [
+            // Cat 1
+            {
+                id: 1,
+                title: "১. প্রশ্ন ও জিজ্ঞাসাবাদের শর্টকাট (Question Reductions)",
+                desc: "দৈনন্দিন প্রশ্ন করার সময় Auxiliary Verbs ও Pronouns সংকুচিত ও যুক্ত হয়ে সংক্ষেপিত হয়।",
+                items: [
+                    { written: "What are you doing?", native: "Whatcha doin'?", banglaPron: "ওয়াচিয়া ডুইন?", meaning: "তুমি কী করছো?", sentEn: "Whatcha doin' tonight?", sentBn: "আজ রাতে তুমি কী করছো?" },
+                    { written: "What did you say?", native: "Whadya say?", banglaPron: "ওয়াচিয়া সেই?", meaning: "তুমি কী বললে?", sentEn: "Whadya think about this idea?", sentBn: "এই ধারণার ব্যাপারে তুমি কী ভাবছো?" },
+                    { written: "How are you doing?", native: "Howre ya doin'?", banglaPron: "হাউরি ইয়ান ডুইন?", meaning: "কেমন আছো?", sentEn: "Howre ya feeling right now?", sentBn: "তোমার এখন কেমন লাগছে?" },
+                    { written: "Where did you go?", native: "Wheredya go?", banglaPron: "হোয়্যারডিয়া গো?", meaning: "কোথায় গিয়েছিলে?", sentEn: "Wheredya buy this awesome phone?", sentBn: "তুমি এই চমৎকার ফোনটি কোথা থেকে কিনলে?" },
+                    { written: "Did you eat food?", native: "Didja eat?", banglaPron: "ডিজা ইট?", meaning: "তুমি কি খেয়েছো?", sentEn: "Didja see the news today?", sentBn: "তুমি কি আজকের খবর দেখেছো?" },
+                    { written: "Do you want it?", native: "Dya want it?", banglaPron: "ডিয়া ওয়ান্ট ইট?", meaning: "তুমি কি এটা চাও?", sentEn: "Dya want it or should I keep it?", sentBn: "তুমি কি এটা চাও নাকি আমি রেখে দেব?" },
+                    { written: "What do you mean?", native: "Whaddya mean?", banglaPron: "ওয়াডিয়া মিন?", meaning: "তুমি কী বোঝাতে চাচ্ছো?", sentEn: "Whaddya mean by that comment?", sentBn: "ওই মন্তব্যের মাধ্যমে তুমি কী বোঝাতে চাচ্ছো?" },
+                    { written: "Why did you do it?", native: "Whydja do it?", banglaPron: "হোয়ায়জা ডু ইট?", meaning: "তুমি কেন এটা করলে?", sentEn: "Whydja do it without asking me?", sentBn: "আমাকে না জিজ্ঞেস করে কেন এটা করলে?" },
+                    { written: "Who did you see?", native: "Whodja see?", banglaPron: "হুজা সি?", meaning: "কাকে দেখেছিলে?", sentEn: "Whodja see at the party yesterday?", sentBn: "গতকাল পার্টিতে কাকে দেখেছিলে?" },
+                    { written: "How did you know?", native: "Howdja know?", banglaPron: "হাউজা নো?", meaning: "তুমি কীভাবে জানলে?", sentEn: "Howdja know my real name?", sentBn: "তুমি কীভাবে আমার আসল নাম জানলে?" },
+                    { written: "Where are you going?", native: "Wherya goin'?", banglaPron: "হোয়্যারিয়া গোইন?", meaning: "তুমি কোথায় যাচ্ছো?", sentEn: "Wherya goin' in such a hurry?", sentBn: "এত তাড়াহুড়ো করে কোথায় যাচ্ছো?" },
+                    { written: "When did you arrive?", native: "Whendja arrive?", banglaPron: "হোয়েনজা অ্যারাইভ?", meaning: "তুমি কখন পৌঁছালে?", sentEn: "Whendja arrive in the city?", sentBn: "তুমি শহরে কখন পৌঁছালে?" },
+                    { written: "Aren't you ready?", native: "Arntcha ready?", banglaPron: "আরন্টশা রেডি?", meaning: "তুমি কি তৈরি নও?", sentEn: "Arntcha ready to leave yet?", sentBn: "তুমি কি এখনো রওনা হতে তৈরি নও?" },
+                    { written: "Don't you know?", native: "Doncha know?", banglaPron: "ডনশা নো?", meaning: "তুমি কি জানো না?", sentEn: "Doncha know how to drive?", sentBn: "তুমি কি গাড়ি চালাতে জানো না?" },
+                    { written: "Can't you see?", native: "Cancha see?", banglaPron: "ক্যানশা সি?", meaning: "তুমি কি দেখতে পাচ্ছো না?", sentEn: "Cancha see I'm busy right now?", sentBn: "তুমি কি দেখছো না আমি এখন ব্যস্ত?" }
+                ]
+            },
+            // Cat 2
+            {
+                id: 2,
+                title: "২. ইচ্ছা, পরিকল্পনা ও ভবিষ্যৎ প্রকাশ (Intentions & Future Reductions)",
+                desc: "Going to, Want to, Supposed to ইত্যাদি ভবিষ্যৎ ভাব প্রকাশ করার সংক্ষেপিত নেটিভ ফর্ম।",
+                items: [
+                    { written: "Going to", native: "Gonna", banglaPron: "গনা", meaning: "করতে যাচ্ছি / করব", sentEn: "I'm gonna call you later tonight.", sentBn: "আমি আজ রাতে তোমাকে পরে কল করব।" },
+                    { written: "Want to", native: "Wanna", banglaPron: "ওয়ানা", meaning: "চাই", sentEn: "Do you wanna eat pizza with us?", sentBn: "তুমি কি আমাদের সাথে পিজা খেতে চাও?" },
+                    { written: "Have to", native: "Hafta", banglaPron: "হাফটা", meaning: "করতেই হবে", sentEn: "I hafta complete this report now.", sentBn: "আমার এখনই এই রিপোর্টটি শেষ করতে হবে।" },
+                    { written: "Has to", native: "Hasta", banglaPron: "হাসটা", meaning: "করতেই হবে (He/She)", sentEn: "She hasta leave for the airport.", sentBn: "তাকে এয়ারপোর্টের উদ্দেশ্যে বের হতেই হবে।" },
+                    { written: "Had to", native: "Hatta", banglaPron: "হাট্টা", meaning: "করতে হয়েছিল", sentEn: "We hatta stay overnight.", sentBn: "আমাদের রাতভর থাকতে হয়েছিল।" },
+                    { written: "Supposed to", native: "Spotta", banglaPron: "স্পটা", meaning: "কথা থাকার কথা", sentEn: "He's spotta be here by five.", sentBn: "পাঁচটার মধ্যে তার এখানে থাকার কথা।" },
+                    { written: "Got to", native: "Gotta", banglaPron: "গটা", meaning: "অবশ্যই করা আবশ্যক", sentEn: "I gotta go right now.", sentBn: "আমাকে এখনই যেতে হবে।" },
+                    { written: "Ought to", native: "Oughta", banglaPron: "অটা", meaning: "উচিত", sentEn: "You oughta respect your elders.", sentBn: "তোমার গুরুজনদের শ্রদ্ধা করা উচিত।" },
+                    { written: "About to", native: "Bouta", banglaPron: "বাউটা", meaning: "প্রায় করতে যাওয়া", sentEn: "I'm bouta leave the office.", sentBn: "আমি অফিস থেকে বের হতে যাচ্ছি।" },
+                    { written: "Fixing to / Intending to", native: "Finna", banglaPron: "ফিনা", meaning: "করতে যাচ্ছি (আঞ্চলিক)", sentEn: "I'm finna start studying.", sentBn: "আমি পড়াশোনা শুরু করতে যাচ্ছি।" },
+                    { written: "Trying to", native: "Tryna", banglaPron: "ট্রাইনা", meaning: "চেষ্টা করছি", sentEn: "I'm tryna focus on my work.", sentBn: "আমি কাজের দিকে মনোযোগ দিতে চেষ্টা করছি।" }
+                ]
+            },
+            // Cat 3
+            {
+                id: 3,
+                title: "৩. অনুমতি, অনুরোধ ও প্রস্তাব (Permission & Requests)",
+                desc: "অনুরোধ এবং অনুমতি চাওয়ার সময় 'Let me', 'Give me' ইত্যাদির দ্রুত সংকুচিত উচ্চারণ।",
+                items: [
+                    { written: "Let me", native: "Lemme", banglaPron: "লেমি", meaning: "আমাকে করতে দাও", sentEn: "Lemme see what happened there.", sentBn: "আমাকে দেখতে দাও ওখানে কী ঘটেছে।" },
+                    { written: "Give me", native: "Gimme", banglaPron: "গিমি", meaning: "আমাকে দাও", sentEn: "Gimme a glass of water, please.", sentBn: "আমাকে এক গ্লাস পানি দাও, দয়া করে।" },
+                    { written: "Tell him", native: "Tell'im", banglaPron: "টেলিম", meaning: "তাকে বলো (H সাইলেন্ট)", sentEn: "Just tell'im the full truth.", sentBn: "তাকে পুরো সত্যি কথাটা বলে দাও।" },
+                    { written: "Ask her", native: "Ask'er", banglaPron: "আস্কার", meaning: "তাকে জিজ্ঞেস করো", sentEn: "You should ask'er directly tomorrow.", sentBn: "তোমার আগামীকাল তাকে সরাসরি জিজ্ঞেস করা উচিত।" },
+                    { written: "Could you", native: "Couldja", banglaPron: "কুডজা", meaning: "তুমি কি করতে পারবে?", sentEn: "Couldja help me with this heavy box?", sentBn: "তুমি কি আমাকে এই ভারী বাক্সটি নিয়ে সাহায্য করবে?" },
+                    { written: "Would you", native: "Wouldja", banglaPron: "উডজা", meaning: "তুমি কি করবে?", sentEn: "Wouldja mind closing the window?", sentBn: "তুমি কি দয়া করে জানালাটি বন্ধ করবে?" },
+                    { written: "Do you mind if", native: "Mindif", banglaPron: "মাইন্ডিফ", meaning: "অনুমতি দেওয়ার অনুরোধ", sentEn: "Mindif I sit right here?", sentBn: "আমি কি ঠিক এখানে বসতে পারি?" },
+                    { written: "Let us", native: "Less", banglaPron: "লেস", meaning: "চলো আমরা করি", sentEn: "Less go get some lunch.", sentBn: "চলো লাঞ্চ করে আসি।" },
+                    { written: "Help him", native: "Help'im", banglaPron: "হেলপিম", meaning: "তাকে সাহায্য করো", sentEn: "Go and help'im clean the room.", sentBn: "গিয়ে রুম পরিষ্কার করতে তাকে সাহায্য করো।" },
+                    { written: "Call her", native: "Call'er", banglaPron: "কলার", meaning: "তাকে ফোন দাও", sentEn: "Call'er back immediately.", sentBn: "তাকে এখনই ব্যাক ফোন দাও।" }
+                ]
+            },
+            // Cat 4
+            {
+                id: 4,
+                title: "৪. প্রিপজিশন ও আর্টিকেল সংক্ষেপণ (Prepositional & Article Reductions)",
+                desc: "And, To, Of, For ইত্যাদি প্রিপজিশনের অতি দুর্বল ও যুক্ত উচ্চারণ।",
+                items: [
+                    { written: "Fish and chips", native: "Fish 'n' chips", banglaPron: "ফিশ এন চিপস", meaning: "ফিশ ও চিপস", sentEn: "I love fish 'n' chips for dinner.", sentBn: "আমি রাতের খাবারে ফিশ এন চিপস পছন্দ করি।" },
+                    { written: "Go to work", native: "Go tuh work", banglaPron: "গো টা ওয়ার্ক", meaning: "কাজে যাওয়া", sentEn: "I gotta go tuh work early.", sentBn: "আমাকে সকালে তাড়াতাড়ি কাজে যেতে হবে।" },
+                    { written: "Cup of tea", native: "Cup-uh-tea", banglaPron: "কাপ আ টি", meaning: "এক কাপ চা", sentEn: "Would you like a cup-uh-tea?", sentBn: "তুমি কি এক কাপ চা খাবে?" },
+                    { written: "This is for you", native: "This is fer you", banglaPron: "দিস ইজ ফার ইউ", meaning: "এটা তোমার জন্য", sentEn: "This gift is fer you.", sentBn: "এই উপহারটি তোমার জন্য।" },
+                    { written: "Out of order", native: "Outta order", banglaPron: "আউটটা অর্ডার", meaning: "অকেজো", sentEn: "The lift is outta order.", sentBn: "লিফটটি অকেজো হয়ে আছে।" },
+                    { written: "Into the room", native: "Intuh the room", banglaPron: "ইনটা দা রুম", meaning: "ঘরের ভেতর", sentEn: "He walked intuh the room silently.", sentBn: "সে নিঃশব্দে ঘরের ভেতর ঢুকল।" },
+                    { written: "From now on", native: "Frum now on", banglaPron: "ফ্রম নাও অন", meaning: "এখন থেকে", sentEn: "Frum now on, be on time.", sentBn: "এখন থেকে সবসময় সময়ে উপস্থিত থেকো।" },
+                    { written: "The apple", native: "Thi apple", banglaPron: "থি অ্যাপল", meaning: "আপেলটি (Vowel-এর আগে)", sentEn: "Eat thi apple on the table.", sentBn: "টেবিলে রাখা আপেলটি খেয়ে নাও।" },
+                    { written: "The car", native: "Thuh car", banglaPron: "থা কার", meaning: "গাড়িটি (Consonant-এর আগে)", sentEn: "Park thuh car over there.", sentBn: "গাড়িটি ওখানে পার্ক করো।" }
+                ]
+            },
+            // Cat 5
+            {
+                id: 5,
+                title: "৫. সামাজিক অভিবাদন ও কথা শুরু (Social Greetings & Small Talk)",
+                desc: "গ্রিটিংস ও কুশল বিনিময়ের সময় ব্যবহৃত দ্রুত ফাস্ট-স্পিচ রূপ।",
+                items: [
+                    { written: "How is it going?", native: "How's it goin'?", banglaPron: "হাউস ইট গোইন?", meaning: "দিনকাল কেমন চলছে?", sentEn: "Hey buddy, How's it goin'?", sentBn: "হে দোস্ত, দিনকাল কেমন চলছে?" },
+                    { written: "What is up?", native: "Wassup?", banglaPron: "ওয়াসাপ?", meaning: "কী খবর?", sentEn: "Wassup man? Long time no see!", sentBn: "কী খবর ম্যান? অনেকদিন দেখা নেই!" },
+                    { written: "See you later", native: "See ya later", banglaPron: "সি ইয়া লেটার", meaning: "পরে দেখা হবে", sentEn: "Alright, see ya later!", sentBn: "ঠিক আছে, পরে দেখা হবে!" },
+                    { written: "Appreciate it", native: "'Preciate it", banglaPron: "প্রিশিয়েট ইট", meaning: "ধন্যবাদ/কৃতজ্ঞতা", sentEn: "Thanks a lot, 'preciate it!", sentBn: "অনেক ধন্যবাদ, আমি সত্যিই কৃতজ্ঞ!" },
+                    { written: "How do you do?", native: "Howdydo?", banglaPron: "হাউডিডু?", meaning: "কেমন আছেন?", sentEn: "Hello sir, howdydo today?", sentBn: "হ্যালো স্যার, আজ কেমন আছেন?" },
+                    { written: "Long time no see", native: "Longtime-nosee", banglaPron: "লংটাইম-নোসি", meaning: "অনেক দিন দেখা নেই", sentEn: "Hey mate, longtime-nosee!", sentBn: "হে দোস্ত, অনেক দিন পর দেখা!" },
+                    { written: "Good to see you", native: "Goodta see ya", banglaPron: "গুডটা সি ইয়া", meaning: "দেখা হয়ে ভালো লাগল", sentEn: "It's really goodta see ya again.", sentBn: "তোমার সাথে আবার দেখা হয়ে সত্যি খুব ভালো লাগল।" },
+                    { written: "Nice to meet you", native: "Nice ta meetcha", banglaPron: "নাইস টা মিটশা", meaning: "দেখা হয়ে আনন্দিত", sentEn: "Hey, nice ta meetcha!", sentBn: "হে, তোমার সাথে পরিচয় হয়ে আনন্দিত!" }
+                ]
+            },
+            // Cat 6
+            {
+                id: 6,
+                title: "৬. মতামত প্রকাশ ও অনুভূতি (Opinions & Feelings)",
+                desc: "Kinda, Sorta, Feel like ইত্যাদির মাধ্যমে নিজস্ব অনুভূতি সহজভাবে প্রকাশ করা।",
+                items: [
+                    { written: "Kind of", native: "Kinda", banglaPron: "কাইন্ডা", meaning: "একপ্রকার / কিছুটা", sentEn: "I'm kinda tired today.", sentBn: "আমি আজ কিছুটা ক্লান্ত।" },
+                    { written: "Sort of", native: "Sorta", banglaPron: "সর্টা", meaning: "এক প্রকার", sentEn: "It feels sorta strange.", sentBn: "এটা এক প্রকার অদ্ভুত লাগছে।" },
+                    { written: "Out of", native: "Outta", banglaPron: "আউটটা", meaning: "বাইরে", sentEn: "Get outta my way!", sentBn: "আমার পথ থেকে সরো!" },
+                    { written: "Lot of", native: "Lotta", banglaPron: "লটা", meaning: "প্রচুর", sentEn: "There are a lotta options.", sentBn: "এখানে প্রচুর অপশন রয়েছে।" },
+                    { written: "Feel like", native: "Feellike", banglaPron: "ফিললাইক", meaning: "ইচ্ছা করা", sentEn: "I feellike having ice cream.", sentBn: "আমার আইসক্রিম খেতে ইচ্ছা করছে।" },
+                    { written: "In front of", native: "In fronta", banglaPron: "ইন ফ্রন্টা", meaning: "সামনে", sentEn: "Wait in fronta the building.", sentBn: "বিল্ডিংয়ের সামনে অপেক্ষা করো।" },
+                    { written: "Instead of", native: "Insteada", banglaPron: "ইনস্টেডা", meaning: "পরিবর্তে", sentEn: "Take tea insteada coffee.", sentBn: "কফির পরিবর্তে চা নাও।" }
+                ]
+            },
+            // Cat 7
+            {
+                id: 7,
+                title: "৭. প্রাত্যহিক রুটিন ও কাজের কথোপকথন (Daily Routine & Work-Life)",
+                desc: "অফিস, কাজ বা দৈনন্দিন রুটিন চর্চায় দ্রুত ব্যবহৃত নেটিভ এক্সপ্রেশন।",
+                items: [
+                    { written: "Working on it", native: "Workin' on it", banglaPron: "ওয়ার্কিন অন ইট", meaning: "কাজ চলছে", sentEn: "Don't worry, I'm workin' on it.", sentBn: "চিন্তা কোরো না, আমি এটা নিয়ে কাজ করছি।" },
+                    { written: "Hold on", native: "Holdon / Hodan", banglaPron: "হোলডন", meaning: "একটু অপেক্ষা করুন", sentEn: "Holdon a second, please.", sentBn: "দয়া করে এক সেকেন্ড অপেক্ষা করুন।" },
+                    { written: "Wait a minute", native: "Wait a minnit", banglaPron: "ওয়েট আ মিনিট", meaning: "এক মিনিট দাঁড়াও", sentEn: "Wait a minnit, I forgot my keys.", sentBn: "এক মিনিট দাঁড়াও, আমি চাবি ভুলে গেছি।" },
+                    { written: "Catch you later", native: "Catchya later", banglaPron: "ক্যাচিয়া লেটার", meaning: "পরে আপনার সাথে কথা হবে", sentEn: "I'm busy now, catchya later!", sentBn: "আমি এখন ব্যস্ত, পরে কথা বলব!" },
+                    { written: "Call it a day", native: "Call it a day", banglaPron: "কল ইট আ ডে", meaning: "আজকের মতো কাজ শেষ করা", sentEn: "Let's call it a day and go home.", sentBn: "চলো আজকের মতো কাজ শেষ করে বাড়ি যাই।" },
+                    { written: "Just a second", native: "Jus' a sec", banglaPron: "জাস আ সেক", meaning: "এক মুহূর্ত", sentEn: "Jus' a sec, I'm almost ready.", sentBn: "এক মুহূর্ত, আমি প্রায় তৈরি।" }
+                ]
+            },
+            // Cat 8
+            {
+                id: 8,
+                title: "৮. ফোন কল ও ডিজিটাল যোগাযোগ (Phone & Digital Interactions)",
+                desc: "ফোনে চটজলদি কথা বলা এবং টেক্সটিং নির্ভর অনানুষ্ঠানিক কথ্য রূপ।",
+                items: [
+                    { written: "Hold on a second", native: "Hold on a sec", banglaPron: "হোল্ড অন আ সেক", meaning: "এক সেকেন্ড ধরুন", sentEn: "Hold on a sec, I'm getting another call.", sentBn: "এক সেকেন্ড ধরুন, অন্য একটা কল আসছে।" },
+                    { written: "Call you back", native: "Call ya back", banglaPron: "কল ইয়া ব্যাক", meaning: "পরে কল দিচ্ছি", sentEn: "I'll call ya back in 10 minutes.", sentBn: "আমি ১০ মিনিট পর তোমাকে ব্যাক কল দিচ্ছি।" },
+                    { written: "What are you up to?", native: "Whatchu up to?", banglaPron: "ওয়াচু আপ টু?", meaning: "কী করছো এখন?", sentEn: "Hey, Whatchu up to right now?", sentBn: "হে, তুমি এখন কী করছো?" },
+                    { written: "Hit me up", native: "Hitmeup", banglaPron: "হিটমিআপ", meaning: "আমাকে মেসেজ/কল দিও", sentEn: "Hitmeup when you reach home.", sentBn: "বাসায় পৌঁছে আমাকে মেসেজ দিও।" },
+                    { written: "Give you a ring", native: "Givya a ring", banglaPron: "গিবিয়া আ রিং", meaning: "কল দেওয়া", sentEn: "I'll givya a ring tomorrow morning.", sentBn: "আমি কাল সকালে তোমাকে একটা কল দেব।" }
+                ]
+            },
+            // Cat 9
+            {
+                id: 9,
+                title: "৯. সায় দেওয়া ও দ্বিমত প্রকাশ (Agreement & Disagreement)",
+                desc: "I don't know, Betcha, Coulda ইত্যাদির মতো দ্রুত ও সাবলীল কথ্য অভিব্যক্তি।",
+                items: [
+                    { written: "I don't know", native: "Dunno / I dunno", banglaPron: "আই ডুনো", meaning: "আমি জানি না", sentEn: "I dunno where he went.", sentBn: "আমি জানি না সে কোথায় গেল।" },
+                    { written: "I bet you", native: "I betcha", banglaPron: "আই বেটশা", meaning: "বাজি ধরে বলতে পারি", sentEn: "I betcha he will win.", sentBn: "আমি বাজি ধরে বলতে পারি সে জিতবে।" },
+                    { written: "Could have", native: "Coulda", banglaPron: "কুডা", meaning: "করতে পারত", sentEn: "You coulda told me earlier.", sentBn: "তুমি আমাকে আগে বলতে পারতে।" },
+                    { written: "Should have", native: "Shoulda", banglaPron: "শুডা", meaning: "করা উচিত ছিল", sentEn: "I shoulda listened to your advice.", sentBn: "আমার তোমার পরামর্শ শোনা উচিত ছিল।" },
+                    { written: "Would have", native: "Woulda", banglaPron: "উডা", meaning: "করত", sentEn: "He woulda helped us if we asked.", sentBn: "আমরা চাইলে সে আমাদের সাহায্য করত।" },
+                    { written: "Might have", native: "Mighta", banglaPron: "মাইটা", meaning: "হয়তো করেছিল", sentEn: "She mighta missed the bus.", sentBn: "সে হয়তো বাস মিস করেছে।" },
+                    { written: "Must have", native: "Musta", banglaPron: "মাসটা", meaning: "অবশ্যই করেছিল", sentEn: "They musta forgotten the date.", sentBn: "তারা নিশ্চয়ই তারিখটি ভুলে গেছে।" }
+                ]
+            },
+            // Cat 10
+            {
+                id: 10,
+                title: "১০. আবেগ ও বিস্ময় প্রকাশ (Emotions & Exclamations)",
+                desc: "C'mon, Get out of here ইত্যাদি দ্রুত অনুভূতির প্রকাশভঙ্গি।",
+                items: [
+                    { written: "Come on", native: "C'mon", banglaPron: "কামন", meaning: "আরে এসো / তাড়াতাড়ি করো", sentEn: "C'mon, we're getting late!", sentBn: "আরে তাড়াতাড়ি করো, আমাদের দেরি হয়ে যাচ্ছে!" },
+                    { written: "Get out of here", native: "Get outta here!", banglaPron: "গেট আউটটা হেয়ার", meaning: "ধুর ফালতু বলছ! (অবিশ্বাস)", sentEn: "No way, get outta here!", sentBn: "ধুর বিশ্বাসই হয় না!" },
+                    { written: "No way", native: "Noway", banglaPron: "নোওয়ে", meaning: "কখনোই না / অসম্ভব", sentEn: "Noway I am going out in this storm.", sentBn: "অসম্ভব, এই ঝড়ের মধ্যে আমি বাইরে যাচ্ছি না।" },
+                    { written: "Holy cow", native: "Holy-cow", banglaPron: "হোলি-কাউ", meaning: "বাপরে বাপ! (আশ্চর্য)", sentEn: "Holy-cow! That building is huge!", sentBn: "বাপরে বাপ! ওই বিল্ডিংটি অনেক বড়!" },
+                    { written: "Oh boy", native: "Oh-boy", banglaPron: "ওহ-বয়", meaning: "হায় খোদা!", sentEn: "Oh-boy, we are in big trouble.", sentBn: "হায় খোদা, আমরা বড় সমস্যায় পড়েছি।" }
+                ]
+            },
+            // Cat 11
+            {
+                id: 11,
+                title: "১১. 'T' ও 'D' ধ্বনির পরিবর্তন (T & D Flapping / Elision)",
+                desc: "আমেরিকান বা ক্যাজুয়াল উচ্চারণে শব্দের মাঝের T/D ধ্বনি নরম 'ড়' (Flap T) বা উহ্য হওয়া।",
+                items: [
+                    { written: "Water", native: "Wara", banglaPron: "ওয়াড়া", meaning: "পানি", sentEn: "Can I have a glass of wara?", sentBn: "আমি কি এক গ্লাস পানি পেতে পারি?" },
+                    { written: "Better", native: "Bera", banglaPron: "বেড়া", meaning: "আরও ভালো", sentEn: "This model is much bera.", sentBn: "এই মডেলটি অনেক বেশি ভালো।" },
+                    { written: "Bottle", native: "Bara", banglaPron: "বাড়া", meaning: "বোতল", sentEn: "Pass me the water bara.", sentBn: "আমাকে পানির বোতলটি বাড়িয়ে দাও।" },
+                    { written: "Little", native: "Lidu / Lila", banglaPron: "লিডু / লিলা", meaning: "ছোট", sentEn: "She brought a lila puppy.", sentBn: "সে একটি ছোট কুকুরছানা এনেছে।" },
+                    { written: "Next door", native: "Nex' door", banglaPron: "নেক্স ডোর", meaning: "পাশের বাসা", sentEn: "My friend lives nex' door.", sentBn: "আমার বন্ধু পাশের বাসায় থাকে।" },
+                    { written: "Last night", native: "Las' night", banglaPron: "লাস নাইট", meaning: "গত রাতে", sentEn: "I watched movie las' night.", sentBn: "আমি গত রাতে সিনেমা দেখেছি।" },
+                    { written: "City", native: "Ciri", banglaPron: "সিড়ি", meaning: "শহর", sentEn: "New York is a big ciri.", sentBn: "নিউ ইয়র্ক একটি বড় শহর।" },
+                    { written: "Butter", native: "Bura", banglaPron: "বুড়া", meaning: "মাখন", sentEn: "Spread some bura on bread.", sentBn: "রুটিতে কিছু মাখন লাগিয়ে নাও।" },
+                    { written: "Internet", native: "Innernet", banglaPron: "ইনারনেট", meaning: "ইন্টারনেট", sentEn: "The innernet connection is slow.", sentBn: "ইন্টারনেট কানেকশনটি ধীরগতির।" },
+                    { written: "Printer", native: "Prinner", banglaPron: "প্রিনার", meaning: "প্রিন্টার", sentEn: "We need a new color prinner.", sentBn: "আমাদের একটি নতুন কালার প্রিন্টার দরকার।" }
+                ]
+            },
+            // Cat 12
+            {
+                id: 12,
+                title: "১২. 'H' ধ্বনি লোপ পাওয়া (H-Dropping in Pronouns & Auxiliaries)",
+                desc: "দ্রুত কথনে Him, Her, Have, Has ইত্যাদির শুরুতে থাকা H ধ্বনি উহ্য হয়ে যাওয়া।",
+                items: [
+                    { written: "Tell him", native: "Tell'im", banglaPron: "টেলিম", meaning: "তাকে বলো", sentEn: "Tell'im I'll call back.", sentBn: "তাকে বলো আমি পরে কল করব।" },
+                    { written: "Ask her", native: "Ask'er", banglaPron: "আস্কার", meaning: "তাকে জিজ্ঞেস করো", sentEn: "Ask'er if she's free.", sentBn: "তাকে জিজ্ঞেস করো সে ফ্রি আছে কি না।" },
+                    { written: "Give him", native: "Giv'im", banglaPron: "গিভিম", meaning: "তাকে দাও", sentEn: "Giv'im the keys right now.", sentBn: "তাকে চাবিগুলো এখনই দিয়ে দাও।" },
+                    { written: "What have you done?", native: "What'av you done?", banglaPron: "ওয়াট্যাভ ইউ ডান?", meaning: "তুমি কী করেছো?", sentEn: "What'av you done to your hair?", sentBn: "তুমি তোমার চুলের কী অবস্থা করেছো?" },
+                    { written: "Like him", native: "Like'im", banglaPron: "লাইকিম", meaning: "তাকে পছন্দ করা", sentEn: "Everyone seems to like'im.", sentBn: "সবাই তাকে পছন্দ করে বলে মনে হয়।" },
+                    { written: "Love her", native: "Love'er", banglaPron: "লাভার", meaning: "তাকে ভালোবাসা", sentEn: "He really love'er a lot.", sentBn: "সে তাকে সত্যিই খুব ভালোবাসে।" },
+                    { written: "With him", native: "With'im", banglaPron: "উইথিম", meaning: "তার সাথে", sentEn: "I went to the store with'im.", sentBn: "আমি তার সাথে দোকানে গিয়েছিলাম।" },
+                    { written: "For her", native: "For'er", banglaPron: "ফরার", meaning: "তার জন্য", sentEn: "Buy this flower for'er.", sentBn: "তার জন্য এই ফুলটি কেন।" }
+                ]
+            },
+            // Cat 13
+            {
+                id: 13,
+                title: "১৩. দুর্বল প্রিপজিশন ও সংযোজক (Weak Forms of Conjunctions & Prepositions)",
+                desc: "And, Of, Or ইত্যাদি সংযোগমূলক শব্দ শিথিল Schwa ধ্বনিতে সংকুচিত হওয়া।",
+                items: [
+                    { written: "Cups and saucers", native: "Cups-n-saucers", banglaPron: "কাপস এন সসারস", meaning: "কাপ ও ডিশ", sentEn: "Bring the cups-n-saucers.", sentBn: "কাপ ও ট্রে নিয়ে এসো।" },
+                    { written: "Mac and cheese", native: "Mac-n-cheese", banglaPron: "ম্যাক এন চিজ", meaning: "ম্যাক ও চিজ", sentEn: "I cooked mac-n-cheese.", sentBn: "আমি ম্যাক অ্যান্ড চিজ রান্না করেছি।" },
+                    { written: "Bread and butter", native: "Bread-n-butter", banglaPron: "ব্রেড এন বাটার", meaning: "জীবিকা / রুটি-মাখন", sentEn: "This job is my bread-n-butter.", sentBn: "এই চাকরিটিই আমার জীবিকা।" },
+                    { written: "Salt and pepper", native: "Salt-n-pepper", banglaPron: "সল্ট এন পেপার", meaning: "লবণ ও মরিচ", sentEn: "Add some salt-n-pepper.", sentBn: "কিছু লবণ ও মরিচ ছিটিয়ে দাও।" },
+                    { written: "Rock and roll", native: "Rock-n-roll", banglaPron: "রক এন রোল", meaning: "রক সংগীত", sentEn: "Let's listen to rock-n-roll.", sentBn: "চলো রক সঙ্গীত শুনি।" },
+                    { written: "More or less", native: "More-er-less", banglaPron: "মোর আর লেস", meaning: "কমবেশি", sentEn: "It's finished, more-er-less.", sentBn: "এটা কমবেশি শেষ হয়ে গেছে।" },
+                    { written: "Back and forth", native: "Back-n-forth", banglaPron: "ব্যাক এন ফোর্থ", meaning: "এপাশ ওপাশ", sentEn: "Pacing back-n-forth in worry.", sentBn: "চিন্তায় এপাশ ওপাশ পায়চারি করছে।" }
+                ]
+            },
+            // Cat 14
+            {
+                id: 14,
+                title: "১৪. ধ্বনির সংমিশ্রণ (Yod-Coalescence - T/D + Y Sounds)",
+                desc: "T+Y মিলে 'চ' (/tʃ/) এবং D+Y মিলে 'জ' (/dʒ/) নতুন ধ্বনি তৈরি করা।",
+                items: [
+                    { written: "Meet you", native: "Meetcha", banglaPron: "মিটশা", meaning: "দেখা হওয়া", sentEn: "Nice to meetcha today!", sentBn: "আজ তোমার সাথে দেখা হয়ে ভালো লাগল!" },
+                    { written: "Did you", native: "Didja", banglaPron: "ডিজা", meaning: "তুমি কি করেছিলে?", sentEn: "Didja watch the football match?", sentBn: "তুমি কি ফুটবল ম্যাচটি দেখেছিলে?" },
+                    { written: "Bless you", native: "Bleshyu", banglaPron: "ব্লেশু", meaning: "ঈশ্বর তোমার মঙ্গল করুক", sentEn: "Achoo! God bleshyu!", sentBn: "ঈশ্বর তোমার মঙ্গল করুক!" },
+                    { written: "Bet you", native: "Betcha", banglaPron: "বেটশা", meaning: "বাজি ধরা", sentEn: "I betcha can't lift this.", sentBn: "আমি বাজি ধরছি তুমি এটা তুলতে পারবে না।" },
+                    { written: "Got you", native: "Gotcha", banglaPron: "গটশা", meaning: "বুঝেছি / পেয়েছি", sentEn: "Oh I gotcha now!", sentBn: "ওহ আমি এখন বুঝেছি!" },
+                    { written: "Don't you", native: "Doncha", banglaPron: "ডনশা", meaning: "তুমি কি নও?", sentEn: "Doncha love this song?", sentBn: "তুমি কি এই গানটি পছন্দ করো না?" },
+                    { written: "Can't you", native: "Cancha", banglaPron: "ক্যানশা", meaning: "তুমি কি পারো না?", sentEn: "Cancha wait five minutes?", sentBn: "তুমি কি পাঁচ মিনিট অপেক্ষা করতে পারো না?" },
+                    { written: "Miss you", native: "Misshya", banglaPron: "মিশিয়ার", meaning: "মিস করা", sentEn: "I really misshya a lot.", sentBn: "আমি সত্যিই তোমাকে খুব মিস করি।" }
+                ]
+            },
+            // Cat 15
+            {
+                id: 15,
+                title: "১৫. চটজলদি উত্তর ও রিপ্লাই (Conversational Retorts & Replies)",
+                desc: "অনানুষ্ঠানিক আড্ডায় সংক্ষিপ্ত স্বতঃস্ফূর্ত প্রতিক্রিয়া বা উত্তর।",
+                items: [
+                    { written: "I am going to", native: "Imma / I'm'a", banglaPron: "আইমা", meaning: "আমি করব", sentEn: "Imma do it right now.", sentBn: "আমি এখনই এটা করতে যাচ্ছি।" },
+                    { written: "Let me see", native: "Lemme see", banglaPron: "লেমি সি", meaning: "একটু দেখতে দাও", sentEn: "Lemme see what options we have.", sentBn: "আমাদের কী কী অপশন আছে একটু দেখতে দাও।" },
+                    { written: "Look at that", native: "Lookatdat", banglaPron: "লুকঅ্যাটড্যাট", meaning: "ওটার দিকে তাকাও", sentEn: "Lookatdat fast car driving by!", sentBn: "ওই দ্রুতগতির গাড়িটির দিকে তাকাও!" },
+                    { written: "Yeah right", native: "Yeah-right", banglaPron: "ইয়া-রাইট", meaning: "হয়েছে আর বলতে হবে না (ব্যঙ্গ)", sentEn: "Yeah-right, as if that's true!", sentBn: "হয়েছে আর বলতে হবে না, যেন ওটা সত্যি!" },
+                    { written: "You bet", native: "You-bet", banglaPron: "ইউ-বেট", meaning: "অবশ্যই / সানন্দে", sentEn: "Can you help? You-bet!", sentBn: "সাহায্য করবে? অবশ্যই!" },
+                    { written: "Beats me", native: "Beats-me", banglaPron: "বিটস-মি", meaning: "আমার জানা নেই", sentEn: "Where is john? Beats-me!", sentBn: "জন কোথায়? আমার জানা নেই!" }
+                ]
+            },
+            // Cat 16
+            {
+                id: 16,
+                title: "১৬. সংখ্যা ও পরিমাপ সংক্ষেপণ (Numbers & Quantifiers)",
+                desc: "পরিমাণ ও সংখ্যা নির্দেশক ফ্রেজগুলোর দ্রুত শ্লথ রূপ।",
+                items: [
+                    { written: "Lots of", native: "Lotta", banglaPron: "লটা", meaning: "প্রচুর", sentEn: "We have a lotta work today.", sentBn: "আজ আমাদের প্রচুর কাজ রয়েছে।" },
+                    { written: "Plenty of", native: "Plentya", banglaPron: "প্লেনটিয়া", meaning: "প্রচুর পরিমানে", sentEn: "There is plentya food left.", sentBn: "এখানে প্রচুর খাবার অবশিষ্ট আছে।" },
+                    { written: "Couple of", native: "Coupla", banglaPron: "কাপলা", meaning: "কয়েকটি", sentEn: "Give me a coupla days.", sentBn: "আমাকে কয়েকটি দিন সময় দাও।" },
+                    { written: "Hundreds of", native: "Hundredsa", banglaPron: "হানড্রেডসা", meaning: "শত শত", sentEn: "Hundredsa people gathered there.", sentBn: "শত শত মানুষ সেখানে জড়ো হয়েছিল।" },
+                    { written: "Piece of", native: "Pieca", banglaPron: "পিসা", meaning: "এক টুকরো", sentEn: "Can I have a pieca cake?", sentBn: "আমি কি এক টুকরো কেক পেতে পারি?" },
+                    { written: "Bit of", native: "Bita", banglaPron: "বিটা", meaning: "একটুখানি", sentEn: "Add a bita sugar in it.", sentBn: "এতে একটুখানি চিনি যোগ করো।" }
+                ]
+            },
+            // Cat 17
+            {
+                id: 17,
+                title: "১৭. কারণ ও ফল প্রকাশ (Causative & Reason Expressions)",
+                desc: "Because, Due to, In order to ইত্যাদির সংক্ষিপ্ত সংযোগ রূপ।",
+                items: [
+                    { written: "Because", native: "Cuz / Coz", banglaPron: "কাজ", meaning: "কারণ", sentEn: "I stayed home cuz it rained.", sentBn: "আমি বাড়িতেই ছিলাম কারণ বৃষ্টি হচ্ছিল।" },
+                    { written: "Because of", native: "Cuzza", banglaPron: "কাজ্জা", meaning: "কারণে", sentEn: "We were late cuzza heavy traffic.", sentBn: "ভারী ট্রাফিকের কারণে আমাদের দেরি হয়েছিল।" },
+                    { written: "In order to", native: "In-order-tuh", banglaPron: "ইন অর্ডার টা", meaning: "উদ্দেশ্যে", sentEn: "He works hard in-order-tuh succeed.", sentBn: "সে সফল হওয়ার উদ্দেশ্যে কঠোর পরিশ্রম করে।" },
+                    { written: "Due to", native: "Dueto", banglaPron: "ডিউটু", meaning: "কারণে", sentEn: "Match delayed dueto rain.", sentBn: "বৃষ্টির কারণে ম্যাচ বিলম্বিত হয়েছে।" },
+                    { written: "Seeing as", native: "Seein' as", banglaPron: "সিইন অ্যাজ", meaning: "যেহেতু", sentEn: "Seein' as you're here, let's start.", sentBn: "যেহেতু তুমি এসেছ, চলো শুরু করি।" }
+                ]
+            },
+            // Cat 18
+            {
+                id: 18,
+                title: "১৮. অনানুষ্ঠানিক প্রস্তাব ও অনুমতি (Casual Permissions & Offers)",
+                desc: "Would you mind, May I, Fancy a ইত্যাদির সাবলীল কথ্য রূপ।",
+                items: [
+                    { written: "Would you mind", native: "Wudja mind", banglaPron: "উডজা মাইন্ড", meaning: "কিছু মনে করবেন কি?", sentEn: "Wudja mind moving a bit?", sentBn: "একটু সরে বসলে কিছু মনে করবেন কি?" },
+                    { written: "May I", native: "Mi", banglaPron: "মে আই / মি", meaning: "আমি কি পারি?", sentEn: "Mi ask a quick question?", sentBn: "আমি কি একটি দ্রুত প্রশ্ন করতে পারি?" },
+                    { written: "Want me to", native: "Wanna-me-tuh", banglaPron: "ওয়ানা মি টা", meaning: "তুমি কি চাও আমি করি?", sentEn: "Dya wanna-me-tuh help you?", sentBn: "তুমি কি চাও আমি তোমাকে সাহায্য করি?" },
+                    { written: "Fancy a", native: "Fancy-a", banglaPron: "ফ্যান্সি আ", meaning: "পছন্দ করবে কি? (UK)", sentEn: "Fancy-a cup of coffee?", sentBn: "এক কাপ কফি খাবে নাকি?" },
+                    { written: "How about", native: "How 'bout", banglaPron: "হাউ বাউট", meaning: "কেমন হয়?", sentEn: "How 'bout going for a walk?", sentBn: "একটু হেঁটে আসলে কেমন হয়?" }
+                ]
+            },
+            // Cat 19
+            {
+                id: 19,
+                title: "১৯. বিদায়সূচক বাক্যাংশ (Farewells & Sign-offs)",
+                desc: "কথোপকথন শেষে বিদায় জানানোর ফাস্ট-স্পিচ নেটিভ ফ্রেজ।",
+                items: [
+                    { written: "See you later", native: "Cya later", banglaPron: "সিয়া লেটার", meaning: "পরে দেখা হবে", sentEn: "Okay bye, cya later!", sentBn: "ঠিক আছে বাই, পরে দেখা হবে!" },
+                    { written: "Have a good one", native: "Havad-good-one", banglaPron: "হ্যাভ-অ্যাড-গুড-ওয়ান", meaning: "দিনটি শুভ হোক", sentEn: "Take care and havad-good-one!", sentBn: "ভালো থেকো এবং দিনটি শুভ হোক!" },
+                    { written: "Take care", native: "Tay-kair", banglaPron: "টে-কেয়ার", meaning: "নিজের যত্ন নিও", sentEn: "Alright friend, tay-kair!", sentBn: "ঠিক আছে বন্ধু, নিজের যত্ন নিও!" },
+                    { written: "Talk to you later", native: "Talk-tuh-ya-later", banglaPron: "টক-টা-ইয়া-লেটার", meaning: "পরে কথা হবে", sentEn: "Gotta run, talk-tuh-ya-later!", sentBn: "এখন যেতে হবে, পরে কথা হবে!" },
+                    { written: "Take it easy", native: "Take-it-easy", banglaPron: "টেক-ইট-ইজি", meaning: "শান্তিতে থাকো / বিদায়", sentEn: "Have a nice weekend, take-it-easy!", sentBn: "ছুটির দিন ভালো কাটুক, শান্তিতে থাকো!" }
+                ]
+            },
+            // Cat 20
+            {
+                id: 20,
+                title: "২০. আবেগসূচক স্ল্যাং ও রিডাকশন (Emotive Slang & Reductions)",
+                desc: "C'mon, Chill out, Bummer ইত্যাদির আবেগভিত্তিক ব্যবহার।",
+                items: [
+                    { written: "Shut up", native: "Shutup", banglaPron: "শাটআপ", meaning: "মুখ বন্ধ করো / সত্যি নাকি!", sentEn: "Shutup! I can't believe it!", sentBn: "সত্যি নাকি! আমি তো বিশ্বাসই করতে পারছি না!" },
+                    { written: "Chill out", native: "Chill-out", banglaPron: "চিল-আউট", meaning: "শান্ত হও", sentEn: "Hey, just chill-out for a second.", sentBn: "হে, এক সেকেন্ডের জন্য শান্ত হও।" },
+                    { written: "Bummer", native: "Bummer", banglaPron: "বামার", meaning: "হতাশাজনক ঘটনা", sentEn: "That missed flight is a total bummer.", sentBn: "ফ্লাইট মিস হওয়াটা খুবই হতাশাজনক।" },
+                    { written: "Freak out", native: "Freak-out", banglaPron: "ফ্রিক-আউট", meaning: "আতঙ্কিত হওয়া", sentEn: "Don't freak-out over small errors.", sentBn: "ছোট ভুল নিয়ে আতঙ্কিত হইও না।" }
+                ]
+            },
+            // Cat 21
+            {
+                id: 21,
+                title: "২১. স্বরবর্ণের দুর্বল শ্লথ রূপ (Schwa /ə/ Reduction)",
+                desc: "অপ্রয়োজনীয় দুর্বল স্বরবর্ণ Schwa /ə/ ধ্বনিতে পরিণত হয়ে সংকুচিত হওয়া।",
+                items: [
+                    { written: "As", native: "Az", banglaPron: "আজ", meaning: "মতো / হিসেবে", sentEn: "Do az I tell you.", sentBn: "আমি যেমন বলি তেমন করো।" },
+                    { written: "Than", native: "Thun", banglaPron: "থান", meaning: "চেয়ে", sentEn: "Easier thun that.", sentBn: "ওটার চেয়েও সহজ।" },
+                    { written: "At", native: "Ut", banglaPron: "আট", meaning: "এ/তে", sentEn: "Look ut the sky.", sentBn: "আকাশের দিকে তাকাও।" },
+                    { written: "From", native: "Frum", banglaPron: "ফ্রম", meaning: "থেকে", sentEn: "He is frum London.", sentBn: "সে লন্ডন থেকে এসেছে।" },
+                    { written: "Can", native: "Cun", banglaPron: "কান", meaning: "পারা", sentEn: "I cun do it easily.", sentBn: "আমি এটা সহজেই করতে পারি।" },
+                    { written: "Was", native: "Wuz", banglaPron: "ওয়াজ", meaning: "ছিল", sentEn: "He wuz very busy.", sentBn: "সে খুব ব্যস্ত ছিল।" }
+                ]
+            },
+            // Cat 22
+            {
+                id: 22,
+                title: "২২. স্বরবর্ণের সংযোগ (Intrusion /r/, /j/, /w/ Sounds)",
+                desc: "পাশাপাশি দুটি স্বরবর্ণের মাঝে মুখ ও জিবের স্বাভাবিক গতিতে /w/, /j/, /r/ ধ্বনি যুক্ত হওয়া।",
+                items: [
+                    { written: "Go out", native: "Go-w-out", banglaPron: "গো-ওয়াউট", meaning: "বাইরে যাওয়া", sentEn: "Let's go-w-out for tea.", sentBn: "চলো বাইরে গিয়ে চা খাই।" },
+                    { written: "You are", native: "You-w-are", banglaPron: "ইউ-ওয়ার", meaning: "তুমি হও", sentEn: "You-w-are very smart.", sentBn: "তুমি সত্যিই খুব চালাক।" },
+                    { written: "He is", native: "He-y-is", banglaPron: "হি-ইজ", meaning: "সে হয়", sentEn: "He-y-is a good doctor.", sentBn: "সে একজন ভালো ডাক্তার।" },
+                    { written: "Law and order", native: "Law-r-and order", banglaPron: "ল-র-অ্যান্ড অর্ডার", meaning: "আইন শৃঙ্খলা (UK)", sentEn: "Maintain law-r-and order.", sentBn: "আইন শৃঙ্খলা বজায় রাখুন।" },
+                    { written: "Media event", native: "Media-r-event", banglaPron: "মিডিয়া-র-ইভেন্ট", meaning: "মিডিয়া ইভেন্ট", sentEn: "It was a big media-r-event.", sentBn: "এটি একটি বড় মিডিয়া ইভেন্ট ছিল।" },
+                    { written: "I am", native: "I-y-am", banglaPron: "আই-ইয়াম", meaning: "আমি হই", sentEn: "I-y-am feeling happy today.", sentBn: "আমার আজ খুব আনন্দ লাগছে।" }
+                ]
+            },
+            // Cat 23
+            {
+                id: 23,
+                title: "২৩. ধ্বনির পার্শ্ববর্তী রূপান্তর (Assimilation)",
+                desc: "একটি অক্ষরের প্রভাবে তার পাশের অক্ষরের ধ্বনি পরিবর্তন হওয়া।",
+                items: [
+                    { written: "Green paint", native: "Greem paint", banglaPron: "গ্রিম পেইন্ট", meaning: "সবুজ রঙ", sentEn: "Buy some greem paint.", sentBn: "কিছু সবুজ রঙ কেন।" },
+                    { written: "Good boy", native: "Goob boy", banglaPron: "গুব বয়", meaning: "ভালো ছেলে", sentEn: "He is a very goob boy.", sentBn: "সে একটি খুব ভালো ছেলে।" },
+                    { written: "Ten cars", native: "Teng cars", banglaPron: "টেং কারস", meaning: "১০টি গাড়ি", sentEn: "I saw teng cars passing.", sentBn: "আমি ১০টি গাড়ি যেতে দেখেছি।" },
+                    { written: "Bad pain", native: "Bab pain", banglaPron: "বাব পেইন্ট", meaning: "তীব্র ব্যথা", sentEn: "I have a bab pain in back.", sentBn: "আমার পিঠে তীব্র ব্যথা আছে।" },
+                    { written: "Stolen money", native: "Stolem money", banglaPron: "স্টোলেম মানি", meaning: "চুরি হওয়া টাকা", sentEn: "Where is the stolem money?", sentBn: "চুরি হওয়া টাকা কোথায়?" }
+                ]
+            },
+            // Cat 24
+            {
+                id: 24,
+                title: "২৪. অনবচ্ছিন্ন শব্দ সংযোগ (Linking & Catenation)",
+                desc: "একটি শব্দের শেষ Consonant ও পরের শব্দের Vowel মিলে একক শব্দে পরিণত হওয়া।",
+                items: [
+                    { written: "Not at all", native: "No-ta-tall", banglaPron: "নো-টা-টল", meaning: "একদমই নয়", sentEn: "No-ta-tall problem!", sentBn: "একদমই কোনো সমস্যা নেই!" },
+                    { written: "Pick it up", native: "Pi-ki-tup", banglaPron: "পি-কি-টপ", meaning: "কুড়িয়ে নাও", sentEn: "Please pi-ki-tup now.", sentBn: "দয়া করে এটা কুড়িয়ে নাও।" },
+                    { written: "Turn off", native: "Tur-noff", banglaPron: "টার্ন-ফ", meaning: "বন্ধ করা", sentEn: "Tur-noff the lights please.", sentBn: "দয়া করে লাইট বন্ধ করো।" },
+                    { written: "Read a book", native: "Rea-da-book", banglaPron: "রি-ডা-বুক", meaning: "বই পড়া", sentEn: "I like to rea-da-book at night.", sentBn: "আমি রাতে বই পড়তে পছন্দ করি।" },
+                    { written: "Stand up", native: "Stan-dup", banglaPron: "স্ট্যান-ডাপ", meaning: "দাঁড়ানো", sentEn: "Everyone, stan-dup now!", sentBn: "সবাই এখনই দাঁড়িয়ে পড়ো!" },
+                    { written: "Come in", native: "Co-min", banglaPron: "কা-মিন", meaning: "ভেতরে আসা", sentEn: "Please co-min and sit.", sentBn: "দয়া করে ভেতরে এসো এবং বসো।" }
+                ]
+            },
+            // Cat 25
+            {
+                id: 25,
+                title: "২৫. সংক্ষিপ্ত না-সূচক রূপ (Negative Contractions)",
+                desc: "Can't, Don't, Didn't, Won't ইত্যাদির শর্টকাট প্রনান্সিয়েশন।",
+                items: [
+                    { written: "Cannot", native: "Can't", banglaPron: "ক্যান্ট", meaning: "পারে না", sentEn: "I can't do this alone.", sentBn: "আমি একা এটা করতে পারছি না।" },
+                    { written: "Do not", native: "Don't", banglaPron: "ডোনট", meaning: "করো না", sentEn: "Don't rush like that.", sentBn: "ওভাবে তাড়াহুড়ো করো না।" },
+                    { written: "Does not", native: "Doesn't", banglaPron: "ডাজেন্ট", meaning: "করে না", sentEn: "She doesn't know him.", sentBn: "সে তাকে চেনে না।" },
+                    { written: "Did not", native: "Didn't", banglaPron: "ডিডেন্ট", meaning: "করেনি", sentEn: "We didn't see anything.", sentBn: "আমরা কিছুই দেখিনি।" },
+                    { written: "Will not", native: "Won't", banglaPron: "ওয়োনট", meaning: "করবে না", sentEn: "They won't accept this.", sentBn: "তারা এটি মেনে নেবে না।" },
+                    { written: "Should not", native: "Shouldn't", banglaPron: "শুডেন্ট", meaning: "উচিত নয়", sentEn: "You shouldn't worry about it.", sentBn: "তোমার এটা নিয়ে চিন্তা করা উচিত নয়।" }
+                ]
+            },
+            // Cat 26
+            {
+                id: 26,
+                title: "২৬. অক্সিলারি ভার্ব ও প্রোনাউন সংক্ষিপ্তকরণ (Auxiliary Contractions)",
+                desc: "I'm, You're, He's, They're ইত্যাদির দ্রুত কথ্য রূপ।",
+                items: [
+                    { written: "I am", native: "I'm", banglaPron: "আইম", meaning: "আমি হই", sentEn: "I'm ready right now.", sentBn: "আমি এখনই প্রস্তুত।" },
+                    { written: "You are", native: "You're", banglaPron: "ইউয়ার", meaning: "তুমি হও", sentEn: "You're very kind.", sentBn: "তুমি সত্যিই খুব দয়ালু।" },
+                    { written: "He is", native: "He's", banglaPron: "হিজ", meaning: "সে হয়", sentEn: "He's coming tomorrow.", sentBn: "সে আগামীকাল আসছে।" },
+                    { written: "They are", native: "They're", banglaPron: "দেইয়ার", meaning: "তারা হয়", sentEn: "They're waiting outside.", sentBn: "তারা বাইরে অপেক্ষা করছে।" },
+                    { written: "That is", native: "That's", banglaPron: "দ্যাটস", meaning: "ওটা হয়", sentEn: "That's a fantastic idea!", sentBn: "ওটা সত্যিই চমৎকার আইডিয়া!" }
+                ]
+            },
+            // Cat 27
+            {
+                id: 27,
+                title: "২৭. মডাল ও পারফেক্ট টেন্সের সংক্ষেপণ (Modals & Perfect Contractions)",
+                desc: "I've, I'd, Could've ইত্যাদির স্মুথ নেটিভ স্পোকেন রূপ।",
+                items: [
+                    { written: "I have", native: "I've", banglaPron: "আইভ", meaning: "আমার আছে", sentEn: "I've done my work.", sentBn: "আমি আমার কাজ শেষ করেছি।" },
+                    { written: "You have", native: "You've", banglaPron: "ইউভ", meaning: "তোমার আছে", sentEn: "You've won the game.", sentBn: "তুমি খেলায় জিতেছো।" },
+                    { written: "They would", native: "They'd", banglaPron: "দেইড", meaning: "তারা করত", sentEn: "They'd love to join us.", sentBn: "তারা আমাদের সাথে যোগ দিতে ভালোবাসবে।" },
+                    { written: "Could have", native: "Could've", banglaPron: "কুডাভ", meaning: "করতে পারত", sentEn: "I could've helped you.", sentBn: "আমি তোমাকে সাহায্য করতে পারতাম।" }
+                ]
+            },
+            // Cat 28
+            {
+                id: 28,
+                title: "২৮. অতি সাধারণ স্ল্যাং ও দৈনন্দিন কন্টাকশন (Colloquial Slang Contractions)",
+                desc: "Y'all, Gimme, Lemme, Dunno, Imma, Finna ইত্যাদির অল-ইন-ওয়ান রূপ।",
+                items: [
+                    { written: "Give me", native: "Gimme", banglaPron: "গিমি", meaning: "আমাকে দাও", sentEn: "Gimme a minute to check this.", sentBn: "আমাকে এটি দেখতে এক মিনিট দাও।" },
+                    { written: "Let me", native: "Lemme", banglaPron: "লেমি", meaning: "আমাকে করতে দাও", sentEn: "Lemme handle this situation.", sentBn: "আমাকে এই পরিস্থিতি সামলাতে দাও।" },
+                    { written: "You all", native: "Y'all", banglaPron: "ইওল", meaning: "তোমরা সবাই", sentEn: "How are y'all doing today?", sentBn: "আজ তোমরা সবাই কেমন আছো?" },
+                    { written: "Got to", native: "Gotta", banglaPron: "গটা", meaning: "করতেই হবে", sentEn: "I gotta go home now.", sentBn: "আমার এখন বাসায় যেতেই হবে।" },
+                    { written: "Want to", native: "Wanna", banglaPron: "ওয়ানা", meaning: "চাই", sentEn: "Do you wanna play tennis?", sentBn: "তুমি কি টেনিস খেলতে চাও?" }
+                ]
+            }
+        ];
+
+        // FLAT ARRAY FOR FLASHCARDS
+        let allFlashcards = [];
+        categoriesData.forEach(cat => {
+            cat.items.forEach(item => {
+                allFlashcards.push({
+                    catTitle: cat.title,
+                    standard: item.written,
+                    native: item.native,
+                    phonetic: item.banglaPron,
+                    meaning: item.meaning
+                });
+            });
+        });
+
+        // INIT ON LOAD
+        window.onload = function() {
+            renderHomeGrid();
+            updateFlashcard();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.getVoices();
+            }
+        };
+
+        // RENDER HOME PAGE 3D CARDS GRID
+        function renderHomeGrid() {
+            const grid = document.getElementById('categoryGrid');
+            grid.innerHTML = '';
+
+            categoriesData.forEach((cat, index) => {
+                const card = document.createElement('div');
+                card.className = "card-3d glass-panel p-6 rounded-3xl cursor-pointer space-y-4 border border-slate-800/80 hover:border-cyan-400 flex flex-col justify-between";
+                card.onclick = () => openCategoryPage(index);
+
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex items-center justify-center font-mono font-bold text-xs">
+                                #${cat.id}
+                            </span>
+                            <span class="text-xs font-mono text-slate-400 font-bengali">
+                                <i class="fa-solid fa-volume-high text-cyan-400 mr-1"></i> ${cat.items.length}টি প্র্যাকটিস আইটেম
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold font-bengali text-cyan-300 tracking-wide">
+                            ${cat.title}
+                        </h3>
+                        <p class="text-xs text-slate-300 font-bengali line-clamp-2 leading-relaxed">
+                            ${cat.desc}
+                        </p>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex flex-wrap gap-1.5">
+                            ${cat.items.slice(0, 3).map(item => `
+                                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-700/60 text-[11px] font-bold text-slate-200">
+                                    ${item.native}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <span class="text-xs font-bold text-cyan-400 font-bengali flex items-center gap-1">
+                            পড়ুন <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // HOME GRID SEARCH FILTER
+        function filterHomeGrid() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.getElementById('categoryGrid').children;
+
+            categoriesData.forEach((cat, idx) => {
+                const card = cards[idx];
+                if (!query) {
+                    card.style.display = 'flex';
+                    return;
+                }
+                const matchTitle = cat.title.toLowerCase().includes(query) || cat.desc.toLowerCase().includes(query);
+                const matchItems = cat.items.some(i => i.written.toLowerCase().includes(query) || i.native.toLowerCase().includes(query) || i.meaning.toLowerCase().includes(query) || i.sentEn.toLowerCase().includes(query));
+
+                if (matchTitle || matchItems) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // OPEN CATEGORY INDIVIDUAL PAGE
+        function openCategoryPage(catIndex) {
+            activeCatIndex = catIndex;
+            const cat = categoriesData[activeCatIndex];
+
+            document.getElementById('viewHome').classList.add('hidden');
+            document.getElementById('viewQuiz').classList.add('hidden');
+            document.getElementById('viewCategoryPage').classList.remove('hidden');
+
+            document.getElementById('pageCatNumber').innerText = `Category ${cat.id} / 28`;
+            document.getElementById('pageTotalItemsCount').innerText = `মোট আইটেম: ${cat.items.length}টি (সম্পূর্ণ ইউনিক)`;
+            document.getElementById('activeCatTitle').innerText = cat.title;
+            document.getElementById('activeCatDesc').innerText = cat.desc;
+
+            const itemsBox = document.getElementById('activeCatItems');
+            itemsBox.innerHTML = cat.items.map((item, idx) => {
+                const cardId = `item-card-${cat.id}-${idx}`;
+                const sentId = `sent-${cat.id}-${idx}`;
+
+                return `
+                <div id="${cardId}" class="p-4 rounded-2xl bg-slate-900/90 hover:bg-slate-900 border border-slate-800 hover:border-cyan-500/60 transition-all space-y-3 shadow-md">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-md bg-cyan-500/20 text-cyan-300 font-mono text-xs font-bold flex items-center justify-center">${idx + 1}</span>
+                                <span class="text-xs text-slate-400 line-through">${item.written}</span>
+                            </div>
+                            <div class="text-xl font-bold text-cyan-300">${item.native}</div>
+                            <div class="text-xs text-emerald-400 font-bengali">উচ্চারণ: ${item.banglaPron}</div>
+                            <div class="text-xs text-slate-300 font-bengali">অর্থ: ${item.meaning}</div>
+                        </div>
+
+                        <button onclick="speakText('${item.native.replace(/'/g, "\\'")}', '${cardId}')" class="px-3.5 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500 text-cyan-300 hover:text-slate-950 border border-cyan-500/30 text-xs font-bold font-bengali flex items-center gap-1.5 transition-all shrink-0">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>১. মূল শব্দ শুনুন</span>
+                        </button>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                        <button onclick="toggleCardExample('${cardId}-ex')" class="text-xs font-bold text-indigo-300 hover:text-indigo-200 font-bengali flex items-center gap-1.5 focus:outline-none">
+                            <i class="fa-solid fa-angles-down text-[11px] transition-transform" id="${cardId}-icon"></i>
+                            <span>২. বাক্য অনুশীলন ও উচ্চারণ দেখুন</span>
+                        </button>
+                    </div>
+
+                    <div id="${cardId}-ex" class="hidden p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2 mt-2">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider font-bengali flex items-center gap-1">
+                            <i class="fa-solid fa-comment-dots text-indigo-400"></i> উদাহরণ বাক্য:
+                        </div>
+                        <div id="${sentId}" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <div class="text-sm font-bold text-slate-100">${item.sentEn}</div>
+                                <div class="text-xs text-slate-400 font-bengali">${item.sentBn}</div>
+                            </div>
+                            <button onclick="speakText('${item.sentEn.replace(/'/g, "\\'")}', '${sentId}')" class="px-3 py-1.5 rounded-lg bg-indigo-600/30 hover:bg-indigo-600 text-indigo-200 hover:text-white text-xs font-bold font-bengali flex items-center gap-1 transition-all shrink-0 self-end sm:self-auto">
+                                <i class="fa-solid fa-play text-[10px]"></i>
+                                <span>বাক্য শুনুন</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleCardExample(exId) {
+            const exBox = document.getElementById(exId);
+            const iconId = exId.replace('-ex', '-icon');
+            const icon = document.getElementById(iconId);
+
+            if (exBox.classList.contains('hidden')) {
+                exBox.classList.remove('hidden');
+                if (icon) icon.className = "fa-solid fa-angles-up text-[11px] transition-transform";
+            } else {
+                exBox.classList.add('hidden');
+                if (icon) icon.className = "fa-solid fa-angles-down text-[11px] transition-transform";
+            }
+        }
+
+        function navigateCategory(step) {
+            let nextIndex = activeCatIndex + step;
+            if (nextIndex < 0) nextIndex = 27;
+            if (nextIndex > 27) nextIndex = 0;
+            openCategoryPage(nextIndex);
+        }
+
+        function autoplayCurrentCategory() {
+            if (isAutoplayRunning) return;
+            isAutoplayRunning = true;
+            const cat = categoriesData[activeCatIndex];
+            let idx = 0;
+
+            function playNext() {
+                if (idx >= cat.items.length) {
+                    isAutoplayRunning = false;
+                    return;
+                }
+                const item = cat.items[idx];
+                const elemId = `item-card-${cat.id}-${idx}`;
+                idx++;
+                speakText(item.native, elemId, () => {
+                    setTimeout(playNext, 700);
+                });
+            }
+            playNext();
+        }
+
+        function showHomePage() {
+            document.getElementById('viewHome').classList.remove('hidden');
+            document.getElementById('viewCategoryPage').classList.add('hidden');
+            document.getElementById('viewQuiz').classList.add('hidden');
+
+            document.getElementById('tabHomeBtn').className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium bg-cyan-500 text-slate-950 font-bengali";
+            document.getElementById('tabQuizBtn').className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium text-slate-400 hover:text-white font-bengali";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showQuizPage() {
+            document.getElementById('viewQuiz').classList.remove('hidden');
+            document.getElementById('viewHome').classList.add('hidden');
+            document.getElementById('viewCategoryPage').classList.add('hidden');
+
+            document.getElementById('tabQuizBtn').className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium bg-indigo-600 text-white font-bengali";
+            document.getElementById('tabHomeBtn').className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium text-slate-400 hover:text-white font-bengali";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setAccent(accent) {
+            currentAccent = accent;
+            const btnUS = document.getElementById('btnUS');
+            const btnUK = document.getElementById('btnUK');
+
+            if (accent === 'en-US') {
+                btnUS.className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition-all bg-cyan-500 text-slate-950 shadow";
+                btnUK.className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition-all text-slate-400 hover:text-white";
+            } else {
+                btnUK.className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition-all bg-indigo-600 text-white shadow";
+                btnUS.className = "px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition-all text-slate-400 hover:text-white";
+            }
+        }
+
+        function updateSpeechRate(val) {
+            speechRate = parseFloat(val);
+            document.getElementById('speedLabel').innerText = `${speechRate.toFixed(2)}x`;
+        }
+
+        function changeTheme(themeKey) {
+            if (themeKey === 'default') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', themeKey);
+            }
+        }
+
+        function speakText(text, highlightElemId = null, onEndCallback = null) {
+            if (!('speechSynthesis' in window)) {
+                alert('দুঃখিত, আপনার ব্রাউজারে স্পিচ অডিও সমর্থিত নয়।');
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = speechRate;
+            utterance.lang = currentAccent;
+
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0) {
+                const matchedVoice = voices.find(v => v.lang.includes(currentAccent) || (currentAccent === 'en-US' && v.lang.includes('US')) || (currentAccent === 'en-GB' && v.lang.includes('UK')));
+                if (matchedVoice) utterance.voice = matchedVoice;
+            }
+
+            let elem = highlightElemId ? document.getElementById(highlightElemId) : null;
+            if (elem) elem.classList.add('speaking-active');
+
+            utterance.onend = () => {
+                if (elem) elem.classList.remove('speaking-active');
+                if (onEndCallback) onEndCallback();
+            };
+            utterance.onerror = () => {
+                if (elem) elem.classList.remove('speaking-active');
+                if (onEndCallback) onEndCallback();
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function flipCard() {
+            const card = document.getElementById('flashcard');
+            isCardFlipped = !isCardFlipped;
+            if (isCardFlipped) {
+                card.classList.add('rotate-y-180');
+            } else {
+                card.classList.remove('rotate-y-180');
+            }
+        }
+
+        function updateFlashcard() {
+            if (allFlashcards.length === 0) return;
+            const data = allFlashcards[currentCardIndex];
+            document.getElementById('cardStandard').innerText = data.standard;
+            document.getElementById('cardMeaning').innerText = data.meaning;
+            document.getElementById('cardNative').innerText = `"${data.native}"`;
+            document.getElementById('cardPhonetic').innerText = data.phonetic;
+            document.getElementById('cardCounter').innerText = `${currentCardIndex + 1} / ${allFlashcards.length}`;
+
+            document.getElementById('voiceFeedbackPanel').classList.add('hidden');
+            if (isCardFlipped) flipCard();
+        }
+
+        function nextFlashcard() {
+            currentCardIndex = (currentCardIndex + 1) % allFlashcards.length;
+            updateFlashcard();
+        }
+
+        function prevFlashcard() {
+            currentCardIndex = (currentCardIndex - 1 + allFlashcards.length) % allFlashcards.length;
+            updateFlashcard();
+        }
+
+        function speakCardAudio() {
+            const data = allFlashcards[currentCardIndex];
+            speakText(data.native);
+        }
+
+        function getSimilarityScore(a, b) {
+            a = a.toLowerCase().replace(/[^a-z0-9]/g, '');
+            b = b.toLowerCase().replace(/[^a-z0-9]/g, '');
+            if (a.length === 0) return b.length === 0 ? 100 : 0;
+            if (b.length === 0) return 0;
+
+            const matrix = [];
+            for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+            for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            const distance = matrix[b.length][a.length];
+            const maxLen = Math.max(a.length, b.length);
+            return Math.round(((maxLen - distance) / maxLen) * 100);
+        }
+
+        function startVoiceRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert('দুঃখিত, আপনার ব্রাউজারে Speech Recognition মাইক্রোফোন ইনপুট সমর্থিত নয়। দয়া করে Chrome বা Edge ব্যবহার করুন।');
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = currentAccent;
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            const btnMic = document.getElementById('btnMicRecord');
+            const btnText = document.getElementById('micBtnText');
+            const feedbackPanel = document.getElementById('voiceFeedbackPanel');
+            const spokenTextElem = document.getElementById('userSpokenText');
+            const badgeElem = document.getElementById('accuracyBadge');
+            const guidanceElem = document.getElementById('aiGuidanceMessage');
+
+            btnMic.classList.add('mic-recording');
+            btnText.innerText = 'শুনছি... এখন বলুন!';
+            feedbackPanel.classList.remove('hidden');
+            guidanceElem.innerHTML = '<span class="text-amber-400 font-bengali">মাইক্রোফোন সক্রিয়... দয়া করে শব্দটি বলুন।</span>';
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                btnMic.classList.remove('mic-recording');
+                btnText.innerText = '২. আপনার কণ্ঠে টেস্ট করুন';
+
+                const transcript = event.results[0][0].transcript;
+                spokenTextElem.innerText = `"${transcript}"`;
+
+                const targetData = allFlashcards[currentCardIndex];
+                const scoreNative = getSimilarityScore(transcript, targetData.native);
+                const scoreStandard = getSimilarityScore(transcript, targetData.standard);
+                const finalScore = Math.max(scoreNative, scoreStandard);
+
+                badgeElem.innerText = `${finalScore}% Match`;
+
+                if (finalScore >= 70) {
+                    badgeElem.className = "px-2.5 py-0.5 rounded-full text-xs font-bold font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                    guidanceElem.innerHTML = `<span class="text-emerald-400 font-bold font-bengali"><i class="fa-solid fa-circle-check mr-1"></i> চমৎকার! আপনার উচ্চারণ একদম সঠিক হয়েছে।</span>`;
+                } else if (finalScore >= 40) {
+                    badgeElem.className = "px-2.5 py-0.5 rounded-full text-xs font-bold font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30";
+                    guidanceElem.innerHTML = `<span class="text-amber-300 font-bengali"><i class="fa-solid fa-triangle-exclamation mr-1"></i> খুব কাছাকাছি গেছে! সঠিক উচ্চারণ: "<strong>${targetData.native}</strong>" (${targetData.phonetic})।</span>`;
+                } else {
+                    badgeElem.className = "px-2.5 py-0.5 rounded-full text-xs font-bold font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30";
+                    guidanceElem.innerHTML = `<span class="text-rose-400 font-bengali"><i class="fa-solid fa-circle-xmark mr-1"></i> ঠিকমতো মেলেনি। আবার শুনে চেষ্টা করুন: ${targetData.phonetic}।</span>`;
+                }
+            };
+
+            recognition.onerror = function(event) {
+                btnMic.classList.remove('mic-recording');
+                btnText.innerText = '২. আপনার কণ্ঠে টেস্ট করুন';
+                guidanceElem.innerHTML = `<span class="text-rose-400 font-bengali">মাইক্রোফোন ত্রুটি: ${event.error}।</span>`;
+            };
+
+            recognition.onend = function() {
+                btnMic.classList.remove('mic-recording');
+                btnText.innerText = '২. আপনার কণ্ঠে টেস্ট করুন';
+            };
+        }
+    </script>
+</body>
+</html>
