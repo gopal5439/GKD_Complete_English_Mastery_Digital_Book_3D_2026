@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 20: Motivation, Habits & Life Lessons</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.75);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.35);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-bangla: 'Tiro Bangla', serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(245, 158, 11, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-bangla);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-family: var(--font-bangla);
+            color: #38bdf8;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-right: 80px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #f59e0b, #0284c7);
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            flex-shrink: 0;
+        }
+
+        .bangla-text {
+            font-family: var(--font-bangla);
+            font-size: 1.25rem;
+            color: #f8fafc;
+            line-height: 1.5;
+        }
+
+        .english-section {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .english-text {
+            font-family: var(--font-english);
+            font-size: 1.35rem;
+            color: #38bdf8;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+        }
+
+        .pronunciation {
+            font-family: var(--font-bangla);
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .audio-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-3d {
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0369a1, 0 5px 10px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #0369a1, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk {
+            background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 4px 0 #b45309, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk:active {
+            box-shadow: 0 1px 0 #b45309, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .explanation-section {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .explanation-text {
+            font-family: var(--font-bangla);
+            font-size: 0.95rem;
+            color: #fbbf24;
+            line-height: 1.5;
+        }
+
+        .step-indicator {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .header h1 { font-size: 1.4rem; }
+            .bangla-text { font-size: 1.1rem; }
+            .english-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Part 20: Motivation, Habits & Life Lessons</h1>
+        <p>বিষয়: অনুপ্রেরণা, অভ্যাস ও জীবনের শিক্ষা (Sentence 476–500)</p>
+    </div>
+
+    <div class="container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            { id: 476, bn: "কখনো নিজের ওপর বিশ্বাস হারাবে না।", en: "Never lose faith in yourself.", pr: "নেভার লুজ ফেইথ ইন ইয়োরসেলফ।", exp: "কাউকে নিজের প্রতি আত্মবিশ্বাস ধরে রাখতে উৎসাহিত করতে এই বাক্যটি ব্যবহার করা হয়। “Never” অর্থ কখনোই না।" },
+            { id: 477, bn: "সফল হতে হলে তোমাকে কঠোর পরিশ্রম করতে হবে।", en: "You have to work hard to succeed.", pr: "ইউ হ্যাভ টু ওয়ার্ক হার্ড টু সাকসিড।", exp: "“Have to” দিয়ে বাধ্যবাধকতা বোঝায়। “To succeed” হলো Infinitive, যার অর্থ সফল হতে।" },
+            { id: 478, bn: "সময়ের অপচয় করো না।", en: "Don't waste your time.", pr: "ডোন্ট ওয়েস্ট ইয়োর টাইম।", exp: "কাউকে কোনো কাজ করতে নিষেধ করতে “Don't + Verb-এর মূল রূপ” ব্যবহার করা হয়।" },
+            { id: 479, bn: "প্রতিদিন নতুন কিছু শেখার চেষ্টা করো।", en: "Try to learn something new every day.", pr: "ট্রাই টু লার্ন সামথিং নিউ এভরি ডে।", exp: "“Try to” অর্থ চেষ্টা করা। “Something new” অর্থ নতুন কিছু।" },
+            { id: 480, bn: "ব্যর্থতাকে ভয় পেয়ো না।", en: "Don't be afraid of failure.", pr: "ডোন্ট বি অ্যাফ্রেইড অভ ফেইলিয়ার।", exp: "“Be afraid of” অর্থ কোনো কিছুতে ভয় পাওয়া। এখানে “failure” অর্থ ব্যর্থতা।" },
+            { id: 481, bn: "প্রতিটি ভুল থেকে শিক্ষা নাও।", en: "Learn from every mistake.", pr: "লার্ন ফ্রম এভরি মিসটেক।", exp: "“Learn from” অর্থ কোনো কিছু থেকে শিক্ষা নেওয়া। “Mistake” অর্থ ভুল।" },
+            { id: 482, bn: "নিজের লক্ষ্য ঠিক রাখো।", en: "Stay focused on your goal.", pr: "স্টে ফোকাসড অন ইয়োর গোল।", exp: "“Stay focused” অর্থ মনোযোগ ধরে রাখা। “Goal” অর্থ লক্ষ্য।" },
+            { id: 483, bn: "আজকের কাজ আগামীকালের জন্য ফেলে রেখো না।", en: "Don't put off today's work until tomorrow.", pr: "ডোন্ট পুট অফ টুডেজ ওয়ার্ক আনটিল টুমরো।", exp: "“Put off” একটি Phrasal Verb, যার অর্থ পিছিয়ে দেওয়া বা স্থগিত রাখা।" },
+            { id: 484, bn: "ছোট ছোট পদক্ষেপই বড় সাফল্য এনে দেয়।", en: "Small steps lead to great success.", pr: "স্মল স্টেপস লিড টু গ্রেট সাকসেস।", exp: "“Lead to” অর্থ কোনো কিছুর দিকে নিয়ে যাওয়া বা ফলস্বরূপ কিছু ঘটানো।" },
+            { id: 485, bn: "নিজের দুর্বলতাগুলো দূর করার চেষ্টা করো।", en: "Try to overcome your weaknesses.", pr: "ট্রাই টু ওভারকাম ইয়োর উইকনেসেস।", exp: "“Overcome” অর্থ কাটিয়ে ওঠা বা জয় করা। “Weaknesses” অর্থ দুর্বলতাগুলো।" },
+            { id: 486, bn: "নিয়মিত অনুশীলন তোমাকে আরও দক্ষ করে তুলবে।", en: "Regular practice will make you more skilled.", pr: "রেগুলার প্র্যাকটিস উইল মেক ইউ মোর স্কিলড।", exp: "ভবিষ্যতে কোনো কাজের ফল বোঝাতে Future Simple Tense ব্যবহার করা হয়েছে। “Make” এখানে কাউকে কোনো অবস্থায় পরিণত করা বোঝায়।" },
+            { id: 487, bn: "অন্যের সঙ্গে নিজের তুলনা করো না।", en: "Don't compare yourself with others.", pr: "ডোন্ট কমপেয়ার ইয়োরসেলফ উইথ আদার্স।", exp: "“Compare with” অর্থ তুলনা করা। “Yourself” হলো Reflexive Pronoun।" },
+            { id: 488, bn: "সবকিছু একদিনে অর্জন করা সম্ভব নয়।", en: "You cannot achieve everything in one day.", pr: "ইউ ক্যাননট অ্যাচিভ এভরিথিং ইন ওয়ান ডে।", exp: "“Cannot” দিয়ে অক্ষমতা বা অসম্ভবতা বোঝানো হয়। “Achieve” অর্থ অর্জন করা।" },
+            { id: 489, bn: "নিজের প্রতিশ্রুতি রক্ষা করো।", en: "Keep your promises.", pr: "কিপ ইয়োর প্রমিসেস।", exp: "“Keep a promise” অর্থ প্রতিশ্রুতি রক্ষা করা। একাধিক প্রতিশ্রুতি বোঝাতে “promises” ব্যবহৃত হয়েছে।" },
+            { id: 490, bn: "সবসময় ইতিবাচক চিন্তা করার চেষ্টা করো।", en: "Always try to think positively.", pr: "অলওয়েজ ট্রাই টু থিংক পজিটিভলি।", exp: "“Positively” একটি Adverb, যা চিন্তা করার ধরন বোঝায়। এর অর্থ ইতিবাচকভাবে।" },
+            { id: 491, bn: "কঠিন সময় তোমাকে আরও শক্তিশালী করে তোলে।", en: "Difficult times make you stronger.", pr: "ডিফিকাল্ট টাইমস মেক ইউ স্ট্রংগার।", exp: "“Make” দিয়ে কাউকে কোনো অবস্থায় পরিণত করা বোঝানো হয়েছে। “Stronger” হলো “strong”-এর Comparative Degree।" },
+            { id: 492, bn: "নিজের ভুল স্বীকার করতে শেখো।", en: "Learn to admit your mistakes.", pr: "লার্ন টু অ্যাডমিট ইয়োর মিসটেকস।", exp: "“Admit” অর্থ স্বীকার করা। “Learn to + Verb” দিয়ে কোনো কাজ করতে শেখা বোঝায়।" },
+            { id: 493, bn: "ধৈর্য ধরো এবং অপেক্ষা করো।", en: "Be patient and wait.", pr: "বি পেশেন্ট অ্যান্ড ওয়েইট।", exp: "“Be patient” অর্থ ধৈর্য ধরো। “Patient” এখানে Adjective, যার অর্থ ধৈর্যশীল।" },
+            { id: 494, bn: "তোমার স্বপ্ন পূরণের জন্য কাজ করে যাও।", en: "Keep working to achieve your dreams.", pr: "কিপ ওয়ার্কিং টু অ্যাচিভ ইয়োর ড্রিমস।", exp: "“Keep + Verb-ing” দিয়ে কোনো কাজ চালিয়ে যাওয়া বোঝায়। “Achieve your dreams” অর্থ স্বপ্ন পূরণ করা।" },
+            { id: 495, bn: "যারা তোমাকে সাহায্য করে, তাদের প্রতি কৃতজ্ঞ থাকো।", en: "Be grateful to those who help you.", pr: "বি গ্রেটফুল টু দোজ হু হেল্প ইউ।", exp: "“Be grateful to” অর্থ কারও প্রতি কৃতজ্ঞ থাকা। “Those who” অর্থ যারা।" },
+            { id: 496, bn: "প্রতিদিন নিজেকে আরও ভালো করার চেষ্টা করো।", en: "Try to improve yourself every day.", pr: "ট্রাই টু ইমপ্রুভ ইয়োরসেলফ এভরি ডে।", exp: "“Improve” অর্থ উন্নতি করা। “Yourself” দিয়ে নিজের উন্নতি বোঝানো হয়েছে।" },
+            { id: 497, bn: "সাফল্যের কোনো সংক্ষিপ্ত পথ নেই।", en: "There is no shortcut to success.", pr: "দেয়ার ইজ নো শর্টকাট টু সাকসেস।", exp: "“There is” দিয়ে কোনো কিছুর অস্তিত্ব বোঝানো হয়। “Shortcut to success” অর্থ সাফল্যের সংক্ষিপ্ত পথ।" },
+            { id: 498, bn: "তোমার কাজের দায়িত্ব নিজেকেই নিতে হবে।", en: "You must take responsibility for your actions.", pr: "ইউ মাস্ট টেক রেসপনসিবিলিটি ফর ইয়োর অ্যাকশনস।", exp: "“Must” দিয়ে দৃঢ় বাধ্যবাধকতা বোঝানো হয়। “Take responsibility for” অর্থ কোনো কিছুর দায়িত্ব গ্রহণ করা।" },
+            { id: 499, bn: "কখনো চেষ্টা করা বন্ধ করো না।", en: "Never stop trying.", pr: "নেভার স্টপ ট্রাইয়িং।", exp: "“Stop + Verb-ing” দিয়ে কোনো কাজ বন্ধ করা বোঝায়। তাই এখানে “stop trying” ব্যবহার হয়েছে।" },
+            { id: 500, bn: "নিজের ওপর বিশ্বাস রাখো, একদিন তুমি সফল হবেই।", en: "Believe in yourself, and one day you will succeed.", pr: "বিলিভ ইন ইয়োরসেলফ, অ্যান্ড ওয়ান ডে ইউ উইল সাকসিড।", exp: "“Believe in yourself” অর্থ নিজের ওপর বিশ্বাস রাখা। “Will succeed” দিয়ে ভবিষ্যতে সফল হওয়ার কথা বোঝানো হয়েছে।" }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = "0";
+
+            card.innerHTML = `
+                <div class="step-indicator">ক্লিক করুন (১/৩)</div>
+                <div class="card-header">
+                    <span class="badge">${item.id}</span>
+                    <div class="bangla-text">${item.bn}</div>
+                </div>
+                <div class="english-section">
+                    <div class="english-text">${item.en}</div>
+                    <div class="pronunciation">উচ্চারণ: ${item.pr}</div>
+                    <div class="audio-buttons">
+                        <button class="btn-3d" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-US')">🔊 US Voice</button>
+                        <button class="btn-3d btn-uk" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-GB')">🔊 UK Voice</button>
+                    </div>
+                </div>
+                <div class="explanation-section">
+                    <div class="explanation-text"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+                </div>
+            `;
+
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') return;
+
+                let currentStep = parseInt(card.dataset.step);
+                currentStep = (currentStep + 1) % 3;
+                card.dataset.step = currentStep;
+
+                const englishSec = card.querySelector('.english-section');
+                const expSec = card.querySelector('.explanation-section');
+                const indicator = card.querySelector('.step-indicator');
+
+                if (currentStep === 0) {
+                    englishSec.style.display = 'none';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'ক্লিক করুন (১/৩)';
+                } else if (currentStep === 1) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'আবার ক্লিক করুন (২/৩)';
+                } else if (currentStep === 2) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'block';
+                    indicator.textContent = 'রিসেট করতে ক্লিক করুন (৩/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        function speakText(event, text, lang) {
+            event.stopPropagation();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজার টেক্সট-টু-স্পিচ ভয়েস সাপোর্ট করে না।');
+            }
+        }
+    </script>
+</body>
+</html>

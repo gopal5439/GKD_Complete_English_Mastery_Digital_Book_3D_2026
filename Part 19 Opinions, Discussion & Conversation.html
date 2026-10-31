@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 19: Opinions, Discussion & Conversation</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.75);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.35);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-bangla: 'Tiro Bangla', serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-bangla);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-family: var(--font-bangla);
+            color: #38bdf8;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-right: 80px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #ec4899, #0284c7);
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);
+            flex-shrink: 0;
+        }
+
+        .bangla-text {
+            font-family: var(--font-bangla);
+            font-size: 1.25rem;
+            color: #f8fafc;
+            line-height: 1.5;
+        }
+
+        .english-section {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .english-text {
+            font-family: var(--font-english);
+            font-size: 1.35rem;
+            color: #38bdf8;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+        }
+
+        .pronunciation {
+            font-family: var(--font-bangla);
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .audio-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-3d {
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0369a1, 0 5px 10px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #0369a1, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk {
+            background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+            box-shadow: 0 4px 0 #9d174d, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk:active {
+            box-shadow: 0 1px 0 #9d174d, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .explanation-section {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .explanation-text {
+            font-family: var(--font-bangla);
+            font-size: 0.95rem;
+            color: #fbbf24;
+            line-height: 1.5;
+        }
+
+        .step-indicator {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .header h1 { font-size: 1.4rem; }
+            .bangla-text { font-size: 1.1rem; }
+            .english-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Part 19: Opinions, Discussion & Conversation</h1>
+        <p>বিষয়: মতামত, আলোচনা ও কথোপকথন (Sentence 451–475)</p>
+    </div>
+
+    <div class="container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            { id: 451, bn: "আমার মনে হয়, বিষয়টি খুব গুরুত্বপূর্ণ।", en: "I think the matter is very important.", pr: "আই থিংক দ্য ম্যাটার ইজ ভেরি ইমপোর্ট্যান্ট।", exp: "নিজের মতামত প্রকাশ করতে “I think” ব্যবহার করা হয়। এখানে “the matter” অর্থ বিষয়টি এবং “important” অর্থ গুরুত্বপূর্ণ।" },
+            { id: 452, bn: "এ বিষয়ে তোমার মতামত কী?", en: "What is your opinion about this?", pr: "হোয়াট ইজ ইয়োর ওপিনিয়ন অ্যাবাউট দিস?", exp: "কারও মতামত জানতে “What is your opinion about...?” ব্যবহার করা হয়।" },
+            { id: 453, bn: "আমি তোমার সঙ্গে একমত।", en: "I agree with you.", pr: "আই অ্যাগ্রি উইথ ইউ।", exp: "কারও বক্তব্যের সঙ্গে একমত হলে “agree with” ব্যবহার করতে হয়।" },
+            { id: 454, bn: "আমি তোমার সঙ্গে একমত নই।", en: "I do not agree with you.", pr: "আই ডু নট অ্যাগ্রি উইথ ইউ।", exp: "একমত না হলে Present Simple Tense-এর নেতিবাচক গঠন “do not + verb” ব্যবহার করা হয়।" },
+            { id: 455, bn: "তুমি যা বলছ, তা ঠিক।", en: "What you are saying is right.", pr: "হোয়াট ইউ আর সেইয়িং ইজ রাইট।", exp: "“What you are saying” অর্থ তুমি যা বলছ। এটি বাক্যের Subject হিসেবে ব্যবহৃত হয়েছে।" },
+            { id: 456, bn: "আমি তোমার কথাটি বুঝতে পারছি।", en: "I understand what you mean.", pr: "আই আন্ডারস্ট্যান্ড হোয়াট ইউ মিন।", exp: "কারও বক্তব্যের অর্থ বুঝতে পারলে “I understand what you mean” বলা যায়।" },
+            { id: 457, bn: "তুমি কি আরেকটু পরিষ্কার করে বলতে পারবে?", en: "Could you explain it more clearly?", pr: "কুড ইউ এক্সপ্লেইন ইট মোর ক্লিয়ারলি?", exp: "কোনো বিষয় আরও স্পষ্টভাবে বোঝাতে অনুরোধ করতে “Could you explain...?” ব্যবহার করা হয়।" },
+            { id: 458, bn: "আমি বিষয়টি নিয়ে ভাবছি।", en: "I am thinking about the matter.", pr: "আই অ্যাম থিংকিং অ্যাবাউট দ্য ম্যাটার।", exp: "বর্তমানে কোনো বিষয় নিয়ে চিন্তা করার কাজ চলছে বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে।" },
+            { id: 459, bn: "আমার দৃষ্টিতে, এটি একটি ভালো সিদ্ধান্ত।", en: "In my opinion, it is a good decision.", pr: "ইন মাই ওপিনিয়ন, ইট ইজ আ গুড ডিসিশন।", exp: "নিজের দৃষ্টিভঙ্গি বা মতামত প্রকাশ করতে “In my opinion” ব্যবহার করা হয়।" },
+            { id: 460, bn: "আমি বিষয়টির সঙ্গে পুরোপুরি একমত নই।", en: "I do not completely agree with the matter.", pr: "আই ডু নট কমপ্লিটলি অ্যাগ্রি উইথ দ্য ম্যাটার।", exp: "“Completely” অর্থ সম্পূর্ণভাবে। “Do not completely agree” দ্বারা আংশিক অসম্মতি প্রকাশ করা হয়েছে।" },
+            { id: 461, bn: "তুমি কি আমার কথার সঙ্গে একমত?", en: "Do you agree with me?", pr: "ডু ইউ অ্যাগ্রি উইথ মি?", exp: "কারও সম্মতি জানতে Present Simple Tense-এর প্রশ্নবোধক গঠন ব্যবহার করা হয়েছে।" },
+            { id: 462, bn: "আমার মনে হয়, আমাদের বিষয়টি নিয়ে আলোচনা করা উচিত।", en: "I think we should discuss the matter.", pr: "আই থিংক উই শুড ডিসকাস দ্য ম্যাটার।", exp: "“Should” দিয়ে পরামর্শ বা উচিত বোঝানো হয়। এর পরে Verb-এর মূল রূপ “discuss” বসে।" },
+            { id: 463, bn: "এই বিষয়ে আমার কিছু বলার আছে।", en: "I have something to say about this.", pr: "আই হ্যাভ সামথিং টু সে অ্যাবাউট দিস।", exp: "কোনো বিষয়ে নিজের বক্তব্য দেওয়ার ইচ্ছা প্রকাশ করতে এই বাক্যটি ব্যবহার করা হয়।" },
+            { id: 464, bn: "তুমি কি আমার বক্তব্যের সঙ্গে একমত হতে পারছ না?", en: "Can't you agree with my point?", pr: "ক্যান্ট ইউ অ্যাগ্রি উইথ মাই পয়েন্ট?", exp: "“Point” এখানে বক্তব্য বা যুক্তি অর্থে ব্যবহৃত হয়েছে। “Can't you” দিয়ে নেতিবাচক প্রশ্ন তৈরি হয়েছে।" },
+            { id: 465, bn: "আমি তোমার যুক্তিটি মেনে নিচ্ছি।", en: "I accept your argument.", pr: "আই অ্যাকসেপ্ট ইয়োর আর্গুমেন্ট।", exp: "“Accept” অর্থ গ্রহণ করা বা মেনে নেওয়া এবং “argument” অর্থ যুক্তি।" },
+            { id: 466, bn: "আমাদের উচিত অন্যের মতামতকে সম্মান করা।", en: "We should respect other people's opinions.", pr: "উই শুড রিসপেক্ট আদার পিপলস ওপিনিয়নস।", exp: "“Respect” অর্থ সম্মান করা। “Should” দিয়ে নৈতিক দায়িত্ব বা কর্তব্য বোঝানো হয়েছে।" },
+            { id: 467, bn: "আমি এ বিষয়ে তোমার সঙ্গে কথা বলতে চাই।", en: "I want to talk to you about this.", pr: "আই ওয়ান্ট টু টক টু ইউ অ্যাবাউট দিস।", exp: "কোনো বিষয়ে কারও সঙ্গে কথা বলার ইচ্ছা প্রকাশ করতে “want to talk to” ব্যবহার করা হয়।" },
+            { id: 468, bn: "তোমার কথাটি আমার কাছে যুক্তিসংগত মনে হচ্ছে।", en: "Your point sounds reasonable to me.", pr: "ইয়োর পয়েন্ট সাউন্ডস রিজনেবল টু মি।", exp: "“Sounds reasonable” অর্থ যুক্তিসংগত মনে হওয়া। এখানে “sounds” হলো Linking Verb।" },
+            { id: 469, bn: "আমরা কি অন্য একটি বিষয় নিয়ে আলোচনা করতে পারি?", en: "Can we discuss another topic?", pr: "ক্যান উই ডিসকাস অ্যানাদার টপিক?", exp: "কোনো নতুন বিষয় নিয়ে আলোচনা করার অনুমতি বা প্রস্তাব দিতে “Can we...?” ব্যবহার করা হয়।" },
+            { id: 470, bn: "তোমার কথার সঙ্গে আমি একটি বিষয়ে একমত।", en: "I agree with one point you made.", pr: "আই অ্যাগ্রি উইথ ওয়ান পয়েন্ট ইউ মেড।", exp: "“One point” অর্থ একটি বিষয় বা যুক্তি। “You made” দ্বারা বোঝানো হয়েছে যে যুক্তিটি তুমি উপস্থাপন করেছ।" },
+            { id: 471, bn: "আমার মনে হয়, তুমি বিষয়টি ভুল বুঝেছ।", en: "I think you have misunderstood the matter.", pr: "আই থিংক ইউ হ্যাভ মিসআন্ডারস্টুড দ্য ম্যাটার।", exp: "কোনো কাজের প্রভাব বর্তমানে রয়েছে বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। “Misunderstood” হলো “misunderstand” ক্রিয়ার Past Participle।" },
+            { id: 472, bn: "এ বিষয়ে আমাদের আরও তথ্য প্রয়োজন।", en: "We need more information about this.", pr: "উই নিড মোর ইনফরমেশন অ্যাবাউট দিস।", exp: "“Need” অর্থ প্রয়োজন হওয়া। “Information” একটি Uncountable Noun, তাই সাধারণত এর সঙ্গে “s” যোগ করা হয় না।" },
+            { id: 473, bn: "তুমি কি তোমার সিদ্ধান্তের কারণ ব্যাখ্যা করতে পারবে?", en: "Can you explain the reason for your decision?", pr: "ক্যান ইউ এক্সপ্লেইন দ্য রিজন ফর ইয়োর ডিসিশন?", exp: "কোনো সিদ্ধান্তের পেছনের কারণ জানতে “the reason for” ব্যবহার করা হয়।" },
+            { id: 474, bn: "শেষ পর্যন্ত আমাদের একটি সিদ্ধান্তে পৌঁছাতে হবে।", en: "We have to reach a decision in the end.", pr: "উই হ্যাভ টু রিচ আ ডিসিশন ইন দ্য এন্ড।", exp: "“Have to” দিয়ে বাধ্যবাধকতা বোঝানো হয়। “Reach a decision” অর্থ সিদ্ধান্তে পৌঁছানো।" },
+            { id: 475, bn: "তোমার সঙ্গে আলোচনা করে ভালো লাগল।", en: "It was nice discussing with you.", pr: "ইট ওয়াজ নাইস ডিসকাসিং উইথ ইউ।", exp: "আলোচনা করে ভালো লাগার অভিজ্ঞতা প্রকাশ করতে “It was nice...” ব্যবহার করা হয়েছে। “Discussing” হলো Gerund।" }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = "0";
+
+            card.innerHTML = `
+                <div class="step-indicator">ক্লিক করুন (১/৩)</div>
+                <div class="card-header">
+                    <span class="badge">${item.id}</span>
+                    <div class="bangla-text">${item.bn}</div>
+                </div>
+                <div class="english-section">
+                    <div class="english-text">${item.en}</div>
+                    <div class="pronunciation">উচ্চারণ: ${item.pr}</div>
+                    <div class="audio-buttons">
+                        <button class="btn-3d" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-US')">🔊 US Voice</button>
+                        <button class="btn-3d btn-uk" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-GB')">🔊 UK Voice</button>
+                    </div>
+                </div>
+                <div class="explanation-section">
+                    <div class="explanation-text"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+                </div>
+            `;
+
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') return;
+
+                let currentStep = parseInt(card.dataset.step);
+                currentStep = (currentStep + 1) % 3;
+                card.dataset.step = currentStep;
+
+                const englishSec = card.querySelector('.english-section');
+                const expSec = card.querySelector('.explanation-section');
+                const indicator = card.querySelector('.step-indicator');
+
+                if (currentStep === 0) {
+                    englishSec.style.display = 'none';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'ক্লিক করুন (১/৩)';
+                } else if (currentStep === 1) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'আবার ক্লিক করুন (২/৩)';
+                } else if (currentStep === 2) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'block';
+                    indicator.textContent = 'রিসেট করতে ক্লিক করুন (৩/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        function speakText(event, text, lang) {
+            event.stopPropagation();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজার টেক্সট-টু-স্পিচ ভয়েস সাপোর্ট করে না।');
+            }
+        }
+    </script>
+</body>
+</html>

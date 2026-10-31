@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 5: Food, Cooking & Restaurant (বাক্য ১০১–১২৫)</title>
+    <!-- Google Fonts for Tiro Bangla & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        bangla: ['"Tiro Bangla"', 'serif'],
+                        english: ['"Times New Roman"', 'Times', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        /* 3D Card Hover & Depth Effects */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.4),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+            border-color: rgba(251, 191, 36, 0.4);
+        }
+
+        /* 3D Button Effects */
+        .btn-3d {
+            position: relative;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.3), 0 10px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Specific gradient buttons */
+        .btn-step {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-speech-us {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+
+        .btn-speech-uk {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+        }
+
+        /* Subtle glowing elements */
+        .glow-text {
+            text-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
+        }
+
+        /* Smooth reveal transitions */
+        .reveal-box {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-box.show {
+            max-height: 300px;
+            opacity: 1;
+        }
+
+        /* Badge design */
+        .step-badge {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto text-center my-8">
+        <div class="inline-block p-2 px-4 rounded-full step-badge text-amber-300 font-sans text-sm font-semibold mb-3 tracking-wider uppercase shadow-lg">
+            English Learning App
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-amber-200 mb-4 font-sans tracking-tight glow-text">
+            Part 5: Food, Cooking & Restaurant
+        </h1>
+        <h2 class="text-lg md:text-2xl font-bangla text-amber-100 opacity-90 max-w-3xl mx-auto leading-relaxed">
+            খাবার, রান্না ও রেস্তোরাঁ | Sentence 101–125
+        </h2>
+        
+        <!-- Quick Controls -->
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+            <button onclick="revealAll(1)" class="btn-3d px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bangla text-sm flex items-center gap-2">
+                <i class="fa-solid fa-eye"></i> সব বাংলা+ইংরেজি দেখুন
+            </button>
+            <button onclick="revealAll(2)" class="btn-3d px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bangla text-sm flex items-center gap-2">
+                <i class="fa-solid fa-book-open"></i> সব ব্যাখ্যাসহ দেখুন
+            </button>
+            <button onclick="resetAll()" class="btn-3d btn-reset px-4 py-2 rounded-xl text-white font-bangla text-sm flex items-center gap-2">
+                <i class="fa-solid fa-rotate-left"></i> রিসেট করুন
+            </button>
+        </div>
+    </header>
+
+    <!-- Cards Grid -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10" id="cards-container">
+        <!-- Cards will be dynamically inserted here via JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto text-center py-6 text-slate-400 font-sans text-sm border-t border-slate-800/80">
+        <p>© 2026 Interactive English-Bengali Learning Portal. Powered by Web Speech API.</p>
+    </footer>
+
+    <!-- JavaScript Code -->
+    <script>
+        // Data Array holding sentences 101 to 125
+        const sentenceData = [
+            {
+                id: 101,
+                bn: "আমার খুব ক্ষুধা লেগেছে।",
+                en: "I am very hungry.",
+                pron: "আই অ্যাম ভেরি হাংগ্রি।",
+                exp: "ক্ষুধার অনুভূতি প্রকাশ করতে hungry ব্যবহার করা হয়। Very hungry অর্থ খুব ক্ষুধার্ত।"
+            },
+            {
+                id: 102,
+                bn: "আমার খুব পিপাসা পেয়েছে।",
+                en: "I am very thirsty.",
+                pron: "আই অ্যাম ভেরি থার্স্টি।",
+                exp: "পানির প্রয়োজন বা পিপাসা বোঝাতে thirsty ব্যবহার করা হয়। I am thirsty অর্থ আমার পিপাসা পেয়েছে।"
+            },
+            {
+                id: 103,
+                bn: "তুমি কি খেতে চাও?",
+                en: "Do you want to eat?",
+                pron: "ডু ইউ ওয়ান্ট টু ইট?",
+                exp: "কাউকে কিছু খেতে ইচ্ছা করে কি না জানতে প্রশ্নটি ব্যবহার করা হয়। Want to অর্থ ইচ্ছা করা বা চাইতে।"
+            },
+            {
+                id: 104,
+                bn: "আমি ভাত খেতে পছন্দ করি।",
+                en: "I like eating rice.",
+                pron: "আই লাইক ইটিং রাইস।",
+                exp: "কোনো কাজ করতে ভালো লাগে বোঝাতে like + verb-ing ব্যবহার করা যায়। এখানে eating rice অর্থ ভাত খাওয়া।"
+            },
+            {
+                id: 105,
+                bn: "খাবারটা খুব সুস্বাদু হয়েছে।",
+                en: "The food is very delicious.",
+                pron: "দ্য ফুড ইজ ভেরি ডিলিশাস।",
+                exp: "খাবারের স্বাদ ভালো বোঝাতে delicious ব্যবহার করা হয়। এর অর্থ সুস্বাদু বা মজাদার।"
+            },
+            {
+                id: 106,
+                bn: "খাবারটা একটু ঝাল।",
+                en: "The food is a little spicy.",
+                pron: "দ্য ফুড ইজ আ লিটল স্পাইসি।",
+                exp: "খাবারে সামান্য ঝাল থাকার কথা বোঝাতে a little spicy ব্যবহার করা হয়। Spicy অর্থ ঝাল বা মসলাদার।"
+            },
+            {
+                id: 107,
+                bn: "আমি মিষ্টি খাবার পছন্দ করি না।",
+                en: "I don't like sweet food.",
+                pron: "আই ডোন্ট লাইক সুইট ফুড।",
+                exp: "কোনো কিছু অপছন্দ বোঝাতে do not (don't) like ব্যবহার করা হয়। Sweet food অর্থ মিষ্টি খাবার।"
+            },
+            {
+                id: 108,
+                bn: "তুমি কি চা খাবে?",
+                en: "Would you like some tea?",
+                pron: "উড ইউ লাইক সাম টি?",
+                exp: "কাউকে ভদ্রভাবে চা খাওয়ার প্রস্তাব দিতে Would you like...? ব্যবহার করা হয়। এটি Do you want...?-এর তুলনায় বেশি ভদ্র ও সৌজন্যমূলক।"
+            },
+            {
+                id: 109,
+                bn: "আমাকে এক কাপ কফি দাও।",
+                en: "Give me a cup of coffee.",
+                pron: "গিভ মি আ কাপ অভ কফি।",
+                exp: "কাউকে কিছু দিতে বলার জন্য Give me ব্যবহার করা হয়। A cup of coffee অর্থ এক কাপ কফি।"
+            },
+            {
+                id: 110,
+                bn: "আমি রান্না করতে জানি।",
+                en: "I know how to cook.",
+                pron: "আই নো হাউ টু কুক।",
+                exp: "কোনো কাজ করার দক্ষতা বা পদ্ধতি জানা বোঝাতে know how to + verb ব্যবহার করা হয়। এখানে রান্না করার দক্ষতা বোঝানো হয়েছে।"
+            },
+            {
+                id: 111,
+                bn: "তুমি কী রান্না করছ?",
+                en: "What are you cooking?",
+                pron: "হোয়াট আর ইউ কুকিং?",
+                exp: "বর্তমানে কেউ কী রান্না করছে তা জানতে Present Continuous Tense ব্যবহার করা হয়েছে। What অর্থ কী এবং cooking অর্থ রান্না করা।"
+            },
+            {
+                id: 112,
+                bn: "আমি আজ মাছ রান্না করব।",
+                en: "I will cook fish today.",
+                pron: "আই উইল কুক ফিশ টুডে।",
+                exp: "ভবিষ্যতে কোনো কাজ করার কথা বোঝাতে will + verb-এর base form ব্যবহার করা হয়। এখানে will cook অর্থ রান্না করব।"
+            },
+            {
+                id: 113,
+                bn: "খাবার তৈরি হতে কতক্ষণ লাগবে?",
+                en: "How long will it take to prepare the food?",
+                pron: "হাউ লং উইল ইট টেইক টু প্রিপেয়ার দ্য ফুড?",
+                exp: "কোনো কাজ সম্পন্ন হতে কত সময় লাগবে জানতে How long will it take...? ব্যবহার করা হয়। Prepare the food অর্থ খাবার তৈরি করা।"
+            },
+            {
+                id: 114,
+                bn: "খাবারটা এখনও গরম আছে।",
+                en: "The food is still hot.",
+                pron: "দ্য ফুড ইজ স্টিল হট।",
+                exp: "কোনো অবস্থা এখনো বজায় আছে বোঝাতে still ব্যবহার করা হয়। এখানে খাবার এখনো গরম থাকার কথা বলা হয়েছে।"
+            },
+            {
+                id: 115,
+                bn: "খাবারটা ঠান্ডা হয়ে গেছে।",
+                en: "The food has become cold.",
+                pron: "দ্য ফুড হ্যাজ বিকাম কোল্ড।",
+                exp: "কোনো পরিবর্তন ঘটে বর্তমান অবস্থায় পৌঁছেছে বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Has become cold অর্থ ঠান্ডা হয়ে গেছে।"
+            },
+            {
+                id: 116,
+                bn: "আরেকটু ভাত নেবে?",
+                en: "Would you like some more rice?",
+                pron: "উড ইউ লাইক সাম মোর রাইস?",
+                exp: "কাউকে আরও কিছু খাবার দেওয়ার প্রস্তাব করতে প্রশ্নটি ব্যবহার করা হয়। Some more অর্থ আরও কিছু।"
+            },
+            {
+                id: 117,
+                bn: "আমার পেট ভরে গেছে।",
+                en: "I am full.",
+                pron: "আই অ্যাম ফুল।",
+                exp: "পর্যাপ্ত খাবার খাওয়ার পর আর খেতে ইচ্ছা না করলে I am full বলা হয়। এখানে full অর্থ পেট ভরা।"
+            },
+            {
+                id: 118,
+                bn: "দয়া করে মেনুটা দেখান।",
+                en: "Please show me the menu.",
+                pron: "প্লিজ শো মি দ্য মেনু।",
+                exp: "রেস্তোরাঁয় খাবারের তালিকা দেখতে চাইলে বাক্যটি ব্যবহার করা হয়। Show me অর্থ আমাকে দেখান এবং menu অর্থ খাবারের তালিকা।"
+            },
+            {
+                id: 119,
+                bn: "আমি এক প্লেট বিরিয়ানি অর্ডার করতে চাই।",
+                en: "I would like to order a plate of biryani.",
+                pron: "আই উড লাইক টু অর্ডার আ প্লেট অভ বিরিয়ানি।",
+                exp: "রেস্তোরাঁয় ভদ্রভাবে খাবার অর্ডার করতে I would like to order ব্যবহার করা হয়। A plate of biryani অর্থ এক প্লেট বিরিয়ানি।"
+            },
+            {
+                id: 120,
+                bn: "এই খাবারের দাম কত?",
+                en: "How much is this food?",
+                pron: "হাউ মাচ ইজ দিস ফুড?",
+                exp: "কোনো খাবারের দাম জানতে How much is...? ব্যবহার করা হয়। This food অর্থ এই খাবার।"
+            },
+            {
+                id: 121,
+                bn: "খাবারটা একটু তাড়াতাড়ি দিন।",
+                en: "Please serve the food quickly.",
+                pron: "প্লিজ সার্ভ দ্য ফুড কুইকলি।",
+                exp: "খাবার দ্রুত পরিবেশন করার অনুরোধ জানাতে বাক্যটি ব্যবহার করা হয়। Quickly অর্থ দ্রুত বা তাড়াতাড়ি।"
+            },
+            {
+                id: 122,
+                bn: "বিলটা নিয়ে আসুন।",
+                en: "Please bring the bill.",
+                pron: "প্লিজ ব্রিং দ্য বিল।",
+                exp: "রেস্তোরাঁয় খাবার শেষে টাকা পরিশোধের জন্য বিল চাইতে বাক্যটি ব্যবহার করা হয়। Bring the bill অর্থ বিল নিয়ে আসুন।"
+            },
+            {
+                id: 123,
+                bn: "খাবারটা আমার ভালো লাগেনি।",
+                en: "I didn't like the food.",
+                pron: "আই ডিডন্ট লাইক দ্য ফুড।",
+                exp: "অতীতে কোনো কিছু ভালো না লাগার কথা বোঝাতে didn't + verb-এর base form ব্যবহার করা হয়। তাই এখানে didn't liked নয়, didn't like সঠিক।"
+            },
+            {
+                id: 124,
+                bn: "আমি নিরামিষ খাবার খাই।",
+                en: "I eat vegetarian food.",
+                pron: "আই ইট ভেজিটেরিয়ান ফুড।",
+                exp: "নিজের খাবারের অভ্যাস বোঝাতে Present Simple Tense ব্যবহার করা হয়েছে। Vegetarian food অর্থ নিরামিষ খাবার।"
+            },
+            {
+                id: 125,
+                bn: "খাবার নষ্ট করা উচিত নয়।",
+                en: "We should not waste food.",
+                pron: "উই শুড নট ওয়েস্ট ফুড।",
+                exp: "কোনো কাজ করা উচিত নয় বোঝাতে should not + verb-এর base form ব্যবহার করা হয়। Waste food অর্থ খাবার অপচয় করা।"
+            }
+        ];
+
+        // Track states for cards (0: Initial/Bengali only, 1: English+Pronunciation, 2: Explanation)
+        const cardStates = {};
+
+        // Numbers in Bengali
+        const toBengaliNum = (num) => {
+            const symbols = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
+            return num.toString().split('').map(d => symbols[d] || d).join('');
+        };
+
+        // Render all cards
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            sentenceData.forEach(item => {
+                cardStates[item.id] = cardStates[item.id] || 0;
+                const currentState = cardStates[item.id];
+
+                const cardHtml = `
+                    <div id="card-${item.id}" class="card-3d rounded-2xl p-6 flex flex-col justify-between cursor-pointer" onclick="handleCardClick(event, ${item.id})">
+                        
+                        <div>
+                            <!-- Header Info -->
+                            <div class="flex items-center justify-between mb-4 border-b border-slate-700/50 pb-3">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full step-badge text-amber-300 font-sans flex items-center gap-1">
+                                    <i class="fa-solid fa-hashtag text-[10px]"></i> বাক্য ${toBengaliNum(item.id)}
+                                </span>
+                                <span class="text-xs text-slate-400 font-sans" id="state-indicator-${item.id}">
+                                    ${getStateText(currentState)}
+                                </span>
+                            </div>
+
+                            <!-- Step 0: Bengali Title -->
+                            <div class="mb-4">
+                                <div class="text-xs text-amber-400 font-sans uppercase font-bold tracking-wider mb-1">বাংলা</div>
+                                <p class="font-bangla text-2xl text-slate-100 font-semibold leading-relaxed">
+                                    ${item.bn}
+                                </p>
+                            </div>
+
+                            <!-- Step 1 Reveal: English & Pronunciation -->
+                            <div id="english-box-${item.id}" class="reveal-box ${currentState >= 1 ? 'show' : ''}">
+                                <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60 mb-4 space-y-3">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-xs text-amber-400 font-sans uppercase font-bold tracking-wider">English</span>
+                                            <!-- Speech buttons -->
+                                            <div class="flex gap-2" onclick="event.stopPropagation()">
+                                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-US')" title="US Pronunciation" class="btn-3d btn-speech-us text-white text-xs px-2.5 py-1 rounded-lg flex items-center gap-1">
+                                                    <i class="fa-solid fa-volume-high"></i> <span class="font-sans font-bold">US</span>
+                                                </button>
+                                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')" title="UK Pronunciation" class="btn-3d btn-speech-uk text-white text-xs px-2.5 py-1 rounded-lg flex items-center gap-1">
+                                                    <i class="fa-solid fa-volume-high"></i> <span class="font-sans font-bold">UK</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p class="font-english text-2xl text-amber-200 tracking-wide font-normal">
+                                            ${item.en}
+                                        </p>
+                                    </div>
+
+                                    <div class="pt-2 border-t border-slate-800">
+                                        <span class="text-xs text-emerald-400 font-sans uppercase font-bold tracking-wider block mb-0.5">উচ্চারণ</span>
+                                        <p class="font-bangla text-lg text-emerald-200">
+                                            ${item.pron}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 Reveal: Explanation -->
+                            <div id="explanation-box-${item.id}" class="reveal-box ${currentState >= 2 ? 'show' : ''}">
+                                <div class="p-4 rounded-xl bg-amber-950/30 border border-amber-500/30">
+                                    <span class="text-xs text-amber-400 font-sans uppercase font-bold tracking-wider block mb-1">
+                                        <i class="fa-solid fa-lightbulb mr-1"></i>ব্যাখ্যা ও ব্যাকরণ
+                                    </span>
+                                    <p class="font-bangla text-base text-amber-100 leading-relaxed">
+                                        ${item.exp}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Action Button Footer -->
+                        <div class="mt-5 pt-3 border-t border-slate-700/40 flex justify-between items-center" onclick="event.stopPropagation()">
+                            <button onclick="cycleCardState(${item.id})" class="btn-3d btn-step text-white text-sm px-4 py-2 rounded-xl font-bangla w-full flex items-center justify-center gap-2">
+                                <span id="btn-text-${item.id}">${getButtonText(currentState)}</span>
+                                <i id="btn-icon-${item.id}" class="${getButtonIcon(currentState)} text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // Cycle Card State
+        function cycleCardState(id) {
+            cardStates[id] = (cardStates[id] + 1) % 3;
+            updateCardUI(id);
+        }
+
+        function handleCardClick(event, id) {
+            // Prevent state cycling if user clicked inside audio buttons or interactive elements
+            if (event.target.closest('button')) return;
+            cycleCardState(id);
+        }
+
+        // Helper text generator
+        function getStateText(state) {
+            if (state === 0) return '<span class="text-slate-400"><i class="fa-solid fa-circle-dot text-[8px] text-amber-400"></i> ধাপ ১/৩</span>';
+            if (state === 1) return '<span class="text-amber-400"><i class="fa-solid fa-circle-dot text-[8px] text-amber-400"></i> ধাপ ২/৩</span>';
+            return '<span class="text-orange-400"><i class="fa-solid fa-circle-check text-[10px] text-orange-400"></i> সম্পন্ন</span>';
+        }
+
+        function getButtonText(state) {
+            if (state === 0) return "ইংরেজি ও উচ্চারণ দেখুন";
+            if (state === 1) return "ব্যাখ্যা দেখুন";
+            return "পুনরায় শুরু করুন";
+        }
+
+        function getButtonIcon(state) {
+            if (state === 0) return "fa-solid fa-chevron-down";
+            if (state === 1) return "fa-solid fa-book-open";
+            return "fa-solid fa-rotate-left";
+        }
+
+        // Update single card UI
+        function updateCardUI(id) {
+            const state = cardStates[id];
+            
+            const engBox = document.getElementById(`english-box-${id}`);
+            const expBox = document.getElementById(`explanation-box-${id}`);
+            const stateIndicator = document.getElementById(`state-indicator-${id}`);
+            const btnText = document.getElementById(`btn-text-${id}`);
+            const btnIcon = document.getElementById(`btn-icon-${id}`);
+
+            if (state >= 1) {
+                engBox.classList.add('show');
+            } else {
+                engBox.classList.remove('show');
+            }
+
+            if (state >= 2) {
+                expBox.classList.add('show');
+            } else {
+                expBox.classList.remove('show');
+            }
+
+            stateIndicator.innerHTML = getStateText(state);
+            btnText.innerText = getButtonText(state);
+            btnIcon.className = `${getButtonIcon(state)} text-xs`;
+        }
+
+        // Global Action: Reveal stage 1 or stage 2 for all
+        function revealAll(targetState) {
+            sentenceData.forEach(item => {
+                cardStates[item.id] = targetState;
+                updateCardUI(item.id);
+            });
+        }
+
+        // Global Action: Reset
+        function resetAll() {
+            sentenceData.forEach(item => {
+                cardStates[item.id] = 0;
+                updateCardUI(item.id);
+            });
+            window.speechSynthesis.cancel();
+        }
+
+        // Escape double quotes for inline event handling
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        // Speech Synthesis Feature
+        function speakText(text, langCode) {
+            if (!('speechSynthesis' in window)) {
+                alert("দুঃখিত! আপনার ব্রাউজারে ভয়েস টেক্সট-টু-স্পিচ সাপোর্টেড নয়।");
+                return;
+            }
+
+            // Cancel any current speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langCode;
+            utterance.rate = 0.9; // Slight delay for clarity
+
+            // Voice selection logic fallback
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0) {
+                const targetVoice = voices.find(v => v.lang === langCode || v.lang.startsWith(langCode.split('-')[0]));
+                if (targetVoice) utterance.voice = targetVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Load voices dynamically
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        // Initialize App
+        window.onload = function() {
+            renderCards();
+        };
+    </script>
+</body>
+</html>

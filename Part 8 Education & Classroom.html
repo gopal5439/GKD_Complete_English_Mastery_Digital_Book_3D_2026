@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 8: Education & Classroom | Sentence 176–200</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --card-bg: rgba(255, 255, 255, 0.07);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --primary-glow: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ec4899;
+            --text-bn: 'Tiro Bangla', serif;
+            --text-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: #f8fafc;
+            font-family: var(--text-bn);
+            min-height: 100vh;
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        p.subtitle {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* 3D Glassmorphism Card Style */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3),
+                        inset 0 1px 0 0 rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 25px -5px rgba(139, 92, 246, 0.3),
+                        inset 0 1px 0 0 rgba(255,255,255,0.2);
+        }
+
+        .card:active {
+            transform: translateY(1px) scale(0.99);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .sentence-num {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 8px;
+            min-width: 42px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(6, 182, 212, 0.3);
+        }
+
+        .bn-text {
+            font-family: var(--text-bn);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .step-indicator {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 8px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        /* Revealed Content Container */
+        .content-reveal {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Step 1 Content */
+        .en-box {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .en-text {
+            font-family: var(--text-en);
+            font-size: 1.3rem;
+            color: #38bdf8;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+
+        .uccharon-text {
+            font-family: var(--text-bn);
+            font-size: 1.05rem;
+            color: #cbd5e1;
+        }
+
+        /* Voice Buttons */
+        .voice-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .voice-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+            font-family: var(--text-en);
+        }
+
+        .voice-btn.uk {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+        }
+
+        .voice-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .voice-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Step 2 Explanation Content */
+        .explanation-box {
+            display: none;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px dashed rgba(139, 92, 246, 0.4);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-top: 10px;
+            font-size: 0.98rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .explanation-box strong {
+            color: #c084fc;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .bn-text { font-size: 1.1rem; }
+            .en-text { font-size: 1.15rem; }
+            .card { padding: 14px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="category-badge">Part 8</span>
+        <h1>Education & Classroom</h1>
+        <p class="subtitle">শিক্ষা ও শ্রেণিকক্ষ | বাক্য ১৭৬–২০০ (ক্লিক করে ইংরেজি ও ব্যাখ্যা দেখুন)</p>
+    </header>
+
+    <div class="container" id="cards-container">
+        <!-- Cards will be dynamically created by JS -->
+    </div>
+
+    <footer>
+        GKD Interactive English Learning System
+    </footer>
+
+    <script>
+        const sentencesData = [
+            {
+                num: "১৭৬",
+                bn: "আমি প্রতিদিন স্কুলে যাই।",
+                en: "I go to school every day.",
+                uccharon: "আই গো টু স্কুল এভরি ডে।",
+                exp: "নিয়মিত বা প্রতিদিনের অভ্যাস বোঝাতে Present Simple Tense ব্যবহার করা হয়েছে। Every day অর্থ প্রতিদিন।"
+            },
+            {
+                num: "১৭৭",
+                bn: "আজ আমাদের ইংরেজি ক্লাস আছে।",
+                en: "We have an English class today.",
+                uccharon: "উই হ্যাভ অ্যান ইংলিশ ক্লাস টুডে।",
+                exp: "আজ কোনো ক্লাস বা নির্ধারিত কার্যক্রম আছে বোঝাতে We have ব্যবহার করা হয়েছে। English class অর্থ ইংরেজি ক্লাস।"
+            },
+            {
+                num: "১৭৮",
+                bn: "শিক্ষক ক্লাসে প্রবেশ করেছেন।",
+                en: "The teacher has entered the classroom.",
+                uccharon: "দ্য টিচার হ্যাজ এন্টার্ড দ্য ক্লাসরুম।",
+                exp: "শিক্ষক ক্লাসে প্রবেশ করেছেন—এমন সম্পন্ন কাজ বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Entered অর্থ প্রবেশ করেছেন।"
+            },
+            {
+                num: "১৭৯",
+                bn: "সবাই নিজের জায়গায় বসো।",
+                en: "Everyone, sit in your seats.",
+                uccharon: "এভরিওয়ান, সিট ইন ইয়োর সিটস।",
+                exp: "শিক্ষার্থীদের নিজ নিজ আসনে বসার নির্দেশ দিতে বাক্যটি ব্যবহার করা হয়। Everyone অর্থ সবাই এবং seats অর্থ আসনগুলো।"
+            },
+            {
+                num: "১৮০",
+                bn: "বই খুলে ২৫ নম্বর পৃষ্ঠা বের করো।",
+                en: "Open your books and turn to page twenty-five.",
+                uccharon: "ওপেন ইয়োর বুকস অ্যান্ড টার্ন টু পেইজ টুয়েন্টি-ফাইভ।",
+                exp: "শিক্ষার্থীদের বই খুলে নির্দিষ্ট পৃষ্ঠায় যেতে বলতে বাক্যটি ব্যবহার করা হয়। Turn to page অর্থ নির্দিষ্ট পৃষ্ঠা খোলো বা সেই পৃষ্ঠায় যাও।"
+            },
+            {
+                num: "১৮১",
+                bn: "সবাই কি বুঝতে পেরেছ?",
+                en: "Has everyone understood?",
+                uccharon: "হ্যাজ এভরিওয়ান আন্ডারস্টুড?",
+                exp: "সবাই বিষয়টি বুঝেছে কি না জানতে প্রশ্নটি ব্যবহার করা হয়। Understood হলো understand-এর past participle।"
+            },
+            {
+                num: "১৮২",
+                bn: "আমি বিষয়টি বুঝতে পারিনি।",
+                en: "I couldn't understand the topic.",
+                uccharon: "আই কুডন্ট আন্ডারস্ট্যান্ড দ্য টপিক।",
+                exp: "অতীতে কোনো বিষয় বুঝতে না পারার কথা বোঝাতে couldn't + verb-এর base form ব্যবহার করা হয়। Topic অর্থ বিষয়।"
+            },
+            {
+                num: "১৮৩",
+                bn: "দয়া করে আরেকবার বুঝিয়ে বলুন।",
+                en: "Please explain it once again.",
+                uccharon: "প্লিজ এক্সপ্লেইন ইট ওয়ান্স অ্যাগেইন।",
+                exp: "কোনো বিষয় আবার ব্যাখ্যা করার অনুরোধ জানাতে বাক্যটি ব্যবহার করা হয়। Explain অর্থ ব্যাখ্যা করা এবং once again অর্থ আরেকবার।"
+            },
+            {
+                num: "১৮৪",
+                bn: "আমি কি একটি প্রশ্ন করতে পারি?",
+                en: "May I ask a question?",
+                uccharon: "মে আই আস্ক আ কোয়েশ্চন?",
+                exp: "ভদ্রভাবে প্রশ্ন করার অনুমতি চাইতে May I...? ব্যবহার করা হয়। Ask a question অর্থ একটি প্রশ্ন করা।"
+            },
+            {
+                num: "১৮৫",
+                bn: "উত্তরটি তোমার খাতায় লেখো।",
+                en: "Write the answer in your notebook.",
+                uccharon: "রাইট দ্য আনসার ইন ইয়োর নোটবুক।",
+                exp: "শিক্ষার্থীকে খাতায় উত্তর লেখার নির্দেশ দিতে বাক্যটি ব্যবহার করা হয়। Notebook অর্থ খাতা।"
+            },
+            {
+                num: "১৮৬",
+                bn: "তোমার হোমওয়ার্ক কি শেষ হয়েছে?",
+                en: "Have you finished your homework?",
+                uccharon: "হ্যাভ ইউ ফিনিশড ইয়োর হোমওয়ার্ক?",
+                exp: "হোমওয়ার্ক সম্পন্ন হয়েছে কি না জানতে Present Perfect Tense ব্যবহার করা হয়েছে। Finished অর্থ শেষ করেছ।"
+            },
+            {
+                num: "১৮৭",
+                bn: "আমি আমার বাড়ির কাজ শেষ করেছি।",
+                en: "I have completed my homework.",
+                uccharon: "আই হ্যাভ কমপ্লিটেড মাই হোমওয়ার্ক।",
+                exp: "বাড়ির কাজ সম্পন্ন করার কথা বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Completed অর্থ সম্পন্ন করেছি।"
+            },
+            {
+                num: "১৮৮",
+                bn: "আগামীকাল আমাদের পরীক্ষা আছে।",
+                en: "We have an exam tomorrow.",
+                uccharon: "উই হ্যাভ অ্যান এগজ্যাম টুমরো।",
+                exp: "আগামীকাল পরীক্ষা নির্ধারিত আছে বোঝাতে বাক্যটি ব্যবহার করা হয়। Exam অর্থ পরীক্ষা।"
+            },
+            {
+                num: "১৮৯",
+                bn: "আমি পরীক্ষার জন্য প্রস্তুতি নিচ্ছি।",
+                en: "I am preparing for the exam.",
+                uccharon: "আই অ্যাম প্রিপেয়ারিং ফর দ্য এগজ্যাম।",
+                exp: "বর্তমানে পরীক্ষার প্রস্তুতি নেওয়ার কাজ চলছে বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে। Prepare for অর্থ কোনো কিছুর জন্য প্রস্তুতি নেওয়া।"
+            },
+            {
+                num: "১৯০",
+                bn: "পরীক্ষার প্রশ্নগুলো খুব কঠিন ছিল।",
+                en: "The exam questions were very difficult.",
+                uccharon: "দ্য এগজ্যাম কোয়েশ্চনস ওয়ার ভেরি ডিফিকাল্ট।",
+                exp: "অতীতের পরীক্ষার প্রশ্ন কঠিন ছিল বোঝাতে Past Simple Tense ব্যবহার করা হয়েছে। Were হলো are-এর past form।"
+            },
+            {
+                num: "১৯১",
+                bn: "আমি সব প্রশ্নের উত্তর দিয়েছি।",
+                en: "I have answered all the questions.",
+                uccharon: "আই হ্যাভ আনসার্ড অল দ্য কোয়েশ্চনস।",
+                exp: "সব প্রশ্নের উত্তর দেওয়ার কাজ সম্পন্ন হয়েছে বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Answered অর্থ উত্তর দিয়েছি।"
+            },
+            {
+                num: "১৯২",
+                bn: "তোমার হাতের লেখা খুব সুন্দর।",
+                en: "Your handwriting is very beautiful.",
+                uccharon: "ইয়োর হ্যান্ডরাইটিং ইজ ভেরি বিউটিফুল।",
+                exp: "কারও লেখার সৌন্দর্য প্রশংসা করতে বাক্যটি ব্যবহার করা হয়। Handwriting অর্থ হাতের লেখা।"
+            },
+            {
+                num: "১৯৩",
+                bn: "মনোযোগ দিয়ে পড়াশোনা করো।",
+                en: "Study attentively.",
+                uccharon: "স্টাডি অ্যাটেনটিভলি।",
+                exp: "কাউকে মনোযোগ সহকারে পড়াশোনা করার নির্দেশ দিতে বাক্যটি ব্যবহার করা হয়। Attentively অর্থ মনোযোগ দিয়ে।"
+            },
+            {
+                num: "১৯৪",
+                bn: "ক্লাসে দেরি করে এসো না।",
+                en: "Don't be late for class.",
+                uccharon: "ডোন্ট বি লেইট ফর ক্লাস।",
+                exp: "কোনো কাজ করতে নিষেধ করতে Don't + verb ব্যবহার করা হয়। Be late অর্থ দেরি করা।"
+            },
+            {
+                num: "১৯৫",
+                bn: "আজ আমি স্কুলে যেতে পারব না।",
+                en: "I won't be able to go to school today.",
+                uccharon: "আই ওউন্ট বি এইবল টু গো টু স্কুল টুডে।",
+                exp: "ভবিষ্যতে কোনো কাজ করতে অক্ষমতা বোঝাতে will not be able to + verb ব্যবহার করা হয়। Won't হলো will not-এর সংক্ষিপ্ত রূপ।"
+            },
+            {
+                num: "১৯৬",
+                bn: "শিক্ষক আমাদের একটি নতুন অধ্যায় পড়িয়েছেন।",
+                en: "The teacher has taught us a new chapter.",
+                uccharon: "দ্য টিচার হ্যাজ টট আস আ নিউ চ্যাপ্টার।",
+                exp: "শিক্ষক নতুন অধ্যায় পড়ানোর কাজ সম্পন্ন করেছেন বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Taught হলো teach-এর past এবং past participle form।"
+            },
+            {
+                num: "১৯৭",
+                bn: "তুমি কোন বিষয়ে সবচেয়ে ভালো?",
+                en: "Which subject are you best at?",
+                uccharon: "হুইচ সাবজেক্ট আর ইউ বেস্ট অ্যাট?",
+                exp: "কোনো শিক্ষার্থী কোন বিষয়ে সবচেয়ে দক্ষ তা জানতে প্রশ্নটি ব্যবহার করা হয়। Best at অর্থ কোনো বিষয়ে সবচেয়ে ভালো বা দক্ষ।"
+            },
+            {
+                num: "১৯৮",
+                bn: "আমার গণিত খুব ভালো লাগে।",
+                en: "I am very fond of mathematics.",
+                uccharon: "আই অ্যাম ভেরি ফন্ড অভ ম্যাথমেটিক্স।",
+                exp: "কোনো বিষয় খুব পছন্দ বোঝাতে be fond of ব্যবহার করা হয়। Mathematics অর্থ গণিত।"
+            },
+            {
+                num: "১৯৯",
+                bn: "নিয়মিত অনুশীলন করলে তুমি ভালো ফল করবে।",
+                en: "If you practise regularly, you will get good results.",
+                uccharon: "ইফ ইউ প্র্যাকটিস রেগুলারলি, ইউ উইল গেট গুড রিজাল্টস।",
+                exp: "কোনো শর্ত পূরণ হলে ভবিষ্যতে কী ফল হবে তা বোঝাতে First Conditional ব্যবহার করা হয়েছে। If অর্থ যদি এবং regularly অর্থ নিয়মিত। এখানে ব্রিটিশ ইংরেজির বানান practise ব্যবহৃত হয়েছে।"
+            },
+            {
+                num: "২০০",
+                bn: "শিক্ষা মানুষের জীবনে গুরুত্বপূর্ণ ভূমিকা পালন করে।",
+                en: "Education plays an important role in human life.",
+                uccharon: "এডুকেশন প্লেইজ অ্যান ইমপোর্ট্যান্ট রোল ইন হিউম্যান লাইফ।",
+                exp: "শিক্ষার সাধারণ গুরুত্ব বোঝাতে Present Simple Tense ব্যবহার করা হয়েছে। Plays an important role অর্থ গুরুত্বপূর্ণ ভূমিকা পালন করে।"
+            }
+        ];
+
+        const container = document.getElementById('cards-container');
+
+        // Create Card HTML Elements
+        sentencesData.forEach((data, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('data-step', '0');
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="sentence-num">${data.num}</span>
+                    <div class="bn-text">${data.bn}</div>
+                    <span class="step-indicator" id="step-ind-${index}">ক্লিক করুন</span>
+                </div>
+                
+                <div class="content-reveal" id="reveal-${index}">
+                    <div class="en-box">
+                        <div class="en-text">${data.en}</div>
+                        <div class="uccharon-text">উচ্চারণ: ${data.uccharon}</div>
+                        <div class="voice-btn-group">
+                            <button class="voice-btn us" onclick="speakText(event, '${escapeQuotes(data.en)}', 'en-US')">
+                                <i class="fa-solid fa-volume-high"></i> US Accent
+                            </button>
+                            <button class="voice-btn uk" onclick="speakText(event, '${escapeQuotes(data.en)}', 'en-GB')">
+                                <i class="fa-solid fa-volume-high"></i> UK Accent
+                            </button>
+                        </div>
+                    </div>
+                    <div class="explanation-box" id="exp-${index}">
+                        <strong>ব্যাখ্যা:</strong> ${data.exp}
+                    </div>
+                </div>
+            `;
+
+            // Card Toggle Click Logic
+            card.addEventListener('click', (e) => {
+                // Prevent toggle if clicking audio buttons
+                if (e.target.closest('.voice-btn')) return;
+
+                let currentStep = parseInt(card.getAttribute('data-step'));
+                const revealBox = document.getElementById(`reveal-${index}`);
+                const expBox = document.getElementById(`exp-${index}`);
+                const indicator = document.getElementById(`step-ind-${index}`);
+
+                if (currentStep === 0) {
+                    // Step 1: Reveal English & Pronunciation
+                    revealBox.style.display = 'block';
+                    card.setAttribute('data-step', '1');
+                    indicator.innerText = '১/২ স্টেপ';
+                    indicator.style.color = '#38bdf8';
+                } else if (currentStep === 1) {
+                    // Step 2: Reveal Explanation
+                    expBox.style.display = 'block';
+                    card.setAttribute('data-step', '2');
+                    indicator.innerText = 'সম্পূর্ণ';
+                    indicator.style.color = '#c084fc';
+                } else {
+                    // Step 3: Reset
+                    revealBox.style.display = 'none';
+                    expBox.style.display = 'none';
+                    card.setAttribute('data-step', '0');
+                    indicator.innerText = 'ক্লিক করুন';
+                    indicator.style.color = '#94a3b8';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        // Helper to avoid quote issues in onclick string
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Text-to-Speech Functionality
+        function speakText(event, text, lang) {
+            event.stopPropagation(); // Prevents card toggle on button click
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop ongoing speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // Slightly slower for clear learning
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("দুঃখিত, আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+            }
+        }
+    </script>
+
+</body>
+</html>

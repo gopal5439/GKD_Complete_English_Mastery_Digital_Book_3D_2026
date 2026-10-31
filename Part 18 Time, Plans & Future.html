@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 18: Time, Plans & Future</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.75);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.35);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-bangla: 'Tiro Bangla', serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-bangla);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-family: var(--font-bangla);
+            color: #38bdf8;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-right: 80px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #8b5cf6, #0284c7);
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+            flex-shrink: 0;
+        }
+
+        .bangla-text {
+            font-family: var(--font-bangla);
+            font-size: 1.25rem;
+            color: #f8fafc;
+            line-height: 1.5;
+        }
+
+        .english-section {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .english-text {
+            font-family: var(--font-english);
+            font-size: 1.35rem;
+            color: #38bdf8;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+        }
+
+        .pronunciation {
+            font-family: var(--font-bangla);
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .audio-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-3d {
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0369a1, 0 5px 10px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #0369a1, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk {
+            background: linear-gradient(180deg, #a855f7 0%, #7e22ce 100%);
+            box-shadow: 0 4px 0 #6b21a8, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk:active {
+            box-shadow: 0 1px 0 #6b21a8, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .explanation-section {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .explanation-text {
+            font-family: var(--font-bangla);
+            font-size: 0.95rem;
+            color: #fbbf24;
+            line-height: 1.5;
+        }
+
+        .step-indicator {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .header h1 { font-size: 1.4rem; }
+            .bangla-text { font-size: 1.1rem; }
+            .english-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Part 18: Time, Plans & Future</h1>
+        <p>বিষয়: সময়, পরিকল্পনা ও ভবিষ্যৎ (Sentence 426–450)</p>
+    </div>
+
+    <div class="container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            { id: 426, bn: "এখন কয়টা বাজে?", en: "What time is it now?", pr: "হোয়াট টাইম ইজ ইট নাউ?", exp: "বর্তমান সময় জানতে প্রশ্নটি করা হয়। What time অর্থ কয়টা বাজে বা কত সময়।" },
+            { id: 427, bn: "আমার হাতে খুব বেশি সময় নেই।", en: "I don't have much time.", pr: "আই ডোন্ট হ্যাভ মাচ টাইম।", exp: "নিজের হাতে পর্যাপ্ত সময় নেই বোঝাতে বাক্যটি ব্যবহার করা হয়। Much সাধারণত uncountable noun-এর আগে ব্যবহৃত হয়।" },
+            { id: 428, bn: "সময় খুব দ্রুত চলে যায়।", en: "Time passes very quickly.", pr: "টাইম পাসিজ ভেরি কুইকলি।", exp: "সময় দ্রুত অতিবাহিত হওয়ার সাধারণ সত্য বোঝাতে বাক্যটি বলা হয়। Passes হলো pass-এর তৃতীয় পুরুষ একবচনের বর্তমান রূপ।" },
+            { id: 429, bn: "আমাকে সময়মতো বাড়ি ফিরতে হবে।", en: "I have to return home on time.", pr: "আই হ্যাভ টু রিটার্ন হোম অন টাইম।", exp: "নির্দিষ্ট সময়ের মধ্যে বাড়ি ফেরার প্রয়োজন বোঝাতে বাক্যটি ব্যবহার করা হয়। Have to বাধ্যবাধকতা বা প্রয়োজন প্রকাশ করে।" },
+            { id: 430, bn: "আমি আগামীকাল তোমার সঙ্গে দেখা করব।", en: "I will meet you tomorrow.", pr: "আই উইল মিট ইউ টুমরো।", exp: "ভবিষ্যতে কারও সঙ্গে দেখা করার কথা জানাতে বাক্যটি বলা হয়। Will + verb-এর মূল রূপ দিয়ে Future Simple Tense গঠিত হয়।" },
+            { id: 431, bn: "আমি আগামী সপ্তাহে ঢাকা যাব।", en: "I am going to Dhaka next week.", pr: "আই অ্যাম গোয়িং টু ঢাকা নেক্সট উইক।", exp: "ভবিষ্যতের পরিকল্পিত ভ্রমণ বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে। Next week অর্থ আগামী সপ্তাহে।" },
+            { id: 432, bn: "আগামী মাসে আমার পরীক্ষা শুরু হবে।", en: "My examination will begin next month.", pr: "মাই এগজামিনেশন উইল বিগিন নেক্সট মান্থ।", exp: "ভবিষ্যতে পরীক্ষা শুরু হওয়ার কথা বোঝাতে বাক্যটি ব্যবহার করা হয়। Will begin ভবিষ্যতের ঘটনা প্রকাশ করে।" },
+            { id: 433, bn: "আমি ইতিমধ্যে আমার পরিকল্পনা তৈরি করেছি।", en: "I have already made my plan.", pr: "আই হ্যাভ অলরেডি মেড মাই প্ল্যান।", exp: "পরিকল্পনা তৈরি করার কাজ ইতিমধ্যে সম্পন্ন হয়েছে বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Already অর্থ ইতিমধ্যে।" },
+            { id: 434, bn: "আমাদের আগে থেকেই পরিকল্পনা করা উচিত।", en: "We should plan ahead.", pr: "উই শুড প্ল্যান অ্যাহেড।", exp: "কোনো কাজের আগে থেকে পরিকল্পনা করার পরামর্শ দিতে বাক্যটি বলা হয়। Plan ahead অর্থ আগেভাগে পরিকল্পনা করা।" },
+            { id: 435, bn: "আমি আগামী বছর একটি নতুন ব্যবসা শুরু করব।", en: "I will start a new business next year.", pr: "আই উইল স্টার্ট আ নিউ বিজনেস নেক্সট ইয়ার।", exp: "ভবিষ্যতে নতুন ব্যবসা শুরু করার ইচ্ছা বা সিদ্ধান্ত প্রকাশ করতে বাক্যটি ব্যবহার করা হয়। Next year অর্থ আগামী বছর।" },
+            { id: 436, bn: "আমি ভবিষ্যতের জন্য টাকা জমাচ্ছি।", en: "I am saving money for the future.", pr: "আই অ্যাম সেভিং মানি ফর দ্য ফিউচার।", exp: "ভবিষ্যতের প্রয়োজনের কথা ভেবে বর্তমানে টাকা সঞ্চয় করা বোঝাতে বাক্যটি বলা হয়। Saving money অর্থ টাকা জমা করা বা সঞ্চয় করা।" },
+            { id: 437, bn: "আমার অনেক স্বপ্ন আছে।", en: "I have many dreams.", pr: "আই হ্যাভ মেনি ড্রিমস।", exp: "নিজের জীবনের বিভিন্ন স্বপ্ন বা আকাঙ্ক্ষা প্রকাশ করতে বাক্যটি ব্যবহার করা হয়। Many গণনাযোগ্য বহুবচন noun-এর আগে বসে।" },
+            { id: 438, bn: "আমি একদিন সফল হব।", en: "I will be successful one day.", pr: "আই উইল বি সাকসেসফুল ওয়ান ডে।", exp: "ভবিষ্যতে সফল হওয়ার দৃঢ় আশা প্রকাশ করতে বাক্যটি বলা হয়। Successful অর্থ সফল এবং one day অর্থ একদিন।" },
+            { id: 439, bn: "আমি আমার লক্ষ্য অর্জনের জন্য কঠোর পরিশ্রম করব।", en: "I will work hard to achieve my goal.", pr: "আই উইল ওয়ার্ক হার্ড টু অ্যাচিভ মাই গোল।", exp: "নিজের লক্ষ্য পূরণের জন্য ভবিষ্যতে পরিশ্রম করার প্রতিজ্ঞা বোঝাতে বাক্যটি ব্যবহার করা হয়। Achieve অর্থ অর্জন করা।" },
+            { id: 440, bn: "আমরা কখন যাত্রা শুরু করব?", en: "When will we start our journey?", pr: "হোয়েন উইল উই স্টার্ট আওয়ার জার্নি?", exp: "ভবিষ্যতে যাত্রা শুরু করার সময় জানতে প্রশ্নটি করা হয়। When দিয়ে সময় জানতে চাওয়া হয়।" },
+            { id: 441, bn: "তুমি কি আগামীকাল ব্যস্ত থাকবে?", en: "Will you be busy tomorrow?", pr: "উইল ইউ বি বিজি টুমরো?", exp: "আগামীকাল কারও ব্যস্ত থাকার সম্ভাবনা জানতে প্রশ্নটি করা হয়। Will be দিয়ে ভবিষ্যতের অবস্থা বোঝানো হয়েছে।" },
+            { id: 442, bn: "আমি সন্ধ্যার মধ্যে কাজটি শেষ করব।", en: "I will finish the work by evening.", pr: "আই উইল ফিনিশ দ্য ওয়ার্ক বাই ইভনিং।", exp: " সন্ধ্যার আগেই বা সন্ধ্যার মধ্যে কাজ শেষ করার কথা বোঝাতে বাক্যটি ব্যবহার করা হয়। By evening একটি নির্দিষ্ট সময়সীমা নির্দেশ করে।" },
+            { id: 443, bn: "আগামীকাল এই সময় আমি পড়াশোনা করব।", en: "I will be studying at this time tomorrow.", pr: "আই উইল বি স্টাডিয়িং অ্যাট দিস টাইম টুমরো।", exp: "আগামীকাল নির্দিষ্ট সময়ে পড়াশোনা চলতে থাকবে বোঝাতে Future Continuous Tense ব্যবহার করা হয়েছে। গঠন: Subject + will be + verb-ing।" },
+            { id: 444, bn: "আগামী মাসের মধ্যে আমি কোর্সটি শেষ করে ফেলব।", en: "I will have completed the course by next month.", pr: "আই উইল হ্যাভ কমপ্লিটেড দ্য কোর্স বাই নেক্সট মান্থ।", exp: "ভবিষ্যতের একটি নির্দিষ্ট সময়ের মধ্যে কাজটি সম্পন্ন হয়ে যাবে বোঝাতে Future Perfect Tense ব্যবহার করা হয়েছে। গঠন: Subject + will have + past participle।" },
+            { id: 445, bn: "পরিকল্পনা অনুযায়ী সবকিছু এগোচ্ছে।", en: "Everything is going according to plan.", pr: "এভরিথিং ইজ গোয়িং অ্যাকর্ডিং টু প্ল্যান।", exp: "কাজগুলো পরিকল্পনা অনুসারে চলছে বোঝাতে বাক্যটি ব্যবহার করা হয়। According to plan অর্থ পরিকল্পনা অনুযায়ী।" },
+            { id: 446, bn: "আমার পরিকল্পনা পরিবর্তন করতে হতে পারে।", en: "I may have to change my plan.", pr: "আই মে হ্যাভ টু চেঞ্জ মাই প্ল্যান।", exp: "ভবিষ্যতে পরিকল্পনা পরিবর্তনের প্রয়োজন হতে পারে—এমন সম্ভাবনা বোঝাতে বাক্যটি বলা হয়। May have to অর্থ করতে হতে পারে।" },
+            { id: 447, bn: "আমরা সময়ের আগেই পৌঁছে যাব।", en: "We will arrive ahead of time.", pr: "উই উইল অ্যারাইভ অ্যাহেড অভ টাইম।", exp: "নির্ধারিত সময়ের আগেই পৌঁছানোর কথা বোঝাতে বাক্যটি ব্যবহার করা হয়। Ahead of time অর্থ নির্ধারিত সময়ের আগে।" },
+            { id: 448, bn: "ভবিষ্যতে কী হবে, তা কেউ জানে না।", en: "Nobody knows what will happen in the future.", pr: "নোবডি নোজ হোয়াট উইল হ্যাপেন ইন দ্য ফিউচার।", exp: "ভবিষ্যতের ঘটনা সম্পর্কে কেউ নিশ্চিতভাবে জানে না বোঝাতে বাক্যটি বলা হয়। Nobody অর্থ কেউ নয় এবং এর সঙ্গে একবচন verb knows ব্যবহৃত হয়েছে।" },
+            { id: 449, bn: "আমি আমার সময়ের সঠিক ব্যবহার করতে চাই।", en: "I want to make good use of my time.", pr: "আই ওয়ান্ট টু মেক গুড ইউজ অভ মাই টাইম।", exp: "সময়কে কাজে লাগানোর ইচ্ছা প্রকাশ করতে বাক্যটি ব্যবহার করা হয়। Make good use of অর্থ কোনো কিছুর সঠিক বা ভালো ব্যবহার করা।" },
+            { id: 450, bn: "আজকের কাজ আগামীকালের জন্য ফেলে রেখো না।", en: "Don't put off today's work until tomorrow.", pr: "ডোন্ট পুট অফ টুডেজ ওয়ার্ক আনটিল টুমরো।", exp: "কাজ ফেলে না রেখে সময়মতো শেষ করার উপদেশ দিতে বাক্যটি বলা হয়। Put off অর্থ পিছিয়ে দেওয়া বা স্থগিত রাখা।" }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = "0";
+
+            card.innerHTML = `
+                <div class="step-indicator">ক্লিক করুন (১/৩)</div>
+                <div class="card-header">
+                    <span class="badge">${item.id}</span>
+                    <div class="bangla-text">${item.bn}</div>
+                </div>
+                <div class="english-section">
+                    <div class="english-text">${item.en}</div>
+                    <div class="pronunciation">উচ্চারণ: ${item.pr}</div>
+                    <div class="audio-buttons">
+                        <button class="btn-3d" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-US')">🔊 US Voice</button>
+                        <button class="btn-3d btn-uk" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-GB')">🔊 UK Voice</button>
+                    </div>
+                </div>
+                <div class="explanation-section">
+                    <div class="explanation-text"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+                </div>
+            `;
+
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') return;
+
+                let currentStep = parseInt(card.dataset.step);
+                currentStep = (currentStep + 1) % 3;
+                card.dataset.step = currentStep;
+
+                const englishSec = card.querySelector('.english-section');
+                const expSec = card.querySelector('.explanation-section');
+                const indicator = card.querySelector('.step-indicator');
+
+                if (currentStep === 0) {
+                    englishSec.style.display = 'none';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'ক্লিক করুন (১/৩)';
+                } else if (currentStep === 1) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'আবার ক্লিক করুন (২/৩)';
+                } else if (currentStep === 2) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'block';
+                    indicator.textContent = 'রিসেট করতে ক্লিক করুন (৩/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        function speakText(event, text, lang) {
+            event.stopPropagation();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজার টেক্সট-টু-স্পিচ ভয়েস সাপোর্ট করে না।');
+            }
+        }
+    </script>
+</body>
+</html>

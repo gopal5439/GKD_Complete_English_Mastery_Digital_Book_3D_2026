@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 17: Weather, Nature & Environment</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0d1b2a;
+            --card-bg: rgba(27, 38, 59, 0.75);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.35);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-bangla: 'Tiro Bangla', serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-bangla);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-family: var(--font-bangla);
+            color: #38bdf8;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-right: 80px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #10b981, #0284c7);
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+            flex-shrink: 0;
+        }
+
+        .bangla-text {
+            font-family: var(--font-bangla);
+            font-size: 1.25rem;
+            color: #f8fafc;
+            line-height: 1.5;
+        }
+
+        .english-section {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .english-text {
+            font-family: var(--font-english);
+            font-size: 1.35rem;
+            color: #38bdf8;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+        }
+
+        .pronunciation {
+            font-family: var(--font-bangla);
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .audio-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-3d {
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0369a1, 0 5px 10px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #0369a1, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk {
+            background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+            box-shadow: 0 4px 0 #065f46, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk:active {
+            box-shadow: 0 1px 0 #065f46, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .explanation-section {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .explanation-text {
+            font-family: var(--font-bangla);
+            font-size: 0.95rem;
+            color: #fbbf24;
+            line-height: 1.5;
+        }
+
+        .step-indicator {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .header h1 { font-size: 1.4rem; }
+            .bangla-text { font-size: 1.1rem; }
+            .english-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Part 17: Weather, Nature & Environment</h1>
+        <p>বিষয়: আবহাওয়া, প্রকৃতি ও পরিবেশ (Sentence 401–425)</p>
+    </div>
+
+    <div class="container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            { id: 401, bn: "আজ আবহাওয়া খুব সুন্দর।", en: "The weather is very beautiful today.", pr: "দ্য ওয়েদার ইজ ভেরি বিউটিফুল টুডে।", exp: "দিনের আবহাওয়া ভালো বা মনোরম বোঝাতে বাক্যটি ব্যবহার করা হয়। Weather অর্থ আবহাওয়া।" },
+            { id: 402, bn: "আজ খুব গরম পড়েছে।", en: "It is very hot today.", pr: "ইট ইজ ভেরি হট টুডে।", exp: "দিনের তাপমাত্রা বেশি হলে বাক্যটি বলা হয়। আবহাওয়া বোঝাতে ইংরেজিতে প্রায়ই It is দিয়ে বাক্য শুরু হয়।" },
+            { id: 403, bn: "আজ খুব ঠান্ডা লাগছে।", en: "It feels very cold today.", pr: "ইট ফিলস ভেরি কোল্ড টুডে।", exp: "আজকের আবহাওয়ায় ঠান্ডা অনুভূত হচ্ছে বোঝাতে বাক্যটি ব্যবহার করা হয়। Feels cold অর্থ ঠান্ডা অনুভূত হওয়া।" },
+            { id: 404, bn: "বাইরে বৃষ্টি হচ্ছে।", en: "It is raining outside.", pr: "ইট ইজ রেইনিং আউটসাইড।", exp: "বর্তমানে বাইরে বৃষ্টি হচ্ছে বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে। Raining অর্থ বৃষ্টি হওয়া।" },
+            { id: 405, bn: "আজ আকাশ মেঘে ঢাকা।", en: "The sky is cloudy today.", pr: "দ্য স্কাই ইজ ক্লাউডি টুডে।", exp: "আকাশে অনেক মেঘ থাকলে বাক্যটি ব্যবহার করা হয়। Cloudy অর্থ মেঘলা।" },
+            { id: 406, bn: "আজ আকাশ পরিষ্কার।", en: "The sky is clear today.", pr: "দ্য স্কাই ইজ ক্লিয়ার টুডে।", exp: "আকাশে মেঘ কম বা একেবারেই নেই বোঝাতে বাক্যটি বলা হয়। Clear অর্থ পরিষ্কার বা নির্মল।" },
+            { id: 407, bn: "বাইরে খুব বাতাস বইছে।", en: "It is very windy outside.", pr: "ইট ইজ ভেরি উইন্ডি আউটসাইড।", exp: "বাইরে বাতাসের প্রবাহ বেশি হলে বাক্যটি ব্যবহার করা হয়। Windy অর্থ বাতাসপূর্ণ বা ঝোড়ো বাতাসযুক্ত।" },
+            { id: 408, bn: "আজ কি বৃষ্টি হবে?", en: "Will it rain today?", pr: "উইল ইট রেইন টুডে?", exp: "আজ বৃষ্টি হওয়ার সম্ভাবনা আছে কি না জানতে প্রশ্নটি করা হয়। Will দিয়ে ভবিষ্যতের ঘটনা সম্পর্কে প্রশ্ন করা হয়েছে।" },
+            { id: 409, bn: "গত রাতে প্রচুর বৃষ্টি হয়েছিল।", en: "It rained heavily last night.", pr: "ইট রেইন্ড হেভিলি লাস্ট নাইট।", exp: "অতীতের কোনো সময়ে প্রচুর বৃষ্টি হওয়ার কথা বোঝাতে বাক্যটি ব্যবহার করা হয়। Rained হলো rain-এর past form।" },
+            { id: 410, bn: "বৃষ্টির পর প্রকৃতি আরও সুন্দর হয়ে ওঠে।", en: "Nature becomes more beautiful after the rain.", pr: "নেচার বিকামস মোর বিউটিফুল আফটার দ্য রেইন।", exp: "বৃষ্টির পরে প্রকৃতির সৌন্দর্য বেড়ে যাওয়ার কথা বোঝাতে বাক্যটি বলা হয়। Becomes অর্থ হয়ে ওঠে।" },
+            { id: 411, bn: "সূর্য পূর্ব দিকে ওঠে।", en: "The sun rises in the east.", pr: "দ্য সান রাইজিজ ইন দি ইস্ট।", exp: "সূর্যোদয়ের চিরন্তন সত্য বোঝাতে বাক্যটি ব্যবহার করা হয়। সাধারণ সত্য প্রকাশের জন্য Present Simple Tense ব্যবহৃত হয়েছে।" },
+            { id: 412, bn: "সন্ধ্যায় সূর্য পশ্চিম দিকে অস্ত যায়।", en: "The sun sets in the west in the evening.", pr: "দ্য সান সেটস ইন দ্য ওয়েস্ট ইন দি ইভনিং।", exp: "সূর্যাস্তের সাধারণ নিয়ম বোঝাতে বাক্যটি বলা হয়। Sets হলো set-এর তৃতীয় পুরুষ একবচনের বর্তমান রূপ।" },
+            { id: 413, bn: "গাছ আমাদের অক্সিজেন দেয়।", en: "Trees give us oxygen.", pr: "ট্রিজ গিভ আস অক্সিজেন।", exp: "গাছ পরিবেশে অক্সিজেন সরবরাহ করে—এটি বোঝাতে বাক্যটি ব্যবহার করা হয়। Give অর্থ দেওয়া এবং oxygen অর্থ অক্সিজেন।" },
+            { id: 414, bn: "আমাদের বেশি বেশি গাছ লাগানো উচিত।", en: "We should plant more trees.", pr: "উই শুড প্ল্যান্ট মোর ট্রিজ।", exp: "পরিবেশের ভারসাম্য রক্ষার জন্য গাছ লাগানোর পরামর্শ দিতে বাক্যটি বলা হয়। Should দিয়ে পরামর্শ প্রকাশ করা হয়েছে।" },
+            { id: 415, bn: "নদীর পানি ধীরে ধীরে বাড়ছে।", en: "The river water is rising slowly.", pr: "দ্য রিভার ওয়াটার ইজ রাইজিং স্লোলি।", exp: "নদীর পানির উচ্চতা বর্তমানে বৃদ্ধি পাচ্ছে বোঝাতে বাক্যটি ব্যবহার করা হয়। Is rising চলমান পরিবর্তন প্রকাশ করে।" },
+            { id: 416, bn: "এই নদীটি খুব গভীর।", en: "This river is very deep.", pr: "দিস রিভার ইজ ভেরি ডিপ।", exp: "নদীর গভীরতা সম্পর্কে জানাতে বাক্যটি বলা হয়। Deep অর্থ গভীর।" },
+            { id: 417, bn: "আমাদের পরিবেশ পরিষ্কার রাখা উচিত।", en: "We should keep our environment clean.", pr: "উই শুড কিপ আওয়ার এনভায়রনমেন্ট ক্লিন।", exp: "পরিবেশ পরিচ্ছন্ন রাখার প্রয়োজনীয়তা বোঝাতে বাক্যটি ব্যবহার করা হয়। Keep something clean অর্থ কোনো কিছু পরিষ্কার রাখা।" },
+            { id: 418, bn: "বায়ুদূষণ আমাদের স্বাস্থ্যের জন্য ক্ষতিকর।", en: "Air pollution is harmful to our health.", pr: "এয়ার পলিউশন ইজ হার্মফুল টু আওয়ার হেলথ।", exp: "দূষিত বাতাস মানুষের স্বাস্থ্যের ক্ষতি করে বোঝাতে বাক্যটি বলা হয়। Harmful to অর্থ কোনো কিছুর জন্য ক্ষতিকর।" },
+            { id: 419, bn: "প্লাস্টিক পরিবেশের জন্য ক্ষতিকর।", en: "Plastic is harmful to the environment.", pr: "প্লাস্টিক ইজ হার্মফুল টু দি এনভায়রনমেন্ট।", exp: "প্লাস্টিকের কারণে পরিবেশের ক্ষতি হয় বোঝাতে বাক্যটি ব্যবহার করা হয়। Environment অর্থ পরিবেশ।" },
+            { id: 420, bn: "আমাদের পানি অপচয় করা উচিত নয়।", en: "We should not waste water.", pr: "উই শুড নট ওয়েস্ট ওয়াটার।", exp: "পানির সঠিক ব্যবহার নিশ্চিত করার পরামর্শ দিতে বাক্যটি বলা হয়। Waste অর্থ অপচয় করা।" },
+            { id: 421, bn: "শীতকালে কুয়াশা বেশি পড়ে।", en: "There is a lot of fog in winter.", pr: "দেয়ার ইজ আ লট অভ ফগ ইন উইন্টার।", exp: "শীতকালে কুয়াশার আধিক্য বোঝাতে বাক্যটি ব্যবহার করা হয়। A lot of fog অর্থ প্রচুর কুয়াশা।" },
+            { id: 422, bn: "বসন্তকালে গাছে নতুন পাতা গজায়।", en: "New leaves grow on trees in spring.", pr: "নিউ লিভস গ্রো অন ট্রিজ ইন স্প্রিং।", exp: "বসন্তকালে গাছে নতুন পাতা জন্মানোর স্বাভাবিক ঘটনা বোঝাতে বাক্যটি বলা হয়। Leaves হলো leaf-এর plural form।" },
+            { id: 423, bn: "পাখিরা আকাশে উড়ছে।", en: "Birds are flying in the sky.", pr: "বার্ডস আর ফ্লাইং ইন দ্য স্কাই।", exp: "পাখিরা বর্তমানে উড়ছে বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে। Flying হলো fly-এর ing form।" },
+            { id: 424, bn: "প্রকৃতির সৌন্দর্য আমাকে মুগ্ধ করে।", en: "The beauty of nature fascinates me.", pr: "দ্য বিউটি অভ নেচার ফ্যাসিনেটস মি।", exp: "প্রকৃতির সৌন্দর্য দেখে মুগ্ধ হওয়ার অনুভূতি প্রকাশ করতে বাক্যটি ব্যবহার করা হয়। Fascinates অর্থ মুগ্ধ করে।" },
+            { id: 425, bn: "পৃথিবীকে রক্ষা করা আমাদের সবার দায়িত্ব।", en: "Protecting the Earth is everyone's responsibility.", pr: "প্রোটেক্টিং দি আর্থ ইজ এভরিওয়ানস রেসপনসিবিলিটি।", exp: "পৃথিবী ও পরিবেশ রক্ষার দায়িত্ব সবার—এ কথা বোঝাতে বাক্যটি বলা হয়। এখানে Protecting the Earth একটি gerund phrase, যা বাক্যের subject হিসেবে ব্যবহৃত হয়েছে।" }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = "0";
+
+            card.innerHTML = `
+                <div class="step-indicator">ক্লিক করুন (১/৩)</div>
+                <div class="card-header">
+                    <span class="badge">${item.id}</span>
+                    <div class="bangla-text">${item.bn}</div>
+                </div>
+                <div class="english-section">
+                    <div class="english-text">${item.en}</div>
+                    <div class="pronunciation">উচ্চারণ: ${item.pr}</div>
+                    <div class="audio-buttons">
+                        <button class="btn-3d" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-US')">🔊 US Voice</button>
+                        <button class="btn-3d btn-uk" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-GB')">🔊 UK Voice</button>
+                    </div>
+                </div>
+                <div class="explanation-section">
+                    <div class="explanation-text"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+                </div>
+            `;
+
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') return;
+
+                let currentStep = parseInt(card.dataset.step);
+                currentStep = (currentStep + 1) % 3;
+                card.dataset.step = currentStep;
+
+                const englishSec = card.querySelector('.english-section');
+                const expSec = card.querySelector('.explanation-section');
+                const indicator = card.querySelector('.step-indicator');
+
+                if (currentStep === 0) {
+                    englishSec.style.display = 'none';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'ক্লিক করুন (১/৩)';
+                } else if (currentStep === 1) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'আবার ক্লিক করুন (২/৩)';
+                } else if (currentStep === 2) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'block';
+                    indicator.textContent = 'রিসেট করতে ক্লিক করুন (৩/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        function speakText(event, text, lang) {
+            event.stopPropagation();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজার টেক্সট-টু-স্পিচ ভয়েস সাপোর্ট করে না।');
+            }
+        }
+    </script>
+</body>
+</html>

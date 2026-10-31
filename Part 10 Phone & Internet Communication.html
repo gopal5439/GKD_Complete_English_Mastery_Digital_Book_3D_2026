@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 10: Phone & Internet Communication | Sentence 226–250</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --card-bg: rgba(255, 255, 255, 0.07);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --primary-glow: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ec4899;
+            --text-bn: 'Tiro Bangla', serif;
+            --text-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: #f8fafc;
+            font-family: var(--text-bn);
+            min-height: 100vh;
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        p.subtitle {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* 3D Glassmorphism Card Style */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3),
+                        inset 0 1px 0 0 rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 25px -5px rgba(139, 92, 246, 0.3),
+                        inset 0 1px 0 0 rgba(255,255,255,0.2);
+        }
+
+        .card:active {
+            transform: translateY(1px) scale(0.99);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .sentence-num {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 8px;
+            min-width: 42px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(6, 182, 212, 0.3);
+        }
+
+        .bn-text {
+            font-family: var(--text-bn);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .step-indicator {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 8px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        /* Revealed Content Container */
+        .content-reveal {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Step 1 Content */
+        .en-box {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .en-text {
+            font-family: var(--text-en);
+            font-size: 1.3rem;
+            color: #38bdf8;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+
+        .uccharon-text {
+            font-family: var(--text-bn);
+            font-size: 1.05rem;
+            color: #cbd5e1;
+        }
+
+        /* Voice Buttons */
+        .voice-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .voice-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+            font-family: var(--text-en);
+        }
+
+        .voice-btn.uk {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+        }
+
+        .voice-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .voice-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Step 2 Explanation Content */
+        .explanation-box {
+            display: none;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px dashed rgba(139, 92, 246, 0.4);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-top: 10px;
+            font-size: 0.98rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .explanation-box strong {
+            color: #c084fc;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .bn-text { font-size: 1.1rem; }
+            .en-text { font-size: 1.15rem; }
+            .card { padding: 14px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="category-badge">Part 10</span>
+        <h1>Phone & Internet Communication</h1>
+        <p class="subtitle">ফোন ও ইন্টারনেটে যোগাযোগ | বাক্য ২২৬–২৫০ (ক্লিক করে ইংরেজি ও ব্যাখ্যা দেখুন)</p>
+    </header>
+
+    <div class="container" id="cards-container">
+        <!-- Cards will be dynamically created by JS -->
+    </div>
+
+    <footer>
+        GKD Interactive English Learning System
+    </footer>
+
+    <script>
+        const sentencesData = [
+            {
+                num: "২২৬",
+                bn: "আমি তোমাকে ফোন করছি।",
+                en: "I am calling you.",
+                uccharon: "আই অ্যাম কলিং ইউ।",
+                exp: "বর্তমানে কাউকে ফোন করার কাজ চলছে বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে। Calling অর্থ ফোন করছি।"
+            },
+            {
+                num: "২২৭",
+                bn: "তুমি কি আমার কথা শুনতে পাচ্ছ?",
+                en: "Can you hear me?",
+                uccharon: "ক্যান ইউ হিয়ার মি?",
+                exp: "ফোনে অপর প্রান্তের ব্যক্তি আপনার কথা শুনতে পাচ্ছেন কি না জানতে প্রশ্নটি ব্যবহার করা হয়। Hear অর্থ শুনতে পাওয়া।"
+            },
+            {
+                num: "২২৮",
+                bn: "তোমার কণ্ঠস্বর পরিষ্কার শোনা যাচ্ছে না।",
+                en: "Your voice is not clear.",
+                uccharon: "ইয়োর ভয়েস ইজ নট ক্লিয়ার।",
+                exp: "ফোনে কারও কথা অস্পষ্ট শোনা গেলে বাক্যটি ব্যবহার করা হয়। Voice অর্থ কণ্ঠস্বর এবং clear অর্থ স্পষ্ট।"
+            },
+            {
+                num: "২২৯",
+                bn: "একটু জোরে কথা বলো।",
+                en: "Please speak a little louder.",
+                uccharon: "প্লিজ স্পিক আ লিটল লাউডার।",
+                exp: "কাউকে আরও জোরে কথা বলতে অনুরোধ করতে বাক্যটি ব্যবহার করা হয়। Louder হলো loud-এর comparative form, অর্থ আরও জোরে।"
+            },
+            {
+                num: "২৩০",
+                bn: "আমি তোমাকে পরে ফোন করব।",
+                en: "I will call you later.",
+                uccharon: "আই উইল কল ইউ লেইটার।",
+                exp: "ভবিষ্যতে কাউকে ফোন করার কথা বোঝাতে will + verb-এর base form ব্যবহার করা হয়। Later অর্থ পরে।"
+            },
+            {
+                num: "২৩১",
+                bn: "তুমি এখন কথা বলতে পারবে?",
+                en: "Can you talk now?",
+                uccharon: "ক্যান ইউ টক নাউ?",
+                exp: "কেউ বর্তমানে কথা বলার জন্য সময় দিতে পারবেন কি না জানতে প্রশ্নটি ব্যবহার করা হয়। Talk অর্থ কথা বলা।"
+            },
+            {
+                num: "২৩২",
+                bn: "আমি এখন ব্যস্ত আছি।",
+                en: "I am busy right now.",
+                uccharon: "আই অ্যাম বিজি রাইট নাউ।",
+                exp: "বর্তমান মুহূর্তে ব্যস্ত থাকার কথা বোঝাতে বাক্যটি ব্যবহার করা হয়। Right now অর্থ এই মুহূর্তে।"
+            },
+            {
+                num: "২৩৩",
+                bn: "দয়া করে একটু অপেক্ষা করো।",
+                en: "Please hold on for a moment.",
+                uccharon: "প্লিজ হোল্ড অন ফর আ মোমেন্ট।",
+                exp: "ফোনে কাউকে কিছুক্ষণ অপেক্ষা করতে বলতে Hold on ব্যবহার করা হয়। For a moment অর্থ অল্প সময়ের জন্য।"
+            },
+            {
+                num: "২৩৪",
+                bn: "তোমার ফোন কেটে গেছে।",
+                en: "Your call got disconnected.",
+                uccharon: "ইয়োর কল গট ডিসকানেক্টেড।",
+                exp: "ফোনে কথা বলার সময় সংযোগ বিচ্ছিন্ন হয়ে গেলে বাক্যটি ব্যবহার করা হয়। Got disconnected অর্থ সংযোগ বিচ্ছিন্ন হয়ে গেছে।"
+            },
+            {
+                num: "২৩৫",
+                bn: "নেটওয়ার্কের সমস্যা হচ্ছে।",
+                en: "There is a network problem.",
+                uccharon: "দেয়ার ইজ আ নেটওয়ার্ক প্রবলেম।",
+                exp: "মোবাইল বা ইন্টারনেটের সংযোগে সমস্যা বোঝাতে বাক্যটি ব্যবহার করা হয়। Network problem অর্থ নেটওয়ার্কের সমস্যা।"
+            },
+            {
+                num: "২৩৬",
+                bn: "আমি তোমার মিসড কল দেখেছি।",
+                en: "I saw your missed call.",
+                uccharon: "আই স ইয়োর মিসড কল।",
+                exp: "আগে কারও ফোন এসেছিল কিন্তু তা রিসিভ করা হয়নি—এমন কল বোঝাতে missed call ব্যবহার করা হয়। Saw হলো see-এর past form।"
+            },
+            {
+                num: "২৩৭",
+                bn: "আমাকে একটি মেসেজ পাঠাও।",
+                en: "Send me a message.",
+                uccharon: "সেন্ড মি আ মেসেজ।",
+                exp: "কাউকে লিখিত বার্তা পাঠাতে বলার জন্য বাক্যটি ব্যবহার করা হয়। Send me অর্থ আমাকে পাঠাও।"
+            },
+            {
+                num: "২৩৮",
+                bn: "আমি তোমাকে একটি ছবি পাঠিয়েছি।",
+                en: "I have sent you a picture.",
+                uccharon: "আই হ্যাভ সেন্ট ইউ আ পিকচার।",
+                exp: "কাউকে ছবি পাঠানোর কাজ সম্পন্ন হয়েছে বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Sent হলো send-এর past এবং past participle form।"
+            },
+            {
+                num: "২৩৯",
+                bn: "তুমি কি আমার মেসেজ পেয়েছ?",
+                en: "Have you received my message?",
+                uccharon: "হ্যাভ ইউ রিসিভড মাই মেসেজ?",
+                exp: "কোনো বার্তা কারও কাছে পৌঁছেছে কি না জানতে Present Perfect Tense ব্যবহার করা হয়েছে। Received অর্থ পেয়েছ বা গ্রহণ করেছ।"
+            },
+            {
+                num: "২৪০",
+                bn: "আমি তোমার মেসেজের উত্তর দিয়েছি।",
+                en: "I have replied to your message.",
+                uccharon: "আই হ্যাভ রিপ্লাইড টু ইয়োর মেসেজ।",
+                exp: "কোনো বার্তার উত্তর দেওয়া সম্পন্ন হয়েছে বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Reply to অর্থ কোনো কিছুর উত্তর দেওয়া।"
+            },
+            {
+                num: "২৪১",
+                bn: "আমার ইন্টারনেট কাজ করছে না।",
+                en: "My internet is not working.",
+                uccharon: "মাই ইন্টারনেট ইজ নট ওয়ার্কিং।",
+                exp: "বর্তমানে ইন্টারনেট সংযোগ কাজ করছে না বোঝাতে Present Continuous Tense-এর নেতিবাচক রূপ ব্যবহার করা হয়েছে। Not working অর্থ কাজ করছে না।"
+            },
+            {
+                num: "২৪২",
+                bn: "তোমার ইন্টারনেটের গতি খুব কম।",
+                en: "Your internet speed is very slow.",
+                uccharon: "ইয়োর ইন্টারনেট স্পিড ইজ ভেরি স্লো।",
+                exp: "ইন্টারনেটের গতি কম বোঝাতে slow ব্যবহার করা হয়। Internet speed অর্থ ইন্টারনেটের গতি।"
+            },
+            {
+                num: "২৪৩",
+                bn: "আমি অনলাইনে একটি ভিডিও দেখছি।",
+                en: "I am watching a video online.",
+                uccharon: "আই অ্যাম ওয়াচিং আ ভিডিও অনলাইন।",
+                exp: "বর্তমানে অনলাইনে ভিডিও দেখার কাজ চলছে বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে। Watching অর্থ দেখছি।"
+            },
+            {
+                num: "২৪৪",
+                bn: "ওয়াই-ফাইয়ের পাসওয়ার্ড কী?",
+                en: "What is the Wi-Fi password?",
+                uccharon: "হোয়াট ইজ দ্য ওয়াই-ফাই পাসওয়ার্ড?",
+                exp: "কোনো ওয়াই-ফাই নেটওয়ার্কে সংযুক্ত হওয়ার পাসওয়ার্ড জানতে প্রশ্নটি ব্যবহার করা হয়। Password অর্থ গোপন প্রবেশসংকেত।"
+            },
+            {
+                num: "২৪৫",
+                bn: "আমি তোমাকে ভিডিও কলে দেখতে চাই।",
+                en: "I want to see you on a video call.",
+                uccharon: "আই ওয়ান্ট টু সি ইউ অন আ ভিডিও কল।",
+                exp: "ভিডিও কলের মাধ্যমে কাউকে দেখতে চাওয়ার ইচ্ছা প্রকাশ করতে বাক্যটি ব্যবহার করা হয়। Video call অর্থ ভিডিওর মাধ্যমে ফোনালাপ।"
+            },
+            {
+                num: "২৪৬",
+                bn: "তুমি কি অনলাইনে আছ?",
+                en: "Are you online?",
+                uccharon: "আর ইউ অনলাইন?",
+                exp: "কেউ বর্তমানে ইন্টারনেটে সক্রিয় আছেন কি না জানতে প্রশ্নটি ব্যবহার করা হয়। Online অর্থ ইন্টারনেটে সংযুক্ত বা সক্রিয়।"
+            },
+            {
+                num: "২৪৭",
+                bn: "আমি তোমাকে একটি লিংক পাঠাচ্ছি।",
+                en: "I am sending you a link.",
+                uccharon: "আই অ্যাম সেন্ডিং ইউ আ লিংক।",
+                exp: "বর্তমানে কাউকে কোনো ওয়েব ঠিকানা পাঠানোর কাজ চলছে বোঝাতে Present Continuous Tense ব্যবহার করা হয়েছে। Link অর্থ সংযোগ বা ওয়েব ঠিকানা।"
+            },
+            {
+                num: "২৪৮",
+                bn: "লিংকটিতে ক্লিক করো।",
+                en: "Click on the link.",
+                uccharon: "ক্লিক অন দ্য লিংক।",
+                exp: "কোনো লিংক খোলার জন্য সেটিতে ক্লিক করতে নির্দেশ দেওয়া হয়। Click on অর্থ কোনো কিছুর ওপর ক্লিক করা।"
+            },
+            {
+                num: "২৪৯",
+                bn: "আমি তোমার সঙ্গে পরে অনলাইনে কথা বলব।",
+                en: "I will talk to you online later.",
+                uccharon: "আই উইল টক টু ইউ অনলাইন লেইটার।",
+                exp: "ভবিষ্যতে ইন্টারনেটের মাধ্যমে কারও সঙ্গে কথা বলার কথা বোঝাতে will talk ব্যবহার করা হয়েছে। Online later অর্থ পরে অনলাইনে।"
+            },
+            {
+                num: "২৫০",
+                bn: "ফোনটা চার্জে দাও, ব্যাটারি শেষ হয়ে যাচ্ছে।",
+                en: "Put the phone on charge; the battery is running low.",
+                uccharon: "পুট দ্য ফোন অন চার্জ; দ্য ব্যাটারি ইজ রানিং লো।",
+                exp: "ফোন চার্জ দেওয়ার নির্দেশ এবং ব্যাটারির চার্জ কমে আসার অবস্থা বোঝাতে বাক্যটি ব্যবহার করা হয়েছে। Put the phone on charge অর্থ ফোনটি চার্জে দাও এবং running low অর্থ কমে আসছে। এখানে ব্রিটিশ ইংরেজির প্রচলিত ব্যবহার অনুসরণ করা হয়েছে।"
+            }
+        ];
+
+        const container = document.getElementById('cards-container');
+
+        // Create Card HTML Elements
+        sentencesData.forEach((data, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('data-step', '0');
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="sentence-num">${data.num}</span>
+                    <div class="bn-text">${data.bn}</div>
+                    <span class="step-indicator" id="step-ind-${index}">ক্লিক করুন</span>
+                </div>
+                
+                <div class="content-reveal" id="reveal-${index}">
+                    <div class="en-box">
+                        <div class="en-text">${data.en}</div>
+                        <div class="uccharon-text">উচ্চারণ: ${data.uccharon}</div>
+                        <div class="voice-btn-group">
+                            <button class="voice-btn us" onclick="speakText(event, '${escapeQuotes(data.en)}', 'en-US')">
+                                <i class="fa-solid fa-volume-high"></i> US Accent
+                            </button>
+                            <button class="voice-btn uk" onclick="speakText(event, '${escapeQuotes(data.en)}', 'en-GB')">
+                                <i class="fa-solid fa-volume-high"></i> UK Accent
+                            </button>
+                        </div>
+                    </div>
+                    <div class="explanation-box" id="exp-${index}">
+                        <strong>ব্যাখ্যা:</strong> ${data.exp}
+                    </div>
+                </div>
+            `;
+
+            // Card Toggle Click Logic
+            card.addEventListener('click', (e) => {
+                // Prevent toggle if clicking audio buttons
+                if (e.target.closest('.voice-btn')) return;
+
+                let currentStep = parseInt(card.getAttribute('data-step'));
+                const revealBox = document.getElementById(`reveal-${index}`);
+                const expBox = document.getElementById(`exp-${index}`);
+                const indicator = document.getElementById(`step-ind-${index}`);
+
+                if (currentStep === 0) {
+                    // Step 1: Reveal English & Pronunciation
+                    revealBox.style.display = 'block';
+                    card.setAttribute('data-step', '1');
+                    indicator.innerText = '১/২ স্টেপ';
+                    indicator.style.color = '#38bdf8';
+                } else if (currentStep === 1) {
+                    // Step 2: Reveal Explanation
+                    expBox.style.display = 'block';
+                    card.setAttribute('data-step', '2');
+                    indicator.innerText = 'সম্পূর্ণ';
+                    indicator.style.color = '#c084fc';
+                } else {
+                    // Step 3: Reset
+                    revealBox.style.display = 'none';
+                    expBox.style.display = 'none';
+                    card.setAttribute('data-step', '0');
+                    indicator.innerText = 'ক্লিক করুন';
+                    indicator.style.color = '#94a3b8';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        // Helper to avoid quote issues in onclick string
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Text-to-Speech Functionality
+        function speakText(event, text, lang) {
+            event.stopPropagation(); // Prevents card toggle on button click
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop ongoing speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // Slightly slower for clear learning
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("দুঃখিত, আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+            }
+        }
+    </script>
+
+</body>
+</html>

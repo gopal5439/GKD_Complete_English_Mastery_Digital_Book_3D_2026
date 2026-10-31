@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 16: Problems & Solutions</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.125);
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.35);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-bangla: 'Tiro Bangla', serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-bangla);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-family: var(--font-bangla);
+            color: #38bdf8;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+        }
+
+        .bangla-text {
+            font-family: var(--font-bangla);
+            font-size: 1.25rem;
+            color: #f8fafc;
+            line-height: 1.5;
+        }
+
+        .english-section {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .english-text {
+            font-family: var(--font-english);
+            font-size: 1.35rem;
+            color: #38bdf8;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+        }
+
+        .pronunciation {
+            font-family: var(--font-bangla);
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .audio-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-3d {
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0369a1, 0 5px 10px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #0369a1, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk {
+            background: linear-gradient(180deg, #a855f7 0%, #7e22ce 100%);
+            box-shadow: 0 4px 0 #6b21a8, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-uk:active {
+            box-shadow: 0 1px 0 #6b21a8, 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .explanation-section {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .explanation-text {
+            font-family: var(--font-bangla);
+            font-size: 0.95rem;
+            color: #fbbf24;
+            line-height: 1.5;
+        }
+
+        .step-indicator {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .header h1 { font-size: 1.4rem; }
+            .bangla-text { font-size: 1.1rem; }
+            .english-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Part 16: Problems & Solutions</h1>
+        <p>বিষয়: সমস্যা, অসুবিধা ও সমাধান (Sentence 376–400)</p>
+    </div>
+
+    <div class="container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            { id: 376, bn: "আমার একটি সমস্যা হয়েছে।", en: "I have a problem.", pr: "আই হ্যাভ আ প্রবলেম।", exp: "নিজের কোনো সমস্যা বা অসুবিধার কথা জানাতে বাক্যটি ব্যবহার করা হয়। Have a problem অর্থ কোনো সমস্যা থাকা।" },
+            { id: 377, bn: "আমি সমস্যাটির সমাধান খুঁজছি।", en: "I am looking for a solution to the problem.", pr: "আই অ্যাম লুকিং ফর আ সলিউশন টু দ্য প্রবলেম।", exp: "কোনো সমস্যার সমাধান খোঁজার কাজ বর্তমানে চলছে বোঝাতে বাক্যটি ব্যবহার করা হয়। Look for অর্থ খোঁজা এবং solution অর্থ সমাধান।" },
+            { id: 378, bn: "আমি বুঝতে পারছি না কী করতে হবে।", en: "I don't know what to do.", pr: "আই ডোন্ট নো হোয়াট টু ডু।", exp: "কোনো পরিস্থিতিতে করণীয় বুঝতে না পারলে বাক্যটি বলা হয়। What to do অর্থ কী করতে হবে।" },
+            { id: 379, bn: "আমার কম্পিউটার কাজ করছে না।", en: "My computer isn't working.", pr: "মাই কম্পিউটার ইজ়ন্ট ওয়ার্কিং।", exp: "কম্পিউটার চালু থাকলেও ঠিকমতো কাজ না করলে বাক্যটি ব্যবহার করা যায়। Isn't working হলো is not working-এর সংক্ষিপ্ত রূপ।" },
+            { id: 380, bn: "ইন্টারনেট সংযোগ বিচ্ছিন্ন হয়ে গেছে।", en: "The internet connection has been lost.", pr: "দ্য ইন্টারনেট কানেকশন হ্যাজ বিন লস্ট।", exp: "ইন্টারনেট সংযোগ আর পাওয়া যাচ্ছে না বোঝাতে বাক্যটি বলা হয়। Has been lost Present Perfect Passive-এর গঠন।" },
+            { id: 381, bn: "আমি আমার চাবি খুঁজে পাচ্ছি না।", en: "I can't find my keys.", pr: "আই ক্যান্ট ফাইন্ড মাই কিজ।", exp: "নিজের চাবি খুঁজে না পেলে বাক্যটি ব্যবহার করা হয়। Can't find অর্থ খুঁজে পাওয়া যাচ্ছে না।" },
+            { id: 382, bn: "আমার ফোনটি কোথাও হারিয়ে গেছে।", en: "I have lost my phone somewhere.", pr: "আই হ্যাভ লস্ট মাই ফোন সামওয়্যার।", exp: "ফোন হারিয়ে যাওয়ার ঘটনা এবং তার বর্তমান ফল বোঝাতে Present Perfect Tense ব্যবহার করা হয়েছে। Lost হলো lose-এর past participle।" },
+            { id: 383, bn: "আমার গাড়িটি মাঝপথে নষ্ট হয়ে গেছে।", en: "My car has broken down on the way.", pr: "মাই কার হ্যাজ ব্রোকেন ডাউন অন দ্য ওয়ে।", exp: "চলার পথে গাড়ি বিকল হয়ে গেলে বাক্যটি ব্যবহার করা হয়। Break down অর্থ যন্ত্র বা যানবাহন নষ্ট হয়ে যাওয়া।" },
+            { id: 384, bn: "আমি সময়মতো পৌঁছাতে পারিনি।", en: "I couldn't arrive on time.", pr: "আই কুডন্ট অ্যারাইভ অন টাইম।", exp: "অতীতে কোনো জায়গায় নির্ধারিত সময়ে পৌঁছাতে না পারলে বাক্যটি বলা হয়। Couldn't হলো could not-এর সংক্ষিপ্ত রূপ।" },
+            { id: 385, bn: "রাস্তায় প্রচণ্ড যানজট ছিল।", en: "There was heavy traffic on the road.", pr: "দেয়ার ওয়াজ হেভি ট্রাফিক অন দ্য রোড।", exp: "অতীতে রাস্তায় প্রচুর যানবাহনের কারণে যানজট ছিল বোঝাতে বাক্যটি ব্যবহার করা হয়। Heavy traffic অর্থ তীব্র যানজট।" },
+            { id: 386, bn: "আমার কাজটি শেষ করতে একটু বেশি সময় লাগবে।", en: "I will need a little more time to finish my work.", pr: "আই উইল নিড আ লিটল মোর টাইম টু ফিনিশ মাই ওয়ার্ক।", exp: "কোনো কাজ শেষ করার জন্য অতিরিক্ত সময় প্রয়োজন বোঝাতে বাক্যটি বলা হয়। Will need ভবিষ্যতের প্রয়োজন প্রকাশ করে।" },
+            { id: 387, bn: "সমস্যাটি যতটা কঠিন মনে হচ্ছে, ততটা কঠিন নয়।", en: "The problem is not as difficult as it seems.", pr: "দ্য প্রবলেম ইজ নট অ্যাজ ডিফিকাল্ট অ্যাজ ইট সিমস।", exp: "কোনো সমস্যার প্রকৃত কঠিনতা বাহ্যিক ধারণার চেয়ে কম বোঝাতে বাক্যটি ব্যবহার করা হয়। As ... as দিয়ে তুলনা করা হয়েছে।" },
+            { id: 388, bn: "আমরা একসঙ্গে সমস্যাটির সমাধান করতে পারি।", en: "We can solve the problem together.", pr: "উই ক্যান সলভ দ্য প্রবলেম টুগেদার।", exp: "একসঙ্গে কাজ করে কোনো সমস্যার সমাধান করার সক্ষমতা বোঝাতে বাক্যটি বলা হয়। Can সক্ষমতা প্রকাশ করে।" },
+            { id: 389, bn: "তুমি কি আমাকে একটি উপায় দেখাতে পারবে?", en: "Can you show me a way?", pr: "ক্যান ইউ শো মি আ ওয়ে?", exp: "কোনো কাজ করার পদ্ধতি বা উপায় জানতে চাইলে প্রশ্নটি করা হয়। Show me অর্থ আমাকে দেখাও বা বুঝিয়ে দাও।" },
+            { id: 390, bn: "আমাদের অন্য কোনো উপায় খুঁজে বের করতে হবে।", en: "We have to find another way.", pr: "উই হ্যাভ টু ফাইন্ড অ্যানাদার ওয়ে।", exp: "বর্তমান পদ্ধতি কাজ না করলে বিকল্প উপায় খুঁজতে হবে বোঝাতে বাক্যটি ব্যবহার করা হয়। Have to বাধ্যবাধকতা বা প্রয়োজন প্রকাশ করে।" },
+            { id: 391, bn: "আমি ভুল করে ফেলেছি।", en: "I have made a mistake.", pr: "আই হ্যাভ মেড আ মিস্টেক।", exp: "নিজের ভুল স্বীকার করতে বাক্যটি ব্যবহার করা হয়। Have made Present Perfect Tense এবং made হলো make-এর past participle।" },
+            { id: 392, bn: "ভুল থেকে শিক্ষা নেওয়া উচিত।", en: "We should learn from our mistakes.", pr: "উই শুড লার্ন ফ্রম আওয়ার মিস্টেকস।", exp: "ভুলের অভিজ্ঞতা থেকে শিক্ষা নেওয়ার পরামর্শ দিতে বাক্যটি বলা হয়। Learn from অর্থ কোনো অভিজ্ঞতা থেকে শেখা।" },
+            { id: 393, bn: "দয়া করে সমস্যাটি আমাকে বুঝিয়ে বলো।", en: "Please explain the problem to me.", pr: "প্লিজ এক্সপ্লেইন দ্য প্রবলেম টু মি।", exp: "কোনো সমস্যার বিস্তারিত ব্যাখ্যা চাইতে বাক্যটি ব্যবহার করা হয়। Explain something to someone অর্থ কাউকে কোনো বিষয় বুঝিয়ে বলা।" },
+            { id: 394, bn: "আমি চেষ্টা করছি, কিন্তু পারছি না।", en: "I am trying, but I can't do it.", pr: "আই অ্যাম ট্রাইং, বাট আই ক্যান্ট ডু ইট।", exp: "চেষ্টা চালিয়ে যাওয়ার পরও কোনো কাজ করতে না পারলে বাক্যটি বলা হয়। Am trying বর্তমান চলমান চেষ্টা বোঝায়।" },
+            { id: 395, bn: "এই সমস্যার জন্য আমি দায়ী নই।", en: "I am not responsible for this problem.", pr: "আই অ্যাম নট রেসপনসিবল ফর দিস প্রবলেম।", exp: "কোনো সমস্যার দায়িত্ব নিজের নয় বোঝাতে বাক্যটি ব্যবহার করা হয়। Responsible for অর্থ কোনো কিছুর জন্য দায়ী।" },
+            { id: 396, bn: "বিষয়টি নিয়ে আমাদের চিন্তা করা উচিত।", en: "We should think about the matter.", pr: "উই শুড থিংক অ্যাবাউট দ্য ম্যাটার।", exp: "কোনো সমস্যা বা বিষয় নিয়ে ভেবে সিদ্ধান্ত নেওয়ার পরামর্শ দিতে বাক্যটি বলা হয়। Think about অর্থ কোনো বিষয় নিয়ে চিন্তা করা।" },
+            { id: 397, bn: "আমি আশা করি সবকিছু ঠিক হয়ে যাবে।", en: "I hope everything will be all right.", pr: "আই হোপ এভরিথিং উইল বি অল রাইট।", exp: "ভবিষ্যতে পরিস্থিতি ভালো হওয়ার আশা প্রকাশ করতে বাক্যটি ব্যবহার করা হয়। All right অর্থ ঠিকঠাক বা ভালো।" },
+            { id: 398, bn: "সমস্যাটি যত দ্রুত সম্ভব সমাধান করতে হবে।", en: "The problem must be solved as soon as possible.", pr: "দ্য প্রবলেম মাস্ট বি সলভড অ্যাজ সুন অ্যাজ পসিবল।", exp: "কোনো সমস্যা দ্রুত সমাধান করা বাধ্যতামূলক বোঝাতে বাক্যটি বলা হয়। Must be solved হলো Modal Passive-এর গঠন।" },
+            { id: 399, bn: "হাল ছেড়ো না, চেষ্টা চালিয়ে যাও।", en: "Don't give up; keep trying.", pr: "ডোন্ট গিভ আপ; কিপ ট্রাইং।", exp: "কাউকে কঠিন পরিস্থিতিতেও চেষ্টা চালিয়ে যেতে উৎসাহিত করতে বাক্যটি ব্যবহার করা হয়। Give up অর্থ হাল ছেড়ে দেওয়া এবং Keep trying অর্থ চেষ্টা চালিয়ে যাওয়া।" },
+            { id: 400, bn: "প্রতিটি সমস্যারই কোনো না কোনো সমাধান আছে।", en: "Every problem has a solution.", pr: "এভরি প্রবলেম হ্যাজ আ সলিউশন।", exp: "আশাবাদী মনোভাব প্রকাশ করতে বাক্যটি ব্যবহার করা হয়। Every একবচন অর্থে ব্যবহৃত হয় বলে have নয়, has হয়েছে।" }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = "0";
+
+            card.innerHTML = `
+                <div class="step-indicator">ক্লিক করুন (১/৩)</div>
+                <div class="card-header">
+                    <span class="badge">${item.id}</span>
+                    <div class="bangla-text">${item.bn}</div>
+                </div>
+                <div class="english-section">
+                    <div class="english-text">${item.en}</div>
+                    <div class="pronunciation">উচ্চারণ: ${item.pr}</div>
+                    <div class="audio-buttons">
+                        <button class="btn-3d" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-US')">🔊 US Voice</button>
+                        <button class="btn-3d btn-uk" onclick="speakText(event, '${escapeQuotes(item.en)}', 'en-GB')">🔊 UK Voice</button>
+                    </div>
+                </div>
+                <div class="explanation-section">
+                    <div class="explanation-text"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+                </div>
+            `;
+
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') return;
+
+                let currentStep = parseInt(card.dataset.step);
+                currentStep = (currentStep + 1) % 3;
+                card.dataset.step = currentStep;
+
+                const englishSec = card.querySelector('.english-section');
+                const expSec = card.querySelector('.explanation-section');
+                const indicator = card.querySelector('.step-indicator');
+
+                if (currentStep === 0) {
+                    englishSec.style.display = 'none';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'ক্লিক করুন (১/৩)';
+                } else if (currentStep === 1) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'none';
+                    indicator.textContent = 'আবার ক্লিক করুন (২/৩)';
+                } else if (currentStep === 2) {
+                    englishSec.style.display = 'block';
+                    expSec.style.display = 'block';
+                    indicator.textContent = 'রিসেট করতে ক্লিক করুন (৩/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        function speakText(event, text, lang) {
+            event.stopPropagation();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজার টেক্সট-টু-স্পিচ ভয়েস সাপোর্ট করে না।');
+            }
+        }
+    </script>
+</body>
+</html>

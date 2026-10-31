@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundational Spoken Track</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f6ff',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 3D Glassmorphism Cards */
+        .glass-card {
+            background: rgba(22, 30, 49, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        box-shadow 0.25s ease, 
+                        border-color 0.25s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25),
+                        0 0 20px rgba(59, 130, 246, 0.2),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        /* 3D Dynamic Press Effect */
+        .glass-card:active {
+            transform: scale(0.97) translateY(2px) !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Floating Animated Gradient Title */
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        /* Custom Touch Ripple */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Shimmer Effect on Card Hover */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.08),
+                transparent
+            );
+            transition: left 0.6s ease;
+            pointer-events: none;
+            border-radius: 1rem;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-brand-500 selection:text-white">
+
+    <!-- Interactive Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header Section -->
+    <header class="pt-10 pb-6 px-4 sm:px-8 text-center relative z-10 max-w-7xl mx-auto w-full">
+        <div class="inline-block mb-3 px-4 py-1.5 rounded-full glass-card text-xs sm:text-sm font-semibold text-brand-400 border border-brand-500/30 tracking-wide uppercase">
+            <i class="fa-solid fa-graduation-cap mr-2"></i>Interactive Spoken English Track
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-4 gradient-text drop-shadow-lg">
+            Foundational Spoken Track
+        </h1>
+        
+        <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            দৈনন্দিন জীবনের প্রয়োজনীয় ২০টি গুরুত্বপূর্ণ টপিকের ওপর নির্মিত স্পোকেন ইংলিশ মডিউল। প্রতিটি কার্ডে ক্লিক করে পাঠগুলোতে প্রবেশ করুন।
+        </p>
+
+        <!-- Search & Filter Bar -->
+        <div class="mt-8 max-w-md mx-auto relative">
+            <div class="relative flex items-center">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 text-gray-400"></i>
+                <input type="text" id="searchInput" placeholder="Search module or topic..." 
+                    class="w-full pl-11 pr-4 py-3 bg-slate-900/70 border border-slate-700/60 rounded-2xl text-sm focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 text-gray-200 placeholder-gray-400 backdrop-blur-md transition-all">
+                <span id="cardCount" class="absolute right-4 text-xs bg-slate-800 text-gray-400 px-2 py-1 rounded-md">20 Parts</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content - Grid of Modules -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-6 w-full relative z-10 flex-grow">
+        <div id="cardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <!-- Cards will be generated dynamically by JS -->
+        </div>
+
+        <!-- No Search Results State -->
+        <div id="noResults" class="hidden text-center py-16">
+            <i class="fa-solid fa-folder-open text-5xl text-gray-600 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-300">কোন পাঠ পাওয়া যায়নি!</h3>
+            <p class="text-gray-500 text-sm mt-1">অনুগ্রহ করে অন্য শব্দ দিয়ে অনুসন্ধান করুন।</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-6 px-4 text-xs text-gray-500 border-t border-slate-800/50 mt-12 backdrop-blur-md">
+        <p>© Foundational Spoken Track. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Dynamic Generation & 3D Interactive Effects -->
+    <script>
+        // 20 Parts Data Structure with Links & Icons
+        const partsData = [
+            { id: 1, title: "Part 1 Daily Life & Everyday Activities", file: "Part 1 Daily Life & Everyday Activities.html", icon: "fa-sun", color: "from-amber-500 to-orange-500" },
+            { id: 2, title: "Part 2 Family & Relationships", file: "Part 2 Family & Relationships.html", icon: "fa-people-roof", color: "from-rose-500 to-pink-500" },
+            { id: 3, title: "Part 3 Greetings & Introduction", file: "Part 3 Greetings & Introduction.html", icon: "fa-handshake", color: "from-emerald-500 to-teal-500" },
+            { id: 4, title: "Part 4 Home & Household Activities", file: "Part 4 Home & Household Activities.html", icon: "fa-house-chimney", color: "from-blue-500 to-cyan-500" },
+            { id: 5, title: "Part 5 Food, Cooking & Restaurant", file: "Part 5 Food, Cooking & Restaurant.html", icon: "fa-utensils", color: "from-amber-600 to-red-500" },
+            { id: 6, title: "Part 6 Shopping & Money", file: "Part 6 Shopping & Money.html", icon: "fa-cart-shopping", color: "from-violet-500 to-purple-500" },
+            { id: 7, title: "Part 7 Travel & Transportation", file: "Part 7 Travel & Transportation.html", icon: "fa-plane-departure", color: "from-sky-500 to-blue-600" },
+            { id: 8, title: "Part 8 Education & Classroom", file: "Part 8 Education & Classroom.html", icon: "fa-book-open-reader", color: "from-indigo-500 to-blue-700" },
+            { id: 9, title: "Part 9 Workplace & Profession", file: "Part 9 Workplace & Profession.html", icon: "fa-briefcase", color: "from-slate-500 to-slate-700" },
+            { id: 10, title: "Part 10 Phone & Internet Communication", file: "Part 10 Phone & Internet Communication.html", icon: "fa-globe", color: "from-cyan-500 to-blue-500" },
+            { id: 11, title: "Part 11 Health & Hospital", file: "Part 11 Health & Hospital.html", icon: "fa-kit-medical", color: "from-red-500 to-rose-600" },
+            { id: 12, title: "Part 12 Feelings & Emotions", file: "Part 12 Feelings & Emotions.html", icon: "fa-face-smile", color: "from-yellow-500 to-amber-500" },
+            { id: 13, title: "Part 13 Friendship & Social Interaction", file: "Part 13 Friendship & Social Interaction.html", icon: "fa-users-line", color: "from-green-500 to-emerald-600" },
+            { id: 14, title: "Part 14 Asking Questions & Giving Answers", file: "Part 14 Asking Questions & Giving Answers.html", icon: "fa-comments", color: "from-fuchsia-500 to-pink-600" },
+            { id: 15, title: "Part 15 Requests, Permission & Advice", file: "Part 15 Requests, Permission & Advice.html", icon: "fa-circle-question", color: "from-purple-500 to-indigo-600" },
+            { id: 16, title: "Part 16 Time, Weather & Seasons", file: "Part 16 Time, Weather & Seasons.html", icon: "fa-cloud-sun", color: "from-teal-400 to-cyan-600" },
+            { id: 17, title: "Part 17 Hobbies, Sports & Entertainment", file: "Part 17 Hobbies, Sports & Entertainment.html", icon: "fa-gamepad", color: "from-orange-500 to-amber-600" },
+            { id: 18, title: "Part 18 Emergencies & Safety", file: "Part 18 Emergencies & Safety.html", icon: "fa-shield-halved", color: "from-red-600 to-orange-600" },
+            { id: 19, title: "Part 19 Opinions, Discussion & Conversation", file: "Part 19 Opinions, Discussion & Conversation.html", icon: "fa-lightbulb", color: "from-yellow-400 to-amber-600" },
+            { id: 20, title: "Part 20 Motivation, Habits & Life Lessons", file: "Part 20 Motivation, Habits & Life Lessons.html", icon: "fa-rocket", color: "from-blue-600 to-violet-600" }
+        ];
+
+        const cardsGrid = document.getElementById('cardsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const cardCount = document.getElementById('cardCount');
+
+        // Render Cards Function
+        function renderCards(data) {
+            cardsGrid.innerHTML = '';
+            
+            if (data.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            cardCount.textContent = `${data.length} Parts`;
+
+            data.forEach((item) => {
+                const titleParts = item.title.split(/(Part \d+)/);
+                const partNumber = titleParts[1] || `Part ${item.id}`;
+                const topicName = titleParts[2] ? titleParts[2].trim() : item.title;
+
+                const cardAnchor = document.createElement('a');
+                cardAnchor.href = encodeURI(item.file);
+                cardAnchor.className = 'glass-card relative overflow-hidden rounded-2xl p-5 flex flex-col justify-between group cursor-pointer border transition-all duration-300';
+                
+                cardAnchor.innerHTML = `
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-slate-800/80 text-brand-400 border border-brand-500/20 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
+                                ${partNumber}
+                            </span>
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white shadow-lg shadow-black/30 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid ${item.icon} text-lg"></i>
+                            </div>
+                        </div>
+                        <h2 class="text-base font-bold text-gray-100 group-hover:text-brand-400 transition-colors duration-200 line-clamp-2 mb-2 leading-snug">
+                            ${topicName}
+                        </h2>
+                    </div>
+
+                    <div class="pt-4 mt-2 border-t border-slate-800/60 flex items-center justify-between text-xs font-medium text-gray-400 group-hover:text-gray-200 relative z-10">
+                        <span>Open Lesson</span>
+                        <i class="fa-solid fa-arrow-right text-brand-400 transform group-hover:translate-x-1.5 transition-transform duration-300"></i>
+                    </div>
+                `;
+
+                // Add Ripple Touch Effect
+                cardAnchor.addEventListener('click', function (e) {
+                    const rect = cardAnchor.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const circle = document.createElement('span');
+                    circle.classList.add('ripple');
+                    circle.style.left = `${x}px`;
+                    circle.style.top = `${y}px`;
+                    circle.style.width = circle.style.height = `${Math.max(rect.width, rect.height)}px`;
+
+                    this.appendChild(circle);
+                    setTimeout(() => circle.remove(), 600);
+                });
+
+                // 3D Tilt Card Movement Logic
+                cardAnchor.addEventListener('mousemove', (e) => {
+                    const rect = cardAnchor.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+
+                    cardAnchor.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+                });
+
+                cardAnchor.addEventListener('mouseleave', () => {
+                    cardAnchor.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+
+                cardsGrid.appendChild(cardAnchor);
+            });
+        }
+
+        // Initial Render
+        renderCards(partsData);
+
+        // Search Filter Logic
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const filteredData = partsData.filter(item => 
+                item.title.toLowerCase().includes(query)
+            );
+            renderCards(filteredData);
+        });
+
+        // Background Particle Canvas Logic
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 45;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.onload = function() {
+            initParticles();
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
