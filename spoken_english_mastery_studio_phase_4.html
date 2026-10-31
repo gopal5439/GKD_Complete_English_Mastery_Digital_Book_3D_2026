@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken English Mastery Studio - Phase 3</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Typography Setup */
+        :root {
+            --font-english: 'Times New Roman', Times, Georgia, serif;
+            --font-bangla: 'Tiro Bangla', serif;
+        }
+
+        body {
+            font-family: var(--font-bangla), var(--font-english);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            user-select: text;
+        }
+
+        .en-text {
+            font-family: var(--font-english);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.9;
+        }
+
+        .bn-text {
+            font-family: var(--font-bangla);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 2.0;
+        }
+
+        /* High-Contrast 3D Surface Cards */
+        .clay-card {
+            background-color: var(--card-bg, #ffffff);
+            color: var(--card-text, #0f172a);
+            border: 1px solid var(--card-border, rgba(0, 0, 0, 0.12));
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.25),
+                0 8px 10px -6px rgba(0, 0, 0, 0.2);
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 3D Touch-Feel Buttons */
+        .btn-3d {
+            position: relative;
+            transition: all 0.15s ease;
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 0 0 rgba(0, 0, 0, 0.25),
+                0 6px 12px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 0 0 rgba(0, 0, 0, 0.25),
+                0 10px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 
+                0 1px 0 0 rgba(0, 0, 0, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* High-Contrast Active Audio Sentence Highlight */
+        .sentence-highlight {
+            background-color: #facc15 !important;
+            color: #000000 !important;
+            border-radius: 0.375rem;
+            padding: 0.2rem 0.4rem;
+            font-weight: 700;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.85);
+            transition: all 0.2s ease;
+        }
+
+        /* Theme Presets with Guaranteed Text Contrast */
+        .theme-ocean {
+            background: linear-gradient(135deg, #0b1329 0%, #172554 50%, #0f172a 100%);
+            color: #f8fafc;
+            --card-bg: #1e293b;
+            --card-text: #f8fafc;
+            --card-border: rgba(255, 255, 255, 0.12);
+            --box-bg: #0f172a;
+            --box-border: rgba(255, 255, 255, 0.15);
+            --subtext: #cbd5e1;
+        }
+        .theme-emerald {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #022c22 100%);
+            color: #ecfdf5;
+            --card-bg: #065f46;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #022c22;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #a7f3d0;
+        }
+        .theme-purple {
+            background: linear-gradient(135deg, #2e1065 0%, #3b0764 50%, #1e1b4b 100%);
+            color: #faf5ff;
+            --card-bg: #4c1d95;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #2e1065;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #e9d5ff;
+        }
+        .theme-sunset {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #292524 100%);
+            color: #fff7ed;
+            --card-bg: #571e06;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #291004;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #fed7aa;
+        }
+        .theme-light {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #f1f5f9 100%);
+            color: #0f172a;
+            --card-bg: #ffffff;
+            --card-text: #0f172a;
+            --card-border: rgba(0, 0, 0, 0.12);
+            --box-bg: #f1f5f9;
+            --box-border: rgba(0, 0, 0, 0.15);
+            --subtext: #334155;
+        }
+
+        .content-box {
+            background-color: var(--box-bg);
+            border: 1px solid var(--box-border);
+            color: var(--card-text);
+        }
+        .sub-text-color {
+            color: var(--subtext);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.6);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="theme-ocean min-h-screen pb-16 transition-all duration-500">
+
+    <!-- Top Sticky Header Nav -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-white/10 px-4 py-4 mb-8 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-white text-2xl shadow-lg transform rotate-3">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide text-white">
+                        Spoken English Mastery Studio
+                    </h1>
+                    <p class="text-xs text-emerald-300 font-medium">Phase 4: বাজারসদাই, কেনাকাটা ও অর্থ লেনদেন (৫১–৬৫ নম্বর টপিক)</p>
+                </div>
+            </div>
+
+            <!-- Controls: Speech & Theme Selector -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <!-- Theme Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-palette text-amber-400"></i>
+                    <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="theme-ocean">Deep Ocean (Dark)</option>
+                        <option value="theme-emerald">Cyber Emerald</option>
+                        <option value="theme-purple">Royal Purple</option>
+                        <option value="theme-sunset">Sunset Gold</option>
+                        <option value="theme-light">Clean Light (Bright)</option>
+                    </select>
+                </div>
+
+                <!-- Global Accent Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-earth-americas text-indigo-400"></i>
+                    <select id="globalAccent" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="en-US">🇺🇸 American Accent</option>
+                        <option value="en-GB">🇬🇧 British Accent</option>
+                    </select>
+                </div>
+
+                <!-- Global Speech Rate -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white text-xs font-semibold">
+                    <i class="fa-solid fa-gauge-high text-emerald-400"></i>
+                    <span>গতি: <span id="speedVal" class="text-amber-400">0.9x</span></span>
+                    <input type="range" id="globalSpeed" min="0.5" max="1.5" step="0.1" value="0.9" oninput="document.getElementById('speedVal').innerText = this.value + 'x'" class="w-16 accent-indigo-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4">
+
+        <!-- Intro Banner -->
+        <section class="clay-card p-6 md:p-8 mb-10 border-l-8 border-emerald-500">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-3 flex items-center gap-3">
+                        <i class="fa-solid fa-cart-shopping text-emerald-400"></i>
+                        Phase 4: শপিং, কেনাকাটা ও আর্থিক লেনদেন গাইড
+                    </h2>
+                    <p class="text-base md:text-lg bn-text font-medium leading-relaxed sub-text-color">
+                        পোশাক কেনা, দরদাম করা, কাঁচাবাজার, প্রোডাক্ট রিটার্ন, ব্যাংক অ্যাকাউন্ট ও এটিএম সেবা, বিল পরিশোধ, গ্যাজেট কেনাকাটা, বাসা ভাড়া ও অনলাইন শপিংয়ের ১৫টি (৫১–৬৫) বিস্তৃত ও বাস্তব জীবনের কথোপকথন।
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <span class="bg-emerald-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-store mr-1"></i> Shopping & Finance
+                    </span>
+                    <span class="bg-indigo-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-volume-high mr-1"></i> Audio Sync Highlight
+                    </span>
+                    <span class="bg-amber-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-display mr-1"></i> 15 Complete Topics
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic List Container -->
+        <div id="topicsContainer" class="space-y-8">
+            <!-- Topics rendered dynamically via JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Script Block -->
+    <script>
+        // Data Structure for Phase 4 (Topics 51 to 65)
+        const phase4Topics = [
+            {
+                id: 51,
+                title: "Shopping for Clothes & Checking Sizes (পোশাক কেনাকাটা ও সাইজ মেলানো)",
+                question: "Excuse me, I am looking for a formal cotton shirt. Do you have this design in medium size?",
+                questionBn: "মাফ করবেন, আমি একটি সুতি ফর্মাল শার্ট খুঁজছি। আপনার কাছে কি এই ডিজাইনের মিডিয়াম সাইজ হবে?",
+                englishText: [
+                    "Welcome to our store! Yes, we have that exact design in medium size right here.",
+                    "Would you prefer a slim-fit cut or a regular relaxed fit for maximum daily comfort?",
+                    "I prefer slim-fit shirts for office wear. Where is the fitting room located so I can try it on?",
+                    "The fitting rooms are located right down the aisle on your left hand side.",
+                    "This shirt fits perfectly around the shoulders, but the sleeves are slightly longer than expected.",
+                    "No worries at all! We offer complimentary alteration services that take only ten minutes."
+                ],
+                banglaText: [
+                    "আমাদের দোকানে আপনাকে স্বাগতম! হ্যাঁ, ঠিক এই ডিজাইনটির মিডিয়াম সাইজ আমাদের কাছে এখানেই আছে।",
+                    "দৈনন্দিন আরামের জন্য আপনি কি স্লিম-ফিট কাট নাকি রেগুলার রিল্যাক্সড ফিট শার্ট পছন্দ করবেন?",
+                    "অফিসে পরার জন্য আমি স্লিম-ফিট শার্ট পছন্দ করি। ফিটিং রুমটি কোথায়, যাতে আমি এটি গায়ে দিয়ে দেখতে পারি?",
+                    "ফিটিং রুমগুলো আপনার বাম দিকে সোজা গলি দিয়ে গেলে পেয়ে যাবেন।",
+                    "শার্টটি কাঁধের দিকে নিখুঁতভাবে ফিট হয়েছে, তবে হাতাগুলো প্রত্যাশার চেয়ে সামান্য লম্বা মনে হচ্ছে।",
+                    "একদম চিন্তা করবেন না! আমরা বিনামূল্যে অল্টারেশন বা সাইজ ঠিক করার সেবা দিই যা করতে মাত্র ১০ মিনিট সময় লাগে।"
+                ]
+            },
+            {
+                id: 52,
+                title: "Bargaining & Asking for Discounts (দরদাম করা এবং ডিসকাউন্ট চাওয়া)",
+                question: "This leather jacket looks nice, but the quoted price of five thousand Taka seems a bit steep.",
+                questionBn: "এই চামড়ার জ্যাকেটটি দেখতে সুন্দর, তবে এটার চাওয়া দাম পাঁচ হাজার টাকা কিছুটা বেশি মনে হচ্ছে।",
+                englishText: [
+                    "Sir, this is crafted from genuine high-grade leather, which guarantees long durability.",
+                    "I understand the quality is good, but is there any seasonal promotional discount available today?",
+                    "Since you are buying multiple items, I can offer you a special flat ten percent discount.",
+                    "Could you make it four thousand Taka? I am ready to pay in cash immediately.",
+                    "That would be a bit low for us, but I can finalize it at four thousand two hundred Taka for you.",
+                    "Alright, that sounds like a fair deal. Please wrap it up nicely for me."
+                ],
+                banglaText: [
+                    "স্যার, এটি খাঁটি উন্নতমানের চামড়া দিয়ে তৈরি, যা দীর্ঘস্থায়িত্বের নিশ্চয়তা দেয়।",
+                    "আমি বুঝতে পারছি মান ভালো, কিন্তু আজ কি কোনো মৌসুমী অফার বা ডিসকাউন্ট পাওয়া যাবে?",
+                    "যেহেতু আপনি একাধিক পণ্য কিনছেন, আমি আপনাকে বিশেষ ১০ শতাংশ সরাসরি ছাড় দিতে পারি।",
+                    "আপনি কি এটি চার হাজার টাকায় রাখা যায়? আমি এখনই ক্যাশ টাকা দিয়ে দিচ্ছি।",
+                    "ওটা আমাদের জন্য একটু কম হয়ে যায়, তবে আপনার জন্য আমি চার হাজার দুইশত টাকায় ফাইনাল করতে পারি।",
+                    "ঠিক আছে, চুক্তিটা যুক্তিযুক্ত মনে হচ্ছে। দয়া করে এটা সুন্দর করে প্যাকেট করে দিন।"
+                ]
+            },
+            {
+                id: 53,
+                title: "Buying Groceries & Vegetables at Market (কাঁচাবাজার ও গ্রোসারি কেনাকাটা)",
+                question: "Good morning! How much are fresh organic tomatoes per kilogram today?",
+                questionBn: "শুভ সকাল! আজ টাটকা অর্গানিক টমেটো প্রতি কেজি কত করে রাখছেন?",
+                englishText: [
+                    "Good morning, brother! Fresh farm tomatoes are sixty Taka per kilo today.",
+                    "Please give me two kilograms of tomatoes and two kilograms of red onions.",
+                    "Sure! Take a look at these fresh green peppers and coriander leaves that just arrived.",
+                    "Put half a kilo of green peppers and one bundle of coriander leaves into the basket as well.",
+                    "Total comes to two hundred and eighty Taka. Shall I put them into biodegradable bags?",
+                    "Yes please, environment-friendly bags are much better. Here is the cash."
+                ],
+                banglaText: [
+                    "শুভ সকাল, ভাই! সরাসরি ফার্মের টাটকা টমেটো আজ ৬০ টাকা কেজি।",
+                    "দয়া করে আমাকে দুই কেজি টমেটো এবং দুই কেজি দেশি লাল পেঁয়াজ দিন।",
+                    "অবশ্যই! এইমাত্র আসা টাটকা কাঁচা মরিচ এবং ধনেপাতাগুলো একটু দেখে নিন।",
+                    "তাহলে আধা কেজি কাঁচা মরিচ এবং এক আঁটি ধনেপাতাও ঝুড়িতে দিয়ে দিন।",
+                    "সব মিলিয়ে মোট হয়েছে দুইশত আশি টাকা। আমি কি পরিবেশবান্ধব ব্যাগে ঢুকিয়ে দেব?",
+                    "হ্যাঁ দয়া করে, পলিব্যাগের চেয়ে পচনশীল ব্যাগ অনেক ভালো। এই নিন আপনার টাকা।"
+                ]
+            },
+            {
+                id: 54,
+                title: "Returning or Exchanging a Defective Product (ত্রুটিপূর্ণ পণ্য ফেরত দেওয়া বা বদলানো)",
+                question: "Hello, I bought this electric kettle yesterday, but it is not heating water properly.",
+                questionBn: "হ্যালো, আমি গতকাল এই ইলেকট্রিক কেটলিটি কিনেছিলাম, কিন্তু এটি পানি সঠিকভাবে গরম করছে না।",
+                englishText: [
+                    "I am very sorry to hear that. Do you have the original purchase receipt and invoice?",
+                    "Yes, here is the printed cash receipt along with the manufacturer warranty card.",
+                    "Thank you. Let me quickly test the heating unit at our service desk.",
+                    "It seems the internal thermostat is malfunctioning. Would you like a replacement or a cash refund?",
+                    "I would prefer a fresh replacement unit of the same model, please.",
+                    "Certainly! Here is a brand new sealed kettle. We apologize for the inconvenience caused."
+                ],
+                banglaText: [
+                    "বিষয়টি শুনে আমি খুবই দুঃখিত। আপনার কাছে কি কেনাকাটার মূল ক্যাশ মেমো এবং চালানটি আছে?",
+                    "হ্যাঁ, এই নিন আমাদের প্রিন্ট করা ক্যাশ মেমো এবং সাথে ওয়ারেন্টি কার্ড।",
+                    "ধন্যবাদ। আমাকে কাস্টমার সার্ভিস ডেস্কে হিটিং ইউনিটটি দ্রুত একটু পরীক্ষা করে নিতে দিন।",
+                    "মনে হচ্ছে ভেতরের থার্মোস্ট্যাটটিতে সমস্যা রয়েছে। আপনি কি নতুন আরেকটি কেটলি নাকি ক্যাশ রিফান্ড চান?",
+                    "আমি একই মডেলের একটি ব্র্যান্ড নিউ নতুন কেটলি নিতেই বেশি স্বাচ্ছন্দ্য বোধ করব।",
+                    "অবশ্যই! এই নিন একটি সম্পুর্ণ সিল করা নতুন কেটলি। সাময়িক অসুবিধার জন্য আমরা আন্তরিকভাবে ক্ষমাপ্রার্থী।"
+                ]
+            },
+            {
+                id: 55,
+                title: "Opening a Bank Account & Banking Services (ব্যাংক অ্যাকাউন্ট খোলা ও সেবা)",
+                question: "Good day! I would like to open a savings bank account. What documents are required?",
+                questionBn: "শুভ দিন! আমি একটি নতুন সঞ্চয়ী ব্যাংক অ্যাকাউন্ট খুলতে চাই। কী কী কাগজপত্র প্রয়োজন?",
+                englishText: [
+                    "Welcome to our bank! You will need a copy of your NID card, two passport-size photos, and proof of income.",
+                    "You will also need one copy of the nominee's photo along with their valid photo identification document.",
+                    "I have brought all those documents along with my current utility bill copy for address proof.",
+                    "Excellent! Please fill out this account opening form and sign on the designated signature lines.",
+                    "Will I get internet banking access and a debit card issued with this account?",
+                    "Yes, your debit card and digital mobile banking credentials will be activated within three working days."
+                ],
+                banglaText: [
+                    "আমাদের ব্যাংকে আপনাকে স্বাগতম! আপনার এনআইডি কার্ডের কপি, দুই কপি পাসপোর্ট সাইজ ছবি ও আয়ের প্রমাণ লাগবে।",
+                    "আপনার সাথে নমিনির এক কপি ছবি এবং তাঁর একটি বৈধ জাতীয় পরিচয়পত্রের কপিও লাগবে।",
+                    "ঠিকানার প্রমাণ হিসেবে ইউটিলিটি বিলের কপিসহ সেই সব কাগজপত্র আমি সাথেই নিয়ে এসেছি।",
+                    "চমৎকার! দয়া করে এই অ্যাকাউন্ট খোলার ফর্মটি পূরণ করুন এবং চিহ্নিত জায়গায় স্বাক্ষর দিন।",
+                    "আমি কি এই অ্যাকাউন্টের সাথে ইন্টারনেট ব্যাংকিং সুবিধা এবং ডেবিট কার্ডের সুযোগ পাব?",
+                    "হ্যাঁ, আপনার ডেবিট কার্ড এবং ডিজিটাল মোবাইল ব্যাংকিং সেবা ৩ কর্মদিবসের মধ্যে সক্রিয় হয়ে যাবে।"
+                ]
+            },
+            {
+                id: 56,
+                title: "Using Mobile Banking or ATM Booths (মোবাইল ব্যাংকিং ও এটিএম কার্ড)",
+                question: "Could you guide me on how to withdraw cash safely using an ATM card?",
+                questionBn: "এটিএম কার্ড ব্যবহার করে কীভাবে নিরাপদে টাকা তোলা যায় আমাকে একটু বুঝিয়ে দেবেন?",
+                englishText: [
+                    "Insert your magnetic strip card into the machine slot, select language, and enter your confidential four-digit PIN.",
+                    "Always cover the keypad with your hand while typing your secret PIN number.",
+                    "Then choose 'Cash Withdrawal', enter the exact amount you wish to withdraw, and press confirm.",
+                    "Wait for the machine to dispense the cash, collect your bills, and take the printed receipt.",
+                    "What should I do if the ATM machine swallows my card or encounters a transaction failure?",
+                    "Immediately press the emergency cancel button and contact the bank hotline number printed inside the booth."
+                ],
+                banglaText: [
+                    "কার্ডের ম্যাগনেটিক স্ট্রিপটি স্লটে ঢোকান, ভাষা নির্বাচন করুন এবং আপনার গোপন ৪ সংখ্যার পিন নম্বর দিন।",
+                    "গোপন পিন টাইপ করার সময় সবসময় অন্য হাত দিয়ে কিপ্যাডটি ঢেকে রাখুন।",
+                    "তারপর 'ক্যাশ উইথড্রয়াল' সিলেক্ট করুন, যে পরিমাণ টাকা তুলতে চান তা লিখে কনফার্ম চাপুন।",
+                    "মেশিন থেকে ক্যাশ টাকা বের হওয়া পর্যন্ত অপেক্ষা করুন, টাকা বুঝে নিন এবং প্রিন্ট হওয়া মেমোটি সংগ্রহ করুন।",
+                    "যদি এটিএম বুথ কার্ড আটকে ফেলে বা ট্রানজেকশন ফেইল্ড দেখায়, তখন আমার কী করা উচিত?",
+                    "অবিলম্বে জরুরি ক্যানসেল বোতাম চাপুন এবং বুথের ভেতরে থাকা ব্যাংকের হেল্পলাইন নম্বরে যোগাযোগ করুন।"
+                ]
+            },
+            {
+                id: 57,
+                title: "Discussing Prices, Budget & Expenses (দাম, বাজেট ও মাসিক খরচ)",
+                question: "How do you manage your monthly household budget during these times of high commodity prices?",
+                questionBn: "এই জিনিসপত্রের চড়া দামের দিনে আপনি কীভাবে আপনার মাসিক পারিবারিক বাজেট সামলাচ্ছেন?",
+                englishText: [
+                    "I track every single expense using a budget tracking app on my smartphone.",
+                    "We prioritize essential expenses like rent, utilities, and groceries before allocating money for leisure.",
+                    "Cutting down on eating out frequently has helped us save a significant portion of income.",
+                    "Setting aside at least twenty percent of monthly earnings into fixed savings is crucial.",
+                    "Unplanned impulse buying often ruins the entire monthly financial planner.",
+                    "Smart planning and conscious spending habits ensure financial stability in the long run."
+                ],
+                banglaText: [
+                    "আমি স্মার্টফোনের একটি বাজেট ট্র্যাকিং অ্যাপ ব্যবহার করে প্রতিটি খরচের হিসাব রাখি।",
+                    "আনন্দের জন্য টাকা বরাদ্দের আগেই আমরা বাসা ভাড়া, কারেন্ট বিল ও বাজারের মতো জরুরি খরচকে অগ্রাধিকার দিই।",
+                    "ঘন ঘন বাইরে খাওয়া কমিয়ে দেওয়া আমাদের আয়ের একটি বড় অংশ সঞ্চয় করতে সাহায্য করেছে।",
+                    "মাসিক আয়ের অন্তত ২০ শতাংশ টাকা স্থায়ী সঞ্চয়ে জমা রাখা অত্যন্ত জরুরি।",
+                    "পরিকল্পনাহীন আবেগের কেনাকাটা প্রায়ই পুরো মাসিক অর্থনৈতিক পরিকল্পনা নষ্ট করে দেয়।",
+                    "বুদ্ধিমান পরিকল্পনা এবং সচেতন খরচের অভ্যাস দীর্ঘমেয়াদে আর্থিক স্থায়িত্ব নিশ্চিত করে।"
+                ]
+            },
+            {
+                id: 58,
+                title: "Paying Bills at a Restaurant or Store (রেস্তোরাঁ বা দোকানে বিল দেওয়া)",
+                question: "Excuse me, waiter! Could we have the final bill for table number five, please?",
+                questionBn: "এক্সকিউজ মি, ওয়েটার! টেবিল নম্বর ৫-এর ফাইনাল বিলটা কি একটু দেওয়া যাবে?",
+                englishText: [
+                    "Here is your itemized dining bill, sir. The total comes to one thousand eight hundred Taka.",
+                    "Does this bill include the service charge and government VAT taxes?",
+                    "Yes, all applicable government taxes and service fees are included in the subtotal.",
+                    "Do you accept mobile banking payments or contactless credit cards here?",
+                    "We accept all major credit cards, debit cards, bKash, and cash payments.",
+                    "I will pay via contactless debit card. Please bring the portable POS payment terminal."
+                ],
+                banglaText: [
+                    "এই নিন আপনার খাবারের বিস্তারিত বিল স্যার। সব মিলিয়ে মোট হয়েছে এক হাজার আটশত টাকা।",
+                    "এই বিলে কি সার্ভিস চার্জ এবং সরকারি ভ্যাট ট্যাক্স অন্তর্ভুক্ত করা আছে?",
+                    "হ্যাঁ, প্রযোজ্য সব সরকারি ট্যাক্স এবং সার্ভিস ফি মোট হিসাবের ভেতরেই ধরা আছে।",
+                    "আপনারা কি এখানে মোবাইল ব্যাংকিং পেমেন্ট বা কনট্যাক্টলেস ক্রেডিট কার্ড গ্রহণ করেন?",
+                    "আমরা সব ধরণের ক্রেডিট কার্ড, ডেবিট কার্ড, বিকাশ এবং ক্যাশ পেমেন্ট গ্রহণ করি।",
+                    "আমি কনট্যাক্টলেস ডেবিট কার্ড দিয়ে পে করব। দয়া করে পোর্টেবল POS পেমেন্ট মেশিনটি নিয়ে আসুন।"
+                ]
+            },
+            {
+                id: 59,
+                title: "Buying Electronics, Phones, or Gadgets (গ্যাজেট ও ইলেকট্রনিক্স কেনাকাটা)",
+                question: "I am looking for a laptop for video editing and programming. What specs would you recommend?",
+                questionBn: "আমি ভিডিও এডিটিং ও প্রোগ্রামিংয়ের জন্য একটি ল্যাপটপ খুঁজছি। আপনি কী কনফিগারেশনের পরামর্শ দেবেন?",
+                englishText: [
+                    "For heavy editing, you should pick a laptop with at least sixteen gigabytes of RAM and a dedicated graphics card.",
+                    "An SSD storage drive is essential to ensure ultra-fast software loading and smooth rendering.",
+                    "Does this model come with an official brand warranty and after-sales support in Bangladesh?",
+                    "Yes, it comes with two years of official comprehensive warranty covering hardware and screen replacement.",
+                    "Can you install an authentic operating system and basic productivity software for me?",
+                    "Absolutely! Our technical technician will configure and test everything right before your eyes."
+                ],
+                banglaText: [
+                    "ভারী কাজের জন্য আপনার অন্তত ১৬ জিবি র্যাম এবং আলাদা গ্রাফিক্স কার্ডযুক্ত ল্যাপটপ বেছে নেওয়া উচিত।",
+                    "আল্ট্রা-ফাস্ট সফটওয়্যার লোডিং ও স্মুথ রেন্ডারিং নিশ্চিত করতে এসএসডি স্টোরেজ থাকা বাধ্যতামূলক।",
+                    "এই মডেলটিতে কি অফিশিয়াল ব্র্যান্ড ওয়ারেন্টি এবং বাংলাদেশে বিক্রি পরবর্তী সাপোর্ট সেবা আছে?",
+                    "হ্যাঁ, এতে হার্ডওয়্যার এবং স্ক্রিন রিপ্লেসমেন্টসহ দুই বছরের অফিশিয়াল ওয়ারেন্টি দেওয়া রয়েছে।",
+                    "আপনারা কি আমার জন্য অরিজিনাল অপারেটিং সিস্টেম এবং দরকারি সফটওয়্যারগুলো ইনস্টল করে দিতে পারবেন?",
+                    "অবশ্যই! আমাদের টেকনিক্যাল বিশেষজ্ঞ আপনার চোখের সামনেই সবকিছু কনফিগার এবং টেস্ট করে দেবেন।"
+                ]
+            },
+            {
+                id: 60,
+                title: "Asking for Home Delivery Services (হোম ডেলিভারি সার্ভিস চাওয়া)",
+                question: "Do you offer doorstep home delivery for bulky home furniture items?",
+                questionBn: "আপনারা কি বড় হোম ফার্নিচার জিনিসপত্রের জন্য বাসায় হোম ডেলিভারি সুবিধা দেন?",
+                englishText: [
+                    "Yes, we provide free doorstep home delivery within city area limits for orders over ten thousand Taka.",
+                    "How long does it usually take for the delivery vehicle to reach my living location?",
+                    "Standard delivery takes twenty-four to forty-eight hours after order confirmation.",
+                    "Will your delivery staff also handle the assembly and fitting of the wardrobe?",
+                    "Our expert technician team will assemble and install the furniture free of cost.",
+                    "That is fantastic convenience! Please note down my detailed shipping address."
+                ],
+                banglaText: [
+                    "হ্যাঁ, ১০ হাজার টাকার বেশি অর্ডারে আমরা শহরের মধ্যে বিনামূল্যে বাসায় হোম ডেলিভারি সেবা দিই।",
+                    "ডেলিভারির গাড়ি আমার বাসায় পৌঁছাতে সাধারণত কত সময় সময় নেয়?",
+                    "অর্ডার নিশ্চিত করার পর সাধারণত ২৪ থেকে ৪৮ ঘণ্টার মধ্যে ডেলিভারি সম্পন্ন হয়।",
+                    "আপনাদের ডেলিভারি স্টাফরা কি আলমারির সেটআপ এবং ফিটিংয়ের কাজটাও করে দেবে?",
+                    "আমাদের দক্ষ টেকনিশিয়ান দল বিনামূল্যে ফার্নিচারটি ফিটিং ও সেটআপ করে দেবে।",
+                    "এটি তো দারুণ সুবিধার কথা! দয়া করে আমার বিস্তারিত ডেলিভারি ঠিকানাটি নোট করে নিন।"
+                ]
+            },
+            {
+                id: 61,
+                title: "Renting a House or Apartment (বাসা বা অ্যাপার্টমেন্ট ভাড়া নেওয়া)",
+                question: "Hello! I saw an advertisement banner regarding a vacant three-bedroom apartment for rent.",
+                questionBn: "হ্যালো! আমি ভাড়া দেওয়ার জন্য ফাঁকা একটি তিন বেডরুমের ফ্ল্যাটের সাইনবোর্ড দেখেছিলাম।",
+                englishText: [
+                    "Welcome! The flat is located on the fourth floor with great natural ventilation and sunlight.",
+                    "What is the monthly rent amount, and does it include service charges and water bills?",
+                    "The monthly rent is twenty-five thousand Taka, plus three thousand Taka for service charge and security.",
+                    "Is there a dedicated reserved parking space available for a private car in the garage?",
+                    "Yes, every flat gets one reserved basement parking spot along with twenty-four-hour generator backup.",
+                    "Can we schedule a physical flat visit tomorrow morning to inspect the rooms?"
+                ],
+                banglaText: [
+                    "আপনাকে স্বাগতম! ফ্ল্যাটটি চারতলায় অবস্থিত, যেখানে প্রচুর আলো-বাতাস ও সূর্যালোক পাওয়ার ব্যবস্থা আছে।",
+                    "মাসিক ভাড়া কত টাকা, এবং এতে কি সার্ভিস চার্জ ও পানির বিল অন্তর্ভুক্ত করা আছে?",
+                    "মাসিক ভাড়া ২৫ হাজার টাকা, সাথে সার্ভিস চার্জ ও সিকিউরিটির জন্য অতিরিক্ত ৩ হাজার টাকা।",
+                    "গ্যারেজে কি ব্যক্তিগত গাড়ি রাখার জন্য নিজস্ব স্থায়ী পার্কিং জায়গা দেওয়া আছে?",
+                    "হ্যাঁ, প্রতিটি ফ্ল্যাট ২৪ ঘণ্টা জেনারেটর ব্যাকআপের পাশাপাশি ১টি পার্কিং স্পট পায়।",
+                    "রুমগুলো ঘুরে দেখতে আমরা কি আগামীকাল সকালে একটি ফ্ল্যাট ভিজ্যিট নির্ধারণ করতে পারি?"
+                ]
+            },
+            {
+                id: 62,
+                title: "Talking to Landlord About Rent & Rules (বাড়িওয়ালার সাথে নিয়মকানুনকথা)",
+                question: "Good evening, Uncle! I wanted to discuss the security deposit terms before signing the agreement.",
+                questionBn: "শুভ সন্ধ্যা চাচা! চুক্তিপত্রে স্বাক্ষর করার আগে আমি জামানতের শর্তাবলী নিয়ে একটু কথা বলতে চেয়েছিলাম।",
+                englishText: [
+                    "Good evening! We require a advance security deposit equal to two months' rent.",
+                    "The advance deposit will be fully refunded when you decide to vacate the flat upon notice.",
+                    "Understood. What are the main house rules regarding main gate closing times at night?",
+                    "The main building gate closes at eleven PM for safety, but tenants can use keys if delayed.",
+                    "Are we allowed to hang wall paintings or install extra air conditioner units?",
+                    "Yes, you can install air conditioners, but please inform the caretaker before drilling walls."
+                ],
+                banglaText: [
+                    "শুভ সন্ধ্যা! চুক্তি অনুযায়ী আমাদের ২ মাসের ভাড়ার সমপরিমাণ অগ্রিম জামানত জমা রাখতে হবে।",
+                    "আপনি যখন পর্যাপ্ত নোটিস দিয়ে ফ্ল্যাট ছাড়ার সিদ্ধান্ত নেবেন, তখন জামানতের টাকা ফেরত দেওয়া হবে।",
+                    "বুঝতে পেরেছি। রাতে মেইন গেট বন্ধ করার বিষয়ে বাড়ির প্রধান নিয়মকানুনগুলো কী কী?",
+                    "নিরাপত্তার জন্য মূল গেট রাত ১১টায় বন্ধ হয়ে যায়, তবে দেরি হলে ভাড়াটিয়ারা নিজস্ব চাবি ব্যবহার করতে পারেন।",
+                    "আমরা কি দেওয়ালে ছবি টাঙাতে বা নতুন এসি ইউনিট বসানোর অনুমতি পাব?",
+                    "হ্যাঁ, আপনি এসি বসাতে পারেন, তবে দেওয়ালে ড্রিল করার আগে দয়া করে কেয়ারটেকারকে জানিয়ে নেবেন।"
+                ]
+            },
+            {
+                id: 63,
+                title: "Buying Books & Stationery (বই ও স্টেশনারি জিনিসপত্র কেনা)",
+                question: "Excuse me, do you have the latest edition of English Grammar in Use in stock?",
+                questionBn: "এক্সকিউজ মি, আপনাদের কাছে কি 'ইংলিশ গ্রামার ইন ইউজ'-এর সর্বাধুনিক সংস্করণটি স্টকে আছে?",
+                englishText: [
+                    "Yes, we have both the student edition with answers and the self-study guidance book.",
+                    "I will take the answer key edition. I also need three spiral notebooks and smooth gel pens.",
+                    "Which line width do you prefer for gel pens—point five millimeter or point seven millimeter?",
+                    "Point five millimeter dark blue pens write much cleaner. Give me half a dozen pens.",
+                    "Would you like me to cover the textbook with a protective transparent plastic cover?",
+                    "Yes, please cover it! That will protect the book from dust and water damage."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমাদের কাছে উত্তরসহ স্টুডেন্ট এডিশন এবং সেলফ-স্টাডি গাইডেন্স বই দুটিই স্টকে আছে।",
+                    "আমি উত্তরসহ এডিশনটি নেব। আমার তিনটি স্পাইরাল নোটবুক এবং স্মুথ জেল পেনেরও প্রয়োজন।",
+                    "জেল পেনের জন্য কোন সাইজ পছন্দ করবেন—০.৫ মিলিমিটার নাকি ০.৭ মিলিমিটার?",
+                    "০.৫ মিলিমিটারের গাড় নীল পেন দিয়ে অনেক পরিষ্কার লেখা যায়। আমাকে হাফ ডজন পেন দিন।",
+                    "আপনি কি চান যে আমি টেক্সটবুকটি একটি স্বচ্ছ প্লাস্টিক কভার দিয়ে মুড়ে দিই?",
+                    "হ্যাঁ, দয়া করে কভার করে দিন! ওটা বইটিকে ধুলাবালি এবং পানির হাত থেকে রক্ষা করবে।"
+                ]
+            },
+            {
+                id: 64,
+                title: "Dealing With Shopkeeper or Salesman (দোকানি বা সেলসম্যানের সাথে কথা)",
+                question: "Hello brother, I need to purchase household cleaning items and laundry detergent.",
+                questionBn: "হ্যালো ভাই, আমার সংসারের পরিষ্কার-পরিচ্ছন্নতার আইটেম এবং ডিটারজেন্ট কেনা দরকার।",
+                englishText: [
+                    "Welcome! We have a buy-one-get-one promotional offer running on detergent powder today.",
+                    "If you purchase a two-kilogram family pack, you get a liquid dishwashing refill pouch free.",
+                    "That sounds like a great offer! Add two family packs of detergent to my bill.",
+                    "Do you also need floor cleaning liquids, disinfected sprays, or paper towel rolls?",
+                    "Yes, add two bottles of floor cleaner and a pack of tissue rolls as well.",
+                    "Everything is packed neatly. Thank you for shopping with us today!"
+                ],
+                banglaText: [
+                    "আপনাকে স্বাগতম! ডিটারজেন্ট পাউডারে আজ আমাদের একটির সাথে একটি ফ্রি অফার চলছে।",
+                    "আপনি যদি ২ কেজির একটি ফ্যামিলি প্যাক কেনেন, তবে ১টি লিকুইড ডিশওয়াশিং ফ্রি পাবেন।",
+                    "অফারটি তো দারুণ মনে হচ্ছে! আমার বিলে ডিটারজেন্টের ২টি ফ্যামিলি প্যাক যোগ করে দিন।",
+                    "আপনার কি ফ্লোর ক্লিনিক লিকুইড, জীবাণুনাশক স্প্রে বা টিস্যু রোলের প্রয়োজন আছে?",
+                    "হ্যাঁ, সেই সাথে ২ বোতল ফ্লোর ক্লিনার এবং ১ প্যাকেট টিস্যু রোল যোগ করুন।",
+                    "সবকিছু সুন্দর করে প্যাক করা হয়েছে। আজ আমাদের দোকান থেকে কেনাকাটা করার জন্য ধন্যবাদ!"
+                ]
+            },
+            {
+                id: 65,
+                title: "Discussing Online Shopping Experiences (অনলাইন শপিংয়ের অভিজ্ঞতা)",
+                question: "Do you frequently shop online for gadgets and clothes rather than visiting shopping malls?",
+                questionBn: "আপনি কি শপিং মলে যাওয়ার চেয়ে গ্যাজেট ও জামাকাপড়ের জন্য অনলাইনে কেনাকাটা বেশি করেন?",
+                englishText: [
+                    "I prefer online shopping for convenience and wide availability of customer product reviews.",
+                    "It saves enormous time and energy compared to navigating heavy traffic jammed streets.",
+                    "However, sometimes the actual product color or fabric quality differs from website images.",
+                    "That is why choosing trusted e-commerce platforms with easy return policies is essential.",
+                    "Cash on delivery option provides great security for verifying items before payment.",
+                    "When used smartly, e-commerce shopping is a massive modern lifestyle upgrade."
+                ],
+                banglaText: [
+                    "সুবিধা এবং অন্যান্য ক্রেতাদের রিভিউ দেখে কেনার সুযোগ থাকায় আমি অনলাইন শপিং পছন্দ করি।",
+                    "যানজটে ঠাসা রাস্তায় ঘুরে কেনাকাটার চেয়ে এটি প্রচুর সময় এবং শক্তি বাঁচিয়ে দেয়।",
+                    "তবে, মাঝে মাঝে পণ্যের আসল রং বা ফেব্রিকের মান ওয়েবসাইটের ছবির চেয়ে আলাদা হয়।",
+                    "সেজন্যই সহজ রিটার্ন পলিসিসহ বিশ্বস্ত ই-কমার্স প্ল্যাটফর্ম বেছে নেওয়া অত্যন্ত জরুরি।",
+                    "ক্যাশ অন ডেলিভারি পেমেন্ট করার আগে পণ্য যাচাই করার একটি দারুণ নিরাপত্তা দেয়।",
+                    "বুদ্ধিমানভাবে ব্যবহার করলে ই-কমার্স শপিং আধুনিক জীবনযাত্রার একটি বড় উন্নতি।"
+                ]
+            }
+        ];
+
+        // State variables
+        let highlightedSpan = null;
+
+        // Render Topics on Load
+        window.onload = function() {
+            renderTopics();
+        };
+
+        function renderTopics() {
+            const container = document.getElementById('topicsContainer');
+            container.innerHTML = '';
+
+            phase4Topics.forEach((topic) => {
+                const card = document.createElement('article');
+                card.className = 'clay-card p-6 md:p-8 transition-all duration-300';
+                card.id = `topic-card-${topic.id}`;
+
+                card.innerHTML = `
+                    <!-- Topic Header -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
+                        <div class="flex items-center gap-4">
+                            <span class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0">
+                                ${topic.id}
+                            </span>
+                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">
+                                ${topic.title}
+                            </h3>
+                        </div>
+
+                        <!-- Audio Control Buttons -->
+                        <div class="flex items-center gap-2">
+                            <button onclick="playTopicAudio(${topic.id})" id="play-btn-${topic.id}" class="btn-3d px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs md:text-sm flex items-center gap-2 font-bold">
+                                <i class="fa-solid fa-play"></i> <span>শুনুন (Full Audio)</span>
+                            </button>
+                            <button onclick="stopAudio()" class="btn-3d px-3.5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs md:text-sm font-bold" title="Stop Audio">
+                                <i class="fa-solid fa-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Question Box -->
+                    <div class="mt-6 p-5 rounded-2xl content-box">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-comments"></i> Step 1: সূচনামূলক বার্তা / প্রশ্ন (Opener)
+                                </div>
+                                <p class="en-text text-base md:text-xl font-bold">
+                                    "${topic.question}"
+                                </p>
+                                <p class="bn-text text-sm md:text-base font-semibold sub-text-color mt-2">
+                                    ${topic.questionBn}
+                                </p>
+                            </div>
+                            <button onclick="speakText('${escapeQuotes(topic.question)}')" class="btn-3d p-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl flex-shrink-0 font-bold" title="Listen Question">
+                                <i class="fa-solid fa-volume-high text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 & 3 Interactive Toggles -->
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="toggleEnglishPassage(${topic.id})" class="btn-3d px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span id="eng-toggle-text-${topic.id}">Show Full English Dialogue</span>
+                        </button>
+                        
+                        <button onclick="toggleBanglaMeaning(${topic.id})" class="btn-3d px-5 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-language"></i>
+                            <span id="bn-toggle-text-${topic.id}">Show Bangla Meaning</span>
+                        </button>
+                    </div>
+
+                    <!-- English Passage Container -->
+                    <div id="english-box-${topic.id}" class="hidden mt-6 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-paragraph"></i> Complete English Dialogue:
+                        </h4>
+                        <div id="english-text-content-${topic.id}" class="en-text text-base md:text-lg font-medium space-y-3">
+                            ${topic.englishText.map((sent, index) => `<span id="sent-${topic.id}-${index}" class="inline-block transition-all duration-200">${sent} </span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Bangla Meaning Container -->
+                    <div id="bangla-box-${topic.id}" class="hidden mt-4 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-language"></i> বাংলা অনুবাদ:
+                        </h4>
+                        <div class="bn-text text-base md:text-lg font-medium space-y-3 opacity-95">
+                            ${topic.banglaText.map((bSent) => `<p class="leading-relaxed">• ${bSent}</p>`).join('')}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle English Passage Visibility
+        function toggleEnglishPassage(topicId) {
+            const box = document.getElementById(`english-box-${topicId}`);
+            const btnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide English Dialogue";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Full English Dialogue";
+            }
+        }
+
+        // Toggle Bangla Meaning Visibility
+        function toggleBanglaMeaning(topicId) {
+            const box = document.getElementById(`bangla-box-${topicId}`);
+            const btnText = document.getElementById(`bn-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide Bangla Meaning";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Bangla Meaning";
+            }
+        }
+
+        // Change Theme Function
+        function changeTheme(themeName) {
+            document.body.className = `${themeName} min-h-screen pb-16 transition-all duration-500`;
+        }
+
+        // Stop Currently Playing Audio
+        function stopAudio() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            clearHighlight();
+        }
+
+        // Clear Line Highlights
+        function clearHighlight() {
+            if (highlightedSpan) {
+                highlightedSpan.classList.remove('sentence-highlight');
+                highlightedSpan = null;
+            }
+        }
+
+        // Speak Single Question Text
+        function speakText(text) {
+            stopAudio();
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+
+            utterance.lang = lang;
+            utterance.rate = rate;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Play Entire Topic Audio with Live Sentence Highlighting
+        function playTopicAudio(topicId) {
+            stopAudio();
+
+            const topic = phase4Topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            // Make sure English text box is visible while playing
+            const engBox = document.getElementById(`english-box-${topicId}`);
+            const engBtnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (engBox.classList.contains('hidden')) {
+                engBox.classList.remove('hidden');
+                engBtnText.innerText = "Hide English Dialogue";
+            }
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+            let sentenceIndex = 0;
+
+            function speakNextSentence() {
+                if (sentenceIndex >= topic.englishText.length) {
+                    clearHighlight();
+                    return;
+                }
+
+                clearHighlight();
+                const currentSpan = document.getElementById(`sent-${topicId}-${sentenceIndex}`);
+                if (currentSpan) {
+                    currentSpan.classList.add('sentence-highlight');
+                    highlightedSpan = currentSpan;
+                    currentSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                const utterance = new SpeechSynthesisUtterance(topic.englishText[sentenceIndex]);
+                utterance.lang = lang;
+                utterance.rate = rate;
+
+                utterance.onend = function() {
+                    sentenceIndex++;
+                    speakNextSentence();
+                };
+
+                utterance.onerror = function() {
+                    clearHighlight();
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            speakNextSentence();
+        }
+
+        // Helper function to escape quotes
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>

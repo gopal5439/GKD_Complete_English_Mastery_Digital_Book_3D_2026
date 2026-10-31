@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken English Mastery Studio - Phase 5</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Typography Setup */
+        :root {
+            --font-english: 'Times New Roman', Times, Georgia, serif;
+            --font-bangla: 'Tiro Bangla', serif;
+        }
+
+        body {
+            font-family: var(--font-bangla), var(--font-english);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            user-select: text;
+        }
+
+        .en-text {
+            font-family: var(--font-english);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.9;
+        }
+
+        .bn-text {
+            font-family: var(--font-bangla);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 2.0;
+        }
+
+        /* High-Contrast 3D Surface Cards */
+        .clay-card {
+            background-color: var(--card-bg, #ffffff);
+            color: var(--card-text, #0f172a);
+            border: 1px solid var(--card-border, rgba(0, 0, 0, 0.12));
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.25),
+                0 8px 10px -6px rgba(0, 0, 0, 0.2);
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 3D Touch-Feel Buttons */
+        .btn-3d {
+            position: relative;
+            transition: all 0.15s ease;
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 0 0 rgba(0, 0, 0, 0.25),
+                0 6px 12px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 0 0 rgba(0, 0, 0, 0.25),
+                0 10px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 
+                0 1px 0 0 rgba(0, 0, 0, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* High-Contrast Active Audio Sentence Highlight */
+        .sentence-highlight {
+            background-color: #facc15 !important;
+            color: #000000 !important;
+            border-radius: 0.375rem;
+            padding: 0.2rem 0.4rem;
+            font-weight: 700;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.85);
+            transition: all 0.2s ease;
+        }
+
+        /* Theme Presets with Guaranteed Text Contrast */
+        .theme-ocean {
+            background: linear-gradient(135deg, #0b1329 0%, #172554 50%, #0f172a 100%);
+            color: #f8fafc;
+            --card-bg: #1e293b;
+            --card-text: #f8fafc;
+            --card-border: rgba(255, 255, 255, 0.12);
+            --box-bg: #0f172a;
+            --box-border: rgba(255, 255, 255, 0.15);
+            --subtext: #cbd5e1;
+        }
+        .theme-emerald {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #022c22 100%);
+            color: #ecfdf5;
+            --card-bg: #065f46;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #022c22;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #a7f3d0;
+        }
+        .theme-purple {
+            background: linear-gradient(135deg, #2e1065 0%, #3b0764 50%, #1e1b4b 100%);
+            color: #faf5ff;
+            --card-bg: #4c1d95;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #2e1065;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #e9d5ff;
+        }
+        .theme-sunset {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #292524 100%);
+            color: #fff7ed;
+            --card-bg: #571e06;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #291004;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #fed7aa;
+        }
+        .theme-light {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #f1f5f9 100%);
+            color: #0f172a;
+            --card-bg: #ffffff;
+            --card-text: #0f172a;
+            --card-border: rgba(0, 0, 0, 0.12);
+            --box-bg: #f1f5f9;
+            --box-border: rgba(0, 0, 0, 0.15);
+            --subtext: #334155;
+        }
+
+        .content-box {
+            background-color: var(--box-bg);
+            border: 1px solid var(--box-border);
+            color: var(--card-text);
+        }
+        .sub-text-color {
+            color: var(--subtext);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.6);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="theme-ocean min-h-screen pb-16 transition-all duration-500">
+
+    <!-- Top Sticky Header Nav -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-white/10 px-4 py-4 mb-8 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center text-white text-2xl shadow-lg transform rotate-3">
+                    <i class="fa-solid fa-plane-departure"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide text-white">
+                        Spoken English Mastery Studio
+                    </h1>
+                    <p class="text-xs text-sky-300 font-medium">Phase 5: ভ্রমণ, যাতায়াত ও অবকাশ (৬৬–৮০ নম্বর টপিক)</p>
+                </div>
+            </div>
+
+            <!-- Controls: Speech & Theme Selector -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <!-- Theme Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-palette text-amber-400"></i>
+                    <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="theme-ocean">Deep Ocean (Dark)</option>
+                        <option value="theme-emerald">Cyber Emerald</option>
+                        <option value="theme-purple">Royal Purple</option>
+                        <option value="theme-sunset">Sunset Gold</option>
+                        <option value="theme-light">Clean Light (Bright)</option>
+                    </select>
+                </div>
+
+                <!-- Global Accent Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-earth-americas text-indigo-400"></i>
+                    <select id="globalAccent" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="en-US">🇺🇸 American Accent</option>
+                        <option value="en-GB">🇬🇧 British Accent</option>
+                    </select>
+                </div>
+
+                <!-- Global Speech Rate -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white text-xs font-semibold">
+                    <i class="fa-solid fa-gauge-high text-emerald-400"></i>
+                    <span>গতি: <span id="speedVal" class="text-amber-400">0.9x</span></span>
+                    <input type="range" id="globalSpeed" min="0.5" max="1.5" step="0.1" value="0.9" oninput="document.getElementById('speedVal').innerText = this.value + 'x'" class="w-16 accent-indigo-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4">
+
+        <!-- Intro Banner -->
+        <section class="clay-card p-6 md:p-8 mb-10 border-l-8 border-sky-500">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-3 flex items-center gap-3">
+                        <i class="fa-solid fa-compass text-sky-400"></i>
+                        Phase 5: ভ্রমণ, যাতায়াত ও অবকাশ গাইড
+                    </h2>
+                    <p class="text-base md:text-lg bn-text font-medium leading-relaxed sub-text-color">
+                        টিকিট বুকিং, ট্যাক্সি বা রিকশা ভাড়া, হোটেলে চেক-ইন, পর্যটন স্থান জানা, এয়ারপোর্ট ইমিগ্রেশন, হারিয়ে যাওয়া লাগেজ, খেলাধুলা, জিম, বই, সোশ্যাল মিডিয়া ও দর্শনীয় স্থান ভ্রমণের ১৫টি (৬৬–৮০) পূর্ণাঙ্গ বাস্তবসম্মত কনভার্সেশন।
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <span class="bg-sky-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-suitcase mr-1"></i> Travel & Leisure
+                    </span>
+                    <span class="bg-indigo-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-volume-high mr-1"></i> Audio Sync Highlight
+                    </span>
+                    <span class="bg-amber-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-display mr-1"></i> 15 Complete Topics
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic List Container -->
+        <div id="topicsContainer" class="space-y-8">
+            <!-- Topics rendered dynamically via JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Script Block -->
+    <script>
+        // Data Structure for Phase 5 (Topics 66 to 80)
+        const phase5Topics = [
+            {
+                id: 66,
+                title: "Booking Train, Bus or Plane Tickets (টিকিট বুকিং করা)",
+                question: "Good morning! I would like to book a return train ticket to Chittagong for next Friday.",
+                questionBn: "শুভ সকাল! আমি আগামী শুক্রবারের জন্য চট্টগ্রামের একটি রিটার্ন ট্রেন টিকিট বুক করতে চাই।",
+                englishText: [
+                    "Good morning! Would you prefer an AC compartment seat or a non-AC first-class seat?",
+                    "I would prefer an AC sleeper berth for maximum comfort during the overnight journey.",
+                    "Let me check seat availability. There are two seats left on the evening Express train.",
+                    "That works fine for me. What is the total fare per passenger including service charges?",
+                    "The fare is one thousand two hundred Taka per seat. Please provide your photo ID details.",
+                    "Here is my NID copy and credit card. Please issue the confirmed tickets immediately."
+                ],
+                banglaText: [
+                    "শুভ সকাল! আপনি কি একটি এসি কম্পার্টমেন্টের সিট নাকি নন-এসি ফার্স্ট ক্লাস সিট পছন্দ করবেন?",
+                    "রাতের ভ্রমণের সময় সর্বোচ্চ আরামের জন্য আমি একটি এসি স্লিপার বার্থের সিট পছন্দ করব।",
+                    "আমাকে সিটের প্রাপ্যতা চেক করতে দিন। সান্ধ্যকালীন এক্সপ্রেস ট্রেনে দুটি সিট খালি রয়েছে।",
+                    "ওটাই আমার জন্য ঠিক আছে। সার্ভিস চার্জসহ প্রতি যাত্রীর মোট ভাড়া কত পড়বে?",
+                    "প্রতি সিটের ভাড়া এক হাজার দুইশত টাকা। দয়া করে আপনার ফটো আইডি বিবরণ দিন।",
+                    "এই নিন আমার এনআইডি কপি এবং ক্রেডিট কার্ড। দয়া করে কনফার্মড টিকিট ইস্যু করে দিন।"
+                ]
+            },
+            {
+                id: 67,
+                title: "Talking to Taxi Driver or Rickshaw Puller (ট্যাক্সি বা রিকশাওয়ালার সাথে কথা)",
+                question: "Hello brother, will you go to Dhanmondi 27? How much will you charge for the trip?",
+                questionBn: "হ্যালো ভাই, ধানমন্ডি ২৭ কি যাবেন? এই ভ্রমণের জন্য আপনি কত ভাড়া নেবেন?",
+                englishText: [
+                    "Yes, I can take you there. The fare will be one hundred and fifty Taka.",
+                    "That is a bit high! The standard fare is usually around one hundred Taka for this distance.",
+                    "Road congestion near the main intersection is severe at this hour, sir.",
+                    "I will give you one hundred and twenty Taka. Let us go quickly if you agree.",
+                    "Alright sir, please get in. I will take the bypass road to avoid heavy traffic.",
+                    "Great idea! Please drive safely and keep inside the speed limit."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমি আপনাকে সেখানে নিয়ে যেতে পারি। ভাড়া হবে একশত ৫০ টাকা।",
+                    "ওটা একটু বেশি হয়ে গেল! এই দূরত্বের জন্য সাধারণ ভাড়া সাধারণত ১০০ টাকার কাছাকাছি হয়।",
+                    "এই সময়ে প্রধান মোড়ের কাছে রাস্তায় ব্যাপক যানজট থাকে, স্যার।",
+                    "আমি আপনাকে ১২০ টাকা দেব। রাজি থাকলে চলুন দ্রুত রওনা হয়ে যাই।",
+                    "ঠিক আছে স্যার, উঠে পড়ুন। আমি জ্যাম এড়াতে বাইপাস রাস্তা দিয়ে নিয়ে যাব।",
+                    "দারুণ চিন্তাভাবনা! দয়া করে সাবধানে গাড়ি চালান এবং গতিসীমার ভেতরে থাকুন।"
+                ]
+            },
+            {
+                id: 68,
+                title: "Checking into a Hotel Room (হোটেলে রুম বুকিং বা চেক-ইন)",
+                question: "Good evening! I have a advance room reservation under the name of Tanvir Rahman.",
+                questionBn: "শুভ সন্ধ্যা! তানভীর রহমান নামে আমার একটি আগাম রুম রেজাল্ভেশন করা আছে।",
+                englishText: [
+                    "Welcome to Grand Residency! Let me locate your booking details on our front desk system.",
+                    "Yes, a deluxe ocean-view suite reserved for three nights with complimentary breakfast.",
+                    "Could you please present your passport or national ID card along with a security deposit?",
+                    "Here is my identity document and credit card for the room deposit authorization.",
+                    "Thank you. Your room is 405 on the fourth floor. The bellboy will carry your luggage up.",
+                    "What time is breakfast served in the morning, and where is the dining hall located?",
+                    "Breakfast is served from 7 AM to 10:30 AM in the main dining restaurant on the lobby level."
+                ],
+                banglaText: [
+                    "গ্র্যান্ড রেসিডেন্সিতে আপনাকে স্বাগতম! আমাদের ফ্রন্ট ডেস্ক সিস্টেমে আপনার বুকিং বিবরণটি দেখতে দিন।",
+                    "হ্যাঁ, ফ্রি ব্রেকফাস্টসহ তিন রাতের জন্য সংরক্ষিত একটি ডিলাক্স ওশান-ভিউ সুইট রয়েছে।",
+                    "আপনি কি দয়া করে জামানতের সাথে আপনার পাসপোর্ট বা জাতীয় পরিচয়পত্রটি উপস্থাপন করবেন?",
+                    "এই নিন আমার পরিচয়পত্র এবং রুম ডিপোজিট অনুমোদনের জন্য ক্রেডিট কার্ড।",
+                    "ধন্যবাদ। আপনার রুম চারতলায় ৪০৫ নম্বর। বেলবয় আপনার লাগেজ ওপরে নিয়ে যাবে।",
+                    "সকালে কতটায় নাস্তা পরিবেশন করা হয় এবং ডাইনিং হলটি কোথায় অবস্থিত?",
+                    "লবি লেভেলের প্রধান ডাইনিং রেস্তোরাঁয় সকাল ৭টা থেকে ১০:৩০টা পর্যন্ত নাস্তা পরিবেশন করা হয়।"
+                ]
+            },
+            {
+                id: 69,
+                title: "Asking for Tourist Spots & Directions (দর্শনীয় স্থান ও দিকনির্দেশনা)",
+                question: "Excuse me, I am new to Cox's Bazar. What are the best tourist spots to visit nearby?",
+                questionBn: "মাফ করবেন, আমি কক্সবাজারে নতুন এসেছি। কাছাকাছি ঘুরে দেখার মতো সেরা জায়গাগুলো কী কী?",
+                englishText: [
+                    "You should definitely visit Himchari Waterfall and drive along the scenic Marine Drive road.",
+                    "In the afternoon, Inani Coral Beach is wonderful for watching a quiet, serene sunset.",
+                    "How far is Inani Beach from the main hotel zone, and what transport should I use?",
+                    "It is about twenty-five kilometers away. You can easily rent an auto-rickshaw or private car.",
+                    "Is it safe to go for night walks along the sea beach area near the main town?",
+                    "Yes, the main beach point is well-lit and constantly guarded by tourist police patrols."
+                ],
+                banglaText: [
+                    "আপনার অবশ্যই হিমছড়ি ঝরনা দেখা উচিত এবং সুন্দর মেরিন ড্রাইভ সড়ক ধরে ড্রাইভ করা উচিত।",
+                    "বিকেলে, শান্ত ও স্নিগ্ধ সূর্যাস্ত দেখার জন্য ইনানি প্রবাল সমুদ্র সৈকত চমৎকার একটি জায়গা।",
+                    "মূল হোটেল জোন থেকে ইনানি বিচ কত দূরে এবং আমার কোন পরিবহন ব্যবহার করা উচিত?",
+                    "এটি প্রায় ২৫ কিলোমিটার দূরে। আপনি সহজেই একটি অটোরিকশা বা প্রাইভেট কার ভাড়া করতে পারেন।",
+                    "মূল শহরের কাছাকাছি সমুদ্র সৈকত এলাকায় রাতে হেঁটে যাওয়া কি নিরাপদ?",
+                    "হ্যাঁ, প্রধান সৈকত পয়েন্টটি সুআলোকিত এবং পর্যটন পুলিশ টহল দিয়ে সার্বক্ষণিক পাহারা দেয়।"
+                ]
+            },
+            {
+                id: 70,
+                title: "Discussing Holiday Plans & Destinations (ছুটির পরিকল্পনা ও বেড়ানোর জায়গা)",
+                question: "Where are you planning to go for your upcoming winter vacation holidays?",
+                questionBn: "আপনার আসন্ন শীতকালীন ছুটির দিনে আপনি কোথায় যাওয়ার পরিকল্পনা করছেন?",
+                englishText: [
+                    "We are planning a five-day family trip to Sylhet to explore the lush green tea gardens.",
+                    "That sounds amazing! Are you also planning to visit Jaflong and Ratargul Swamp Forest?",
+                    "Yes, boat trips through the freshwater swamp forest are high on our travel itinerary list.",
+                    "Make sure to book your resort accommodation well in advance, as winter is peak travel season.",
+                    "Thanks for the tip! We have already secured our resort reservations online last week."
+                ],
+                banglaText: [
+                    "সবুজ চাবাগান দেখতে আমরা সিলেটে পাঁচ দিনের পারিবারিক ভ্রমণের পরিকল্পনা করছি।",
+                    "দারুণ তো! আপনারা কি জাফলং এবং রাতারগুল জলাবন দেখার পরিকল্পনা করছেন?",
+                    "হ্যাঁ, স্বাদু পানির জলাবনের মধ্য দিয়ে নৌকা ভ্রমণ আমাদের ভ্রমণ তালিকার শীর্ষে রয়েছে।",
+                    "শীতকাল ভ্রমণের মূল সময় হওয়ায় আপনার রিসোর্ট বুকিং আগেভাগেই নিশ্চিত করুন।",
+                    "পরামর্শের জন্য ধন্যবাদ! আমরা গত সপ্তাহেই অনলাইনে আমাদের রিসোর্ট বুকিং নিশ্চিত করেছি।"
+                ]
+            },
+            {
+                id: 71,
+                title: "Talking About Airport Customs & Immigration (এয়ারপোর্ট ইমিগ্রেশন ও কাস্টমস)",
+                question: "Good day officer! Here is my passport, flight boarding pass, and completed arrival card.",
+                questionBn: "শুভ দিন অফিসার! এই নিন আমার পাসপোর্ট, ফ্লাইট বোর্ডিং পাস এবং পূরণ করা অ্যারাইভাল কার্ড।",
+                englishText: [
+                    "Welcome! What is the primary purpose of your visit to the United Kingdom today?",
+                    "I am visiting London for a two-week professional business conference and sightseeing.",
+                    "Where will you be staying during your stay, and do you have a return flight ticket?",
+                    "I am staying at the Central Park Hotel, and here is my confirmed return flight itinerary.",
+                    "Are you carrying any restricted agricultural goods, liquid items, or large foreign currency?",
+                    "No, I am only carrying personal garments and standard personal electronic devices.",
+                    "Everything looks in order. Enjoy your stay in the country!"
+                ],
+                banglaText: [
+                    "আপনাকে স্বাগতম! আজ যুক্তরাজ্যে আপনার সফরের প্রাথমিক উদ্দেশ্য কী?",
+                    "আমি দুই সপ্তাহের একটি পেশাদার ব্যবসায়িক কনফারেন্স এবং ভ্রমণের জন্য লন্ডনে এসেছি।",
+                    "অবস্থানকালে আপনি কোথায় থাকবেন এবং আপনার কি ফিরতি ফ্লাইটের টিকিট আছে?",
+                    "আমি সেন্ট্রাল পার্ক হোটেলে থাকছি, এবং এই যে আমার নিশ্চিত করা ফিরতি ফ্লাইটের টিকিট।",
+                    "আপনি কি কোনো নিষিদ্ধ কৃষি পণ্য, তরল আইটেম বা বড় পরিমাণের বৈদেশিক মুদ্রা বহন করছেন?",
+                    "না, আমি কেবল ব্যক্তিগত পোশাক এবং সাধারণ ইলেকট্রনিক ডিভাইস সাথে রেখেছি।",
+                    "সবকিছু সঠিক মনে হচ্ছে। আপনার এখানে অবস্থান উপভোগ্য হোক!"
+                ]
+            },
+            {
+                id: 72,
+                title: "Reporting Lost Luggage or Items (হারিয়ে যাওয়া লাগেজ বা জিনিসপত্র)",
+                question: "Excuse me, my checked luggage did not appear on the airport baggage carousel.",
+                questionBn: "এক্সকিউজ মি, এয়ারপোর্টের লাগেজ ট্রলিতে আমার চেক-ইন করা লাগেজটি পাওয়া যায়নি।",
+                englishText: [
+                    "I am sorry for the inconvenience. Please show me your baggage claim tag sticker.",
+                    "Here is the baggage receipt tag sticker attached to the back of my boarding pass.",
+                    "Thank you. Can you describe the color, size, and brand of your lost suitcase?",
+                    "It is a large navy blue hardshell suitcase with a silver TSA luggage lock on top.",
+                    "We will track your luggage in our database system and deliver it directly to your home address.",
+                    "Please notify me immediately as soon as your logistics team locates the missing bag."
+                ],
+                banglaText: [
+                    "সাময়িক অসুবিধার জন্য আন্তরিকভাবে দুঃখিত। দয়া করে আপনার লাগেজ দাবি করার ট্যাগটি দেখান।",
+                    "আমার বোর্ডিং পাসের পেছনে থাকা লাগেজের ট্যাগ স্টিকারটি এই যে নিন।",
+                    "ধন্যবাদ। আপনার হারিয়ে যাওয়া স্যুটকেসটির রঙ, সাইজ এবং ব্র্যান্ড সম্পর্কে জানাতে পারবেন?",
+                    "এটি একটি বড় নেভি ব্লু হার্ডশেল স্যুটকেস, যার ওপরে একটি রূপালী TSA লাগেজ লক রয়েছে।",
+                    "আমরা ডাটাবেসে আপনার লাগেজ ট্র্যাকিং করব এবং সরাসরি আপনার বাসার ঠিকানায় পৌঁছে দেব।",
+                    "আপনাদের লজিস্টিক টিম ব্যাগটির খোঁজ পাওয়া মাত্রই দয়া করে আমাকে তা জানিয়ে দেবেন।"
+                ]
+            },
+            {
+                id: 73,
+                title: "Discussing Photography & Capturing Memories (ছবি তোলা ও স্মৃতি ধরে রাখা)",
+                question: "Excuse me, would you mind taking a photo of our group with the historic monument behind?",
+                questionBn: "মাফ করবেন, পেছনের ঐতিহাসিক স্মৃতিস্তম্ভসহ আমাদের গ্রুপের একটি ছবি তুলে দেবেন?",
+                englishText: [
+                    "Not at all! Should I hold the camera horizontally in landscape mode or vertically?",
+                    "Landscape mode would be great so that the full architecture fits inside the photo frame.",
+                    "Alright, everyone please step a bit closer together and smile for the shot!",
+                    "One, two, three—say cheese! I also took a backup photo just in case.",
+                    "Thank you so much! The lighting and composition turned out beautifully sharp.",
+                    "You are most welcome! Capturing memorable travel moments is always worthwhile."
+                ],
+                banglaText: [
+                    "একদমই সমস্যা নেই! আমি কি ক্যামেরাটি ল্যান্ডস্কেপ মোডে না পোর্ট্রেট মোডে ধরব?",
+                    "ল্যান্ডস্কেপ মোডে তুললে ভালো হয় যাতে পুরো স্থাপত্যটি ফটো ফ্রেমের ভেতরে সুন্দরভাবে চলে আসে।",
+                    "ঠিক আছে, সবাই একটু কাছাকাছি দাঁড়ান এবং ছবির জন্য একটু হাসুন!",
+                    "এক, দুই, তিন—স্মাইল! কোনো কারণে খারাপ হলে তাই আমি একটি ব্যাকআপ ছবিও তুলে রেখেছি।",
+                    "আপনাকে অনেক ধন্যবাদ! লাইটিং এবং ছবির কম্পোজিশন সত্যিই অনেক সুন্দর এসেছে।",
+                    "আপনাকে স্বাগতম! ভ্রমণের স্মরণীয় মুহূর্তগুলো ক্যামেরাবন্দি করা সবসময় আনন্দদায়ক।"
+                ]
+            },
+            {
+                id: 74,
+                title: "Talking About Movies, TV Shows & Streaming (সিনেমা ও বিনোদন)",
+                question: "Have you watched the latest sci-fi blockbuster movie released in theaters recently?",
+                questionBn: "আপনি কি সম্প্রতি থিয়েটারে মুক্তি পাওয়া নতুন সায়েন্স-ফিকশন ব্লকবাস্টার সিনেমাটি দেখেছেন?",
+                englishText: [
+                    "Yes, I watched it last weekend at the IMAX theater, and the visual effects were breathtaking!",
+                    "The storyline was compelling, and the sound design made every action scene feel realistic.",
+                    "I am planning to watch it this Sunday. Should I book tickets online in advance?",
+                    "Definitely book in advance, because prime weekend evening shows sell out very fast.",
+                    "Do you also watch crime mystery series on online streaming platforms like Netflix?",
+                    "Yes, binge-watching suspense thriller series during weekends is my favorite way to relax."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমি গত উইকএন্ডে আইম্যাক্স থিয়েটারে এটি দেখেছি এবং ভিজ্যুয়াল ইফেক্টগুলো অসাধারণ ছিল!",
+                    "গল্পটা যেমন দারুণ ছিল, সাউন্ড ডিজাইন প্রতিটি অ্যাকশন দৃশ্যকে বাস্তবের মতো জীবন্ত করে তুলেছিল।",
+                    "আমি এই রবিবারে এটি দেখার পরিকল্পনা করছি। আমার কি আগে থেকেই অনলাইনে টিকিট বুক করা উচিত?",
+                    "অবশ্যই আগে বুক করুন, কারণ উইকএন্ডের সন্ধ্যার গুরুত্বপূর্ণ শো গুলোর টিকিট খুব দ্রুত বিক্রি হয়ে যায়।",
+                    "আপনি কি নেটফ্লিক্সের মতো অনলাইন স্ট্রিমিং প্ল্যাটফর্মে ক্রাইম মিস্ট্রি সিরিজও দেখেন?",
+                    "হ্যাঁ, উইকএন্ডে থ্রিলার সিরিজ একটানা দেখা আমার কাছে রিল্যাক্স করার সবচেয়ে প্রিয় উপায়।"
+                ]
+            },
+            {
+                id: 75,
+                title: "Discussing Music, Musical Instruments & Songs (গান ও বাদ্যযন্ত্র নিয়ে কথা)",
+                question: "What genres of music do you enjoy listening to when you need to focus or relax?",
+                questionBn: "মনোযোগ দেওয়ার জন্য বা রিল্যাক্স করার জন্য আপনি কোন ধরনের গান শুনতে পছন্দ করেন?",
+                englishText: [
+                    "I love listening to soft acoustic guitar melodies and classic instrumental tunes.",
+                    "Soft music helps calm my mind while working on intense creative projects.",
+                    "That is wonderful! Do you play any musical instruments like guitar, piano, or flute?",
+                    "I have been practicing acoustic guitar for two years, and I can play basic chords.",
+                    "Learning a musical instrument requires patience, but it brings immense joy.",
+                    "Indeed! Playing music after a long hectic day melts away all day stress."
+                ],
+                banglaText: [
+                    "আমি সফট একোস্টিক গিটারের সুর এবং ক্লাসিক্যাল ইন্সট্রুমেন্টাল গান শুনতে খুব ভালোবাসি।",
+                    "হালকা মিউজিক ক্রিয়েটিভ প্রজেক্টে কাজ করার সময় মনকে শান্ত ও স্থির রাখতে সাহায্য করে।",
+                    "অসাধারণ! আপনি কি গিটার, পিয়ানো বা বাঁশির মতো কোনো বাদ্যযন্ত্র বাজাতে পারেন?",
+                    "আমি দুই বছর ধরে একোস্টিক গিটার অনুশীলন করছি এবং সাধারণ কর্ডগুলো বাজাতে পারি।",
+                    "কোনো বাদ্যযন্ত্র শেখার জন্য ধৈর্যের প্রয়োজন হয়, তবে এটি অপার আনন্দ নিয়ে আসে।",
+                    "সত্যিই! একটি দীর্ঘ ব্যস্ত দিনের পর গান বাজানো সারাদিনের সব মানসিক চাপ দূর করে দেয়।"
+                ]
+            },
+            {
+                id: 76,
+                title: "Playing Sports, Games & Outdoor Activities (খেলাধুলা ও আউটডোর অ্যাক্টিভিটি)",
+                question: "Are you interested in playing friendly badminton or cricket matches on weekends?",
+                questionBn: "আপনি কি সাপ্তাহিক ছুটির দিনে ব্যাডমিন্টন বা ক্রিকেট ফ্রেন্ডলি ম্যাচ খেলতে আগ্রহী?",
+                englishText: [
+                    "Count me in! I love playing outdoor sports because it keeps both body and mind fit.",
+                    "We usually organize a friendly cricket match at the local playground every Friday morning.",
+                    "What position do you prefer playing—batsman, bowler, or wicket-keeper?",
+                    "I am an all-rounder player, but I prefer middle-order batting and spin bowling.",
+                    "Great! Bring your cricket bat along, and we will gather around 7 AM.",
+                    "Sounds like a plan! Playing together with friends will be fantastic fun."
+                ],
+                banglaText: [
+                    "আমাকে সাথে রাখুন! আমি আউটডোর স্পোর্টস খেলতে ভালোবাসি কারণ এটি শরীর ও মন দুই-ই ফিট রাখে।",
+                    "আমরা সাধারণত প্রতি শুক্রবার সকালে স্থানীয় মাঠে একটি প্রীতি ক্রিকেট ম্যাচের আয়োজন করি।",
+                    "আপনি কোন পজিশনে খেলতে পছন্দ করেন—ব্যাটসম্যান, বোলার নাকি উইকেটকিপার?",
+                    "আমি একজন অলরাউন্ডার প্লেয়ার, তবে মিডল-অর্ডার ব্যাটিং ও স্পিন বোলিং করতে পছন্দ করি।",
+                    "দারুণ! আপনার ক্রিকেট ব্যাটটি সাথে নিয়ে আসবেন, আমরা সবাই সকাল ৭টার দিকে মাঠে জড়ো হব।",
+                    "পরিকল্পনাটি দুর্দান্ত! বন্ধুদের সাথে একসাথে মেলা ও খেলা দারুণ আনন্দের হবে।"
+                ]
+            },
+            {
+                id: 77,
+                title: "Discussing Gym, Fitness & Health Habits (জিম, ফিটনেস ও শরীরচর্চা)",
+                question: "How many days a week do you work out at the gym to maintain your physical fitness?",
+                questionBn: "শারীরিক ফিটনেস বজায় রাখার জন্য আপনি সপ্তাহে কতদিন জিমে ওয়ার্কআউট করেন?",
+                englishText: [
+                    "I train four to five days a week, combining weight training with cardiovascular exercises.",
+                    "Consistent physical exercise boosts daily energy levels and improves overall mental health.",
+                    "What kind of diet regimen do you follow to support your fitness training goals?",
+                    "I focus on a high-protein diet with fresh vegetables and avoid processed sugary foods.",
+                    "Is it necessary for beginners to hire a certified personal fitness trainer?",
+                    "Having a proper certified trainer early on helps master correct form and prevents injuries."
+                ],
+                banglaText: [
+                    "আমি সপ্তাহে চার থেকে পাঁচ দিন ওয়েট ট্রেনিংয়ের সাথে কার্ডিও এক্সারসাইজ মিলিয়ে ট্রেনিং করি।",
+                    "নিয়মিত শারীরিক ব্যায়াম দৈনন্দিন শক্তির মাত্রা বাড়ায় এবং সার্বিক মানসিক স্বাস্থ্যের উন্নতি ঘটায়।",
+                    "আপনার ফিটনেস ট্রেনিংয়ের লক্ষ্য পূরণে আপনি কী ধরণের ডায়েট মেনে চলেন?",
+                    "আমি তাজা শাকসবজির সাথে হাই-প্রোটিন সমৃদ্ধ খাবার খাই এবং প্রক্রিয়াজাত মিষ্টি খাবার এড়িয়ে চলি।",
+                    "শিক্ষানবিসদের জন্য কি একজন সার্টিফাইড ব্যক্তিগত ফিটনেস ট্রেইনার রাখা জরুরি?",
+                    "শুরুর দিকে একজন সঠিক সার্টিফাইড ট্রেইনার থাকলে সঠিক পজিশন শেখা যায় এবং ইনজুরি এড়ানো যায়।"
+                ]
+            },
+            {
+                id: 78,
+                title: "Talking About Books, Novels & Literature (বই, উপন্যাস ও সাহিত্য কথা)",
+                question: "What kind of books do you prefer reading in your spare leisure time?",
+                questionBn: "অবসর সময়ে আপনি কোন ধরনের বই পড়তে বেশি পছন্দ করেন?",
+                englishText: [
+                    "I am an avid reader of self-improvement books, biography histories, and fiction novels.",
+                    "Reading expands knowledge, improves language vocabulary, and sharpens analytical thinking skills.",
+                    "Who is your favorite all-time author, and which book would you highly recommend?",
+                    "I admire Humayun Ahmed for his storytelling and Rabindranath Tagore for rich literary depth.",
+                    "Have you read 'Atomic Habits' by James Clear? It is an insightful book on building routine habits.",
+                    "Yes, that book completely transformed how I structure my daily habits and personal goals."
+                ],
+                banglaText: [
+                    "আমি আত্ম উন্নয়নমূলক বই, আত্মজীবনীমূলক ইতিহাস এবং কল্পকাহিনী উপন্যাসের একজন অনুরাগী পাঠিকা।",
+                    "বই পড়া জ্ঞান বাড়ায়, ভাষার শব্দভাণ্ডার উন্নত করে এবং বিশ্লেষণাত্মক চিন্তা করার দক্ষতা বাড়ায়।",
+                    "আপনার সর্বকালের প্রিয় লেখক কে এবং কোন বইটি আপনি পড়ার জন্য রিকমেন্ড করবেন?",
+                    "গল্প বলার ধরণ হিসেবে আমি হুমায়ূন আহমেদকে এবং গভীর সাহিত্যের জন্য রবীন্দ্রনাথ ঠাকুরকে পছন্দ করি।",
+                    "আপনি কি জেমস ক্লিয়ারের লেখা 'অ্যাটমিক হ্যাবিটস' পড়েছেন? অভ্যাস তৈরির উপর এটি একটি দারুণ বই।",
+                    "হ্যাঁ, সেই বইটি আমার দৈনন্দিন অভ্যাস এবং ব্যক্তিগত লক্ষ্য গুছিয়ে নেওয়ার উপায় পুরো বদলে দিয়েছে।"
+                ]
+            },
+            {
+                id: 79,
+                title: "Discussing Social Media & Internet Usage (সোশ্যাল মিডিয়া ও অনলাইন জীবন)",
+                question: "How much time do you spend on social media platforms like Facebook, YouTube, or LinkedIn daily?",
+                questionBn: "আপনি প্রতিদিন ফেসবুক, ইউটিউব বা লিঙ্কডইনের মতো সোশ্যাল মিডিয়াতে কত সময় কাটান?",
+                englishText: [
+                    "I try to limit my active social media scrolling to less than one hour per day.",
+                    "Social platforms are great for connecting, but excessive screen time reduces focus.",
+                    "I use LinkedIn primarily for professional career networking and industry updates.",
+                    "That is a productive approach! Uncontrolled scrolling often wastes precious time.",
+                    "Using app timers helps monitor digital screen usage and maintains healthy life balance.",
+                    "Setting boundaries with digital devices ensures we remain productive in real life."
+                ],
+                banglaText: [
+                    "আমি প্রতিদিন সোশ্যাল মিডিয়া স্ক্রোলিং ১ ঘণ্টার মধ্যে সীমিত রাখার চেষ্টা করি।",
+                    "যোগাযোগের জন্য সোশ্যাল মিডিয়া দারুণ, তবে অতিরিক্ত স্ক্রিন টাইম কাজের মনোযোগ কমিয়ে দেয়।",
+                    "আমি প্রধানত পেশাগত ক্যারিয়ার নেটওয়ার্কিং এবং বিভিন্ন খবরের জন্য লিঙ্কডইন ব্যবহার করি।",
+                    "এটি একটি কার্যকর পদ্ধতি! অনিয়ন্ত্রিত স্ক্রোলিং প্রায়ই মূল্যবান সময় নষ্ট করে।",
+                    "অ্যাপ টাইমার ব্যবহার করা ডিজিটাল স্ক্রিন সময় নজরদারি করতে এবং ভারসাম্য বজায় রাখতে সাহায্য করে।",
+                    "ডিজিটাল ডিভাইসের ব্যবহারে সীমা নির্ধারণ করলে বাস্তব জীবনে আমরা উৎপাদনশীল থাকতে পারি।"
+                ]
+            },
+            {
+                id: 80,
+                title: "Visiting Museum, Art Gallery or Historic Places (ঐতিহাসিক স্থান ও মিউজিয়াম)",
+                question: "Have you ever visited the Bangladesh National Museum located in Shahbagh?",
+                questionBn: "আপনি কি কখনো শাহবাগে অবস্থিত বাংলাদেশ জাতীয় জাদুঘর ভ্রমণ করেছেন?",
+                englishText: [
+                    "Yes, I visited it last year! It houses an impressive collection of historical artifacts.",
+                    "The liberation war galleries and ancient terracotta sculptures reflect our rich heritage history.",
+                    "Is photography allowed inside the main exhibition display halls of the museum?",
+                    "Flash photography is restricted in certain antique galleries to protect delicate artifacts.",
+                    "I am planning to take my younger siblings there this Saturday for an educational tour.",
+                    "That is a fantastic idea! Experiencing history visually will be deeply educational for them."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমি গত বছর সেখানে গিয়েছিলাম! সেখানে ঐতিহাসিক প্রত্নবস্তুর এক চিত্তাকর্ষক সংগ্রহ রয়েছে।",
+                    "মুক্তিযুদ্ধের গ্যালারি এবং প্রাচীন টেরাকোটা ভাস্কর্যগুলো আমাদের সমৃদ্ধ ঐতিহ্যের ইতিহাসকে তুলে ধরে।",
+                    "জাদুঘরের মূল প্রদর্শনীর গ্যালারি রুমের ভেতরে কি ছবি তোলার অনুমতি আছে?",
+                    "সূক্ষ্ম প্রত্নবস্তু সুরক্ষার জন্য কিছু প্রাচীন গ্যালারিতে ফ্লাশ দিয়ে ছবি তোলা নিষিদ্ধ।",
+                    "আমি আগামী শনিবারে একটি শিক্ষামূলক ভ্রমণের জন্য আমার ছোট ভাইবোনদের সেখানে নিয়ে যাওয়ার পরিকল্পনা করছি।",
+                    "এটি একটি চমৎকার ভাবনা! দৃশ্যমানভাবে ইতিহাস প্রত্যক্ষ করা তাদের জন্য গভীরভাবে শিক্ষামূলক হবে।"
+                ]
+            }
+        ];
+
+        // State variables
+        let highlightedSpan = null;
+
+        // Render Topics on Load
+        window.onload = function() {
+            renderTopics();
+        };
+
+        function renderTopics() {
+            const container = document.getElementById('topicsContainer');
+            container.innerHTML = '';
+
+            phase5Topics.forEach((topic) => {
+                const card = document.createElement('article');
+                card.className = 'clay-card p-6 md:p-8 transition-all duration-300';
+                card.id = `topic-card-${topic.id}`;
+
+                card.innerHTML = `
+                    <!-- Topic Header -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
+                        <div class="flex items-center gap-4">
+                            <span class="w-11 h-11 rounded-xl bg-sky-600 text-white flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0">
+                                ${topic.id}
+                            </span>
+                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">
+                                ${topic.title}
+                            </h3>
+                        </div>
+
+                        <!-- Audio Control Buttons -->
+                        <div class="flex items-center gap-2">
+                            <button onclick="playTopicAudio(${topic.id})" id="play-btn-${topic.id}" class="btn-3d px-4 py-2.5 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs md:text-sm flex items-center gap-2 font-bold">
+                                <i class="fa-solid fa-play"></i> <span>শুনুন (Full Audio)</span>
+                            </button>
+                            <button onclick="stopAudio()" class="btn-3d px-3.5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs md:text-sm font-bold" title="Stop Audio">
+                                <i class="fa-solid fa-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Question Box -->
+                    <div class="mt-6 p-5 rounded-2xl content-box">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-comments"></i> Step 1: সূচনামূলক বার্তা / প্রশ্ন (Opener)
+                                </div>
+                                <p class="en-text text-base md:text-xl font-bold">
+                                    "${topic.question}"
+                                </p>
+                                <p class="bn-text text-sm md:text-base font-semibold sub-text-color mt-2">
+                                    ${topic.questionBn}
+                                </p>
+                            </div>
+                            <button onclick="speakText('${escapeQuotes(topic.question)}')" class="btn-3d p-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl flex-shrink-0 font-bold" title="Listen Question">
+                                <i class="fa-solid fa-volume-high text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 & 3 Interactive Toggles -->
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="toggleEnglishPassage(${topic.id})" class="btn-3d px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span id="eng-toggle-text-${topic.id}">Show Full English Dialogue</span>
+                        </button>
+                        
+                        <button onclick="toggleBanglaMeaning(${topic.id})" class="btn-3d px-5 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-language"></i>
+                            <span id="bn-toggle-text-${topic.id}">Show Bangla Meaning</span>
+                        </button>
+                    </div>
+
+                    <!-- English Passage Container -->
+                    <div id="english-box-${topic.id}" class="hidden mt-6 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-sky-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-paragraph"></i> Complete English Dialogue:
+                        </h4>
+                        <div id="english-text-content-${topic.id}" class="en-text text-base md:text-lg font-medium space-y-3">
+                            ${topic.englishText.map((sent, index) => `<span id="sent-${topic.id}-${index}" class="inline-block transition-all duration-200">${sent} </span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Bangla Meaning Container -->
+                    <div id="bangla-box-${topic.id}" class="hidden mt-4 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-language"></i> বাংলা অনুবাদ:
+                        </h4>
+                        <div class="bn-text text-base md:text-lg font-medium space-y-3 opacity-95">
+                            ${topic.banglaText.map((bSent) => `<p class="leading-relaxed">• ${bSent}</p>`).join('')}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle English Passage Visibility
+        function toggleEnglishPassage(topicId) {
+            const box = document.getElementById(`english-box-${topicId}`);
+            const btnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide English Dialogue";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Full English Dialogue";
+            }
+        }
+
+        // Toggle Bangla Meaning Visibility
+        function toggleBanglaMeaning(topicId) {
+            const box = document.getElementById(`bangla-box-${topicId}`);
+            const btnText = document.getElementById(`bn-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide Bangla Meaning";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Bangla Meaning";
+            }
+        }
+
+        // Change Theme Function
+        function changeTheme(themeName) {
+            document.body.className = `${themeName} min-h-screen pb-16 transition-all duration-500`;
+        }
+
+        // Stop Currently Playing Audio
+        function stopAudio() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            clearHighlight();
+        }
+
+        // Clear Line Highlights
+        function clearHighlight() {
+            if (highlightedSpan) {
+                highlightedSpan.classList.remove('sentence-highlight');
+                highlightedSpan = null;
+            }
+        }
+
+        // Speak Single Question Text
+        function speakText(text) {
+            stopAudio();
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+
+            utterance.lang = lang;
+            utterance.rate = rate;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Play Entire Topic Audio with Live Sentence Highlighting
+        function playTopicAudio(topicId) {
+            stopAudio();
+
+            const topic = phase5Topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            // Make sure English text box is visible while playing
+            const engBox = document.getElementById(`english-box-${topicId}`);
+            const engBtnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (engBox.classList.contains('hidden')) {
+                engBox.classList.remove('hidden');
+                engBtnText.innerText = "Hide English Dialogue";
+            }
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+            let sentenceIndex = 0;
+
+            function speakNextSentence() {
+                if (sentenceIndex >= topic.englishText.length) {
+                    clearHighlight();
+                    return;
+                }
+
+                clearHighlight();
+                const currentSpan = document.getElementById(`sent-${topicId}-${sentenceIndex}`);
+                if (currentSpan) {
+                    currentSpan.classList.add('sentence-highlight');
+                    highlightedSpan = currentSpan;
+                    currentSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                const utterance = new SpeechSynthesisUtterance(topic.englishText[sentenceIndex]);
+                utterance.lang = lang;
+                utterance.rate = rate;
+
+                utterance.onend = function() {
+                    sentenceIndex++;
+                    speakNextSentence();
+                };
+
+                utterance.onerror = function() {
+                    clearHighlight();
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            speakNextSentence();
+        }
+
+        // Helper function to escape quotes
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>

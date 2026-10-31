@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Life Spoken Practice Session</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Tiro Bangla & Times New Roman (Serif Fallback) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* custom font assignment */
+        .font-tiro {
+            font-family: 'Tiro Bangla', 'Times New Roman', Times, serif;
+        }
+
+        .font-times {
+            font-family: 'Times New Roman', Times, 'Tiro Bangla', serif;
+        }
+
+        /* Ambient Animated Background Grid & Particles */
+        body {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.25) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(14, 165, 233, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating background Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: floatOrb 12s infinite alternate ease-in-out;
+        }
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(99, 102, 241, 0.3);
+            top: 10%;
+            left: 10%;
+        }
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: rgba(236, 72, 153, 0.25);
+            bottom: 15%;
+            right: 10%;
+            animation-delay: -6s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 50px) scale(1.15); }
+        }
+
+        /* Tactical 3D Button Custom Styles */
+        .btn-3d-wrapper {
+            perspective: 1000px;
+        }
+
+        .btn-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 12px 0 0 rgba(15, 23, 42, 0.7),
+                0 20px 25px -5px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        /* Hover Elevation */
+        .btn-3d:hover {
+            transform: translateY(-6px) rotateX(4deg);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 18px 0 0 rgba(15, 23, 42, 0.7),
+                0 25px 35px -5px rgba(99, 102, 241, 0.3),
+                inset 0 1px 2px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        /* Tactile Press Down Effect */
+        .btn-3d:active, .btn-3d.active-touch {
+            transform: translateY(8px) rotateX(0deg) !important;
+            box-shadow: 
+                0 4px 0 0 rgba(15, 23, 42, 0.9),
+                0 5px 15px -3px rgba(0, 0, 0, 0.4),
+                inset 0 2px 4px 0 rgba(0, 0, 0, 0.4) !important;
+        }
+
+        /* Glowing Accent Line on Top */
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 9999px;
+            opacity: 0.7;
+        }
+
+        /* Color Variations for 3D depth bases */
+        .theme-1 { border-top: 3px solid #6366f1; }
+        .theme-2 { border-top: 3px solid #ec4899; }
+        .theme-3 { border-top: 3px solid #10b981; }
+        .theme-4 { border-top: 3px solid #f59e0b; }
+        .theme-5 { border-top: 3px solid #06b6d4; }
+        .theme-6 { border-top: 3px solid #8b5cf6; }
+
+        .theme-1:hover .icon-box { background: rgba(99, 102, 241, 0.25); color: #818cf8; }
+        .theme-2:hover .icon-box { background: rgba(236, 72, 153, 0.25); color: #f472b6; }
+        .theme-3:hover .icon-box { background: rgba(16, 185, 129, 0.25); color: #34d399; }
+        .theme-4:hover .icon-box { background: rgba(245, 158, 11, 0.25); color: #fbbf24; }
+        .theme-5:hover .icon-box { background: rgba(6, 182, 212, 0.25); color: #22d3ee; }
+        .theme-6:hover .icon-box { background: rgba(139, 92, 246, 0.25); color: #a78bfa; }
+
+        /* Subtle Pulse for Live Indicator */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .pulse-dot {
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-tiro text-slate-100 flex flex-col justify-between min-h-screen relative p-4 md:p-8">
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="max-w-6xl mx-auto w-full z-10 my-auto">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-10 md:mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 backdrop-blur-md mb-4 shadow-lg">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-dot"></span>
+                <span class="text-xs uppercase tracking-widest text-slate-300 font-times font-semibold">Interactive Learning Studio</span>
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-wide font-times bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-indigo-300 drop-shadow-sm leading-tight mb-3">
+                Real Life Spoken Practice Session
+            </h1>
+            
+            <p class="text-slate-300 text-lg md:text-xl font-tiro max-w-2xl mx-auto font-light">
+                নিচের যে কোন পার্ট নির্বাচন করে আপনার স্পোকেন ইংলিশ অনুশীলন শুরু করুন
+            </p>
+        </header>
+
+        <!-- Main Buttons Grid: 2 Rows x 3 Columns -->
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-2">
+            
+            <!-- PART 1 -->
+            <div class="btn-3d-wrapper">
+                <a href="spoken_english_mastery_studio_phase_1.html" class="btn-3d theme-1 rounded-2xl p-6 flex flex-col items-center justify-between h-48 block group text-center cursor-pointer">
+                    <div class="flex items-center justify-between w-full">
+                        <span class="text-xs font-times font-bold text-indigo-300 tracking-wider bg-indigo-950/60 px-3 py-1 rounded-full border border-indigo-500/30">PHASE 01</span>
+                        <i class="fa-solid font-times text-slate-400 group-hover:text-white transition-colors text-xs">PART 1</i>
+                    </div>
+                    
+                    <div class="my-2 flex flex-col items-center">
+                        <div class="icon-box w-12 h-12 rounded-xl bg-slate-800/80 flex items-center justify-center text-indigo-400 text-xl mb-2 transition-all duration-300 shadow-inner">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white font-tiro tracking-wide group-hover:scale-105 transition-transform duration-200">
+                            Part 1
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center text-xs text-indigo-200 font-times gap-1 opacity-80 group-hover:opacity-100">
+                        <span>Start Practice</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PART 2 -->
+            <div class="btn-3d-wrapper">
+                <a href="spoken_english_mastery_studio_phase_2.html" class="btn-3d theme-2 rounded-2xl p-6 flex flex-col items-center justify-between h-48 block group text-center cursor-pointer">
+                    <div class="flex items-center justify-between w-full">
+                        <span class="text-xs font-times font-bold text-pink-300 tracking-wider bg-pink-950/60 px-3 py-1 rounded-full border border-pink-500/30">PHASE 02</span>
+                        <i class="fa-solid font-times text-slate-400 group-hover:text-white transition-colors text-xs">PART 2</i>
+                    </div>
+                    
+                    <div class="my-2 flex flex-col items-center">
+                        <div class="icon-box w-12 h-12 rounded-xl bg-slate-800/80 flex items-center justify-center text-pink-400 text-xl mb-2 transition-all duration-300 shadow-inner">
+                            <i class="fa-solid fa-[#fa-microphone-lines] fa-microphone"></i>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white font-tiro tracking-wide group-hover:scale-105 transition-transform duration-200">
+                            Part 2
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center text-xs text-pink-200 font-times gap-1 opacity-80 group-hover:opacity-100">
+                        <span>Start Practice</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PART 3 -->
+            <div class="btn-3d-wrapper">
+                <a href="spoken_english_mastery_studio_phase_3.html" class="btn-3d theme-3 rounded-2xl p-6 flex flex-col items-center justify-between h-48 block group text-center cursor-pointer">
+                    <div class="flex items-center justify-between w-full">
+                        <span class="text-xs font-times font-bold text-emerald-300 tracking-wider bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">PHASE 03</span>
+                        <i class="fa-solid font-times text-slate-400 group-hover:text-white transition-colors text-xs">PART 3</i>
+                    </div>
+                    
+                    <div class="my-2 flex flex-col items-center">
+                        <div class="icon-box w-12 h-12 rounded-xl bg-slate-800/80 flex items-center justify-center text-emerald-400 text-xl mb-2 transition-all duration-300 shadow-inner">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white font-tiro tracking-wide group-hover:scale-105 transition-transform duration-200">
+                            Part 3
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center text-xs text-emerald-200 font-times gap-1 opacity-80 group-hover:opacity-100">
+                        <span>Start Practice</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PART 4 -->
+            <div class="btn-3d-wrapper">
+                <a href="spoken_english_mastery_studio_phase_4.html" class="btn-3d theme-4 rounded-2xl p-6 flex flex-col items-center justify-between h-48 block group text-center cursor-pointer">
+                    <div class="flex items-center justify-between w-full">
+                        <span class="text-xs font-times font-bold text-amber-300 tracking-wider bg-amber-950/60 px-3 py-1 rounded-full border border-amber-500/30">PHASE 04</span>
+                        <i class="fa-solid font-times text-slate-400 group-hover:text-white transition-colors text-xs">PART 4</i>
+                    </div>
+                    
+                    <div class="my-2 flex flex-col items-center">
+                        <div class="icon-box w-12 h-12 rounded-xl bg-slate-800/80 flex items-center justify-center text-amber-400 text-xl mb-2 transition-all duration-300 shadow-inner">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white font-tiro tracking-wide group-hover:scale-105 transition-transform duration-200">
+                            Part 4
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center text-xs text-amber-200 font-times gap-1 opacity-80 group-hover:opacity-100">
+                        <span>Start Practice</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PART 5 -->
+            <div class="btn-3d-wrapper">
+                <a href="spoken_english_mastery_studio_phase_5.html" class="btn-3d theme-5 rounded-2xl p-6 flex flex-col items-center justify-between h-48 block group text-center cursor-pointer">
+                    <div class="flex items-center justify-between w-full">
+                        <span class="text-xs font-times font-bold text-cyan-300 tracking-wider bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/30">PHASE 05</span>
+                        <i class="fa-solid font-times text-slate-400 group-hover:text-white transition-colors text-xs">PART 5</i>
+                    </div>
+                    
+                    <div class="my-2 flex flex-col items-center">
+                        <div class="icon-box w-12 h-12 rounded-xl bg-slate-800/80 flex items-center justify-center text-cyan-400 text-xl mb-2 transition-all duration-300 shadow-inner">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white font-tiro tracking-wide group-hover:scale-105 transition-transform duration-200">
+                            Part 5
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center text-xs text-cyan-200 font-times gap-1 opacity-80 group-hover:opacity-100">
+                        <span>Start Practice</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PART 6 -->
+            <div class="btn-3d-wrapper">
+                <a href="spoken_english_mastery_studio_phase_6.html" class="btn-3d theme-6 rounded-2xl p-6 flex flex-col items-center justify-between h-48 block group text-center cursor-pointer">
+                    <div class="flex items-center justify-between w-full">
+                        <span class="text-xs font-times font-bold text-purple-300 tracking-wider bg-purple-950/60 px-3 py-1 rounded-full border border-purple-500/30">PHASE 06</span>
+                        <i class="fa-solid font-times text-slate-400 group-hover:text-white transition-colors text-xs">PART 6</i>
+                    </div>
+                    
+                    <div class="my-2 flex flex-col items-center">
+                        <div class="icon-box w-12 h-12 rounded-xl bg-slate-800/80 flex items-center justify-center text-purple-400 text-xl mb-2 transition-all duration-300 shadow-inner">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white font-tiro tracking-wide group-hover:scale-105 transition-transform duration-200">
+                            Part 6
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center text-xs text-purple-200 font-times gap-1 opacity-80 group-hover:opacity-100">
+                        <span>Start Practice</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Footer Info -->
+        <footer class="mt-14 text-center text-xs text-slate-400 font-times">
+            <p>© Spoken English Mastery Studio • Real Life Practice Session</p>
+        </footer>
+    </div>
+
+    <!-- Touch & Click Haptic Simulation Script -->
+    <script>
+        document.querySelectorAll('.btn-3d').forEach(button => {
+            // Add tactile touch response for mobile devices
+            button.addEventListener('touchstart', function() {
+                this.classList.add('active-touch');
+            });
+            
+            button.addEventListener('touchend', function() {
+                this.classList.remove('active-touch');
+            });
+        });
+    </script>
+</body>
+</html>

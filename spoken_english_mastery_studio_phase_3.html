@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken English Mastery Studio - Phase 3</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Typography Setup */
+        :root {
+            --font-english: 'Times New Roman', Times, Georgia, serif;
+            --font-bangla: 'Tiro Bangla', serif;
+        }
+
+        body {
+            font-family: var(--font-bangla), var(--font-english);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            user-select: text;
+        }
+
+        .en-text {
+            font-family: var(--font-english);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.9;
+        }
+
+        .bn-text {
+            font-family: var(--font-bangla);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 2.0;
+        }
+
+        /* High-Contrast 3D Surface Cards */
+        .clay-card {
+            background-color: var(--card-bg, #ffffff);
+            color: var(--card-text, #0f172a);
+            border: 1px solid var(--card-border, rgba(0, 0, 0, 0.12));
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.25),
+                0 8px 10px -6px rgba(0, 0, 0, 0.2);
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 3D Touch-Feel Buttons */
+        .btn-3d {
+            position: relative;
+            transition: all 0.15s ease;
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 0 0 rgba(0, 0, 0, 0.25),
+                0 6px 12px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 0 0 rgba(0, 0, 0, 0.25),
+                0 10px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 
+                0 1px 0 0 rgba(0, 0, 0, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* High-Contrast Active Audio Sentence Highlight */
+        .sentence-highlight {
+            background-color: #facc15 !important;
+            color: #000000 !important;
+            border-radius: 0.375rem;
+            padding: 0.2rem 0.4rem;
+            font-weight: 700;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.85);
+            transition: all 0.2s ease;
+        }
+
+        /* Theme Presets with Guaranteed Text Contrast */
+        .theme-ocean {
+            background: linear-gradient(135deg, #0b1329 0%, #172554 50%, #0f172a 100%);
+            color: #f8fafc;
+            --card-bg: #1e293b;
+            --card-text: #f8fafc;
+            --card-border: rgba(255, 255, 255, 0.12);
+            --box-bg: #0f172a;
+            --box-border: rgba(255, 255, 255, 0.15);
+            --subtext: #cbd5e1;
+        }
+        .theme-emerald {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #022c22 100%);
+            color: #ecfdf5;
+            --card-bg: #065f46;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #022c22;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #a7f3d0;
+        }
+        .theme-purple {
+            background: linear-gradient(135deg, #2e1065 0%, #3b0764 50%, #1e1b4b 100%);
+            color: #faf5ff;
+            --card-bg: #4c1d95;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #2e1065;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #e9d5ff;
+        }
+        .theme-sunset {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #292524 100%);
+            color: #fff7ed;
+            --card-bg: #571e06;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #291004;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #fed7aa;
+        }
+        .theme-light {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #f1f5f9 100%);
+            color: #0f172a;
+            --card-bg: #ffffff;
+            --card-text: #0f172a;
+            --card-border: rgba(0, 0, 0, 0.12);
+            --box-bg: #f1f5f9;
+            --box-border: rgba(0, 0, 0, 0.15);
+            --subtext: #334155;
+        }
+
+        .content-box {
+            background-color: var(--box-bg);
+            border: 1px solid var(--box-border);
+            color: var(--card-text);
+        }
+        .sub-text-color {
+            color: var(--subtext);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.6);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="theme-ocean min-h-screen pb-16 transition-all duration-500">
+
+    <!-- Top Sticky Header Nav -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-white/10 px-4 py-4 mb-8 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-white text-2xl shadow-lg transform rotate-3">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide text-white">
+                        Spoken English Mastery Studio
+                    </h1>
+                    <p class="text-xs text-emerald-300 font-medium">Phase 3: শিক্ষা ও ক্যারিয়ার (৩১–৫০ নম্বর টপিক)</p>
+                </div>
+            </div>
+
+            <!-- Controls: Speech & Theme Selector -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <!-- Theme Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-palette text-amber-400"></i>
+                    <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="theme-ocean">Deep Ocean (Dark)</option>
+                        <option value="theme-emerald">Cyber Emerald</option>
+                        <option value="theme-purple">Royal Purple</option>
+                        <option value="theme-sunset">Sunset Gold</option>
+                        <option value="theme-light">Clean Light (Bright)</option>
+                    </select>
+                </div>
+
+                <!-- Global Accent Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-earth-americas text-indigo-400"></i>
+                    <select id="globalAccent" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="en-US">🇺🇸 American Accent</option>
+                        <option value="en-GB">🇬🇧 British Accent</option>
+                    </select>
+                </div>
+
+                <!-- Global Speech Rate -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white text-xs font-semibold">
+                    <i class="fa-solid fa-gauge-high text-emerald-400"></i>
+                    <span>গতি: <span id="speedVal" class="text-amber-400">0.9x</span></span>
+                    <input type="range" id="globalSpeed" min="0.5" max="1.5" step="0.1" value="0.9" oninput="document.getElementById('speedVal').innerText = this.value + 'x'" class="w-16 accent-indigo-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4">
+
+        <!-- Intro Banner -->
+        <section class="clay-card p-6 md:p-8 mb-10 border-l-8 border-emerald-500">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-3 flex items-center gap-3">
+                        <i class="fa-solid fa-briefcase text-emerald-400"></i>
+                        Phase 3: শিক্ষা ও ক্যারিয়ার গাইড
+                    </h2>
+                    <p class="text-base md:text-lg bn-text font-medium leading-relaxed sub-text-color">
+                        পড়াশোনা, বিশ্ববিদ্যালয় জীবন, চাকরির ইন্টারভিউ, বসের কাছে ছুটি চাওয়া, কর্পোরেট মিটিং, প্রেজেন্টেশন ও পেশাগত উন্নতির ২০টি (৩১–৫০) সম্পূর্ণ বিস্তারিত সংলাপ। 
+                        শুনুন, পড়ুন এবং ইংরেজি শেখার পূর্ণতা অর্জন করুন।
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <span class="bg-emerald-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-user-graduate mr-1"></i> Education & Career
+                    </span>
+                    <span class="bg-indigo-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-volume-high mr-1"></i> Audio Sync Highlight
+                    </span>
+                    <span class="bg-amber-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-display mr-1"></i> 20 Complete Topics
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic List Container -->
+        <div id="topicsContainer" class="space-y-8">
+            <!-- Topics rendered dynamically via JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Script Block -->
+    <script>
+        // Data Structure for Phase 3 (Topics 31 to 50)
+        const phase3Topics = [
+            {
+                id: 31,
+                title: "Talking About School, College, or University Life (শিক্ষা প্রতিষ্ঠান জীবন)",
+                question: "How was your university life back in the days? Do you miss your campus friends?",
+                questionBn: "আপনার বিশ্ববিদ্যালয় জীবন কেমন কেটেছে? আপনি কি আপনার ক্যাম্পাস বন্ধুদের মিস করেন?",
+                englishText: [
+                    "University life was undoubtedly the most memorable phase of my life.",
+                    "I spent four wonderful years studying Computer Science at Dhaka University.",
+                    "We used to hang out at the campus cafeteria every afternoon after lectures ended.",
+                    "The group assignments and late-night exam preparations brought us really close.",
+                    "I still stay in touch with my best buddies through social media groups.",
+                    "Whenever I visit the campus now, nostalgia hits me very deeply."
+                ],
+                banglaText: [
+                    "বিশ্ববিদ্যালয় জীবন নিঃসন্দেহে আমার জীবনের সবচেয়ে স্মরণীয় একটি অধ্যায় ছিল।",
+                    "আমি ঢাকা বিশ্ববিদ্যালয়ে কম্পিউটার সায়েন্সে পড়াশোনা করে চারটি দারুণ বছর কাটিয়েছি।",
+                    "লোকচারের পর প্রতি বিকেলে আমরা ক্যাম্পাসের ক্যাফেটেরিয়ায় আড্ডা দিতাম।",
+                    "গ্রুপ অ্যাসাইনমেন্ট এবং পরীক্ষার আগে গভীর রাতের প্রস্তুতি আমাদের খুব কাছাকাছি নিয়ে এসেছিল।",
+                    "আমি এখনো সোশ্যাল মিডিয়া গ্রুপের মাধ্যমে আমার সেরা বন্ধুদের সাথে যোগাযোগ রাখি।",
+                    "এখন যখনই ক্যাম্পাসে যাই, পুরানো স্মৃতিগুলো আমাকে খুব গভীরভাবে আকুল করে।"
+                ]
+            },
+            {
+                id: 32,
+                title: "Discussing Favorite Subjects & Teachers (প্রিয় বিষয় ও শিক্ষক)",
+                question: "Who was your favorite teacher during student life, and why did you like their class?",
+                questionBn: "ছাত্রজীবনে আপনার প্রিয় শিক্ষক কে ছিলেন এবং কেন আপনি তাঁর ক্লাস পছন্দ করতেন?",
+                englishText: [
+                    "My favorite teacher was Professor Rahman, who taught us English Literature.",
+                    "He had a brilliant ability to explain complex poetry with simple real-life stories.",
+                    "His classes were always interactive, inspiring, and full of positive energy.",
+                    "He always encouraged quiet students to voice their opinions without any fear.",
+                    "Because of his guidance, I developed a passion for writing and public speaking.",
+                    "A great teacher like him can truly shape a student's career trajectory."
+                ],
+                banglaText: [
+                    "আমার প্রিয় শিক্ষক ছিলেন প্রফেসর রহমান, যিনি আমাদের ইংরেজি সাহিত্য পড়াতেন।",
+                    "সহজ বাস্তব জীবনের গল্প দিয়ে জটিল কবিতা ব্যাখ্যা করার চমৎকার ক্ষমতা তাঁর ছিল।",
+                    "তাঁর ক্লাসগুলো সর্বদা অংশগ্রহণমূলক, অনুপ্রেরণাদায়ক এবং ইতিবাচক শক্তিতে পরিপূর্ণ থাকত।",
+                    "তিনি সব সময় শান্ত স্বভাবের শিক্ষার্থীদের কোনো ভয় ছাড়া মতামত প্রকাশ করতে উৎসাহিত করতেন।",
+                    "তাঁর দিকনির্দেশনার কারণেই আমার লেখালেখি এবং পাবলিক স্পিকিংয়ের প্রতি ভালোবাসা তৈরি হয়েছিল।",
+                    "তাঁর মতো একজন মহান শিক্ষক সত্যিই একজন শিক্ষার্থীর ক্যারিয়ারের গতিপথ বদলে দিতে পারেন।"
+                ]
+            },
+            {
+                id: 33,
+                title: "Preparing for Exams & Study Tips (পরীক্ষার প্রস্তুতি ও কৌশল)",
+                question: "Final exams are approaching next week. How are you organizing your study schedule?",
+                questionBn: "আগামী সপ্তাহে ফাইনাল পরীক্ষা আসছে। আপনি কীভাবে আপনার পড়ার সময়সূচি গোছাচ্ছেন?",
+                englishText: [
+                    "I have created a daily study planner dividing topics by difficulty level.",
+                    "I focus on revising core concepts in the morning when my mind is fresh.",
+                    "Solving previous years' question papers helps me understand the question pattern.",
+                    "Taking short breaks every hour prevents mental exhaustion and keeps me alert.",
+                    "I also group-study with friends in the evening to clarify difficult topics.",
+                    "Maintaining a balanced diet and sleeping well is equally crucial before exams."
+                ],
+                banglaText: [
+                    "আমি পড়ার বিষয়গুলোকে কঠিনতার ওপর ভিত্তি করে ভাগ করে একটি দৈনিক স্টাডি প্ল্যানার তৈরি করেছি।",
+                    "সকালে যখন মন সতেজ থাকে, তখন মূল কনসেপ্টগুলো রিভিশন দেওয়ার ওপর জোর দিই।",
+                    "আগের বছরগুলোর প্রশ্নের সমাধান আমাকে প্রশ্নের প্যাটার্ন বুঝতে দারুণ সাহায্য করে।",
+                    "প্রতি ঘণ্টায় ছোট বিরতি নেওয়া মানসিক ক্লান্তি রোধ করে এবং আমাকে মনোযোগী রাখে।",
+                    "কঠিন বিষয়গুলো স্পষ্ট করার জন্য আমি সন্ধ্যায় বন্ধুদের সাথে গ্রুপ স্টাডিও করি।",
+                    "পরীক্ষার আগে সুষম খাবার খাওয়া এবং পর্যাপ্ত ঘুমানো সমানভাবে গুরুত্বপূর্ণ।"
+                ]
+            },
+            {
+                id: 34,
+                title: "Discussing Career Choices & Aspirations (ক্যারিয়ার নির্বাচন ও উচ্চাশা)",
+                question: "What career path do you wish to pursue after finishing your graduation?",
+                questionBn: "স্নাতক শেষ করার পর আপনি কোন ক্যারিয়ারে নিজের পরিচিতি গড়ে তুলতে চান?",
+                englishText: [
+                    "I am aiming to become a certified Data Analyst in a multinational tech corporate.",
+                    "Data-driven decision making is transforming every major industry around the globe.",
+                    "I am currently learning Python, SQL, and data visualization tools to upgrade my skills.",
+                    "Building real-world portfolio projects will give me a competitive edge in job hunting.",
+                    "In the long term, I hope to lead data science initiatives that solve real business problems.",
+                    "Having a clear skill roadmap makes it easier to track progress step by step."
+                ],
+                banglaText: [
+                    "আমি একটি বহুজাতিক টেক কর্পোরেট কোম্পানিতে সার্টিফাইড ডেটা অ্যানালিস্ট হওয়ার লক্ষ্য রাখছি।",
+                    "ডেটা-চালিত সিদ্ধান্ত গ্রহণ বিশ্বজুড়ে প্রতিটি বড় শিল্প খাতকে বদলে দিচ্ছে।",
+                    "নিজের দক্ষতা বাড়াতে আমি বর্তমানে পাইথন, এসকিউএল এবং ডেটা ভিজ্যুয়ালাইজেশন টুল শিখছি।",
+                    "বাস্তবমুখী পোর্টফোলিও প্রজেক্ট তৈরি করা আমাকে চাকরির বাজারে এগিয়ে রাখবে।",
+                    "দীর্ঘমেয়াদে, আমি এমন ডেটা সায়েন্স প্রজেক্টের নেতৃত্ব দিতে চাই যা ব্যবসার বাস্তব সমাধান দেয়।",
+                    "দক্ষতার একটি স্পষ্ট রোডম্যাপ থাকলে ধাপে ধাপে অগ্রগতি ট্র্যাক করা সহজ হয়।"
+                ]
+            },
+            {
+                id: 35,
+                title: "Giving a Job Interview (চাকরির ইন্টারভিউ দেওয়া)",
+                question: "Welcome to the interview! Could you highlight your key strengths relevant to this role?",
+                questionBn: "ইন্টারভিউতে আপনাকে স্বাগতম! এই পদের সাথে সামঞ্জস্যপূর্ণ আপনার প্রধান গুণাবলি কী কী?",
+                englishText: [
+                    "Thank you for this opportunity. My primary strength is analytical problem-solving.",
+                    "In my previous position, I successfully streamlined workflow efficiency by twenty percent.",
+                    "I am quick to adapt to new technology software and thrive in collaborative team environments.",
+                    "Furthermore, my strong communication skills help me manage clients efficiently under pressure.",
+                    "I am eager to apply my domain knowledge to contribute positively to your company's growth.",
+                    "I am confident that my skill set aligns perfectly with the requirements of this role."
+                ],
+                banglaText: [
+                    "আমাকে এই সুযোগ দেওয়ার জন্য ধন্যবাদ। আমার মূল শক্তি হলো বিশ্লেষণাত্মক সমস্যা সমাধান করা।",
+                    "আমার আগের পদে, আমি সফলভাবে কাজের কার্যকারিতা ২০ শতাংশ বৃদ্ধি করেছিলাম।",
+                    "আমি দ্রুত নতুন প্রযুক্তি ও সফটওয়্যারের সাথে মানিয়ে নিতে পারি এবং টিমে দারুণ কাজ করি।",
+                    "তাছাড়া, আমার চমৎকার যোগাযোগ দক্ষতা চাপের মুখেও ক্লায়েন্টদের দক্ষতার সাথে সামলাতে সাহায্য করে।",
+                    "আমি আমার অর্জিত জ্ঞান প্রয়োগ করে আপনার কোম্পানির বৃদ্ধিতে ইতিবাচক ভূমিকা রাখতে আগ্রহী।",
+                    "আমি আত্মবিশ্বাসী যে আমার অর্জিত দক্ষতা এই পদের চাহিদার সাথে পুরোপুরি মিলে যায়।"
+                ]
+            },
+            {
+                id: 36,
+                title: "Talking About Workplace Colleagues & Boss (সহকর্মী ও বসের সাথে আলাপ)",
+                question: "How is the work culture and environment in your current office team?",
+                questionBn: "আপনার বর্তমান অফিসের টিম ও কাজের পরিবেশ কেমন?",
+                englishText: [
+                    "The work culture in our organization is highly supportive and collaborative.",
+                    "My colleagues are always ready to assist whenever someone faces a tough technical challenge.",
+                    "Our department manager encourages open feedback and respects diverse opinions.",
+                    "We have weekly catch-up sessions where everyone shares progress and challenges transparently.",
+                    "Healthy teamwork makes daily long work hours feel much more manageable.",
+                    "Working with inspiring team members continuously motivates me to perform better."
+                ],
+                banglaText: [
+                    "আমাদের প্রতিষ্ঠানে কাজের সংস্কৃতি অত্যন্ত সহযোগিতামূলক ও অনুপ্রেরণাদায়ক।",
+                    "কেউ যখনই কোনো কঠিন কারিগরি চ্যালেঞ্জের মুখে পড়ে, সহকর্মীরা সাহায্য করতে প্রস্তুত থাকেন।",
+                    "আমাদের বিভাগীয় ম্যানেজার উন্মুক্ত মতামতকে উৎসাহিত করেন এবং সবার ভিন্ন মতামতকে শ্রদ্ধা জানান।",
+                    "আমাদের সাপ্তাহিক আলোচনা পর্ব থাকে যেখানে সবাই স্বচ্ছতার সাথে অগ্রগতি শেয়ার করে।",
+                    "সুন্দর দলীয় মনোভাব প্রতিদিনের দীর্ঘ কাজের ঘণ্টাকে অনেক বেশি সহজ করে তোলে।",
+                    "অনুপ্রেরণাদায়ক টিম মেম্বারদের সাথে কাজ করা আমাকে সবসময় ভালো করার প্রেরণা দেয়।"
+                ]
+            },
+            {
+                id: 37,
+                title: "Discussing Office Projects & Deadlines (অফিসের কাজ ও ডেডলাইন)",
+                question: "Are we still on track to submit the quarterly audit report by Friday afternoon?",
+                questionBn: "আমরা কি শুক্রবার বিকেলের মধ্যে ত্রৈমাসিক অডিট রিপোর্ট জমা দেওয়ার লক্ষ্যমাত্রায় সঠিক পথে আছি?",
+                englishText: [
+                    "Yes, the core data collection phase has already been completed by our team.",
+                    "Currently, we are cross-checking the financial figures to ensure complete accuracy.",
+                    "I will finish drafting the final summary document by tomorrow morning.",
+                    "If we maintain this speed, we will submit it well before the deadline.",
+                    "Should we schedule a brief internal review meeting tomorrow at three PM?",
+                    "That sounds ideal. Let us meet tomorrow to do the final polish before submission."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমাদের দল ইতিমধ্যে মূল তথ্য সংগ্রহের কাজ শেষ করেছে।",
+                    "বর্তমানে, আমরা সঠিকতা নিশ্চিত করতে আর্থিক হিসাবগুলো পুনরায় যাচাই-বাছাই করছি।",
+                    "আগামীকাল সকালের মধ্যে আমি চূড়ান্ত সারসংক্ষেপ ফাইলটি ড্রাফট করা শেষ করব।",
+                    "আমরা যদি এই গতি বজায় রাখি, তবে নির্ধারিত সময়ের আগেই এটি জমা দিতে পারব।",
+                    "কাল দুপুর ৩টায় কি আমাদের একটি সংক্ষিপ্ত অভ্যন্তরীণ রিভিউ মিটিং করা উচিত?",
+                    "এটি একটি দারুণ প্রস্তাব। জমা দেওয়ার আগে চূড়ান্ত পর্যালোচনার জন্য কাল আমরা বসব।"
+                ]
+            },
+            {
+                id: 38,
+                title: "Asking for Leave or Promotion from Boss (ছুটি বা প্রমোশন চাওয়া)",
+                question: "Excuse me, Sir. Do you have a few minutes to discuss my annual leave request?",
+                questionBn: "স্যারা, মাফ করবেন। আমার বার্ষিক ছুটির আবেদন নিয়ে কথা বলার জন্য আপনার কি কিছু সময় হবে?",
+                englishText: [
+                    "Sure! Please take a seat. What dates are you planning to take leave for?",
+                    "I would like to request five days off starting from next Monday due to personal family reasons.",
+                    "I have already wrapped up all urgent tasks and briefed Rafiq to manage routine emails.",
+                    "Thank you for organizing the workload before asking. Your leave request is approved.",
+                    "I am very grateful, Sir. I will remain reachable over email in case of any emergency.",
+                    "Enjoy your leave, and make sure to submit the formal portal application today."
+                ],
+                banglaText: [
+                    "অবশ্যই! অনুগ্রহ করে বসুন। কোন কোন তারিখে আপনি ছুটি নেওয়ার পরিকল্পনা করছেন?",
+                    "পারিবারিক প্রয়োজনে আগামী সোমবার থেকে পাঁচ দিনের ছুটির আবেদন করতে চাই।",
+                    "আমি ইতিমধ্যে সব জরুরি কাজ শেষ করেছি এবং রুটিন ইমেইল সামলাতে রফিককে ব্রিফ করেছি।",
+                    "আবেদন করার আগেই কাজের দায়িত্ব গুছিয়ে নেওয়ার জন্য ধন্যবাদ। আপনার ছুটি মঞ্জুর করা হলো।",
+                    "আমি অত্যন্ত কৃতজ্ঞ স্যার। যেকোনো জরুরি প্রয়োজনে আমাকে ইমেইলে পাওয়া যাবে।",
+                    "আপনার ছুটি ভালো কাটুক, আর আজই পোর্টালে অফিশিয়াল আবেদন ফর্মটি সাবমিট করে দেবেন।"
+                ]
+            },
+            {
+                id: 39,
+                title: "Attending a Professional Business Meeting (ব্যবসায়িক মিটিং)",
+                question: "Shall we proceed with the main agenda item regarding the software launch strategy?",
+                questionBn: "সফটওয়্যার প্রকাশের কৌশল সম্পর্কিত মূল এজেন্ডা নিয়ে কি আমরা এগোতে পারি?",
+                englishText: [
+                    "Yes, let us dive straight into the marketing timeline for the upcoming software version.",
+                    "We recommend launching targeted social media campaigns two weeks prior to official release.",
+                    "What budget allocation have you envisioned for online performance advertising?",
+                    "We have set aside thirty percent of our total quarterly marketing budget for this launch.",
+                    "That sounds realistic. Let us monitor user engagement metrics closely in week one.",
+                    "I will send out the detailed meeting minutes along with actionable tasks by this evening."
+                ],
+                banglaText: [
+                    "হ্যাঁ, চলুন সরাসরি আগামী সফটওয়্যার সংস্করণের মার্কেটিং সময়রেখায় চলে যাই।",
+                    "অফিশিয়াল রিলিজের দুই সপ্তাহ আগে টার্গেটেড সোশ্যাল মিডিয়া ক্যাম্পেইন শুরুর পরামর্শ দিচ্ছি।",
+                    "অনলাইন বিজ্ঞাপনের জন্য আপনারা কী পরিমাণ বাজেট বরাদ্দ রাখার চিন্তা করেছেন?",
+                    "আমরা এই লঞ্চের জন্য মোট ত্রৈমাসিক মার্কেটিং বাজেটের ৩০ শতাংশ আলাদা করে রেখেছি।",
+                    "এটি বেশ বাস্তবসম্মত মনে হচ্ছে। প্রথম সপ্তাহে ব্যবহারকারীদের প্রতিক্রিয়া সূচক ঘনিষ্ঠভাবে ট্র্যাক করি।",
+                    "আমি আজ সন্ধ্যার মধ্যেই কাজের দায়িত্বসহ মিটিংয়ের সারসংক্ষেপ নোট সবাইকে পাঠিয়ে দেব।"
+                ]
+            },
+            {
+                id: 40,
+                title: "Giving a Presentation or Public Speech (প্রেজেন্টেশন দেওয়া)",
+                question: "Good morning everyone. Is the screen projector visible to everyone in the back row?",
+                questionBn: "শুভ সকাল সবাইকে। পেছনের সারির সবাই কি স্ক্রিনের প্রজেক্টর দেখতে পাচ্ছেন?",
+                englishText: [
+                    "Today, I am delighted to present our new user-centric web design architecture.",
+                    "As you can see on this slide, website navigation speed has improved by forty percent.",
+                    "Our primary target was simplifying the checkout process for first-time buyers.",
+                    "Notice how the intuitive visual icons make navigation effortless for non-tech users.",
+                    "To summarize, these changes directly increase conversion rates and customer satisfaction.",
+                    "Thank you for your attention. I am now open to answering any questions you may have."
+                ],
+                banglaText: [
+                    "আজ আমাদের নতুন ব্যবহারকারী-বান্ধব ওয়েব ডিজাইন আর্কিটেকচার উপস্থাপন করতে পেরে আনন্দিত।",
+                    "আপনারা স্লাইডে দেখতে পাচ্ছেন, ওয়েবসাইটের নেভিগেশন স্পিড ৪০ শতাংশ বৃদ্ধি পেয়েছে।",
+                    "আমাদের মূল উদ্দেশ্য ছিল নতুন ক্রেতাদের জন্য কেনাকাটার ধাপ সহজ করা।",
+                    "খেয়াল করুন কীভাবে সহজ আইকনগুলো সাধারণ ব্যবহারকারীদের জন্য নেভিগেশন ঝামেলাহীন করেছে।",
+                    "সংক্ষেপে, এই পরিবর্তনগুলো সরাসরি বিক্রি বাড়াবে এবং গ্রাহক সন্তুষ্টি নিশ্চিত করবে।",
+                    "আপনাদের মনোযোগের জন্য ধন্যবাদ। আপনাদের কোনো প্রশ্ন থাকলে এখন করতে পারেন।"
+                ]
+            },
+            {
+                id: 41,
+                title: "Discussing Online Courses & Skill Upgradation (অনলাইন কোর্স ও স্কিল বাড়ানো)",
+                question: "Are you taking any professional online courses to enhance your technical skillset?",
+                questionBn: "আপনার টেকনিক্যাল দক্ষতা বাড়াতে আপনি কি কোনো পেশাদার অনলাইন কোর্স করছেন?",
+                englishText: [
+                    "Yes, I recently enrolled in an advanced UI/UX Design certification course on Coursera.",
+                    "Online platforms allow me the flexibility to study at my own pace after work hours.",
+                    "Learning modern Figma design systems has completely transformed my approach to projects.",
+                    "Hands-on practical projects help consolidate theoretical understanding effectively.",
+                    "Upgrading skills continuously is essential to stay relevant in today's dynamic job market.",
+                    "I highly recommend investing at least one hour daily in learning new tools."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমি সম্প্রতি কোর্সেরাতে এডভান্সড UI/UX ডিজাইন সার্টিফাইড কোর্সে ভর্তি হয়েছি।",
+                    "অনলাইন প্ল্যাটফর্ম আমাকে কাজের পর নিজের সুবিধামতো পড়াশোনা করার সুযোগ দেয়।",
+                    "আধুনিক ফিগমা ডিজাইন সিস্টেম শেখা প্রজেক্টে আমার দৃষ্টিভঙ্গি পুরোপুরি বদলে দিয়েছে।",
+                    "হাতে-কলমে করা প্রজেক্টগুলো থিওরিটিক্যাল ধারণাকে দারুণভাবে পোক্ত করতে সাহায্য করে।",
+                    "আজকের পরিবর্তনশীল চাকরির বাজারে টিকে থাকতে ক্রমাগত দক্ষতা বাড়ানো অপরিহার্য।",
+                    "নতুন নতুন টুলস শিখতে দিনে অন্তত এক ঘণ্টা সময় দেওয়ার জন্য আমি জোরালো পরামর্শ দিই।"
+                ]
+            },
+            {
+                id: 42,
+                title: "Talking About Part-Time Jobs & Pocket Money (খণ্ডকালীন চাকরি ও ইনকাম)",
+                question: "Do you think university students should balance part-time jobs along with studies?",
+                questionBn: "আপনার কি মনে হয় বিশ্ববিদ্যালয় শিক্ষার্থীদের পড়াশোনার পাশাপাশি পার্ট-টাইম চাকরি করা উচিত?",
+                englishText: [
+                    "Working part-time gives students financial independence and practical work experience.",
+                    "It teaches vital real-world skills like time management, discipline, and customer handling.",
+                    "However, students must ensure that job hours do not hamper academic performance.",
+                    "Tutoring or remote content writing are great options for flexible schedules.",
+                    "Earning your own pocket money builds confidence and sense of responsibility early on.",
+                    "Finding the right balance between study and work is key to success."
+                ],
+                banglaText: [
+                    "খণ্ডকালীন চাকরি শিক্ষার্থীদের আর্থিক স্বাধীনতা এবং বাস্তব কাজের অভিজ্ঞতা এনে দেয়।",
+                    "এটি সময় ব্যবস্থাপনা, শৃঙ্খলা ও ক্লায়েন্ট সামলানোর মতো বাস্তব দক্ষতা শেখায়।",
+                    "তবে, শিক্ষার্থীদের খেয়াল রাখতে হবে যেন কাজের সময় তাদের পড়াশোনার ক্ষতি না করে।",
+                    "টিউশন বা রিমোট কনটেন্ট রাইটিং নমনীয় সময়ের জন্য চমৎকার পছন্দ হতে পারে।",
+                    "নিজের পকেট মানি নিজে ইনকাম করা ছোটবেলা থেকেই আত্মবিশ্বাস ও দায়িত্ববোধ তৈরি করে।",
+                    "পড়াশোনা ও কাজের মধ্যে সঠিক ভারসাম্য বজায় রাখাই হলো মূল চাবিকাঠি।"
+                ]
+            },
+            {
+                id: 43,
+                title: "Discussing Higher Education Abroad & Scholarships (বিদেশে উচ্চশিক্ষা)",
+                question: "Are you planning to apply for master's degree scholarships in European universities?",
+                questionBn: "আপনি কি ইউরোপের বিশ্ববিদ্যালয়গুলোতে মাস্টার্স স্কলারশিপের জন্য আবেদন করার পরিকল্পনা করছেন?",
+                englishText: [
+                    "Yes, I am currently preparing my documents for higher studies in Germany.",
+                    "Public universities there offer world-class tuition-free education in engineering courses.",
+                    "I am currently preparing for the IELTS exam to clear the language proficiency requirement.",
+                    "Drafting a strong Statement of Purpose (SOP) is crucial for securing competitive scholarships.",
+                    "Getting recommendation letters from senior university professors is another important step.",
+                    "Studying abroad opens up immense global exposure and career opportunities."
+                ],
+                banglaText: [
+                    "হ্যাঁ, জার্মানিতে উচ্চশিক্ষার জন্য আমি বর্তমানে আমার প্রয়োজনীয় কাগজপত্র প্রস্তুত করছি।",
+                    "ওখানকার পাবলিক বিশ্ববিদ্যালয়গুলো ইঞ্জিনিয়ারিং কোর্সে বিশ্বমানের বিনামূল্যে শিক্ষা দেয়।",
+                    "ভাষাগত যোগ্যতার শর্ত পূরণ করতে আমি বর্তমানে আইইএলটিএস পরীক্ষার প্রস্তুতি নিচ্ছি।",
+                    "প্রতিযোগিতামূলক স্কলারশিপ পেতে শক্তিশালী এসওপি (SOP) লেখা খুবই গুরুত্বপূর্ণ।",
+                    "বিশ্ববিদ্যালয়ের সিনিয়র অধ্যাপকদের কাছ থেকে রিকমেন্ডেশন লেটার সংগ্রহ করা আরেকটি ধাপ।",
+                    "বিদেশে পড়াশোনা বিশ্বমানের পরিচিতি ও দারুণ ক্যারিয়ারের সুযোগ উন্মোচন করে।"
+                ]
+            },
+            {
+                id: 44,
+                title: "Quitting a Job or Resigning Politely (চাকরি ছাড়া বা পদত্যাগ করা)",
+                question: "How should one handle the resignation process professionally when leaving a company?",
+                questionBn: "কোনো কোম্পানি ছাড়ার সময়ে কীভাবে পেশাদার উপায়ে পদত্যাগ প্রক্রিয়া সম্পন্ন করা উচিত?",
+                englishText: [
+                    "It is important to submit a formal resignation letter giving standard notice time.",
+                    "Express gratitude for the opportunities and professional growth experienced during your tenure.",
+                    "Offer to assist in training your replacement to ensure a smooth transition of duties.",
+                    "Maintain a helpful attitude during your notice period without slacking off.",
+                    "Leaving on good terms preserves professional networks for future reference letters.",
+                    "A respectful exit reflects high professional ethics and maturity."
+                ],
+                banglaText: [
+                    "অফিশিয়াল নোটিস পিরিয়ড মেনে একটি আনুষ্ঠানিক পদত্যাগপত্র জমা দেওয়া অত্যন্ত জরুরি।",
+                    "প্রতিষ্ঠানে কাটানো সময়ে পাওয়া সুযোগ ও পেশাগত সাফল্যের জন্য কৃতজ্ঞতা প্রকাশ করুন।",
+                    "কাজের দায়িত্ব হস্তান্তরে যেন সমস্যা না হয়, সেজন্য স্থলাভিষিক্ত ব্যক্তি প্রশিক্ষণে সাহায্যের প্রস্তাব দিন।",
+                    "নোটিস পিরিয়ড চলাকালীন সময়েও আন্তরিক ও দায়িত্বশীল মনোভাব বজায় রাখুন।",
+                    "সুনামের সাথে বিদায় নেওয়া ভবিষ্যতে রেফারেন্স লেটার ও পেশাদার নেটওয়ার্ক তৈরিতে সাহায্য করে।",
+                    "শ্রদ্ধাশীলভাবে বিদায় নেওয়া একজন ব্যক্তির পেশাদার নীতি ও পরিপক্কতা প্রকাশ করে।"
+                ]
+            },
+            {
+                id: 45,
+                title: "Discussing Teamwork & Leadership Skills (দলগত কাজ ও নেতৃত্ব)",
+                question: "What according to you makes a project team successful and highly productive?",
+                questionBn: "আপনার মতে কী উপাদান একটি প্রজেক্ট টিমকে সফল এবং উচ্চ উৎপাদনশীল করে তোলে?",
+                englishText: [
+                    "Clear goal alignment and honest communication are the pillars of great teamwork.",
+                    "A good leader empowers team members by delegating responsibility based on individual strengths.",
+                    "Encouraging constructive suggestions helps solve complex roadblocks effectively.",
+                    "Celebrating small milestones together boosts overall team morale and enthusiasm.",
+                    "Handling conflicts diplomatically ensures a positive and inclusive environment.",
+                    "Together, a united team achieves results far beyond individual capabilities."
+                ],
+                banglaText: [
+                    "স্পষ্ট লক্ষ্য নির্ধারণ এবং খোলামেলা যোগাযোগ হলো সফল দলগত কাজের মূল ভিত্তি।",
+                    "একজন ভালো নেতা যার যার দক্ষতার ওপর ভিত্তি করে দায়িত্ব বণ্টন করে সদস্যকে ক্ষমতায়িত করেন।",
+                    "গঠনমূলক পরামর্শ গ্রহণ করা জটিল বাধাগুলো দূর করতে কার্যকরী সাহায্য করে।",
+                    "একসাথে ছোট ছোট অর্জন উদযাপন করা পুরো টিমের মনোবল ও কাজের উদ্দীপনা বাড়িয়ে দেয়।",
+                    "কূটনৈকিকভাবে ভুল বোঝাবুঝি মেটানো একটি ইতিবাচক ও বন্ধুত্বপূর্ণ পরিবেশ নিশ্চিত করে।",
+                    "একতাবদ্ধ টিম একক ক্ষমতার বাইরে গিয়ে অভাবনীয় ফলাফল এনে দিতে পারে।"
+                ]
+            },
+            {
+                id: 46,
+                title: "Talking About Exam Results & Grades (পরীক্ষার ফলাফল ও গ্রেড)",
+                question: "Have you checked the university semester exam results published this morning?",
+                questionBn: "আজ সকালে প্রকাশিত বিশ্ববিদ্যালয় সেমিস্টার পরীক্ষার ফলাফল কি আপনি দেখেছেন?",
+                englishText: [
+                    "Yes, I checked the result portal early in the morning! I scored a GPA of 3.85.",
+                    "Congratulations! That is an outstanding academic accomplishment!",
+                    "Thank you! All those late-night revision sessions really yielded great results.",
+                    "How did your overall semester grade turn out? Hope you did well too!",
+                    "I managed to secure an A grade in Software Engineering, which made me very happy.",
+                    "Let us celebrate our academic success with a feast this weekend!"
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমি সকালে রেজাল্ট পোর্টালে ফলাফল দেখেছি! আমি ৩.৮৫ জিপিএ পেয়েছি।",
+                    "অভিনন্দন! এটি আপনার একটি চমৎকার শিক্ষাগত সাফল্য!",
+                    "ধন্যবাদ! গভীর রাতে টানা পড়ার সুফল অবশেষে সত্যি পাওয়া গেল।",
+                    "আপনার সেমিস্টারের রেজাল্ট কেমন হলো? আশা করি আপনিও ভালো করেছেন!",
+                    "আমি সফটওয়্যার ইঞ্জিনিয়ারিংয়ে 'এ' গ্রেড পেয়েছি, যা আমাকে খুব আনন্দিত করেছে।",
+                    "চলুন এই উইকএন্ডে একটি চমত্কার ভোজের মাধ্যমে আমাদের সাফল্য উদযাপন করি!"
+                ]
+            },
+            {
+                id: 47,
+                title: "Discussing School Uniform & Discipline Rules (স্কুলের পোশাক ও শৃঙ্খলা)",
+                question: "Why do schools place so much emphasis on uniform strictness and student discipline?",
+                questionBn: "স্কুলগুলো কেন পোশাকের নিয়মকানুন এবং ছাত্রছাত্রীদের শৃঙ্খলার ওপর এত জোর দেয়?",
+                englishText: [
+                    "Uniforms eliminate economic disparity among students and foster a sense of equality.",
+                    "Wearing a neat uniform instills pride, identity, and belongingness to the institution.",
+                    "Discipline rules teach youngsters respect for time, authority, and social structure.",
+                    "Punctuality learned in school becomes an invaluable habit throughout adult professional life.",
+                    "A disciplined school environment minimizes distractions and builds better focus.",
+                    "Orderliness is essential for nurturing responsible citizens of tomorrow."
+                ],
+                banglaText: [
+                    "ইউনিফর্ম শিক্ষার্থীদের মধ্যকার অর্থনৈতিক বৈষম্য দূর করে এবং সমতার অনুভূতি জাগিয়ে তোলে।",
+                    "পরিচ্ছন্ন ইউনিফর্ম পরা প্রতিষ্ঠানের প্রতি গর্ব, পরিচয় ও অন্তর্ভুক্তি বোধ তৈরি করে।",
+                    "শৃঙ্খলার নিয়মগুলো তরুণদের সময়, কর্তৃপক্ষ এবং সামাজিক কাঠামোর প্রতি শ্রদ্ধা শেখায়।",
+                    "স্কুলে শেখা সময়ানুবর্তিতা পুরো পেশাগত জীবনে একটি অমূল্য অভ্যাসে পরিণত হয়।",
+                    "একটি সুশৃঙ্খল পরিবেশ মনোযোগের বিচ্যুতি কমায় এবং পড়াশোনায় মন গভীর করে।",
+                    "আগামীকালের দায়িত্বশীল নাগরিক হিসেবে গড়ে তোলার জন্য সুশৃঙ্খলতা অপরিহার্য।"
+                ]
+            },
+            {
+                id: 48,
+                title: "Talking About Library Rules & Reading Habits (লাইব্রেরির নিয়ম ও বই পড়ার অভ্যাস)",
+                question: "How often do you visit the Central Library to read books or conduct research?",
+                questionBn: "বই পড়া বা গবেষণার জন্য আপনি কতবার কেন্দ্রীয় লাইব্রেরিতে যান?",
+                englishText: [
+                    "I visit the library at least twice a week to borrow books and study quietly.",
+                    "The serene atmosphere in the library provides an ideal setting for deep reading.",
+                    "Members must maintain complete silence and handle books with care.",
+                    "Borrowing reference books using the automated card system is very convenient.",
+                    "Developing a regular reading habit expands vocabulary and critical thinking.",
+                    "Libraries are truly treasure houses of knowledge that every student should explore."
+                ],
+                banglaText: [
+                    "আমি বই ধার নিতে এবং শান্তভাবে পড়তে সপ্তাহে অন্তত দুবার লাইব্রেরিতে যাই।",
+                    "লাইব্রেরির শান্ত পরিবেশ গভীর মনোযোগ দিয়ে পড়াশোনা করার দারুণ পরিবেশ দেয়।",
+                    "সদস্যদের অবশ্যই সম্পূর্ণ নীরবতা বজায় রাখতে হয় এবং যত্ন সহকারে বই ব্যবহার করতে হয়।",
+                    "স্বয়ংক্রিয় কার্ড সিস্টেম ব্যবহার করে রেফারেন্স বই নেওয়া খুবই সুবিধাজনক।",
+                    "নিয়মিত বই পড়ার অভ্যাস শব্দভাণ্ডার বৃদ্ধি করে এবং চিন্তাভাবনাকে গভীর করে।",
+                    "লাইব্রেরি হলো জ্ঞানের সত্যিকারের রত্নাগার যা প্রতিটি শিক্ষার্থীর নিয়মিত অন্বেষণ করা উচিত।"
+                ]
+            },
+            {
+                id: 49,
+                title: "Discussing Teacher-Student Relationships (শিক্ষক-শিক্ষার্থীর সম্পর্ক)",
+                question: "What makes a teacher-student relationship impactful and conducive to learning?",
+                questionBn: "কীসের গুণাবলি শিক্ষক ও শিক্ষার্থীর সম্পর্ককে প্রভাববিস্তারী ও শিখনবান্ধব করে তোলে?",
+                englishText: [
+                    "Mutual respect and approachable open communication form the foundation.",
+                    "When teachers encourage curiosity, students feel confident asking questions without hesitation.",
+                    "Mentorship beyond academics guides students in making right life and career choices.",
+                    "Empathy shown by educators creates a safe space for struggling students to improve.",
+                    "A positive mentor-mentee bond creates lifelong motivation for continuous learning.",
+                    "Teachers who inspire leave unforgettable footprints on students' hearts."
+                ],
+                banglaText: [
+                    "পারস্পরিক শ্রদ্ধা এবং আন্তরিক যোগাযোগ এই সম্পর্কের মূল ভিত্তি গঠন করে।",
+                    "শিক্ষক যখন কৌতূহলকে উৎসাহিত করেন, শিক্ষার্থীরা কোনো দ্বিধা ছাড়াই প্রশ্ন করার সাহস পায়।",
+                    "পড়াশোনার বাইরে সঠিক দিকনির্দেশনা শিক্ষার্থীদের জীবনের সিদ্ধান্ত গ্রহণে সাহায্য করে।",
+                    "শিক্ষকদের সহানুভূতি দুর্বল শিক্ষার্থীদের নিজেদের ভুল শোধরাতে একটি নিরাপদ পরিবেশ দেয়।",
+                    "একটি ইতিবাচক বন্ধন আজীবন নতুন কিছু শেখার আগ্রহ ও প্রেরণা জাগিয়ে রাখে।",
+                    "যে শিক্ষকরা অনুপ্রাণিত করেন, তাঁরা শিক্ষার্থীদের হৃদয়ে অবিস্মরণীয় ছাপ রেখে যান।"
+                ]
+            },
+            {
+                id: 50,
+                title: "Talking About Graduation Ceremonies & Convocation (গ্র্যাজুয়েশন ও সমাবর্তন)",
+                question: "Are you excited to attend your upcoming university convocation ceremony?",
+                questionBn: "আপনার বিশ্ববিদ্যালয়ের সমাবর্তন অনুষ্ঠানে অংশ নিতে আপনি কি উত্তেজিত?",
+                englishText: [
+                    "Extremely excited! Wearing the graduation gown and cap is a dream come true.",
+                    "It marks the glorious culmination of years of hard work, sleepless nights, and dedication.",
+                    "My parents will be attending the ceremony to watch me receive my degree certificate.",
+                    "Taking pictures with batchmates in traditional convocation attire will create lifelong memories.",
+                    "It symbolizes both an emotional farewell to student life and a step into professional world.",
+                    "It is a milestone moment that every graduate cherishes forever."
+                ],
+                banglaText: [
+                    "অত্যন্ত উত্তেজিত! গ্র্যাজুয়েশন গাউন ও ক্যাপ পরা আমার দীর্ঘদিনের একটি স্বপ্নের মতো।",
+                    "এটি বছরের পর বছর কঠোর পরিশ্রম, ঘুমহীন রাত এবং নিষ্ঠার এক গৌরবময় সমাপ্তি।",
+                    "আমার বাবা-মা আমার ডিগ্রি সার্টিফিকেট নেওয়ার মুহূর্তটির সাক্ষী হতে অনুষ্ঠানে থাকবেন।",
+                    "ঐতিহ্যবাহী গাউন পরা বন্ধুদের সাথে ছবি তোলা আজীবনের দারুণ স্মৃতি হয়ে থাকবে।",
+                    "এটি একদিকে ছাত্রজীবনের আবেগময় বিদায়, অন্যদিকে পেশাদার জগতে প্রবেশের সূচনা নির্দেশ করে।",
+                    "এটি এমন একটি মাইলফলক মুহূর্ত যা প্রতিটি গ্র্যাজুয়েট চিরকাল হৃদয়ে আগলে রাখে।"
+                ]
+            }
+        ];
+
+        // State variables
+        let highlightedSpan = null;
+
+        // Render Topics on Load
+        window.onload = function() {
+            renderTopics();
+        };
+
+        function renderTopics() {
+            const container = document.getElementById('topicsContainer');
+            container.innerHTML = '';
+
+            phase3Topics.forEach((topic) => {
+                const card = document.createElement('article');
+                card.className = 'clay-card p-6 md:p-8 transition-all duration-300';
+                card.id = `topic-card-${topic.id}`;
+
+                card.innerHTML = `
+                    <!-- Topic Header -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
+                        <div class="flex items-center gap-4">
+                            <span class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0">
+                                ${topic.id}
+                            </span>
+                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">
+                                ${topic.title}
+                            </h3>
+                        </div>
+
+                        <!-- Audio Control Buttons -->
+                        <div class="flex items-center gap-2">
+                            <button onclick="playTopicAudio(${topic.id})" id="play-btn-${topic.id}" class="btn-3d px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs md:text-sm flex items-center gap-2 font-bold">
+                                <i class="fa-solid fa-play"></i> <span>শুনুন (Full Audio)</span>
+                            </button>
+                            <button onclick="stopAudio()" class="btn-3d px-3.5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs md:text-sm font-bold" title="Stop Audio">
+                                <i class="fa-solid fa-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Question Box -->
+                    <div class="mt-6 p-5 rounded-2xl content-box">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-comments"></i> Step 1: সূচনামূলক বার্তা / প্রশ্ন (Opener)
+                                </div>
+                                <p class="en-text text-base md:text-xl font-bold">
+                                    "${topic.question}"
+                                </p>
+                                <p class="bn-text text-sm md:text-base font-semibold sub-text-color mt-2">
+                                    ${topic.questionBn}
+                                </p>
+                            </div>
+                            <button onclick="speakText('${escapeQuotes(topic.question)}')" class="btn-3d p-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl flex-shrink-0 font-bold" title="Listen Question">
+                                <i class="fa-solid fa-volume-high text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 & 3 Interactive Toggles -->
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="toggleEnglishPassage(${topic.id})" class="btn-3d px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span id="eng-toggle-text-${topic.id}">Show Full English Dialogue</span>
+                        </button>
+                        
+                        <button onclick="toggleBanglaMeaning(${topic.id})" class="btn-3d px-5 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-language"></i>
+                            <span id="bn-toggle-text-${topic.id}">Show Bangla Meaning</span>
+                        </button>
+                    </div>
+
+                    <!-- English Passage Container -->
+                    <div id="english-box-${topic.id}" class="hidden mt-6 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-paragraph"></i> Complete English Dialogue:
+                        </h4>
+                        <div id="english-text-content-${topic.id}" class="en-text text-base md:text-lg font-medium space-y-3">
+                            ${topic.englishText.map((sent, index) => `<span id="sent-${topic.id}-${index}" class="inline-block transition-all duration-200">${sent} </span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Bangla Meaning Container -->
+                    <div id="bangla-box-${topic.id}" class="hidden mt-4 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-language"></i> বাংলা অনুবাদ:
+                        </h4>
+                        <div class="bn-text text-base md:text-lg font-medium space-y-3 opacity-95">
+                            ${topic.banglaText.map((bSent) => `<p class="leading-relaxed">• ${bSent}</p>`).join('')}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle English Passage Visibility
+        function toggleEnglishPassage(topicId) {
+            const box = document.getElementById(`english-box-${topicId}`);
+            const btnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide English Dialogue";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Full English Dialogue";
+            }
+        }
+
+        // Toggle Bangla Meaning Visibility
+        function toggleBanglaMeaning(topicId) {
+            const box = document.getElementById(`bangla-box-${topicId}`);
+            const btnText = document.getElementById(`bn-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide Bangla Meaning";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Bangla Meaning";
+            }
+        }
+
+        // Change Theme Function
+        function changeTheme(themeName) {
+            document.body.className = `${themeName} min-h-screen pb-16 transition-all duration-500`;
+        }
+
+        // Stop Currently Playing Audio
+        function stopAudio() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            clearHighlight();
+        }
+
+        // Clear Line Highlights
+        function clearHighlight() {
+            if (highlightedSpan) {
+                highlightedSpan.classList.remove('sentence-highlight');
+                highlightedSpan = null;
+            }
+        }
+
+        // Speak Single Question Text
+        function speakText(text) {
+            stopAudio();
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+
+            utterance.lang = lang;
+            utterance.rate = rate;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Play Entire Topic Audio with Live Sentence Highlighting
+        function playTopicAudio(topicId) {
+            stopAudio();
+
+            const topic = phase3Topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            // Make sure English text box is visible while playing
+            const engBox = document.getElementById(`english-box-${topicId}`);
+            const engBtnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (engBox.classList.contains('hidden')) {
+                engBox.classList.remove('hidden');
+                engBtnText.innerText = "Hide English Dialogue";
+            }
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+            let sentenceIndex = 0;
+
+            function speakNextSentence() {
+                if (sentenceIndex >= topic.englishText.length) {
+                    clearHighlight();
+                    return;
+                }
+
+                clearHighlight();
+                const currentSpan = document.getElementById(`sent-${topicId}-${sentenceIndex}`);
+                if (currentSpan) {
+                    currentSpan.classList.add('sentence-highlight');
+                    highlightedSpan = currentSpan;
+                    currentSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                const utterance = new SpeechSynthesisUtterance(topic.englishText[sentenceIndex]);
+                utterance.lang = lang;
+                utterance.rate = rate;
+
+                utterance.onend = function() {
+                    sentenceIndex++;
+                    speakNextSentence();
+                };
+
+                utterance.onerror = function() {
+                    clearHighlight();
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            speakNextSentence();
+        }
+
+        // Helper function to escape quotes
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>

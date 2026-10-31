@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken English Mastery Studio - Phase 6</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Typography Setup */
+        :root {
+            --font-english: 'Times New Roman', Times, Georgia, serif;
+            --font-bangla: 'Tiro Bangla', serif;
+        }
+
+        body {
+            font-family: var(--font-bangla), var(--font-english);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            user-select: text;
+        }
+
+        .en-text {
+            font-family: var(--font-english);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.9;
+        }
+
+        .bn-text {
+            font-family: var(--font-bangla);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 2.0;
+        }
+
+        /* High-Contrast 3D Surface Cards */
+        .clay-card {
+            background-color: var(--card-bg, #ffffff);
+            color: var(--card-text, #0f172a);
+            border: 1px solid var(--card-border, rgba(0, 0, 0, 0.12));
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.25),
+                0 8px 10px -6px rgba(0, 0, 0, 0.2);
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 3D Touch-Feel Buttons */
+        .btn-3d {
+            position: relative;
+            transition: all 0.15s ease;
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 0 0 rgba(0, 0, 0, 0.25),
+                0 6px 12px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 0 0 rgba(0, 0, 0, 0.25),
+                0 10px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 
+                0 1px 0 0 rgba(0, 0, 0, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* High-Contrast Active Audio Sentence Highlight */
+        .sentence-highlight {
+            background-color: #facc15 !important;
+            color: #000000 !important;
+            border-radius: 0.375rem;
+            padding: 0.2rem 0.4rem;
+            font-weight: 700;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.85);
+            transition: all 0.2s ease;
+        }
+
+        /* Theme Presets with Guaranteed Text Contrast */
+        .theme-ocean {
+            background: linear-gradient(135deg, #0b1329 0%, #172554 50%, #0f172a 100%);
+            color: #f8fafc;
+            --card-bg: #1e293b;
+            --card-text: #f8fafc;
+            --card-border: rgba(255, 255, 255, 0.12);
+            --box-bg: #0f172a;
+            --box-border: rgba(255, 255, 255, 0.15);
+            --subtext: #cbd5e1;
+        }
+        .theme-emerald {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #022c22 100%);
+            color: #ecfdf5;
+            --card-bg: #065f46;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #022c22;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #a7f3d0;
+        }
+        .theme-purple {
+            background: linear-gradient(135deg, #2e1065 0%, #3b0764 50%, #1e1b4b 100%);
+            color: #faf5ff;
+            --card-bg: #4c1d95;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #2e1065;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #e9d5ff;
+        }
+        .theme-sunset {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #292524 100%);
+            color: #fff7ed;
+            --card-bg: #571e06;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #291004;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #fed7aa;
+        }
+        .theme-light {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #f1f5f9 100%);
+            color: #0f172a;
+            --card-bg: #ffffff;
+            --card-text: #0f172a;
+            --card-border: rgba(0, 0, 0, 0.12);
+            --box-bg: #f1f5f9;
+            --box-border: rgba(0, 0, 0, 0.15);
+            --subtext: #334155;
+        }
+
+        .content-box {
+            background-color: var(--box-bg);
+            border: 1px solid var(--box-border);
+            color: var(--card-text);
+        }
+        .sub-text-color {
+            color: var(--subtext);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.6);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="theme-ocean min-h-screen pb-16 transition-all duration-500">
+
+    <!-- Top Sticky Header Nav -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-white/10 px-4 py-4 mb-8 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-white text-2xl shadow-lg transform rotate-3">
+                    <i class="fa-solid fa-kit-medical"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide text-white">
+                        Spoken English Mastery Studio
+                    </h1>
+                    <p class="text-xs text-emerald-300 font-medium">Phase 6: স্বাস্থ্য, ইমার্জেন্সি ও সামাজিক সমস্যা (৮১–১০০ নম্বর টপিক)</p>
+                </div>
+            </div>
+
+            <!-- Controls: Speech & Theme Selector -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <!-- Theme Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-palette text-amber-400"></i>
+                    <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="theme-ocean">Deep Ocean (Dark)</option>
+                        <option value="theme-emerald">Cyber Emerald</option>
+                        <option value="theme-purple">Royal Purple</option>
+                        <option value="theme-sunset">Sunset Gold</option>
+                        <option value="theme-light">Clean Light (Bright)</option>
+                    </select>
+                </div>
+
+                <!-- Global Accent Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-earth-americas text-indigo-400"></i>
+                    <select id="globalAccent" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="en-US">🇺🇸 American Accent</option>
+                        <option value="en-GB">🇬🇧 British Accent</option>
+                    </select>
+                </div>
+
+                <!-- Global Speech Rate -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white text-xs font-semibold">
+                    <i class="fa-solid fa-gauge-high text-emerald-400"></i>
+                    <span>গতি: <span id="speedVal" class="text-amber-400">0.9x</span></span>
+                    <input type="range" id="globalSpeed" min="0.5" max="1.5" step="0.1" value="0.9" oninput="document.getElementById('speedVal').innerText = this.value + 'x'" class="w-16 accent-indigo-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4">
+
+        <!-- Intro Banner -->
+        <section class="clay-card p-6 md:p-8 mb-10 border-l-8 border-emerald-500">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-3 flex items-center gap-3">
+                        <i class="fa-solid fa-heart-pulse text-emerald-400"></i>
+                        Phase 6: স্বাস্থ্য, ইমার্জেন্সি ও সামাজিক জীবন গাইড
+                    </h2>
+                    <p class="text-base md:text-lg bn-text font-medium leading-relaxed sub-text-color">
+                        ডাক্তারের কাছে যাওয়া, ওষুধ কেনা, ইমার্জেন্সি রিপোর্ট করা, ট্রাফিক ও প্রাকৃতিক দুর্যোগ, পরিবেশ ও প্রযুক্তি, কাস্টমার কমপ্লেন, বর্তমান খবরাখবর এবং বিদায় জানানোর ২০টি (৮১–১০০) পূর্ণাঙ্গ বাস্তবসম্মত স্পোকেন ডায়ালগ।
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <span class="bg-emerald-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-hospital-user mr-1"></i> Health & Society
+                    </span>
+                    <span class="bg-teal-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-volume-high mr-1"></i> Audio Sync Highlight
+                    </span>
+                    <span class="bg-amber-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-flag-checkered mr-1"></i> Topics 81 to 100 (Complete)
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic List Container -->
+        <div id="topicsContainer" class="space-y-8">
+            <!-- Topics rendered dynamically via JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Script Block -->
+    <script>
+        // Data Structure for Phase 6 (Topics 81 to 100)
+        const phase6Topics = [
+            {
+                id: 81,
+                title: "Visiting Doctor & Describing Symptoms (ডাক্তারের পরামর্শ ও সমস্যা প্রকাশ)",
+                question: "Good morning Doctor! I have been suffering from a severe headache and high fever for two days.",
+                questionBn: "শুভ সকাল ডাক্তারবাবু! আমি দুই দিন ধরে তীব্র মাথাব্যথা এবং উচ্চ জ্বরে ভুগছি।",
+                englishText: [
+                    "Good morning! Please sit down. Have you experienced any other symptoms like body chills or nausea?",
+                    "Yes Doctor, I also feel muscle ache across my lower back and general fatigue.",
+                    "Let me check your body temperature and test your blood pressure reading.",
+                    "Your body temperature is 102 degrees Fahrenheit. I am writing a prescription for diagnostic blood tests.",
+                    "Should I take any medication immediately to reduce this high fever today?",
+                    "Take one paracetamol tablet after meals every eight hours, drink plenty of fluids, and take rest."
+                ],
+                banglaText: [
+                    "শুভ সকাল! দয়া করে বসুন। আপনার কি শরীরে কাঁপুনি বা বমির ভাব এর মতো অন্য কোনো উপসর্গ আছে?",
+                    "হ্যাঁ ডাক্তারবাবু, আমি আমার পিঠের নিচের অংশে মাংসপেশির ব্যথা এবং শারীরিক দুর্বলতাও অনুভব করছি।",
+                    "আমাকে আপনার শরীরের তাপমাত্রা পরীক্ষা করতে দিন এবং রক্তচাপ মেপে দেখতে দিন।",
+                    "আপনার শরীরের তাপমাত্রা ১০২ ডিগ্রি ফারেনহাইট। আমি রক্তের কিছু পরীক্ষার প্রেসক্রিপশন লিখে দিচ্ছি।",
+                    "আজ এই তীব্র জ্বর কমানোর জন্য আমার কি কোনো ওষুধ সাথে সাথে খাওয়া উচিত?",
+                    "প্রতি আট ঘণ্টা পর পর খাবারের পর একটি প্যারাসিটামল ট্যাবলেট খাবেন, প্রচুর তরল খাবেন এবং বিশ্রামে থাকবেন।"
+                ]
+            },
+            {
+                id: 82,
+                title: "Buying Medicine at Pharmacy (ফার্মেসি থেকে ওষুধ কেনা)",
+                question: "Hello! I need to buy these prescription medicines written by my family doctor.",
+                questionBn: "হ্যালো! আমার ফ্যামিলি ডাক্তারের লেখা এই প্রেসক্রিপশনের ওষুধগুলো কেনা দরকার।",
+                englishText: [
+                    "Let me check your prescription. We have all the tablets and syrups available in stock.",
+                    "Could you please explain the prescribed daily dosage and timing for each medicine?",
+                    "Take this antibiotic tablet twice daily after meals, and this syrup before going to bed.",
+                    "Are there any specific dietary restrictions I should follow while taking these medications?",
+                    "Avoid drinking cold iced water or carbonated soft drinks for the next five days.",
+                    "Understood. How much is the total bill for all these prescribed medicines?",
+                    "The total amount comes to six hundred and eighty Taka. Here is your cash receipt."
+                ],
+                banglaText: [
+                    "আমাকে আপনার প্রেসক্রিপশনটি দেখতে দিন। আমাদের স্টকে সব ট্যাবলেট এবং সিরাপ আছে।",
+                    "আপনি কি দয়া করে প্রতিটি ওষুধের সেবন মাত্রা এবং খাওয়ার সময় বুঝিয়ে দেবেন?",
+                    "খাবারের পর প্রতিদিন দুবার এই অ্যান্টিবায়োটিক ট্যাবলেট খাবেন এবং ঘুমানোর আগে এই সিরাপটি খাবেন।",
+                    "এই ওষুধগুলো খাওয়ার সময় আমার কি বিশেষ কোনো খাবার এড়িয়ে চলা উচিত?",
+                    "আগামী পাঁচ দিন ঠান্ডা বরফ পানি বা কার্বনেটেড ড্রিংকস খাওয়া এড়িয়ে চলুন।",
+                    "বুঝতে পেরেছি। এসব ওষুধের মোট বিল কত টাকা হয়েছে?",
+                    "মোট পরিমাণ দাঁড়িয়েছে ছয়শত আশি টাকা। এই নিন আপনার ক্রয়ের ক্যাশ মেমো।"
+                ]
+            },
+            {
+                id: 83,
+                title: "Talking About First Aid & Minor Injuries (প্রাথমিক চিকিৎসা ও চোট)",
+                question: "Oh no! He accidentally scraped his knee while playing and it is bleeding lightly.",
+                questionBn: "ওহ নো! খেলার সময় অসাবধানতাবশত তার হাঁটু ছিলে গেছে এবং হালকা রক্তপাত হচ্ছে।",
+                englishText: [
+                    "Do not panic! Clean the superficial wound with antiseptic solution and fresh clean water.",
+                    "Should we apply an antiseptic ointment over the skin cut before wrapping a bandage?",
+                    "Yes, apply a thin layer of antibacterial cream and cover it with a sterile cotton bandage.",
+                    "Does he need an emergency tetanus vaccine shot for this minor cut wound?",
+                    "If he has not taken a tetanus injection within the last five years, he should get one today.",
+                    "Thank you for the quick first-aid advice! We will follow your instructions immediately."
+                ],
+                banglaText: [
+                    "আতঙ্কিত হবেন না! স্যাভলন/অ্যান্টিসেপটিক দ্রবণ এবং পরিষ্কার পানি দিয়ে উপরিভাগের ক্ষতটি পরিষ্কার করুন।",
+                    "ব্যান্ডেজ জড়ানোর আগে কাটা ত্বকে আমাদের কি কোনো অ্যান্টিসেপটিক মলম লাগানো উচিত?",
+                    "হ্যাঁ, পাতলা করে অ্যান্টিব্যাকটেরিয়াল ক্রিম লাগান এবং জীবাণুমুক্ত তুলা ব্যান্ডেজ দিয়ে ঢেকে দিন।",
+                    "এই ছোট কাটা ক্ষতের জন্য তার কি কোনো জরুরি টিটেনাস ভ্যাকসিনের শট দরকার?",
+                    "যদি তিনি গত পাঁচ বছরের মধ্যে টিটেনাস ইনজেকশন না নিয়ে থাকেন, তবে আজ একটি নেওয়া উচিত।",
+                    "দ্রুত প্রাথমিক চিকিৎসার পরামর্শের জন্য আপনাকে ধন্যবাদ! আমরা এখনই আপনার নির্দেশ মেনে চলছি।"
+                ]
+            },
+            {
+                id: 84,
+                title: "Calling Police or Emergency Services (পুলিশ ও জরুরি সেবা কল)",
+                question: "Emergency Hotline 999! What is your emergency and exact current location sir?",
+                questionBn: "ইমার্জেন্সি হটলাইন ৯৯৯! আপনার জরুরি পরিস্থিতি এবং বর্তমান সঠিক অবস্থান কোনটি স্যার?",
+                englishText: [
+                    "Help! We need immediate police assistance at Sector 4, Uttara, near the central bank branch.",
+                    "Calm down sir. Please describe what has happened at your reported location.",
+                    "Two unidentified suspicious men on a motorbike snatched a purse and fled toward the highway.",
+                    "Is anyone injured, and can you share the vehicle registration number or motorcycle model?",
+                    "Nobody is hurt physically. The motorbike was a black Honda with a partially covered plate.",
+                    "Our nearest police patrol unit has been dispatched immediately. Stay right where you are."
+                ],
+                banglaText: [
+                    "বাঁচাও! উত্তরা সেক্টর ৪-এর কেন্দ্রীয় ব্যাংক শাখার কাছে আমাদের অবিলম্বে পুলিশ সহায়তা প্রয়োজন।",
+                    "শান্ত হন স্যার। দয়া করে বলুন আপনার উল্লেখিত জায়গায় কী ঘটেছে।",
+                    "মোটরসাইকেলে আসা দুজন অজ্ঞাতপরিচয় লোক একটি পার্স ছিনতাই করে হাইওয়ের দিকে পালিয়ে গেছে।",
+                    "কেউ কি আহত হয়েছেন, এবং আপনি কি গাড়ির রেজিস্ট্রেশন নম্বর বা মডেল জানাতে পারবেন?",
+                    "কেউ শারীরিকভাবে আঘাত পাননি। মোটরসাইকেলটি ছিল কালো রঙের হোন্ডা, যার নম্বর প্লেট আংশিক ঢাকা ছিল।",
+                    "আমাদের নিকটতম পুলিশ টহল দলকে তাৎক্ষণিকভাবে পাঠানো হয়েছে। আপনি যেখানে আছেন সেখানেই থাকুন।"
+                ]
+            },
+            {
+                id: 85,
+                title: "Reporting Fire or Road Accidents (আগুন বা দুর্ঘটনা সংক্রান্ত রিপোর্ট)",
+                question: "Hello Fire Service! A massive electrical fire broke out in a commercial garment warehouse.",
+                questionBn: "হ্যালো ফায়ার সার্ভিস! একটি বাণিজ্যিক গার্মেন্টস গুদামে বড় ধরনের বৈদ্যুতিক আগুন লেগেছে।",
+                englishText: [
+                    "We are taking immediate note. Give us the exact street address and landmark nearby.",
+                    "It is located at Mirpur Road, plot number 45, opposite the main bus terminal.",
+                    "Are there people trapped inside the building structure, or has evacuation started?",
+                    "Most workers evacuated safely, but dense toxic smoke is spreading fast on upper floors.",
+                    "Four fire department engine trucks are en route right now. Keep bystanders away from smoke.",
+                    "Please hurry! We are clearing the street road path to make way for your rescue vehicles."
+                ],
+                banglaText: [
+                    "আমরা সাথে সাথে নোট নিচ্ছি। আমাদের সঠিক রাস্তার ঠিকানা এবং কাছের চেনা জায়গা জানান।",
+                    "এটি মিরপুর রোড, প্লট নম্বর ৪৫, প্রধান বাস টার্মিনালের ঠিক বিপরীত পাশে অবস্থিত।",
+                    "ভবনের ভেতরে কি কোনো মানুষ আটকে আছে, নাকি লোকজনকে সরিয়ে নেওয়া শুরু হয়েছে?",
+                    "অধিকাংশ কর্মী নিরাপদে বেরিয়ে এসেছে, তবে উপরের ফ্লোরগুলোতে দ্রুত ঘন বিষাক্ত ধোঁয়া ছড়িয়ে পড়ছে।",
+                    "ফায়ার সার্ভিসের চারটি ইঞ্জিন ট্রাক এখনই সেখানে যাচ্ছে। পথচারীদের ধোঁয়া থেকে দূরে রাখুন।",
+                    "দয়া করে দ্রুত আসুন! আপনাদের উদ্ধারকারী গাড়ির চলাচলের রাস্তা আমরা খালি করে দিচ্ছি।"
+                ]
+            },
+            {
+                id: 86,
+                title: "Discussing Weather Emergencies & Cyclones (ঝড়-বন্যা ও প্রাকৃতিক দুর্যোগ)",
+                question: "Have you checked the urgent coastal storm alert warning issued by the weather broadcast bureau?",
+                questionBn: "আবহাওয়া সম্প্রচার ব্যুরোর দেওয়া জরুরি উপকূলীয় সাইক্লোন সতর্কবার্তা কি দেখেছেন?",
+                englishText: [
+                    "Yes, a severe tropical cyclone category storm is expected to hit the southern coastal region tonight.",
+                    "High tidal waves and torrential rainfall could cause severe localized flooding and power outages.",
+                    "Local administrative authorities have urged coastal residents to shift to safe cyclone shelters.",
+                    "Are emergency food relief packets and drinking water supplies adequately stored for affected victims?",
+                    "Volunteers and relief disaster response teams are working round the clock to manage supplies.",
+                    "Let us pray that the coastal communities remain safe from heavy disaster destruction."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আজ রাতে দক্ষিণাঞ্চলীয় উপকূলীয় অঞ্চলে একটি তীব্র ঘূর্ণিঝড় আঘাত হানবে বলে ধারণা করা হচ্ছে।",
+                    "উঁচু জোয়ারের ঢেউ এবং টানা ভারী বর্ষণের ফলে মারাত্মক স্থানীয় বন্যা এবং বিদ্যুৎ বিপর্যয় হতে পারে।",
+                    "স্থানীয় প্রশাসন উপকূলীয় বাসিন্দাদের নিরাপদ আশ্রয়কেন্দ্রে সরে যাওয়ার অনুরোধ জানিয়েছে।",
+                    "ক্ষতিগ্রস্তদের জন্য জরুরি খাবার ও বিশুদ্ধ খাবার পানির পর্যাপ্ত মজুত করা হয়েছে কি?",
+                    "স্বেচ্ছাসেবক ও ত্রাণ দুর্যোগ মোকাবিলা দলগুলো রসদ ব্যবস্থাপনায় চব্বিশ ঘণ্টা কাজ করছে।",
+                    "চলুন প্রার্থনা করি যেন উপকূলীয় এলাকার মানুষ ভারী ক্ষয়ক্ষতির হাত থেকে রক্ষা পান।"
+                ]
+            },
+            {
+                id: 87,
+                title: "Talking About Traffic Rules & Road Safety (ট্রাফিক আইন ও সড়ক নিরাপত্তা)",
+                question: "Why is strictly following basic traffic signals and safety rules so vital for everyone?",
+                questionBn: "সবার জন্য মৌলিক ট্রাফিক সিগন্যাল ও নিরাপত্তা আইন মেনে চলা কেন এত গুরুত্বপূর্ণ?",
+                englishText: [
+                    "Following traffic rules prevents tragic road accidents, protects pedestrians, and ensures smooth transit.",
+                    "Many motor drivers recklessly speed or jump red signals to save a few minutes.",
+                    "Wearing helmets on motorbikes and fastening seatbelts in cars significantly reduces fatal injuries.",
+                    "Traffic enforcement officers should impose heavy penalty fines on traffic law violators.",
+                    "Public safety awareness campaigns in schools and colleges are also equally essential.",
+                    "Responsible driving habits make our streets safe for elderly citizens and children."
+                ],
+                banglaText: [
+                    "ট্রাফিক আইন মানলে মর্মান্তিক সড়ক দুর্ঘটনা রোধ হয়, পথচারীরা সুরক্ষিত থাকে এবং যাতায়াত মসৃণ হয়।",
+                    "অনেক গাড়ি চালক কয়েক মিনিট বাঁচানোর জন্য বেপরোয়া গতিতে গাড়ি চালায় বা লাল সিগন্যাল অমান্য করে।",
+                    "মোটরসাইকেলে হেলমেট পরা এবং গাড়িতে সিটবেল্ট বাঁধা মারাত্মক শারীরিক আঘাত অনেকাংশে কমিয়ে দেয়।",
+                    "ট্রাফিক আইন ভঙ্গকারীদের ওপর ট্রাফিক সার্জেন্টদের ভারী জরিমানা করা উচিত।",
+                    "স্কুল ও কলেজে সর্বসাধারণের নিরাপত্তা সচেতনতামূলক প্রচারণাও সমানভাবে জরুরি।",
+                    "দায়িত্বশীল গাড়ি চালানোর অভ্যাস আমাদের রাস্তাগুলোকে বয়স্ক নাগরিক ও শিশুদের জন্য নিরাপদ করে।"
+                ]
+            },
+            {
+                id: 88,
+                title: "Discussing Pollution & Tree Plantation (পরিবেশ দূষণ ও বৃক্ষরোপণ)",
+                question: "Environmental pollution in major urban cities is reaching alarming toxic levels daily.",
+                questionBn: "বড় বড় শহরাঞ্চলে পরিবেশ দূষণ প্রতিদিন আশঙ্কাজনক বিষাক্ত মাত্রায় পৌঁছাচ্ছে।",
+                englishText: [
+                    "Air quality degradation from industrial smoke and plastic waste dumping damages public health.",
+                    "To combat climate change, we must initiate massive nationwide tree plantation programs.",
+                    "Trees absorb harmful carbon dioxide emissions, purify air quality, and prevent soil erosion.",
+                    "Every citizen should plant at least two native saplings during every monsoon rainy season.",
+                    "We also need to replace single-use disposable plastic bags with biodegradable eco-friendly materials.",
+                    "Small conscious environmental efforts today will secure a greener, healthier planet for tomorrow."
+                ],
+                banglaText: [
+                    "শিল্পকারখানার ধোঁয়া ও প্লাস্টিক বর্জ্য ফেলার কারণে বায়ুর মান কমে যাওয়া জনস্বাস্থ্যের ক্ষতি করছে।",
+                    "জলবায়ু পরিবর্তন মোকাবিলায় আমাদের দেশব্যাপী ব্যাপক বৃক্ষরোপণ কর্মসূচি শুরু করতে হবে।",
+                    "গাছ ক্ষতিকর কার্বন ডাই অক্সাইড গ্যাস শোষণ করে, বাতাস বিশুদ্ধ করে এবং মাটির ক্ষয় রোধ করে।",
+                    "প্রতিটি বর্ষা মৌসুমে প্রতিটি নাগরিকের অন্তত দুটি দেশি ফলের বা কাঠের চারা রোপণ করা উচিত।",
+                    "একবার ব্যবহারযোগ্য প্লাস্টিকের ব্যাগের পরিবর্তে পচনশীল পরিবেশবান্ধব উপাদান ব্যবহার করা দরকার।",
+                    "আজকের ছোট ছোট পরিবেশ সচেতন উদ্যোগ আগামী দিনের জন্য একটি সবুজ ও সুস্থ পৃথিবী নিশ্চিত করবে।"
+                ]
+            },
+            {
+                id: 89,
+                title: "Talking About Technology, AI & Innovations (প্রযুক্তি, এআই ও উদ্ভাবন)",
+                question: "Artificial Intelligence and modern digital automation are transforming every industry rapidly.",
+                questionBn: "কৃত্রিম বুদ্ধিমত্তা (AI) ও আধুনিক ডিজিটাল অটোমেশন দ্রুত প্রতিটি শিল্প খাতকে বদলে দিচ্ছে।",
+                englishText: [
+                    "AI tools increase work efficiency, automate repetitive tasks, and accelerate scientific research.",
+                    "Will AI technologies replace traditional human job roles in software and customer care?",
+                    "While routine repetitive tasks get automated, AI also creates new tech career opportunities.",
+                    "Human skills like creative thinking, emotional intelligence, and leadership remain irreplaceable.",
+                    "Staying updated with digital skills and machine learning is key to staying competitive.",
+                    "Embracing technology ethically while maintaining human values is the ultimate smart path forward."
+                ],
+                banglaText: [
+                    "এআই টুলস কাজের দক্ষতা বাড়ায়, পুনরাবৃত্তিমূলক কাজ স্বয়ংক্রিয় করে এবং বৈজ্ঞানিক গবেষণাকে ত্বরান্বিত করে।",
+                    "এআই প্রযুক্তি কি সফটওয়্যার ও কাস্টমার কেয়ারের প্রথাগত মানব কর্মসংস্থানকে প্রতিস্থাপন করবে?",
+                    "যদিও বাঁধাধরা কাজগুলো স্বয়ংক্রিয় হয়ে যাচ্ছে, এআই নতুন নতুন টেকনিক্যাল ক্যারিয়ারের সুযোগও তৈরি করছে।",
+                    "সৃজনশীল চিন্তা, অনুভূতি এবং নেতৃত্বের মতো মানবিক দক্ষতাগুলোর বিকল্প অন্য কিছু হতে পারে না।",
+                    "ডিজিটাল দক্ষতা এবং মেশিন লার্নিংয়ের সাথে নিজেকে আপডেট রাখাই প্রতিযোগিতায় টিকে থাকার চাবিকাঠি।",
+                    "মানবিক মূল্যবোধ বজায় রেখে নৈতিকভাবে প্রযুক্তিকে গ্রহণ করাই সামনের দিকে এগিয়ে যাওয়ার বুদ্ধিমান উপায়।"
+                ]
+            },
+            {
+                id: 90,
+                title: "Discussing Social Responsibilities & Charity (সামাজিক দায়িত্ব ও দাতব্য কাজ)",
+                question: "Why should fortunate citizens actively participate in community charity service work?",
+                questionBn: "ভাগ্যবান নাগরিকদের কেন সক্রিয়ভাবে সামাজিক দাতব্য সেবামূলক কাজে অংশ নেওয়া উচিত?",
+                englishText: [
+                    "Contributing time or financial aid uplifts underprivileged communities and reduces social inequality.",
+                    "Organizing free blood donation drives and education for poor children brings real social impact.",
+                    "Even small monthly donations to reliable charitable organizations can transform vulnerable lives.",
+                    "Engaging young students in community volunteer service builds empathy and moral character.",
+                    "Together, our combined small kindnesses create a compassionate and supportive society.",
+                    "Giving back to society creates deep fulfillment that money alone can never buy."
+                ],
+                banglaText: [
+                    "সময় বা আর্থিক সহায়তা প্রদান সুবিধা বঞ্চিত জনগোষ্ঠীকে এগিয়ে নেয় এবং সামাজিক বৈষম্য কমায়।",
+                    "বিনামূল্যে রক্তদান কর্মসূচি ও দরিদ্র শিশুদের শিক্ষার আয়োজন বাস্তব সামাজিক প্রভাব ফেলে।",
+                    "নির্ভরযোগ্য দাতব্য সংস্থায় প্রতি মাসে ছোট অনুদানও অসহায় মানুষের জীবন বদলে দিতে পারে।",
+                    "তরুণ শিক্ষার্থীদের সামাজিক স্বেচ্ছাসেবী কাজে যুক্ত করলে সহানুভূতি ও নৈতিক চরিত্র গঠিত হয়।",
+                    "একসাথে আমাদের ছোট ছোট দয়াগুলো একটি সহানুভূতিশীল ও পরোপকারী সমাজ গড়ে তোলে।",
+                    "সমাজকে কিছু ফিরিয়ে দেওয়া যে আত্মতৃপ্তি তৈরি করে, তা শুধু টাকা দিয়ে কখনো কেনা যায় না।"
+                ]
+            },
+            {
+                id: 91,
+                title: "Expressing Opinions in Debate or Discussion (বিতর্ক ও নিজস্ব মতামত প্রকাশ)",
+                question: "In my humble opinion, online distance learning can never fully replace traditional classroom education.",
+                questionBn: "আমার বিনম্র মতে, অনলাইন দূরশিক্ষণ কখনো প্রথাগত শ্রেণীকক্ষের শিক্ষাকে পুরোপুরি প্রতিস্থাপন করতে পারে না।",
+                englishText: [
+                    "I see your point, but virtual learning provides flexibility for working professionals and remote students.",
+                    "That is true, but physical classrooms foster face-to-face peer social interaction and practical discipline.",
+                    "Perhaps a blended learning hybrid model combining both online and campus methods is best.",
+                    "I completely agree with that perspective! Blended methods harness advantages from both approaches.",
+                    "Respecting contrasting viewpoints during constructive debates leads to sound balanced solutions.",
+                    "Well said! Logical discussion allows us to learn from diverse viewpoints."
+                ],
+                banglaText: [
+                    "আমি আপনার যুক্তি বুঝতে পারছি, তবে ভার্চুয়াল লার্নিং চাকরিজীবী এবং দূরবর্তী শিক্ষার্থীদের সুযোগ দেয়।",
+                    "তা সত্য, তবে সরাসরি শ্রেণীকক্ষ সামনা-সামনি সামাজিক মেলামেশা এবং বাস্তব শৃঙ্খলা শেখায়।",
+                    "হয়তো অনলাইন ও ক্যাম্পাস পদ্ধতি মিলিয়ে একটি ব্লেন্ডেড হাইব্রিড মডেলই সবচেয়ে সেরা হবে।",
+                    "আমি আপনার দৃষ্টিভঙ্গির সাথে পুরোপুরি একমত! মিশ্র পদ্ধতি দুই পাশ থেকেই সেরা সুবিধাগুলো এনে দেয়।",
+                    "গঠনমূলক বিতর্কের সময় ভিন্ন মতামতকে শ্রদ্ধা জানানো সঠিক সুষম সমাধানের দিকে নিয়ে যায়।",
+                    "চমৎকার বলেছেন! যুক্তিযুক্ত আলোচনা আমাদের বিভিন্ন দৃষ্টিকোণ থেকে শেখার সুযোগ দেয়।"
+                ]
+            },
+            {
+                id: 92,
+                title: "Complaining About Poor Customer Service (গ্রাহক সেবায় অসন্তোষ প্রকাশ)",
+                question: "I am extremely disappointed with your home broadband internet service over the past three days.",
+                questionBn: "গত তিন দিন ধরে আপনাদের হোম ব্রডব্যান্ড ইন্টারনেট সেবা নিয়ে আমি অত্যন্ত হতাশ।",
+                englishText: [
+                    "I sincerely apologize for the inconvenience sir. What specific technical issue are you facing?",
+                    "My internet connection keeps dropping repeatedly, and the speed is way below my subscribed package.",
+                    "Let me check your account line status. There was an underground optical fiber line disruption.",
+                    "I raised a support ticket yesterday, but no maintenance technician visited my residence yet.",
+                    "I am prioritizing your ticket immediately and dispatching a senior technician within two hours.",
+                    "Thank you. Please ensure this connectivity problem gets resolved permanently today."
+                ],
+                banglaText: [
+                    "সাময়িক অসুবিধার জন্য আমি আন্তরিকভাবে ক্ষমা চাচ্ছি স্যার। আপনি নির্দিষ্ট কী কারিগরি সমস্যায় পড়ছেন?",
+                    "আমার ইন্টারনেট সংযোগ বারবার কেটে যাচ্ছে এবং স্পিড আমার কেনা প্যাকেজের চেয়ে অনেক কম।",
+                    "আমাকে আপনার অ্যাকাউন্ট লাইন স্ট্যাটাস চেক করতে দিন। একটি ভূগর্ভস্থ অপটিক্যাল ফাইবার ক্ষতিগ্রস্ত হয়েছিল।",
+                    "আমি গতকাল একটি সাপোর্ট টিকেট খুলেছিলাম, কিন্তু এখনো কোনো টেকনিশিয়ান আমার বাসায় আসেননি।",
+                    "আমি আপনার টিকিটটি অগ্রাধিকার দিচ্ছি এবং দুই ঘণ্টার মধ্যে একজন অভিজ্ঞ টেকনিশিয়ান পাঠাচ্ছি।",
+                    "ধন্যবাদ। দয়া করে নিশ্চিত করুন যেন কানেকশনের এই সমস্যাটি আজ চিরতরে সমাধান হয়ে যায়।"
+                ]
+            },
+            {
+                id: 93,
+                title: "Discussing Current News & Global Events (বর্তমান খবরাখবর ও বিশ্ব পরিস্থিতি)",
+                question: "Did you catch the headline international breaking news update on television this evening?",
+                questionBn: "আজ সন্ধ্যায় টেলিভিশনে আন্তর্জাতিক তাজা খবরের প্রধান খবরগুলো কি আপনি দেখেছেন?",
+                englishText: [
+                    "Yes, I saw reports on the global climate summit and renewable green energy agreements.",
+                    "World leaders are committing to reduce carbon footprint targets significantly over the next decade.",
+                    "Economic inflation and global supply chain challenges are also impacting commodity markets worldwide.",
+                    "Staying informed through verified authentic news channels helps us understand global events.",
+                    "Media literacy is crucial today to filter out fake news rumors circulating on social networks.",
+                    "Indeed! Critical reading of current affairs develops well-informed global perspectives."
+                ],
+                banglaText: [
+                    "হ্যাঁ, আমি বৈশ্বিক জলবায়ু সম্মেলন এবং নবায়নযোগ্য সবুজ শক্তি সংক্রান্ত চুক্তিগুলোর খবর দেখেছি।",
+                    "বিশ্বনেতারা আগামী দশকের মধ্যে কার্বন নিঃসরণের লক্ষ্যমাত্রা উল্লেখযোগ্যভাবে কমানোর অঙ্গীকার করছেন।",
+                    "অর্থনৈতিক মূল্যস্ফীতি এবং বৈশ্বিক সরবরাহ ব্যবস্থার চ্যালেঞ্জ বিশ্বব্যাপী নিত্যপণ্যের বাজারকে প্রভাবিত করছে।",
+                    "সঠিক সংবাদের মাধ্যমে ওয়াকিফহাল থাকা বৈশ্বিক পরিস্থিতি বুঝতে আমাদের সাহায্য করে।",
+                    "সোশ্যাল মিডিয়ায় ছড়িয়ে পড়া ভুয়া গুজব ফিল্টার করার জন্য মিডিয়া সচেতনতা আজ খুবই জরুরি।",
+                    "সত্যিই! সমসাময়িক খবরাখবরের গঠনমূলক পাঠ আমাদের সঠিক বৈশ্বিক দৃষ্টিকোণ তৈরি করতে সাহায্য করে।"
+                ]
+            },
+            {
+                id: 94,
+                title: "Talking About Festivals, Traditions & Culture (উৎসব, ঐতিহ্য ও সংস্কৃতি)",
+                question: "Pohela Boishakh and Eid celebrations bring immense joy, colorful unity, and togetherness to all.",
+                questionBn: "পহেলা বৈশাখ এবং ঈদ উদযাপন সবার মাঝে অপার আনন্দ, রঙিন ঐক্য এবং মেলবন্ধন নিয়ে আসে।",
+                englishText: [
+                    "Festivals are vibrant reflections of our rich Bengali cultural heritage and communal harmony.",
+                    "Wearing traditional colorful dresses and enjoying delicious traditional sweets makes these days special.",
+                    "Families assemble together, exchange festive greetings, and share happiness across communities.",
+                    "Traditional cultural music programs and street rallies display our authentic cultural pride.",
+                    "Preserving these rich cultural customs across generations keeps our identity alive.",
+                    "Wishing everyone peace, prosperity, and joy on every festive occasion!"
+                ],
+                banglaText: [
+                    "উৎসবগুলো আমাদের সমৃদ্ধ বাঙালি সাংস্কৃতিক ঐতিহ্য এবং সাম্প্রদায়িক সম্প্রীতির এক প্রাণবন্ত প্রতিফলন।",
+                    "ঐতিহ্যবাহী রঙিন পোশাক পরা এবং সুস্বাদু দেশি মিষ্টি উপভোগ করা এই দিনগুলোকে বিশেষ করে তোলে।",
+                    "পরিবারগুলো একত্রিত হয়, ঈদের শুভেচ্ছা বিনিময় করে এবং সমাজে আনন্দ ভাগ করে নেয়।",
+                    "ঐতিহ্যবাহী সাংস্কৃতিক অনুষ্ঠান এবং শোভাযাত্রা আমাদের আসল সাংস্কৃতিক গর্ব প্রদর্শন করে।",
+                    "প্রজন্মের পর প্রজন্ম জুড়ে এই সাংস্কৃতিক রীতিনীতি বজায় রাখা আমাদের পরিচয়কে বাঁচিয়ে রাখে।",
+                    "প্রতিটি উৎসবের দিনে সবার শান্তি, সমৃদ্ধি এবং আনন্দের জন্য শুভকামনা জানাই!"
+                ]
+            },
+            {
+                id: 95,
+                title: "Discussing Traffic Jams & City Commuting (যানজট ও শহরের যাতায়াত)",
+                question: "Heavy gridlock traffic jams during office rush hours burn precious work time every single day.",
+                questionBn: "অফিসের ব্যস্ত সময়ে ভারী যানজট প্রতিদিন কাজের মূল্যবান সময় নষ্ট করে দেয়।",
+                englishText: [
+                    "Expanding metro rail networks and elevated expressways has significantly reduced travel time recently.",
+                    "Encouraging public transport usage over private personal cars can further ease city road congestion.",
+                    "Strict traffic signal management and removing illegal roadside parking are vital urgent steps.",
+                    "I often listen to informative educational podcasts while commuting to make productive use of travel time.",
+                    "That is a smart habit! Converting traffic waiting time into learning sessions reduces mental frustration.",
+                    "Modern urban city planning will hopefully create smoother public commuting experiences for citizens."
+                ],
+                banglaText: [
+                    "মেট্রোরেল নেটওয়ার্ক এবং এলিভেটেড এক্সপ্রেসওয়ে সম্প্রসারণ সম্প্রতি যাতায়াতের সময় অনেক কমিয়ে এনেছে।",
+                    "ব্যক্তিগত গাড়ির বদলে গণপরিবহন ব্যবহারে উৎসাহিত করলে শহরের যানজট আরও কমানো সম্ভব।",
+                    "সঠিক ট্রাফিক সিগন্যাল ব্যবস্থাপনা এবং অবৈধ পার্কিং সরানো অত্যন্ত জরুরি পদক্ষেপ।",
+                    "আমি প্রায়ই যাতায়াতের সময় শিক্ষণীয় পডকাস্ট শুনি যাতে ভ্রমণের সময়টুকু কাজে লাগানো যায়।",
+                    "এটি একটি বুদ্ধিমত্তার অভ্যাস! জ্যামের অপেক্ষার সময়কে শেখার সেশনে রূপান্তর করলে মানসিক বিরক্তি কমে।",
+                    "আধুনিক নগর পরিকল্পনা আশা করা যায় নাগরিকদের জন্য আরও মসৃণ যাতায়াতের অভিজ্ঞতা তৈরি করবে।"
+                ]
+            },
+            {
+                id: 96,
+                title: "Talking About Food Safety & Organic Food (খাবারের মান ও অর্গানিক ফুড)",
+                question: "Why has consuming organic chemical-free food become so essential for health conscious families?",
+                questionBn: "স্বাস্থ্যসচেতন পরিবারের জন্য রাসায়নিক মুক্ত জৈব (অর্গানিক) খাবার খাওয়া কেন এত জরুরি হয়ে পড়েছে?",
+                englishText: [
+                    "Harmful chemical pesticides and artificial food preservatives lead to long-term chronic illnesses.",
+                    "Organic fruits and fresh vegetables contain higher nutrient values and offer natural authentic taste.",
+                    "Always wash fresh market produce thoroughly with running clean water before cooking meals.",
+                    "Buying directly from trusted local organic farmers supports eco-friendly sustainable agriculture.",
+                    "Food safety inspection authorities should strictly penalize dishonest food adulteration practices.",
+                    "Eating fresh wholesome meals daily is the best natural investment in personal longevity."
+                ],
+                banglaText: [
+                    "ক্ষতিকারক রাসায়নিক কীটনাশক এবং কৃত্রিম প্রিজারভেটিভ দীর্ঘমেয়াদী জটিল রোগের সৃষ্টি করে।",
+                    "অর্গানিক ফলমূল এবং তাজা শাকসবজিতে উচ্চমানের পুষ্টি থাকে এবং প্রাকৃতিক আসল স্বাদ পাওয়া যায়।",
+                    "রান্না করার আগে বাজার থেকে আনা তাজা ফল ও সবজি সবসময় চলন্ত পরিষ্কার পানি দিয়ে ভালোভাবে ধুয়ে নিন।",
+                    "বিশ্বস্ত স্থানীয় অর্গানিক কৃষকদের কাছ থেকে কেনাকাটা করা পরিবেশবান্ধব কৃষিকে উৎসাহিত করে।",
+                    "খাদ্য নিরাপত্তা কর্তৃপক্ষের অসাধু খাদ্য ভেজালকারীদের বিরুদ্ধে কঠোর শাস্তি দেওয়া উচিত।",
+                    "প্রতিদিন টাটকা পুষ্টিকর খাবার খাওয়া দীর্ঘায়ু লাভের জন্য সেরা প্রাকৃতিক বিনিয়োগ।"
+                ]
+            },
+            {
+                id: 97,
+                title: "Discussing Electricity & Utility Issues (লোডশেডিং ও বিদ্যুৎ সমস্যা)",
+                question: "Unannounced load-shedding power outages during hot summer nights disrupt daily life severely.",
+                questionBn: "তীব্র গরমের রাতে হঠাৎ লোডশেডিং এবং বিদ্যুৎ বিভ্রাট দৈনন্দিন জীবনকে মারাত্মকভাবে ব্যাহত করে।",
+                englishText: [
+                    "The surging demand for air conditioning strains national power grid generation capacity.",
+                    "Installing rooftop solar panels offers an efficient green alternative power backup source.",
+                    "Conserving electrical energy by turning off unused lights and fans saves both money and power.",
+                    "Utility authorities should upgrade power grid infrastructure to prevent unexpected blackouts.",
+                    "Switching to energy-efficient LED light bulbs and inverter appliances cuts home electricity bills.",
+                    "Responsible energy consumption at home helps stabilize our collective power network."
+                ],
+                banglaText: [
+                    "এয়ার কন্ডিশনারের অতিরিক্ত চাহিদা জাতীয় বিদ্যুৎ গ্রিডের উৎপাদন ক্ষমতার ওপর চাপ ফেলে।",
+                    "ছাদের ওপর সোলার প্যানেল বসানো বিকল্প ব্যাকআপ শক্তির এক দারুণ কার্যকর ও সবুজ উৎস প্রদান করে।",
+                    "অপ্রয়োজনীয় লাইট-ফ্যান বন্ধ করে বিদ্যুৎ শক্তি সাশ্রয় করলে টাকা ও বিদ্যুৎ উভয়ই বাঁচে।",
+                    "বিদ্যুৎ কর্তৃপক্ষের উচিত পাওয়ার গ্রিডের অবকাঠামো উন্নত করা যাতে হঠাৎ ব্ল্যাকআউট না হয়।",
+                    "ইনার্জি-সেভিং এলইডি লাইট এবং ইনভার্টার যন্ত্রপাতির ব্যবহার বাসার কারেন্টের বিল অনেক কমিয়ে দেয়।",
+                    "বাসাবাড়িতে দায়িত্বশীল বিদ্যুৎ ব্যবহার আমাদের সার্বিক পাওয়ার নেটওয়ার্ককে স্থিতিশীল করতে সাহায্য করে।"
+                ]
+            },
+            {
+                id: 98,
+                title: "Talking About Dreams, Fears & Emotions (আবেগ, ভয় ও স্বপ্নের অনুভূতি)",
+                question: "Everyone experiences moments of self-doubt or fear when facing major life transitions.",
+                questionBn: "জীবনের বড় বড় পরিবর্তনের মুখোমুখি হলে সবাই আত্মসংশয় বা ভয়ের মুহূর্তের সম্মুখীন হয়।",
+                englishText: [
+                    "Acknowledging our emotions rather than suppressing them is the first step toward inner resilience.",
+                    "Failure is not the opposite of success; it is a valuable stepping stone in learning.",
+                    "Sharing your deep worries with trusted friends or mentors relieves emotional mental burden.",
+                    "Mindfulness exercises and daily positive self-talk rebuild inner confidence gradually.",
+                    "Courage is not the complete absence of fear, but taking action despite feeling afraid.",
+                    "Believing in your potential enables you to overcome any challenging life obstacle."
+                ],
+                banglaText: [
+                    "নিজের আবেগকে চেপে না রেখে মেনে নেওয়াই মানসিক শক্তি গড়ে তোলার প্রথম ধাপ।",
+                    "ব্যর্থতা সাফল্যের বিপরীত নয়; এটি শেখার প্রক্রিয়ার এক মূল্যবান ধাপ।",
+                    "বিশ্বস্ত বন্ধু বা মেন্টরের সাথে নিজের গভীর দুশ্চিন্তা শেয়ার করলে মানসিক বোঝা অনেক হালকা হয়।",
+                    "মাইন্ডফুলনেস ব্যায়াম এবং ইতিবাচক আত্মকথন ধীরে ধীরে ভেতরের আত্মবিশ্বাস ফিরিয়ে আনে।",
+                    "সাহসিকতা মানে ভয় না থাকা নয়, বরং ভয় থাকা সত্ত্বেও সঠিক পদক্ষেপ নেওয়া।",
+                    "নিজের সম্ভাবনার ওপর বিশ্বাস রাখা আপনাকে যেকোনো কঠিন বাধা অতিক্রম করতে শক্তি দেয়।"
+                ]
+            },
+            {
+                id: 99,
+                title: "Expressing Congratulations on Marriage (সফলতা ও বিয়েতে অভিনন্দন প্রকাশ)",
+                question: "Heartiest congratulations on your wedding day! Wishing you both a lifetime of happiness!",
+                questionBn: "আপনার বিয়ের দিনে হৃদয়নিংড়ানো শুভকামনা! আপনাদের দুজনের সারাজীবনের সুখ কামনা করি!",
+                englishText: [
+                    "Thank you so much for attending our wedding celebration and blessing us with your presence!",
+                    "You both look wonderfully radiant together! May your bond grow stronger with each passing day.",
+                    "May your new married life journey be filled with deep love, joy, and mutual understanding.",
+                    "Here is a small gift token of our affection to celebrate your special new beginning.",
+                    "Your thoughtful gesture and warm presence mean the world to us today.",
+                    "Cheers to a beautiful future together filled with eternal companionship!"
+                ],
+                banglaText: [
+                    "আমাদের বিবাহ অনুষ্ঠানে যোগ দিয়ে উপস্থিতি দিয়ে আমাদের আশীর্বাদ করার জন্য আপনাকে অনেক ধন্যবাদ!",
+                    "আপনাদের দুজনকে একসাথে দারুণ মানিয়েছে! প্রতিটি দিন যাওয়ার সাথে আপনাদের বন্ধন আরও সুদৃঢ় হোক।",
+                    "আপনাদের দাম্পত্য জীবনের নতুন যাত্রা গভীর ভালোবাসা, আনন্দ ও পারস্পরিক বোঝাপড়ায় ভরে উঠুক।",
+                    "আপনাদের বিশেষ এই নতুন সূচনা উদযাপনের জন্য এটি আমাদের ভালোবাসার একটি ছোট উপহার।",
+                    "আপনার এই সুন্দর উপহার এবং উষ্ণ উপস্থিতি আমাদের কাছে আজকের দিনে অনেক কিছু।",
+                    "চিরন্তন সঙ্গী হয়ে একসাথে এক সুন্দর ভবিষ্যতের দিকে এগিয়ে যাওয়ার শুভকামনা!"
+                ]
+            },
+            {
+                id: 100,
+                title: "Saying Goodbye & Wishing Well (বিদায় জানানো ও ১০০টি টপিকের সমাপ্তি)",
+                question: "It has been an absolute pleasure talking with you today. I must take my leave now.",
+                questionBn: "আজ আপনার সাথে কথা বলতে পেরে দারুণ আনন্দ লাগল। এখন আমাকে বিদায় নিতে হচ্ছে।",
+                englishText: [
+                    "Thank you for this wonderful inspiring conversation. I truly enjoyed sharing ideas with you.",
+                    "Let us keep in regular touch over phone calls and meet up again very soon.",
+                    "Take good care of yourself, and I wish you all the best in your career pursuits!",
+                    "Wish you great success, good health, and peace as well. Have a safe journey back home!",
+                    "Goodbye for now! Stay positive, keep practicing English daily, and stay blessed.",
+                    "Goodbye! Have a fantastic day ahead!"
+                ],
+                banglaText: [
+                    "এই সুন্দর অনুপ্রেরণামূলক আলোচনার জন্য আপনাকে ধন্যবাদ। আপনার সাথে ভাবনা শেয়ার করা আমি উপভোগ করেছি।",
+                    "চলুন ফোনে নিয়মিত যোগাযোগ রাখি এবং খুব শিগগিরই আবারও দেখা করি।",
+                    "নিজের খেয়াল রাখবেন, এবং আপনার ক্যারিয়ারের প্রচেষ্টায় সাফল্য কামনা করছি!",
+                    "আপনারও দারুণ সাফল্য, সুস্বাস্থ্য ও শান্তি কামনা করছি। নিরাপদে বাসায় পৌঁছান!",
+                    "আপাতত বিদায়! ইতিবাচক থাকুন, প্রতিদিন ইংরেজি চর্চা চালিয়ে যান এবং ভালো থাকুন।",
+                    "বিদায়! আপনার সামনের দিনটি চমৎকার কাটুক!"
+                ]
+            }
+        ];
+
+        // State variables
+        let highlightedSpan = null;
+
+        // Render Topics on Load
+        window.onload = function() {
+            renderTopics();
+        };
+
+        function renderTopics() {
+            const container = document.getElementById('topicsContainer');
+            container.innerHTML = '';
+
+            phase6Topics.forEach((topic) => {
+                const card = document.createElement('article');
+                card.className = 'clay-card p-6 md:p-8 transition-all duration-300';
+                card.id = `topic-card-${topic.id}`;
+
+                card.innerHTML = `
+                    <!-- Topic Header -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
+                        <div class="flex items-center gap-4">
+                            <span class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0">
+                                ${topic.id}
+                            </span>
+                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">
+                                ${topic.title}
+                            </h3>
+                        </div>
+
+                        <!-- Audio Control Buttons -->
+                        <div class="flex items-center gap-2">
+                            <button onclick="playTopicAudio(${topic.id})" id="play-btn-${topic.id}" class="btn-3d px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs md:text-sm flex items-center gap-2 font-bold">
+                                <i class="fa-solid fa-play"></i> <span>শুনুন (Full Audio)</span>
+                            </button>
+                            <button onclick="stopAudio()" class="btn-3d px-3.5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs md:text-sm font-bold" title="Stop Audio">
+                                <i class="fa-solid fa-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Question Box -->
+                    <div class="mt-6 p-5 rounded-2xl content-box">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-comments"></i> Step 1: সূচনামূলক বার্তা / প্রশ্ন (Opener)
+                                </div>
+                                <p class="en-text text-base md:text-xl font-bold">
+                                    "${topic.question}"
+                                </p>
+                                <p class="bn-text text-sm md:text-base font-semibold sub-text-color mt-2">
+                                    ${topic.questionBn}
+                                </p>
+                            </div>
+                            <button onclick="speakText('${escapeQuotes(topic.question)}')" class="btn-3d p-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl flex-shrink-0 font-bold" title="Listen Question">
+                                <i class="fa-solid fa-volume-high text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 & 3 Interactive Toggles -->
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="toggleEnglishPassage(${topic.id})" class="btn-3d px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span id="eng-toggle-text-${topic.id}">Show Full English Dialogue</span>
+                        </button>
+                        
+                        <button onclick="toggleBanglaMeaning(${topic.id})" class="btn-3d px-5 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-language"></i>
+                            <span id="bn-toggle-text-${topic.id}">Show Bangla Meaning</span>
+                        </button>
+                    </div>
+
+                    <!-- English Passage Container -->
+                    <div id="english-box-${topic.id}" class="hidden mt-6 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-paragraph"></i> Complete English Dialogue:
+                        </h4>
+                        <div id="english-text-content-${topic.id}" class="en-text text-base md:text-lg font-medium space-y-3">
+                            ${topic.englishText.map((sent, index) => `<span id="sent-${topic.id}-${index}" class="inline-block transition-all duration-200">${sent} </span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Bangla Meaning Container -->
+                    <div id="bangla-box-${topic.id}" class="hidden mt-4 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-language"></i> বাংলা অনুবাদ:
+                        </h4>
+                        <div class="bn-text text-base md:text-lg font-medium space-y-3 opacity-95">
+                            ${topic.banglaText.map((bSent) => `<p class="leading-relaxed">• ${bSent}</p>`).join('')}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle English Passage Visibility
+        function toggleEnglishPassage(topicId) {
+            const box = document.getElementById(`english-box-${topicId}`);
+            const btnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide English Dialogue";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Full English Dialogue";
+            }
+        }
+
+        // Toggle Bangla Meaning Visibility
+        function toggleBanglaMeaning(topicId) {
+            const box = document.getElementById(`bangla-box-${topicId}`);
+            const btnText = document.getElementById(`bn-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide Bangla Meaning";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Bangla Meaning";
+            }
+        }
+
+        // Change Theme Function
+        function changeTheme(themeName) {
+            document.body.className = `${themeName} min-h-screen pb-16 transition-all duration-500`;
+        }
+
+        // Stop Currently Playing Audio
+        function stopAudio() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            clearHighlight();
+        }
+
+        // Clear Line Highlights
+        function clearHighlight() {
+            if (highlightedSpan) {
+                highlightedSpan.classList.remove('sentence-highlight');
+                highlightedSpan = null;
+            }
+        }
+
+        // Speak Single Question Text
+        function speakText(text) {
+            stopAudio();
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+
+            utterance.lang = lang;
+            utterance.rate = rate;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Play Entire Topic Audio with Live Sentence Highlighting
+        function playTopicAudio(topicId) {
+            stopAudio();
+
+            const topic = phase6Topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            // Make sure English text box is visible while playing
+            const engBox = document.getElementById(`english-box-${topicId}`);
+            const engBtnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (engBox.classList.contains('hidden')) {
+                engBox.classList.remove('hidden');
+                engBtnText.innerText = "Hide English Dialogue";
+            }
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+            let sentenceIndex = 0;
+
+            function speakNextSentence() {
+                if (sentenceIndex >= topic.englishText.length) {
+                    clearHighlight();
+                    return;
+                }
+
+                clearHighlight();
+                const currentSpan = document.getElementById(`sent-${topicId}-${sentenceIndex}`);
+                if (currentSpan) {
+                    currentSpan.classList.add('sentence-highlight');
+                    highlightedSpan = currentSpan;
+                    currentSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                const utterance = new SpeechSynthesisUtterance(topic.englishText[sentenceIndex]);
+                utterance.lang = lang;
+                utterance.rate = rate;
+
+                utterance.onend = function() {
+                    sentenceIndex++;
+                    speakNextSentence();
+                };
+
+                utterance.onerror = function() {
+                    clearHighlight();
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            speakNextSentence();
+        }
+
+        // Helper function to escape quotes
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>

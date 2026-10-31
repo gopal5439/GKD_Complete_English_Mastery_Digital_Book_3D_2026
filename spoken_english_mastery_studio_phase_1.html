@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken English Mastery Studio - Phase 1</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Typography Setup */
+        :root {
+            --font-english: 'Times New Roman', Times, Georgia, serif;
+            --font-bangla: 'Tiro Bangla', serif;
+        }
+
+        body {
+            font-family: var(--font-bangla), var(--font-english);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            user-select: text;
+        }
+
+        .en-text {
+            font-family: var(--font-english);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.9;
+        }
+
+        .bn-text {
+            font-family: var(--font-bangla);
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 2.0;
+        }
+
+        /* High-Contrast 3D Surface Cards */
+        .clay-card {
+            background-color: var(--card-bg, #ffffff);
+            color: var(--card-text, #0f172a);
+            border: 1px solid var(--card-border, rgba(0, 0, 0, 0.12));
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.25),
+                0 8px 10px -6px rgba(0, 0, 0, 0.2);
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 3D Touch-Feel Buttons */
+        .btn-3d {
+            position: relative;
+            transition: all 0.15s ease;
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 0 0 rgba(0, 0, 0, 0.25),
+                0 6px 12px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 0 0 rgba(0, 0, 0, 0.25),
+                0 10px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 
+                0 1px 0 0 rgba(0, 0, 0, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* High-Contrast Active Audio Sentence Highlight */
+        .sentence-highlight {
+            background-color: #facc15 !important;
+            color: #000000 !important;
+            border-radius: 0.375rem;
+            padding: 0.2rem 0.4rem;
+            font-weight: 700;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.85);
+            transition: all 0.2s ease;
+        }
+
+        /* Theme Presets with Guaranteed Text Contrast */
+        .theme-ocean {
+            background: linear-gradient(135deg, #0b1329 0%, #172554 50%, #0f172a 100%);
+            color: #f8fafc;
+            --card-bg: #1e293b;
+            --card-text: #f8fafc;
+            --card-border: rgba(255, 255, 255, 0.12);
+            --box-bg: #0f172a;
+            --box-border: rgba(255, 255, 255, 0.15);
+            --subtext: #cbd5e1;
+        }
+        .theme-emerald {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #022c22 100%);
+            color: #ecfdf5;
+            --card-bg: #065f46;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #022c22;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #a7f3d0;
+        }
+        .theme-purple {
+            background: linear-gradient(135deg, #2e1065 0%, #3b0764 50%, #1e1b4b 100%);
+            color: #faf5ff;
+            --card-bg: #4c1d95;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #2e1065;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #e9d5ff;
+        }
+        .theme-sunset {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #292524 100%);
+            color: #fff7ed;
+            --card-bg: #571e06;
+            --card-text: #ffffff;
+            --card-border: rgba(255, 255, 255, 0.15);
+            --box-bg: #291004;
+            --box-border: rgba(255, 255, 255, 0.2);
+            --subtext: #fed7aa;
+        }
+        .theme-light {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #f1f5f9 100%);
+            color: #0f172a;
+            --card-bg: #ffffff;
+            --card-text: #0f172a;
+            --card-border: rgba(0, 0, 0, 0.12);
+            --box-bg: #f1f5f9;
+            --box-border: rgba(0, 0, 0, 0.15);
+            --subtext: #334155;
+        }
+
+        /* Dynamic surface classes based on CSS vars */
+        .content-box {
+            background-color: var(--box-bg);
+            border: 1px solid var(--box-border);
+            color: var(--card-text);
+        }
+        .sub-text-color {
+            color: var(--subtext);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.6);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="theme-ocean min-h-screen pb-16 transition-all duration-500">
+
+    <!-- Top Sticky Header Nav -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-white/10 px-4 py-4 mb-8 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 to-pink-500 flex items-center justify-center text-white text-2xl shadow-lg transform rotate-3">
+                    <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide text-white">
+                        Spoken English Mastery Studio
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">Phase 1: 15টি গুরুত্বপূর্ণ দৈনন্দিন লাইফ টপিক (সম্পূর্ণ বিস্তারিত)</p>
+                </div>
+            </div>
+
+            <!-- Controls: Global Speech & Theme Selector -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <!-- Theme Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-palette text-amber-400"></i>
+                    <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="theme-ocean">Deep Ocean (Dark)</option>
+                        <option value="theme-emerald">Cyber Emerald</option>
+                        <option value="theme-purple">Royal Purple</option>
+                        <option value="theme-sunset">Sunset Gold</option>
+                        <option value="theme-light">Clean Light (Bright)</option>
+                    </select>
+                </div>
+
+                <!-- Global Accent Selector -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white">
+                    <i class="fa-solid fa-earth-americas text-indigo-400"></i>
+                    <select id="globalAccent" class="bg-slate-900 text-white text-sm focus:outline-none cursor-pointer font-semibold">
+                        <option value="en-US">🇺🇸 American Accent</option>
+                        <option value="en-GB">🇬🇧 British Accent</option>
+                    </select>
+                </div>
+
+                <!-- Global Speech Rate -->
+                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700 text-white text-xs font-semibold">
+                    <i class="fa-solid fa-gauge-high text-emerald-400"></i>
+                    <span>গতি: <span id="speedVal" class="text-amber-400">0.9x</span></span>
+                    <input type="range" id="globalSpeed" min="0.5" max="1.5" step="0.1" value="0.9" oninput="document.getElementById('speedVal').innerText = this.value + 'x'" class="w-16 accent-indigo-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4">
+
+        <!-- Intro Banner -->
+        <section class="clay-card p-6 md:p-8 mb-10 border-l-8 border-indigo-500">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-3 flex items-center gap-3">
+                        <i class="fa-solid fa-circle-play text-indigo-400"></i>
+                        বাস্তব জীবনে ইংরেজিতে কথা বলার সম্পূর্ণ গাইড
+                    </h2>
+                    <p class="text-base md:text-lg bn-text font-medium leading-relaxed sub-text-color">
+                        প্রতিটি টপিক এমনভাবে সাজানো হয়েছে যাতে আপনি কেবল মুখস্থ না করে দৈনন্দিন জীবনে বাস্তব কথোপকথন বুঝতে ও প্রয়োগ করতে পারেন। 
+                        প্রথমে **প্রশ্নটি শুনুন**, তারপর **ইংরেজি সম্পূর্ণ ডায়ালগ** দেখুন এবং শুনুন। প্রয়োজন অনুযায়ী নিচে ক্লিক করে **বাংলা অর্থ** অনুবাদ মিলিয়ে নিন।
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <span class="bg-indigo-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-volume-high mr-1"></i> Interactive Audio
+                    </span>
+                    <span class="bg-amber-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-highlighter mr-1"></i> Live Highlighting
+                    </span>
+                    <span class="bg-emerald-600 text-white px-3.5 py-2 rounded-lg shadow">
+                        <i class="fa-solid fa-language mr-1"></i> Bangla & English
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic List Container -->
+        <div id="topicsContainer" class="space-y-8">
+            <!-- Topics rendered dynamically via JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Audio Speech Script & Topics Data -->
+    <script>
+        // Data Structure for Phase 1 (15 Topics)
+        const phase1Topics = [
+            {
+                id: 1,
+                title: "Complete Self-Introduction (নিজের সম্পূর্ণ পরিচয়)",
+                question: "Could you please introduce yourself in detail including your background, career goals, and interests?",
+                questionBn: "আপনি কি আপনার পরিচয়, শিক্ষাগত ব্যাকগ্রাউন্ড, জীবনের লক্ষ্য ও শখ সম্পর্কে বিস্তারিত বলতে পারবেন?",
+                englishText: [
+                    "Hello everyone. First of all, thank you very much for giving me this wonderful opportunity to introduce myself.",
+                    "My name is Tanvir Ahmed. I am 24 years old and I was born and raised in Dhaka, Bangladesh.",
+                    "Regarding my educational background, I recently completed my Bachelor's degree in Computer Science and Engineering from Brac University.",
+                    "I have always had a deep passion for technology, software development, and problem-solving.",
+                    "Speaking of my family, we are a family of four. My father is a retired banker, my mother is a dedicated homemaker, and I have one younger sister who is studying in college.",
+                    "In my spare time, I love reading technology blogs, practicing competitive coding, playing chess, and listening to classical music.",
+                    "My short-term goal is to secure a challenging position as a software developer in a reputed organization.",
+                    "My long-term goal is to become a successful team leader and contribute significantly to high-impact technology projects.",
+                    "I consider myself a hard-working, disciplined, and optimistic person who is always eager to learn new skills.",
+                    "That is all about me for now. Thank you once again for your valuable time and attention."
+                ],
+                banglaText: [
+                    "সবাইকে অভিবাদন। প্রথমত, আমাকে নিজের পরিচয় দেওয়ার এমন একটি চমৎকার সুযোগ দেওয়ার জন্য আপনাকে অসংখ্য ধন্যবাদ।",
+                    "আমার নাম তানভীর আহমেদ। আমার বয়স ২৪ বছর এবং আমি বাংলাদেশের ঢাকায় জন্মগ্রহণ করেছি ও বড় হয়েছি।",
+                    "আমার শিক্ষাগত যোগ্যতার কথা বলতে গেলে, আমি সম্প্রতি ব্র্যাক বিশ্ববিদ্যালয় থেকে কম্পিউটার সায়েন্স অ্যান্ড ইঞ্জিনিয়ারিং-এ ব্যাচেলর ডিগ্রি সম্পন্ন করেছি।",
+                    "প্রযুক্তি, সফটওয়্যার উন্নয়ন এবং সমস্যা সমাধানের প্রতি আমার সর্বদা এক গভীর আগ্রহ ছিল।",
+                    "পরিবারের কথা বললে, আমরা চার সদস্যের একটি পরিবার। আমার বাবা একজন অবসরপ্রাপ্ত ব্যাংকার, আমার মা একজন গৃহিণী এবং আমার একটি ছোট বোন আছে যে কলেজে পড়াশোনা করছে।",
+                    "অবসর সময়ে আমি টেকনোলজি ব্লগ পড়তে, প্রতিযোগিতামূলক কোডিং অনুশীলন করতে, দাবা খেলতে এবং ক্লাসিক্যাল গান শুনতে পছন্দ করি।",
+                    "আমার স্বল্পমেয়াদী লক্ষ্য হলো একটি স্বনামধন্য প্রতিষ্ঠানে সফটওয়্যার ডেভেলপার হিসেবে একটি চ্যালেঞ্জিং পদে যোগদান করা।",
+                    "আমার দীর্ঘমেয়াদী লক্ষ্য হলো একজন সফল টিম লিডার হওয়া এবং প্রভাব বিস্তারকারী প্রযুক্তি প্রজেক্টে গুরুত্বপূর্ণ অবদান রাখা।",
+                    "আমি নিজেকে একজন কঠোর পরিশ্রমী, সুশৃঙ্খল এবং ইতিবাচক মনোভাবের মানুষ মনে করি যিনি সবসময় নতুন দক্ষতা শিখতে আগ্রহী।",
+                    "আমার সম্পর্কে আপাতত এটুকুই। আপনার মূল্যবান সময় ও মনোযোগের জন্য আবারো ধন্যবাদ।"
+                ]
+            },
+            {
+                id: 2,
+                title: "Introducing a Friend or Family Member (বন্ধু বা পরিবারের সদস্যের পরিচয়)",
+                question: "Can you introduce your best friend or a family member to us?",
+                questionBn: "আপনি কি আপনার সেরা বন্ধু বা পরিবারের কোনো সদস্যের পরিচয় আমাদের সাথে করিয়ে দিতে পারবেন?",
+                englishText: [
+                    "I would love to introduce my childhood best friend, Rahat Chowdhury.",
+                    "We have known each other for over ten years, starting from our early primary school days.",
+                    "Rahat is currently working as a graphic designer at a renowned marketing firm in Dhaka.",
+                    "What I admire most about him is his creative mindset, humor, and willingness to help anyone in need.",
+                    "Whenever I face a tough situation in life, Rahat is always the first person to offer genuine advice and support.",
+                    "We share common interests in photography, weekend road trips, and playing football together.",
+                    "He is not just a close friend to me; he is truly like a brother and an essential part of my life."
+                ],
+                banglaText: [
+                    "আমি আমার ছোটবেলার সেরা বন্ধু রাহাত চৌধুরীর সাথে আপনাদের পরিচয় করিয়ে দিতে চাই।",
+                    "আমাদের প্রাইমারি স্কুলের শুরুর দিনগুলো থেকে প্রায় দশ বছরেরও বেশি সময় ধরে আমাদের পরিচয়।",
+                    "রাহাত বর্তমানে ঢাকার একটি নামকরা মার্কেটিং ফার্মে গ্রাফিক ডিজাইনার হিসেবে কর্মরত রয়েছে।",
+                    "তার সম্পর্কে আমি যা সবচেয়ে বেশি পছন্দ করি তা হলো তার সৃজনশীল চিন্তাভাবনা, রসিকতা এবং প্রয়োজনে সবাইকে সাহায্য করার মানসিকতা।",
+                    "জীবনের যেকোনো কঠিন পরিস্থিতিতে পড়ার সাথে সাথে রাহাতই প্রথম ব্যক্তি যে সঠিক পরামর্শ ও সমর্থন দেয়।",
+                    "আমাদের ছবি তোলা, উইকএন্ডে রোডে ঘুরে বেড়ানো এবং একসাথে ফুটবল খেলার মতো কমন কিছু শখ রয়েছে।",
+                    "সে কেবল আমার কাছে একজন বন্ধুই নয়; সে সত্যি আমার ভাইয়ের মতো এবং আমার জীবনের একটি গুরুত্বপূর্ণ অংশ।"
+                ]
+            },
+            {
+                id: 3,
+                title: "Talking About Your Family and Relatives (পরিবার ও আত্মীয়স্বজন)",
+                question: "Tell me something about your family members and how close you are with them.",
+                questionBn: "আপনার পরিবারের সদস্যদের সম্পর্কে বলুন এবং আপনি তাদের সাথে কতটা ঘনিষ্ঠ?",
+                englishText: [
+                    "Family holds the most crucial place in my life, and I am fortunate to belong to a warm and loving family.",
+                    "We live in a cozy apartment where my parents, my elder brother, and I live together.",
+                    "My father is a school teacher who taught us the value of honesty, discipline, and hard work from early childhood.",
+                    "My mother is the heart of our family; she manages our home flawlessly and prepares the most delicious meals.",
+                    "My elder brother is an banker, and he always acts as a mentor whenever I need career guidance.",
+                    "During holidays, our extended family and relatives gather at our ancestral home to celebrate togetherness.",
+                    "We share our daily joys, sorrows, and achievements, which makes our bond stronger with every passing day."
+                ],
+                banglaText: [
+                    "আমার জীবনে পরিবারের স্থান সবচেয়ে উপরে এবং আমি একটি উষ্ণ ও ভালোবাসাপূর্ণ পরিবারের অংশ হতে পেরে ভাগ্যবান।",
+                    "আমরা একটি সুন্দর অ্যাপার্টমেন্টে থাকি যেখানে আমার মা-বাবা, আমার বড় ভাই এবং আমি একসাথে থাকি।",
+                    "আমার বাবা একজন শিক্ষক যিনি শৈশব থেকেই আমাদের সততা, শৃঙ্খলা এবং কঠোর পরিশ্রমের মূল্য শিখিয়েছেন।",
+                    "আমার মা আমাদের পরিবারের প্রাণ; তিনি নিপুণভাবে আমাদের বাড়ি পরিচালনা করেন এবং চমৎকার সব রান্না করেন।",
+                    "আমার বড় ভাই একজন ব্যাংকার, এবং যখনই আমার ক্যারিয়ারে দিকনির্দেশনার প্রয়োজন হয় তিনি শিক্ষকের মতো গাইড করেন।",
+                    "ছুটির দিনগুলোতে আমাদের যৌথ পরিবার ও আত্মীয়স্বজনরা আমাদের গ্রামের বাড়িতে একত্রিত হয়ে আনন্দ উদযাপন করি।",
+                    "আমরা আমাদের দৈনিক আনন্দ, কষ্ট ও সাফল্য নিজেদের মধ্যে ভাগ করে নিই, যা আমাদের বন্ধনকে দিন দিন আরও মজবুত করে।"
+                ]
+            },
+            {
+                id: 4,
+                title: "Describing Your Hometown and Living Place (নিজের শহর বা হোমটাউন)",
+                question: "Where are you originally from, and how would you describe your hometown?",
+                questionBn: "আপনার মূল বাড়ি কোথায় এবং আপনি কীভাবে আপনার নিজ শহরের বর্ণনা দেবেন?",
+                englishText: [
+                    "I am originally from Sylhet, a beautiful city located in the northeastern region of Bangladesh.",
+                    "Sylhet is world-famous for its endless green tea gardens, scenic hills, and serene river streams.",
+                    "One of the major attractions of my hometown is the shrine of Hazrat Shah Jalal (R), which draws thousands of visitors daily.",
+                    "The local people in Sylhet are exceptionally hospitable, warm, and deeply rooted in their traditional culture.",
+                    "The atmosphere is peaceful compared to the bustling rush of Dhaka city, offering clean air and lush green nature.",
+                    "I feel extremely proud to belong to such a culturally rich and naturally scenic town."
+                ],
+                banglaText: [
+                    "আমার মূল নিবাস সিলেটে, যা বাংলাদেশের উত্তর-পূর্বাঞ্চলে অবস্থিত একটি অপরূপ সুন্দর শহর।",
+                    "সিলেট তার অসীম সবুজ চা বাগান, মনোরম পাহাড় এবং শান্ত নদী-নালার জন্য বিশ্বজুড়ে বিখ্যাত।",
+                    "আমার নিজ শহরের অন্যতম প্রধান আকর্ষণ হলো হযরত শাহজালাল (র:)-এর মাজার, যেখানে প্রতিদিন হাজার হাজার দর্শনার্থী আসেন।",
+                    "সিলেটের স্থানীয় মানুষ অত্যন্ত অতিথি পরায়ন, উষ্ণ এবং তাদের ঐতিহ্যবাহী সংস্কৃতির সাথে গভীরভাবে যুক্ত।",
+                    "ঢাকার ব্যস্ত নাগরিক কোলাহলের তুলনায় এখানকার পরিবেশ বেশ শান্ত, যা পরিষ্কার বাতাস এবং সবুজ প্রকৃতি উপহার দেয়।",
+                    "এত সাংস্কৃতিক ও প্রাকৃতিক সৌন্দর্যে সমৃদ্ধ একটি শহরের অধিবাসী হতে পেরে আমি অত্যন্ত গর্বিত।"
+                ]
+            },
+            {
+                id: 5,
+                title: "Discussing Daily Routines and Schedules (দৈনিক রুটিন ও সময়সূচি)",
+                question: "What does your typical daily routine look like during weekdays?",
+                questionBn: "কর্মদিবসগুলোতে আপনার সাধারণ দৈনিক রুটিন কেমন হয়?",
+                englishText: [
+                    "My weekdays are quite structured to ensure I stay productive and healthy throughout the day.",
+                    "I usually wake up early at 6:00 AM, freshen up, and spend about thirty minutes doing morning exercise or light yoga.",
+                    "After having a nutritious breakfast with my family, I leave for my office around 8:30 AM.",
+                    "My working hours run from 9:30 AM to 5:30 PM, where I focus on my assigned tasks and team meetings.",
+                    "In the evening, after returning home, I unwind by taking a hot shower and having tea with my family.",
+                    "Before sleeping around 11:00 PM, I dedicate an hour to reading books or learning new online skills."
+                ],
+                banglaText: [
+                    "আমার কাজের দিনগুলো বেশ সুশৃঙ্খল যাতে আমি সারা দিন কর্মক্ষম ও সুস্থ থাকতে পারি।",
+                    "আমি সাধারণত সকাল ৬:০০ টায় ঘুম থেকে উঠি, ফ্রেশ হই এবং প্রায় ত্রিশ মিনিট সকালের ব্যায়াম বা হালকা ইয়োগা করি।",
+                    "পরিবারের সাথে পুষ্টিকর সকালের নাস্তা শেষ করে আমি ৮:৩০ টার দিকে অফিসের উদ্দেশ্যে রওনা হই।",
+                    "আমার কাজের সময় সকাল ৯:৩০ টা থেকে বিকেল ৫:৩০ টা পর্যন্ত, যেখানে আমি আমার নির্দিষ্ট কাজ ও মিটিংয়ে মনোনিবেশ করি।",
+                    "সন্ধ্যায় বাড়ি ফেরার পর আমি ফ্রেশ হয়ে পরিবারের সাথে চা খেতে খেতে বিশ্রাম নিই।",
+                    "রাত ১১:০০ টার দিকে ঘুমানোর আগে, আমি অন্তত এক ঘণ্টা বই পড়ার জন্য বা নতুন দক্ষতা শেখার জন্য ব্যয় করি।"
+                ]
+            },
+            {
+                id: 6,
+                title: "Talking About Hobbies and Free-Time Interests (শখ ও অবসরের বিনোদন)",
+                question: "What hobbies do you enjoy pursuing in your spare time?",
+                questionBn: "অবসর সময়ে আপনি কোন শখগুলো উপভোগ করেন?",
+                englishText: [
+                    "In my free time, I love engaging in activities that refresh my mind and enhance my creativity.",
+                    "My primary hobby is reading self-development and fictional novels, which helps expand my vision and vocabulary.",
+                    "Apart from reading, I am passionate about gardening on my balcony, where I grow medicinal herbs and flowering plants.",
+                    "Spending time taking care of plants gives me immense mental peace after a hectic work week.",
+                    "Occasionally, I also enjoy landscape photography during weekends when visiting parks or riverbanks.",
+                    "Hobbies make my life balanced, meaningful, and full of positive energy."
+                ],
+                banglaText: [
+                    "আমার অবসর সময়ে, আমি এমন সব কাজে যুক্ত থাকতে ভালোবাসি যা আমার মনকে সতেজ করে এবং সৃজনশীলতা বৃদ্ধি করে।",
+                    "আমার প্রধান শখ হলো আত্মউন্নয়নমূলক এবং কাল্পনিক উপন্যাস পড়া, যা আমার দৃষ্টিভঙ্গি ও শব্দভাণ্ডার বাড়াতে সাহায্য করে।",
+                    "পড়ার পাশাপাশি ব্যালকনিতে বাগান করার প্রতি আমার গভীর আগ্রহ রয়েছে, যেখানে আমি ওষুধি গাছ ও ফুল গাছ চাষ করি।",
+                    "ব্যস্ত কর্মসপ্তাহের পর গাছপালার পরিচর্যায় সময় কাটানো আমাকে বিপুল মানসিক শান্তি দেয়।",
+                    "মাঝে মাঝে ছুটির দিনে পার্ক বা নদীর তীরে ঘুরতে গেলে ল্যান্ডস্কেপ ছবি তুলতেও খুব আনন্দ পাই।",
+                    "শখ আমার জীবনকে ভারসাম্যপূর্ণ, অর্থপূর্ণ এবং ইতিবাচক শক্তিতে পরিপূর্ণ করে তোলে।"
+                ]
+            },
+            {
+                id: 7,
+                title: "Discussing Favorite Foods and Cooking Habits (খাবার ও রান্নার অভ্যাস)",
+                question: "What is your favorite dish, and do you enjoy cooking at home?",
+                questionBn: "আপনার পছন্দের খাবার কোনটি এবং আপনি কি বাড়িতে রান্না করতে পছন্দ করেন?",
+                englishText: [
+                    "I am a true food enthusiast, and I relish trying out different traditional and international cuisines.",
+                    "My absolute favorite dish is traditional Kacchi Biryani cooked with fragrant Basmati rice and tender mutton.",
+                    "Besides eating, I actually enjoy cooking during the weekends as a stress-busting activity.",
+                    "I often experiment with Italian pasta recipes and traditional Bengali fish curries for my family.",
+                    "Cooking allows me to be creative with spices and ingredients while bringing happiness to my loved ones.",
+                    "I firmly believe that homemade food cooked with love is both health-friendly and unmatched in taste."
+                ],
+                banglaText: [
+                    "আমি একজন সত্যিকারের খাদ্যরসিক এবং বিভিন্ন ঐতিহ্যবাহী ও আন্তর্জাতিক খাবার চেখে দেখতে পছন্দ করি।",
+                    "আমার সবচেয়ে প্রিয় খাবার হলো সুগন্ধি বাসমেতি চাল ও নরম খাসির মাংস দিয়ে রান্না করা ঐতিহ্যবাহী কাচ্চি বিরিয়ানি।",
+                    "খাওয়ার পাশাপাশি, মানসিক চাপ দূর করার মাধ্যম হিসেবে আমি সপ্তাহান্তে রান্না করতে বেশ উপভোগ করি।",
+                    "আমি প্রায়শই আমার পরিবারের জন্য ইতালীয় পাস্তা এবং ঐতিহ্যবাহী বাঙালি মাছের কালিয়া রান্না করার চেষ্টা করি।",
+                    "রান্না আমাকে বিভিন্ন মসলা ও উপাদান নিয়ে পরীক্ষা-নিরীক্ষা করার এবং প্রিয়জনদের মুখে হাসি ফোটানোর সুযোগ দেয়।",
+                    "আমি দৃঢ়ভাবে বিশ্বাস করি যে ভালোবাসার সাথে বাড়িতে তৈরি খাবার একাধারে স্বাস্থ্যকর এবং স্বাদে অতুলনীয়।"
+                ]
+            },
+            {
+                id: 8,
+                title: "Talking About Dreams, Goals, and Ambitions (স্বপ্ন ও ভবিষ্যতের লক্ষ্য)",
+                question: "What are your primary ambitions and long-term career goals?",
+                questionBn: "আপনার প্রধান লক্ষ্য এবং দীর্ঘমেয়াদী ক্যারিয়ার পরিকল্পনা কী?",
+                englishText: [
+                    "Having clear goals keeps me motivated and focused on continuous self-improvement every single day.",
+                    "My immediate professional goal is to master advanced technologies and contribute to high-scale software solutions.",
+                    "In the long run, I aspire to launch my own tech startup aimed at solving real-world education and healthcare problems.",
+                    "On a personal level, I dream of traveling around the globe to explore diverse cultures and breathtaking landscapes.",
+                    "I want to create an impactful career where I can empower young minds and give back to society.",
+                    "I know achieving these dreams requires hard work, resilience, and patience, and I am fully committed to the journey."
+                ],
+                banglaText: [
+                    "নির্দিষ্ট লক্ষ্য থাকা আমাকে প্রতিদিন অনুপ্রেরণা দেয় এবং ক্রমাগত আত্মউন্নয়নে মনোযোগী রাখে।",
+                    "আমার বর্তমান পেশাগত লক্ষ্য হলো উন্নত প্রযুক্তিতে দক্ষতা অর্জন করা এবং বড় মাপের সফটওয়্যার সমাধানে ভূমিকা রাখা।",
+                    "দীর্ঘমেয়াদে, আমার ইচ্ছা একটি নিজস্ব টেক স্টার্টআপ শুরু করা যা বাস্তব জীবনের শিক্ষা ও স্বাস্থ্য খাতের সমস্যা সমাধান করবে।",
+                    "ব্যক্তিগত পর্যায়ে, আমার স্বপ্ন বিশ্বজুড়ে ভ্রমণ করে বিভিন্ন সংস্কৃতি ও অপরূপ প্রাকৃতিক দৃশ্য উপভোগ করা।",
+                    "আমি এমন একটি প্রভাবশালী ক্যারিয়ার গড়তে চাই যেখানে আমি তরুণদের অনুপ্রাণিত করতে পারি এবং সমাজকে কিছু ফিরিয়ে দিতে পারি।",
+                    "আমি জানি এই স্বপ্নগুলো বাস্তবায়নে পরিশ্রম, সহনশীলতা ও ধৈর্য প্রয়োজন, এবং আমি এই যাত্রায় পুরোপুরি প্রতিশ্রুতিবদ্ধ।"
+                ]
+            },
+            {
+                id: 9,
+                title: "Discussing Strengths and Weaknesses (শক্তি ও দুর্বলতার দিকগুলো)",
+                question: "How would you describe your main personal strengths and weaknesses?",
+                questionBn: "আপনি কীভাবে আপনার ব্যক্তিগত শক্তি ও দুর্বলতার জায়গাগুলোর বর্ণনা দেবেন?",
+                englishText: [
+                    "Analyzing personal strengths and weaknesses is essential for balanced growth and self-awareness.",
+                    "One of my key strengths is my adaptability; I can adjust smoothly to new environments and work under high pressure.",
+                    "Additionally, I possess strong active listening and problem-solving skills, making me an effective team player.",
+                    "On the flip side, my biggest weakness is that I sometimes overthink small details, which slows down my pace initially.",
+                    "Another area I am working on is difficulty saying 'no' to people when they ask for extra favors.",
+                    "I am actively practicing time management and mindfulness techniques to overcome these weaknesses effectively."
+                ],
+                banglaText: [
+                    "ব্যক্তিগত শক্তি ও দুর্বলতা বিশ্লেষণ করা ভারসাম্যপূর্ণ উন্নতি এবং আত্মসচেতনতার জন্য অত্যন্ত জরুরি।",
+                    "আমার প্রধান শক্তির একটি হলো আমার মানিয়ে নেওয়ার ক্ষমতা; আমি যেকোনো নতুন পরিবেশ ও চাপের মুখে সহজে মানিয়ে নিতে পারি।",
+                    "এছাড়া, আমার মনোযোগ দিয়ে শোনার এবং সমস্যা সমাধানের ভালো দক্ষতা রয়েছে, যা আমাকে একজন সফল টিম প্লেয়ার বানায়।",
+                    "অন্যদিকে, আমার বড় দুর্বলতা হলো আমি মাঝে মাঝে ছোটখাটো বিষয় নিয়ে অতিরিক্ত চিন্তা করি, যা শুরুতে কাজের গতি কমায়।",
+                    "আরেকটি বিষয় নিয়ে আমি কাজ করছি তা হলো কেউ অতিরিক্ত সাহায্য চাইলে 'না' বলতে সমস্যা হওয়া।",
+                    "আমি এই দুর্বলতাগুলো দূর করতে সময় ব্যবস্থাপনা এবং মাইন্ডফুলনেস কৌশলগুলো সক্রিয়ভাবে অনুশীলন করছি।"
+                ]
+            },
+            {
+                id: 10,
+                title: "Talking About Childhood Memories and School Days (শৈশবের স্মৃতি ও স্কুলের দিন)",
+                question: "What is your fondest memory from your childhood or school days?",
+                questionBn: "আপনার শৈশব বা স্কুলের দিনগুলোর সবচেয়ে মধুর স্মৃতি কোনটি?",
+                englishText: [
+                    "Childhood is undoubtedly the most innocent and magical phase of human life, full of pure joy.",
+                    "My fondest memory revolves around rain-soaked afternoons spent playing football with village friends in open muddy fields.",
+                    "I vividly remember our primary school recess breaks, where we shared tiffin boxes under the big banyan tree.",
+                    "Our teachers were kind and encouraging, nurturing our curious minds with inspiring stories and lessons.",
+                    "There were no digital distractions back then; life was simple, authentic, and deeply connected with nature.",
+                    "Reminiscing about those golden days always brings a warm smile to my face and nostalgia to my heart."
+                ],
+                banglaText: [
+                    "শৈশব নিঃসন্দেহে মানুষের জীবনের সবচেয়ে নির্দোষ এবং জাদুকরী একটি পর্যায়, যা খাঁটি আনন্দে ভরপুর।",
+                    "আমার সবচেয়ে মধুর স্মৃতিটি হলো বৃষ্টির বিকেলে কাদামাখা খোলা মাঠে বন্ধুদের সাথে ফুটবল খেলার দিনগুলো।",
+                    "আমার স্পষ্ট মনে আছে আমাদের প্রাইমারি স্কুলের টিফিন বিরতির কথা, যেখানে বড় বটগাছের নিচে বসে সবাই টিফিন ভাগ করে খেতাম।",
+                    "আমাদের শিক্ষকরা অত্যন্ত সদয় ও উৎসাহী ছিলেন, যারা অনুপ্রেরণামূলক গল্প ও শিক্ষার মাধ্যমে আমাদের মনকে বিকশিত করতেন।",
+                    "তখন ডিজিটালের কোনো ব্যস্ততা ছিল না; জীবন ছিল সহজ, খাঁটি এবং প্রকৃতির সাথে গভীরভাবে সংযুক্ত।",
+                    "সেই সোনালী দিনগুলোর কথা মনে পড়লে আমার মুখে সবসময় হাসি ফোটে এবং হৃদয়ে এক মধুর অনুভূতি তৈরি হয়।"
+                ]
+            },
+            {
+                id: 11,
+                title: "Discussing Age, Birthdays, and Celebrations (বয়স, জন্মদিন ও উৎসব উদযাপন)",
+                question: "How do you usually like to celebrate your birthday and family occasions?",
+                questionBn: "আপনি সাধারণত কীভাবে আপনার জন্মদিন এবং পারিবারিক উৎসবগুলো উদযাপন করেন?",
+                englishText: [
+                    "Birthdays and family celebrations are wonderful opportunities to express gratitude for another year of life.",
+                    "Instead of throwing grand extravagant parties, I prefer intimate gatherings with close family members and friends.",
+                    "On my birthday, we start the day with homemade special breakfast prepared by my mother.",
+                    "In the evening, we cut a simple homemade cake, exchange warm wishes, and enjoy a memorable dinner together.",
+                    "I also make it a tradition to donate food or warm clothes to underprivileged children on my birth date.",
+                    "Celebrating with love, simplicity, and charity gives true happiness and lasting joy to my heart."
+                ],
+                banglaText: [
+                    "जन्मদিন এবং পারিবারিক অনুষ্ঠানগুলো জীবনের আরেকটি বছরের জন্য কৃতজ্ঞতা প্রকাশের চমৎকার সুযোগ।",
+                    "আড়ম্বরপূর্ণ বড় পার্টি দেওয়ার বদলে, আমি পরিবারের সদস্য ও ঘনিষ্ঠ বন্ধুদের নিয়ে ঘরোয়া আয়োজন পছন্দ করি।",
+                    "আমার জন্মদিনে, আমরা মায়ের হাতে তৈরি বিশেষ সকালের নাস্তা দিয়ে দিনটি শুরু করি।",
+                    "সন্ধ্যায় আমরা একটি সাধারণ কেক কাটি, শুভেচ্ছা বিনিময় করি এবং সবাই মিলে এক সাথে রাতের খাবার উপভোগ করি।",
+                    "আমার জন্মদিনে সুবিধাবঞ্চিত শিশুদের মাঝে খাবার বা গরম কাপড় দান করাকে আমি একটি রেওয়াজে পরিণত করেছি।",
+                    "ভালোবাসা, সাদাসিধে ভাব এবং দানের মাধ্যমে উদযাপন করা আমার হৃদয়ে প্রকৃত সুখ ও স্থায়ী আনন্দ দেয়।"
+                ]
+            },
+            {
+                id: 12,
+                title: "Talking About Personality Traits and Behavior (ব্যক্তিত্ব ও মানুষের আচরণ)",
+                question: "What kind of personality traits do you appreciate most in other people?",
+                questionBn: "অন্য মানুষের মধ্যে আপনি কোন ধরণের চারিত্রিক বৈশিষ্ট্যগুলো সবচেয়ে বেশি পছন্দ করেন?",
+                englishText: [
+                    "A person's character and true behavior define their worth far more than academic degrees or wealth.",
+                    "I deeply respect people who exhibit authenticity, empathy, humility, and unwavering honesty.",
+                    "In my opinion, empathy is crucial because it allows individuals to understand others' struggles without judgment.",
+                    "I prefer surrounding myself with positive, open-minded people who uplift others instead of gossiping.",
+                    "Furthermore, patience and emotional maturity during challenging situations are traits I greatly admire.",
+                    "Cultivating good moral values and kindness makes a person genuinely attractive and respected in society."
+                ],
+                banglaText: [
+                    "একজন মানুষের চরিত্র এবং প্রকৃত আচরণ তার ডিগ্রি বা সম্পদের চেয়েও অনেক বেশি তার যোগ্যতার পরিচয় দেয়।",
+                    "যাদের মধ্যে সততা, সহানুভূতি, বিনয় এবং দৃঢ় চরিত্র রয়েছে আমি তাদের গভীরভাবে শ্রদ্ধা করি।",
+                    "আমার মতে, সহানুভূতি খুবই গুরুত্বপূর্ণ কারণ এটি কোনো বিচার ছাড়াই অন্যের কষ্ট বোঝার ক্ষমতা দেয়।",
+                    "আমি পরচর্চা করার বদলে ইতিবাচক ও খোলামেলা মনের মানুষের সাথে থাকতে পছন্দ করি যারা অন্যদের উৎসাহিত করে।",
+                    "তদুপরি, কঠিন পরিস্থিতিতে ধৈর্য এবং মানসিক পরিপক্কতা এমন কিছু বৈশিষ্ট্য যা আমি খুব পছন্দ করি।",
+                    "ভালো নৈতিক মূল্যবোধ ও দয়া লালন করা একজন মানুষকে সমাজে সত্যিকারের আকর্ষণীয় ও শ্রদ্ধেয় করে তোলে।"
+                ]
+            },
+            {
+                id: 13,
+                title: "Discussing Favorite Colors, Clothes, and Fashion (রং, পোশাক ও ফ্যাশন সেন্স)",
+                question: "What is your personal style statement when it comes to clothes and colors?",
+                questionBn: "পোশাক এবং রঙের ক্ষেত্রে আপনার ব্যক্তিগত পছন্দ বা স্টাইল কেমন?",
+                englishText: [
+                    "My personal fashion philosophy prioritizes comfort, neatness, and elegance over trendy fast fashion.",
+                    "I am naturally drawn toward subtle neutral colors like navy blue, olive green, charcoal grey, and white.",
+                    "For casual everyday outings, I prefer a comfortable pair of denim jeans matched with a solid cotton polo t-shirt.",
+                    "On formal occasions or traditional festivals, I love wearing classic Panjabi or tailored suits.",
+                    "I believe dressing appropriately reflects self-respect and shows politeness toward the occasion you attend.",
+                    "Looking neat and wearing outfits that fit well boosts my confidence immensely in any professional setting."
+                ],
+                banglaText: [
+                    "ফ্যাশন সম্পর্কে আমার ব্যক্তিগত দর্শন হলো ট্রেন্ডি ফ্যাশনের চেয়ে আরাম, পরিচ্ছন্নতা এবং মার্জিত ভাবকে প্রাধান্য দেওয়া।",
+                    "আমি স্বাভাবিকভাবেই নেভি ব্লু, অলিভ গ্রিন, চারকোল গ্রে এবং সাদার মতো শান্ত ও মার্জিত রঙগুলোর প্রতি আকৃষ্ট।",
+                    "সাধারণ ঘোরাঘুরির জন্য, আমি সুতির পোলো টি-শার্টের সাথে ডেনিম জিন্স পরতে বেশি পছন্দ করি।",
+                    "আনুষ্ঠানিক পরিবেশ বা ঐতিহ্যবাহী উৎসবে আমি ক্লাসিক পাঞ্জাবি বা সঠিক মাপের স্যুট পরতে পছন্দ করি।",
+                    "আমি বিশ্বাস করি যে উপযুক্ত পোশাক পরা আত্মসম্মান প্রকাশ করে এবং আয়োজনের প্রতি ভদ্রতা প্রদর্শন করে।",
+                    "পরিষ্কার থাকা এবং মানানসই পোশাক পরা যেকোনো পেশাদার পরিবেশে আমার আত্মবিশ্বাস বহুগুণ বাড়িয়ে দেয়।"
+                ]
+            },
+            {
+                id: 14,
+                title: "Talking About Pets and Animals (পোষা প্রাণী ও পশুপাখি)",
+                question: "Do you have any pets at home, or do you like animals in general?",
+                questionBn: "আপনার কি বাড়িতে কোনো পোষা প্রাণী আছে, নাকি আপনি সাধারণভাবে পশুপাখি পছন্দ করেন?",
+                englishText: [
+                    "I am a huge animal lover and believe that caring for animals teaches us compassion and responsibility.",
+                    "At present, I have a rescued Persian cat named 'Milo' who has been with our family for two years.",
+                    "Milo is extremely playful, affectionate, and welcomes me warmly whenever I return home from work.",
+                    "Taking care of his feeding schedule and health has made me more attentive and patient in daily life.",
+                    "Even if someone cannot keep pets, treating street animals with kindness and feeding them is a great noble deed.",
+                    "Animals offer unconditional love that enriches our lives and brings therapeutic peace to our home."
+                ],
+                banglaText: [
+                    "আমি একজন বিশাল প্রাণীপ্রেমী এবং বিশ্বাস করি যে পশুপাখির যত্ন নেওয়া আমাদের সহানুভূতি ও দায়িত্ববোধ শেখায়।",
+                    "বর্তমানে আমার একটি উদ্ধার করা পার্সিয়ান বিড়াল আছে যার নাম 'মাইলো', সে দুই বছর ধরে আমাদের পরিবারের সাথে আছে।",
+                    "মাইলো অত্যন্ত চঞ্চল, আদুরে এবং আমি কাজ থেকে বাড়ি ফিরলেই সে আমাকে দারুণভাবে স্বাগত জানায়।",
+                    "তার খাওয়াদাওয়া ও স্বাস্থ্যের যত্ন নেওয়া আমাকে দৈনন্দিন জীবনে আরও মনোযোগী ও ধৈর্যশীল করে তুলেছে।",
+                    "এমনকি কেউ পোষা প্রাণী না রাখলেও রাস্তার প্রাণীদের সাথে দয়া করা এবং তাদের খেতে দেওয়া একটি বড় কাজ।",
+                    "প্রাণীরা শর্তহীন ভালোবাসা দেয় যা আমাদের জীবনকে সমৃদ্ধ করে এবং বাড়িতে মানসিক শান্তি এনে দেয়।"
+                ]
+            },
+            {
+                id: 15,
+                title: "Discussing Personal Achievements and Proud Moments (ব্যক্তিগত অর্জন ও গর্বের মুহূর্ত)",
+                question: "What is one of your greatest personal achievements so far in life?",
+                questionBn: "আপনার জীবনের এ পর্যন্ত অন্যতম সেরা ব্যক্তিগত অর্জন বা গর্বের মুহূর্ত কোনটি?",
+                englishText: [
+                    "Overcoming difficult obstacles through dedication leads to the most memorable achievements in life.",
+                    "One of my proudest moments was winning the university-wide tech project competition during my final academic year.",
+                    "Our team developed a smart mobile application designed to help visually impaired individuals navigate urban spaces safely.",
+                    "Presenting our working prototype in front of expert judges and receiving the first-prize award was an unforgettable thrill.",
+                    "Seeing the joy and pride in my parents' eyes during the award ceremony meant more to me than the trophy itself.",
+                    "That milestone reinforced my confidence that persistence, hard work, and teamwork can overcome any challenge."
+                ],
+                banglaText: [
+                    "উৎসর্গের মাধ্যমে কঠিন বাধা পেরিয়ে আসা জীবনে সবচেয়ে স্মরণীয় অর্জনের জন্ম দেয়।",
+                    "আমার অন্যতম গর্বের মুহূর্ত ছিল আমার বিশ্ববিদ্যালয়ের শেষ বর্ষে বিশ্ববিদ্যালয়-ব্যাপী টেক প্রজেক্ট প্রতিযোগিতায় প্রথম হওয়া।",
+                    "আমাদের দল একটি স্মার্ট মোবাইল অ্যাপ তৈরি করেছিল যা দৃষ্টিপ্রতিবন্ধী ব্যক্তিদের শহরে নিরাপদে চলাচলে সাহায্য করে।",
+                    "বিশেষজ্ঞ বিচারকদের সামনে আমাদের প্রোটোটাইপ উপস্থাপন করা এবং প্রথম পুরস্কার লাভ করা ছিল এক অবিস্মরণীয় অনুভূতি।",
+                    "পুরস্কার বিতরণী অনুষ্ঠানে আমার বাবা-মায়ের চোখে যে আনন্দ ও গর্ব দেখেছি তা ট্রফির চেয়েও আমার কাছে মূল্যবান ছিল।",
+                    "সেই অর্জনটি আমার আত্মবিশ্বাসকে বাড়িয়ে দিয়েছিল যে অধ্যবসায়, কঠোর পরিশ্রম এবং দলীয় কাজ যেকোনো চ্যালেঞ্জ জয় করতে পারে।"
+                ]
+            }
+        ];
+
+        // State variables
+        let currentUtterance = null;
+        let highlightedSpan = null;
+
+        // Render Topics on Load
+        window.onload = function() {
+            renderTopics();
+        };
+
+        function renderTopics() {
+            const container = document.getElementById('topicsContainer');
+            container.innerHTML = '';
+
+            phase1Topics.forEach((topic) => {
+                const card = document.createElement('article');
+                card.className = 'clay-card p-6 md:p-8 transition-all duration-300';
+                card.id = `topic-card-${topic.id}`;
+
+                card.innerHTML = `
+                    <!-- Topic Title & Header -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
+                        <div class="flex items-center gap-4">
+                            <span class="w-11 h-11 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0">
+                                ${topic.id}
+                            </span>
+                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">
+                                ${topic.title}
+                            </h3>
+                        </div>
+
+                        <!-- Accent & Controls Bar for Topic -->
+                        <div class="flex items-center gap-2">
+                            <button onclick="playTopicAudio(${topic.id})" id="play-btn-${topic.id}" class="btn-3d px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs md:text-sm flex items-center gap-2 font-bold">
+                                <i class="fa-solid fa-play"></i> <span>শুনুন (Full Audio)</span>
+                            </button>
+                            <button onclick="stopAudio()" class="btn-3d px-3.5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs md:text-sm font-bold" title="Stop Audio">
+                                <i class="fa-solid fa-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Question Box (High-Contrast Surface) -->
+                    <div class="mt-6 p-5 rounded-2xl content-box">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-circle-question"></i> Step 1: বাস্তব জীবনের প্রশ্ন (Questioning Style)
+                                </div>
+                                <p class="en-text text-base md:text-xl font-bold">
+                                    "${topic.question}"
+                                </p>
+                                <p class="bn-text text-sm md:text-base font-semibold sub-text-color mt-2">
+                                    ${topic.questionBn}
+                                </p>
+                            </div>
+                            <button onclick="speakText('${escapeQuotes(topic.question)}', 'q-${topic.id}')" id="btn-q-${topic.id}" class="btn-3d p-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl flex-shrink-0 font-bold" title="Listen Question">
+                                <i class="fa-solid fa-volume-high text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 & 3 Interactive Toggles -->
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="toggleEnglishPassage(${topic.id})" class="btn-3d px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span id="eng-toggle-text-${topic.id}">Show Full English Passage</span>
+                        </button>
+                        
+                        <button onclick="toggleBanglaMeaning(${topic.id})" class="btn-3d px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-sm flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-language"></i>
+                            <span id="bn-toggle-text-${topic.id}">Show Bangla Meaning</span>
+                        </button>
+                    </div>
+
+                    <!-- English Passage Container -->
+                    <div id="english-box-${topic.id}" class="hidden mt-6 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-paragraph"></i> Complete English Response:
+                        </h4>
+                        <div id="english-text-content-${topic.id}" class="en-text text-base md:text-lg font-medium space-y-3">
+                            ${topic.englishText.map((sent, index) => `<span id="sent-${topic.id}-${index}" class="inline-block transition-all duration-200">${sent} </span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Bangla Meaning Container -->
+                    <div id="bangla-box-${topic.id}" class="hidden mt-4 p-6 rounded-2xl content-box transition-all duration-300">
+                        <h4 class="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-language"></i> বাংলা অর্থ ও ভাবানুবাদ:
+                        </h4>
+                        <div class="bn-text text-base md:text-lg font-medium space-y-3 opacity-95">
+                            ${topic.banglaText.map((bSent) => `<p class="leading-relaxed">• ${bSent}</p>`).join('')}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle English Passage Visibility
+        function toggleEnglishPassage(topicId) {
+            const box = document.getElementById(`english-box-${topicId}`);
+            const btnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide English Passage";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Full English Passage";
+            }
+        }
+
+        // Toggle Bangla Meaning Visibility
+        function toggleBanglaMeaning(topicId) {
+            const box = document.getElementById(`bangla-box-${topicId}`);
+            const btnText = document.getElementById(`bn-toggle-text-${topicId}`);
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide Bangla Meaning";
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Bangla Meaning";
+            }
+        }
+
+        // Change Theme Function
+        function changeTheme(themeName) {
+            document.body.className = `${themeName} min-h-screen pb-16 transition-all duration-500`;
+        }
+
+        // Stop Currently Playing Audio
+        function stopAudio() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            clearHighlight();
+        }
+
+        // Clear Line Highlights
+        function clearHighlight() {
+            if (highlightedSpan) {
+                highlightedSpan.classList.remove('sentence-highlight');
+                highlightedSpan = null;
+            }
+        }
+
+        // Speak Single Question Text
+        function speakText(text, btnId) {
+            stopAudio();
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই। অনুগ্রহ করে অন্য ব্রাউজার ব্যবহার করুন।");
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+
+            utterance.lang = lang;
+            utterance.rate = rate;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Play Entire Topic Sequential Sentences with Highlighting
+        function playTopicAudio(topicId) {
+            stopAudio();
+
+            const topic = phase1Topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            // Make sure English text box is visible while playing
+            const engBox = document.getElementById(`english-box-${topicId}`);
+            const engBtnText = document.getElementById(`eng-toggle-text-${topicId}`);
+            if (engBox.classList.contains('hidden')) {
+                engBox.classList.remove('hidden');
+                engBtnText.innerText = "Hide English Passage";
+            }
+
+            if (!('speechSynthesis' in window)) {
+                alert("আপনার ব্রাউজারে ভয়েস সাপোর্ট নেই।");
+                return;
+            }
+
+            const lang = document.getElementById('globalAccent').value;
+            const rate = parseFloat(document.getElementById('globalSpeed').value);
+            let sentenceIndex = 0;
+
+            function speakNextSentence() {
+                if (sentenceIndex >= topic.englishText.length) {
+                    clearHighlight();
+                    return;
+                }
+
+                clearHighlight();
+                const currentSpan = document.getElementById(`sent-${topicId}-${sentenceIndex}`);
+                if (currentSpan) {
+                    currentSpan.classList.add('sentence-highlight');
+                    highlightedSpan = currentSpan;
+                    currentSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                const utterance = new SpeechSynthesisUtterance(topic.englishText[sentenceIndex]);
+                utterance.lang = lang;
+                utterance.rate = rate;
+
+                utterance.onend = function() {
+                    sentenceIndex++;
+                    speakNextSentence();
+                };
+
+                utterance.onerror = function() {
+                    clearHighlight();
+                };
+
+                currentUtterance = utterance;
+                window.speechSynthesis.speak(utterance);
+            }
+
+            speakNextSentence();
+        }
+
+        // Utility: Escape quotes for inline JS function arguments
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>
