@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATURAL & FLUENT SPOKEN ENGLISH</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'Hind Siliguri', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: {
+                            cyan: '#06b6d4',
+                            purple: '#a855f7',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            background-color: #090d16;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glowing Particle Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 3D Glassmorphism Cards */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        box-shadow 0.25s ease, 
+                        border-color 0.25s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 30px rgba(168, 85, 247, 0.25),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Touch & Click Feedback */
+        .glass-card:active {
+            transform: scale(0.97) translateY(2px) !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Glowing Animated Text Header */
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #c084fc 50%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(56, 189, 248, 0.25);
+        }
+
+        /* Ripple Effect on Touch */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Light Shimmer Effect */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.08),
+                transparent
+            );
+            transition: left 0.7s ease;
+            pointer-events: none;
+            border-radius: 1.5rem;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-purple-600 selection:text-white">
+
+    <!-- Glowing Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation / Header -->
+    <header class="pt-10 pb-6 px-4 sm:px-8 text-center relative z-10 max-w-7xl mx-auto w-full">
+        <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full glass-card text-xs sm:text-sm font-semibold text-cyan-400 border border-cyan-500/30 tracking-wide uppercase">
+            <i class="fa-solid fa-bolt-lightning text-amber-400 animate-pulse"></i> Fluent English Mastery Track
+        </div>
+        
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-3 gradient-text">
+            NATURAL & FLUENT SPOKEN ENGLISH
+        </h1>
+        
+        <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
+            স্বাভাবিক উচ্চারণ, কানেক্টেড স্পিচ এবং ফ্লুয়েন্ট ইংরেজি কথপোকথনের জন্য বিশেষভাবে তৈরি ৫টি স্পেশাল মডিউল। 
+        </p>
+
+        <!-- Stats Overview Bar -->
+        <div class="mt-8 grid grid-cols-3 max-w-lg mx-auto glass-card rounded-2xl p-3 border border-slate-700/50 text-center divide-x divide-slate-800">
+            <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-cyan-400">5</p>
+                <p class="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider">Core Tracks</p>
+            </div>
+            <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-purple-400">100%</p>
+                <p class="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider">Practical</p>
+            </div>
+            <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-emerald-400">Native</p>
+                <p class="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider">Fluency</p>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="mt-6 max-w-md mx-auto relative">
+            <div class="relative flex items-center">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 text-gray-400"></i>
+                <input type="text" id="searchInput" placeholder="Search Part A to E or topics..." 
+                    class="w-full pl-11 pr-4 py-3 bg-slate-900/80 border border-slate-700/60 rounded-2xl text-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-gray-100 placeholder-gray-400 backdrop-blur-md transition-all">
+                <span id="cardCount" class="absolute right-4 text-xs bg-slate-800/80 text-gray-400 px-2.5 py-1 rounded-lg border border-slate-700">5 Parts</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Module Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-6 w-full relative z-10 flex-grow">
+        <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic 5 Track Cards Rendered Here -->
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="noResults" class="hidden text-center py-16">
+            <i class="fa-solid fa-magnifying-glass text-5xl text-gray-600 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-300">কোন ট্র্যাক পাওয়া যায়নি!</h3>
+            <p class="text-gray-500 text-sm mt-1">দয়া করে "Part A", "Connected Speech" ইত্যাদি অনুসন্ধান করে দেখুন।</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-6 px-4 text-xs text-gray-500 border-t border-slate-800/80 mt-12 backdrop-blur-md">
+        <p>© Natural & Fluent Spoken English Program. Designed for High Performance Interactive Learning.</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // 5 Main Track Modules Configuration
+        const modulesData = [
+            {
+                id: "A",
+                badge: "Part A",
+                title: "Part A: Natural Daily Communication",
+                file: "Natural Daily Communication.html",
+                icon: "fa-comments",
+                desc: "Master smooth everyday interactions, daily routines, and natural conversational flow.",
+                gradient: "from-cyan-500 to-blue-600",
+                borderColor: "hover:border-cyan-500/50",
+                glowColor: "rgba(6, 182, 212, 0.2)"
+            },
+            {
+                id: "B",
+                badge: "Part B",
+                title: "Part B: Natural Expressions & Responses",
+                file: "Natural Expressions & Responses.html",
+                icon: "fa-face-smile-beam",
+                desc: "Learn idiom-rich expressions, smart quick responses, and native-like phrasing.",
+                gradient: "from-purple-500 to-indigo-600",
+                borderColor: "hover:border-purple-500/50",
+                glowColor: "rgba(168, 85, 247, 0.2)"
+            },
+            {
+                id: "C",
+                badge: "Part C",
+                title: "Part C: Connected Speech & Pronunciation",
+                file: "Connected Speech & Pronunciation.html",
+                icon: "fa-microphone-lines",
+                desc: "Perfect elision, assimilation, linking sounds, and natural stress patterns.",
+                gradient: "from-emerald-500 to-teal-600",
+                borderColor: "hover:border-emerald-500/50",
+                glowColor: "rgba(16, 185, 129, 0.2)"
+            },
+            {
+                id: "D",
+                badge: "Part D",
+                title: "Part D: Real-Life Conversation Situations",
+                file: "Real-Life Conversation Situations.html",
+                icon: "fa-people-arrows",
+                desc: "Practical dialogues for workplace, travel, dining out, and social encounters.",
+                gradient: "from-amber-500 to-orange-600",
+                borderColor: "hover:border-amber-500/50",
+                glowColor: "rgba(245, 158, 11, 0.2)"
+            },
+            {
+                id: "E",
+                badge: "Part E",
+                title: "Part E: Advanced Fluency & Natural Speaking",
+                file: "Advanced Fluency & Natural Speaking.html",
+                icon: "fa-bolt-lightning",
+                desc: "Express complex ideas effortlessly with cadence, confidence, and native rhythm.",
+                gradient: "from-rose-500 to-pink-600",
+                borderColor: "hover:border-rose-500/50",
+                glowColor: "rgba(244, 63, 94, 0.2)"
+            }
+        ];
+
+        const cardsGrid = document.getElementById('cardsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const cardCount = document.getElementById('cardCount');
+
+        // Render Module Cards
+        function renderModules(data) {
+            cardsGrid.innerHTML = '';
+            
+            if (data.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            cardCount.textContent = `${data.length} Parts`;
+
+            data.forEach((item) => {
+                const cardAnchor = document.createElement('a');
+                cardAnchor.href = encodeURI(item.file);
+                cardAnchor.className = `glass-card relative overflow-hidden rounded-3xl p-6 flex flex-col justify-between group cursor-pointer border ${item.borderColor} transition-all duration-300`;
+                
+                cardAnchor.innerHTML = `
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="text-xs font-bold px-3.5 py-1.5 rounded-full bg-slate-800/90 text-gray-200 border border-slate-700 group-hover:border-white/30 transition-colors">
+                                ${item.badge}
+                            </span>
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid ${item.icon} text-xl"></i>
+                            </div>
+                        </div>
+
+                        <h2 class="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-200 mb-3 leading-snug">
+                            ${item.title}
+                        </h2>
+
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+                            ${item.desc}
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-gray-300 group-hover:text-white relative z-10">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-regular fa-circle-play text-cyan-400 group-hover:animate-pulse"></i> Open Track
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300">
+                            <i class="fa-solid fa-arrow-right transform group-hover:translate-x-0.5 transition-transform"></i>
+                        </div>
+                    </div>
+                `;
+
+                // Touch Ripple Effect
+                cardAnchor.addEventListener('click', function (e) {
+                    const rect = cardAnchor.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const circle = document.createElement('span');
+                    circle.classList.add('ripple');
+                    circle.style.left = `${x}px`;
+                    circle.style.top = `${y}px`;
+                    circle.style.width = circle.style.height = `${Math.max(rect.width, rect.height)}px`;
+
+                    this.appendChild(circle);
+                    setTimeout(() => circle.remove(), 600);
+                });
+
+                // Smooth 3D Motion Effect
+                cardAnchor.addEventListener('mousemove', (e) => {
+                    const rect = cardAnchor.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -12;
+                    const rotateY = ((x - centerX) / centerX) * 12;
+
+                    cardAnchor.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                });
+
+                cardAnchor.addEventListener('mouseleave', () => {
+                    cardAnchor.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+
+                cardsGrid.appendChild(cardAnchor);
+            });
+        }
+
+        // Initialize Render
+        renderModules(modulesData);
+
+        // Interactive Live Search
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const filteredData = modulesData.filter(item => 
+                item.title.toLowerCase().includes(query) ||
+                item.desc.toLowerCase().includes(query) ||
+                item.badge.toLowerCase().includes(query)
+            );
+            renderModules(filteredData);
+        });
+
+        // Background Floating Ambient Particles
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 50;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.6 + 0.1;
+                this.hue = Math.random() > 0.5 ? 260 : 190; // Violet and Cyan particles
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `hsla(${this.hue}, 80%, 65%, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.onload = function() {
+            initParticles();
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
