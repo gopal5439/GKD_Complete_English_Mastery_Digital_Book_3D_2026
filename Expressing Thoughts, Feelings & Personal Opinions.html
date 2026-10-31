@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOPIC 22: Making Requests, Suggestions & Giving Advice</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Google Fonts: Tiro Bangla -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Custom Fonts Definition */
+    .font-bangla {
+      font-family: 'Tiro Bangla', serif;
+    }
+    .font-english {
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    /* Tactile 3D Button CSS Effects */
+    .btn-3d {
+      transition: all 0.15s ease-in-out;
+      box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.25), 0px 8px 15px rgba(0, 0, 0, 0.15);
+      position: relative;
+      top: 0px;
+    }
+    .btn-3d:active {
+      top: 4px;
+      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25), 0px 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-3d-indigo {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border-bottom: 4px solid #3730a3;
+    }
+    .btn-3d-indigo:active {
+      border-bottom-width: 1px;
+    }
+
+    .btn-3d-emerald {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-bottom: 4px solid #065f46;
+    }
+    .btn-3d-emerald:active {
+      border-bottom-width: 1px;
+    }
+
+    .btn-3d-amber {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-bottom: 4px solid #92400e;
+    }
+    .btn-3d-amber:active {
+      border-bottom-width: 1px;
+    }
+
+    .btn-3d-rose {
+      background: linear-gradient(135deg, #f43f5e, #e11d48);
+      border-bottom: 4px solid #9f1239;
+    }
+    .btn-3d-rose:active {
+      border-bottom-width: 1px;
+    }
+
+    /* Glassmorphism Card Styling */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 12px 28px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 28px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Smooth Expansion Animations */
+    .card-content-enter {
+      max-height: 0px;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out, transform 0.3s ease;
+      transform: translateY(-8px);
+    }
+    .card-content-visible {
+      max-height: 600px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Audio Soundwave Pulse Animation */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .speaking-pulse {
+      animation: pulse-ring 1.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen font-bangla transition-colors duration-300 pb-16">
+
+  <!-- Header Banner -->
+  <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <div class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-semibold rounded-full text-xs mb-1">
+          TOPIC 22
+        </div>
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Making Requests, Suggestions & Giving Advice
+        </h1>
+        <p class="text-base sm:text-lg text-indigo-600 dark:text-indigo-400 font-semibold mt-0.5">
+          অনুরোধ করা, পরামর্শ দেওয়া ও প্রস্তাব দেওয়া
+        </p>
+      </div>
+
+      <!-- Quick Control Tools -->
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <!-- Accent Toggle Button -->
+        <button id="accentToggleBtn" onclick="toggleAccent()" class="btn-3d btn-3d-amber text-white font-bold px-3.5 py-2 rounded-xl text-xs sm:text-sm flex items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-earth-americas"></i>
+          <span id="accentLabel">Accent: US 🇺🇸</span>
+        </button>
+
+        <!-- Toggle All Cards -->
+        <button id="expandAllBtn" onclick="toggleAllCards()" class="btn-3d btn-3d-indigo text-white font-bold px-3.5 py-2 rounded-xl text-xs sm:text-sm flex items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-layer-group" id="expandIcon"></i>
+          <span id="expandText">সব খুলুন</span>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button onclick="toggleDarkMode()" class="btn-3d bg-slate-700 hover:bg-slate-600 text-white font-bold p-2.5 rounded-xl text-xs sm:text-sm flex items-center justify-center cursor-pointer" title="Dark/Light Mode">
+          <i class="fa-solid fa-moon text-amber-300 dark:text-amber-400 text-base"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter & Search Section -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+      <!-- Search Input -->
+      <div class="relative w-full sm:w-80">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          oninput="filterCards()" 
+          placeholder="অনুসন্ধান করুন (বাংলা বা ইংরেজি)..." 
+          class="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner font-bangla text-sm"
+        />
+      </div>
+
+      <!-- Counter Badge -->
+      <div class="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 px-4 py-2 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+        মোট আইটেম: <span id="visibleCount" class="text-indigo-600 dark:text-indigo-400 font-bold">25</span> / 25
+      </div>
+    </div>
+
+    <!-- Interactive Card Grid Container -->
+    <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+      <!-- Cards will be populated dynamically via JavaScript -->
+    </div>
+  </main>
+
+  <!-- Floating Toast Notification for Speech Audio -->
+  <div id="audioToast" class="fixed bottom-6 right-6 bg-slate-900/90 text-white px-4 py-3 rounded-2xl shadow-2xl backdrop-blur-md border border-slate-700 text-sm flex items-center gap-3 transition-all duration-300 transform translate-y-24 opacity-0 z-50 pointer-events-none">
+    <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white speaking-pulse">
+      <i class="fa-solid fa-volume-high"></i>
+    </div>
+    <div>
+      <p class="font-bold text-xs text-indigo-300" id="toastTitle">উচ্চারণ প্লে হচ্ছে...</p>
+      <p class="text-xs text-slate-200 font-english" id="toastText"></p>
+    </div>
+  </div>
+
+  <script>
+    // 25 Content Items
+    const itemsData = [
+      {
+        id: 1,
+        bangla: "তুমি কি আমাকে একটু সাহায্য করতে পারবে",
+        stdEng: "Can you help me a little?",
+        natEng: "Could you give me a hand?",
+        pronunciation: "কুড ইউ গিভ মি আ হ্যান্ড?",
+        explanation: "“Give me a hand” অর্থ সাহায্য করা। এটি খুব প্রচলিত কথ্য expression।"
+      },
+      {
+        id: 2,
+        bangla: "আমার মনে হয় তোমার একটু বিশ্রাম নেওয়া উচিত",
+        stdEng: "I think you should take some rest.",
+        natEng: "You should take a break.",
+        pronunciation: "ইউ শুড টেইক আ ব্রেইক।",
+        explanation: "কাউকে কাজের মাঝে বিশ্রাম নেওয়ার পরামর্শ দিতে ব্যবহার হয়।"
+      },
+      {
+        id: 3,
+        bangla: "তুমি চাইলে আমরা একসঙ্গে যেতে পারি।",
+        stdEng: "We can go together if you want.",
+        natEng: "We could go together if you'd like.",
+        pronunciation: "উই কুড গো টুগেদার ইফ ইউড লাইক।",
+        explanation: "কাউকে চাপ না দিয়ে ভদ্রভাবে প্রস্তাব দিতে ব্যবহার হয়।"
+      },
+      {
+        id: 4,
+        bangla: "একটু অপেক্ষা করবে, প্লিজ?",
+        stdEng: "Will you wait a little, please?",
+        natEng: "Hang on a sec, please.",
+        pronunciation: "হ্যাঁং অন আ সেক, প্লিজ।",
+        explanation: "“Hang on a sec” অর্থ এক মুহূর্ত অপেক্ষা করা।"
+      },
+      {
+        id: 5,
+        bangla: "আমার একটা পরামর্শ আছে।",
+        stdEng: "I have a suggestion.",
+        natEng: "Here's a suggestion.",
+        pronunciation: "হিয়ারজ আ সাজেশ্চন।",
+        explanation: "কোনো বিষয়ে নিজের প্রস্তাব বা পরামর্শ দিতে ব্যবহার হয়।"
+      },
+      {
+        id: 6,
+        bangla: "আমার মনে হয় তোমার এটা চেষ্টা করা উচিত।",
+        stdEng: "I think you should try this.",
+        natEng: "You might wanna give this a try.",
+        pronunciation: "ইউ মাইট ওয়ানা গিভ দিস আ ট্রাই।",
+        explanation: "“Might wanna” হলো অনানুষ্ঠানিকভাবে “might want to” বলার রূপ। এটি নরম পরামর্শ প্রকাশ করে।"
+      },
+      {
+        id: 7,
+        bangla: "তুমি কি দরজাটা বন্ধ করে দেবে?",
+        stdEng: "Could you close the door?",
+        natEng: "Would you mind closing the door?",
+        pronunciation: "উড ইউ মাইন্ড ক্লোজিং দ্য ডোর?",
+        explanation: "ভদ্রভাবে কোনো কাজ করার অনুরোধ জানাতে ব্যবহার হয়।"
+      },
+      {
+        id: 8,
+        bangla: "আমার মনে হয় তোমার ওর সঙ্গে কথা বলা উচিত।",
+        stdEng: "I think you should talk to him.",
+        natEng: "You ought to talk to him.",
+        pronunciation: "ইউ অট টু টক টু হিম।",
+        explanation: "“Ought to” দিয়ে দায়িত্ব বা উপযুক্ত কাজের পরামর্শ দেওয়া হয়।"
+      },
+      {
+        id: 9,
+        bangla: "চল, একবার চেষ্টা করে দেখি।",
+        stdEng: "Let us try it once.",
+        natEng: "Let's give it a go.",
+        pronunciation: "লেটস গিভ ইট আ গো।",
+        explanation: "কোনো কাজ চেষ্টা করে দেখতে উৎসাহ দিতে ব্যবহার হয়।"
+      },
+      {
+        id: 10,
+        bangla: "তুমি চাইলে আমি করে দিতে পারি।",
+        stdEng: "I can do it for you if you want.",
+        natEng: "I can take care of it if you'd like.",
+        pronunciation: "আই ক্যান টেইক কেয়ার অভ ইট ইফ ইউড লাইক।",
+        explanation: "“Take care of it” অর্থ কোনো কাজের দায়িত্ব নিয়ে সম্পন্ন করা।"
+      },
+      {
+        id: 11,
+        bangla: "ব্যাপারটা নিয়ে এত চিন্তা কোরো না।",
+        stdEng: "Do not worry too much about it.",
+        natEng: "Don't stress about it.",
+        pronunciation: "ডোন্ট স্ট্রেস অ্যাবাউট ইট।",
+        explanation: "কাউকে অযথা দুশ্চিন্তা না করতে বলার অনানুষ্ঠানিক উপায়।"
+      },
+      {
+        id: 12,
+        bangla: "আমার একটা ছোট অনুরোধ আছে।",
+        stdEng: "I have a small request.",
+        natEng: "Can I ask you a small favour?",
+        pronunciation: "ক্যান আই আস্ক ইউ আ স্মল ফেইভার?",
+        explanation: "কোনো সাহায্য বা কাজ চাইতে ভদ্রভাবে বলা হয়।"
+      },
+      {
+        id: 13,
+        bangla: "তুমি কি একটু সময় বের করতে পারবে?",
+        stdEng: "Can you make some time?",
+        natEng: "Could you spare a few minutes?",
+        pronunciation: "কুড ইউ স্পেয়ার আ ফিউ মিনিটস?",
+        explanation: "কারও কাছ থেকে অল্প সময় চাইতে ব্যবহার হয়।"
+      },
+      {
+        id: 14,
+        bangla: "আমার জায়গায় তুমি হলে কী করতে?",
+        stdEng: "What would you do in my place?",
+        natEng: "What would you do if you were me?",
+        pronunciation: "হোয়াট উড ইউ ডু ইফ ইউ ওয়্যার মি?",
+        explanation: "নিজের পরিস্থিতিতে অন্যের পরামর্শ জানতে ব্যবহার হয়।"
+      },
+      {
+        id: 15,
+        bangla: "তোমার এটা একবার ভেবে দেখা উচিত।",
+        stdEng: "You should think about this once.",
+        natEng: "You might wanna think it over.",
+        pronunciation: "ইউ মাইট ওয়ানা থিংক ইট ওভার।",
+        explanation: "“Think it over” অর্থ কোনো বিষয় ভালোভাবে বিবেচনা করা।"
+      },
+      {
+        id: 16,
+        bangla: "তুমি কি একটু আস্তে কথা বলতে পারবে?",
+        stdEng: "Can you speak a little slowly?",
+        natEng: "Could you slow down a little?",
+        pronunciation: "কুড ইউ স্লো ডাউন আ লিটল?",
+        explanation: "কাউকে ধীরে কথা বলার অনুরোধ জানাতে ব্যবহার হয়।"
+      },
+      {
+        id: 17,
+        bangla: "আমার মনে হয় আমাদের এখনই বের হওয়া উচিত।",
+        stdEng: "I think we should leave now.",
+        natEng: "We'd better get going.",
+        pronunciation: "উইড বেটার গেট গোয়িং।",
+        explanation: "“We'd better” হলো “We had better”-এর সংকুচিত রূপ। কোনো কাজ দ্রুত করা ভালো বোঝাতে ব্যবহার হয়।"
+      },
+      {
+        id: 18,
+        bangla: "তুমি কি আমাকে একটু ফোন করবে?",
+        stdEng: "Will you call me?",
+        natEng: "Give me a call when you can.",
+        pronunciation: "গিভ মি আ কল হোয়েন ইউ ক্যান।",
+        explanation: "সুবিধাজনক সময়ে ফোন করতে অনুরোধ করা হয়।"
+      },
+      {
+        id: 19,
+        bangla: "চল, বিষয়টা একসঙ্গে সমাধান করি।",
+        stdEng: "Let us solve the issue together.",
+        natEng: "Let's figure this out together.",
+        pronunciation: "লেটস ফিগার দিস আউট টুগেদার।",
+        explanation: "“Figure out” অর্থ কোনো সমস্যা বুঝে সমাধান বের করা।"
+      },
+      {
+        id: 20,
+        bangla: "আমার মনে হয় তোমার সুযোগটা কাজে লাগানো উচিত।",
+        stdEng: "I think you should take advantage of the opportunity.",
+        natEng: "You should make the most of it.",
+        pronunciation: "ইউ শুড মেইক দ্য মোস্ট অভ ইট।",
+        explanation: "কোনো সুযোগকে সর্বোচ্চভাবে কাজে লাগাতে উৎসাহ দিতে বলা হয়।"
+      },
+      {
+        id: 21,
+        bangla: "তুমি কি একটু সাহায্য করতে আপত্তি করবে?",
+        stdEng: "Would you mind helping me a little?",
+        natEng: "Would you mind giving me a hand?",
+        pronunciation: "উড ইউ মাইন্ড গিভিং মি আ হ্যান্ড?",
+        explanation: "ভদ্রভাবে সাহায্য চাইতে ব্যবহার হয়। “Would you mind” এর পরে verb-এর সঙ্গে ing বসে।"
+      },
+      {
+        id: 22,
+        bangla: "আমার মনে হয় তোমার একটু বিরতি নেওয়া দরকার।",
+        stdEng: "I think you need to take a break.",
+        natEng: "You could use a break.",
+        pronunciation: "ইউ কুড ইউজ আ ব্রেইক।",
+        explanation: "“Could use a break” অর্থ তোমার একটু বিশ্রাম হলে ভালো হতো।"
+      },
+      {
+        id: 23,
+        bangla: "চাইলে আমরা পরে এটা নিয়ে কথা বলতে পারি।",
+        stdEng: "We can talk about this later if you want.",
+        natEng: "We can always talk about it later.",
+        pronunciation: "উই ক্যান অলওয়েজ টক অ্যাবাউট ইট লেটার।",
+        explanation: "কোনো আলোচনা পরে করার সুযোগ আছে বোঝাতে বলা হয়।"
+      },
+      {
+        id: 24,
+        bangla: "আমার পরামর্শ হলো, হাল ছেড়ো না।",
+        stdEng: "My advice is not to give up.",
+        natEng: "My advice? Don't give up.",
+        pronunciation: "মাই অ্যাডভাইস? ডোন্ট গিভ আপ।",
+        explanation: "কাউকে চেষ্টা চালিয়ে যেতে উৎসাহ দিতে ব্যবহার হয়।"
+      },
+      {
+        id: 25,
+        bangla: "আমার মনে হয় এটাই সবচেয়ে ভালো উপায়।",
+        stdEng: "I think this is the best way.",
+        natEng: "I reckon this is the best way.",
+        pronunciation: "আই রেকন দিস ইজ দ্য বেস্ট ওয়ে।",
+        explanation: "“I reckon” ব্রিটিশ ইংরেজি ও অস্ট্রেলিয়ান ইংরেজিতে প্রচলিত কথ্য expression। এর অর্থ আমার ধারণা বা আমার মনে হয়।"
+      }
+    ];
+
+    // Card state tracking: step 0 = Bangla only, step 1 = English + Pronunciation, step 2 = Full details
+    const cardStates = {};
+    itemsData.forEach(item => cardStates[item.id] = 0);
+
+    let selectedAccent = 'en-US'; // Default US accent
+    let allExpanded = false;
+
+    // Convert digits to Bengali numbers
+    function toBengaliNumeral(num) {
+      const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+      return num.toString().split('').map(d => bnDigits[d] || d).join('');
+    }
+
+    // Render all cards
+    function renderCards(filterText = '') {
+      const container = document.getElementById('cardsContainer');
+      container.innerHTML = '';
+
+      let visibleCount = 0;
+
+      itemsData.forEach(item => {
+        const matchesFilter = 
+          item.bangla.toLowerCase().includes(filterText.toLowerCase()) ||
+          item.stdEng.toLowerCase().includes(filterText.toLowerCase()) ||
+          item.natEng.toLowerCase().includes(filterText.toLowerCase()) ||
+          item.pronunciation.toLowerCase().includes(filterText.toLowerCase());
+
+        if (!matchesFilter) return;
+
+        visibleCount++;
+        const state = cardStates[item.id];
+        const isEnglishVisible = state >= 1;
+        const isExpVisible = state >= 2;
+
+        const cardHTML = `
+          <div id="card-${item.id}" class="glass-card rounded-3xl p-5 sm:p-6 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+            <!-- Card Header & Main Bangla -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-2xl bg-indigo-600 text-white font-bold text-sm shadow-md">
+                  ${toBengaliNumeral(item.id)}
+                </span>
+
+                <div class="flex items-center gap-2">
+                  <!-- Step indicator dots -->
+                  <div class="flex gap-1.5 items-center">
+                    <span class="w-2.5 h-2.5 rounded-full ${state >= 0 ? 'bg-indigo-500' : 'bg-slate-300 dark:bg-slate-700'}"></span>
+                    <span class="w-2.5 h-2.5 rounded-full ${state >= 1 ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-700'}"></span>
+                    <span class="w-2.5 h-2.5 rounded-full ${state >= 2 ? 'bg-amber-500' : 'bg-slate-300 dark:bg-slate-700'}"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bangla Prompt -->
+              <div class="mb-4 cursor-pointer" onclick="cycleCardState(${item.id})">
+                <p class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-1">
+                  বাংলা বাক্য
+                </p>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100 leading-relaxed font-bangla">
+                  ${item.bangla}
+                </h3>
+              </div>
+
+              <!-- Reveal Step 1: English & Pronunciation -->
+              <div class="card-content-enter ${isEnglishVisible ? 'card-content-visible' : ''}">
+                <div class="mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-700/80 space-y-3">
+                  
+                  <!-- Standard English -->
+                  <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200/60 dark:border-slate-700/60">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Standard English</span>
+                      <button onclick="event.stopPropagation(); speakText('${escapeQuotes(item.stdEng)}')" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 p-1 rounded-lg" title="উচ্চারণ শুনুন">
+                        <i class="fa-solid fa-volume-high text-sm"></i>
+                      </button>
+                    </div>
+                    <p class="text-base sm:text-lg font-semibold text-slate-700 dark:text-slate-200 font-english mt-0.5">
+                      ${item.stdEng}
+                    </p>
+                  </div>
+
+                  <!-- Natural Spoken English -->
+                  <div class="bg-indigo-50/70 dark:bg-indigo-950/40 p-3 rounded-2xl border border-indigo-100 dark:border-indigo-900/50">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400">Natural Spoken English</span>
+                      <button onclick="event.stopPropagation(); speakText('${escapeQuotes(item.natEng)}')" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 p-1 rounded-lg" title="উচ্চারণ শুনুন">
+                        <i class="fa-solid fa-volume-high text-base"></i>
+                      </button>
+                    </div>
+                    <p class="text-lg sm:text-xl font-bold text-indigo-900 dark:text-indigo-200 font-english mt-0.5 cursor-pointer hover:underline" onclick="event.stopPropagation(); speakText('${escapeQuotes(item.natEng)}')">
+                      ${item.natEng}
+                    </p>
+                  </div>
+
+                  <!-- Pronunciation -->
+                  <div class="bg-emerald-50/70 dark:bg-emerald-950/30 p-3 rounded-2xl border border-emerald-100 dark:border-emerald-900/40">
+                    <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400">বাংলা উচ্চারণ</span>
+                    <p class="text-base sm:text-lg font-semibold text-emerald-900 dark:text-emerald-200 font-english mt-0.5">
+                      ${item.pronunciation}
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Reveal Step 2: Detailed Explanation -->
+              <div class="card-content-enter ${isExpVisible ? 'card-content-visible' : ''}">
+                <div class="mt-3 bg-amber-50/80 dark:bg-amber-950/30 p-3.5 rounded-2xl border border-amber-200/80 dark:border-amber-900/40 text-amber-900 dark:text-amber-200">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fa-solid fa-lightbulb text-amber-500 text-sm"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">ব্যাখ্যা ও টিপস</span>
+                  </div>
+                  <p class="text-sm sm:text-base leading-relaxed font-bangla">
+                    ${item.explanation}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Bottom Tactile 3D Action Button -->
+            <div class="mt-5 pt-3">
+              <button 
+                onclick="cycleCardState(${item.id})" 
+                class="w-full btn-3d ${getButtonClass(state)} text-white font-bold py-2.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition-all">
+                <i class="${getButtonIcon(state)}"></i>
+                <span>${getButtonText(state)}</span>
+              </button>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML('beforeend', cardHTML);
+      });
+
+      document.getElementById('visibleCount').innerText = visibleCount;
+    }
+
+    // Helper for escaping single quotes in speech parameters
+    function escapeQuotes(str) {
+      return str.replace(/'/g, "\\'");
+    }
+
+    // Button status styling
+    function getButtonClass(state) {
+      if (state === 0) return 'btn-3d-indigo';
+      if (state === 1) return 'btn-3d-emerald';
+      return 'btn-3d-rose';
+    }
+
+    function getButtonIcon(state) {
+      if (state === 0) return 'fa-solid fa-eye';
+      if (state === 1) return 'fa-solid fa-book-open';
+      return 'fa-solid fa-rotate-left';
+    }
+
+    function getButtonText(state) {
+      if (state === 0) return 'ইংরেজি ও উচ্চারণ দেখুন';
+      if (state === 1) return 'ব্যাখ্যা দেখুন';
+      return 'পুনরায় রিসেট করুন (সংক্ষেপ)';
+    }
+
+    // Cycle individual card steps
+    function cycleCardState(id) {
+      cardStates[id] = (cardStates[id] + 1) % 3;
+      renderCards(document.getElementById('searchInput').value);
+    }
+
+    // Toggle All Cards Step
+    function toggleAllCards() {
+      allExpanded = !allExpanded;
+      const targetState = allExpanded ? 2 : 0;
+      
+      itemsData.forEach(item => {
+        cardStates[item.id] = targetState;
+      });
+
+      document.getElementById('expandText').innerText = allExpanded ? 'সব সংক্ষেপ করুন' : 'সব খুলুন';
+      document.getElementById('expandIcon').className = allExpanded ? 'fa-solid fa-compress' : 'fa-solid fa-layer-group';
+      
+      renderCards(document.getElementById('searchInput').value);
+    }
+
+    // Speech Accent Switcher
+    function toggleAccent() {
+      if (selectedAccent === 'en-US') {
+        selectedAccent = 'en-GB';
+        document.getElementById('accentLabel').innerText = 'Accent: UK 🇬🇧';
+      } else {
+        selectedAccent = 'en-US';
+        document.getElementById('accentLabel').innerText = 'Accent: US 🇺🇸';
+      }
+    }
+
+    // Web Speech API - Text to Speech Pronunciation
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert('দুঃখিত, আপনার ব্রাউজারে টেক্সট-টু-স্পিচ সমর্থিত নয়।');
+        return;
+      }
+
+      window.speechSynthesis.cancel(); // Stop ongoing speech
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = selectedAccent;
+      utterance.rate = 0.9; // Slightly natural pace
+      utterance.pitch = 1.0;
+
+      // Select matching voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const matchedVoice = voices.find(v => v.lang.includes(selectedAccent) || v.lang.replace('_', '-').includes(selectedAccent));
+      if (matchedVoice) {
+        utterance.voice = matchedVoice;
+      }
+
+      // Toast Notification
+      showToast(text);
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('audioToast');
+      const toastText = document.getElementById('toastText');
+      const toastTitle = document.getElementById('toastTitle');
+
+      toastTitle.innerText = selectedAccent === 'en-US' ? 'উচ্চারণ (US 🇺🇸)...' : 'উচ্চারণ (UK 🇬🇧)...';
+      toastText.innerText = `"${text}"`;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+
+    // Search/Filter function
+    function filterCards() {
+      const query = document.getElementById('searchInput').value;
+      renderCards(query);
+    }
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    // Initialize App
+    window.onload = () => {
+      renderCards();
+      // Pre-load voices for Speech Synthesis
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.getVoices();
+        };
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 07: Expressing Surprise, Excitement & Disappointment</title>
+    <!-- Google Fonts Integration for Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --accent-uk: #ec4899;
+            --accent-us: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --font-bn: 'Tiro Bangla', serif;
+            --font-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-bn);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            max-width: 900px;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-family: var(--font-en);
+            font-size: 2.2rem;
+            color: #818cf8;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+
+        header h2 {
+            font-family: var(--font-bn);
+            font-size: 1.5rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        /* 3D Glassmorphism Box Style */
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 
+                        0 8px 10px -6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Section 1: Bengali (Always Visible) */
+        .sec-bn {
+            font-family: var(--font-bn);
+            font-size: 1.35rem;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Section 2: English & Pronunciation (Revealed on Step 1) */
+        .sec-en {
+            display: none;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .en-text {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .en-pron {
+            font-family: var(--font-bn);
+            font-size: 1.05rem;
+            color: #f472b6;
+        }
+
+        /* Section 3: Explanation (Revealed on Step 2) */
+        .sec-exp {
+            display: none;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            padding: 0.9rem;
+            font-family: var(--font-bn);
+            font-size: 0.98rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.4s ease-in-out forwards;
+            margin-bottom: 1rem;
+        }
+
+        /* 3D Audio Buttons Container */
+        .audio-controls {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .btn-3d {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        /* UK Button 3D Effect */
+        .btn-uk {
+            background: linear-gradient(to bottom, #f43f5e, #be123c);
+            box-shadow: 0 4px 0 #881337, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-uk:hover {
+            background: linear-gradient(to bottom, #fb7185, #e11d48);
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #881337, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        /* US Button 3D Effect */
+        .btn-us {
+            background: linear-gradient(to bottom, #0284c7, #0369a1);
+            box-shadow: 0 4px 0 #075985, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-us:hover {
+            background: linear-gradient(to bottom, #38bdf8, #0284c7);
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #075985, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.5rem; }
+            header h1 { font-size: 1.6rem; }
+            header h2 { font-size: 1.2rem; }
+            .cards-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TOPIC 07: Expressing Surprise, Excitement & Disappointment</h1>
+        <h2>বিস্ময়, আনন্দ, উত্তেজনা ও হতাশা প্রকাশ করা</h2>
+    </header>
+
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            {
+                bn: "১. সত্যি! তুই মজা করছিস না তো?",
+                en: "Really? You're not kidding, are you?",
+                pron: "উচ্চারণ: রিয়েলি? ইউর নট কিডিং, আর ইউ?",
+                exp: "ব্যাখ্যা: অবিশ্বাস্য কিছু শুনলে বিস্ময় প্রকাশ করতে ব্যবহার করা হয়। Kidding অর্থ মজা করা।"
+            },
+            {
+                bn: "২. আরে! এটা তো অবিশ্বাস্য!",
+                en: "Wow! That's unbelievable!",
+                pron: "উচ্চারণ: ওয়াও! দ্যাটস আনবিলিভেবল!",
+                exp: "ব্যাখ্যা: অত্যন্ত আশ্চর্যজনক কিছু দেখলে বা শুনলে unbelievable ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৩. আমি তো বিশ্বাসই করতে পারছি না!",
+                en: "I just can't believe it!",
+                pron: "উচ্চারণ: আই জাস্ট ক্যান্ট বিলিভ ইট!",
+                exp: "ব্যাখ্যা: কোনো ঘটনা এতটাই অবাক করার মতো যে বিশ্বাস করা কঠিন—এমন অনুভূতি প্রকাশ করে।"
+            },
+            {
+                bn: "৪. আরে, এটা তো দারুণ খবর!",
+                en: "Oh, that's fantastic news!",
+                pron: "উচ্চারণ: ওহ, দ্যাটস ফ্যানটাস্টিক নিউজ!",
+                exp: "ব্যাখ্যা: আনন্দদায়ক কোনো খবর শুনলে উচ্ছ্বাস প্রকাশ করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৫. আমি সত্যিই খুব খুশি হয়েছি!",
+                en: "I'm genuinely so happy!",
+                pron: "উচ্চারণ: আইম জেনুইনলি সো হ্যাপি!",
+                exp: "ব্যাখ্যা: নিজের প্রকৃত আনন্দ প্রকাশ করতে genuinely ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৬. তোর জন্য আমি ভীষণ খুশি!",
+                en: "I'm so happy for you!",
+                pron: "উচ্চারণ: আইম সো হ্যাপি ফর ইউ!",
+                exp: "ব্যাখ্যা: অন্য কারও সাফল্য বা আনন্দের ঘটনায় নিজের খুশি প্রকাশ করতে বলা হয়।"
+            },
+            {
+                bn: "৭. বাহ! তুই সত্যিই অসাধারণ কাজ করেছিস!",
+                en: "Wow! You've done an amazing job!",
+                pron: "উচ্চারণ: ওয়াও! ইউভ ডান অ্যান অ্যামেইজিং জব!",
+                exp: "ব্যাখ্যা: কারও ভালো কাজের প্রশংসা করতে You've done an amazing job ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৮. কী দারুণ ব্যাপার!",
+                en: "What an amazing thing!",
+                pron: "উচ্চারণ: হোয়াট অ্যান অ্যামেইজিং থিং!",
+                exp: "ব্যাখ্যা: কোনো চমৎকার বিষয় দেখে বিস্ময় ও আনন্দ প্রকাশ করতে Exclamatory Sentence ব্যবহার করা হয়েছে।"
+            },
+            {
+                bn: "৯. আমি এই মুহূর্তটার জন্য অনেক দিন ধরে অপেক্ষা করছিলাম!",
+                en: "I've been waiting for this moment for so long!",
+                pron: "উচ্চারণ: আইভ বিন ওয়েইটিং ফর দিস মোমেন্ট ফর সো লং!",
+                exp: "ব্যাখ্যা: অতীত থেকে বর্তমান পর্যন্ত অপেক্ষার ধারাবাহিকতা বোঝাতে Present Perfect Continuous ব্যবহার করা হয়েছে।"
+            },
+            {
+                bn: "১০. আমি আনন্দে আত্মহারা হয়ে গেছি!",
+                en: "I'm over the moon!",
+                pron: "উচ্চারণ: আইম ওভার দ্য মুন!",
+                exp: "ব্যাখ্যা: Over the moon একটি Idiom, যার অর্থ অত্যন্ত আনন্দিত হওয়া।"
+            },
+            {
+                bn: "১১. কী দারুণ একটা চমক!",
+                en: "What a lovely surprise!",
+                pron: "উচ্চারণ: হোয়াট আ লাভলি সারপ্রাইজ!",
+                exp: "ব্যাখ্যা: অপ্রত্যাশিত আনন্দদায়ক কিছু পেলে এই Expression ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১২. আমি তো একেবারে হতবাক!",
+                en: "I'm absolutely speechless!",
+                pron: "উচ্চারণ: আইম অ্যাবসলিউটলি স্পিচলেস!",
+                exp: "ব্যাখ্যা: অতিরিক্ত বিস্ময় বা আবেগে কথা বলার ভাষা হারিয়ে ফেললে speechless বলা হয়।"
+            },
+            {
+                bn: "১৩. এটা আমার প্রত্যাশার বাইরে ছিল।",
+                en: "This was beyond my expectations.",
+                pron: "উচ্চারণ: দিস ওয়াজ বিয়ন্ড মাই এক্সপেকটেশন্স।",
+                exp: "ব্যাখ্যা: কোনো কিছু প্রত্যাশার চেয়েও বেশি ভালো বা আশ্চর্যজনক হলে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৪. কী দুঃখজনক ব্যাপার!",
+                en: "What a shame!",
+                pron: "উচ্চারণ: হোয়াট আ শেইম!",
+                exp: "ব্যাখ্যা: কোনো হতাশাজনক বা দুঃখজনক ঘটনা শুনলে সহানুভূতি বা আক্ষেপ প্রকাশ করতে বলা হয়।"
+            },
+            {
+                bn: "১৫. শুনে খুব খারাপ লাগল।",
+                en: "I'm really sorry to hear that.",
+                pron: "উচ্চারণ: আইম রিয়েলি সরি টু হিয়ার দ্যাট।",
+                exp: "ব্যাখ্যা: অন্যের দুঃখজনক খবর শুনে সহানুভূতি প্রকাশ করতে ব্যবহৃত হয়।"
+            },
+            {
+                bn: "১৬. আমি সত্যিই এটা আশা করিনি।",
+                en: "I really didn't see that coming.",
+                pron: "উচ্চারণ: আই রিয়েলি ডিডন্ট সি দ্যাট কামিং।",
+                exp: "ব্যাখ্যা: Didn't see that coming একটি প্রচলিত Expression, যার অর্থ কোনো ঘটনা আগে থেকে অনুমান করতে না পারা।"
+            },
+            {
+                bn: "১৭. সবকিছু এভাবে শেষ হবে ভাবিনি।",
+                en: "I never thought things would end this way.",
+                pron: "উচ্চারণ: আই নেভার থট থিংস উড এন্ড দিস ওয়ে।",
+                exp: "ব্যাখ্যা: কোনো ঘটনার পরিণতি প্রত্যাশার বিপরীত হলে এই বাক্য ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৮. আমি খুবই হতাশ হয়েছি।",
+                en: "I'm really disappointed.",
+                pron: "উচ্চারণ: আইম রিয়েলি ডিসঅ্যাপয়েন্টিড।",
+                exp: "ব্যাখ্যা: প্রত্যাশা পূরণ না হলে নিজের হতাশা প্রকাশ করতে disappointed ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৯. আমার মনটা ভেঙে গেছে।",
+                en: "I'm heartbroken.",
+                pron: "উচ্চারণ: আইম হার্টব্রোকেন।",
+                exp: "ব্যাখ্যা: গভীর দুঃখ বা মানসিক কষ্ট প্রকাশ করতে heartbroken ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২০. কী যে খারাপ লাগছে!",
+                en: "I feel so awful!",
+                pron: "উচ্চারণ: আই ফিল সো অফুল!",
+                exp: "ব্যাখ্যা: কোনো পরিস্থিতিতে অত্যন্ত খারাপ অনুভূতি বা মানসিক অস্বস্তি বোঝাতে awful ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২১. ব্যাপারটা সত্যিই হতাশাজনক।",
+                en: "That's really frustrating.",
+                pron: "উচ্চারণ: দ্যাটস রিয়েলি ফ্রাস্ট্রেটিং।",
+                exp: "ব্যাখ্যা: কোনো ঘটনা বিরক্তি বা হতাশা তৈরি করলে frustrating ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২২. ইশ! আর একটু হলেই হয়ে যেত!",
+                en: "Oh, so close! You almost made it!",
+                pron: "উচ্চারণ: ওহ, সো ক্লোজ! ইউ অলমোস্ট মেইড ইট!",
+                exp: "ব্যাখ্যা: কোনো কাজ সফল হওয়ার খুব কাছাকাছি গিয়েও ব্যর্থ হলে এই Expression ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৩. আমি আনন্দে লাফিয়ে উঠছি!",
+                en: "I'm jumping with joy!",
+                pron: "উচ্চারণ: আইম জাম্পিং উইথ জয়!",
+                exp: "ব্যাখ্যা: অত্যন্ত আনন্দিত হওয়া বোঝাতে এই প্রচলিত Expression ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৪. বিশ্বাস কর, আমি এর চেয়ে ভালো কিছু আশা করেছিলাম।",
+                en: "Believe me, I expected something better.",
+                pron: "উচ্চারণ: বিলিভ মি, আই এক্সপেক্টিড সামথিং বেটার।",
+                exp: "ব্যাখ্যা: প্রত্যাশার তুলনায় ফলাফল খারাপ হলে হতাশা প্রকাশ করতে বলা হয়।"
+            },
+            {
+                bn: "২৫. যাই হোক, শেষ পর্যন্ত সব ঠিক হয়ে গেছে!",
+                en: "Anyway, everything worked out in the end.",
+                pron: "উচ্চারণ: এনিওয়ে, এভরিথিং ওয়ার্কড আউট ইন দ্য এন্ড।",
+                exp: "ব্যাখ্যা: Work out অর্থ কোনো সমস্যার সমাধান হওয়া বা ভালোভাবে সম্পন্ন হওয়া। In the end অর্থ শেষ পর্যন্ত।"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = '0'; // 0: BN only, 1: BN+EN, 2: BN+EN+EXP
+
+            card.innerHTML = `
+                <span class="card-number">#${String(index + 1).padStart(2, '0')}</span>
+                <div class="sec-bn">${item.bn}</div>
+                
+                <div class="sec-en">
+                    <div class="en-text">${item.en}</div>
+                    <div class="en-pron">${item.pron}</div>
+                </div>
+
+                <div class="sec-exp">${item.exp}</div>
+
+                <div class="audio-controls" onclick="event.stopPropagation()">
+                    <button class="btn-3d btn-uk" onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')">
+                        🇬🇧 UK Voice
+                    </button>
+                    <button class="btn-3d btn-us" onclick="speakText('${escapeQuotes(item.en)}', 'en-US')">
+                        🇺🇸 US Voice
+                    </button>
+                </div>
+                <div class="click-hint">ক্লিক করুন (ধাপ ১/৩)</div>
+            `;
+
+            // Card Click Event for 3-step reveal
+            card.addEventListener('click', () => {
+                let currentStep = parseInt(card.dataset.step);
+                const secEn = card.querySelector('.sec-en');
+                const secExp = card.querySelector('.sec-exp');
+                const hint = card.querySelector('.click-hint');
+
+                if (currentStep === 0) {
+                    secEn.style.display = 'block';
+                    card.dataset.step = '1';
+                    hint.textContent = 'পুনরায় ক্লিক করুন (ধাপ ২/৩)';
+                } else if (currentStep === 1) {
+                    secExp.style.display = 'block';
+                    card.dataset.step = '2';
+                    hint.textContent = 'লুকাবারে ক্লিক করুন (ধাপ ৩/৩)';
+                } else {
+                    secEn.style.display = 'none';
+                    secExp.style.display = 'none';
+                    card.dataset.step = '0';
+                    hint.textContent = 'ক্লিক করুন (ধাপ ১/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Web Speech API Text-To-Speech Function
+        function speakText(text, lang) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop currently playing audio
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+    </script>
+</body>
+</html>

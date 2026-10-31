@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asking Natural Follow-up Questions - English Learning Cards</title>
+    
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Font Definitions */
+        .font-bangla {
+            font-family: 'Tiro Bangla', serif;
+        }
+        
+        .font-english {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Deep Glowing Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #0b132b, #1c2541, #1e1b4b, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Container with 3D Depth */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(99, 102, 241, 0.35);
+        }
+
+        /* 3D Tactile Push Button Effect */
+        .btn-3d {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 0.75rem;
+            transition: all 0.1s ease;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+        }
+
+        /* UK Button Color & Shadow */
+        .btn-uk {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 6px 0 #1e40af, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #60a5fa;
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #1e40af, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* US Button Color & Shadow */
+        .btn-us {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 6px 0 #991b1b, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #f87171;
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #991b1b, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Next / Toggle Step Button */
+        .btn-step {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            box-shadow: 0 6px 0 #3730a3, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #818cf8;
+        }
+
+        .btn-step:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #3730a3, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Smooth Reveal Transitions */
+        .reveal-box {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-10px);
+        }
+
+        .reveal-box.active {
+            opacity: 1;
+            max-height: 300px;
+            transform: translateY(0);
+        }
+
+        /* Step Indicator Badge */
+        .badge-step {
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="p-3 sm:p-6 md:p-10">
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto text-center mb-10 mt-4">
+        <div class="inline-block p-2 px-4 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 font-semibold mb-3 tracking-wider text-sm shadow-inner">
+            <i class="fa-solid fa-circle-question mr-2"></i>ENGLISH SPOKEN PRACTICE
+        </div>
+        
+        <h1 class="font-english text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 drop-shadow-md mb-3">
+            TOPIC 03: Asking Natural Follow-up Questions
+        </h1>
+        
+        <h2 class="font-bangla text-2xl sm:text-3xl md:text-4xl text-indigo-300 font-medium drop-shadow-sm mb-6">
+            কথোপকথনে স্বাভাবিকভাবে পরবর্তী প্রশ্ন করা
+        </h2>
+
+        <!-- Global Control Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-4 bg-slate-800/60 p-4 rounded-2xl border border-slate-700/80 backdrop-blur-md max-w-2xl mx-auto shadow-2xl">
+            <button onclick="expandAllCards()" class="btn-3d bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 text-sm font-bangla border-b-4 border-indigo-800 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-eye mr-2"></i>সবগুলো প্রকাশ করুন
+            </button>
+            <button onclick="resetAllCards()" class="btn-3d bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 text-sm font-bangla border-b-4 border-slate-900 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-rotate-left mr-2"></i>পুনরায় রিসেট করুন
+            </button>
+            <div class="text-xs text-slate-300 font-bangla bg-slate-900/50 px-3 py-2 rounded-lg border border-slate-700">
+                <i class="fa-solid fa-hand-pointer text-amber-400 mr-1"></i> কার্ডের উপর বা বাটনে ক্লিক করে তথ্য দেখুন
+            </div>
+        </div>
+    </header>
+
+    <!-- Cards Grid Container -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8" id="cards-container">
+        <!-- Javascript will inject 25 dynamic 3D interactive cards here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto text-center mt-16 pb-8 border-t border-slate-800 pt-6">
+        <p class="font-bangla text-slate-400 text-sm">
+            স্পোকেন ইংলিশ শিখুন সহজে ও সুন্দর ইন্টারঅ্যাকটিভ কার্ডের মাধ্যমে।
+        </p>
+    </footer>
+
+    <!-- Audio Speech Controller & App Logic Script -->
+    <script>
+        // Topic 03 Data items array (25 Questions)
+        const conversationData = [
+            { id: 1, bn: "তারপর কী হলো?", en: "What happened next?", pronunciation: "হোয়াট হ্যাপেন্ড নেক্সট?", exp: "কেউ কোনো ঘটনা বলতে শুরু করলে পরবর্তী ঘটনা জানতে এটি ব্যবহার করা হয়।" },
+            { id: 2, bn: "তারপর তুই কী করলি?", en: "So, what did you do then?", pronunciation: "সো, হোয়াট ডিড ইউ ডু দেন?", exp: "কোনো ঘটনার পর অন্য ব্যক্তি কী পদক্ষেপ নিয়েছে, তা জানতে Past Simple-এর প্রশ্ন ব্যবহার করা হয়েছে।" },
+            { id: 3, bn: "আচ্ছা, সেটা কীভাবে হলো?", en: "Oh, how did that happen?", pronunciation: "ওহ, হাউ ডিড দ্যাট হ্যাপন?", exp: "কোনো ঘটনা কীভাবে ঘটেছে তা জানতে How did that happen? বলা হয়।" },
+            { id: 4, bn: "তুই কি সত্যিই সেটা করেছিস?", en: "Did you really do that?", pronunciation: "ডিড ইউ রিয়েলি ডু দ্যাট?", exp: "কারও কথা শুনে অবাক হলে বা নিশ্চিত হতে চাইলে ব্যবহার করা হয়।" },
+            { id: 5, bn: "তোর কেমন লেগেছিল?", en: "How did you feel about it?", pronunciation: "হাউ ডিড ইউ ফিল অ্যাবাউট ইট?", exp: "কোনো অভিজ্ঞতা সম্পর্কে ব্যক্তির অনুভূতি জানতে ব্যবহার করা হয়।" },
+            { id: 6, bn: "তুই কি ওকে আগে থেকেই চিনতিস?", en: "Did you know him before?", pronunciation: "ডিড ইউ নো হিম বিফোর?", exp: "অতীতে কাউকে আগে থেকে চেনা ছিল কি না জানতে Past Simple ব্যবহৃত হয়েছে।" },
+            { id: 7, bn: "সেখানে আর কারা ছিল?", en: "Who else was there?", pronunciation: "হু এলস ওয়াজ দেয়ার", exp: "Who else অর্থ আর কে বা কারা। কোনো জায়গায় উপস্থিত অন্য ব্যক্তিদের সম্পর্কে জানতে ব্যবহৃত হয়।" },
+            { id: 8, bn: "তুই একা গিয়েছিলি, নাকি কারও সঙ্গে?", en: "Did you go alone or with someone?", pronunciation: "ডিড ইউ গো অ্যালোন অর উইথ সামওয়ান?", exp: "দুটি সম্ভাবনার মধ্যে জানতে or ব্যবহার করা হয়েছে।" },
+            { id: 9, bn: "সেখানে কতক্ষণ ছিলি?", en: "How long did you stay there?", pronunciation: "হাউ লং ডিড ইউ স্টেই দেয়ার?", exp: "কোনো কাজ বা অবস্থান কতক্ষণ স্থায়ী হয়েছিল জানতে How long ব্যবহার করা হয়।" },
+            { id: 10, bn: "জায়গাটা কি খুব সুন্দর ছিল?", en: "Was the place really beautiful?", pronunciation: "ওয়াজ দ্য প্লেস রিয়েলি বিউটিফুল", exp: "কোনো জায়গার সৌন্দর্য সম্পর্কে নিশ্চিত হতে Be Verb দিয়ে প্রশ্ন করা হয়েছে।" },
+            { id: 11, bn: "তোর কি ওটা ভালো লেগেছে?", en: "Did you like it?", pronunciation: "ডিড ইউ লাইক ইট?", exp: "কোনো কিছু পছন্দ হয়েছে কি না জানতে এটি অত্যন্ত প্রচলিত প্রশ্ন।" },
+            { id: 12, bn: "তোর সবচেয়ে ভালো কোন অংশটা লেগেছে?", en: "Which part did you like the most?", pronunciation: "হুইচ পার্ট ডিড ইউ লাইক দ্য মোস্ট?", exp: "একাধিক বিষয় বা অভিজ্ঞতার মধ্যে সবচেয়ে পছন্দের অংশ জানতে Which part ব্যবহার করা হয়।" },
+            { id: 13, bn: "তুই কি আবার সেখানে যেতে চাস?", en: "Would you like to go there again?", pronunciation: "উড ইউ লাইক টু গো দেয়ার এগেইন?", exp: "ভদ্র ও স্বাভাবিকভাবে কারও ইচ্ছা জানতে Would you like to ব্যবহার করা হয়।" },
+            { id: 14, bn: "তুই এটা আগে কখনো চেষ্টা করেছিস?", en: "Have you ever tried this before?", pronunciation: "হ্যাভ ইউ এভার ট্রাইড দিস বিফোর?", exp: "জীবনে কোনো কাজ আগে কখনো করা হয়েছে কি না জানতে Present Perfect ব্যবহৃত হয়।" },
+            { id: 15, bn: "এটা করতে তোর কত সময় লেগেছিল?", en: "How long did it take you to do this?", pronunciation: "হাউ লং ডিড ইট টেইক ইউ টু ডু দিস?", exp: "কোনো কাজ সম্পন্ন করতে কত সময় লেগেছে জানতে How long did it take you? ব্যবহার করা হয়।" },
+            { id: 16, bn: "তুই এটা কোথা থেকে শিখলি?", en: "Where did you learn this?", pronunciation: "হোয়্যার ডিড ইউ লার্ন দিস?", exp: "কোনো দক্ষতা বা বিষয় শেখার উৎস জানতে Where did you learn...? ব্যবহার করা হয়।" },
+            { id: 17, bn: "তোর কি মনে হয় এটা কাজ করবে?", en: "Do you think this will work?", pronunciation: "ডু ইউ থিংক দিস উইল ওয়ার্ক?", exp: "কোনো পরিকল্পনা বা পদ্ধতি সফল হবে কি না জানতে এই প্রশ্ন করা হয়।" },
+            { id: 18, bn: "তুই কি একটু বিস্তারিত বলবি?", en: "Could you tell me a little more about it?", pronunciation: "কুড ইউ টেল মি আ লিটল মোর অ্যাবাউট ইট?", exp: "ভদ্রভাবে আরও তথ্য জানতে Could you...? ব্যবহার করা হয়।" },
+            { id: 19, bn: "তুই ঠিক কী বোঝাতে চাচ্ছিস?", en: "What exactly do you mean?", pronunciation: "হোয়াট এগজ্যাক্টলি ডু ইউ মিন?", exp: "কারও বক্তব্য পরিষ্কারভাবে বুঝতে না পারলে এই প্রশ্ন করা হয়। Exactly অর্থ ঠিক কী বা সুনির্দিষ্টভাবে।" },
+            { id: 20, bn: "তোর কি মনে হয় আমি ঠিক বলছি?", en: "Do you think I'm right?", pronunciation: "ডু ইউ থিংক আইম রাইট?", exp: "নিজের বক্তব্য সম্পর্কে অন্যের মতামত জানতে ব্যবহৃত হয়।" },
+            { id: 21, bn: "তুই এটা নিয়ে এত চিন্তিত কেন?", en: "Why are you so worried about it?", pronunciation: "হোয়াই আর ইউ সো ওয়ারিড অ্যাবাউট ইট", exp: "কোনো বিষয়ে অন্য ব্যক্তির উদ্বেগের কারণ জানতে ব্যবহার করা হয়।" },
+            { id: 22, bn: "তুই কি ব্যাপারটা ওকে জানিয়েছিস?", en: "Have you told him about it?", pronunciation: "হ্যাভ ইউ টোল্ড হিম অ্যাবাউট ইট?", exp: "কাউকে কোনো বিষয় জানানো হয়েছে কি না জানতে Present Perfect ব্যবহার করা হয়েছে।" },
+            { id: 23, bn: "এরপর কী করার পরিকল্পনা করেছিস?", en: "What are you planning to do next?", pronunciation: "হোয়াট আর ইউ প্ল্যানিং টু ডু নেক্সট?", exp: "ভবিষ্যতে কী করার পরিকল্পনা রয়েছে জানতে Present Continuous ব্যবহার করা হয়েছে।" },
+            { id: 24, bn: "তুই কি নিশ্চিত এটাই সঠিক সিদ্ধান্ত?", en: "Are you sure this is the right decision?", pronunciation: "আর ইউ শিওর দিস ইজ দ্য রাইট ডিসিশন?", exp: "কারও সিদ্ধান্ত সম্পর্কে নিশ্চিত হতে এই প্রশ্ন করা হয়।" },
+            { id: 25, bn: "আচ্ছা, আরেকটা কথা জিজ্ঞেস করি?", en: "By the way, can I ask you something else?", pronunciation: "বাই দ্য ওয়ে, ক্যান আই আস্ক ইউ সামথিং এলস?", exp: "কথোপকথনের মধ্যে নতুন প্রশ্ন বা অন্য প্রসঙ্গ শুরু করতে By the way ব্যবহার করা হয়।" }
+        ];
+
+        // Track current state for each card (State 1: Bengali, State 2: English+Pron, State 3: Explanation)
+        const cardStates = {};
+
+        // Speech Synthesis API Setup
+        const synth = window.speechSynthesis;
+        let voices = [];
+
+        function loadVoices() {
+            voices = synth.getVoices();
+        }
+        
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        // Render Cards dynamically
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            conversationData.forEach((item) => {
+                cardStates[item.id] = cardStates[item.id] || 1; // Default to state 1
+                const padId = String(item.id).padStart(2, '0');
+
+                const cardHTML = `
+                    <div id="card-${item.id}" class="card-3d rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden select-none cursor-pointer" onclick="handleCardClick(event, ${item.id})">
+                        
+                        <!-- Top Bar inside Card -->
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                            <span class="badge-step bg-gradient-to-r from-indigo-400 to-purple-400 text-slate-950 font-extrabold px-3 py-1 rounded-full text-xs sm:text-sm font-english tracking-wider">
+                                #${padId}
+                            </span>
+                            <div class="flex items-center space-x-2 text-xs font-bangla text-indigo-300 bg-indigo-900/40 px-3 py-1 rounded-full border border-indigo-500/30">
+                                <span id="badge-state-text-${item.id}">ধাপ ১: বাংলা</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Content Body -->
+                        <div class="space-y-4 my-2">
+                            <!-- Always Visible: Bengali Sentence -->
+                            <div class="bg-indigo-400/10 p-3 sm:p-4 rounded-xl border border-indigo-400/20 shadow-inner">
+                                <p class="text-xs text-indigo-300/80 font-bangla mb-1"><i class="fa-solid fa-language mr-1"></i>বাংলা প্রশ্ন:</p>
+                                <h3 class="font-bangla text-xl sm:text-2xl font-bold text-indigo-200 leading-relaxed">
+                                    ${item.bn}
+                                </h3>
+                            </div>
+
+                            <!-- State 2 Content: English & Pronunciation -->
+                            <div id="english-box-${item.id}" class="reveal-box space-y-3">
+                                <div class="bg-indigo-950/60 p-3 sm:p-4 rounded-xl border border-indigo-500/30">
+                                    <p class="text-xs text-indigo-300/80 font-english mb-1"><i class="fa-solid fa-font mr-1"></i>English Question:</p>
+                                    <p class="font-english text-xl sm:text-2xl font-semibold text-purple-200 leading-normal tracking-wide">
+                                        ${item.en}
+                                    </p>
+                                </div>
+                                <div class="bg-purple-950/50 p-3 rounded-xl border border-purple-500/20">
+                                    <p class="text-xs text-purple-300/80 font-bangla mb-1"><i class="fa-solid fa-volume-low mr-1"></i>উচ্চারণ (Pronunciation):</p>
+                                    <p class="font-bangla text-lg text-purple-200">
+                                        ${item.pronunciation}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- State 3 Content: Explanation -->
+                            <div id="explanation-box-${item.id}" class="reveal-box">
+                                <div class="bg-slate-900/60 p-3 sm:p-4 rounded-xl border border-pink-500/30 text-pink-200">
+                                    <p class="text-xs text-pink-300/80 font-bangla mb-1"><i class="fa-solid fa-circle-info mr-1"></i>ব্যাখ্যা (Explanation):</p>
+                                    <p class="font-bangla text-sm sm:text-base leading-relaxed text-pink-100">
+                                        ${item.exp}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Tactile Action Buttons Container -->
+                        <div class="pt-4 mt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2" onclick="event.stopPropagation()">
+                            
+                            <!-- Audio Pronunciation Buttons -->
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')" class="btn-3d btn-uk text-xs px-3 py-2" title="Listen in British Accent">
+                                    <span class="mr-1.5 text-base">🇬🇧</span> UK Voice
+                                </button>
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-US')" class="btn-3d btn-us text-xs px-3 py-2" title="Listen in American Accent">
+                                    <span class="mr-1.5 text-base">🇺🇸</span> US Voice
+                                </button>
+                            </div>
+
+                            <!-- Step Toggle Button -->
+                            <button onclick="advanceCardState(${item.id})" class="btn-3d btn-step text-xs px-3.5 py-2 font-bangla ml-auto">
+                                <span id="btn-label-${item.id}">পরবর্তী ধাপ <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+                updateCardUI(item.id);
+            });
+        }
+
+        // Handle full card clicks
+        function handleCardClick(event, id) {
+            // Prevent state toggle if text was highlighted/selected by user
+            const selection = window.getSelection();
+            if (selection.toString().length > 0) return;
+            
+            advanceCardState(id);
+        }
+
+        // Advance specific card through 3 states sequentially
+        function advanceCardState(id) {
+            if (!cardStates[id]) cardStates[id] = 1;
+            
+            cardStates[id] = (cardStates[id] % 3) + 1; // Cycles: 1 -> 2 -> 3 -> 1
+            updateCardUI(id);
+        }
+
+        // Update Card Visuals based on current state
+        function updateCardUI(id) {
+            const state = cardStates[id];
+            const englishBox = document.getElementById(`english-box-${id}`);
+            const explanationBox = document.getElementById(`explanation-box-${id}`);
+            const badgeText = document.getElementById(`badge-state-text-${id}`);
+            const btnLabel = document.getElementById(`btn-label-${id}`);
+
+            if (!englishBox || !explanationBox) return;
+
+            if (state === 1) {
+                // State 1: Bengali Only
+                englishBox.classList.remove('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ১: বাংলা';
+                btnLabel.innerHTML = 'ইংরেজি ও উচ্চারণ <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 2) {
+                // State 2: English & Pronunciation Revealed
+                englishBox.classList.add('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ২: ইংরেজি ও উচ্চারণ';
+                btnLabel.innerHTML = 'ব্যাখ্যা দেখুন <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 3) {
+                // State 3: Full Explanation Revealed
+                englishBox.classList.add('active');
+                explanationBox.classList.add('active');
+                badgeText.innerText = 'ধাপ ৩: সম্পূর্ণ বিস্তারিত';
+                btnLabel.innerHTML = 'পুনরায় শুরুতে <i class="fa-solid fa-rotate-left ml-1"></i>';
+            }
+        }
+
+        // Global Action: Expand All Cards to State 3
+        function expandAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 3;
+                updateCardUI(item.id);
+            });
+        }
+
+        // Global Action: Reset All Cards to State 1
+        function resetAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 1;
+                updateCardUI(item.id);
+            });
+        }
+
+        // Speech Synthesis Function
+        function speakText(text, langCode) {
+            if (!('speechSynthesis' in window)) {
+                alert('আপনার ব্রাউজারে টেক্সট-টু-স্পিচ (Audio Pronunciation) সাপোর্ট করছে না।');
+                return;
+            }
+
+            // Stop any ongoing speech
+            synth.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langCode;
+            utterance.rate = 0.88; // Slower speed for clear pronunciation
+
+            // Select matching voice accent if available
+            const matchingVoices = synth.getVoices().filter(voice => voice.lang.includes(langCode) || voice.lang.replace('_', '-').includes(langCode));
+            if (matchingVoices.length > 0) {
+                utterance.voice = matchingVoices[0];
+            }
+
+            synth.speak(utterance);
+        }
+
+        // Helper function to escape single quotes in JS inline onclick attributes
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Initialize App on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+            loadVoices();
+        });
+    </script>
+</body>
+</html>

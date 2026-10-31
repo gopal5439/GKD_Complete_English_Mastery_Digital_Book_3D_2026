@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making Suggestions & Giving Advice - English Learning Cards</title>
+    
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Font Definitions */
+        .font-bangla {
+            font-family: 'Tiro Bangla', serif;
+        }
+        
+        .font-english {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Deep Glowing Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Container with 3D Depth */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(99, 102, 241, 0.35);
+        }
+
+        /* 3D Tactile Push Button Effect */
+        .btn-3d {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 0.75rem;
+            transition: all 0.1s ease;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+        }
+
+        /* UK Button Color & Shadow */
+        .btn-uk {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 6px 0 #1e40af, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #60a5fa;
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #1e40af, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* US Button Color & Shadow */
+        .btn-us {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 6px 0 #991b1b, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #f87171;
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #991b1b, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Next / Toggle Step Button */
+        .btn-step {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            box-shadow: 0 6px 0 #3730a3, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #818cf8;
+        }
+
+        .btn-step:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #3730a3, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Smooth Reveal Transitions */
+        .reveal-box {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-10px);
+        }
+
+        .reveal-box.active {
+            opacity: 1;
+            max-height: 300px;
+            transform: translateY(0);
+        }
+
+        /* Step Indicator Badge */
+        .badge-step {
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="p-3 sm:p-6 md:p-10">
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto text-center mb-10 mt-4">
+        <div class="inline-block p-2 px-4 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 font-semibold mb-3 tracking-wider text-sm shadow-inner">
+            <i class="fa-solid fa-lightbulb mr-2"></i>ENGLISH SPOKEN PRACTICE
+        </div>
+        
+        <h1 class="font-english text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-200 drop-shadow-md mb-3">
+            TOPIC 05: Making Suggestions & Giving Advice
+        </h1>
+        
+        <h2 class="font-bangla text-2xl sm:text-3xl md:text-4xl text-indigo-300 font-medium drop-shadow-sm mb-6">
+            পরামর্শ দেওয়া, প্রস্তাব করা ও কাউকে উৎসাহিত করা
+        </h2>
+
+        <!-- Global Control Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-4 bg-slate-800/60 p-4 rounded-2xl border border-slate-700/80 backdrop-blur-md max-w-2xl mx-auto shadow-2xl">
+            <button onclick="expandAllCards()" class="btn-3d bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 text-sm font-bangla border-b-4 border-indigo-800 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-eye mr-2"></i>সবগুলো প্রকাশ করুন
+            </button>
+            <button onclick="resetAllCards()" class="btn-3d bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 text-sm font-bangla border-b-4 border-slate-900 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-rotate-left mr-2"></i>পুনরায় রিসেট করুন
+            </button>
+            <div class="text-xs text-slate-300 font-bangla bg-slate-900/50 px-3 py-2 rounded-lg border border-slate-700">
+                <i class="fa-solid fa-hand-pointer text-indigo-400 mr-1"></i> কার্ডের উপর বা বাটনে ক্লিক করে তথ্য দেখুন
+            </div>
+        </div>
+    </header>
+
+    <!-- Cards Grid Container -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8" id="cards-container">
+        <!-- Javascript will inject 25 dynamic 3D interactive cards here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto text-center mt-16 pb-8 border-t border-slate-800 pt-6">
+        <p class="font-bangla text-slate-400 text-sm">
+            পরামর্শ দেওয়া ও প্রস্তাব করার বাক্যগুলো শিখুন ও স্পোকেন ইংরেজিতে প্রয়োগ করুন।
+        </p>
+    </footer>
+
+    <!-- Audio Speech Controller & App Logic Script -->
+    <script>
+        // Topic 05 Data items array (25 Sentences)
+        const conversationData = [
+            { id: 1, bn: "আমার মনে হয় তোর এটা করা উচিত।", en: "I think you should do this.", pronunciation: "আই থিংক ইউ শুড ডু দিস।", exp: "কাউকে কোনো কাজ করার পরামর্শ দিতে should + Verb-এর মূল রূপ ব্যবহার করা হয়।" },
+            { id: 2, bn: "চল, আজ বাইরে খেতে যাই।", en: "Let's eat out today.", pronunciation: "লেটস ইট আউট টুডে।", exp: "একসঙ্গে কোনো কাজ করার প্রস্তাব দিতে Let's + Verb ব্যবহার করা হয়। Eat out অর্থ বাইরে খাওয়া।" },
+            { id: 3, bn: "তুই চাইলে একবার চেষ্টা করে দেখতে পারিস।", en: "You could give it a try.", pronunciation: "ইউ কুড গিভ ইট আ ট্রাই।", exp: "কাউকে ভদ্রভাবে কোনো কিছু চেষ্টা করার পরামর্শ দিতে could ব্যবহার করা হয়। Give it a try অর্থ চেষ্টা করে দেখা।" },
+            { id: 4, bn: "আমার মনে হয় তোর একটু বিশ্রাম নেওয়া দরকার।", en: "I think you need to get some rest.", pronunciation: "আই থিংক ইউ নিড টু গেট সাম রেস্ট।", exp: "কোনো প্রয়োজন বোঝাতে need to + Verb ব্যবহার করা হয়।" },
+            { id: 5, bn: "তুই বরং ওর সঙ্গে কথা বলে দেখ।", en: "Why don't you talk to him?", pronunciation: "হোয়াই ডোন্ট ইউ টক টু হিম?", exp: "কাউকে কোনো কাজ করার পরামর্শ দেওয়ার একটি স্বাভাবিক উপায় হলো Why don't you...?" },
+            { id: 6, bn: "আমার জায়গায় হলে আমি এখনই কাজটা করতাম।", en: "If I were you, I'd do it right now.", pronunciation: "ইফ আই ওয়ার ইউ, আইড ডু ইট রাইট নাউ।", exp: "অন্য কারও পরিস্থিতিতে নিজেকে কল্পনা করে পরামর্শ দিতে If I were you ব্যবহার করা হয়।" },
+            { id: 7, bn: "ব্যাপারটা নিয়ে এত চিন্তা করার দরকার নেই।", en: "You don't need to worry so much about it.", pronunciation: "ইউ ডোন্ট নিড টু ওয়ারি সো মাচ অ্যাবাউট ইট।", exp: "কোনো কাজের প্রয়োজন নেই বোঝাতে don't need to + Verb ব্যবহার করা হয়।" },
+            { id: 8, bn: "তুই চাইলে আমার সাহায্য নিতে পারিস।", en: "You can ask me for help if you want.", pronunciation: "ইউ ক্যান আস্ক মি ফর হেল্প ইফ ইউ ওয়ান্ট।", exp: "কাউকে সাহায্য নেওয়ার সুযোগ জানাতে can ask me for help ব্যবহার করা হয়েছে।" },
+            { id: 9, bn: "আমার মনে হয় আমাদের এখনই বের হওয়া উচিত।", en: "I think we should leave now.", pronunciation: "আই থিংক উই শুড লিভ নাউ।", exp: "একসঙ্গে কোনো কাজ করার পরামর্শ দিতে we should + Verb ব্যবহার করা হয়।" },
+            { id: 10, bn: "চল, অন্য কোনো উপায় খুঁজে বের করি।", en: "Let's find another way.", pronunciation: "লেটস ফাইন্ড অ্যানাদার ওয়ে।", exp: "কোনো সমস্যার বিকল্প সমাধান খুঁজতে একসঙ্গে প্রস্তাব দেওয়ার বাক্য।" },
+            { id: 11, bn: "তুই চাইলে একটু অপেক্ষা করতে পারিস।", en: "You might want to wait a little.", pronunciation: "ইউ মাইট ওয়ান্ট টু ওয়েইট আ লিটল।", exp: "সরাসরি নির্দেশ না দিয়ে নম্রভাবে পরামর্শ দিতে You might want to... ব্যবহার করা হয়।" },
+            { id: 12, bn: "আমার মনে হয় তোর এটা নিয়ে আবার ভাবা উচিত।", en: "I think you should think about it again.", pronunciation: "আই থিংক ইউ শুড থিংক অ্যাবাউট ইট এগেইন।", exp: "কোনো সিদ্ধান্ত পুনর্বিবেচনা করার পরামর্শ দিতে think about it again বলা হয়।" },
+            { id: 13, bn: "তুই চাইলে আমার সঙ্গে যেতে পারিস।", en: "You can come with me if you like.", pronunciation: "ইউ ক্যান কাম উইথ মি ইফ ইউ লাইক।", exp: "কাউকে নিজের সঙ্গে যাওয়ার আমন্ত্রণ জানাতে এই বাক্য ব্যবহার করা হয়।" },
+            { id: 14, bn: "চল, বিষয়টা নিয়ে খোলাখুলি কথা বলি।", en: "Let's talk about it openly.", pronunciation: "লেটস টক অ্যাবাউট ইট ওপেনলি।", exp: "কোনো বিষয় গোপন না রেখে স্পষ্টভাবে আলোচনা করার প্রস্তাব বোঝায়।" },
+            { id: 15, bn: "তোর উচিত নিজের ওপর একটু বিশ্বাস রাখা।", en: "You should believe in yourself.", pronunciation: "ইউ শুড বিলিভ ইন ইয়োরসেলফ।", exp: "কাউকে আত্মবিশ্বাসী হওয়ার পরামর্শ দিতে believe in yourself ব্যবহার করা হয়।" },
+            { id: 16, bn: "আমার মনে হয় তোর আরও একটু অনুশীলন করা উচিত।", en: "I think you should practise a little more.", pronunciation: "আই থিংক ইউ শুড প্র্যাকটিস আ লিটল মোর।", exp: "কোনো দক্ষতা উন্নত করতে অতিরিক্ত অনুশীলনের পরামর্শ দেওয়া হচ্ছে। British English-এ Verb হিসেবে practise বানানটি ব্যবহৃত হয়।" },
+            { id: 17, bn: "তুই চাইলে কালই কাজটা শুরু করতে পারিস।", en: "You could start the work tomorrow.", pronunciation: "ইউ কুড স্টার্ট দ্য ওয়ার্ক টুমরো।", exp: "কোনো কাজ শুরু করার সম্ভাবনা বা নম্র প্রস্তাব বোঝাতে could ব্যবহার করা হয়েছে।" },
+            { id: 18, bn: "চল, আগে সমস্যাটা বুঝে নিই।", en: "Let's understand the problem first.", pronunciation: "লেটস আন্ডারস্ট্যান্ড দ্য প্রবলেম ফার্স্ট।", exp: "কোনো সমাধানে যাওয়ার আগে সমস্যাটি বোঝার প্রস্তাব দিতে ব্যবহৃত হয়।" },
+            { id: 19, bn: "তাড়াহুড়ো করার দরকার নেই, সময় নিয়ে কর।", en: "There's no need to rush. Take your time.", pronunciation: "দেয়ারস নো নিড টু রাশ। টেইক ইয়োর টাইম।", exp: "There's no need to অর্থ প্রয়োজন নেই। Take your time অর্থ ধীরে-সুস্থে সময় নিয়ে কর।" },
+            { id: 20, bn: "আমার মনে হয় তোর ওর কাছে ক্ষমা চাওয়া উচিত।", en: "I think you should apologize to him.", pronunciation: "আই থিংক ইউ শুড অ্যাপোলজাইজ টু হিম।", exp: "কারও কাছে ক্ষমা চাওয়ার পরামর্শ দিতে apologize to someone ব্যবহার করা হয়।" },
+            { id: 21, bn: "তুই চাইলে আমরা একসঙ্গে কাজটা করতে পারি।", en: "We could do it together if you want.", pronunciation: "উই কুড ডু ইট টুগেদার ইফ ইউ ওয়ান্ট।", exp: "একসঙ্গে কোনো কাজ করার প্রস্তাব দিতে could ব্যবহার করা হয়েছে।" },
+            { id: 22, bn: "আমার মনে হয় এখন একটু বিরতি নেওয়া ভালো হবে।", en: "I think it would be better to take a break now.", pronunciation: "আই থিংক ইট উড বি বেটার টু টেইক আ ব্রেক নাউ।", exp: "কোনো কাজের ক্ষেত্রে ভালো বিকল্প বা পরামর্শ প্রকাশ করতে It would be better to... ব্যবহার করা হয়।" },
+            { id: 23, bn: "তুই বরং অন্য কাউকে জিজ্ঞেস করে দেখ।", en: "You should ask someone else instead.", pronunciation: "ইউ শুড আস্ক সামওয়ান এলস ইনস্টেড।", exp: "অন্য বিকল্প গ্রহণের পরামর্শ দিতে instead ব্যবহার করা হয়।" },
+            { id: 24, bn: "একটা কাজ কর, আগে ওকে ফোন দে।", en: "Here's what you should do: call him first.", pronunciation: "হিয়ারস হোয়াট ইউ শুড ডু: কল হিম ফার্স্ট।", exp: "কাউকে নির্দিষ্ট কোনো পদক্ষেপ নিতে বলার সময় Here's what you should do ব্যবহার করা যায়।" },
+            { id: 25, bn: "আমার কথা শোন, হাল ছেড়ে দিস না।", en: "Listen to me, don't give up.", pronunciation: "লিসন টু মি, ডোন্ট গিভ আপ।", exp: "কাউকে সাহস ও উৎসাহ দিতে Don't give up বলা হয়। Give up অর্থ হাল ছেড়ে দেওয়া।" }
+        ];
+
+        // Track current state for each card
+        const cardStates = {};
+
+        // Speech Synthesis API Setup
+        const synth = window.speechSynthesis;
+        let voices = [];
+
+        function loadVoices() {
+            voices = synth.getVoices();
+        }
+        
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        // Render Cards dynamically
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            conversationData.forEach((item) => {
+                cardStates[item.id] = cardStates[item.id] || 1;
+                const padId = String(item.id).padStart(2, '0');
+
+                const cardHTML = `
+                    <div id="card-${item.id}" class="card-3d rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden select-none cursor-pointer" onclick="handleCardClick(event, ${item.id})">
+                        
+                        <!-- Top Bar inside Card -->
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                            <span class="badge-step bg-gradient-to-r from-indigo-400 to-purple-400 text-slate-950 font-extrabold px-3 py-1 rounded-full text-xs sm:text-sm font-english tracking-wider">
+                                #${padId}
+                            </span>
+                            <div class="flex items-center space-x-2 text-xs font-bangla text-indigo-300 bg-indigo-950/40 px-3 py-1 rounded-full border border-indigo-500/30">
+                                <span id="badge-state-text-${item.id}">ধাপ ১: বাংলা</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Content Body -->
+                        <div class="space-y-4 my-2">
+                            <!-- Always Visible: Bengali Sentence -->
+                            <div class="bg-indigo-400/10 p-3 sm:p-4 rounded-xl border border-indigo-400/20 shadow-inner">
+                                <p class="text-xs text-indigo-300/80 font-bangla mb-1"><i class="fa-solid fa-language mr-1"></i>বাংলা বাক্য:</p>
+                                <h3 class="font-bangla text-xl sm:text-2xl font-bold text-indigo-100 leading-relaxed">
+                                    ${item.bn}
+                                </h3>
+                            </div>
+
+                            <!-- State 2 Content: English & Pronunciation -->
+                            <div id="english-box-${item.id}" class="reveal-box space-y-3">
+                                <div class="bg-slate-900/70 p-3 sm:p-4 rounded-xl border border-indigo-500/30">
+                                    <p class="text-xs text-indigo-300/80 font-english mb-1"><i class="fa-solid fa-font mr-1"></i>English Sentence:</p>
+                                    <p class="font-english text-xl sm:text-2xl font-semibold text-indigo-200 leading-normal tracking-wide">
+                                        ${item.en}
+                                    </p>
+                                </div>
+                                <div class="bg-purple-950/40 p-3 rounded-xl border border-purple-500/20">
+                                    <p class="text-xs text-purple-300/80 font-bangla mb-1"><i class="fa-solid fa-volume-low mr-1"></i>উচ্চারণ (Pronunciation):</p>
+                                    <p class="font-bangla text-lg text-purple-200">
+                                        ${item.pronunciation}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- State 3 Content: Explanation -->
+                            <div id="explanation-box-${item.id}" class="reveal-box">
+                                <div class="bg-indigo-950/60 p-3 sm:p-4 rounded-xl border border-indigo-500/30 text-indigo-200">
+                                    <p class="text-xs text-indigo-300/80 font-bangla mb-1"><i class="fa-solid fa-circle-info mr-1"></i>ব্যাখ্যা (Explanation):</p>
+                                    <p class="font-bangla text-sm sm:text-base leading-relaxed text-indigo-100">
+                                        ${item.exp}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Tactile Action Buttons Container -->
+                        <div class="pt-4 mt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2" onclick="event.stopPropagation()">
+                            
+                            <!-- Audio Pronunciation Buttons -->
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')" class="btn-3d btn-uk text-xs px-3 py-2" title="Listen in British Accent">
+                                    <span class="mr-1.5 text-base">🇬🇧</span> UK Voice
+                                </button>
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-US')" class="btn-3d btn-us text-xs px-3 py-2" title="Listen in American Accent">
+                                    <span class="mr-1.5 text-base">🇺🇸</span> US Voice
+                                </button>
+                            </div>
+
+                            <!-- Step Toggle Button -->
+                            <button onclick="advanceCardState(${item.id})" class="btn-3d btn-step text-xs px-3.5 py-2 font-bangla ml-auto">
+                                <span id="btn-label-${item.id}">পরবর্তী ধাপ <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+                updateCardUI(item.id);
+            });
+        }
+
+        function handleCardClick(event, id) {
+            const selection = window.getSelection();
+            if (selection.toString().length > 0) return;
+            
+            advanceCardState(id);
+        }
+
+        function advanceCardState(id) {
+            if (!cardStates[id]) cardStates[id] = 1;
+            
+            cardStates[id] = (cardStates[id] % 3) + 1;
+            updateCardUI(id);
+        }
+
+        function updateCardUI(id) {
+            const state = cardStates[id];
+            const englishBox = document.getElementById(`english-box-${id}`);
+            const explanationBox = document.getElementById(`explanation-box-${id}`);
+            const badgeText = document.getElementById(`badge-state-text-${id}`);
+            const btnLabel = document.getElementById(`btn-label-${id}`);
+
+            if (!englishBox || !explanationBox) return;
+
+            if (state === 1) {
+                englishBox.classList.remove('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ১: বাংলা';
+                btnLabel.innerHTML = 'ইংরেজি ও উচ্চারণ <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 2) {
+                englishBox.classList.add('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ২: ইংরেজি ও উচ্চারণ';
+                btnLabel.innerHTML = 'ব্যাখ্যা দেখুন <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 3) {
+                englishBox.classList.add('active');
+                explanationBox.classList.add('active');
+                badgeText.innerText = 'ধাপ ৩: সম্পূর্ণ বিস্তারিত';
+                btnLabel.innerHTML = 'পুনরায় শুরুতে <i class="fa-solid fa-rotate-left ml-1"></i>';
+            }
+        }
+
+        function expandAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 3;
+                updateCardUI(item.id);
+            });
+        }
+
+        function resetAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 1;
+                updateCardUI(item.id);
+            });
+        }
+
+        function speakText(text, langCode) {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            synth.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langCode;
+            utterance.rate = 0.88;
+
+            const matchingVoices = synth.getVoices().filter(voice => voice.lang.includes(langCode) || voice.lang.replace('_', '-').includes(langCode));
+            if (matchingVoices.length > 0) {
+                utterance.voice = matchingVoices[0];
+            }
+
+            synth.speak(utterance);
+        }
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+            loadVoices();
+        });
+    </script>
+</body>
+</html>

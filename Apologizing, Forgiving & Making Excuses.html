@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 09: Apologizing, Forgiving & Making Excuses</title>
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent-uk: #ec4899;
+            --accent-us: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --font-bn: 'Tiro Bangla', serif;
+            --font-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-bn);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-family: var(--font-en);
+            font-size: 2.2rem;
+            color: #818cf8;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+
+        header h2 {
+            font-family: var(--font-bn);
+            font-size: 1.5rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        /* 3D Glassmorphism Card Style */
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 
+                        0 8px 10px -6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Bengali Sentence Section */
+        .sec-bn {
+            font-family: var(--font-bn);
+            font-size: 1.35rem;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* English & Pronunciation Section */
+        .sec-en {
+            display: none;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .en-text {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .en-pron {
+            font-family: var(--font-bn);
+            font-size: 1.05rem;
+            color: #f472b6;
+        }
+
+        /* Explanation Section */
+        .sec-exp {
+            display: none;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            padding: 0.9rem;
+            font-family: var(--font-bn);
+            font-size: 0.98rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.4s ease-in-out forwards;
+            margin-bottom: 1rem;
+        }
+
+        /* 3D Audio Control Buttons */
+        .audio-controls {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .btn-3d {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .btn-uk {
+            background: linear-gradient(to bottom, #f43f5e, #be123c);
+            box-shadow: 0 4px 0 #881337, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-uk:hover {
+            background: linear-gradient(to bottom, #fb7185, #e11d48);
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #881337, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .btn-us {
+            background: linear-gradient(to bottom, #0284c7, #0369a1);
+            box-shadow: 0 4px 0 #075985, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-us:hover {
+            background: linear-gradient(to bottom, #38bdf8, #0284c7);
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #075985, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.5rem; }
+            header h1 { font-size: 1.6rem; }
+            header h2 { font-size: 1.2rem; }
+            .cards-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TOPIC 09: Apologizing, Forgiving & Making Excuses</h1>
+        <h2>ক্ষমা চাওয়া, ক্ষমা করা ও কোনো কাজের কারণ ব্যাখ্যা করা</h2>
+    </header>
+
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            {
+                bn: "১. দুঃখিত, আমার ভুল হয়েছে।",
+                en: "I'm sorry, it was my mistake.",
+                pron: "উচ্চারণ: আইম সরি, ইট ওয়াজ মাই মিস্টেইক।",
+                exp: "ব্যাখ্যা: নিজের ভুল স্বীকার করে ক্ষমা চাইতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২. আমাকে মাফ করে দিস, এমনটা আর হবে না।",
+                en: "Please forgive me. It won't happen again.",
+                pron: "উচ্চারণ: প্লিজ ফরগিভ মি। ইট ওউন্ট হ্যাপন এগেইন।",
+                exp: "ব্যাখ্যা: কারও কাছে ক্ষমা চেয়ে ভবিষ্যতে একই ভুল না করার প্রতিশ্রুতি দিতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৩. বিশ্বাস কর, আমি ইচ্ছা করে করিনি।",
+                en: "Believe me, I didn't do it on purpose.",
+                pron: "উচ্চারণ: বিলিভ মি, আই ডিডন্ট ডু ইট অন পারপাস।",
+                exp: "ব্যাখ্যা: On purpose অর্থ ইচ্ছাকৃতভাবে। কোনো কাজ ইচ্ছা করে করা হয়নি বোঝাতে বলা হয়।"
+            },
+            {
+                bn: "৪. আমার একটু দেরি হয়ে গেছে, দুঃখিত।",
+                en: "Sorry, I'm running a little late.",
+                pron: "উচ্চারণ: সরি, আইম রানিং আ লিটল লেইট।",
+                exp: "ব্যাখ্যা: নির্ধারিত সময়ের তুলনায় দেরি হচ্ছে বোঝাতে running late ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৫. তোকে অপেক্ষা করানোর জন্য দুঃখিত।",
+                en: "I'm sorry for keeping you waiting.",
+                pron: "উচ্চারণ: আইম সরি ফর কিপিং ইউ ওয়েইটিং।",
+                exp: "ব্যাখ্যা: কাউকে অপেক্ষা করানোর জন্য ক্ষমা চাইতে sorry for + Verb-ing ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৬. আমার কথায় যদি কষ্ট পেয়ে থাকিস, আমি দুঃখিত।",
+                en: "I'm sorry if I hurt your feelings.",
+                pron: "উচ্চারণ: আইম সরি ইফ আই হার্ট ইয়োর ফিলিংস।",
+                exp: "ব্যাখ্যা: নিজের কথায় অন্যের অনুভূতিতে আঘাত লাগলে ক্ষমা চাইতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৭. ব্যাপারটা আমার মাথায় ছিল না।",
+                en: "It completely slipped my mind.",
+                pron: "উচ্চারণ: ইট কমপ্লিটলি স্লিপ্ট মাই মাইন্ড।",
+                exp: "ব্যাখ্যা: কোনো কিছু ভুলে যাওয়ার কথা বোঝাতে slip one's mind একটি প্রচলিত Idiom।"
+            },
+            {
+                bn: "৮. আমি ভুলে গিয়েছিলাম, সত্যিই দুঃখিত।",
+                en: "I forgot. I'm really sorry.",
+                pron: "উচ্চারণ: আই ফরগট। আইম রিয়েলি সরি।",
+                exp: "ব্যাখ্যা: কোনো কাজ বা বিষয় ভুলে গেলে সরাসরি ভুল স্বীকার করে ক্ষমা চাইতে বলা হয়।"
+            },
+            {
+                bn: "৯. দেরি করার জন্য একটা জরুরি কাজ দায়ী ছিল।",
+                en: "Something urgent came up, so I got delayed.",
+                pron: "উচ্চারণ: সামথিং আর্জেন্ট কেইম আপ, সো আই গট ডিলেইড।",
+                exp: "ব্যাখ্যা: Came up অর্থ হঠাৎ কোনো ঘটনা বা প্রয়োজন দেখা দেওয়া। দেরির কারণ ব্যাখ্যা করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১০. ফোনটা ধরতে পারিনি, আমি ব্যস্ত ছিলাম।",
+                en: "I couldn't answer the phone. I was busy.",
+                pron: "উচ্চারণ: আই কুডন্ট আনসার দ্য ফোন। আই ওয়াজ বিজি।",
+                exp: "ব্যাখ্যা: অতীতে কোনো কাজ করতে না পারা বোঝাতে couldn't + Verb ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১১. আমাকে একটু সময় দে, আমি ব্যাপারটা ঠিক করে নিচ্ছি।",
+                en: "Give me a little time. I'll sort it out.",
+                pron: "উচ্চারণ: গিভ মি আ লিটল টাইম। আইল সর্ট ইট আউট।",
+                exp: "ব্যাখ্যা: Sort it out অর্থ কোনো সমস্যা সমাধান করা বা গুছিয়ে নেওয়া।"
+            },
+            {
+                bn: "১২. ঠিক আছে, কোনো সমস্যা নেই। আমি তোকে ক্ষমা করে দিয়েছি।",
+                en: "It's okay. No problem. I forgive you.",
+                pron: "উচ্চারণ: ইটস ওকে। নো প্রবলেম। আই ফরগিভ ইউ।",
+                exp: "ব্যাখ্যা: কারও ভুল ক্ষমা করে দেওয়ার কথা জানাতে I forgive you ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৩. আরে, ঠিক আছে। এসব নিয়ে ভাবিস না।",
+                en: "Hey, it's alright. Don't worry about it.",
+                pron: "উচ্চারণ: হেই, ইটস অলরাইট। ডোন্ট ওয়ারি অ্যাবাউট ইট।",
+                exp: "ব্যাখ্যা: কারও ক্ষমা চাওয়ার পর তাকে আশ্বস্ত করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৪. যা হয়েছে, ভুলে যা।",
+                en: "Just forget about what happened.",
+                pron: "উচ্চারণ: জাস্ট ফরগেট অ্যাবাউট হোয়াট হ্যাপেন্ড।",
+                exp: "ব্যাখ্যা: অতীতের কোনো অপ্রীতিকর ঘটনা নিয়ে আর চিন্তা না করতে বোঝানো হয়।"
+            },
+            {
+                bn: "১৫. এটা নিয়ে আর কথা বাড়াতে চাই না।",
+                en: "I don't want to make a big deal out of it.",
+                pron: "উচ্চারণ: আই ডোন্ট ওয়ান্ট টু মেইক আ বিগ ডিল আউট অভ ইট।",
+                exp: "ব্যাখ্যা: কোনো ছোট বিষয়কে বড় করে আলোচনা করতে না চাইলে এই Idiom ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৬. তুই আমাকে ভুল বুঝেছিস।",
+                en: "You've misunderstood me.",
+                pron: "উচ্চারণ: ইউভ মিসআন্ডারস্টুড মি।",
+                exp: "ব্যাখ্যা: কেউ নিজের বক্তব্য বা উদ্দেশ্য ভুল বুঝলে misunderstood ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৭. আমাকে একটু বুঝিয়ে বলার সুযোগ দে।",
+                en: "Give me a chance to explain.",
+                pron: "উচ্চারণ: গিভ মি আ চান্স টু এক্সপ্লেইন।",
+                exp: "ব্যাখ্যা: নিজের বক্তব্য বা কাজের কারণ ব্যাখ্যা করার সুযোগ চাইতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৮. আমি তোকে কষ্ট দিতে চাইনি।",
+                en: "I didn't mean to hurt you.",
+                pron: "উচ্চারণ: আই ডিডন্ট মিন টু হার্ট ইউ।",
+                exp: "ব্যাখ্যা: কোনো কাজের মাধ্যমে কাউকে কষ্ট দেওয়া উদ্দেশ্য ছিল না বোঝাতে didn't mean to ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৯. আমার ওপর রাগ করে থাকিস না।",
+                en: "Please don't be mad at me.",
+                pron: "উচ্চারণ: প্লিজ ডোন্ট বি ম্যাড অ্যাট মি।",
+                exp: "ব্যাখ্যা: কারও রাগ কমানোর অনুরোধ করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২০. আমি জানি, আমার আরও সাবধান হওয়া উচিত ছিল।",
+                en: "I know I should have been more careful.",
+                pron: "উচ্চারণ: আই নো আই শুড হ্যাভ বিন মোর কেয়ারফুল।",
+                exp: "ব্যাখ্যা: অতীতে কোনো কাজ আরও ভালোভাবে করা উচিত ছিল কিন্তু করা হয়নি বোঝাতে should have + past participle ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২১. আমাকে আরেকটা সুযোগ দে।",
+                en: "Please give me another chance.",
+                pron: "উচ্চারণ: প্লিজ গিভ মি অ্যানাদার চান্স।",
+                exp: "ব্যাখ্যা: নিজের ভুল সংশোধনের জন্য নতুন সুযোগ চাইতে বলা হয়।"
+            },
+            {
+                bn: "২২. আমি তোকে কথা দিচ্ছি, এবার ঠিক করে দেব।",
+                en: "I promise I'll make it right this time.",
+                pron: "উচ্চারণ: আই প্রমিস আইল মেইক ইট রাইট দিস টাইম।",
+                exp: "ব্যাখ্যা: Make it right অর্থ ভুল সংশোধন করা বা পরিস্থিতি ঠিক করা।"
+            },
+            {
+                bn: "২৩. আসলে পরিস্থিতিটা আমার নিয়ন্ত্রণে ছিল না।",
+                en: "Actually, the situation was beyond my control.",
+                pron: "উচ্চারণ: অ্যাকচুয়ালি, দ্য সিচুয়েশন ওয়াজ বিয়ন্ড মাই কন্ট্রোল।",
+                exp: "ব্যাখ্যা: কোনো ঘটনা নিজের নিয়ন্ত্রণের বাইরে ছিল বোঝাতে beyond my control ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৪. দেরিতে উত্তর দেওয়ার জন্য দুঃখিত।",
+                en: "Sorry for the late reply.",
+                pron: "উচ্চারণ: সরি ফর দ্য লেইট রিপ্লাই।",
+                exp: "ব্যাখ্যা: মেসেজ বা কোনো প্রশ্নের উত্তর দিতে দেরি হলে ক্ষমা চাইতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৫. ঠিক আছে, যা হয়েছে হয়েছে। সামনে এগিয়ে চল।",
+                en: "It's alright. What's done is done. Let's move on.",
+                pron: "উচ্চারণ: ইটস অলরাইট। হোয়াটস ডান ইজ ডান। লেটস মুভ অন।",
+                exp: "ব্যাখ্যা: What's done is done একটি Idiom, যার অর্থ অতীতে যা ঘটে গেছে তা আর পরিবর্তন করা সম্ভব নয়। Move on অর্থ অতীত ভুলে সামনে এগিয়ে যাওয়া।"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = '0'; // 0: BN only, 1: BN+EN, 2: BN+EN+EXP
+
+            card.innerHTML = `
+                <span class="card-number">#${String(index + 1).padStart(2, '0')}</span>
+                <div class="sec-bn">${item.bn}</div>
+                
+                <div class="sec-en">
+                    <div class="en-text">${item.en}</div>
+                    <div class="en-pron">${item.pron}</div>
+                </div>
+
+                <div class="sec-exp">${item.exp}</div>
+
+                <div class="audio-controls" onclick="event.stopPropagation()">
+                    <button class="btn-3d btn-uk" onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')">
+                        🇬🇧 UK Voice
+                    </button>
+                    <button class="btn-3d btn-us" onclick="speakText('${escapeQuotes(item.en)}', 'en-US')">
+                        🇺🇸 US Voice
+                    </button>
+                </div>
+                <div class="click-hint">ক্লিক করুন (ধাপ ১/৩)</div>
+            `;
+
+            // Card Click Event for 3-step reveal
+            card.addEventListener('click', () => {
+                let currentStep = parseInt(card.dataset.step);
+                const secEn = card.querySelector('.sec-en');
+                const secExp = card.querySelector('.sec-exp');
+                const hint = card.querySelector('.click-hint');
+
+                if (currentStep === 0) {
+                    secEn.style.display = 'block';
+                    card.dataset.step = '1';
+                    hint.textContent = 'পুনরায় ক্লিক করুন (ধাপ ২/৩)';
+                } else if (currentStep === 1) {
+                    secExp.style.display = 'block';
+                    card.dataset.step = '2';
+                    hint.textContent = 'লুকাবার জন্য ক্লিক করুন';
+                } else {
+                    secEn.style.display = 'none';
+                    secExp.style.display = 'none';
+                    card.dataset.step = '0';
+                    hint.textContent = 'ক্লিক করুন (ধাপ ১/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Web Speech API Text-To-Speech Function
+        function speakText(text, lang) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop currently playing audio
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // Slightly slower speed for clear listening
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজারে স্পিচ ফিচারটি সাপোর্ট করছে না।');
+            }
+        }
+    </script>
+</body>
+</html>

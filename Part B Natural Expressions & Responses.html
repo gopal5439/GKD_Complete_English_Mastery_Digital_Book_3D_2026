@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part B: Natural Expressions & Responses</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 40%, #1a2332 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* 3D Glassmorphism Card Style */
+    .btn-3d {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.45),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .btn-3d:hover {
+      transform: translateY(-8px) scale(1.02) rotateX(4deg);
+      border-bottom-width: 6px;
+      box-shadow: 0 25px 35px rgba(0, 0, 0, 0.55),
+                  0 0 25px rgba(56, 189, 248, 0.35),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-3d:active {
+      transform: translateY(2px) scale(0.98);
+      border-bottom-width: 2px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Floating Background Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      animation: float 10s infinite alternate ease-in-out;
+    }
+    .blob-1 { top: -10%; left: -10%; width: 380px; height: 380px; background: rgba(14, 165, 233, 0.25); }
+    .blob-2 { bottom: -10%; right: -10%; width: 400px; height: 400px; background: rgba(168, 85, 247, 0.25); }
+    .blob-3 { top: 40%; left: 35%; width: 320px; height: 320px; background: rgba(236, 72, 153, 0.2); }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, 40px) scale(1.1); }
+    }
+
+    /* Smooth Entrance Animations */
+    .fade-in-up {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center p-4 md:p-8 relative min-h-screen">
+
+  <!-- Background Animated Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Main Container -->
+  <div class="w-full max-w-4xl relative z-10 my-auto py-6">
+    
+    <!-- Header Area -->
+    <div class="text-center mb-10 fade-in-up" style="animation-delay: 0.1s;">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 backdrop-blur-md text-cyan-300 text-sm font-semibold mb-4 shadow-lg">
+        <i class="fa-solid fa-face-smile text-cyan-400"></i>
+        <span>Spoken English Learning Module</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-sky-300 to-indigo-400 tracking-tight leading-tight mb-3">
+        Part B: Natural Expressions & Responses
+      </h1>
+      <p class="text-gray-300 text-base md:text-lg max-w-xl mx-auto font-light">
+        স্বাভাবিক অনুভূতি ও প্রতিক্রিয়া প্রকাশের জন্য যেকোনো একটি মডিউল নির্বাচন করুন
+      </p>
+    </div>
+
+    <!-- 5 Buttons Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Button 1 -->
+      <a href="Agreeing, Disagreeing & Responding Naturally.html" 
+         class="btn-3d group p-6 rounded-2xl flex items-center justify-between text-left fade-in-up" 
+         style="animation-delay: 0.2s;">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <div>
+            <span class="text-xs font-semibold text-teal-300 tracking-wider uppercase block mb-1">Module 01</span>
+            <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-teal-200 transition-colors">
+              Agreeing, Disagreeing & Responding Naturally
+            </h3>
+          </div>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-teal-500 group-hover:translate-x-1 transition-all">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </a>
+
+      <!-- Button 2 -->
+      <a href="Expressing Surprise, Excitement & Disappointment.html" 
+         class="btn-3d group p-6 rounded-2xl flex items-center justify-between text-left fade-in-up" 
+         style="animation-delay: 0.3s;">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-pink-500 to-rose-400 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <span class="text-xs font-semibold text-pink-300 tracking-wider uppercase block mb-1">Module 02</span>
+            <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-pink-200 transition-colors">
+              Expressing Surprise, Excitement & Disappointment
+            </h3>
+          </div>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-pink-500 group-hover:translate-x-1 transition-all">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </a>
+
+      <!-- Button 3 -->
+      <a href="Showing Interest, Curiosity & Concern.html" 
+         class="btn-3d group p-6 rounded-2xl flex items-center justify-between text-left fade-in-up" 
+         style="animation-delay: 0.4s;">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <div>
+            <span class="text-xs font-semibold text-sky-300 tracking-wider uppercase block mb-1">Module 03</span>
+            <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-sky-200 transition-colors">
+              Showing Interest, Curiosity & Concern
+            </h3>
+          </div>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-sky-500 group-hover:translate-x-1 transition-all">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </a>
+
+      <!-- Button 4 -->
+      <a href="Apologizing, Forgiving & Making Excuses.html" 
+         class="btn-3d group p-6 rounded-2xl flex items-center justify-between text-left fade-in-up" 
+         style="animation-delay: 0.5s;">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-purple-500 to-violet-500 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-hands-praying"></i>
+          </div>
+          <div>
+            <span class="text-xs font-semibold text-purple-300 tracking-wider uppercase block mb-1">Module 04</span>
+            <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-purple-200 transition-colors">
+              Apologizing, Forgiving & Making Excuses
+            </h3>
+          </div>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-purple-500 group-hover:translate-x-1 transition-all">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </a>
+
+      <!-- Button 5 (Spans 2 Columns on Desktop for Balanced Layout) -->
+      <a href="Complaining, Criticizing & Defending Yourself.html" 
+         class="btn-3d group p-6 rounded-2xl flex items-center justify-between text-left md:col-span-2 fade-in-up" 
+         style="animation-delay: 0.6s;">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-amber-500 to-red-500 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <span class="text-xs font-semibold text-amber-300 tracking-wider uppercase block mb-1">Module 05</span>
+            <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-amber-200 transition-colors">
+              Complaining, Criticizing & Defending Yourself
+            </h3>
+          </div>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-amber-500 group-hover:translate-x-1 transition-all">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Footer Note -->
+    <div class="text-center mt-12 text-gray-400 text-xs font-light">
+      <p>© 2026 Interactive English Mastery Platform. All rights reserved.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

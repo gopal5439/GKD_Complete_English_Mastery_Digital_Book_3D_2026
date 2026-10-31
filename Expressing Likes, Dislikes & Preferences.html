@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expressing Likes, Dislikes & Preferences - English Learning Cards</title>
+    
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Font Definitions */
+        .font-bangla {
+            font-family: 'Tiro Bangla', serif;
+        }
+        
+        .font-english {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Deep Glowing Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #090d16, #111827, #1e1b4b, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Container with 3D Depth */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(236, 72, 153, 0.35);
+        }
+
+        /* 3D Tactile Push Button Effect */
+        .btn-3d {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 0.75rem;
+            transition: all 0.1s ease;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+        }
+
+        /* UK Button Color & Shadow */
+        .btn-uk {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 6px 0 #1e40af, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #60a5fa;
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #1e40af, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* US Button Color & Shadow */
+        .btn-us {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 6px 0 #991b1b, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #f87171;
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #991b1b, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Next / Toggle Step Button */
+        .btn-step {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            box-shadow: 0 6px 0 #be185d, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #f472b6;
+        }
+
+        .btn-step:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #be185d, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Smooth Reveal Transitions */
+        .reveal-box {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-10px);
+        }
+
+        .reveal-box.active {
+            opacity: 1;
+            max-height: 300px;
+            transform: translateY(0);
+        }
+
+        /* Step Indicator Badge */
+        .badge-step {
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="p-3 sm:p-6 md:p-10">
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto text-center mb-10 mt-4">
+        <div class="inline-block p-2 px-4 rounded-full bg-pink-500/20 border border-pink-400/30 text-pink-300 font-semibold mb-3 tracking-wider text-sm shadow-inner">
+            <i class="fa-solid fa-heart-circle-check mr-2"></i>ENGLISH SPOKEN PRACTICE
+        </div>
+        
+        <h1 class="font-english text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-200 to-indigo-200 drop-shadow-md mb-3">
+            TOPIC 04: Expressing Likes, Dislikes & Preferences
+        </h1>
+        
+        <h2 class="font-bangla text-2xl sm:text-3xl md:text-4xl text-pink-300 font-medium drop-shadow-sm mb-6">
+            পছন্দ, অপছন্দ ও নিজের পছন্দের বিষয় প্রকাশ করা
+        </h2>
+
+        <!-- Global Control Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-4 bg-slate-800/60 p-4 rounded-2xl border border-slate-700/80 backdrop-blur-md max-w-2xl mx-auto shadow-2xl">
+            <button onclick="expandAllCards()" class="btn-3d bg-pink-600 hover:bg-pink-500 text-white px-4 py-2 text-sm font-bangla border-b-4 border-pink-800 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-eye mr-2"></i>সবগুলো প্রকাশ করুন
+            </button>
+            <button onclick="resetAllCards()" class="btn-3d bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 text-sm font-bangla border-b-4 border-slate-900 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-rotate-left mr-2"></i>পুনরায় রিসেট করুন
+            </button>
+            <div class="text-xs text-slate-300 font-bangla bg-slate-900/50 px-3 py-2 rounded-lg border border-slate-700">
+                <i class="fa-solid fa-hand-pointer text-pink-400 mr-1"></i> কার্ডের উপর বা বাটনে ক্লিক করে তথ্য দেখুন
+            </div>
+        </div>
+    </header>
+
+    <!-- Cards Grid Container -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8" id="cards-container">
+        <!-- Javascript will inject 25 dynamic 3D interactive cards here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto text-center mt-16 pb-8 border-t border-slate-800 pt-6">
+        <p class="font-bangla text-slate-400 text-sm">
+            পছন্দ ও অপছন্দ প্রকাশ করার সুন্দর সব বাক্য শিখুন সহজ উপায়ে।
+        </p>
+    </footer>
+
+    <!-- Audio Speech Controller & App Logic Script -->
+    <script>
+        // Topic 04 Data items array (25 Sentences)
+        const conversationData = [
+            { id: 1, bn: "আমার এটা খুব ভালো লাগে।", en: "I really like this", pronunciation: "আই রিয়েলি লাইক দিস।", exp: "কোনো কিছু খুব পছন্দ হলে really like ব্যবহার করা হয়।" },
+            { id: 2, bn: "আমি চায়ের চেয়ে কফি বেশি পছন্দ করি।", en: "I prefer coffee to tea", pronunciation: "আই প্রিফার কফি টু টি।", exp: "দুটি জিনিসের মধ্যে একটিকে বেশি পছন্দ বোঝাতে prefer A to B ব্যবহার করা হয়।" },
+            { id: 3, bn: "আমি ঘরে থাকতে বেশি পছন্দ করি।", en: "I prefer staying at home.", pronunciation: "আই প্রিফার স্টেইং অ্যাট হোম।", exp: "Prefer এর পরে Gerund (Verb + ing) ব্যবহার করে কোনো কাজের প্রতি পছন্দ প্রকাশ করা যায়।" },
+            { id: 4, bn: "আমার বাইরে ঘুরতে যেতে ভালো লাগে।", en: "I enjoy going out.", pronunciation: "আই এনজয় গোয়িং আউট।", exp: "কোনো কাজ করে আনন্দ পাওয়া বোঝাতে enjoy + Verb-ing ব্যবহার করা হয়।" },
+            { id: 5, bn: "আমি একদম ঝাল খাবার পছন্দ করি না।", en: "I don't like spicy food at all.", pronunciation: "আই ডোন্ট লাইক স্পাইসি ফুড অ্যাট অল।", exp: "কোনো কিছু একেবারেই অপছন্দ বোঝাতে not ... at all ব্যবহার করা হয়।" },
+            { id: 6, bn: "আমি ভিড় একদম পছন্দ করি না।", en: "I can't stand crowds.", pronunciation: "আই ক্যান্ট স্ট্যান্ড ক্রাউডস।", exp: "Can't stand অর্থ কোনো কিছু একদম সহ্য করতে না পারা বা খুব অপছন্দ করা।" },
+            { id: 7, bn: "আমার শান্ত পরিবেশ ভালো লাগে।", en: "I like a peaceful environment.", pronunciation: "আই লাইক আ পিসফুল এনভায়রনমেন্ট।", exp: "নিজের পছন্দের পরিবেশ বোঝাতে peaceful environment ব্যবহার করা হয়েছে।" },
+            { id: 8, bn: "আমি অবসরে গান শুনতে ভালোবাসি।", en: "I love listening to music in my free time.", pronunciation: "আই লাভ লিসনিং টু মিউজিক ইন মাই ফ্রি টাইম।", exp: "কোনো কাজের প্রতি গভীর ভালো লাগা বোঝাতে love + Verb-ing ব্যবহার করা হয়।" },
+            { id: 9, bn: "আমার বই পড়ার চেয়ে সিনেমা দেখতে বেশি ভালো লাগে।", en: "I enjoy watching movies more than reading books.", pronunciation: "আই এনজয় ওয়াচিং মুভিজ মোর দ্যান রিডিং বুকস।", exp: "দুটি কাজের মধ্যে তুলনামূলক পছন্দ বোঝাতে more than ব্যবহার করা হয়েছে।" },
+            { id: 10, bn: "সত্যি বলতে, আমি মিষ্টি খুব একটা পছন্দ করি না।", en: "Honestly, I'm not really into sweets.", pronunciation: "অনেস্টলি, আইম নট রিয়েলি ইনটু সুইটস।", exp: "Be into something একটি Natural Expression, যার অর্থ কোনো কিছুর প্রতি আগ্রহী বা অনুরাগী হওয়া।" },
+            { id: 11, bn: "আমি নতুন নতুন জায়গা ঘুরে দেখতে পছন্দ করি।", en: "I like exploring new places.", pronunciation: "আই লাইক এক্সপ্লোরিং নিউ প্লেইসিজ।", exp: "নতুন জায়গা আবিষ্কার বা ঘুরে দেখার আগ্রহ বোঝাতে explore ব্যবহার করা হয়।" },
+            { id: 12, bn: "আমার ক্রিকেটের চেয়ে ফুটবল বেশি ভালো লাগে।", en: "I'm more into football than cricket.", pronunciation: "আইম মোর ইনটু ফুটবল দ্যান ক্রিকেট।", exp: "অনানুষ্ঠানিক কথোপকথনে দুটি বিষয়ের মধ্যে বেশি আগ্রহ বোঝাতে more into A than B ব্যবহার করা হয়।" },
+            { id: 13, bn: "আমি সাধারণত ঘরে রান্না করা খাবারই পছন্দ করি।", en: "I usually prefer home-cooked meals.", pronunciation: "আই ইউজুয়ালি প্রিফার হোম-কুকড মিলস।", exp: "Home-cooked meals অর্থ বাড়িতে তৈরি খাবার। নিজের নিয়মিত পছন্দ বোঝাতে usually prefer বলা হয়েছে।" },
+            { id: 14, bn: "আমার নতুন কিছু শেখার প্রতি আগ্রহ আছে।", en: "I'm interested in learning new things.", pronunciation: "আইম ইন্টারেস্টিড ইন লার্নিং নিউ থিংস।", exp: "কোনো বিষয়ে আগ্রহ বোঝাতে be interested in + Verb-ing ব্যবহার করা হয়।" },
+            { id: 15, bn: "এটা আমার একদম পছন্দের নয়।", en: "This isn't really my thing.", pronunciation: "দিস ইজন্ট রিয়েলি মাই থিং।", exp: "Not my thing একটি প্রচলিত Casual Expression। কোনো কিছু নিজের পছন্দ বা আগ্রহের বিষয় নয় বোঝায়।" },
+            { id: 16, bn: "আমি খুব বেশি মশলাদার খাবার খেতে পারি না।", en: "I can't eat very spicy food.", pronunciation: "আই ক্যান্ট ইট ভেরি স্পাইসি ফুড।", exp: "কোনো খাবার খেতে অসুবিধা বা অক্ষমতা বোঝাতে can't eat ব্যবহার করা হয়েছে।" },
+            { id: 17, bn: "আমার দুটোই ভালো লাগে।", en: "I like both.", pronunciation: "আই লাইক বোথ।", exp: "দুটি বিকল্পই পছন্দ হলে both ব্যবহার করা হয়।" },
+            { id: 18, bn: "দুটোর মধ্যে যেকোনো একটা হলেই চলবে।", en: "Either one is fine with me.", pronunciation: "আইদার ওয়ান ইজ ফাইন উইথ মি।", exp: "দুটি বিকল্পের মধ্যে যেকোনো একটি গ্রহণযোগ্য বোঝাতে Either one is fine বলা হয়।" },
+            { id: 19, bn: "আমার কোনো বিশেষ পছন্দ নেই।", en: "I don't have any particular preference.", pronunciation: "আই ডোন্ট হ্যাভ এনি পার্টিকুলার প্রেফারেন্স।", exp: "নির্দিষ্ট কোনো পছন্দ না থাকলে particular preference ব্যবহার করা হয়।" },
+            { id: 20, bn: "আমি বরং বাসায় থাকতে চাই।", en: "I'd rather stay at home.", pronunciation: "আইড রাদার স্টেই অ্যাট হোম।", exp: "I'd rather হলো I would rather-এর সংক্ষিপ্ত রূপ। অন্য বিকল্পের চেয়ে কোনো কাজ করতে বেশি ইচ্ছুক বোঝায়।" },
+            { id: 21, bn: "আমার কাছে সকালের সময়টা সবচেয়ে ভালো লাগে।", en: "I like the mornings the most.", pronunciation: "আই লাইক দ্য মর্নিংস দ্য মোস্ট।", exp: "একাধিক সময়ের মধ্যে সবচেয়ে পছন্দের সময় বোঝাতে the most ব্যবহার করা হয়েছে।" },
+            { id: 22, bn: "আমি অকারণে সময় নষ্ট করতে পছন্দ করি না।", en: "I don't like wasting time for no reason.", pronunciation: "আই ডোন্ট লাইক ওয়েস্টিং টাইম ফর নো রিজন।", exp: "Waste time অর্থ সময় নষ্ট করা। For no reason অর্থ কোনো কারণ ছাড়াই।" },
+            { id: 23, bn: "আমি সহজ-সরল জীবনযাপন পছন্দ করি।", en: "I prefer a simple lifestyle.", pronunciation: "আই প্রিফার আ সিম্পল লাইফস্টাইল।", exp: "নিজের জীবনযাপনের পছন্দ বোঝাতে prefer a simple lifestyle ব্যবহার করা হয়।" },
+            { id: 24, bn: "আমার কাছে দুটোর কোনোটাই ভালো লাগে না।", en: "I don't like either of them.", pronunciation: "আই ডোন্ট লাইক আইদার অভ দেম।", exp: "দুটি বিকল্পের কোনোটিই পছন্দ নয় বোঝাতে don't like either of them ব্যবহার করা হয়।" },
+            { id: 25, bn: "সবার পছন্দ এক রকম হয় না।", en: "Everyone has different tastes.", pronunciation: "এভরিওয়ান হ্যাজ ডিফারেন্ট টেইস্টস।", exp: "Taste শুধু স্বাদ নয়, পছন্দ বা রুচিও বোঝায়। মানুষের পছন্দ আলাদা হওয়া বোঝাতে এই বাক্যটি ব্যবহৃত হয়।" }
+        ];
+
+        // Track current state for each card (State 1: Bengali, State 2: English+Pron, State 3: Explanation)
+        const cardStates = {};
+
+        // Speech Synthesis API Setup
+        const synth = window.speechSynthesis;
+        let voices = [];
+
+        function loadVoices() {
+            voices = synth.getVoices();
+        }
+        
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        // Render Cards dynamically
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            conversationData.forEach((item) => {
+                cardStates[item.id] = cardStates[item.id] || 1; // Default to state 1
+                const padId = String(item.id).padStart(2, '0');
+
+                const cardHTML = `
+                    <div id="card-${item.id}" class="card-3d rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden select-none cursor-pointer" onclick="handleCardClick(event, ${item.id})">
+                        
+                        <!-- Top Bar inside Card -->
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                            <span class="badge-step bg-gradient-to-r from-pink-400 to-purple-400 text-slate-950 font-extrabold px-3 py-1 rounded-full text-xs sm:text-sm font-english tracking-wider">
+                                #${padId}
+                            </span>
+                            <div class="flex items-center space-x-2 text-xs font-bangla text-pink-300 bg-pink-950/40 px-3 py-1 rounded-full border border-pink-500/30">
+                                <span id="badge-state-text-${item.id}">ধাপ ১: বাংলা</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Content Body -->
+                        <div class="space-y-4 my-2">
+                            <!-- Always Visible: Bengali Sentence -->
+                            <div class="bg-pink-400/10 p-3 sm:p-4 rounded-xl border border-pink-400/20 shadow-inner">
+                                <p class="text-xs text-pink-300/80 font-bangla mb-1"><i class="fa-solid fa-language mr-1"></i>বাংলা বাক্য:</p>
+                                <h3 class="font-bangla text-xl sm:text-2xl font-bold text-pink-200 leading-relaxed">
+                                    ${item.bn}
+                                </h3>
+                            </div>
+
+                            <!-- State 2 Content: English & Pronunciation -->
+                            <div id="english-box-${item.id}" class="reveal-box space-y-3">
+                                <div class="bg-indigo-950/60 p-3 sm:p-4 rounded-xl border border-indigo-500/30">
+                                    <p class="text-xs text-indigo-300/80 font-english mb-1"><i class="fa-solid fa-font mr-1"></i>English Sentence:</p>
+                                    <p class="font-english text-xl sm:text-2xl font-semibold text-purple-200 leading-normal tracking-wide">
+                                        ${item.en}
+                                    </p>
+                                </div>
+                                <div class="bg-purple-950/50 p-3 rounded-xl border border-purple-500/20">
+                                    <p class="text-xs text-purple-300/80 font-bangla mb-1"><i class="fa-solid fa-volume-low mr-1"></i>উচ্চারণ (Pronunciation):</p>
+                                    <p class="font-bangla text-lg text-purple-200">
+                                        ${item.pronunciation}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- State 3 Content: Explanation -->
+                            <div id="explanation-box-${item.id}" class="reveal-box">
+                                <div class="bg-slate-900/60 p-3 sm:p-4 rounded-xl border border-pink-500/30 text-pink-200">
+                                    <p class="text-xs text-pink-300/80 font-bangla mb-1"><i class="fa-solid fa-circle-info mr-1"></i>ব্যাখ্যা (Explanation):</p>
+                                    <p class="font-bangla text-sm sm:text-base leading-relaxed text-pink-100">
+                                        ${item.exp}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Tactile Action Buttons Container -->
+                        <div class="pt-4 mt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2" onclick="event.stopPropagation()">
+                            
+                            <!-- Audio Pronunciation Buttons -->
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')" class="btn-3d btn-uk text-xs px-3 py-2" title="Listen in British Accent">
+                                    <span class="mr-1.5 text-base">🇬🇧</span> UK Voice
+                                </button>
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-US')" class="btn-3d btn-us text-xs px-3 py-2" title="Listen in American Accent">
+                                    <span class="mr-1.5 text-base">🇺🇸</span> US Voice
+                                </button>
+                            </div>
+
+                            <!-- Step Toggle Button -->
+                            <button onclick="advanceCardState(${item.id})" class="btn-3d btn-step text-xs px-3.5 py-2 font-bangla ml-auto">
+                                <span id="btn-label-${item.id}">পরবর্তী ধাপ <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+                updateCardUI(item.id);
+            });
+        }
+
+        // Handle full card clicks
+        function handleCardClick(event, id) {
+            const selection = window.getSelection();
+            if (selection.toString().length > 0) return;
+            
+            advanceCardState(id);
+        }
+
+        // Advance specific card through 3 states sequentially
+        function advanceCardState(id) {
+            if (!cardStates[id]) cardStates[id] = 1;
+            
+            cardStates[id] = (cardStates[id] % 3) + 1; // Cycles: 1 -> 2 -> 3 -> 1
+            updateCardUI(id);
+        }
+
+        // Update Card Visuals based on current state
+        function updateCardUI(id) {
+            const state = cardStates[id];
+            const englishBox = document.getElementById(`english-box-${id}`);
+            const explanationBox = document.getElementById(`explanation-box-${id}`);
+            const badgeText = document.getElementById(`badge-state-text-${id}`);
+            const btnLabel = document.getElementById(`btn-label-${id}`);
+
+            if (!englishBox || !explanationBox) return;
+
+            if (state === 1) {
+                englishBox.classList.remove('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ১: বাংলা';
+                btnLabel.innerHTML = 'ইংরেজি ও উচ্চারণ <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 2) {
+                englishBox.classList.add('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ২: ইংরেজি ও উচ্চারণ';
+                btnLabel.innerHTML = 'ব্যাখ্যা দেখুন <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 3) {
+                englishBox.classList.add('active');
+                explanationBox.classList.add('active');
+                badgeText.innerText = 'ধাপ ৩: সম্পূর্ণ বিস্তারিত';
+                btnLabel.innerHTML = 'পুনরায় শুরুতে <i class="fa-solid fa-rotate-left ml-1"></i>';
+            }
+        }
+
+        // Global Action: Expand All Cards to State 3
+        function expandAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 3;
+                updateCardUI(item.id);
+            });
+        }
+
+        // Global Action: Reset All Cards to State 1
+        function resetAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 1;
+                updateCardUI(item.id);
+            });
+        }
+
+        // Speech Synthesis Function
+        function speakText(text, langCode) {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            synth.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langCode;
+            utterance.rate = 0.88;
+
+            const matchingVoices = synth.getVoices().filter(voice => voice.lang.includes(langCode) || voice.lang.replace('_', '-').includes(langCode));
+            if (matchingVoices.length > 0) {
+                utterance.voice = matchingVoices[0];
+            }
+
+            synth.speak(utterance);
+        }
+
+        // Helper function to escape single quotes in JS inline onclick attributes
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Initialize App on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+            loadVoices();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 23: Handling Problems, Difficulties & Complaints</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tiro Bangla', serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        .font-english {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 
+                        inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.25), 
+                        inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        /* 3D Button Press Effect */
+        .btn-3d {
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 0 #4c1d95, 0 6px 12px rgba(0, 0, 0, 0.4);
+            position: relative;
+            top: 0;
+        }
+
+        .btn-3d:active {
+            top: 3px;
+            box-shadow: 0 1px 0 #4c1d95, 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Smooth Accordion Animations */
+        .expandable-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .expandable-content.open {
+            grid-template-rows: 1fr;
+        }
+
+        .inner-content {
+            overflow: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4c1d95;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6d28d9;
+        }
+
+        /* Glowing Badge Animation */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+        .glow-effect {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="p-3 md:p-8 flex flex-col justify-between">
+
+    <div class="max-w-5xl mx-auto w-full">
+        <!-- Header Section -->
+        <header class="text-center mb-8 relative">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-900/60 to-pink-900/60 border border-purple-500/30 text-xs md:text-sm font-semibold tracking-wider text-purple-300 mb-3 shadow-lg glow-effect">
+                <i class="fa-solid fa-graduation-cap mr-1.5"></i> স্পোকেন ইংলিশ মাস্টারক্লাস
+            </div>
+            
+            <h1 class="text-2xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-pink-400 mb-2 leading-tight">
+                TOPIC 23: Handling Problems, Difficulties & Complaints
+            </h1>
+            <p class="text-lg md:text-2xl font-medium text-purple-200/90 mb-6">
+                সমস্যা, অসুবিধা ও অভিযোগ সামলানো
+            </p>
+
+            <!-- Control Bar -->
+            <div class="glass-card p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 border border-purple-500/20">
+                <!-- Search Box -->
+                <div class="relative w-full md:w-1/2">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-purple-400"></i>
+                    <input type="text" id="searchInput" placeholder="খুঁজুন (বাংলা বা ইংরেজি)..." 
+                           class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/80 border border-purple-500/30 text-white placeholder-purple-300/50 focus:outline-none focus:border-purple-400 text-sm md:text-base">
+                </div>
+
+                <!-- Accent Selector & Global Controls -->
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full md:w-auto">
+                    <!-- Audio Accent Switch -->
+                    <div class="flex items-center bg-slate-900/90 p-1 rounded-xl border border-purple-500/30 text-xs md:text-sm">
+                        <span class="px-2 text-purple-300/80 font-medium hidden sm:inline"><i class="fa-solid fa-volume-high mr-1"></i>ভয়েস:</span>
+                        <button id="accentUS" class="px-3 py-1.5 rounded-lg bg-purple-600 text-white font-bold transition-all shadow-md">
+                            🇺🇸 US Accent
+                        </button>
+                        <button id="accentUK" class="px-3 py-1.5 rounded-lg text-purple-300 hover:text-white transition-all">
+                            🇬🇧 UK Accent
+                        </button>
+                    </div>
+
+                    <!-- Expand/Collapse Buttons -->
+                    <button id="expandAllBtn" class="btn-3d bg-purple-600 hover:bg-purple-500 text-white px-3.5 py-2 rounded-xl text-xs md:text-sm font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-angles-down"></i> সব দেখুন
+                    </button>
+                    <button id="resetAllBtn" class="btn-3d bg-slate-700 hover:bg-slate-600 text-white px-3.5 py-2 rounded-xl text-xs md:text-sm font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate-right"></i> রিসেট
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Content List -->
+        <main id="cardsContainer" class="space-y-4 mb-10">
+            <!-- Cards will be injected via JavaScript -->
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-xs md:text-sm text-purple-300/60 py-4 border-t border-purple-900/40 mt-8">
+        <p>ইন্টারেক্টিভ কার্ড ৩ডি লার্নিং প্ল্যাটফর্ম • দ্রুত ইংরেজি শেখার নতুন অভিজ্ঞতা</p>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // Data Array containing all 25 items provided by user
+        const itemsData = [
+            { id: 1, bn: "একটা সমস্যা হয়েছে।", stdEn: "A problem has occurred.", natEn: "We've got a problem.", pron: "উইভ গট আ প্রবলেম।", exp: "কোনো সমস্যা দেখা দিলে সরাসরি জানাতে ব্যবহার হয়।" },
+            { id: 2, bn: "আমার একটা অসুবিধা হচ্ছে।", stdEn: "I am having a difficulty.", natEn: "I'm having a bit of trouble.", pron: "আইম হ্যাভিং আ বিট অভ ট্রাবল।", exp: "কোনো কাজ করতে সমস্যা হলে ব্যবহার হয়।" },
+            { id: 3, bn: "এটা ঠিকমতো কাজ করছে না।", stdEn: "It is not working properly.", natEn: "It's not working right.", pron: "ইটস নট ওয়ার্কিং রাইট।", exp: "কোনো যন্ত্র, অ্যাপ বা সিস্টেম ঠিকভাবে কাজ না করলে বলা হয়।" },
+            { id: 4, bn: "আমার এটা নিয়ে একটা অভিযোগ আছে।", stdEn: "I have a complaint about this.", natEn: "I've got an issue with this.", pron: "আইভ গট অ্যান ইস্যু উইথ দিস।", exp: "কোনো বিষয় নিয়ে অসন্তুষ্টি বা সমস্যা জানাতে ব্যবহার হয়।" },
+            { id: 5, bn: "ব্যাপারটা মোটেও ঠিক হয়নি।", stdEn: "This was not right at all.", natEn: "That's not okay.", pron: "দ্যাটস নট ওকে।", exp: "কোনো কাজ বা আচরণ গ্রহণযোগ্য নয় বোঝাতে বলা হয়।" },
+            { id: 6, bn: "আমাকে একটু সাহায্য করতে হবে।", stdEn: "I need some help.", natEn: "I could really use some help.", pron: "আই কুড রিয়েলি ইউজ সাম হেল্প।", exp: "কোনো কাজে সাহায্যের প্রয়োজন বোঝাতে ব্যবহার হয়।" },
+            { id: 7, bn: "সমস্যাটা কোথায় বুঝতে পারছি না।", stdEn: "I cannot understand where the problem is.", natEn: "I can't figure out what's wrong.", pron: "আই ক্যান্ট ফিগার আউট হোয়াটস রং।", exp: "সমস্যার কারণ বুঝতে না পারলে বলা হয়।" },
+            { id: 8, bn: "এটা আমার প্রত্যাশার বাইরে ছিল।", stdEn: "This was beyond my expectations.", natEn: "I wasn't expecting this.", pron: "আই ওয়াজন্ট এক্সপেক্টিং দিস।", exp: "অপ্রত্যাশিত কোনো ঘটনা ঘটলে বলা হয়।" },
+            { id: 9, bn: "এভাবে চলতে পারে না।", stdEn: "This cannot continue like this.", natEn: "This can't go on.", pron: "দিস ক্যান্ট গো অন।", exp: "কোনো সমস্যা দীর্ঘদিন চলতে থাকলে বলা হয়।" },
+            { id: 10, bn: "বিষয়টা দ্রুত সমাধান করা দরকার।", stdEn: "This issue needs to be solved quickly.", natEn: "We need to sort this out ASAP.", pron: "উই নিড টু সর্ট দিস আউট এই-এস-এ-পি।", exp: "“Sort out” অর্থ সমাধান করা। ASAP অর্থ As Soon As Possible।" },
+            { id: 11, bn: "আমাকে ভুল তথ্য দেওয়া হয়েছে।", stdEn: "I was given incorrect information.", natEn: "I was given the wrong information.", pron: "আই ওয়াজ গিভেন দ্য রং ইনফরমেশন।", exp: "কেউ ভুল তথ্য দিলে তা জানাতে ব্যবহার হয়।" },
+            { id: 12, bn: "আমি এভাবে আশা করিনি।", stdEn: "I did not expect it to be like this.", natEn: "This isn't what I expected.", pron: "দিস ইজন্ট হোয়াট আই এক্সপেক্টেড।", exp: "প্রত্যাশা ও বাস্তবতার মধ্যে পার্থক্য থাকলে বলা হয়।" },
+            { id: 13, bn: "বিষয়টা আমাকে বেশ বিরক্ত করছে।", stdEn: "This is bothering me a lot.", natEn: "It's really getting on my nerves.", pron: "ইটস রিয়েলি গেটিং অন মাই নার্ভস।", exp: "“Get on my nerves” অর্থ কাউকে খুব বিরক্ত করা।" },
+            { id: 14, bn: "আমি আর এটা সহ্য করতে পারছি না।", stdEn: "I cannot tolerate this anymore.", natEn: "I can't take this anymore.", pron: "আই ক্যান্ট টেইক দিস এনিমোর।", exp: "কোনো পরিস্থিতিতে অতিষ্ঠ হয়ে গেলে ব্যবহার হয়।" },
+            { id: 15, bn: "দয়া করে বিষয়টা গুরুত্ব দিয়ে দেখুন।", stdEn: "Please take this matter seriously.", natEn: "Please take this seriously.", pron: "প্লিজ টেইক দিস সিরিয়াসলি।", exp: "কোনো সমস্যা বা অভিযোগকে গুরুত্ব দিতে অনুরোধ করা হয়।" },
+            { id: 16, bn: "এটা আমার দোষ ছিল না।", stdEn: "It was not my fault.", natEn: "It wasn't my fault.", pron: "ইট ওয়াজন্ট মাই ফল্ট।", exp: "কোনো ঘটনার দায় নিজের নয় বোঝাতে ব্যবহার হয়।" },
+            { id: 17, bn: "ভুলটা কোথায় হয়েছে খুঁজে বের করি।", stdEn: "Let us find where the mistake happened.", natEn: "Let's find out what went wrong.", pron: "লেটস ফাইন্ড আউট হোয়াট ওয়েন্ট রং।", exp: "কোনো কাজে ব্যর্থতা বা ভুলের কারণ খুঁজতে ব্যবহার হয়।" },
+            { id: 18, bn: "আমি বিষয়টি নিয়ে যথেষ্ট বিরক্ত।", stdEn: "I am quite annoyed about this matter.", natEn: "I'm pretty fed up with this.", pron: "আইম প্রিটি ফেড আপ উইথ দিস।", exp: "“Fed up with” অর্থ কোনো বিষয়ে অতিষ্ঠ বা বিরক্ত হয়ে যাওয়া।" },
+            { id: 19, bn: "আমাকে বিষয়টি আবার পরীক্ষা করতে হবে।", stdEn: "I need to check this again.", natEn: "I need to double-check this.", pron: "আই নিড টু ডাবল চেক দিস।", exp: "কোনো তথ্য বা কাজের সঠিকতা নিশ্চিত করতে আবার পরীক্ষা করাকে “Double-check” বলে।" },
+            { id: 20, bn: "ভুল বোঝাবুঝির জন্য দুঃখিত।", stdEn: "I am sorry for the misunderstanding.", natEn: "Sorry about the mix-up.", pron: "সরি অ্যাবাউট দ্য মিক্স-আপ।", exp: "“Mix-up” অর্থ গণ্ডগোল বা ভুল বোঝাবুঝি।" },
+            { id: 21, bn: "আমরা কি অন্য কোনো সমাধান বের করতে পারি?", stdEn: "Can we find another solution?", natEn: "Is there another way around this?", pron: "ইজ দেয়ার অ্যানাদার ওয়ে অ্যারাউন্ড দিস।", exp: "বর্তমান সমস্যার বিকল্প উপায় খুঁজতে ব্যবহার হয়।" },
+            { id: 22, bn: "আমি সমস্যাটা বুঝতে পেরেছি।", stdEn: "I have understood the problem.", natEn: "I see what the problem is.", pron: "আই সি হোয়াট দ্য প্রবলেম ইজ।", exp: "সমস্যার কারণ বা প্রকৃতি বুঝতে পারলে বলা হয়।" },
+            { id: 23, bn: "দয়া করে আমাকে আপডেট জানাবেন।", stdEn: "Please keep me updated.", natEn: "Keep me posted, please.", pron: "কিপ মি পোস্টেড, প্লিজ।", exp: "কোনো কাজ বা সমস্যার অগ্রগতি সম্পর্কে জানাতে অনুরোধ করা হয়।" },
+            { id: 24, bn: "আশা করি এবার সব ঠিক হয়ে যাবে।", stdEn: "I hope everything will be fine this time.", natEn: "Hopefully, things will work out this time.", pron: "হোপফুলি, থিংস উইল ওয়ার্ক আউট দিস টাইম।", exp: "“Work out” অর্থ শেষ পর্যন্ত ভালোভাবে সমাধান হওয়া।" },
+            { id: 25, bn: "যাই হোক, আমরা একটা উপায় বের করব।", stdEn: "Anyway, we will find a solution.", natEn: "We'll figure something out.", pron: "উইল ফিগার সামথিং আউট।", exp: "কোনো সমস্যার সমাধান অবশ্যই বের করা যাবে—এমন আশ্বাস দিতে ব্যবহার হয়।" }
+        ];
+
+        // State variables
+        // Card step tracker: key = card id, value = 1 (Default/BN), 2 (English+Pron), 3 (Explanation)
+        const cardStates = {};
+        itemsData.forEach(item => cardStates[item.id] = 1);
+
+        let selectedAccent = 'en-US'; // Default US Accent
+
+        // Speech Synthesis Setup
+        const synth = window.speechSynthesis;
+
+        function speakText(text) {
+            if (!synth) {
+                alert('দুঃখিত, আপনার ব্রাউজার স্পিচ সাপোর্ট করে না।');
+                return;
+            }
+            // Cancel ongoing speech
+            synth.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = selectedAccent;
+            utterance.rate = 0.9; // Slightly calm speed for clarity
+            utterance.pitch = 1.0;
+
+            synth.speak(utterance);
+        }
+
+        // Render Cards Function
+        function renderCards(filterText = '') {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = '';
+
+            const filteredData = itemsData.filter(item => {
+                const search = filterText.toLowerCase();
+                return item.bn.toLowerCase().includes(search) || 
+                       item.stdEn.toLowerCase().includes(search) || 
+                       item.natEn.toLowerCase().includes(search) || 
+                       item.pron.toLowerCase().includes(search);
+            });
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-card p-8 text-center rounded-2xl text-purple-300">
+                        <i class="fa-regular fa-face-frown text-4xl mb-3"></i>
+                        <p class="text-lg">কোনো ফলাফল পাওয়া যায়নি!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const step = cardStates[item.id];
+                
+                // HTML Template for Card
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl p-4 md:p-6 cursor-pointer select-none border transition-all duration-300';
+                card.setAttribute('data-id', item.id);
+
+                card.innerHTML = `
+                    <!-- Header Step 1: Number & Bangla -->
+                    <div class="flex items-start justify-between gap-3" onclick="handleCardClick(${item.id})">
+                        <div class="flex items-start gap-3.5">
+                            <span class="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center font-bold text-white shadow-md text-sm md:text-base font-english">
+                                ${item.id}
+                            </span>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-white leading-snug">
+                                    ${item.bn}
+                                </h3>
+                                <p class="text-xs text-purple-300/70 mt-1 flex items-center gap-1">
+                                    ${step === 1 ? '<i class="fa-solid fa-hand-pointer text-pink-400"></i> ইংরেজি দেখতে ক্লিক করুন' : 
+                                      step === 2 ? '<i class="fa-solid fa-hand-pointer text-cyan-400"></i> ব্যাখ্যা দেখতে আবার ক্লিক করুন' : 
+                                      '<i class="fa-solid fa-circle-check text-green-400"></i> সম্পূর্ণ তথ্য দেখা যাচ্ছে'}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full ${step === 1 ? 'bg-purple-900/60 text-purple-300' : step === 2 ? 'bg-cyan-900/60 text-cyan-300' : 'bg-pink-900/60 text-pink-300'}">
+                                ধাপ ${step}/৩
+                            </span>
+                            <div class="w-8 h-8 rounded-full bg-slate-800/80 flex items-center justify-center text-purple-300">
+                                <i class="fa-solid ${step === 3 ? 'fa-chevron-up' : 'fa-chevron-down'} transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 Content: Standard, Natural English & Pronunciation -->
+                    <div class="expandable-content ${step >= 2 ? 'open' : ''}">
+                        <div class="inner-content pt-4 mt-3 border-t border-purple-500/20">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                                <!-- Standard English -->
+                                <div class="bg-slate-900/70 p-3.5 rounded-xl border border-slate-700/60 hover:border-purple-500/40 transition-colors group"
+                                     onclick="event.stopPropagation(); speakText('${item.stdEn.replace(/'/g, "\\'")}')">
+                                    <div class="flex items-center justify-between text-xs text-purple-300 mb-1">
+                                        <span class="font-semibold"><i class="fa-solid fa-book-bookmark text-indigo-400 mr-1"></i>Standard English:</span>
+                                        <i class="fa-solid fa-volume-high text-purple-400 group-hover:scale-110 transition-transform"></i>
+                                    </div>
+                                    <p class="font-english text-base md:text-lg text-indigo-200 font-semibold">
+                                        ${item.stdEn}
+                                    </p>
+                                </div>
+
+                                <!-- Natural Spoken English -->
+                                <div class="bg-purple-950/40 p-3.5 rounded-xl border border-purple-500/40 hover:border-pink-500/50 transition-colors group relative"
+                                     onclick="event.stopPropagation(); speakText('${item.natEn.replace(/'/g, "\\'")}')">
+                                    <div class="flex items-center justify-between text-xs text-pink-300 mb-1">
+                                        <span class="font-semibold"><i class="fa-solid fa-comments text-pink-400 mr-1"></i>Natural Spoken English:</span>
+                                        <span class="bg-pink-500/20 text-pink-300 text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1">
+                                            <i class="fa-solid fa-volume-high"></i> শুনুন
+                                        </span>
+                                    </div>
+                                    <p class="font-english text-lg md:text-xl text-pink-200 font-bold">
+                                        "${item.natEn}"
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Pronunciation (বাংলা উচ্চারণ) -->
+                            <div class="bg-slate-900/50 p-3 rounded-xl border border-purple-900/30 flex items-center gap-2">
+                                <span class="text-xs font-bold text-cyan-400 bg-cyan-950/60 px-2 py-1 rounded-md flex-shrink-0">
+                                    উচ্চারণ:
+                                </span>
+                                <span class="text-sm md:text-base text-cyan-100 font-medium">
+                                    ${item.pron}
+                                </span>
+                            </div>
+
+                            <!-- Step 3 Content: Explanation (ব্যাখ্যা) -->
+                            <div class="expandable-content ${step === 3 ? 'open' : ''}">
+                                <div class="inner-content pt-3 mt-3 border-t border-purple-500/10">
+                                    <div class="bg-gradient-to-r from-purple-900/30 to-pink-900/30 p-3.5 rounded-xl border border-pink-500/20 flex items-start gap-2.5">
+                                        <i class="fa-solid fa-lightbulb text-amber-400 text-lg mt-0.5"></i>
+                                        <div>
+                                            <span class="text-xs font-bold text-amber-300 block mb-0.5">ব্যাখ্যা ও ব্যবহারের নিয়ম:</span>
+                                            <p class="text-sm md:text-base text-purple-100 leading-relaxed">
+                                                ${item.exp}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Handle Card Step-by-Step Toggle
+        function handleCardClick(id) {
+            if (cardStates[id] < 3) {
+                cardStates[id] += 1;
+            } else {
+                cardStates[id] = 1; // Cycle back to Step 1
+            }
+            renderCards(document.getElementById('searchInput').value);
+        }
+
+        // Event Listeners for Accent Switching
+        document.getElementById('accentUS').addEventListener('click', () => {
+            selectedAccent = 'en-US';
+            document.getElementById('accentUS').className = 'px-3 py-1.5 rounded-lg bg-purple-600 text-white font-bold transition-all shadow-md';
+            document.getElementById('accentUK').className = 'px-3 py-1.5 rounded-lg text-purple-300 hover:text-white transition-all';
+        });
+
+        document.getElementById('accentUK').addEventListener('click', () => {
+            selectedAccent = 'en-GB';
+            document.getElementById('accentUK').className = 'px-3 py-1.5 rounded-lg bg-purple-600 text-white font-bold transition-all shadow-md';
+            document.getElementById('accentUS').className = 'px-3 py-1.5 rounded-lg text-purple-300 hover:text-white transition-all';
+        });
+
+        // Search Filter Event
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCards(e.target.value);
+        });
+
+        // Global Controls
+        document.getElementById('expandAllBtn').addEventListener('click', () => {
+            itemsData.forEach(item => cardStates[item.id] = 3);
+            renderCards(document.getElementById('searchInput').value);
+        });
+
+        document.getElementById('resetAllBtn').addEventListener('click', () => {
+            itemsData.forEach(item => cardStates[item.id] = 1);
+            renderCards(document.getElementById('searchInput').value);
+        });
+
+        // Initial Render
+        window.onload = () => {
+            renderCards();
+        };
+    </script>
+</body>
+</html>

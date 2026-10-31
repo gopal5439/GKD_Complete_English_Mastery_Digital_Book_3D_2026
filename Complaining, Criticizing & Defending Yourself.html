@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 10: Complaining, Criticizing & Defending Yourself</title>
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent-uk: #ec4899;
+            --accent-us: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --font-bn: 'Tiro Bangla', serif;
+            --font-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-bn);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-family: var(--font-en);
+            font-size: 2.2rem;
+            color: #818cf8;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+
+        header h2 {
+            font-family: var(--font-bn);
+            font-size: 1.5rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        /* 3D Glassmorphism Card Style */
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 
+                        0 8px 10px -6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Bengali Sentence Section */
+        .sec-bn {
+            font-family: var(--font-bn);
+            font-size: 1.35rem;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* English & Pronunciation Section */
+        .sec-en {
+            display: none;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .en-text {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .en-pron {
+            font-family: var(--font-bn);
+            font-size: 1.05rem;
+            color: #f472b6;
+        }
+
+        /* Explanation Section */
+        .sec-exp {
+            display: none;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            padding: 0.9rem;
+            font-family: var(--font-bn);
+            font-size: 0.98rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.4s ease-in-out forwards;
+            margin-bottom: 1rem;
+        }
+
+        /* 3D Audio Control Buttons */
+        .audio-controls {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .btn-3d {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .btn-uk {
+            background: linear-gradient(to bottom, #f43f5e, #be123c);
+            box-shadow: 0 4px 0 #881337, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-uk:hover {
+            background: linear-gradient(to bottom, #fb7185, #e11d48);
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #881337, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .btn-us {
+            background: linear-gradient(to bottom, #0284c7, #0369a1);
+            box-shadow: 0 4px 0 #075985, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-us:hover {
+            background: linear-gradient(to bottom, #38bdf8, #0284c7);
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #075985, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.5rem; }
+            header h1 { font-size: 1.6rem; }
+            header h2 { font-size: 1.2rem; }
+            .cards-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TOPIC 10: Complaining, Criticizing & Defending Yourself</h1>
+        <h2>অভিযোগ করা, সমালোচনা করা ও নিজের পক্ষে যুক্তি দেওয়া</h2>
+    </header>
+
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            {
+                bn: "১. ব্যাপারটা একদম ঠিক হচ্ছে না।",
+                en: "This isn't right at all.",
+                pron: "উচ্চারণ: দিস ইজন্ট রাইট অ্যাট অল।",
+                exp: "ব্যাখ্যা: কোনো কাজ বা পরিস্থিতি অন্যায্য বা ভুল মনে হলে অভিযোগ করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২. তুই সব সময় একই ভুল করিস।",
+                en: "You keep making the same mistake.",
+                pron: "উচ্চারণ: ইউ কিপ মেইকিং দ্য সেইম মিস্টেইক।",
+                exp: "ব্যাখ্যা: কোনো ব্যক্তি বারবার একই ভুল করলে keep + Verb-ing দিয়ে তা প্রকাশ করা হয়।"
+            },
+            {
+                bn: "৩. আমি তোকে আগেও এ ব্যাপারে বলেছি।",
+                en: "I've told you about this before.",
+                pron: "উচ্চারণ: আইভ টোল্ড ইউ অ্যাবাউট দিস বিফোর।",
+                exp: "ব্যাখ্যা: অতীতে একাধিকবার বা আগে কোনো বিষয় জানানো হয়েছে বোঝাতে Present Perfect ব্যবহার করা হয়েছে।"
+            },
+            {
+                bn: "৪. তুই আমার কথা একদম শুনিস না।",
+                en: "You never listen to me.",
+                pron: "উচ্চারণ: ইউ নেভার লিসন টু মি।",
+                exp: "ব্যাখ্যা: কেউ বারবার নিজের কথা উপেক্ষা করলে অভিযোগ করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৫. এভাবে কথা বলার কোনো দরকার ছিল না।",
+                en: "There was no need to talk like that.",
+                pron: "উচ্চারণ: দেয়ার ওয়াজ নো নিড টু টক লাইক দ্যাট।",
+                exp: "ব্যাখ্যা: কারও কথার ধরন অপছন্দ হলে ভদ্রভাবে আপত্তি জানাতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৬. তুই বিষয়টাকে অকারণে জটিল করে তুলছিস।",
+                en: "You're making things unnecessarily complicated.",
+                pron: "উচ্চারণ: ইউর মেইকিং থিংস আননেসেসারিলি কমপ্লিকেটিড।",
+                exp: "ব্যাখ্যা: সহজ কোনো বিষয় অকারণে কঠিন করা বোঝাতে এই বাক্য ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৭. আমার সঙ্গে এমন আচরণ করার কোনো অধিকার তোর নেই।",
+                en: "You have no right to treat me like this.",
+                pron: "উচ্চারণ: ইউ হ্যাভ নো রাইট টু ট্রিট মি লাইক দিস।",
+                exp: "ব্যাখ্যা: অন্যায় আচরণের বিরুদ্ধে নিজের অবস্থান স্পষ্ট করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৮. আমি এটা একদম মেনে নিতে পারছি না।",
+                en: "I just can't put up with this.",
+                pron: "উচ্চারণ: আই জাস্ট ক্যান্ট পুট আপ উইথ দিস।",
+                exp: "ব্যাখ্যা: Put up with অর্থ কোনো বিরক্তিকর বা অপছন্দনীয় বিষয় সহ্য করা।"
+            },
+            {
+                bn: "৯. এখানে আমার কোনো দোষ নেই।",
+                en: "It's not my fault.",
+                pron: "উচ্চারণ: ইটস নট মাই ফল্ট।",
+                exp: "ব্যাখ্যা: কোনো ঘটনার জন্য নিজেকে দায়ী মনে না করলে এই বাক্য ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১০. আমি যা করেছি, তার একটা কারণ আছে।",
+                en: "I have a reason for what I did.",
+                pron: "উচ্চারণ: আই হ্যাভ আ রিজন ফর হোয়াট আই ডিড।",
+                exp: "ব্যাখ্যা: নিজের কোনো কাজের পেছনে যুক্তি বা কারণ আছে বোঝাতে ব্যবহৃত হয়।"
+            },
+            {
+                bn: "১১. আগে আমার কথাটা শোন, তারপর বিচার করিস।",
+                en: "Hear me out before you judge me.",
+                pron: "উচ্চারণ: হিয়ার মি আউট বিফোর ইউ জাজ মি।",
+                exp: "ব্যাখ্যা: Hear me out অর্থ কারও বক্তব্য সম্পূর্ণ মনোযোগ দিয়ে শোনা, বিশেষ করে সিদ্ধান্ত নেওয়ার আগে।"
+            },
+            {
+                bn: "১২. সব দোষ আমার ওপর চাপিয়ে দিস না।",
+                en: "Don't put all the blame on me.",
+                pron: "উচ্চারণ: ডোন্ট পুট অল দ্য ব্লেইম অন মি।",
+                exp: "ব্যাখ্যা: কোনো ঘটনার সব দায় নিজের ওপর চাপানো হচ্ছে মনে হলে এই বাক্য ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৩. আমি শুধু নিজের দায়িত্ব পালন করেছি।",
+                en: "I was just doing my job.",
+                pron: "উচ্চারণ: আই ওয়াজ জাস্ট ডুইং মাই জব।",
+                exp: "ব্যাখ্যা: নিজের দায়িত্ব অনুযায়ী কাজ করার কথা বোঝাতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৪. আমি যা বলেছি, তার পেছনে যুক্তি আছে।",
+                en: "I have my reasons for saying that.",
+                pron: "উচ্চারণ: আই হ্যাভ মাই রিজনস ফর সেইয়িং দ্যাট।",
+                exp: "ব্যাখ্যা: নিজের বক্তব্যের পেছনে নির্দিষ্ট কারণ বা যুক্তি রয়েছে বোঝাতে ব্যবহৃত হয়।"
+            },
+            {
+                bn: "১৫. আমাকে ভুলভাবে দোষারোপ করিস না।",
+                en: "Don't accuse me unfairly.",
+                pron: "উচ্চারণ: ডোন্ট অ্যাকিউজ মি আনফেয়ারলি।",
+                exp: "ব্যাখ্যা: কোনো অন্যায় বা ভিত্তিহীন অভিযোগের বিরুদ্ধে প্রতিবাদ করতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৬. তুই আমার পরিস্থিতিটা বোঝার চেষ্টা করছিস না।",
+                en: "You're not trying to understand my situation.",
+                pron: "উচ্চারণ: ইউর নট ট্রাইং টু আন্ডারস্ট্যান্ড মাই সিচুয়েশন।",
+                exp: "ব্যাখ্যা: অন্য ব্যক্তি নিজের অবস্থান বা সমস্যাটি বুঝতে চেষ্টা করছে না—এমন অভিযোগ প্রকাশ করে।"
+            },
+            {
+                bn: "১৭. আমাকে মাঝপথে থামাস না, কথাটা শেষ করতে দে।",
+                en: "Don't interrupt me. Let me finish.",
+                pron: "উচ্চারণ: ডোন্ট ইন্টারাপ্ট মি। লেট মি ফিনিশ।",
+                exp: "ব্যাখ্যা: কেউ কথা বলার মাঝখানে বাধা দিলে নিজের বক্তব্য শেষ করার সুযোগ চাইতে বলা হয়।"
+            },
+            {
+                bn: "১৮. আমি তোকে আগেই সাবধান করেছিলাম।",
+                en: "I warned you earlier.",
+                pron: "উচ্চারণ: আই ওয়ার্নড ইউ আর্লিয়ার।",
+                exp: "ব্যাখ্যা: অতীতে কোনো বিপদ বা সমস্যা সম্পর্কে সতর্ক করা হয়েছিল বোঝাতে warned ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৯. তুই আমার কথার ভুল অর্থ করছিস।",
+                en: "You're taking my words the wrong way.",
+                pron: "উচ্চারণ: ইউর টেইকিং মাই ওয়ার্ডস দ্য রং ওয়ে।",
+                exp: "ব্যাখ্যা: কারও বক্তব্য ভুলভাবে বোঝা বা ব্যাখ্যা করা বোঝাতে এই Expression ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২০. আমাকে বারবার একই কথা বলতে বাধ্য করিস না।",
+                en: "Don't make me repeat myself.",
+                pron: "উচ্চারণ: ডোন্ট মেইক মি রিপিট মাইসেলফ।",
+                exp: "ব্যাখ্যা: একই কথা বারবার বলতে না চাইলে এই বাক্য ব্যবহার করা হয়। Make + Object + Verb দিয়ে কাউকে কিছু করতে বাধ্য করা বোঝায়।"
+            },
+            {
+                bn: "২১. তোর আচরণে আমি সত্যিই বিরক্ত।",
+                en: "I'm really annoyed by your behaviour.",
+                pron: "উচ্চারণ: আইম রিয়েলি অ্যানয়েড বাই ইয়োর বিহেইভিয়ার।",
+                exp: "ব্যাখ্যা: কারও আচরণে বিরক্তি প্রকাশ করতে annoyed by ব্যবহার করা হয়। British English বানান behaviour।"
+            },
+            {
+                bn: "২২. তুই বিষয়টা নিয়ে বাড়াবাড়ি করছিস।",
+                en: "You're taking it too far.",
+                pron: "উচ্চারণ: ইউর টেইকিং ইট টু ফার।",
+                exp: "ব্যাখ্যা: কেউ কোনো বিষয়ে সীমা ছাড়িয়ে যাচ্ছে বোঝাতে take it too far ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৩. আমি এর জন্য দায়ী নই।",
+                en: "I'm not responsible for this.",
+                pron: "উচ্চারণ: আইম নট রেসপনসিবল ফর দিস।",
+                exp: "ব্যাখ্যা: কোনো কাজ বা ঘটনার দায়িত্ব নিজের নয় বোঝাতে responsible for ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৪. তুই অন্তত আমার দিকটাও একবার ভেবে দেখ।",
+                en: "At least try to see things from my side.",
+                pron: "উচ্চারণ: অ্যাট লিস্ট ট্রাই টু সি থিংস ফ্রম মাই সাইড।",
+                exp: "ব্যাখ্যা: অন্য ব্যক্তিকে নিজের অবস্থান ও দৃষ্টিভঙ্গি বোঝার অনুরোধ করতে বলা হয়।"
+            },
+            {
+                bn: "২৫. আমি ঝগড়া করতে চাই না, শুধু নিজের কথাটা বোঝাতে চাই।",
+                en: "I don't want to argue. I just want to make myself clear.",
+                pron: "উচ্চারণ: আই ডোন্ট ওয়ান্ট টু আর্গিউ। আই জাস্ট ওয়ান্ট টু মেইক মাইসেলফ ক্লিয়ার।",
+                exp: "ব্যাখ্যা: Make myself clear অর্থ নিজের বক্তব্য স্পষ্টভাবে বোঝানো। তর্ক না করে নিজের অবস্থান ব্যাখ্যা করতে এই বাক্যটি খুব কার্যকর।"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = '0'; // 0: BN only, 1: BN+EN, 2: BN+EN+EXP
+
+            card.innerHTML = `
+                <span class="card-number">#${String(index + 1).padStart(2, '0')}</span>
+                <div class="sec-bn">${item.bn}</div>
+                
+                <div class="sec-en">
+                    <div class="en-text">${item.en}</div>
+                    <div class="en-pron">${item.pron}</div>
+                </div>
+
+                <div class="sec-exp">${item.exp}</div>
+
+                <div class="audio-controls" onclick="event.stopPropagation()">
+                    <button class="btn-3d btn-uk" onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')">
+                        🇬🇧 UK Voice
+                    </button>
+                    <button class="btn-3d btn-us" onclick="speakText('${escapeQuotes(item.en)}', 'en-US')">
+                        🇺🇸 US Voice
+                    </button>
+                </div>
+                <div class="click-hint">ক্লিক করুন (ধাপ ১/৩)</div>
+            `;
+
+            // Card Click Event for 3-step reveal
+            card.addEventListener('click', () => {
+                let currentStep = parseInt(card.dataset.step);
+                const secEn = card.querySelector('.sec-en');
+                const secExp = card.querySelector('.sec-exp');
+                const hint = card.querySelector('.click-hint');
+
+                if (currentStep === 0) {
+                    secEn.style.display = 'block';
+                    card.dataset.step = '1';
+                    hint.textContent = 'পুনরায় ক্লিক করুন (ধাপ ২/৩)';
+                } else if (currentStep === 1) {
+                    secExp.style.display = 'block';
+                    card.dataset.step = '2';
+                    hint.textContent = 'লুকাবার জন্য ক্লিক করুন';
+                } else {
+                    secEn.style.display = 'none';
+                    secExp.style.display = 'none';
+                    card.dataset.step = '0';
+                    hint.textContent = 'ক্লিক করুন (ধাপ ১/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Web Speech API Text-To-Speech Function
+        function speakText(text, lang) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop currently playing audio
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // Slightly slower speed for clear listening
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজারে স্পিচ ফিচারটি সাপোর্ট করছে না।');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 19: Thinking, Hesitation & Spontaneous Speaking</title>
+
+    <!-- Google Fonts import for Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base styles & reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --font-bangla: 'Tiro Bangla', serif;
+            --font-english: 'Times New Roman', Times, serif;
+            
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --primary-gradient: linear-gradient(135deg, #8b5cf6, #d946ef);
+            
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-green: #059669;
+            --accent-purple: #7c3aed;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            min-height: 100vh;
+            font-family: var(--font-bangla);
+            color: var(--text-main);
+            padding: 20px 12px 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header design */
+        header {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 25px;
+            padding: 22px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .topic-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #d946ef, #8b5cf6);
+            color: white;
+            font-family: var(--font-english);
+            font-size: 0.95rem;
+            font-weight: bold;
+            padding: 6px 18px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(217, 70, 239, 0.4);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: var(--font-bangla);
+            font-size: 1.9rem;
+            margin-bottom: 6px;
+            color: #f8fafc;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+        }
+
+        /* Controls Section */
+        .controls-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .search-box {
+            flex: 1 1 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.92);
+            font-family: var(--font-bangla);
+            font-size: 1rem;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            background: #ffffff;
+            border-color: #d946ef;
+            box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* 3D Touch Buttons */
+        .btn-3d {
+            font-family: var(--font-bangla);
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.1s ease;
+            outline: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-toggle-all {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 0 #047857, 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn-toggle-all:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #047857, 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn-reset {
+            background: linear-gradient(180deg, #f43f5e 0%, #e11d48 100%);
+            box-shadow: 0 4px 0 #be123c, 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn-reset:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #be123c, 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Card List Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        /* Interactive 3D Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 0 #cbd5e1, 0 12px 20px rgba(0, 0, 0, 0.25);
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 13px 0 #cbd5e1, 0 16px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:active {
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 #cbd5e1, 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+
+        .card-num {
+            background: var(--primary-gradient);
+            color: white;
+            font-family: var(--font-english);
+            font-weight: bold;
+            font-size: 0.85rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 6px rgba(217, 70, 239, 0.3);
+        }
+
+        .step-indicator {
+            font-size: 0.82rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Front Bangla Text */
+        .bangla-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bangla-text {
+            font-family: var(--font-bangla);
+            font-size: 1.45rem;
+            font-weight: bold;
+            color: #0f172a;
+            line-height: 1.3;
+        }
+
+        /* Expandable Sections */
+        .english-section, .explanation-section {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card.state-1 .english-section,
+        .card.state-2 .english-section {
+            max-height: 350px;
+            opacity: 1;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .card.state-2 .explanation-section {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #cbd5e1;
+        }
+
+        /* Spoken & Standard English Styles */
+        .english-item {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-natural {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tag-standard {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .tag-pron {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .english-text {
+            font-family: var(--font-english);
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .standard-text {
+            font-family: var(--font-english);
+            font-size: 1.05rem;
+            color: #475569;
+            font-style: italic;
+        }
+
+        .pronunciation-text {
+            font-family: var(--font-bangla);
+            font-size: 1.1rem;
+            color: #059669;
+            font-weight: 600;
+        }
+
+        /* Audio Buttons */
+        .audio-btns {
+            display: flex;
+            gap: 6px;
+            margin-left: auto;
+        }
+
+        .btn-audio {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-family: var(--font-english);
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 0 #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #334155;
+        }
+
+        .btn-audio:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .btn-audio:active {
+            transform: translateY(2px);
+            box-shadow: 0 0 0 #94a3b8;
+        }
+
+        /* Explanation Styling */
+        .explanation-content {
+            background: #f8fafc;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-purple);
+            font-family: var(--font-bangla);
+            font-size: 1rem;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        /* Hint Text on Card */
+        .click-hint {
+            display: block;
+            text-align: right;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Empty state */
+        .no-results {
+            text-align: center;
+            color: white;
+            padding: 40px;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.45rem; }
+            .bangla-text { font-size: 1.25rem; }
+            .english-text { font-size: 1.15rem; flex-wrap: wrap; }
+            .controls-panel { flex-direction: column; align-items: stretch; }
+            .btn-group { justify-content: space-between; }
+            .btn-3d { flex: 1; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <span class="topic-badge">TOPIC 19</span>
+            <h1>Thinking, Hesitation & Spontaneous Speaking</h1>
+            <p class="subtitle">কথা বলার সময় চিন্তা করা, দ্বিধা প্রকাশ ও স্বতঃস্ফূর্তভাবে উত্তর দেওয়া</p>
+        </header>
+
+        <!-- Search & Control Panel -->
+        <div class="controls-panel">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="বাংলা বা ইংরেজি লিখে খুঁজুন..." oninput="filterCards()">
+            </div>
+            <div class="btn-group">
+                <button class="btn-3d btn-toggle-all" onclick="toggleAllCards(true)">
+                    👁️ সব দেখুন
+                </button>
+                <button class="btn-3d btn-reset" onclick="toggleAllCards(false)">
+                    🔄 রিসেট করুন
+                </button>
+            </div>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="card-grid" id="cardContainer"></div>
+
+        <div class="no-results" id="noResults">
+            কোনো বাক্য খুঁজে পাওয়া যায়নি!
+        </div>
+    </div>
+
+    <script>
+        // Topic 19 Data
+        const dataset = [
+            { id: 1, bn: "আমাকে একটু ভাবতে দাও।", std: "Give me some time to think.", nat: "Let me think.", pron: "লেট মি থিংক।", exp: "কোনো প্রশ্নের উত্তর দেওয়ার আগে চিন্তা করার সময় চাইতে বলা হয়।" },
+            { id: 2, bn: "কীভাবে বলব বুঝতে পারছি না।", std: "I do not know how to say it.", nat: "I'm not sure how to put it.", pron: "আইম নট শুওর হাউ টু পুট ইট।", exp: "নিজের মনের কথা কীভাবে প্রকাশ করবেন বুঝতে না পারলে বলা হয়।" },
+            { id: 3, bn: "এক কথায় বলতে গেলে...", std: "To put it in one word...", nat: "In a nutshell...", pron: "ইন আ নাটশেল।", exp: "কোনো বিষয় সংক্ষেপে প্রকাশ করতে এই বাক্যাংশ ব্যবহার হয়।" },
+            { id: 4, bn: "আসলে ব্যাপারটা হলো...", std: "Actually, the matter is...", nat: "The thing is...", pron: "দ্য থিং ইজ...", exp: "কোনো বিষয়ের মূল কারণ বা ব্যাখ্যা শুরু করতে ব্যবহার হয়।" },
+            { id: 5, bn: "আমি বলতে চাচ্ছি...", std: "What I mean is...", nat: "I mean...", pron: "আই মিন...", exp: "নিজের বক্তব্য আরও পরিষ্কার করতে ব্যবহার হয়।" },
+            { id: 6, bn: "ঠিক শব্দটা খুঁজে পাচ্ছি না।", std: "I cannot find the right word.", nat: "I can't find the right word.", pron: "আই ক্যান্ট ফাইন্ড দ্য রাইট ওয়ার্ড।", exp: "মনের ভাব প্রকাশের উপযুক্ত শব্দ মনে না পড়লে বলা হয়।" },
+            { id: 7, bn: "কী বলব বুঝতে পারছি না।", std: "I do not know what to say.", nat: "I don't know what to say.", pron: "আই ডোন্ট নো হোয়াট টু সে।", exp: "অবাক, আবেগপ্রবণ বা দ্বিধাগ্রস্ত হলে বলা হয়।" },
+            { id: 8, bn: "যতদূর মনে পড়ে...", std: "As far as I remember...", nat: "As far as I can remember...", pron: "অ্যাজ ফার অ্যাজ আই ক্যান রিমেম্বার।", exp: "স্মৃতির ওপর ভিত্তি করে কোনো কথা বলার সময় ব্যবহার হয়।" },
+            { id: 9, bn: "আমার যতটুকু মনে হয়...", std: "As far as I think...", nat: "I think...", pron: "আই থিংক...", exp: "নিজের মতামত বা ধারণা প্রকাশ করতে “I think” ব্যবহার করা হয়।" },
+            { id: 10, bn: "ভুলও হতে পারে, তবে...", std: "I may be wrong, but...", nat: "I could be wrong, but...", pron: "আই কুড বি রং, বাট...", exp: "নিজের বক্তব্য নিশ্চিতভাবে না বলে বিনয়ের সঙ্গে মতামত দিতে ব্যবহার হয়।" },
+            { id: 11, bn: "আমার মনে হয়...", std: "It seems to me that...", nat: "I guess...", pron: "আই গেস...", exp: "কোনো বিষয়ে অনুমান বা ব্যক্তিগত ধারণা প্রকাশ করতে “I guess” ব্যবহার হয়।" },
+            { id: 12, bn: "একটু দাঁড়াও, মনে করার চেষ্টা করছি।", std: "Wait a moment, I am trying to remember.", nat: "Hang on, I'm trying to remember.", pron: "হ্যাাং অন, আইম ট্রাইং টু রিমেম্বার।", exp: "কোনো তথ্য মনে করার সময় কাউকে একটু অপেক্ষা করতে বলতে ব্যবহার হয়।" },
+            { id: 13, bn: "ব্যাপারটা আসলে এত সহজ নয়।", std: "The matter is not that simple.", nat: "It's not that simple.", pron: "ইটস নট দ্যাট সিম্পল।", exp: "কোনো বিষয় বাইরে থেকে সহজ মনে হলেও বাস্তবে জটিল হলে বলা হয়।" },
+            { id: 14, bn: "আমি ঠিক বুঝে উঠতে পারছি না।", std: "I cannot quite understand.", nat: "I'm not quite sure I understand.", pron: "আইম নট কোয়াইট শুওর আই আন্ডারস্ট্যান্ড।", exp: "কোনো ব্যাখ্যা পুরোপুরি পরিষ্কার না হলে ভদ্রভাবে বলা হয়।" },
+            { id: 15, bn: "কীভাবে শুরু করব বুঝতে পারছি না।", std: "I do not know how to start.", nat: "I'm not sure where to start.", pron: "আইম নট শুওর হোয়্যার টু স্টার্ট।", exp: "কোনো কাজ বা বক্তব্য শুরু করতে দ্বিধা হলে ব্যবহার হয়।" },
+            { id: 16, bn: "ব্যাপারটা একটু অন্যরকম।", std: "The matter is a little different.", nat: "It's a bit different.", pron: "ইটস আ বিট ডিফারেন্ট।", exp: "কোনো বিষয় সাধারণ ধারণার চেয়ে আলাদা বোঝাতে বলা হয়।" },
+            { id: 17, bn: "আমি বিষয়টা এভাবে দেখছি।", std: "I see the matter this way.", nat: "Here's how I see it.", pron: "হিয়ারজ হাউ আই সি ইট।", exp: "নিজের দৃষ্টিভঙ্গি বা ব্যাখ্যা তুলে ধরতে ব্যবহার হয়।" },
+            { id: 18, bn: "একটা উদাহরণ দিলে বুঝতে সুবিধা হবে।", std: "It will be easier to understand if you give an example.", nat: "An example would help.", pron: "অ্যান এগজ্যাম্পল উড হেল্প।", exp: "কোনো বিষয় বোঝার জন্য উদাহরণ চাইতে সংক্ষেপে বলা হয়।" },
+            { id: 19, bn: "আমি একটু দ্বিধায় আছি।", std: "I am a little uncertain.", nat: "I'm a bit unsure.", pron: "আইম আ বিট আনশুওর।", exp: "কোনো সিদ্ধান্ত বা বিষয় সম্পর্কে অনিশ্চয়তা প্রকাশ করতে ব্যবহার হয়।" },
+            { id: 20, bn: "কথাটা কীভাবে বোঝাব বুঝতে পারছি না।", std: "I do not know how to explain it.", nat: "I don't know how to explain it.", pron: "আই ডোন্ট নো হাউ টু এক্সপ্লেইন ইট।", exp: "নিজের ধারণা থাকলেও তা ভাষায় প্রকাশ করা কঠিন হলে বলা হয়।" },
+            { id: 21, bn: "আমার মাথায় একটা চিন্তা এসেছে।", std: "An idea has come to my mind.", nat: "I've just had an idea.", pron: "আইভ জাস্ট হ্যাড অ্যান আইডিয়া।", exp: "হঠাৎ নতুন কোনো পরিকল্পনা বা চিন্তা মাথায় এলে বলা হয়।" },
+            { id: 22, bn: "একটু ভেবে দেখি।", std: "Let me think about it.", nat: "I'll think about it.", pron: "আইল থিংক অ্যাবাউট ইট।", exp: "কোনো সিদ্ধান্ত নেওয়ার আগে সময় নিতে ব্যবহার হয়।" },
+            { id: 23, bn: "আমার ঠিক মনে পড়ছে না।", std: "I cannot remember exactly.", nat: "I can't quite remember.", pron: "আই ক্যান্ট কোয়াইট রিমেম্বার।", exp: "কোনো তথ্য আংশিক মনে থাকলেও নিশ্চিতভাবে মনে করতে না পারলে বলা হয়।" },
+            { id: 24, bn: "আমি যতটা বুঝেছি...", std: "As much as I have understood...", nat: "From what I understand...", pron: "ফ্রম হোয়াট আই আন্ডারস্ট্যান্ড...", exp: "নিজের উপলব্ধির ভিত্তিতে কোনো ব্যাখ্যা দিতে ব্যবহার হয়।" },
+            { id: 25, bn: "সংক্ষেপে বললে, আমি একমত।", std: "Briefly speaking, I agree.", nat: "Long story short, I agree.", pron: "লং স্টোরি শর্ট, আই অ্যাগ্রি।", exp: "“Long story short” দিয়ে দীর্ঘ আলোচনা সংক্ষেপ করে মূল বক্তব্য বলা হয়।" }
+        ];
+
+        // Track states
+        const cardStates = {};
+
+        // Render Cards
+        function renderCards() {
+            const container = document.getElementById('cardContainer');
+            container.innerHTML = '';
+
+            dataset.forEach(item => {
+                cardStates[item.id] = cardStates[item.id] || 0;
+
+                const card = document.createElement('div');
+                card.className = `card state-${cardStates[item.id]}`;
+                card.id = `card-${item.id}`;
+                card.onclick = (e) => handleCardClick(e, item.id);
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-num">${item.id}</div>
+                        <div class="step-indicator" id="step-ind-${item.id}">
+                            ${getStepLabel(cardStates[item.id])}
+                        </div>
+                    </div>
+
+                    <div class="bangla-box">
+                        <div class="bangla-text">${item.bn}</div>
+                    </div>
+
+                    <div class="english-section">
+                        <div class="english-item">
+                            <span class="badge-tag tag-natural">Natural Spoken</span>
+                            <div class="english-text">
+                                <span>${item.nat}</span>
+                                <div class="audio-btns">
+                                    <button class="btn-audio" onclick="speakText(event, '${escapeQuotes(item.nat)}', 'en-GB')">🇬🇧 UK</button>
+                                    <button class="btn-audio" onclick="speakText(event, '${escapeQuotes(item.nat)}', 'en-US')">🇺🇸 US</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="english-item">
+                            <span class="badge-tag tag-standard">Standard English</span>
+                            <div class="standard-text">${item.std}</div>
+                        </div>
+
+                        <div class="english-item">
+                            <span class="badge-tag tag-pron">উচ্চারণ</span>
+                            <div class="pronunciation-text">${item.pron}</div>
+                        </div>
+                    </div>
+
+                    <div class="explanation-section">
+                        <div class="explanation-content">
+                            <strong>ব্যাখ্যা:</strong> ${item.exp}
+                        </div>
+                    </div>
+
+                    <span class="click-hint" id="hint-${item.id}">${getHintText(cardStates[item.id])}</span>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        function getStepLabel(state) {
+            if (state === 0) return 'ক্লিক করুন (১/২)';
+            if (state === 1) return 'ক্লিক করুন (২/২)';
+            return 'সম্পূর্ণ দেখুন (রিসেট)';
+        }
+
+        function getHintText(state) {
+            if (state === 0) return '👉 ক্লিক করে ইংরেজি ও উচ্চারণ দেখুন';
+            if (state === 1) return '👉 ক্লিক করে ব্যাখ্যা দেখুন';
+            return '👈 আবার প্রথম অবস্থায় নিয়ে যেতে ক্লিক করুন';
+        }
+
+        function handleCardClick(e, id) {
+            if (e.target.closest('.btn-audio')) return;
+
+            cardStates[id] = (cardStates[id] + 1) % 3;
+            
+            const card = document.getElementById(`card-${id}`);
+            card.className = `card state-${cardStates[id]}`;
+            
+            document.getElementById(`step-ind-${id}`).innerText = getStepLabel(cardStates[id]);
+            document.getElementById(`hint-${id}`).innerText = getHintText(cardStates[id]);
+        }
+
+        function toggleAllCards(show) {
+            dataset.forEach(item => {
+                cardStates[item.id] = show ? 2 : 0;
+            });
+            renderCards();
+        }
+
+        function speakText(event, text, lang) {
+            event.stopPropagation();
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+
+                const voices = window.speechSynthesis.getVoices();
+                const selectedVoice = voices.find(v => v.lang.includes(lang) || v.lang.replace('_', '-').includes(lang));
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("দুঃখিত, আপনার ব্রাউজারে অডিও প্লেয়ার সাপোর্টেড নয়।");
+            }
+        }
+
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            let visibleCount = 0;
+
+            dataset.forEach(item => {
+                const card = document.getElementById(`card-${item.id}`);
+                const match = item.bn.toLowerCase().includes(query) || 
+                              item.nat.toLowerCase().includes(query) || 
+                              item.std.toLowerCase().includes(query) ||
+                              item.pron.toLowerCase().includes(query);
+
+                if (match) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        // Initialize
+        renderCards();
+    </script>
+</body>
+</html>

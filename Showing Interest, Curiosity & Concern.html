@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 08: Showing Interest, Curiosity & Concern</title>
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent-uk: #ec4899;
+            --accent-us: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --font-bn: 'Tiro Bangla', serif;
+            --font-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-bn);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-family: var(--font-en);
+            font-size: 2.2rem;
+            color: #818cf8;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+
+        header h2 {
+            font-family: var(--font-bn);
+            font-size: 1.5rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        /* 3D Glassmorphism Card Style */
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 
+                        0 8px 10px -6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Bengali Sentence Section */
+        .sec-bn {
+            font-family: var(--font-bn);
+            font-size: 1.35rem;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* English & Pronunciation Section */
+        .sec-en {
+            display: none;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .en-text {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .en-pron {
+            font-family: var(--font-bn);
+            font-size: 1.05rem;
+            color: #f472b6;
+        }
+
+        /* Explanation Section */
+        .sec-exp {
+            display: none;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            padding: 0.9rem;
+            font-family: var(--font-bn);
+            font-size: 0.98rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.4s ease-in-out forwards;
+            margin-bottom: 1rem;
+        }
+
+        /* 3D Audio Control Buttons */
+        .audio-controls {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .btn-3d {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .btn-uk {
+            background: linear-gradient(to bottom, #f43f5e, #be123c);
+            box-shadow: 0 4px 0 #881337, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-uk:hover {
+            background: linear-gradient(to bottom, #fb7185, #e11d48);
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #881337, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .btn-us {
+            background: linear-gradient(to bottom, #0284c7, #0369a1);
+            box-shadow: 0 4px 0 #075985, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-us:hover {
+            background: linear-gradient(to bottom, #38bdf8, #0284c7);
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #075985, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.5rem; }
+            header h1 { font-size: 1.6rem; }
+            header h2 { font-size: 1.2rem; }
+            .cards-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TOPIC 08: Showing Interest, Curiosity & Concern</h1>
+        <h2>আগ্রহ, কৌতূহল ও অন্যের প্রতি উদ্বেগ প্রকাশ করা</h2>
+    </header>
+
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            {
+                bn: "১. আচ্ছা! তারপর বলো।",
+                en: "Oh, really? Tell me more.",
+                pron: "উচ্চারণ: ওহ, রিয়েলি? টেল মি মোর।",
+                exp: "ব্যাখ্যা: কারও কথা শুনে আরও জানতে আগ্রহী হলে বলা হয়। Tell me more অর্থ আরও বলো।"
+            },
+            {
+                bn: "২. ব্যাপারটা বেশ মজার মনে হচ্ছে!",
+                en: "That sounds pretty interesting!",
+                pron: "উচ্চারণ: দ্যাট সাউন্ডস প্রিটি ইন্টারেস্টিং!",
+                exp: "ব্যাখ্যা: কারও বলা বিষয় আকর্ষণীয় মনে হলে That sounds interesting ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৩. তারপর কী হয়েছিল, শুনতে চাই।",
+                en: "I'd love to know what happened next.",
+                pron: "উচ্চারণ: আইড লাভ টু নো হোয়াট হ্যাপেন্ড নেক্সট।",
+                exp: "ব্যাখ্যা: কোনো ঘটনার পরবর্তী অংশ জানার আগ্রহ প্রকাশ করতে I'd love to know ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৪. আচ্ছা, ব্যাপারটা একটু বুঝিয়ে বলবে?",
+                en: "Could you explain that a little?",
+                pron: "উচ্চারণ: কুড ইউ এক্সপ্লেইন দ্যাট আ লিটল?",
+                exp: "ব্যাখ্যা: কোনো বিষয় পরিষ্কারভাবে বোঝার জন্য ভদ্রভাবে ব্যাখ্যা চাইতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৫. তুই কীভাবে এটা জানলি?",
+                en: "How did you find that out?",
+                pron: "উচ্চারণ: হাউ ডিড ইউ ফাইন্ড দ্যাট আউট?",
+                exp: "ব্যাখ্যা: কোনো তথ্য কীভাবে জানা হয়েছে, তা জানতে find out ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৬. তুই কি এ বিষয়ে আরও কিছু জানিস?",
+                en: "Do you know anything else about this?",
+                pron: "উচ্চারণ: ডু ইউ নো এনিথিং এলস অ্যাবাউট দিস?",
+                exp: "ব্যাখ্যা: কোনো বিষয় সম্পর্কে অতিরিক্ত তথ্য জানতে এই প্রশ্ন করা হয়।"
+            },
+            {
+                bn: "৭. তোর কী মনে হয়, এর পেছনে কারণটা কী?",
+                en: "What do you think is the reason behind it?",
+                pron: "উচ্চারণ: হোয়াট ডু ইউ থিংক ইজ দ্য রিজন বিহাইন্ড ইট?",
+                exp: "ব্যাখ্যা: কোনো ঘটনা বা পরিস্থিতির কারণ সম্পর্কে অন্যের মতামত জানতে ব্যবহৃত হয়।"
+            },
+            {
+                bn: "৮. তুই কি এ ব্যাপারে একটু চিন্তিত?",
+                en: "Are you a little concerned about it?",
+                pron: "উচ্চারণ: আর ইউ আ লিটল কনসার্নড অ্যাবাউট ইট?",
+                exp: "ব্যাখ্যা: কারও উদ্বেগ বা দুশ্চিন্তা সম্পর্কে জানতে concerned about ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৯. তুই ঠিক আছিস তো?",
+                en: "Are you alright?",
+                pron: "উচ্চারণ: আর ইউ অলরাইট?",
+                exp: "ব্যাখ্যা: কেউ অসুস্থ, চিন্তিত বা মন খারাপ করে থাকলে তার অবস্থা জানতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১০. কী হয়েছে? তোকে চিন্তিত মনে হচ্ছে।",
+                en: "What's wrong? You seem worried.",
+                pron: "উচ্চারণ: হোয়াটস রং? ইউ সিম ওয়ারিড।",
+                exp: "ব্যাখ্যা: কারও আচরণ বা চেহারা দেখে উদ্বেগ প্রকাশ করতে You seem worried বলা হয়।"
+            },
+            {
+                bn: "১১. তোর কি কোনো সমস্যা হয়েছে?",
+                en: "Has something happened to you?",
+                pron: "উচ্চারণ: হ্যাজ সামথিং হ্যাপেন্ড টু ইউ?",
+                exp: "ব্যাখ্যা: কারও সঙ্গে কোনো অপ্রত্যাশিত ঘটনা ঘটেছে কি না জানতে Present Perfect ব্যবহার করা হয়েছে।"
+            },
+            {
+                bn: "১২. তুই চাইলে আমাকে বলতে পারিস।",
+                en: "You can tell me if you want.",
+                pron: "উচ্চারণ: ইউ ক্যান টেল মি ইফ ইউ ওয়ান্ট।",
+                exp: "ব্যাখ্যা: কাউকে নিজের সমস্যা বা মনের কথা বলার সুযোগ দিতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৩. আমি তোর কথা মন দিয়ে শুনছি।",
+                en: "I'm listening carefully.",
+                pron: "উচ্চারণ: আইম লিসনিং কেয়ারফুলি।",
+                exp: "ব্যাখ্যা: কারও বক্তব্যে পূর্ণ মনোযোগ দেওয়ার কথা বোঝাতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৪. তোর কী মনে হয়, ব্যাপারটা কীভাবে ঘটল?",
+                en: "How do you think it happened?",
+                pron: "উচ্চারণ: হাউ ডু ইউ থিংক ইট হ্যাপেন্ড?",
+                exp: "ব্যাখ্যা: কোনো ঘটনা কীভাবে ঘটেছে সে সম্পর্কে অন্যের ধারণা জানতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৫. এ বিষয়ে তোর অভিজ্ঞতা কেমন?",
+                en: "What's your experience with this?",
+                pron: "উচ্চারণ: হোয়াটস ইয়োর এক্সপেরিয়েন্স উইথ দিস?",
+                exp: "ব্যাখ্যা: কোনো বিষয়ে অন্যের ব্যক্তিগত অভিজ্ঞতা জানতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৬. তুই কি এটা নিয়ে কখনো ভেবেছিস?",
+                en: "Have you ever thought about it?",
+                pron: "উচ্চারণ: হ্যাভ ইউ এভার থট অ্যাবাউট ইট?",
+                exp: "ব্যাখ্যা: কোনো বিষয় আগে কখনো চিন্তা করা হয়েছে কি না জানতে Present Perfect ব্যবহার করা হয়েছে।"
+            },
+            {
+                bn: "১৭. ব্যাপারটা আমার বেশ কৌতূহল জাগাচ্ছে।",
+                en: "I'm really curious about it.",
+                pron: "উচ্চারণ: আইম রিয়েলি কিউরিয়াস অ্যাবাউট ইট।",
+                exp: "ব্যাখ্যা: কোনো বিষয় সম্পর্কে জানার প্রবল আগ্রহ বোঝাতে curious about ব্যবহার করা হয়।"
+            },
+            {
+                bn: "১৮. তোর জায়গায় আমি থাকলে আমিও চিন্তিত হতাম।",
+                en: "I'd be worried too if I were in your position.",
+                pron: "উচ্চারণ: আইড বি ওয়ারিড টু ইফ আই ওয়ার ইন ইয়োর পজিশন।",
+                exp: "ব্যাখ্যা: অন্যের পরিস্থিতি বুঝে সহানুভূতি প্রকাশ করতে Conditional Sentence ব্যবহার করা হয়েছে।"
+            },
+            {
+                bn: "১৯. তুই কি কারও সঙ্গে এ বিষয়ে কথা বলেছিস?",
+                en: "Have you talked to anyone about this?",
+                pron: "উচ্চারণ: হ্যাভ ইউ টকড টু এনিওয়ান অ্যাবাউট দিস?",
+                exp: "ব্যাখ্যা: কেউ নিজের সমস্যার বিষয়ে অন্য কারও সঙ্গে আলোচনা করেছে কি না জানতে ব্যবহৃত হয়।"
+            },
+            {
+                bn: "২০. তোর কি কোনো সাহায্য দরকার?",
+                en: "Do you need any help?",
+                pron: "উচ্চারণ: ডু ইউ নিড এনি হেল্প?",
+                exp: "ব্যাখ্যা: কাউকে সাহায্যের প্রস্তাব দিতে ব্যবহৃত হয়।"
+            },
+            {
+                bn: "২১. আমি আশা করি সবকিছু ঠিক আছে।",
+                en: "I hope everything is alright.",
+                pron: "উচ্চারণ: আই হোপ এভরিথিং ইজ অলরাইট।",
+                exp: "ব্যাখ্যা: কারও পরিস্থিতি নিয়ে উদ্বেগ থাকলে তার মঙ্গল কামনা করতে বলা হয়।"
+            },
+            {
+                bn: "২২. তুই কি আমাকে ব্যাপারটা নিয়ে একটু বিস্তারিত বলবি?",
+                en: "Would you mind telling me a little more about it?",
+                pron: "উচ্চারণ: উড ইউ মাইন্ড টেলিং মি আ লিটল মোর অ্যাবাউট ইট?",
+                exp: "ব্যাখ্যা: ভদ্রভাবে অতিরিক্ত তথ্য চাইতে Would you mind + Verb-ing ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৩. তুই এত চুপচাপ কেন?",
+                en: "Why are you so quiet?",
+                pron: "উচ্চারণ: হোয়াই আর ইউ সো কোয়ায়েট?",
+                exp: "ব্যাখ্যা: কেউ স্বাভাবিকের তুলনায় কম কথা বললে তার কারণ জানতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "২৪. আমি বুঝতে পারছি তুই কোনো একটা বিষয় নিয়ে চিন্তায় আছিস।",
+                en: "I can tell something is bothering you.",
+                pron: "উচ্চারণ: আই ক্যান টেল সামথিং ইজ বধারিং ইউ।",
+                exp: "ব্যাখ্যা: Something is bothering you অর্থ কোনো কিছু তোমাকে মানসিকভাবে অস্বস্তিতে ফেলছে।"
+            },
+            {
+                bn: "২৫. তোর যদি কথা বলতে ইচ্ছা করে, আমি আছি।",
+                en: "I'm here if you feel like talking.",
+                pron: "উচ্চারণ: আইম হিয়ার ইফ ইউ ফিল লাইক টকিং।",
+                exp: "ব্যাখ্যা: কাউকে মানসিক সমর্থন দিতে ও কথা বলার সুযোগ দিতে If you feel like talking ব্যবহার করা হয়।"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = '0'; // 0: BN only, 1: BN+EN, 2: BN+EN+EXP
+
+            card.innerHTML = `
+                <span class="card-number">#${String(index + 1).padStart(2, '0')}</span>
+                <div class="sec-bn">${item.bn}</div>
+                
+                <div class="sec-en">
+                    <div class="en-text">${item.en}</div>
+                    <div class="en-pron">${item.pron}</div>
+                </div>
+
+                <div class="sec-exp">${item.exp}</div>
+
+                <div class="audio-controls" onclick="event.stopPropagation()">
+                    <button class="btn-3d btn-uk" onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')">
+                        🇬🇧 UK Voice
+                    </button>
+                    <button class="btn-3d btn-us" onclick="speakText('${escapeQuotes(item.en)}', 'en-US')">
+                        🇺🇸 US Voice
+                    </button>
+                </div>
+                <div class="click-hint">ক্লিক করুন (ধাপ ১/৩)</div>
+            `;
+
+            // Card Click Event for 3-step reveal
+            card.addEventListener('click', () => {
+                let currentStep = parseInt(card.dataset.step);
+                const secEn = card.querySelector('.sec-en');
+                const secExp = card.querySelector('.sec-exp');
+                const hint = card.querySelector('.click-hint');
+
+                if (currentStep === 0) {
+                    secEn.style.display = 'block';
+                    card.dataset.step = '1';
+                    hint.textContent = 'পুনরায় ক্লিক করুন (ধাপ ২/৩)';
+                } else if (currentStep === 1) {
+                    secExp.style.display = 'block';
+                    card.dataset.step = '2';
+                    hint.textContent = 'লুকাবার জন্য ক্লিক করুন';
+                } else {
+                    secEn.style.display = 'none';
+                    secExp.style.display = 'none';
+                    card.dataset.step = '0';
+                    hint.textContent = 'ক্লিক করুন (ধাপ ১/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Web Speech API Text-To-Speech Function
+        function speakText(text, lang) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop currently playing audio
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // Slightly slower speed for clear listening
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজারে স্পিচ ফিচারটি সাপোর্ট করছে না।');
+            }
+        }
+    </script>
+</body>
+</html>

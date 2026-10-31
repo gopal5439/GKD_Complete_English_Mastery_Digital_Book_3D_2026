@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 18: Changing Topics & Moving the Conversation</title>
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent-uk: #ec4899;
+            --accent-us: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --font-bn: 'Tiro Bangla', serif;
+            --font-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-bn);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-family: var(--font-en);
+            font-size: 2.2rem;
+            color: #818cf8;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+
+        header h2 {
+            font-family: var(--font-bn);
+            font-size: 1.5rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        /* 3D Glassmorphism Card Style */
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 
+                        0 8px 10px -6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Bengali Sentence Section */
+        .sec-bn {
+            font-family: var(--font-bn);
+            font-size: 1.35rem;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* English & Pronunciation Section */
+        .sec-en {
+            display: none;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .en-std {
+            font-family: var(--font-en);
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .en-nat {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .en-pron {
+            font-family: var(--font-bn);
+            font-size: 1.05rem;
+            color: #f472b6;
+        }
+
+        /* Explanation Section */
+        .sec-exp {
+            display: none;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            padding: 0.9rem;
+            font-family: var(--font-bn);
+            font-size: 0.98rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.4s ease-in-out forwards;
+            margin-bottom: 1rem;
+        }
+
+        /* 3D Audio Control Buttons */
+        .audio-controls {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .btn-3d {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .btn-uk {
+            background: linear-gradient(to bottom, #f43f5e, #be123c);
+            box-shadow: 0 4px 0 #881337, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-uk:hover {
+            background: linear-gradient(to bottom, #fb7185, #e11d48);
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #881337, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .btn-us {
+            background: linear-gradient(to bottom, #0284c7, #0369a1);
+            box-shadow: 0 4px 0 #075985, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-us:hover {
+            background: linear-gradient(to bottom, #38bdf8, #0284c7);
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #075985, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.5rem; }
+            header h1 { font-size: 1.6rem; }
+            header h2 { font-size: 1.2rem; }
+            .cards-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TOPIC 18: Changing Topics & Moving the Conversation</h1>
+        <h2>কথার প্রসঙ্গ পরিবর্তন ও নতুন বিষয়ে যাওয়া</h2>
+    </header>
+
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            {
+                bn: "১. আচ্ছা, অন্য একটা কথা বলি",
+                std: "Standard English: Okay, let me talk about something else.",
+                nat: "Natural Spoken English: Anyway, let me tell you something.",
+                pron: "উচ্চারণ: এনিওয়ে, লেট মি টেল ইউ সামথিং।",
+                exp: "ব্যাখ্যা: আগের প্রসঙ্গ থেকে নতুন প্রসঙ্গে যেতে ব্যবহার হয়।"
+            },
+            {
+                bn: "২. প্রসঙ্গ যখন উঠলই, একটা কথা মনে পড়ল।",
+                std: "Standard English: Since we are talking about this, I remembered something.",
+                nat: "Natural Spoken English: Speaking of that, I just remembered something.",
+                pron: "উচ্চারণ: স্পিকিং অভ দ্যাট, আই জাস্ট রিমেম্বার্ড সামথিং।",
+                exp: "ব্যাখ্যা: আগের কথার সঙ্গে সম্পর্কিত নতুন কিছু মনে পড়লে বলা হয়।"
+            },
+            {
+                bn: "৩. যাই হোক, এবার আসল কথায় আসি।",
+                std: "Standard English: Anyway, let us get to the main point.",
+                nat: "Natural Spoken English: Anyway, let's get to the point.",
+                pron: "উচ্চারণ: এনিওয়ে, লেটস গেট টু দ্য পয়েন্ট",
+                exp: "ব্যাখ্যা: অপ্রয়োজনীয় আলোচনা বাদ দিয়ে মূল বিষয়ে আসতে ব্যবহার করা হয়।"
+            },
+            {
+                bn: "৪. বিষয়টা একটু বদলাই।",
+                std: "Standard English: Let us change the subject.",
+                nat: "Natural Spoken English: Let's change the subject.",
+                pron: "উচ্চারণ: লেটস চেইঞ্জ দ্য সাবজেক্ট।",
+                exp: "ব্যাখ্যা: বর্তমান বিষয় থেকে অন্য বিষয়ে যেতে বলা হয়।"
+            },
+            {
+                bn: "৫. তোমাকে একটা কথা জিজ্ঞেস করার ছিল।",
+                std: "Standard English: I wanted to ask you something.",
+                nat: "Natural Spoken English: I was gonna ask you something.",
+                pron: "উচ্চারণ: আই ওয়াজ গনা আস্ক ইউ সামথিং।",
+                exp: "ব্যাখ্যা: “Gonna” হলো “going to”-এর অনানুষ্ঠানিক কথ্য রূপ। এখানে আগে থেকে কিছু জিজ্ঞেস করার ইচ্ছা বোঝানো হচ্ছে।"
+            },
+            {
+                bn: "৬. আচ্ছা, তোমার খবর কী?",
+                std: "Standard English: By the way, how are you?",
+                nat: "Natural Spoken English: By the way, how's it going?",
+                pron: "উচ্চারণ: বাই দ্য ওয়ে, হাউজ ইট গোয়িং",
+                exp: "ব্যাখ্যা: কথার মাঝে কারও বর্তমান অবস্থা জানতে ব্যবহার হয়।"
+            },
+            {
+                bn: "৭. একটা নতুন খবর আছে।",
+                std: "Standard English: I have some new information.",
+                nat: "Natural Spoken English: I've got some news.",
+                pron: "উচ্চারণ: আইভ গট সাম নিউজ।",
+                exp: "ব্যাখ্যা: “I've got” কথ্য ইংরেজিতে কোনো কিছু নিজের কাছে আছে বোঝাতে ব্যবহৃত হয়।"
+            },
+            {
+                bn: "৮. তোমাকে একটা মজার ঘটনা বলি।",
+                std: "Standard English: Let me tell you a funny story.",
+                nat: "Natural Spoken English: Let me tell you something funny.",
+                pron: "উচ্চারণ: লেট মি টেল ইউ সামথিং ফানি।",
+                exp: "ব্যাখ্যা: মজার কোনো ঘটনা বা কথা শোনানোর আগে বলা হয়।"
+            },
+            {
+                bn: "৯. এ প্রসঙ্গে আরেকটা কথা মনে পড়ল।",
+                std: "Standard English: Another thing came to mind about this topic.",
+                nat: "Natural Spoken English: That reminds me of something else.",
+                pron: "উচ্চারণ: দ্যাট রিমাইন্ডস মি অভ সামথিং এলস।",
+                exp: "ব্যাখ্যা: একটি বিষয় থেকে অন্য কোনো সম্পর্কিত বিষয় মনে পড়লে বলা হয়।"
+            },
+            {
+                bn: "১০. এসব বাদ দাও, অন্য কিছু বলো।",
+                std: "Standard English: Leave all that aside and talk about something else.",
+                nat: "Natural Spoken English: Forget all that. Tell me something else.",
+                pron: "উচ্চারণ: ফরগেট অল দ্যাট। টেল মি সামথিং এলস।",
+                exp: "ব্যাখ্যা: আগের আলোচনা বাদ দিয়ে অন্য কিছু শুনতে চাইলে ব্যবহার হয়।"
+            },
+            {
+                bn: "১১. এবার ভবিষ্যৎ নিয়ে কথা বলি।",
+                std: "Standard English: Now let us talk about the future.",
+                nat: "Natural Spoken English: Let's talk about the future now.",
+                pron: "উচ্চারণ: লেটস টক অ্যাবাউট দ্য ফিউচার নাউ।",
+                exp: "ব্যাখ্যা: আলোচনাকে ভবিষ্যৎ পরিকল্পনার দিকে নিয়ে যেতে বলা হয়।"
+            },
+            {
+                bn: "১২. এই প্রসঙ্গটা পরে আলোচনা করব।",
+                std: "Standard English: We will discuss this topic later.",
+                nat: "Natural Spoken English: We'll talk about this later.",
+                pron: "উচ্চারণ: উইল টক অ্যাবাউট দিস লেটার।",
+                exp: "ব্যাখ্যা: “We'll” হলো “We will”-এর সংকুচিত রূপ।"
+            },
+            {
+                bn: "১৩. এখন অন্য একটা বিষয়ে আসি।",
+                std: "Standard English: Now let us move on to another topic.",
+                nat: "Natural Spoken English: Let's move on to something else.",
+                pron: "উচ্চারণ: লেটস মুভ অন টু সামথিং এলস।",
+                exp: "ব্যাখ্যা: একটি আলোচনা শেষ করে নতুন বিষয়ে যেতে ব্যবহার হয়।"
+            },
+            {
+                bn: "১৪. একটা জরুরি কথা আছে।",
+                std: "Standard English: There is something important I need to say.",
+                nat: "Natural Spoken English: There's something important I need to tell you.",
+                pron: "উচ্চারণ: দেয়ারস সামথিং ইমপোর্ট্যান্ট আই নিড টু টেল ইউ।",
+                exp: "ব্যাখ্যা: গুরুত্বপূর্ণ কোনো কথা বলার আগে মনোযোগ আকর্ষণ করতে বলা হয়।"
+            },
+            {
+                bn: "১৫. তোমাকে একটা কথা মনে করিয়ে দিই।",
+                std: "Standard English: Let me remind you of something.",
+                nat: "Natural Spoken English: Just a quick reminder.",
+                pron: "উচ্চারণ: জাস্ট আ কুইক রিমাইন্ডার।",
+                exp: "ব্যাখ্যা: কাউকে কোনো বিষয় স্মরণ করিয়ে দিতে বলা হয়।"
+            },
+            {
+                bn: "১৬. এটা পরে বলছি।",
+                std: "Standard English: I will tell you about this later.",
+                nat: "Natural Spoken English: I'll tell you later.",
+                pron: "উচ্চারণ: আইল টেল ইউ লেটার।",
+                exp: "ব্যাখ্যা: “I'll” হলো “I will”-এর সংকুচিত রূপ।"
+            },
+            {
+                bn: "১৭. আগে একটা বিষয় পরিষ্কার করি।",
+                std: "Standard English: Let me clarify one thing first.",
+                nat: "Natural Spoken English: First, let me clear something up.",
+                pron: "উচ্চারণ: ফার্স্ট, লেট মি ক্লিয়ার সামথিং আপ।",
+                exp: "ব্যাখ্যা: আলোচনার আগে কোনো ভুল বোঝাবুঝি দূর করতে বলা হয়।"
+            },
+            {
+                bn: "১৮. মূল বিষয়ে ফিরে আসি।",
+                std: "Standard English: Let us return to the main topic.",
+                nat: "Natural Spoken English: Let's get back to the main point.",
+                pron: "উচ্চারণ: লেটস গেট ব্যাক টু দ্য মেইন পয়েন্ট।",
+                exp: "ব্যাখ্যা: আলোচনা অন্যদিকে চলে গেলে মূল বিষয়ে ফিরে আসতে ব্যবহার হয়।"
+            },
+            {
+                bn: "১৯. এটা আমাকে আরেকটা কথা মনে করিয়ে দিল।",
+                std: "Standard English: This reminded me of something else.",
+                nat: "Natural Spoken English: That reminds me!",
+                pron: "উচ্চারণ: দ্যাট রিমাইন্ডস মি!",
+                exp: "ব্যাখ্যা: কোনো কথা শুনে হঠাৎ অন্য কিছু মনে পড়লে বলা হয়।"
+            },
+            {
+                bn: "২০. আচ্ছা, একটা কথা জিজ্ঞেস করি।",
+                std: "Standard English: Okay, let me ask you something.",
+                nat: "Natural Spoken English: Hey, can I ask you something?",
+                pron: "উচ্চারণ: হেই, ক্যান আই আস্ক ইউ সামথিং?",
+                exp: "ব্যাখ্যা: কারও কাছে প্রশ্ন করার আগে অনুমতি বা মনোযোগ চাইতে ব্যবহার হয়।"
+            },
+            {
+                bn: "২১. এবার একটু সিরিয়াস কথা বলি।",
+                std: "Standard English: Now let us talk seriously.",
+                nat: "Natural Spoken English: Let's get serious for a moment.",
+                pron: "উচ্চারণ: লেটস গেট সিরিয়াস ফর আ মোমেন্ট।",
+                exp: "ব্যাখ্যা: মজার বা সাধারণ আলোচনা থেকে গুরুত্বপূর্ণ আলোচনায় যেতে বলা হয়।"
+            },
+            {
+                bn: "২২. সেটা থাক, আগে এটা বলো।",
+                std: "Standard English: Leave that aside and tell me this first.",
+                nat: "Natural Spoken English: Never mind that. Tell me this first.",
+                pron: "উচ্চারণ: নেভার মাইন্ড দ্যাট। টেল মি দিস ফার্স্ট।",
+                exp: "ব্যাখ্যা: একটি বিষয় আপাতত বাদ দিয়ে অন্য প্রশ্নের উত্তর চাইতে ব্যবহার হয়।"
+            },
+            {
+                bn: "২৩. তোমার সঙ্গে একটা বিষয় আলোচনা করতে চাই।",
+                std: "Standard English: I want to discuss something with you.",
+                nat: "Natural Spoken English: There's something I'd like to discuss with you.",
+                pron: "উচ্চারণ: দেয়ারস সামথিং আইড লাইক টু ডিসকাস উইথ ইউ।",
+                exp: "ব্যাখ্যা: ভদ্রভাবে কোনো বিষয়ে আলোচনা শুরু করতে বলা হয়।"
+            },
+            {
+                bn: "২৪. এই কথার সূত্র ধরে একটা কথা বলি।",
+                std: "Standard English: Let me say something related to this.",
+                nat: "Natural Spoken English: That brings me to another point.",
+                pron: "উচ্চারণ: দ্যাট ব্রিংস মি টু অ্যানাদার পয়েন্ট।",
+                exp: "ব্যাখ্যা: আগের আলোচনার সঙ্গে সম্পর্কিত নতুন একটি বিষয় উত্থাপন করতে ব্যবহার হয়।"
+            },
+            {
+                bn: "২৫. আচ্ছা, এবার তোমার কথা শুনি।",
+                std: "Standard English: Okay, now let me hear what you have to say.",
+                nat: "Natural Spoken English: All right, I'm listening.",
+                pron: "উচ্চারণ: অল রাইট, আইম লিসনিং।",
+                exp: "ব্যাখ্যা: নিজের কথা শেষ করে অন্য ব্যক্তিকে কথা বলার সুযোগ দিতে ব্যবহার হয়।"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = '0'; // 0: BN only, 1: BN+EN, 2: BN+EN+EXP
+
+            // Strip "Natural Spoken English: " prefix for text-to-speech audio
+            const speakPhrase = item.nat.replace(/^Natural Spoken English:\s*/i, '');
+
+            card.innerHTML = `
+                <span class="card-number">#${String(index + 1).padStart(2, '0')}</span>
+                <div class="sec-bn">${item.bn}</div>
+                
+                <div class="sec-en">
+                    <div class="en-std">${item.std}</div>
+                    <div class="en-nat">${item.nat}</div>
+                    <div class="en-pron">${item.pron}</div>
+                </div>
+
+                <div class="sec-exp">${item.exp}</div>
+
+                <div class="audio-controls" onclick="event.stopPropagation()">
+                    <button class="btn-3d btn-uk" onclick="speakText('${escapeQuotes(speakPhrase)}', 'en-GB')">
+                        🇬🇧 UK Voice
+                    </button>
+                    <button class="btn-3d btn-us" onclick="speakText('${escapeQuotes(speakPhrase)}', 'en-US')">
+                        🇺🇸 US Voice
+                    </button>
+                </div>
+                <div class="click-hint">ক্লিক করুন (ধাপ ১/৩)</div>
+            `;
+
+            // Card Click Event for 3-step reveal
+            card.addEventListener('click', () => {
+                let currentStep = parseInt(card.dataset.step);
+                const secEn = card.querySelector('.sec-en');
+                const secExp = card.querySelector('.sec-exp');
+                const hint = card.querySelector('.click-hint');
+
+                if (currentStep === 0) {
+                    secEn.style.display = 'block';
+                    card.dataset.step = '1';
+                    hint.textContent = 'পুনরায় ক্লিক করুন (ধাপ ২/৩)';
+                } else if (currentStep === 1) {
+                    secExp.style.display = 'block';
+                    card.dataset.step = '2';
+                    hint.textContent = 'লুকাবার জন্য ক্লিক করুন';
+                } else {
+                    secEn.style.display = 'none';
+                    secExp.style.display = 'none';
+                    card.dataset.step = '0';
+                    hint.textContent = 'ক্লিক করুন (ধাপ ১/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Web Speech API Text-To-Speech Function
+        function speakText(text, lang) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop currently playing audio
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // Slightly slower speed for clear listening
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজারে স্পিচ ফিচারটি সাপোর্ট করছে না।');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking About Daily Experiences - English Learning Cards</title>
+    
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Font Definitions */
+        .font-bangla {
+            font-family: 'Tiro Bangla', serif;
+        }
+        
+        .font-english {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Deep Glowing Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #0f172a, #132e32, #1e1b4b, #044e54);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Container with 3D Depth */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(20, 184, 166, 0.3);
+        }
+
+        /* 3D Tactile Push Button Effect */
+        .btn-3d {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 0.75rem;
+            transition: all 0.1s ease;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+        }
+
+        /* UK Button Color & Shadow */
+        .btn-uk {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 6px 0 #1e40af, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #60a5fa;
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #1e40af, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* US Button Color & Shadow */
+        .btn-us {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 6px 0 #991b1b, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #f87171;
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #991b1b, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Next / Toggle Step Button */
+        .btn-step {
+            background: linear-gradient(135deg, #0d9488, #0f766e);
+            box-shadow: 0 6px 0 #115e59, 0 10px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 1px solid #2dd4bf;
+        }
+
+        .btn-step:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #115e59, 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Smooth Reveal Transitions */
+        .reveal-box {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-10px);
+        }
+
+        .reveal-box.active {
+            opacity: 1;
+            max-height: 300px;
+            transform: translateY(0);
+        }
+
+        /* Step Indicator Badge */
+        .badge-step {
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="p-3 sm:p-6 md:p-10">
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto text-center mb-10 mt-4">
+        <div class="inline-block p-2 px-4 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 font-semibold mb-3 tracking-wider text-sm shadow-inner">
+            <i class="fa-solid fa-calendar-day mr-2"></i>ENGLISH SPOKEN PRACTICE
+        </div>
+        
+        <h1 class="font-english text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-200 drop-shadow-md mb-3">
+            TOPIC 02: Talking About Daily Experiences
+        </h1>
+        
+        <h2 class="font-bangla text-2xl sm:text-3xl md:text-4xl text-emerald-300 font-medium drop-shadow-sm mb-6">
+            দৈনন্দিন জীবনের অভিজ্ঞতা, ঘটনা ও কাজ নিয়ে কথা বলা
+        </h2>
+
+        <!-- Global Control Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-4 bg-slate-800/60 p-4 rounded-2xl border border-slate-700/80 backdrop-blur-md max-w-2xl mx-auto shadow-2xl">
+            <button onclick="expandAllCards()" class="btn-3d bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 text-sm font-bangla border-b-4 border-emerald-800 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-eye mr-2"></i>সবগুলো প্রকাশ করুন
+            </button>
+            <button onclick="resetAllCards()" class="btn-3d bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 text-sm font-bangla border-b-4 border-slate-900 active:border-b-0 active:translate-y-1 rounded-xl">
+                <i class="fa-solid fa-rotate-left mr-2"></i>পুনরায় রিসেট করুন
+            </button>
+            <div class="text-xs text-slate-300 font-bangla bg-slate-900/50 px-3 py-2 rounded-lg border border-slate-700">
+                <i class="fa-solid fa-hand-pointer text-amber-400 mr-1"></i> কার্ডের উপর বা বাটনে ক্লিক করে তথ্য দেখুন
+            </div>
+        </div>
+    </header>
+
+    <!-- Cards Grid Container -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8" id="cards-container">
+        <!-- Javascript will inject 25 dynamic 3D interactive cards here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto text-center mt-16 pb-8 border-t border-slate-800 pt-6">
+        <p class="font-bangla text-slate-400 text-sm">
+            স্পোকেন ইংলিশ শিখুন সহজে ও সুন্দর ইন্টারঅ্যাকটিভ কার্ডের মাধ্যমে।
+        </p>
+    </footer>
+
+    <!-- Audio Speech Controller & App Logic Script -->
+    <script>
+        // Topic 02 Data items array (25 Conversations)
+        const conversationData = [
+            { id: 1, bn: "আজ আমার দিনটা বেশ ভালো কেটেছে।", en: "I had a pretty good day today", pronunciation: "আই হ্যাড আ প্রিটি গুড ডে টুডে।", exp: "দিনের অভিজ্ঞতা বোঝাতে Past Simple ব্যবহার করা হয়েছে। Pretty good অর্থ বেশ ভালো।" },
+            { id: 2, bn: "আজ সারাদিন খুব ব্যস্ত ছিলাম।", en: "I've been really busy all day.", pronunciation: "আইভ বিন রিয়েলি বিজি অল ডে।", exp: "সকাল থেকে বর্তমান সময় পর্যন্ত ব্যস্ত থাকার অভিজ্ঞতা বোঝাতে Present Perfect ব্যবহার করা হয়েছে।" },
+            { id: 3, bn: "আজ সকালে একটু দেরিতে ঘুম থেকে উঠেছি।", en: "I woke up a little late this morning.", pronunciation: "আই ওউক আপ আ লিটল লেইট দিস মর্নিং।", exp: "ঘুম থেকে ওঠা বোঝাতে wake up ব্যবহৃত হয়। এর Past Form হলো woke up।" },
+            { id: 4, bn: "ঘুম থেকে উঠেই গোসল করেছি।", en: "I took a shower as soon as I woke up.", pronunciation: "আই টুক আ শাওয়ার অ্যাজ সুন অ্যাজ আই ওউক আপ।", exp: "As soon as অর্থ যেইমাত্র বা করার সঙ্গে সংগেই। দুটি কাজের সময়ের সম্পর্ক বোঝায়।" },
+            { id: 5, bn: "আজ নাশতা করতে একদম সময় পাইনি।", en: "I didn't have any time for breakfast today", pronunciation: "আই ডিডন্ট হ্যাভ এনি টাইম ফর ব্রেকফাস্ট টুডে।", exp: "অতীতে কোনো কাজের সুযোগ না পাওয়া বোঝাতে didn't have time ব্যবহার করা হয়" },
+            { id: 6, bn: "রাস্তায় আজ প্রচণ্ড যানজট ছিল।", en: "There was terrible traffic on the road today", pronunciation: "দেয়ার ওয়াজ টেরিবল ট্রাফিক অন দ্য রোড টুডে", exp: "কোনো জায়গায় কোনো পরিস্থিতি ছিল বোঝাতে There was ব্যবহার করা হয" },
+            { id: 7, bn: "বাসের জন্য অনেকক্ষণ অপেক্ষা করেছি।", en: "I waited for the bus for a long time.", pronunciation: "আই ওয়েইটিড ফর দ্য বাস ফর আ লং টাইম।", exp: "কারও বা কোনো কিছুর জন্য অপেক্ষা করা বোঝাতে wait for ব্যবহার করা হয়।" },
+            { id: 8, bn: "আজ অফিসে যেতে বেশ দেরি হয়ে গেল।", en: "I ended up being quite late for work today", pronunciation: "আই এন্ডিড আপ বিইং কোয়াইট লেইট ফর ওয়ার্ক টুডে", exp: "End up + Verb-ing দিয়ে শেষ পর্যন্ত কোনো পরিস্থিতিতে পড়া বোঝায" },
+            { id: 9, bn: "দুপুরে বাইরে খেয়েছি।", en: "I ate out for lunch", pronunciation: "আই এইট আউট ফর লাঞ্চ।", exp: "Eat out অর্থ বাড়ির বাইরে বা রেস্টুরেন্টে খাওয়া" },
+            { id: 10, bn: "আজ খাবারটা বেশ মজার হয়েছিল।", en: "The food was really delicious today", pronunciation: "দ্য ফুড ওয়াজ রিয়েলি ডিলিশাস টুডে", exp: "খাবারের স্বাদ প্রশংসা করতে delicious ব্যবহার করা হয়।" },
+            { id: 11, bn: "আজ হঠাৎ পুরোনো এক বন্ধুর সঙ্গে দেখা হয়ে গেল।", en: "I ran into an old friend today.", pronunciation: "আই র‍্যান ইনটু অ্যান ওল্ড ফ্রেন্ড টুডে।", exp: "Run into someone অর্থ হঠাৎ কারও সঙ্গে দেখা হয়ে যাওয়া" },
+            { id: 12, bn: "আজ অনেক দিন পর তার সঙ্গে কথা হলো।", en: "I got to talk to him after a long time today.", pronunciation: "আই গট টু টক টু হিম আফটার আ লং টাইম টুডে।", exp: "Got to এখানে কোনো কাজ করার সুযোগ পাওয়া বোঝায়" },
+            { id: 13, bn: "আজ একটা নতুন জিনিস শিখেছি।", en: "I learned something new today.", pronunciation: "আই লার্নড সামথিং নিউ টুডে।", exp: "নতুন কিছু শেখার অভিজ্ঞতা প্রকাশ করতে Past Simple ব্যবহার করা হয়েছে।" },
+            { id: 14, bn: "কাজটা করতে গিয়ে অনেক ঝামেলায় পড়েছিলাম।", en: "I ran into a lot of trouble while doing the work.", pronunciation: "আই র‍্যান ইনটু আ লট অভ ট্রাবল হোয়াইল ডুইং দ্য ওয়ার্ক", exp: "Run into trouble অর্থ কোনো কাজ করতে গিয়ে সমস্যায় পড়" },
+            { id: 15, bn: "শেষ পর্যন্ত কাজটা শেষ করতে পেরেছি।", en: "I finally managed to finish the work.", pronunciation: "আই ফাইনালি ম্যানেজড টু ফিনিশ দ্য ওয়ার্ক।", exp: "Manage to do something অর্থ চেষ্টা বা বাধা সত্ত্বেও কোনো কাজ করতে সক্ষম হওয়া।" },
+            { id: 16, bn: "আজ খুব ক্লান্ত লাগছে।", en: "I'm feeling really tired today.", pronunciation: "আইম ফিলিং রিয়েলি টায়ার্ড টুডে", exp: "বর্তমান শারীরিক অনুভূতি প্রকাশ করতে I'm feeling ব্যবহার করা হয়েছে।" },
+            { id: 17, bn: "একটু বিশ্রাম নেওয়ার দরকার ছিল।", en: "I needed to get some rest.", pronunciation: "আই নিডিড টু গেট সাম রেস্ট।", exp: "অতীতে বিশ্রামের প্রয়োজন ছিল বোঝাতে needed to ব্যবহার করা হয়" },
+            { id: 18, bn: "আজ সারাদিন বাসায় ছিলাম।", en: "I stayed home all day today", pronunciation: "আই স্টেইড হোম অল ডে টুডে।", exp: "কোথাও অবস্থান করা বোঝাতে stay ব্যবহৃত হয়। এর Past Form হলো stayed।" },
+            { id: 19, bn: "বিকেলে একটু বাইরে ঘুরতে গিয়েছিলাম।", en: "I went out for a while in the afternoon.", pronunciation: "আই ওয়েন্ট আউট ফর আ হোয়াইল ইন দ্য আফটারনুন", exp: "Go out অর্থ বাইরে যাওয়া এবং for a while অর্থ কিছুক্ষণের জন্য।" },
+            { id: 20, bn: "আজ একটা মজার ঘটনা ঘটেছে।", en: "Something funny happened today.", pronunciation: "সামথিং ফানি হ্যাপেন্ড টুডে।", exp: "কোনো ঘটনা ঘটে যাওয়া বোঝাতে happen ব্যবহার করা হয়। এর Past Form happened" },
+            { id: 21, bn: "ব্যাপারটা আমার একদম ভালো লাগেনি।", en: "I didn't like it at all.", pronunciation: "আই ডিডন্ট লাইক ইট অ্যাট অল।", exp: "কোনো কিছু একেবারেই পছন্দ না হওয়া বোঝাতে not ... at all ব্যবহার করা হয়" },
+            { id: 22, bn: "আজ যা হয়েছে, তা একদম আশা করিনি।", en: "I didn't expect any of this to happen today", pronunciation: "আই ডিডন্ট এক্সপেক্ট এনি অভ দিস টু হ্যাপন টুডে।", exp: "কোনো ঘটনা আগে থেকে ধারণা না করা বোঝাতে expect ব্যবহার করা হয়।" },
+            { id: 23, bn: "আজকের দিনটা আমার জন্য বেশ বিশেষ ছিল।", en: "Today was quite a special day for me.", pronunciation: "টুডে ওয়াজ কোয়াইট আ স্পেশাল ডে ফর মি", exp: "কোনো দিন বা অভিজ্ঞতার বিশেষত্ব প্রকাশ করতে special ব্যবহার করা হয়।" },
+            { id: 24, bn: "সব মিলিয়ে দিনটা ভালোই কেটেছে।", en: "Overall, it was a good day.", pronunciation: "ওভারঅল, ইট ওয়াজ আ গুড ডে।", exp: "Overall অর্থ সব মিলিয়ে বা সামগ্রিকভাবে। পুরো দিনের মূল্যায়ন করতে ব্যবহৃত হয়।" },
+            { id: 25, bn: "আশা করি কালকের দিনটা আরও ভালো যাবে।", en: "I hope tomorrow will be even better.", pronunciation: "আই হোপ টুমরো উইল বি ইভেন বেটার।", exp: "ভবিষ্যৎ সম্পর্কে আশা প্রকাশ করতে I hope ব্যবহার করা হয়। Even better অর্থ আরও ভালো।" }
+        ];
+
+        // Track current state for each card (State 1: Bengali, State 2: English+Pron, State 3: Explanation)
+        const cardStates = {};
+
+        // Speech Synthesis API Setup
+        const synth = window.speechSynthesis;
+        let voices = [];
+
+        function loadVoices() {
+            voices = synth.getVoices();
+        }
+        
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        // Render Cards dynamically
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            conversationData.forEach((item) => {
+                cardStates[item.id] = cardStates[item.id] || 1; // Default to state 1
+                const padId = String(item.id).padStart(2, '0');
+
+                const cardHTML = `
+                    <div id="card-${item.id}" class="card-3d rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden select-none cursor-pointer" onclick="handleCardClick(event, ${item.id})">
+                        
+                        <!-- Top Bar inside Card -->
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                            <span class="badge-step bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-extrabold px-3 py-1 rounded-full text-xs sm:text-sm font-english tracking-wider">
+                                #${padId}
+                            </span>
+                            <div class="flex items-center space-x-2 text-xs font-bangla text-teal-300 bg-teal-900/40 px-3 py-1 rounded-full border border-teal-500/30">
+                                <span id="badge-state-text-${item.id}">ধাপ ১: বাংলা</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Content Body -->
+                        <div class="space-y-4 my-2">
+                            <!-- Always Visible: Bengali Sentence -->
+                            <div class="bg-emerald-400/10 p-3 sm:p-4 rounded-xl border border-emerald-400/20 shadow-inner">
+                                <p class="text-xs text-emerald-300/80 font-bangla mb-1"><i class="fa-solid fa-language mr-1"></i>বাংলা বাক্য:</p>
+                                <h3 class="font-bangla text-xl sm:text-2xl font-bold text-emerald-200 leading-relaxed">
+                                    ${item.bn}
+                                </h3>
+                            </div>
+
+                            <!-- State 2 Content: English & Pronunciation -->
+                            <div id="english-box-${item.id}" class="reveal-box space-y-3">
+                                <div class="bg-teal-950/60 p-3 sm:p-4 rounded-xl border border-teal-500/30">
+                                    <p class="text-xs text-teal-300/80 font-english mb-1"><i class="fa-solid fa-font mr-1"></i>English Sentence:</p>
+                                    <p class="font-english text-xl sm:text-2xl font-semibold text-cyan-200 leading-normal tracking-wide">
+                                        ${item.en}
+                                    </p>
+                                </div>
+                                <div class="bg-cyan-950/50 p-3 rounded-xl border border-cyan-500/20">
+                                    <p class="text-xs text-cyan-300/80 font-bangla mb-1"><i class="fa-solid fa-volume-low mr-1"></i>উচ্চারণ (Pronunciation):</p>
+                                    <p class="font-bangla text-lg text-cyan-200">
+                                        ${item.pronunciation}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- State 3 Content: Explanation -->
+                            <div id="explanation-box-${item.id}" class="reveal-box">
+                                <div class="bg-indigo-950/50 p-3 sm:p-4 rounded-xl border border-indigo-500/30 text-indigo-200">
+                                    <p class="text-xs text-indigo-300/80 font-bangla mb-1"><i class="fa-solid fa-circle-info mr-1"></i>ব্যাখ্যা (Explanation):</p>
+                                    <p class="font-bangla text-sm sm:text-base leading-relaxed text-indigo-100">
+                                        ${item.exp}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Tactile Action Buttons Container -->
+                        <div class="pt-4 mt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2" onclick="event.stopPropagation()">
+                            
+                            <!-- Audio Pronunciation Buttons -->
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-GB')" class="btn-3d btn-uk text-xs px-3 py-2" title="Listen in British Accent">
+                                    <span class="mr-1.5 text-base">🇬🇧</span> UK Voice
+                                </button>
+                                <button onclick="speakText('${escapeQuotes(item.en)}', 'en-US')" class="btn-3d btn-us text-xs px-3 py-2" title="Listen in American Accent">
+                                    <span class="mr-1.5 text-base">🇺🇸</span> US Voice
+                                </button>
+                            </div>
+
+                            <!-- Step Toggle Button -->
+                            <button onclick="advanceCardState(${item.id})" class="btn-3d btn-step text-xs px-3.5 py-2 font-bangla ml-auto">
+                                <span id="btn-label-${item.id}">পরবর্তী ধাপ <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+                updateCardUI(item.id);
+            });
+        }
+
+        // Handle full card clicks
+        function handleCardClick(event, id) {
+            // Prevent state toggle if text was highlighted/selected by user
+            const selection = window.getSelection();
+            if (selection.toString().length > 0) return;
+            
+            advanceCardState(id);
+        }
+
+        // Advance specific card through 3 states sequentially
+        function advanceCardState(id) {
+            if (!cardStates[id]) cardStates[id] = 1;
+            
+            cardStates[id] = (cardStates[id] % 3) + 1; // Cycles: 1 -> 2 -> 3 -> 1
+            updateCardUI(id);
+        }
+
+        // Update Card Visuals based on current state
+        function updateCardUI(id) {
+            const state = cardStates[id];
+            const englishBox = document.getElementById(`english-box-${id}`);
+            const explanationBox = document.getElementById(`explanation-box-${id}`);
+            const badgeText = document.getElementById(`badge-state-text-${id}`);
+            const btnLabel = document.getElementById(`btn-label-${id}`);
+
+            if (!englishBox || !explanationBox) return;
+
+            if (state === 1) {
+                // State 1: Bengali Only
+                englishBox.classList.remove('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ১: বাংলা';
+                btnLabel.innerHTML = 'ইংরেজি ও উচ্চারণ <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 2) {
+                // State 2: English & Pronunciation Revealed
+                englishBox.classList.add('active');
+                explanationBox.classList.remove('active');
+                badgeText.innerText = 'ধাপ ২: ইংরেজি ও উচ্চারণ';
+                btnLabel.innerHTML = 'ব্যাখ্যা দেখুন <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else if (state === 3) {
+                // State 3: Full Explanation Revealed
+                englishBox.classList.add('active');
+                explanationBox.classList.add('active');
+                badgeText.innerText = 'ধাপ ৩: সম্পূর্ণ বিস্তারিত';
+                btnLabel.innerHTML = 'পুনরায় শুরুতে <i class="fa-solid fa-rotate-left ml-1"></i>';
+            }
+        }
+
+        // Global Action: Expand All Cards to State 3
+        function expandAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 3;
+                updateCardUI(item.id);
+            });
+        }
+
+        // Global Action: Reset All Cards to State 1
+        function resetAllCards() {
+            conversationData.forEach(item => {
+                cardStates[item.id] = 1;
+                updateCardUI(item.id);
+            });
+        }
+
+        // Speech Synthesis Function
+        function speakText(text, langCode) {
+            if (!('speechSynthesis' in window)) {
+                alert('আপনার ব্রাউজারে টেক্সট-টু-স্পিচ (Audio Pronunciation) সাপোর্ট করছে না।');
+                return;
+            }
+
+            // Stop any ongoing speech
+            synth.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langCode;
+            utterance.rate = 0.88; // Slower speed for clear pronunciation
+
+            // Select matching voice accent if available
+            const matchingVoices = synth.getVoices().filter(voice => voice.lang.includes(langCode) || voice.lang.replace('_', '-').includes(langCode));
+            if (matchingVoices.length > 0) {
+                utterance.voice = matchingVoices[0];
+            }
+
+            synth.speak(utterance);
+        }
+
+        // Helper function to escape single quotes in JS inline onclick attributes
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Initialize App on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+            loadVoices();
+        });
+    </script>
+</body>
+</html>

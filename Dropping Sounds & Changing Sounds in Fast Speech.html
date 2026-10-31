@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 14: Natural American English Pronunciation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Tiro Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        bangla: ['"Tiro Bangla"', 'serif'],
+                        english: ['"Times New Roman"', 'Times', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tiro Bangla', serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        .english-text {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Tactile 3D Button Styling */
+        .btn-3d {
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+            position: relative;
+            top: 0;
+        }
+        .btn-3d:active {
+            top: 3px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        .btn-3d-blue {
+            background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+            border: 1px solid #1e40af;
+        }
+        .btn-3d-blue:hover {
+            background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+        }
+
+        .btn-3d-purple {
+            background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 100%);
+            border: 1px solid #5b21b6;
+        }
+        .btn-3d-purple:hover {
+            background: linear-gradient(180deg, #a78bfa 0%, #7c3aed 100%);
+        }
+
+        .btn-3d-emerald {
+            background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+            border: 1px solid #065f46;
+        }
+        .btn-3d-emerald:hover {
+            background: linear-gradient(180deg, #34d399 0%, #059669 100%);
+        }
+
+        .btn-3d-amber {
+            background: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+            border: 1px solid #92400e;
+        }
+        .btn-3d-amber:hover {
+            background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+        }
+
+        /* Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 28px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Fade Animation for Unfolding Elements */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .speaking {
+            animation: pulse-speaking 1s infinite alternate;
+        }
+        @keyframes pulse-speaking {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="p-3 sm:p-6 md:p-8">
+
+    <div class="max-w-5xl mx-auto space-y-6">
+
+        <!-- HEADER SECTION -->
+        <header class="glass-card rounded-2xl p-6 sm:p-8 text-center relative overflow-hidden">
+            <div class="absolute -top-12 -left-12 w-36 h-36 bg-blue-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-purple-500/20 rounded-full blur-3xl"></div>
+            
+            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 text-sm font-semibold mb-3">
+                <i class="fa-solid fa-flag-usa mr-2 text-red-400"></i>আমেরিকান স্পোকেন ইংলিশ মাস্টারক্লাস
+            </div>
+
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 english-text tracking-wide uppercase">
+                TOPIC 14: Natural American English Pronunciation
+            </h1>
+            
+            <p class="text-lg sm:text-2xl text-slate-200 mt-2 font-medium">
+                আমেরিকান ইংরেজির স্বাভাবিক উচ্চারণ ও কথ্য রীতি
+            </p>
+
+            <!-- Progress Bar Indicator -->
+            <div class="mt-6 max-w-md mx-auto">
+                <div class="flex justify-between text-xs sm:text-sm text-slate-300 mb-2">
+                    <span>প্রোগ্রেস (উন্মোচিত বাক্য)</span>
+                    <span id="progress-text">০ / ২৫</span>
+                </div>
+                <div class="w-full bg-slate-700/60 rounded-full h-3 p-0.5 border border-slate-600">
+                    <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500 w-0"></div>
+                </div>
+            </div>
+
+            <!-- SEARCH AND GLOBAL ACTION CONTROLS -->
+            <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-between items-center">
+                <!-- Search Box -->
+                <div class="relative w-full sm:w-72">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="search-input" placeholder="খুঁজুন (বাংলা বা ইংরেজি)..." 
+                           class="w-full pl-10 pr-4 py-2 bg-slate-800/80 border border-slate-600/80 rounded-xl text-sm focus:outline-none focus:border-blue-500 text-white placeholder-slate-400">
+                </div>
+
+                <!-- Global Action Buttons -->
+                <div class="flex gap-3 w-full sm:w-auto">
+                    <button onclick="revealAllCards()" class="btn-3d btn-3d-emerald flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-eye"></i> সব দেখুন
+                    </button>
+                    <button onclick="resetAllCards()" class="btn-3d btn-3d-amber flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i> সব বন্ধ করুন
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- CARDS CONTAINER GRID -->
+        <main id="cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            <!-- Cards are rendered dynamically using JavaScript -->
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-6 text-slate-400 text-sm">
+            <p>© আমেরিকান ইংলিশ লার্নিং ড্যাশবোর্ড - TOPIC 14</p>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Topic 14 Dataset (25 Items)
+        const dataset = [
+            { id: 1, bangla: "তুমি কি ঠিক আছ?", standard: "Are you okay?", natural: "You okay?", pronunciation: "ইউ ওকে?", explanation: "American casual speech-এ Are বাদ দিয়ে প্রশ্ন করা প্রচলিত। তবে আনুষ্ঠানিক কথায় পূর্ণ বাক্য ব্যবহার করবে।" },
+            { id: 2, bangla: "আমি একদম ঠিক আছি।", standard: "I'm doing very well.", natural: "I'm doing great.", pronunciation: "আইম ডুইং গ্রেইট।", explanation: "American English-এ I'm doing great একটি স্বাভাবিক ও বন্ধুত্বপূর্ণ উত্তর।" },
+            { id: 3, bangla: "ব্যাপারটা খুব ভালো হয়েছে।", standard: "That is very good.", natural: "That's awesome!", pronunciation: "দ্যাটস অসম!", explanation: "Awesome আমেরিকান কথ্য ইংরেজিতে খুব প্রচলিত প্রশংসাসূচক শব্দ।" },
+            { id: 4, bangla: "এক সেকেন্ড অপেক্ষা করো।", standard: "Wait for a moment.", natural: "Hang on a sec.", pronunciation: "হ্যাং অন আ সেক।", explanation: "Hang on অর্থ একটু অপেক্ষা করা। Sec হলো second এর অনানুষ্ঠানিক সংক্ষিপ্ত রূপ।" },
+            { id: 5, bangla: "এটা একদম ঠিক আছে।", standard: "That's perfectly fine.", natural: "That's totally cool.", pronunciation: "দ্যাটস টোটালি কুল।", explanation: "Totally cool আমেরিকান কথ্য ভাষায় সম্মতি বা কোনো কিছু গ্রহণযোগ্য বোঝাতে ব্যবহার হয়।" },
+            { id: 6, bangla: "চল, বের হই।", standard: "Let's go outside.", natural: "Let's head out.", pronunciation: "লেটস হেড আউট।", explanation: "Head out অর্থ কোনো জায়গা থেকে বেরিয়ে যাওয়া বা রওনা হওয়া।" },
+            { id: 7, bangla: "আমি এখনই আসছি।", standard: "I'll be there in a moment.", natural: "I'll be right there.", pronunciation: "আইল বি রাইট দেয়ার।", explanation: "Right there এখানে খুব শিগগির পৌঁছে যাওয়ার অর্থ প্রকাশ করে।" },
+            { id: 8, bangla: "ব্যাপারটা দারুণ লাগছে!", standard: "That looks very good.", natural: "That looks pretty cool.", pronunciation: "দ্যাট লুকস প্রিটি কুল।", explanation: "American English-এ pretty cool অর্থ বেশ ভালো বা আকর্ষণীয়।" },
+            { id: 9, bangla: "আমি একেবারে ক্লান্ত।", standard: "I'm extremely tired.", natural: "I'm beat.", pronunciation: "আইম বিট।", explanation: "I'm beat একটি প্রচলিত American Idiom, যার অর্থ খুব ক্লান্ত।" },
+            { id: 10, bangla: "আমার ক্ষুধা লেগেছে।", standard: "I'm hungry.", natural: "I'm starving.", pronunciation: "আইম স্টার্ভিং।", explanation: "Starving কথ্য ভাষায় খুব বেশি ক্ষুধার্ত বোঝায়। এটি আক্ষরিক অর্থে অনাহারে থাকা নয়।" },
+            { id: 11, bangla: "এটা আমার খুব ভালো লাগে।", standard: "I like this very much.", natural: "I'm really into this.", pronunciation: "আইম রিয়েলি ইনটু দিস।", explanation: "Be into something অর্থ কোনো বিষয় খুব পছন্দ করা বা আগ্রহী হওয়া।" },
+            { id: 12, bangla: "একদম চিন্তা করো না।", standard: "Don't worry at all.", natural: "No worries.", pronunciation: "নো ওয়ারিজ।", explanation: "No worries আমেরিকান কথ্য ইংরেজিতে আশ্বস্ত করা বা ধন্যবাদ গ্রহণ করার জন্য প্রচলিত।" },
+            { id: 13, bangla: "ব্যাপারটা খুব সহজ।", standard: "It's very easy.", natural: "It's a piece of cake.", pronunciation: "ইটস আ পিস অভ কেইক।", explanation: "A piece of cake অর্থ অত্যন্ত সহজ কাজ।" },
+            { id: 14, bangla: "আমি ব্যাপারটা বুঝে গেছি।", standard: "I understand it now.", natural: "I get it now.", pronunciation: "আই গেট ইট নাউ।", explanation: "I get it কথ্য ইংরেজিতে I understand এর খুব প্রচলিত বিকল্প।" },
+            { id: 15, bangla: "আমার কোনো ধারণা নেই।", standard: "I have no idea.", natural: "I've got no clue.", pronunciation: "আইভ গট নো ক্লু।", explanation: "No clue অর্থ কোনো ধারণা না থাকা।" },
+            { id: 16, bangla: "সেটা আমার ব্যাপার নয়।", standard: "That's not my responsibility.", natural: "That's not my problem.", pronunciation: "দ্যাটস নট মাই প্রবলেম।", explanation: "কোনো বিষয় নিজের দায়িত্ব বা সমস্যা নয় বোঝাতে ব্যবহার করা হয়। প্রসঙ্গ অনুযায়ী এটি কিছুটা কঠোর শোনাতে পারে।" },
+            { id: 17, bangla: "তুই কী বলছিস!", standard: "What are you saying?", natural: "What are you talking about?", pronunciation: "হোয়াট আর ইউ টকিং অ্যাবাউট?", explanation: "অবিশ্বাস বা বিস্ময় প্রকাশ করতে American conversational English-এ এই প্রশ্নটি খুব পরিচিত।" },
+            { id: 18, bangla: "আমি একদম সিরিয়াস।", standard: "I'm completely serious.", natural: "I'm dead serious.", pronunciation: "আইম ডেড সিরিয়াস।", explanation: "Dead serious অর্থ একেবারে সিরিয়াস বা মজা না করা।" },
+            { id: 19, bangla: "আমি তোমার সঙ্গে একমত।", standard: "I agree with you.", natural: "I'm with you on that.", pronunciation: "আইম উইথ ইউ অন দ্যাট।", explanation: "I'm with you অর্থ আমি তোমার মতামত বুঝছি বা সমর্থন করছি।" },
+            { id: 20, bangla: "ব্যাপারটা আমার মাথার ওপর দিয়ে গেল।", standard: "I couldn't understand it.", natural: "That went over my head.", pronunciation: "দ্যাট ওয়েন্ট ওভার মাই হেড।", explanation: "কোনো কথা বা বিষয় বুঝতে না পারলে এই Idiom ব্যবহার করা হয়।" },
+            { id: 21, bangla: "আমি একটু দেখে নিচ্ছি।", standard: "I'll check it.", natural: "Let me check it out.", pronunciation: "লেট মি চেক ইট আউট।", explanation: "Check it out অর্থ কোনো কিছু পরীক্ষা করে দেখা বা খোঁজ নেওয়া।" },
+            { id: 22, bangla: "তুই মজা করছিস, তাই না?", standard: "Are you joking?", natural: "You're kidding, right?", pronunciation: "ইউর কিডিং, রাইট?", explanation: "অবিশ্বাস প্রকাশ করে নিশ্চিত হতে এই Expression ব্যবহার করা হয়।" },
+            { id: 23, bangla: "আমি এখনই ফিরে আসব।", standard: "I'll return very soon.", natural: "I'll be right back.", pronunciation: "আইল বি রাইট ব্যাক।", explanation: "Be right back বা BRB অর্থ অল্প সময়ের মধ্যে ফিরে আসা।" },
+            { id: 24, bangla: "যাই হোক, সমস্যা নেই।", standard: "Anyway, it's not a problem.", natural: "Anyway, it's all good.", pronunciation: "এনিওয়ে, ইটস অল গুড।", explanation: "It's all good অর্থ সব ঠিক আছে বা কোনো সমস্যা নেই।" },
+            { id: 25, bangla: "অসাধারণ! কাজটা চালিয়ে যাও।", standard: "Excellent! Continue doing it.", natural: "Awesome! Keep it up!", pronunciation: "অসম! কিপ ইট আপ!", explanation: "Keep it up অর্থ ভালো কাজ চালিয়ে যাওয়া। কাউকে উৎসাহ দিতে এটি খুব প্রচলিত।" }
+        ];
+
+        // Track states for each card (0: Initial/Bangla, 1: Natural English & Pronunciation, 2: Explanation)
+        const cardStates = {};
+        dataset.forEach(item => cardStates[item.id] = 0);
+
+        // Convert digits to Bengali numbers
+        function toBengaliNumeral(num) {
+            const symbols = { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' };
+            return num.toString().replace(/\d/g, d => symbols[d]);
+        }
+
+        // Render Cards dynamically
+        function renderCards(filterText = '') {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            const filteredData = dataset.filter(item => {
+                const search = filterText.toLowerCase().trim();
+                return item.bangla.toLowerCase().includes(search) || 
+                       item.natural.toLowerCase().includes(search) || 
+                       item.standard.toLowerCase().includes(search) ||
+                       item.id.toString().includes(search);
+            });
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 glass-card rounded-2xl">
+                        <i class="fa-solid fa-circle-exclamation text-4xl text-amber-400 mb-3"></i>
+                        <p class="text-lg text-slate-300">কোনো বাক্য খুঁজে পাওয়া যায়নি!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const state = cardStates[item.id];
+                const card = document.createElement('div');
+                
+                card.className = `glass-card rounded-2xl p-5 sm:p-6 transition-all duration-300 flex flex-col justify-between border-l-4 ${
+                    state === 0 ? 'border-l-slate-500' : state === 1 ? 'border-l-blue-500' : 'border-l-emerald-500'
+                }`;
+
+                // Header with Badge & Title
+                let cardHTML = `
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-blue-400 border border-blue-500/30">
+                                বাক্য নং - ${toBengaliNumeral(item.id)}
+                            </span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1">
+                                <i class="fa-solid fa-layer-group text-purple-400"></i> ধাপ ${toBengaliNumeral(state)} / ৩
+                            </span>
+                        </div>
+
+                        <!-- Bangla Phrase (Always visible) -->
+                        <div class="mb-4">
+                            <h3 class="text-xl sm:text-2xl font-bold text-amber-300 leading-snug">
+                                ${toBengaliNumeral(item.id)}. বাংলা: ${item.bangla}
+                            </h3>
+                        </div>
+                `;
+
+                // State 1 & 2: Natural Expression, Standard English, and Pronunciation
+                if (state >= 1) {
+                    cardHTML += `
+                        <div class="space-y-3 bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 mb-4 animate-fadeIn">
+                            <!-- Natural English with TTS audio -->
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-800">
+                                <div>
+                                    <span class="text-xs text-emerald-400 uppercase tracking-wider font-semibold">Natural Expression:</span>
+                                    <p class="text-xl text-white font-bold english-text tracking-wide">${item.natural}</p>
+                                </div>
+                                <div class="flex gap-2 shrink-0 mt-1 sm:mt-0">
+                                    <button onclick="speakText('${item.natural.replace(/'/g, "\\'")}', 'en-US', this)" 
+                                            class="btn-3d btn-3d-purple text-xs px-2.5 py-1.5 rounded-lg text-white font-semibold flex items-center gap-1.5">
+                                        <i class="fa-solid fa-volume-high"></i> 🇺🇸 US
+                                    </button>
+                                    <button onclick="speakText('${item.natural.replace(/'/g, "\\'")}', 'en-GB', this)" 
+                                            class="btn-3d btn-3d-blue text-xs px-2.5 py-1.5 rounded-lg text-white font-semibold flex items-center gap-1.5">
+                                        <i class="fa-solid fa-volume-high"></i> 🇬🇧 UK
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Standard English -->
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase tracking-wider">Standard:</span>
+                                <p class="text-base text-slate-300 english-text">${item.standard}</p>
+                            </div>
+
+                            <!-- Bangla Pronunciation -->
+                            <div class="pt-1">
+                                <span class="text-xs text-amber-400/90 font-medium">বাংলা উচ্চারণ:</span>
+                                <p class="text-base text-amber-200 font-semibold">${item.pronunciation}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // State 2: Detailed Explanation
+                if (state >= 2) {
+                    cardHTML += `
+                        <div class="bg-indigo-950/40 border border-indigo-500/30 p-3.5 rounded-xl mb-4 text-indigo-100 text-sm leading-relaxed animate-fadeIn">
+                            <div class="flex items-center gap-2 mb-1 text-indigo-300 font-bold text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-lightbulb text-amber-400"></i> বিস্তারিত ব্যাখ্যা:
+                            </div>
+                            <p>${item.explanation}</p>
+                        </div>
+                    `;
+                }
+
+                cardHTML += `</div>`; // Close card section
+
+                // Dynamic Action Button Logic
+                let btnLabel = '';
+                let btnIcon = '';
+                let btnColorClass = '';
+
+                if (state === 0) {
+                    btnLabel = 'ইংরেজি ও উচ্চারণ দেখুন';
+                    btnIcon = 'fa-arrow-right';
+                    btnColorClass = 'btn-3d-blue';
+                } else if (state === 1) {
+                    btnLabel = 'ব্যাখ্যা দেখুন';
+                    btnIcon = 'fa-lightbulb';
+                    btnColorClass = 'btn-3d-purple';
+                } else {
+                    btnLabel = 'পুনরায় সংকুচিত করুন';
+                    btnIcon = 'fa-compress';
+                    btnColorClass = 'btn-3d-amber';
+                }
+
+                cardHTML += `
+                    <div class="pt-2">
+                        <button onclick="cycleCardState(${item.id})" 
+                                class="btn-3d ${btnColorClass} w-full py-2.5 px-4 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-2 shadow-lg">
+                            <span>${btnLabel}</span>
+                            <i class="fa-solid ${btnIcon}"></i>
+                        </button>
+                    </div>
+                `;
+
+                card.innerHTML = cardHTML;
+                container.appendChild(card);
+            });
+
+            updateProgress();
+        }
+
+        // Cycle state of a specific card
+        function cycleCardState(id) {
+            cardStates[id] = (cardStates[id] + 1) % 3;
+            renderCards(document.getElementById('search-input').value);
+        }
+
+        // Global Expand All
+        function revealAllCards() {
+            dataset.forEach(item => cardStates[item.id] = 2);
+            renderCards(document.getElementById('search-input').value);
+        }
+
+        // Global Collapse All
+        function resetAllCards() {
+            dataset.forEach(item => cardStates[item.id] = 0);
+            renderCards(document.getElementById('search-input').value);
+        }
+
+        // Progress Counter & Bar Updater
+        function updateProgress() {
+            const total = dataset.length;
+            const revealed = Object.values(cardStates).filter(state => state > 0).length;
+            const percentage = Math.round((revealed / total) * 100);
+
+            document.getElementById('progress-text').innerText = `${toBengaliNumeral(revealed)} / ${toBengaliNumeral(total)}`;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+        }
+
+        // Web Speech API Text-to-Speech
+        function speakText(text, langCode, buttonElement) {
+            if (!('speechSynthesis' in window)) {
+                alert('আপনার ব্রাউজারে ভয়েস টেক্সট টু স্পিচ সমর্থিত নয়।');
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langCode;
+            utterance.rate = 0.9;
+
+            const voices = window.speechSynthesis.getVoices();
+            const voice = voices.find(v => v.lang.includes(langCode) || v.lang.replace('_', '-').includes(langCode));
+            if (voice) {
+                utterance.voice = voice;
+            }
+
+            const originalHTML = buttonElement.innerHTML;
+            buttonElement.classList.add('speaking');
+            buttonElement.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> অডিও...`;
+
+            utterance.onend = () => {
+                buttonElement.classList.remove('speaking');
+                buttonElement.innerHTML = originalHTML;
+            };
+
+            utterance.onerror = () => {
+                buttonElement.classList.remove('speaking');
+                buttonElement.innerHTML = originalHTML;
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Initialize voices on load for desktop & mobile
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        // Real-time Search Listener
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            renderCards(e.target.value);
+        });
+
+        // Initialize application
+        window.onload = () => {
+            renderCards();
+        };
+    </script>
+</body>
+</html>

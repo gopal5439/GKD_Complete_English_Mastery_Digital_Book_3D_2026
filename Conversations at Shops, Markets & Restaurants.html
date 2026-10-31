@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPIC 17: Keeping a Conversation Going</title>
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent-uk: #ec4899;
+            --accent-us: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --font-bn: 'Tiro Bangla', serif;
+            --font-en: 'Times New Roman', Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-bn);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-family: var(--font-en);
+            font-size: 2.2rem;
+            color: #818cf8;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+
+        header h2 {
+            font-family: var(--font-bn);
+            font-size: 1.5rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        /* 3D Glassmorphism Card Style */
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 
+                        0 8px 10px -6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Bengali Sentence Section */
+        .sec-bn {
+            font-family: var(--font-bn);
+            font-size: 1.35rem;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* English & Pronunciation Section */
+        .sec-en {
+            display: none;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .en-std {
+            font-family: var(--font-en);
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .en-nat {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .en-pron {
+            font-family: var(--font-bn);
+            font-size: 1.05rem;
+            color: #f472b6;
+        }
+
+        /* Explanation Section */
+        .sec-exp {
+            display: none;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            padding: 0.9rem;
+            font-family: var(--font-bn);
+            font-size: 0.98rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: fadeIn 0.4s ease-in-out forwards;
+            margin-bottom: 1rem;
+        }
+
+        /* 3D Audio Control Buttons */
+        .audio-controls {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .btn-3d {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .btn-uk {
+            background: linear-gradient(to bottom, #f43f5e, #be123c);
+            box-shadow: 0 4px 0 #881337, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-uk:hover {
+            background: linear-gradient(to bottom, #fb7185, #e11d48);
+        }
+
+        .btn-uk:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #881337, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .btn-us {
+            background: linear-gradient(to bottom, #0284c7, #0369a1);
+            box-shadow: 0 4px 0 #075985, 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .btn-us:hover {
+            background: linear-gradient(to bottom, #38bdf8, #0284c7);
+        }
+
+        .btn-us:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #075985, 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.5rem; }
+            header h1 { font-size: 1.6rem; }
+            header h2 { font-size: 1.2rem; }
+            .cards-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TOPIC 17: Keeping a Conversation Going</h1>
+        <h2>কথোপকথন চালিয়ে যাওয়ার কৌশল</h2>
+    </header>
+
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            {
+                bn: "১. তারপর কী হল",
+                std: "Standard English: What happened after that?",
+                nat: "Natural Spoken English: And then what happened?",
+                pron: "উচ্চারণ: অ্যান্ড দেন হোয়াট হ্যাপেন্ড?",
+                exp: "ব্যাখ্যা: কারও গল্প বা ঘটনা শোনার সময় আরও জানতে আগ্রহ প্রকাশ করতে বলা হয়।"
+            },
+            {
+                bn: "২. তারপর বলো।",
+                std: "Standard English: Please continue.",
+                nat: "Natural Spoken English: Go on.",
+                pron: "উচ্চারণ: গো অন।",
+                exp: "ব্যাখ্যা: কাউকে কথা চালিয়ে যেতে উৎসাহ দিতে ব্যবহার হয়।"
+            },
+            {
+                bn: "৩. তারপর কী করলে?",
+                std: "Standard English: What did you do next?",
+                nat: "Natural Spoken English: What did you do next?",
+                pron: "উচ্চারণ: হোয়াট ডিড ইউ ডু নেক্সট?",
+                exp: "ব্যাখ্যা: কোনো ঘটনার পরের পদক্ষেপ জানতে প্রশ্নটি করা হয়।"
+            },
+            {
+                bn: "৪. তোমার কী মনে হয়?",
+                std: "Standard English: What do you think?",
+                nat: "Natural Spoken English: What do you think?",
+                pron: "উচ্চারণ: হোয়াট ডু ইউ থিংক?",
+                exp: "ব্যাখ্যা: অন্যের মতামত জানতে এটি খুব প্রচলিত প্রশ্ন।"
+            },
+            {
+                bn: "৫. এ ব্যাপারে তোমার মত কী?",
+                std: "Standard English: What is your opinion about this?",
+                nat: "Natural Spoken English: What's your take on this?",
+                pron: "উচ্চারণ: হোয়াটস ইয়োর টেইক অন দিস",
+                exp: "ব্যাখ্যা: “What's your take on this?” অর্থ কোনো বিষয়ে তোমার ব্যক্তিগত মতামত কী।"
+            },
+            {
+                bn: "৬. একটু বিস্তারিত বলো।",
+                std: "Standard English: Please explain in more detail.",
+                nat: "Natural Spoken English: Tell me more.",
+                pron: "উচ্চারণ: টেল মি মোর।",
+                exp: "ব্যাখ্যা: কোনো বিষয় সম্পর্কে আরও তথ্য জানতে ব্যবহার হয়।"
+            },
+            {
+                bn: "৭. আমি শুনছি, বলো।",
+                std: "Standard English: I am listening. Please continue.",
+                nat: "Natural Spoken English: I'm listening. Go ahead.",
+                pron: "উচ্চারণ: আইম লিসনিং। গো অ্যাহেড।",
+                exp: "ব্যাখ্যা: কাউকে নিশ্চিন্তে কথা বলতে উৎসাহিত করে।"
+            },
+            {
+                bn: "৮. তারপর কী ঘটেছিল?",
+                std: "Standard English: What happened next?",
+                nat: "Natural Spoken English: What happened next?",
+                pron: "উচ্চারণ: হোয়াট হ্যাপেন্ড নেক্সট?",
+                exp: "ব্যাখ্যা: কোনো গল্প বা ঘটনার পরবর্তী অংশ জানতে ব্যবহার হয়।"
+            },
+            {
+                bn: "৯. তুমি কি নিশ্চিত?",
+                std: "Standard English: Are you sure?",
+                nat: "Natural Spoken English: Are you sure?",
+                pron: "উচ্চারণ: আর ইউ শুওর?",
+                exp: "ব্যাখ্যা: কারও বক্তব্য বা সিদ্ধান্ত সম্পর্কে নিশ্চিত হতে প্রশ্ন করা হয়।"
+            },
+            {
+                bn: "১০. তুমি কীভাবে জানলে?",
+                std: "Standard English: How did you find out?",
+                nat: "Natural Spoken English: How'd you find out?",
+                pron: "উচ্চারণ: হাউড ইউ ফাইন্ড আউট?",
+                exp: "ব্যাখ্যা: “How'd” হলো “How did”-এর কথ্য সংকুচিত রূপ।"
+            },
+            {
+                bn: "১১. এ ব্যাপারে আর কিছু জানো?",
+                std: "Standard English: Do you know anything else about it?",
+                nat: "Natural Spoken English: Do you know anything else?",
+                pron: "উচ্চারণ: ডু ইউ নো এনিথিং এলস?",
+                exp: "ব্যাখ্যা: কোনো বিষয়ে অতিরিক্ত তথ্য জানতে বলা হয়।"
+            },
+            {
+                bn: "১২. এটা কীভাবে সম্ভব?",
+                std: "Standard English: How is that possible?",
+                nat: "Natural Spoken English: How's that possible?",
+                pron: "উচ্চারণ: হাউজ দ্যাট পসিবল?",
+                exp: "ব্যাখ্যা: অবাক হয়ে কোনো ঘটনা কীভাবে ঘটল তা জানতে ব্যবহার হয়।"
+            },
+            {
+                bn: "১৩. তুমি কি একটু বুঝিয়ে বলবে?",
+                std: "Standard English: Could you explain it a little?",
+                nat: "Natural Spoken English: Could you explain that?",
+                pron: "উচ্চারণ: কুড ইউ এক্সপ্লেইন দ্যাট?",
+                exp: "ব্যাখ্যা: কোনো বিষয় পরিষ্কারভাবে বুঝতে ভদ্রভাবে ব্যাখ্যা চাইতে ব্যবহার হয়।"
+            },
+            {
+                bn: "১৪. আমি তোমার কথা বুঝতে পারছি।",
+                std: "Standard English: I understand what you are saying.",
+                nat: "Natural Spoken English: I see what you mean.",
+                pron: "উচ্চারণ: আই সি হোয়াট ইউ মিন।",
+                exp: "ব্যাখ্যা: কারও বক্তব্যের অর্থ বা যুক্তি বুঝতে পারলে বলা হয়।"
+            },
+            {
+                bn: "১৫. তুমি কি আমার সঙ্গে একমত?",
+                std: "Standard English: Do you agree with me?",
+                nat: "Natural Spoken English: Do you agree?",
+                pron: "উচ্চারণ: ডু ইউ অ্যাগ্রি?",
+                exp: "ব্যাখ্যা: কোনো মতামতের বিষয়ে অন্যের সম্মতি জানতে প্রশ্ন করা হয়।"
+            },
+            {
+                bn: "১৬. এ ব্যাপারে তোমার অভিজ্ঞতা কেমন?",
+                std: "Standard English: What is your experience with this?",
+                nat: "Natural Spoken English: What's your experience with it?",
+                pron: "উচ্চারণ: হোয়াটস ইয়োর এক্সপিরিয়েন্স উইথ ইট",
+                exp: "ব্যাখ্যা: কারও ব্যক্তিগত অভিজ্ঞতা জানতে ব্যবহার হয়।"
+            },
+            {
+                bn: "১৭. তুমি কি আগে এমন কিছু দেখেছ?",
+                std: "Standard English: Have you ever seen anything like this before?",
+                nat: "Natural Spoken English: Have you seen anything like this before?",
+                pron: "উচ্চারণ: হ্যাভ ইউ সিন এনিথিং লাইক দিস বিফোর?",
+                exp: "ব্যাখ্যা: একই ধরনের অভিজ্ঞতা আগে হয়েছে কি না জানতে প্রশ্ন করা হয়।"
+            },
+            {
+                bn: "১৮. ব্যাপারটা বেশ মজার।",
+                std: "Standard English: This is quite interesting.",
+                nat: "Natural Spoken English: That's pretty interesting.",
+                pron: "উচ্চারণ: দ্যাটস প্রিটি ইন্টারেস্টিং।",
+                exp: "ব্যাখ্যা: কথোপকথনে কোনো বিষয় আকর্ষণীয় মনে হলে বলা হয়।"
+            },
+            {
+                bn: "১৯. আমি এ বিষয়ে আরও জানতে চাই।",
+                std: "Standard English: I want to know more about this.",
+                nat: "Natural Spoken English: I'd like to know more about it.",
+                pron: "উচ্চারণ: আইড লাইক টু নো মোর অ্যাবাউট ইট।",
+                exp: "ব্যাখ্যা: “I'd like to” হলো “I would like to”-এর সংকুচিত রূপ; এটি ভদ্রভাবে আগ্রহ প্রকাশ করে।"
+            },
+            {
+                bn: "২০. তোমার কথা শুনে ভালো লাগছে।",
+                std: "Standard English: I enjoy listening to you.",
+                nat: "Natural Spoken English: I like hearing your stories.",
+                pron: "উচ্চারণ: আই লাইক হিয়ারিং ইয়োর স্টোরিজ",
+                exp: "ব্যাখ্যা: কারও গল্প বা অভিজ্ঞতা শুনতে ভালো লাগলে বলা যায়।"
+            },
+            {
+                bn: "২১. তুমি কি আরেকটু পরিষ্কার করে বলবে?",
+                std: "Standard English: Could you say that more clearly?",
+                nat: "Natural Spoken English: Could you make that clearer?",
+                pron: "উচ্চারণ: কুড ইউ মেইক দ্যাট ক্লিয়ারার?",
+                exp: "ব্যাখ্যা: কোনো কথা অস্পষ্ট হলে পরিষ্কার করে বলতে অনুরোধ করা হয়।"
+            },
+            {
+                bn: "২২. তোমার সঙ্গে কথা বলে ভালো লাগছে।",
+                std: "Standard English: It is nice talking to you.",
+                nat: "Natural Spoken English: It's nice talking to you.",
+                pron: "উচ্চারণ: ইটস নাইস টকিং টু ইউ।",
+                exp: "ব্যাখ্যা: কথোপকথনের সময় বা শেষে ভালো লাগা প্রকাশ করতে ব্যবহার হয়।"
+            },
+            {
+                bn: "২৩. এ ব্যাপারে তুমি কী ভাবছ?",
+                std: "Standard English: What are you thinking about this?",
+                nat: "Natural Spoken English: What are your thoughts on this?",
+                pron: "উচ্চারণ: হোয়াট আর ইয়োর থটস অন দিস",
+                exp: "ব্যাখ্যা: কোনো বিষয় সম্পর্কে অন্যের চিন্তাভাবনা জানতে বলা হয়।"
+            },
+            {
+                bn: "২৪. তোমার কথাটা ঠিক বুঝলাম না।",
+                std: "Standard English: I did not quite understand what you said.",
+                nat: "Natural Spoken English: I didn't quite catch that.",
+                pron: "উচ্চারণ: আই ডিডন্ট কোয়াইট ক্যাচ দ্যাট।",
+                exp: "ব্যাখ্যা: “Catch” এখানে শোনা বা বুঝতে পারা অর্থে ব্যবহৃত হয়েছে।"
+            },
+            {
+                bn: "২৫. আচ্ছা, এবার বুঝতে পেরেছি।",
+                std: "Standard English: Now I understand.",
+                nat: "Natural Spoken English: Oh, now I get it.",
+                pron: "উচ্চারণ: ওহ, নাউ আই গেট ইট।",
+                exp: "ব্যাখ্যা: কোনো বিষয় ব্যাখ্যা শোনার পর বুঝতে পারলে বলা হয়।"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        data.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.step = '0'; // 0: BN only, 1: BN+EN, 2: BN+EN+EXP
+
+            // Strip "Natural Spoken English: " prefix for text-to-speech audio
+            const speakPhrase = item.nat.replace(/^Natural Spoken English:\s*/i, '');
+
+            card.innerHTML = `
+                <span class="card-number">#${String(index + 1).padStart(2, '0')}</span>
+                <div class="sec-bn">${item.bn}</div>
+                
+                <div class="sec-en">
+                    <div class="en-std">${item.std}</div>
+                    <div class="en-nat">${item.nat}</div>
+                    <div class="en-pron">${item.pron}</div>
+                </div>
+
+                <div class="sec-exp">${item.exp}</div>
+
+                <div class="audio-controls" onclick="event.stopPropagation()">
+                    <button class="btn-3d btn-uk" onclick="speakText('${escapeQuotes(speakPhrase)}', 'en-GB')">
+                        🇬🇧 UK Voice
+                    </button>
+                    <button class="btn-3d btn-us" onclick="speakText('${escapeQuotes(speakPhrase)}', 'en-US')">
+                        🇺🇸 US Voice
+                    </button>
+                </div>
+                <div class="click-hint">ক্লিক করুন (ধাপ ১/৩)</div>
+            `;
+
+            // Card Click Event for 3-step reveal
+            card.addEventListener('click', () => {
+                let currentStep = parseInt(card.dataset.step);
+                const secEn = card.querySelector('.sec-en');
+                const secExp = card.querySelector('.sec-exp');
+                const hint = card.querySelector('.click-hint');
+
+                if (currentStep === 0) {
+                    secEn.style.display = 'block';
+                    card.dataset.step = '1';
+                    hint.textContent = 'পুনরায় ক্লিক করুন (ধাপ ২/৩)';
+                } else if (currentStep === 1) {
+                    secExp.style.display = 'block';
+                    card.dataset.step = '2';
+                    hint.textContent = 'লুকাবার জন্য ক্লিক করুন';
+                } else {
+                    secEn.style.display = 'none';
+                    secExp.style.display = 'none';
+                    card.dataset.step = '0';
+                    hint.textContent = 'ক্লিক করুন (ধাপ ১/৩)';
+                }
+            });
+
+            container.appendChild(card);
+        });
+
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Web Speech API Text-To-Speech Function
+        function speakText(text, lang) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop currently playing audio
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9; // Slightly slower speed for clear listening
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('আপনার ব্রাউজারে স্পিচ ফিচারটি সাপোর্ট করছে না।');
+            }
+        }
+    </script>
+</body>
+</html>
