@@ -134,6 +134,114 @@
             font-size: 18px;
         }
 
+        /* Translator Styles */
+        .btn-translator-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            font-family: 'Tiro Bangla', serif;
+            white-space: nowrap;
+        }
+
+        .btn-translator-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+        }
+
+        .translator-panel {
+            display: none;
+            background: #ffffff;
+            border: 2px solid #a7f3d0;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 25px 0 25px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .translator-panel.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .translator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #065f46;
+            font-size: 17px;
+            font-family: 'Tiro Bangla', serif;
+        }
+
+        .translator-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .trans-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1.5px solid #cbd5e1;
+            font-size: 15px;
+            outline: none;
+            font-family: 'Tiro Bangla', 'Times New Roman', serif;
+        }
+
+        .trans-input:focus {
+            border-color: #10b981;
+        }
+
+        .trans-btn {
+            padding: 10px 22px;
+            background: #047857;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Tiro Bangla', serif;
+        }
+
+        .trans-btn:hover {
+            background: #065f46;
+        }
+
+        .trans-result-box {
+            background: #f0fdf4;
+            border: 1px dashed #34d399;
+            border-radius: 12px;
+            padding: 12px 16px;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 17px;
+            font-weight: 700;
+            color: #064e3b;
+            font-family: 'Tiro Bangla', 'Times New Roman', serif;
+        }
+
         /* Chapter Tabs Navigation */
         .chapter-nav-bar {
             display: flex;
@@ -375,6 +483,13 @@
                 <input type="text" id="app-search-input" class="search-input" placeholder="ইংরেজি শব্দ, উচ্চারণ বা বাংলা অর্থ দিয়ে খুঁজুন..." oninput="filterWords()">
             </div>
 
+            <!-- Live Translator Button -->
+            <div class="translator-wrapper">
+                <button class="btn-translator-toggle" onclick="toggleTranslator()">
+                    🌐 দ্রুত অনুবাদক (Live Translator)
+                </button>
+            </div>
+
             <!-- GKD Book: Back to Lesson List -->
             <div style="
                 position:sticky;
@@ -403,6 +518,22 @@
 
             <div style="font-weight: 700; color: var(--text-muted); font-size: 14px; font-family: 'Tiro Bangla', serif;" id="chapter-indicator-top">
                 অধ্যায় ১ / ১০
+            </div>
+        </div>
+
+        <!-- Translator Dropdown Panel -->
+        <div class="translator-panel" id="translator-panel">
+            <div class="translator-header">
+                <span>🌐 দ্বিমুখী গুগল অনুবাদক (English ⇄ Bangla)</span>
+                <button onclick="toggleTranslator()" style="background:none; border:none; cursor:pointer; font-size:18px; color:#065f46;">✖</button>
+            </div>
+            <div class="translator-input-group">
+                <input type="text" id="trans-query" class="trans-input" placeholder="যেকোনো ইংরেজি বা বাংলা শব্দ/বাক্য লিখুন..." onkeypress="if(event.key==='Enter') translateText()">
+                <button class="trans-btn" onclick="translateText()">অনুবাদ করুন</button>
+            </div>
+            <div class="trans-result-box" id="trans-result-box">
+                <span id="trans-result-text">আপনার অনুবাদের ফলাফল এখানে দেখাবে...</span>
+                <button id="trans-audio-btn" onclick="speakTransResult()" style="display:none; background:none; border:none; cursor:pointer; font-size:20px;" title="উচ্চারণ শুনুন">🔊</button>
             </div>
         </div>
 
@@ -511,7 +642,7 @@
                             { eng: "Pancreas", pos: "n.", pron: "প্যানক্রিয়াস", bng: "অগ্ন্যাশয়" },
                             { eng: "Spleen", pos: "n.", pron: "স্প্লিন", bng: "প্লীহা" },
                             { eng: "Muscle", pos: "n.", pron: "মাসল", bng: "পেশি" },
-                            { eng: "Nerve", pos: "n.", pron: "নার্ভ", bng: "স্নায়ু" },
+                            { eng: "Nerve", pos: "n.", pron: "নার্ভ", bng: "স্মায়ু" },
                             { eng: "Bone marrow", pos: "n.", pron: "বোন ম্যারো", bng: "অস্থিমজ্জা" },
                             { eng: "Bladder", pos: "n.", pron: "ব্ল্যাডার", bng: "মূত্রাশয়" },
                             { eng: "Thigh", pos: "n.", pron: "থাই", bng: "উরু" },
@@ -755,7 +886,7 @@
                             { eng: "Formal", pos: "adj.", pron: "ফরমাল", bng: "আনুষষ্ঠানিক পোশাক" },
                             { eng: "Casual", pos: "adj.", pron: "ক্যাজুয়াল", bng: "সাধারণ পোশাক" },
                             { eng: "Sleeve", pos: "n.", pron: "স্লিভ", bng: "হাতা" },
-                            { eng: "Collar", pos: "n.", pron: "ক্লার", bng: "কলার" },
+                            { eng: "Collar", pos: "n.", pron: "কলার", bng: "কলার" },
                             { eng: "Button", pos: "n.", pron: "বাটন", bng: "বোতাম" },
                             { eng: "Zipper", pos: "n.", pron: "জিপার", bng: "চেইন" },
                             { eng: "Stitch", pos: "n.", pron: "স্টিচ", bng: "সেলাই" },
@@ -1002,7 +1133,7 @@
                             { eng: "Vaccine", pos: "n.", pron: "ভ্যাকসিন", bng: "টিকা / প্রতিষেধক" },
                             { eng: "Workout", pos: "n.", pron: "ওয়ার্কআউট", bng: "শারীরিক কসরত" },
                             { eng: "Stamina", pos: "n.", pron: "স্ট্যামিনা", bng: "সহনশীলতা" },
-                            { eng: "Flexibility", pos: "n.", pron: "ফ্লেক্সিবিলিটি", bng: "নমনীয়তা" },
+                            { eng: "Flexibility", pos: "adj.", pron: "ফ্লেক্সিবিলিটি", bng: "নমনীয়তা" },
                             { eng: "Calorie", pos: "n.", pron: "ক্যালোরি", bng: "শক্তির একক" },
                             { eng: "Protein", pos: "n.", pron: "প্রোটিন", bng: "আমিষ" },
                             { eng: "Obesity", pos: "n.", pron: "ওবেসিটি", bng: "স্থূলতা" },
@@ -1365,6 +1496,66 @@
                     card.style.display = "none";
                 }
             });
+        }
+
+        /* --- Live Translator Engine --- */
+        let lastTranslatedText = "";
+        let lastTranslatedLang = "en";
+
+        function toggleTranslator() {
+            const panel = document.getElementById("translator-panel");
+            panel.classList.toggle("show");
+            if (panel.classList.contains("show")) {
+                document.getElementById("trans-query").focus();
+            }
+        }
+
+        async function translateText() {
+            const query = document.getElementById("trans-query").value.trim();
+            const resultBox = document.getElementById("trans-result-text");
+            const audioBtn = document.getElementById("trans-audio-btn");
+
+            if (!query) {
+                resultBox.innerText = "দয়া করে কিছু লিখুন...";
+                audioBtn.style.display = "none";
+                return;
+            }
+
+            resultBox.innerText = "অনুবাদ করা হচ্ছে...";
+            audioBtn.style.display = "none";
+
+            const isBangla = /[\u0980-\u09FF]/.test(query);
+            const sourceLang = isBangla ? "bn" : "en";
+            const targetLang = isBangla ? "en" : "bn";
+
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(query)}`;
+                const res = await fetch(url);
+                const data = await res.json();
+
+                if (data && data[0] && data[0][0] && data[0][0][0]) {
+                    const translatedText = data[0][0][0];
+                    resultBox.innerText = `${query} ➔ ${translatedText}`;
+                    lastTranslatedText = translatedText;
+                    lastTranslatedLang = targetLang;
+                    audioBtn.style.display = "block";
+                } else {
+                    resultBox.innerText = "অনুবাদ করা সম্ভব হয়নি।";
+                }
+            } catch (err) {
+                console.error(err);
+                resultBox.innerText = "অনুবাদে সমস্যা হয়েছে। ইন্টারনেট কানেকশন চেক করুন।";
+            }
+        }
+
+        function speakTransResult() {
+            if ('speechSynthesis' in window && lastTranslatedText) {
+                window.speechSynthesis.cancel();
+                const speech = new SpeechSynthesisUtterance(lastTranslatedText);
+                speech.lang = lastTranslatedLang === "bn" ? "bn-BD" : "en-US";
+                speech.rate = 0.85;
+                window.speechSynthesis.speak(speech);
+            }
         }
 
         // Initialize Application
