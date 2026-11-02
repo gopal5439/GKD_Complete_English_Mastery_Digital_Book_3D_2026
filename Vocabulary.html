@@ -1,6 +1,6 @@
 <div id="ultimate-vocab-app">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap');
 
         #ultimate-vocab-app {
             --primary: #6366f1;
@@ -11,7 +11,7 @@
             --text-muted: #64748b;
             --border-color: #e2e8f0;
             --accent-green: #10b981;
-            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            font-family: 'Tiro Bangla', 'Times New Roman', serif;
             background: #0f172a;
             background-image: 
                 radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.35) 0px, transparent 50%),
@@ -58,6 +58,7 @@
             position: relative;
             z-index: 2;
             animation: floatText 4s ease-in-out infinite alternate;
+            font-family: 'Times New Roman', serif;
         }
 
         @keyframes floatText {
@@ -72,6 +73,7 @@
             font-weight: 600;
             position: relative;
             z-index: 2;
+            font-family: 'Tiro Bangla', serif;
         }
 
         .badge-counter {
@@ -85,6 +87,7 @@
             margin-bottom: 12px;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.25);
+            font-family: 'Tiro Bangla', serif;
         }
 
         /* Top Controls Bar */
@@ -114,7 +117,7 @@
             font-size: 15px;
             transition: all 0.3s ease;
             box-sizing: border-box;
-            font-family: inherit;
+            font-family: 'Tiro Bangla', 'Times New Roman', serif;
         }
 
         .search-input:focus {
@@ -146,7 +149,7 @@
             color: #94a3b8;
             background: transparent;
             border: none;
-            font-family: inherit;
+            font-family: 'Tiro Bangla', serif;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -200,6 +203,7 @@
             margin-bottom: 25px;
             padding-bottom: 12px;
             border-bottom: 3px solid #e0e7ff;
+            font-family: 'Tiro Bangla', 'Times New Roman', serif;
         }
 
         /* Topic Block */
@@ -227,6 +231,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-family: 'Tiro Bangla', 'Times New Roman', serif;
         }
 
         .topic-header::before {
@@ -271,39 +276,42 @@
         }
 
         .english-word {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 800;
             color: #1e1b4b;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Times New Roman', serif;
         }
 
         .pos-tag {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             padding: 2px 8px;
             border-radius: 12px;
             background: #e0e7ff;
             color: #3730a3;
             font-style: italic;
+            font-family: 'Times New Roman', serif;
         }
 
         .pronun-text {
-            font-size: 13px;
+            font-size: 14px;
             color: #ec4899;
             font-weight: 600;
             margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 5px;
+            font-family: 'Tiro Bangla', serif;
         }
 
         .bengali-meaning {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             color: #334155;
             border-top: 1px dashed #cbd5e1;
             padding-top: 6px;
             margin-top: 4px;
+            font-family: 'Tiro Bangla', serif;
         }
 
         /* Footer Controls */
@@ -314,6 +322,7 @@
             padding: 22px 35px;
             background: #1e293b;
             color: white;
+            font-family: 'Tiro Bangla', serif;
         }
 
         .nav-btn-action {
@@ -327,6 +336,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            font-family: 'Tiro Bangla', serif;
         }
 
         .nav-btn-action:hover {
@@ -365,39 +375,33 @@
                 <input type="text" id="app-search-input" class="search-input" placeholder="ইংরেজি শব্দ, উচ্চারণ বা বাংলা অর্থ দিয়ে খুঁজুন..." oninput="filterWords()">
             </div>
 
+            <!-- GKD Book: Back to Lesson List -->
+            <div style="
+                position:sticky;
+                top:0;
+                z-index:9999;
+                padding:12px;
+                background:rgba(255,255,255,0.95);
+                text-align:center;
+                box-shadow:0 3px 12px #0002;
+            ">
+                <button onclick="window.location.href='lesson_link.html'"
+                style="
+                    padding:12px 24px;
+                    border:none;
+                    border-radius:12px;
+                    background:linear-gradient(135deg,#142850,#274690);
+                    color:white;
+                    font-size:16px;
+                    font-weight:bold;
+                    cursor:pointer;
+                    font-family: 'Tiro Bangla', serif;
+                ">
+                    📚 সূচিপত্র
+                </button>
+            </div>
 
-
-<!-- GKD Book: Back to Lesson List -->
-
-<div style="
-    position:sticky;
-    top:0;
-    z-index:9999;
-    padding:12px;
-    background:rgba(255,255,255,0.95);
-    text-align:center;
-    box-shadow:0 3px 12px #0002;
-">
-
-    <button onclick="window.location.href='lesson_link.html'"
-    style="
-        padding:12px 24px;
-        border:none;
-        border-radius:12px;
-        background:linear-gradient(135deg,#142850,#274690);
-        color:white;
-        font-size:16px;
-        font-weight:bold;
-        cursor:pointer;
-    ">
-        📚 সূচিপত্র
-    </button>
-
-</div>
-
-
-
-            <div style="font-weight: 700; color: var(--text-muted); font-size: 14px;" id="chapter-indicator-top">
+            <div style="font-weight: 700; color: var(--text-muted); font-size: 14px; font-family: 'Tiro Bangla', serif;" id="chapter-indicator-top">
                 অধ্যায় ১ / ১০
             </div>
         </div>
@@ -748,7 +752,7 @@
                             { eng: "Texture", pos: "n.", pron: "টেক্সচার", bng: "কাপড়ের বুনন" },
                             { eng: "Outfit", pos: "n.", pron: "আউটফিট", bng: "পোশাকের সেট" },
                             { eng: "Uniform", pos: "n.", pron: "ইউনিফর্ম", bng: "নির্ধারিত পোশাক" },
-                            { eng: "Formal", pos: "adj.", pron: "ফরমাল", bng: "আনুষ্ঠানিক পোশাক" },
+                            { eng: "Formal", pos: "adj.", pron: "ফরমাল", bng: "আনুষষ্ঠানিক পোশাক" },
                             { eng: "Casual", pos: "adj.", pron: "ক্যাজুয়াল", bng: "সাধারণ পোশাক" },
                             { eng: "Sleeve", pos: "n.", pron: "স্লিভ", bng: "হাতা" },
                             { eng: "Collar", pos: "n.", pron: "ক্লার", bng: "কলার" },
