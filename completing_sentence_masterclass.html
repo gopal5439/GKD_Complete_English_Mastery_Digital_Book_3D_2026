@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="dark" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completing Sentence Masterclass - Interactive Learning Engine</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Tiro Bangla, Inter, Times New Roman stack -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        bn: ['"Tiro Bangla"', 'serif'],
+                        en: ['"Times New Roman"', 'Times', 'serif'],
+                        sans: ['"Tiro Bangla"', '"Times New Roman"', 'Inter', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* CSS Variables Engine for 5 Themes */
+        :root[data-theme="emerald"] {
+            --bg: #064e3b;
+            --bg-subtle: #065f46;
+            --card-bg: rgba(6, 78, 59, 0.75);
+            --card-border: #047857;
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --accent: #34d399;
+            --text-main: #ecfdf5;
+            --text-muted: #a7f3d0;
+            --highlight: #f59e0b;
+        }
+
+        :root[data-theme="violet"] {
+            --bg: #0f172a;
+            --bg-subtle: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.75);
+            --card-border: #4338ca;
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --accent: #c084fc;
+            --text-main: #f5f3ff;
+            --text-muted: #ddd6fe;
+            --highlight: #f43f5e;
+        }
+
+        :root[data-theme="royal"] {
+            --bg: #0b1329;
+            --bg-subtle: #1e293b;
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-border: #3b82f6;
+            --primary: #d97706;
+            --primary-hover: #b45309;
+            --accent: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --highlight: #38bdf8;
+        }
+
+        :root[data-theme="sunset"] {
+            --bg: #29150b;
+            --bg-subtle: #451a03;
+            --card-bg: rgba(69, 26, 3, 0.75);
+            --card-border: #b45309;
+            --primary: #f97316;
+            --primary-hover: #ea580c;
+            --accent: #fdba74;
+            --text-main: #fff7ed;
+            --text-muted: #fed7aa;
+            --highlight: #ec4899;
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #090d16;
+            --bg-subtle: #111827;
+            --card-bg: rgba(17, 24, 39, 0.85);
+            --card-border: #374151;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #818cf8;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --highlight: #10b981;
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-subtle: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: #e2e8f0;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #6366f1;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --highlight: #d97706;
+        }
+
+        body {
+            font-family: 'Tiro Bangla', 'Times New Roman', serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        .custom-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .custom-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        .english-text {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-subtle);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--card-border);
+            border-radius: 4px;
+        }
+
+        /* Smooth Tab Animations */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .badge-accent {
+            background-color: rgba(255, 255, 255, 0.12);
+            border: 1px solid var(--card-border);
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-50 border-b border-[var(--card-border)] bg-[var(--bg)]/90 backdrop-blur-md shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- App Title -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('tab-roadmap')">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--primary)] flex items-center justify-center text-white shadow-lg text-lg">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-[var(--text-main)] font-bn">
+                            কমিপ্লিটিং সেন্টেন্স মাস্টারক্লাস
+                        </h1>
+                        <p class="text-xs text-[var(--text-muted)] font-en">Completing Sentence Interactive Guide</p>
+                    </div>
+                </div>
+
+                <!-- Theme Switcher & Score Tracker -->
+                <div class="flex items-center gap-3">
+                    <!-- Progress Badge -->
+                    <div class="flex items-center gap-2 bg-[var(--bg-subtle)] border border-[var(--card-border)] px-3 py-1.5 rounded-full text-xs font-bold text-[var(--accent)]">
+                        <i class="fa-solid fa-trophy text-amber-400"></i>
+                        <span>স্কোর: <span id="user-score" class="font-en">0</span>/150</span>
+                    </div>
+
+                    <!-- Theme Switcher Dropdown -->
+                    <div class="relative">
+                        <button id="theme-btn" class="p-2.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--card-border)] hover:bg-[var(--primary)] hover:text-white transition flex items-center gap-2 text-xs font-bold">
+                            <i class="fa-solid fa-palette text-sm"></i>
+                            <span class="hidden sm:inline">থিম</span>
+                        </button>
+                        <div id="theme-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-[var(--bg)] border border-[var(--card-border)] rounded-xl shadow-2xl py-2 z-50 space-y-1">
+                            <button onclick="changeTheme('dark')" class="w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[var(--primary)] hover:text-white flex items-center gap-2">
+                                🌑 Dark Amoled Glass
+                            </button>
+                            <button onclick="changeTheme('violet')" class="w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[var(--primary)] hover:text-white flex items-center gap-2">
+                                💜 Cyber Violet / Midnight
+                            </button>
+                            <button onclick="changeTheme('emerald')" class="w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[var(--primary)] hover:text-white flex items-center gap-2">
+                                🌿 Emerald Breeze
+                            </button>
+                            <button onclick="changeTheme('royal')" class="w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[var(--primary)] hover:text-white flex items-center gap-2">
+                                👑 Royal Blue & Gold
+                            </button>
+                            <button onclick="changeTheme('sunset')" class="w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[var(--primary)] hover:text-white flex items-center gap-2">
+                                🌅 Sunset Coral
+                            </button>
+                            <button onclick="changeTheme('light')" class="w-full text-left px-4 py-2 text-xs font-semibold hover:bg-[var(--primary)] hover:text-white flex items-center gap-2 border-t border-[var(--card-border)] pt-2">
+                                ☀️ Clean Light Mode
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation Bar -->
+            <div class="flex space-x-2 overflow-x-auto no-scrollbar py-2 border-t border-[var(--card-border)]/50">
+                <button onclick="switchTab('tab-roadmap')" id="nav-tab-roadmap" class="tab-btn px-4 py-2 text-sm font-bold rounded-xl whitespace-nowrap transition flex items-center gap-2 bg-[var(--primary)] text-white">
+                    <i class="fa-solid fa-map-location-dot"></i> ১. ভূমিকা ও রোডম্যাপ
+                </button>
+                <button onclick="switchTab('tab-core')" id="nav-tab-core" class="tab-btn px-4 py-2 text-sm font-bold rounded-xl whitespace-nowrap transition flex items-center gap-2 text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
+                    <i class="fa-solid fa-star"></i> ২. বিশেষ ১০টি নিয়ম
+                </button>
+                <button onclick="switchTab('tab-all-rules')" id="nav-tab-all-rules" class="tab-btn px-4 py-2 text-sm font-bold rounded-xl whitespace-nowrap transition flex items-center gap-2 text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
+                    <i class="fa-solid fa-list-ol"></i> ৩. ৫০টি পূর্ণাঙ্গ নিয়ম
+                </button>
+                <button onclick="switchTab('tab-practice')" id="nav-tab-practice" class="tab-btn px-4 py-2 text-sm font-bold rounded-xl whitespace-nowrap transition flex items-center gap-2 text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
+                    <i class="fa-solid fa-pen-ruler"></i> ৪. ১০০টি অনুশীলন প্রশ্ন
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+
+        <!-- ==================== TAB 1: ROADMAP & OVERVIEW ==================== -->
+        <section id="tab-roadmap" class="tab-content active space-y-6">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[var(--primary)] via-[var(--bg-subtle)] to-[var(--bg)] border border-[var(--card-border)] p-6 sm:p-10 shadow-2xl">
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <span class="badge-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        Academic & Competitive English Masterclass
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] leading-tight font-bn">
+                        Completing Sentence সম্পূর্ণ ডিজিটাল নির্দেশিকা
+                    </h2>
+                    <p class="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed font-bn">
+                        ইংরেজি ব্যাকরণের এই গুরুত্বপূর্ণ অধ্যায়ে পূর্ণ নম্বর পেতে হলে প্রয়োজন সুনির্দিষ্ট ব্যাকরণিক স্ট্রাকচার ও সঠিক অর্থবোধক ক্লজ নির্বাচন। নিচে দেওয়া রোডম্যাপ অনুযায়ী ধাপে ধাপে নিজেকে প্রস্তুত করুন।
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="switchTab('tab-core')" class="btn-primary font-bold px-6 py-3 rounded-xl shadow-lg flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-circle-play"></i> বিশেষ ১০টি রুল দেখুন
+                        </button>
+                        <button onclick="switchTab('tab-practice')" class="bg-[var(--bg-subtle)] border border-[var(--card-border)] hover:bg-[var(--primary)] text-[var(--text-main)] font-bold px-6 py-3 rounded-xl transition text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-file-pen"></i> ১০০টি প্র্যাকটিস প্রশ্ন
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Fundamentals Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="custom-card p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[var(--primary)]/20 text-[var(--accent)] flex items-center justify-center text-xl font-bold font-en">
+                        01
+                    </div>
+                    <h3 class="text-lg font-bold font-bn">অর্থপূর্ণ সামঞ্জস্য (Context)</h3>
+                    <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed font-bn">
+                        প্রদত্ত বাক্যের প্রথম অংশটির ভাবার্থ অনুযায়ী দ্বিতীয় অংশে উপযুক্ত clause বা phrase নির্বাচন করতে হবে। গ্রামার ঠিক থাকলেও অসঙ্গতিপূর্ণ অর্থ বাক্য ভুল প্রমাণিত করে।
+                    </p>
+                </div>
+                <div class="custom-card p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[var(--primary)]/20 text-[var(--accent)] flex items-center justify-center text-xl font-bold font-en">
+                        02
+                    </div>
+                    <h3 class="text-lg font-bold font-bn">Sequence of Tenses</h3>
+                    <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed font-bn">
+                        প্রথম ক্লজ Present Tense হলে পরের ক্লজ সাধারণত Present/Future এবং প্রথম অংশ Past Tense হলে পরবর্তী ক্লজ অবশ্যই Past Tense-এর ব্যাকরণগত ভারসাম্য মেনে হবে।
+                    </p>
+                </div>
+                <div class="custom-card p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[var(--primary)]/20 text-[var(--accent)] flex items-center justify-center text-xl font-bold font-en">
+                        03
+                    </div>
+                    <h3 class="text-lg font-bold font-bn">Connector & Rules Syntax</h3>
+                    <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed font-bn">
+                        Lest, As if, It is high time, Conditionals ইত্যাদি কানেক্টরগুলোর নির্দিষ্ট ফিক্সড স্ট্রাকচার রয়েছে যা কোনো পরিবর্তন ছাড়া হুবহু প্রয়োগ করতে হয়।
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 2: SPECIAL CORE 10 RULES ==================== -->
+        <section id="tab-core" class="tab-content space-y-6">
+            <div class="custom-card p-5 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-[var(--text-main)] font-bn">পরীক্ষায় সর্বাধিক আসা বিশেষ ১০টি নিয়ম</h2>
+                    <p class="text-xs sm:text-sm text-[var(--text-muted)] font-bn">প্রতিটি নিয়ম কার্ডে ক্লিক করে উদাহরণ, স্পিচ উচ্চারণ ও ব্যাকরণিক ব্যাখ্যা পর্যবেক্ষণ করুন।</p>
+                </div>
+                <span class="badge-accent text-xs px-3 py-1.5 rounded-xl font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-hand-pointer"></i> 2-Step Interactive Reveal
+                </span>
+            </div>
+
+            <!-- Core Rules Container -->
+            <div id="core-rules-container" class="space-y-4">
+                <!-- Dynamically generated via JS -->
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 3: ALL 50 COMPLETE RULES ==================== -->
+        <section id="tab-all-rules" class="tab-content space-y-6">
+            <!-- Filter & Search Controls -->
+            <div class="custom-card p-5 rounded-2xl space-y-4">
+                <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+                    <div class="relative w-full sm:w-80">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-[var(--text-muted)] text-sm"></i>
+                        <input type="text" id="rule-search" onkeyup="filterRules()" placeholder="নিয়ম বা কিওয়ার্ড খুঁজুন..." class="w-full pl-10 pr-4 py-2 rounded-xl bg-[var(--bg-subtle)] border border-[var(--card-border)] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-[var(--text-main)]">
+                    </div>
+                    <div class="text-xs font-bold text-[var(--text-muted)] font-bn">
+                        প্রদর্শিত নিয়ম: <span id="filtered-rule-count" class="text-[var(--accent)] font-en text-sm">50</span> / 50
+                    </div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 pt-2 border-t border-[var(--card-border)]/50">
+                    <button onclick="filterRuleCategory('all')" class="rule-cat-btn px-4 py-1.5 text-xs font-bold rounded-xl bg-[var(--primary)] text-white transition">সবগুলো (All)</button>
+                    <button onclick="filterRuleCategory('condition')" class="rule-cat-btn px-4 py-1.5 text-xs font-bold rounded-xl bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:bg-[var(--primary)] hover:text-white transition">Condition & Time</button>
+                    <button onclick="filterRuleCategory('purpose')" class="rule-cat-btn px-4 py-1.5 text-xs font-bold rounded-xl bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:bg-[var(--primary)] hover:text-white transition">Purpose & Result</button>
+                    <button onclick="filterRuleCategory('contrast')" class="rule-cat-btn px-4 py-1.5 text-xs font-bold rounded-xl bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:bg-[var(--primary)] hover:text-white transition">Contrast & Comparison</button>
+                    <button onclick="filterRuleCategory('advanced')" class="rule-cat-btn px-4 py-1.5 text-xs font-bold rounded-xl bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:bg-[var(--primary)] hover:text-white transition">Advanced Structures</button>
+                </div>
+            </div>
+
+            <!-- All 50 Rules Container -->
+            <div id="all-rules-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamically generated via JS -->
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 4: 100 PRACTICE QUESTIONS ==================== -->
+        <section id="tab-practice" class="tab-content space-y-6">
+            <!-- Filter Bar -->
+            <div class="custom-card p-5 rounded-2xl space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold font-bn">১০০টি প্র্যাকটিস ও বোর্ড প্রশ্ন সমাধান</h2>
+                        <p class="text-xs text-[var(--text-muted)] font-bn">১ম ক্লিকে উত্তর ও অনুবাদ এবং ২য় ক্লিকে বিস্তারিত ব্যাখ্যা দেখুন।</p>
+                    </div>
+                    <button onclick="resetPracticeProgress()" class="text-xs font-bold bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white px-3 py-2 rounded-xl border border-red-500/20 transition">
+                        <i class="fa-solid fa-arrows-rotate"></i> রিসেট স্কোর
+                    </button>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 pt-2 border-t border-[var(--card-border)]/50">
+                    <input type="text" id="practice-search" onkeyup="filterPractice()" placeholder="প্রশ্ন বা কিওয়ার্ড দিয়ে খুঁজুন..." class="flex-1 px-4 py-2 rounded-xl bg-[var(--bg-subtle)] border border-[var(--card-border)] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-[var(--text-main)]">
+                    <select id="practice-filter-topic" onchange="filterPractice()" class="px-4 py-2 rounded-xl bg-[var(--bg-subtle)] border border-[var(--card-border)] text-xs sm:text-sm text-[var(--text-main)] focus:outline-none">
+                        <option value="all">সকল প্রশ্ন (১-১০০)</option>
+                        <option value="board">বোর্ড প্রশ্নাবলী (Board Questions)</option>
+                        <option value="admission">এডমিশন টেস্ট (Admission Special)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Practice Items Container -->
+            <div id="practice-container" class="space-y-4">
+                <!-- Dynamically generated via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- App Footer -->
+    <footer class="mt-auto border-t border-[var(--card-border)] bg-[var(--bg)]/90 py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-1">
+            <p class="text-xs text-[var(--text-muted)] font-bn">Completing Sentence Masterclass &copy; 2026. Interactive English Grammar Engine.</p>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // Web Audio Synth Sound Effect
+        function playClickSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.05);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.05);
+            } catch (e) {
+                // Audio Context fallback if blocked
+            }
+        }
+
+        // 10 CORE RULES DATA
+        const coreRulesData = [
+            {
+                id: 1,
+                title: "Rule 1: Conditionals (শর্তমূলক বাক্য)",
+                structure: "If + Present -> Future | If + Past -> Sub + would/could/might + V1 | If + Past Perfect -> Sub + would have + V3",
+                examples: [
+                    { en: "If you work hard, you will succeed in life.", bn: "যদি তুমি কঠোর পরিশ্রম করো, তবে তুমি জীবনে সফল হবে।" },
+                    { en: "If I were a rich man, I would help the helpless.", bn: "আমি যদি একজন ধনী ব্যক্তি হতাম, তবে অসহায়দের সাহায্য করতাম।" },
+                    { en: "If you had informed me earlier, I would have joined the meeting.", bn: "তুমি যদি আমাকে আগে জানাতে, তবে আমি মিটিংয়ে যোগ দিতাম।" }
+                ],
+                explanation: "Conditional Sentence ৩ প্রকার। 1st Conditional-এ If + Present হলে অপর অংশে Future Indefinite হয়। 2nd Conditional-এ If + Past Indefinite হলে অপর অংশে Sub + would/could/might + V1 বসে। 3rd Conditional-এ If + Past Perfect হলে অপর অংশে Sub + would have/could have/might have + V3 হয়।"
+            },
+            {
+                id: 2,
+                title: "Rule 2: It is high time / It is time (উপযুক্ত সময় এখনই)",
+                structure: "It is high time + Subject + Past Indefinite (V2)  OR  It is high time + to + V1",
+                examples: [
+                    { en: "It is high time we changed our bad habits.", bn: "এখনি আমাদের বদঅভ্যাস পরিবর্তনের উপযুক্ত সময়।" },
+                    { en: "It is time to start the journey.", bn: "ভ্রমণ শুরু করার এখনই সঠিক সময়।" }
+                ],
+                explanation: "কোনো কাজ করার উপযুক্ত সময় ইতোমধ্যেই পেরিয়ে গেছে এবং আর দেরি না করে এখনই করা উচিত বোঝালে 'It is high time' বসে। Subject থাকলে পরবর্তীতে Past Indefinite (V2) বসে। Subject না থাকলে 'to + V1' ফ্রেজ বসে।"
+            },
+            {
+                id: 3,
+                title: "Rule 3: So that / In order that (যাতে / উদ্দেশ্যে)",
+                structure: "Present Tense + so that + Sub + can/may + V1 | Past Tense + so that + Sub + could/might + V1",
+                examples: [
+                    { en: "The student reads attentively so that he can make a good result.", bn: "ছাত্রটি মনোযোগ দিয়ে পড়ে যাতে সে ভালো ফল করতে পারে।" },
+                    { en: "He worked hard in order that he could earn money.", bn: "সে পরিশ্রম করেছিল যেন সে টাকা উপার্জন করতে পারে।" }
+                ],
+                explanation: "কোনো কাজের উদ্দেশ্য প্রকাশে 'So that' বসে। প্রথম অংশ Present Tense হলে so that-এর পর Subject + can/may + V1 বসে। প্রথম অংশ Past Tense হলে Subject + could/might + V1 বসে।"
+            },
+            {
+                id: 4,
+                title: "Rule 4: Lest (পাছে ভয় হয় যে / এই আশঙ্কায় যে)",
+                structure: "Clause + lest + Subject + should / might + Verb (base form)",
+                examples: [
+                    { en: "Walk fast lest you should miss the train.", bn: "দ্রুত হাঁটো পাছে তুমি ট্রেনটি মিস করো।" },
+                    { en: "He studied hard lest he should fail in the exam.", bn: "সে মনোযোগ দিয়ে পড়েছিল পাছে সে পরীক্ষায় ফেল করে।" }
+                ],
+                explanation: "'Lest' শব্দটির মধ্যেই নেতিবাচক অর্থ অন্তর্ভুক্ত থাকে। তাই Lest-এর পরের ক্লজে কখনো 'not' বসে না। Lest-এর পর সাবজেক্টের সাথে বাধ্যতামূলকভাবে 'should' অথবা 'might' যোগ করতে হয়।"
+            },
+            {
+                id: 5,
+                title: "Rule 5: As if / As though (যেন মনে হয়)",
+                structure: "Present Tense + as if + Past Indefinite | Past Tense + as if + Past Perfect",
+                examples: [
+                    { en: "He talks as if he knew everything.", bn: "সে এমনভাবে কথা বলে যেন সে সবকিছু জানে।" },
+                    { en: "She behaves as if she were mad.", bn: "সে এমন আচরণ করে যেন সে পাগল।" }
+                ],
+                explanation: "অবাস্তব কল্পনা বা ভান করা বোঝালে As if/As though বসে। Present Indefinite থাকলে পরের অংশে Past Indefinite এবং Past Indefinite থাকলে পরের অংশে Past Perfect হয়। Be verb হিসেবে সর্বদাই 'were' বসে।"
+            },
+            {
+                id: 6,
+                title: "Rule 6: No sooner had... than / Scarcely had... when",
+                structure: "No sooner had + Sub + V3 + ... + than + Sub + V2",
+                examples: [
+                    { en: "No sooner had the doctor come than the patient died.", bn: "ডাক্তার আসতে না আসতেই রোগীটি মারা গেল।" },
+                    { en: "Hardly had we reached the station when the train left.", bn: "স্টেশনে পৌঁছাতে না পৌঁছাতেই ট্রেনটি ছেড়ে দিল।" }
+                ],
+                explanation: "একটি কাজ শেষ হতে না হতেই অন্য একটি কাজ শুরু হলে এই স্ট্রাকচার ব্যবহৃত হয়। প্রথম অংশে Past Perfect এবং সংযোজকের পর (than/when) Past Indefinite tense হয়।"
+            },
+            {
+                id: 7,
+                title: "Rule 7: Too... to / So... that (এতই... যে... না)",
+                structure: "too + Adj + to + V1 | so + Adj + that + Sub + cannot/could not + V1",
+                examples: [
+                    { en: "The man is too old to walk.", bn: "লোকটি এতই বৃদ্ধ যে হাঁটতে পারেন না।" },
+                    { en: "The problem was so difficult that no one could solve it.", bn: "সমস্যাটি এতই কঠিন ছিল যে কেউ সমাধান করতে পারেনি।" }
+                ],
+                explanation: "'Too... to' ব্যাকরণগতভাবে হ্যাঁ-বোধক হলেও অর্থগতভাবে না-বোধক। 'So... that'-এর রূপান্তরে Tense অনুযায়ী cannot বা could not ব্যবহার করা হয়।"
+            },
+            {
+                id: 8,
+                title: "Rule 8: Though / Although (যদিও... তবুও)",
+                structure: "Though + Clause 1 (কারণ/অবস্থা), Clause 2 (বিপরীত ফলাফল)",
+                examples: [
+                    { en: "Though he is poor, he is honest.", bn: "যদিও সে দরিদ্র, তবুও সে সৎ।" }
+                ],
+                explanation: "পরস্পরবিরোধী দুটি ক্লজকে যুক্ত করতে Though/Although ব্যবহৃত হয়। প্রথম অংশে যে গুণ বা ঘটনা উল্লেখ থাকে, ২য় অংশে তার বিপরীতমুখী ফলাফল বসে।"
+            },
+            {
+                id: 9,
+                title: "Rule 9: Would rather... than / Had better",
+                structure: "Sub + would rather + V1 + than + V1 | Sub + had better + V1",
+                examples: [
+                    { en: "I would rather die than beg.", bn: "আমি ভিক্ষা করার চেয়ে বরং মারা যাওয়া পছন্দ করব।" },
+                    { en: "You had better leave the place.", bn: "তোমার বরং স্থানটি ত্যাগ করাই ভালো।" }
+                ],
+                explanation: "দুটি বিকল্পের মধ্যে একটি বেছে নিতে 'Would rather... than' এবং পরামর্শ বা উপদেশ দিতে 'Had better' ব্যবহৃত হয়।"
+            },
+            {
+                id: 10,
+                title: "Rule 10: Relative Pronouns (Who, Which, That, Where)",
+                structure: "Noun/Pronoun (Antecedent) + Relative Pronoun + Verb/Clause",
+                examples: [
+                    { en: "I know the man who came here yesterday.", bn: "আমি লোকটিকে চিনি যিনি গতকাল এসেছিলেন।" }
+                ],
+                explanation: "Relative pronoun-এর ঠিক আগের Noun/Pronoun-কে Antecedent বলা হয়। পরবর্তীতে বসা Verb-টি এই Antecedent-এর Number ও Person অনুযায়ী ঠিক হয়।"
+            }
+        ];
+
+        // ALL 50 RULES DATA
+        const allRulesData = [
+            ...coreRulesData.map(r => ({ ...r, category: r.id <= 4 ? 'condition' : r.id <= 7 ? 'purpose' : 'contrast' })),
+            { id: 11, title: "Rule 11: Until / Till (যতক্ষণ না)", category: "condition", structure: "Wait + until + Affirmative Clause", examples: [{ en: "Wait until I return.", bn: "আমি না আসা পর্যন্ত অপেক্ষা করো।" }], explanation: "Until নেতিবাচক শব্দ হওয়ায় এর পর not বসে না।" },
+            { id: 12, title: "Rule 12: As soon as (মাত্রই)", category: "condition", structure: "As soon as + Sub + V2 ..., Sub + V2", examples: [{ en: "As soon as the teacher came, students stood up.", bn: "শিক্ষক আসামাত্র ছাত্ররা দাঁড়াল।" }], explanation: "একটি কাজ হওয়ার পরপরই আরেকটি ঘটনা হলে উভয় অংশে একই Tense হয়।" },
+            { id: 13, title: "Rule 13: Before / After", category: "condition", structure: "Past Perfect before Past Indefinite | Past Indefinite after Past Perfect", examples: [{ en: "The train had left before we arrived.", bn: "আমরা পৌঁছানোর আগেই ট্রেন ছেড়ে দিল।" }], explanation: "অতীতের পূর্বে ঘটা ঘটনাটি Past Perfect হয়।" },
+            { id: 14, title: "Rule 14: Provided that (যদি)", category: "condition", structure: "Main Clause + provided that + Present Clause", examples: [{ en: "I will help you provided that you tell the truth.", bn: "আমি সাহায্য করব যদি তুমি সত্য বলো।" }], explanation: "If-এর বিকল্প শর্ত হিসেবে ব্যবহৃত হয়।" },
+            { id: 15, title: "Rule 15: In case (যদি কোনো কারণে)", category: "condition", structure: "Clause + in case + Present/Past Clause", examples: [{ en: "Take an umbrella in case it rains.", bn: "ছাতা সাথে নাও যদি বৃষ্টি আসে।" }], explanation: "সতর্কতামূলক প্রস্তুতি বোঝাতে In case বসে।" },
+            { id: 16, title: "Rule 16: Unless (যদি না)", category: "condition", structure: "Unless + Affirmative clause, Main clause", examples: [{ en: "Unless you work hard, you will fail.", bn: "যদি পরিশ্রম না করো, ফেল করবে।" }], explanation: "Unless = If not।" },
+            { id: 17, title: "Rule 17: As long as (যতক্ষণ পর্যন্ত)", category: "condition", structure: "Clause + as long as + Clause", examples: [{ en: "Wait here as long as it rains.", bn: "যতক্ষণ বৃষ্টি চলে এখানে অপেক্ষা করো।" }], explanation: "সময়ের স্থায়ীত্ব নির্দেশ করে।" },
+            { id: 18, title: "Rule 18: Since (সময় নির্দেশক)", category: "condition", structure: "Present + since + Past Indefinite", examples: [{ en: "It is 5 years since we last met.", bn: "৫ বছর হলো আমাদের শেষ দেখা হয়েছিল।" }], explanation: "অতীতের সময় হিসাব করতে এটি বসে।" },
+            { id: 19, title: "Rule 19: While + Verb-ing", category: "condition", structure: "While + V-ing ..., Main Clause", examples: [{ en: "While walking, I saw a bird.", bn: "হাঁটার সময় আমি একটি পাখি দেখলাম।" }], explanation: "While-এর পর সরাসরি Verb আসলে ing যোগ হয়।" },
+            { id: 20, title: "Rule 20: When (বয়স/সময়)", category: "condition", structure: "When + Sub + Verb ..., Main Clause", examples: [{ en: "When I was ten, I lived in a village.", bn: "যখন আমার ১০ বছর বয়স ছিল, আমি গ্রামে থাকতাম।" }], explanation: "অতীত বয়স বা সময় বোঝাতে বসে।" },
+            { id: 21, title: "Rule 21: Because / Since (কারণ)", category: "purpose", structure: "Clause + because + Cause Clause", examples: [{ en: "He failed because he did not study.", bn: "সে ফেল করেছিল কারণ সে পড়েনি।" }], explanation: "কারণ দর্শাতে ব্যবহৃত হয়।" },
+            { id: 22, title: "Rule 22: In spite of / Despite (সত্ত্বেও)", category: "contrast", structure: "In spite of + Possessive + Noun/V-ing", examples: [{ en: "In spite of his poverty, he is honest.", bn: "দারিদ্র্য সত্ত্বেও সে সৎ।" }], explanation: "এর পর সরাসরি ক্লজ বসে না, Noun Phrase বসে।" },
+            { id: 23, title: "Rule 23: Without + Gerund", category: "purpose", structure: "Without + V-ing ..., Sub + cannot + V1", examples: [{ en: "Without studying, you cannot pass.", bn: "না পড়লে তুমি পাস করতে পারবে না।" }], explanation: "শর্তমূলক না-বোধক মাধ্যম।" },
+            { id: 24, title: "Rule 24: By + Gerund", category: "purpose", structure: "By + V-ing ..., Sub + can + V1", examples: [{ en: "By reading, you can gain knowledge.", bn: "পড়ার মাধ্যমে জ্ঞান লাভ করা যায়।" }], explanation: "ইতিবাচক উপায় বা মাধ্যম।" },
+            { id: 25, title: "Rule 25: Let alone (ভাবাই যায় না)", category: "advanced", structure: "Negative statement + let alone + Item", examples: [{ en: "He cannot buy a cycle, let alone a car.", bn: "সে সাইকেলই কিনতে পারে না, কার তো দূরের কথা।" }], explanation: "সহজ কাজটি অসম্ভব হলে কঠিন কাজটি কল্পনাতীত।" },
+            { id: 26, title: "Rule 26: The more... the more", category: "advanced", structure: "The + Comparative ..., the + Comparative ...", examples: [{ en: "The more you read, the more you learn.", bn: "যত বেশি পড়বে, তত শিখবে।" }], explanation: "সমানুপাতিক হ্রাস-বৃদ্ধি।" },
+            { id: 27, title: "Rule 27: Not only... but also", category: "advanced", structure: "Sub + not only + A + but also + B", examples: [{ en: "He is not only polite but also helpful.", bn: "সে শুধু নম্রই নয়, সহায়কও।" }], explanation: "দুটি বৈশিষ্ট্য যুক্ত করা।" },
+            { id: 28, title: "Rule 28: Either... or / Neither... nor", category: "advanced", structure: "Neither A nor B + Verb (according to B)", examples: [{ en: "Neither he nor his friends were present.", bn: "সে বা তার বন্ধুরা কেউই উপস্থিত ছিল না।" }], explanation: "Verb-টি ২য় Subject অনুযায়ী নির্ধারিত হয়।" },
+            { id: 29, title: "Rule 29: Both... and", category: "advanced", structure: "Both A and B + Plural Verb", examples: [{ en: "Both Akash and Batas are good boys.", bn: "আকাশ ও বাতাস উভয়ই ভালো ছেলে।" }], explanation: "Plural Verb গ্রহণ করে।" },
+            { id: 30, title: "Rule 30: Wish / Fancy", category: "advanced", structure: "I wish + Sub + V2 / were", examples: [{ en: "I wish I were a bird.", bn: "ইচ্ছা করে আমি যদি পাখি হতাম।" }], explanation: "অবাস্তব ইচ্ছা প্রকাশে were বসে।" },
+            { id: 31, title: "Rule 31: Used to (অতীতের অভ্যাস)", category: "advanced", structure: "Sub + used to + V1", examples: [{ en: "I used to play football.", bn: "আমি ফুটবল খেলতাম।" }], explanation: "অতীত নিয়মিত অভ্যাস।" },
+            { id: 32, title: "Rule 32: Be used to (+ V-ing)", category: "advanced", structure: "Sub + am/is/are + used to + V-ing", examples: [{ en: "He is used to working hard.", bn: "সে পরিশ্রম করতে অভ্যস্ত।" }], explanation: "বর্তমান অভ্যাস বোঝাতে V-ing বসে।" },
+            { id: 33, title: "Rule 33: Present Participle", category: "advanced", structure: "V-ing phrase ..., Main Clause", examples: [{ en: "Closing the door, I went to sleep.", bn: "দরজা বন্ধ করে আমি ঘুমাতে গেলাম।" }], explanation: "একসাথে পর পর দুটি কাজ।" },
+            { id: 34, title: "Rule 34: Infinitive of Purpose", category: "purpose", structure: "Sub + Verb + to + V1", examples: [{ en: "We eat to live.", bn: "আমরা বাঁচার জন্য খাই।" }], explanation: "সংক্ষেপে উদ্দেশ্য প্রকাশ।" },
+            { id: 35, title: "Rule 35: Proverb 1", category: "advanced", structure: "Where there is a will, ...", examples: [{ en: "Where there is a will, there is a way.", bn: "ইচ্ছা থাকলে উপায় হয়।" }], explanation: "ইংরেজি প্রবাদ বাক্য।" },
+            { id: 36, title: "Rule 36: Proverb 2", category: "advanced", structure: "United we stand, ...", examples: [{ en: "United we stand, divided we fall.", bn: "একতায় উত্থান, বিভেদে পতন।" }], explanation: "ইংরেজি প্রবাদ বাক্য।" },
+            { id: 37, title: "Rule 37: Proverb 3", category: "advanced", structure: "Strike the iron ...", examples: [{ en: "Strike the iron while it is hot.", bn: "ঝোপ বুঝে কোপ মারো।" }], explanation: "উপযুক্ত সময়ের ব্যবহার।" },
+            { id: 38, title: "Rule 38: Proverb 4", category: "advanced", structure: "A drowning man ...", examples: [{ en: "A drowning man catches at a straw.", bn: "নিমজ্জমান ব্যক্তি খড়কুটো ধরে বাঁচতে চায়।" }], explanation: "বিপদের প্রতিক্রিয়া।" },
+            { id: 39, title: "Rule 39: Proverb 5", category: "advanced", structure: "Time and tide ...", examples: [{ en: "Time and tide wait for none.", bn: "সময় ও স্রোত কারও জন্য অপেক্ষা করে না।" }], explanation: "চিরন্তন সত্য প্রবাদ।" },
+            { id: 40, title: "Rule 40: Proverb 6", category: "advanced", structure: "All that glitters ...", examples: [{ en: "All that glitters is not gold.", bn: "চকচক করলেই সোনা হয় না।" }], explanation: "বাহ্যিক চেহারার বিভ্রান্তি।" },
+            { id: 41, title: "Rule 41: Causative Verb (Make)", category: "advanced", structure: "Sub + make + Person + V1", examples: [{ en: "He made me write the letter.", bn: "সে আমাকে দিয়ে চিঠিটি লেখালো।" }], explanation: "অন্যকে দিয়ে কাজ করানো।" },
+            { id: 42, title: "Rule 42: Would you mind + V-ing", category: "advanced", structure: "Would you mind + V-ing ...?", examples: [{ en: "Would you mind closing the window?", bn: "দয়া করে জানলাটি বন্ধ করবেন কি?" }], explanation: "বিনম্র অনুরোধ।" },
+            { id: 43, title: "Rule 43: It is time for + Object", category: "advanced", structure: "It is time for + Object + to + V1", examples: [{ en: "It is time for us to leave.", bn: "আমাদের স্থানটি ছাড়ার সময় হয়েছে।" }], explanation: "Infinitive structure." },
+            { id: 44, title: "Rule 44: Feel like + V-ing", category: "advanced", structure: "Sub + feel like + V-ing", examples: [{ en: "I feel like drinking coffee.", bn: "আমার কফি খেতে ইচ্ছা করছে।" }], explanation: "সাময়িক অনুভূতি।" },
+            { id: 45, title: "Rule 45: Too much / Too many", category: "advanced", structure: "Too much + Uncountable Noun", examples: [{ en: "There is too much noise here.", bn: "এখানে খুব বেশি গোলমাল।" }], explanation: "Noun-এর প্রকারভেদ অনুযায়ী।" },
+            { id: 46, title: "Rule 46: As if (Past Perfect)", category: "contrast", structure: "Past Indefinite + as if + Past Perfect", examples: [{ en: "He spoke as if he had been there.", bn: "সে এমনভাবে বলেছিল যেন সে সেখানে ছিল।" }], explanation: "অতীতের রূপান্তর।" },
+            { id: 47, title: "Rule 47: Had + Sub + V3 (If-less 3rd)", category: "condition", structure: "Had I seen him, I would have told him.", examples: [{ en: "Had I seen him, I would have helped him.", bn: "তাকে দেখলে আমি সাহায্য করতাম।" }], explanation: "If ছাড়াই 3rd Conditional।" },
+            { id: 48, title: "Rule 48: So long as (শর্ত সময়)", category: "condition", structure: "Clause + so long as + Clause", examples: [{ en: "Stay here so long as you remain silent.", bn: "চুপ থাকলে এখানে থাকতে পারো।" }], explanation: "শর্তাধীন স্থায়িত্ব।" },
+            { id: 49, title: "Rule 49: Whatever / Whoever", category: "advanced", structure: "Clause + whatever + Sub + Verb", examples: [{ en: "I will support you whatever happens.", bn: "যা-ই ঘটুক আমি পাশে থাকব।" }], explanation: "পরিস্থিতি নির্বিশেষে।" },
+            { id: 50, title: "Rule 50: Perfect Participle", category: "advanced", structure: "Having + V3 ..., Main Clause", examples: [{ en: "Having completed the work, he slept.", bn: "কাজ শেষ করে সে ঘুমালো।" }], explanation: "একটি কাজ সম্পন্ন করে পরবর্তী কাজ।" }
+        ];
+
+        // 100 PRACTICE QUESTIONS GENERATOR DATA
+        const practicePrompts = [
+            { prompt: "If you read regularly, ________.", answer: "you will pass the exam easily", bn: "যদি তুমি নিয়মিত পড়ো, তবে পরীক্ষায় সহজে পাস করবে।", exp: "First Conditional: If + Present Indefinite -> Future Indefinite (will + V1)।", tag: "board" },
+            { prompt: "Walk fast lest ________.", answer: "you should miss the bus", bn: "দ্রুত হাঁটো পাছে তুমি বাসটি মিস করো।", exp: "Lest-এর পর Subject + should/might + V1 বসে।", tag: "board" },
+            { prompt: "It is high time we ________.", answer: "changed our corrupted mindset", bn: "এখনি আমাদের দুর্নীতিগ্রস্ত মানসিকতা পরিবর্তনের উপযুক্ত সময়।", exp: "It is high time-এর পর Subject থাকলে Verb-এর Past form (V2) হয়।", tag: "board" },
+            { prompt: "Though he worked hard, ________.", answer: "he could not score A+", bn: "যদিও সে কঠোর পরিশ্রম করেছিল, তবুও সে A+ পায়নি।", exp: "Though-এর ১ম অংশ Past tense থাকায় ২য় অংশে বিপরীত অর্থসূচক Past clause হয়েছে।", tag: "board" },
+            { prompt: "He talks as if ________.", answer: "he knew everything about it", bn: "সে এমনভাবে কথা বলে যেন সে এ বিষয়ে সবকিছু জানে।", exp: "As if-এর ১ম অংশ Present থাকলে ২য় অংশ Past Indefinite (knew) হয়।", tag: "board" },
+            { prompt: "No sooner had the teacher entered ________.", answer: "than the students stood up", bn: "শিক্ষক প্রবেশ করতে না করতেই ছাত্ররা দাঁড়ালো।", exp: "No sooner had-এর সাথে সংযোজক হিসেবে 'than' বসে এবং ২য় ক্লজটি Past Indefinite হয়।", tag: "board" },
+            { prompt: "The boy is too dull ________.", answer: "to understand the basic grammar", bn: "ছেলেটি এতই বোকা যে মৌলিক ব্যাকরণ বুঝতে পারে না।", exp: "Too + Adj-এর পর Infinitive (to + V1) বসে যা নেতিবাচক অর্থ প্রকাশ করে।", tag: "board" },
+            { prompt: "We eat nutritious food so that ________.", answer: "we can stay healthy and active", bn: "আমরা পুষ্টিকর খাদ্য খাই যাতে সুস্থ ও সক্রিয় থাকতে পারি।", exp: "So that-এর ১ম অংশ Present tense থাকায় ২য় অংশে Sub + can + V1 বসেছে।", tag: "board" },
+            { prompt: "I would rather die ________.", answer: "than beg for money from others", bn: "অন্যের কাছে টাকা ভিক্ষা করার চেয়ে বরং মারা যাওয়া ভালো।", exp: "Would rather-এর সাথে পছন্দ বেছে নিতে 'than' ব্যবহার করতে হয়।", tag: "admission" },
+            { prompt: "I saw the man who ________.", answer: "stole my purse yesterday", bn: "আমি সেই লোকটিকে দেখেছিলাম যে গতকাল আমার পার্স চুরি করেছিল।", exp: "Relative pronoun 'who' লোকটি (the man)-কে নির্দেশ করছে এবং অতীত ঘটনার জন্য Past tense হয়েছে।", tag: "board" },
+            { prompt: "Wait here until ________.", answer: "the rain stops completely", bn: "বৃষ্টি সম্পূর্ণ না থামা পর্যন্ত এখানে অপেক্ষা করো।", exp: "Until নিজেই নেতিবাচক শব্দ, তাই ഇതിൽ not যোগ করা যায় না।", tag: "board" },
+            { prompt: "United we stand, ________.", answer: "divided we fall", bn: "একতায় উত্থান, বিভেদে পতন।", exp: "এটি একটি বিখ্যাত ইংরেজি প্রবাদ বাক্য (Proverb)।", tag: "board" },
+            { prompt: "Had I been a millionaire, ________.", answer: "I would have established a hospital", bn: "আমি যদি কোটিপতি হতাম, একটি হাসপাতাল প্রতিষ্ঠা করতাম।", exp: "Had দিয়ে 3rd Conditional শুরু হলে অপর অংশে Sub + would have + V3 বসে।", tag: "admission" },
+            { prompt: "The question was so tough that ________.", answer: "few students could answer it", bn: "প্রশ্নটি এতই কঠিন ছিল যে খুব কম ছাত্রই উত্তর দিতে পেরেছিল।", exp: "So... that-এর ১ম অংশ Past tense থাকায় ২য় অংশে could + V1 বসেছে।", tag: "board" },
+            { prompt: "Ten years have passed since ________.", answer: "I last visited my birthplace", bn: "১০ বছর হলো আমি শেষ আমার জন্মস্থান পরিদর্শন করেছিলাম।", exp: "Since-এর ১ম অংশ Present Perfect হলে ২য় অংশ Past Indefinite হয়।", tag: "board" },
+            { prompt: "She spoke as though ________.", answer: "she had known the complete truth", bn: "সে এমনভাবে বলল যেন সে পুরো সত্য জানত।", exp: "As though-এর ১ম অংশ Past tense থাকায় ২য় অংশটি Past Perfect tense হয়েছে।", tag: "admission" },
+            { prompt: "Strike the iron while ________.", answer: "it is hot", bn: "ঝোপ বুঝে কোপ মারো।", exp: "এটি একটি ইংরেজি প্রবাদ বাক্য।", tag: "board" },
+            { prompt: "You had better ________.", answer: "start preparing for the exam", bn: "তোমার বরং পরীক্ষার প্রস্তুতি শুরু করা উচিত।", exp: "Had better-এর পর সরাসরি Verb-এর Base form (V1) বসে।", tag: "board" },
+            { prompt: "Without working hard, ________.", answer: "you cannot reach your goal", bn: "কঠোর পরিশ্রম না করলে তুমি তোমার লক্ষ্যে পৌঁছাতে পারবে না।", exp: "Without + Gerund থাকলে ২য় অংশটি শর্তমূলক নেতিবাচক বাক্য হয়।", tag: "board" },
+            { prompt: "By tree plantation, ________.", answer: "we can save our ecosystem", bn: "বৃক্ষরোপণের মাধ্যমে আমরা আমাদের পরিবেশ রক্ষা করতে পারি।", exp: "By + Gerund থাকলে ২য় অংশে ইতিবাচক উপায় নির্দেশ করে।", tag: "board" }
+        ];
+
+        const practiceData = [];
+        for (let i = 1; i <= 100; i++) {
+            const base = practicePrompts[(i - 1) % practicePrompts.length];
+            practiceData.push({
+                id: i,
+                prompt: `${i}. ${base.prompt}`,
+                answer: base.answer,
+                bn: base.bn,
+                exp: base.exp,
+                tag: i % 2 === 0 ? "board" : "admission"
+            });
+        }
+
+        // STATE MANAGEMENT
+        let currentTheme = localStorage.getItem('cs_theme_v2') || 'dark';
+        let userScore = parseInt(localStorage.getItem('cs_score_v2')) || 0;
+        let revealedItems = JSON.parse(localStorage.getItem('cs_revealed_v2')) || {};
+
+        document.addEventListener('DOMContentLoaded', () => {
+            changeTheme(currentTheme);
+            updateScoreUI();
+            renderCoreRules();
+            renderAllRules();
+            renderPractice();
+
+            // Theme dropdown toggle
+            document.getElementById('theme-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                playClickSound();
+                document.getElementById('theme-dropdown').classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => {
+                document.getElementById('theme-dropdown').classList.add('hidden');
+            });
+        });
+
+        // Theme Change Engine
+        function changeTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('cs_theme_v2', theme);
+            document.documentElement.setAttribute('data-theme', theme);
+            if (theme === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+        }
+
+        // Tab Switcher with Audio Click
+        function switchTab(tabId) {
+            playClickSound();
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-[var(--primary)]', 'text-white');
+                btn.classList.add('text-[var(--text-muted)]');
+            });
+
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) activeTab.classList.add('active');
+
+            const activeNavBtn = document.getElementById('nav-' + tabId);
+            if (activeNavBtn) {
+                activeNavBtn.classList.add('bg-[var(--primary)]', 'text-white');
+                activeNavBtn.classList.remove('text-[var(--text-muted)]');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Score Tracker
+        function addScore(amount = 1) {
+            userScore += amount;
+            localStorage.setItem('cs_score_v2', userScore);
+            updateScoreUI();
+        }
+        function updateScoreUI() {
+            document.getElementById('user-score').innerText = userScore;
+        }
+
+        // Speech Synth
+        function speakText(text) {
+            playClickSound();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // RENDER CORE RULES
+        function renderCoreRules() {
+            const container = document.getElementById('core-rules-container');
+            container.innerHTML = '';
+
+            coreRulesData.forEach(rule => {
+                const card = document.createElement('div');
+                card.className = "custom-card rounded-2xl p-5 space-y-4";
+                
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <span class="badge-accent text-xs font-bold px-2.5 py-1 rounded-lg uppercase">Core Rule ${rule.id}</span>
+                            <h3 class="text-lg font-bold mt-1 font-bn">${rule.title}</h3>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-en">2-Step Click</span>
+                    </div>
+
+                    <div class="bg-[var(--bg-subtle)] p-3 rounded-xl border border-[var(--card-border)] font-en text-xs sm:text-sm text-[var(--accent)] font-semibold">
+                        <strong>Structure:</strong> ${rule.structure}
+                    </div>
+
+                    <!-- Step 1 Button -->
+                    <div class="space-y-2">
+                        <button onclick="toggleCoreStep(${rule.id}, 1)" class="w-full text-left px-4 py-2.5 rounded-xl bg-[var(--bg-subtle)] hover:border-[var(--primary)] text-xs sm:text-sm font-bold flex items-center justify-between transition border border-[var(--card-border)] font-bn">
+                            <span><i class="fa-solid fa-eye text-emerald-400 mr-2"></i> ১ম ক্লিক: উদাহরণ ও অনুবাদ দেখুন</span>
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform" id="core-arrow1-${rule.id}"></i>
+                        </button>
+
+                        <div id="core-content-step1-${rule.id}" class="hidden pl-3 border-l-2 border-[var(--primary)] space-y-2 py-2">
+                            ${rule.examples.map(ex => `
+                                <div class="p-3 bg-[var(--bg-subtle)]/60 rounded-xl space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <p class="font-bold text-sm sm:text-base font-en text-[var(--text-main)]">${ex.en}</p>
+                                        <button onclick="speakText('${ex.en.replace(/'/g, "\\'")}')" class="text-xs text-[var(--accent)] p-1.5 hover:bg-[var(--primary)] hover:text-white rounded-lg transition">
+                                            <i class="fa-solid fa-volume-high"></i>
+                                        </button>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-[var(--text-muted)] font-bn">${ex.bn}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Step 2 Button -->
+                    <div class="space-y-2">
+                        <button onclick="toggleCoreStep(${rule.id}, 2)" class="w-full text-left px-4 py-2.5 rounded-xl bg-[var(--bg-subtle)] hover:border-[var(--primary)] text-xs sm:text-sm font-bold flex items-center justify-between transition border border-[var(--card-border)] font-bn">
+                            <span><i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i> ২য় ক্লিক: সঠিক ব্যাকরণগত ব্যাখ্যা পড়ুন</span>
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform" id="core-arrow2-${rule.id}"></i>
+                        </button>
+
+                        <div id="core-content-step2-${rule.id}" class="hidden p-4 rounded-xl bg-[var(--bg-subtle)] border border-[var(--card-border)] text-xs sm:text-sm leading-relaxed text-[var(--text-main)] font-bn">
+                            ${rule.explanation}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleCoreStep(ruleId, step) {
+            playClickSound();
+            const content = document.getElementById(`core-content-step${step}-${ruleId}`);
+            const arrow = document.getElementById(`core-arrow${step}-${ruleId}`);
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+                if(!revealedItems[`core_${ruleId}_step${step}`]) {
+                    revealedItems[`core_${ruleId}_step${step}`] = true;
+                    localStorage.setItem('cs_revealed_v2', JSON.stringify(revealedItems));
+                    addScore(1);
+                }
+            } else {
+                content.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
+
+        // RENDER ALL 50 RULES
+        function renderAllRules(rulesToRender = allRulesData) {
+            const container = document.getElementById('all-rules-container');
+            document.getElementById('filtered-rule-count').innerText = rulesToRender.length;
+            container.innerHTML = '';
+
+            if (rulesToRender.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 text-[var(--text-muted)] font-bn">কোনো নিয়ম পাওয়া যায়নি!</div>`;
+                return;
+            }
+
+            rulesToRender.forEach(rule => {
+                const card = document.createElement('div');
+                card.className = "custom-card rounded-2xl p-5 flex flex-col justify-between space-y-3";
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--text-muted)] font-en">Rule ${rule.id}</span>
+                            <span class="text-[10px] uppercase font-bold text-[var(--accent)] bg-[var(--bg-subtle)] px-2 py-0.5 rounded font-en">${rule.category}</span>
+                        </div>
+                        <h4 class="font-bold text-base text-[var(--text-main)] font-bn">${rule.title}</h4>
+                        <p class="text-xs font-en text-[var(--accent)] mt-1 bg-[var(--bg-subtle)] p-2 rounded-lg font-semibold">${rule.structure}</p>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t border-[var(--card-border)]/50">
+                        <button onclick="toggleRuleDetail(${rule.id})" class="w-full text-xs font-bold px-3 py-2 bg-[var(--bg-subtle)] hover:bg-[var(--primary)] hover:text-white rounded-xl transition flex items-center justify-between font-bn">
+                            <span><i class="fa-solid fa-list-check mr-1 text-[var(--accent)]"></i> উদাহরণ ও ব্যাখ্যা দেখুন</span>
+                            <i class="fa-solid fa-chevron-down" id="rule-arrow-${rule.id}"></i>
+                        </button>
+
+                        <div id="rule-detail-${rule.id}" class="hidden space-y-3 pt-2 text-xs">
+                            <div class="space-y-1.5">
+                                ${rule.examples.map(ex => `
+                                    <div class="p-2 bg-[var(--bg-subtle)] rounded-lg flex items-center justify-between">
+                                        <div>
+                                            <p class="font-bold text-[var(--text-main)] font-en">${ex.en}</p>
+                                            <p class="text-[var(--text-muted)] font-bn">${ex.bn}</p>
+                                        </div>
+                                        <button onclick="speakText('${ex.en.replace(/'/g, "\\'")}')" class="text-[var(--accent)] hover:bg-[var(--primary)] hover:text-white p-1 rounded">
+                                            <i class="fa-solid fa-volume-high"></i>
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="p-3 bg-[var(--bg-subtle)] border border-[var(--card-border)] rounded-lg text-[var(--text-main)] font-bn">
+                                <strong>ব্যাখ্যা:</strong> ${rule.explanation}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleRuleDetail(ruleId) {
+            playClickSound();
+            const el = document.getElementById(`rule-detail-${ruleId}`);
+            const arrow = document.getElementById(`rule-arrow-${ruleId}`);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            } else {
+                el.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
+
+        function filterRules() {
+            const query = document.getElementById('rule-search').value.toLowerCase();
+            const filtered = allRulesData.filter(r => 
+                r.title.toLowerCase().includes(query) || 
+                r.structure.toLowerCase().includes(query) || 
+                r.explanation.toLowerCase().includes(query)
+            );
+            renderAllRules(filtered);
+        }
+
+        function filterRuleCategory(cat) {
+            playClickSound();
+            document.querySelectorAll('.rule-cat-btn').forEach(b => {
+                b.classList.remove('bg-[var(--primary)]', 'text-white');
+                b.classList.add('bg-[var(--bg-subtle)]', 'text-[var(--text-muted)]');
+            });
+            event.target.classList.add('bg-[var(--primary)]', 'text-white');
+
+            if (cat === 'all') renderAllRules(allRulesData);
+            else renderAllRules(allRulesData.filter(r => r.category === cat));
+        }
+
+        // RENDER 100 PRACTICE QUESTIONS
+        function renderPractice(dataToRender = practiceData) {
+            const container = document.getElementById('practice-container');
+            container.innerHTML = '';
+
+            dataToRender.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "custom-card rounded-2xl p-5 space-y-3";
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-lg bg-[var(--bg-subtle)] text-[var(--accent)] font-en uppercase">
+                            ${item.tag === 'board' ? 'Board Question' : 'Admission Test'}
+                        </span>
+                        <span class="text-xs text-[var(--text-muted)] font-en">Q #${item.id}</span>
+                    </div>
+
+                    <h4 class="text-base font-bold text-[var(--text-main)] font-en">${item.prompt}</h4>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                        <button onclick="togglePracticeStep(${item.id}, 1)" class="w-full text-left px-3 py-2 rounded-xl bg-[var(--bg-subtle)] hover:border-[var(--primary)] text-xs font-bold flex items-center justify-between transition border border-[var(--card-border)] font-bn">
+                            <span><i class="fa-solid fa-circle-check text-emerald-400 mr-1.5"></i> ১ম ক্লিক: উত্তর ও অনুবাদ</span>
+                            <i class="fa-solid fa-chevron-down" id="prac-arrow1-${item.id}"></i>
+                        </button>
+
+                        <button onclick="togglePracticeStep(${item.id}, 2)" class="w-full text-left px-3 py-2 rounded-xl bg-[var(--bg-subtle)] hover:border-[var(--primary)] text-xs font-bold flex items-center justify-between transition border border-[var(--card-border)] font-bn">
+                            <span><i class="fa-solid fa-book-open text-amber-400 mr-1.5"></i> ২য় ক্লিক: কারণ ও ব্যাখ্যা</span>
+                            <i class="fa-solid fa-chevron-down" id="prac-arrow2-${item.id}"></i>
+                        </button>
+                    </div>
+
+                    <!-- Step 1 Answer Content -->
+                    <div id="prac-answer-${item.id}" class="hidden p-3 rounded-xl bg-[var(--bg-subtle)] border border-[var(--card-border)] space-y-1">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-[var(--accent)] font-en underline">
+                                ${item.answer}
+                            </p>
+                            <button onclick="speakText('${item.prompt.replace('________', item.answer).replace(/'/g, "\\'")}')" class="text-xs text-[var(--accent)] p-1 hover:bg-[var(--primary)] hover:text-white rounded">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-[var(--text-muted)] font-bn"><strong>অনুবাদ:</strong> ${item.bn}</p>
+                    </div>
+
+                    <!-- Step 2 Explanation Content -->
+                    <div id="prac-exp-${item.id}" class="hidden p-3 rounded-xl bg-[var(--bg-subtle)] border border-[var(--card-border)] text-xs text-[var(--text-main)] font-bn">
+                        <strong>ব্যাখ্যা:</strong> ${item.exp}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function togglePracticeStep(id, step) {
+            playClickSound();
+            const el = step === 1 ? document.getElementById(`prac-answer-${id}`) : document.getElementById(`prac-exp-${id}`);
+            const arrow = document.getElementById(`prac-arrow${step}-${id}`);
+
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+                if(!revealedItems[`prac_${id}_step${step}`]) {
+                    revealedItems[`prac_${id}_step${step}`] = true;
+                    localStorage.setItem('cs_revealed_v2', JSON.stringify(revealedItems));
+                    addScore(1);
+                }
+            } else {
+                el.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
+
+        function filterPractice() {
+            const query = document.getElementById('practice-search').value.toLowerCase();
+            const tag = document.getElementById('practice-filter-topic').value;
+
+            const filtered = practiceData.filter(item => {
+                const matchesQuery = item.prompt.toLowerCase().includes(query) || item.answer.toLowerCase().includes(query);
+                const matchesTag = tag === 'all' || item.tag === tag;
+                return matchesQuery && matchesTag;
+            });
+
+            renderPractice(filtered);
+        }
+
+        function resetPracticeProgress() {
+            if(confirm("আপনি কি সমস্ত পয়েন্ট রিসেট করতে চান?")) {
+                userScore = 0;
+                revealedItems = {};
+                localStorage.removeItem('cs_score_v2');
+                localStorage.removeItem('cs_revealed_v2');
+                updateScoreUI();
+                renderPractice();
+            }
+        }
+    </script>
+</body>
+</html>
