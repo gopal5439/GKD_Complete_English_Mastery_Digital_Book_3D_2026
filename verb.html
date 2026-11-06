@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verb Masterclass - Interactive 3D Learning Platform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Times+New+Roman:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================
+           1. COLOR THEMES & CSS VARIABLES
+           ========================================================== */
+        :root {
+            --bg-gradient: radial-gradient(circle at center, #1b0c3a 0%, #080214 100%);
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(236, 72, 153, 0.4);
+            --text-main: #ffffff;
+            --text-sub: #e2e8f0;
+            --accent-glow: #a855f7;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --gold: #facc15;
+            --header-bg: rgba(15, 7, 32, 0.92);
+            --notebook-bg: rgba(20, 10, 40, 0.98);
+            --font-bn: 'Noto Serif Bengali', serif;
+            --font-en: 'Times New Roman', Times, serif;
+        }
+
+        body.theme-gold {
+            --bg-gradient: radial-gradient(circle at center, #2e1d05 0%, #0f0901 100%);
+            --card-bg: rgba(255, 255, 255, 0.09);
+            --card-border: rgba(250, 204, 21, 0.4);
+            --text-main: #fffdf0;
+            --text-sub: #fef08a;
+            --accent-glow: #f59e0b;
+            --accent-pink: #fbbf24;
+            --accent-cyan: #34d399;
+            --gold: #facc15;
+            --header-bg: rgba(30, 18, 4, 0.94);
+            --notebook-bg: rgba(35, 22, 5, 0.98);
+        }
+
+        body.theme-ocean {
+            --bg-gradient: radial-gradient(circle at center, #032b45 0%, #010f1a 100%);
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(6, 182, 212, 0.4);
+            --text-main: #f0fdfa;
+            --text-sub: #99f6e4;
+            --accent-glow: #06b6d4;
+            --accent-pink: #3b82f6;
+            --accent-cyan: #22d3ee;
+            --gold: #facc15;
+            --header-bg: rgba(2, 35, 56, 0.94);
+            --notebook-bg: rgba(3, 40, 65, 0.98);
+        }
+
+        body.theme-sunset {
+            --bg-gradient: radial-gradient(circle at center, #4c0519 0%, #1a0208 100%);
+            --card-bg: rgba(255, 255, 255, 0.09);
+            --card-border: rgba(244, 63, 94, 0.4);
+            --text-main: #fff1f2;
+            --text-sub: #fecdd3;
+            --accent-glow: #f43f5e;
+            --accent-pink: #fb923c;
+            --accent-cyan: #38bdf8;
+            --gold: #fde047;
+            --header-bg: rgba(60, 5, 20, 0.94);
+            --notebook-bg: rgba(70, 8, 25, 0.98);
+        }
+
+        body.theme-emerald {
+            --bg-gradient: radial-gradient(circle at center, #022c22 0%, #01140e 100%);
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(16, 185, 129, 0.4);
+            --text-main: #ecfdf5;
+            --text-sub: #a7f3d0;
+            --accent-glow: #10b981;
+            --accent-pink: #84cc16;
+            --accent-cyan: #06b6d4;
+            --gold: #facc15;
+            --header-bg: rgba(2, 38, 30, 0.94);
+            --notebook-bg: rgba(3, 45, 35, 0.98);
+        }
+
+        /* ==========================================================
+           2. GLOBAL STYLES & LAYOUT
+           ========================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-bn);
+            user-select: none;
+        }
+
+        .eng-text {
+            font-family: var(--font-en) !important;
+            font-weight: bold;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: var(--header-bg);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+        }
+
+        .brand-logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--gold), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: var(--font-en);
+            letter-spacing: 1px;
+        }
+
+        .menu-icon-btn {
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 0 15px var(--accent-pink);
+            transition: transform 0.2s;
+        }
+
+        .menu-icon-btn:active {
+            transform: scale(0.92);
+        }
+
+        .menu-icon-btn span {
+            width: 22px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 2px;
+        }
+
+        .theme-switcher-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 0 12px var(--card-border);
+            transition: background 0.3s;
+        }
+
+        .theme-switcher-btn:hover {
+            background: var(--card-border);
+        }
+
+        /* Drawer Mask & Sidebar Navigation */
+        .drawer-mask {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-mask.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100vh;
+            background: var(--header-bg);
+            backdrop-filter: blur(25px);
+            border-right: 1px solid var(--card-border);
+            z-index: 201;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .side-drawer.active {
+            left: 0;
+        }
+
+        .drawer-link {
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.25s;
+        }
+
+        .drawer-link:hover, .drawer-link.active {
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Main Viewport Container */
+        main {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto;
+            z-index: 10;
+            padding: 2rem 1rem 4rem 1rem;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-view {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .section-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ==========================================================
+           3. STABLE 3D RADIAL BLUEPRINT CONTAINER (FIXED POSITIONS)
+           ========================================================== */
+        .radial-viewport {
+            position: relative;
+            width: 100%;
+            height: 540px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.35);
+            border: 1px dashed var(--card-border);
+            margin-top: 1.5rem;
+        }
+
+        /* Center Glowing Master Button */
+        .center-master-btn {
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 20;
+            box-shadow: 0 0 35px var(--accent-pink), inset 0 0 15px rgba(255,255,255,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            font-family: var(--font-en);
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+
+        .center-master-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 55px var(--gold), inset 0 0 25px rgba(255,255,255,0.6);
+        }
+
+        .center-master-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Surrounding Radial Buttons (STABLE & SECURE) */
+        .radial-node {
+            position: absolute;
+            width: 145px;
+            padding: 0.95rem 0.6rem;
+            border-radius: 16px;
+            background: rgba(15, 7, 32, 0.92);
+            border: 1.5px solid var(--card-border);
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-align: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(0px, 0px) scale(0.2);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease, background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            z-index: 10;
+        }
+
+        .radial-viewport.expanded .radial-node {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .radial-node:hover {
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
+            color: #ffffff;
+            box-shadow: 0 0 25px var(--accent-glow), 0 0 10px var(--accent-pink);
+            border-color: #ffffff;
+        }
+
+        .radial-node:active {
+            transform: scale(0.94) !important;
+        }
+
+        .radial-node.highlight-node {
+            border: 2px solid var(--accent-pink);
+            box-shadow: 0 0 20px var(--accent-pink);
+        }
+
+        /* ==========================================================
+           4. RICH NOTEBOOK POPUP MODAL (3D GLASS WINDOW)
+           ========================================================== */
+        .notebook-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 300;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .notebook-card {
+            background: var(--notebook-bg);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2.2rem;
+            position: relative;
+            box-shadow: 0 0 50px var(--gold);
+            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            line-height: 1.8;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.75); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-notebook-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .close-notebook-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .notebook-card h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.6rem;
+        }
+
+        .content-cat-box {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .content-cat-box h4 {
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .example-box {
+            background: rgba(0,0,0,0.4);
+            border-left: 4px solid var(--accent-pink);
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            margin: 0.5rem 0 0.8rem 0;
+            font-size: 0.98rem;
+        }
+
+        /* ==========================================================
+           5. TABLES, RULES & QUIZ STYLES
+           ========================================================== */
+        .search-box {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid var(--card-border);
+            background: rgba(0,0,0,0.4);
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            outline: none;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        th {
+            background: rgba(168, 85, 247, 0.35);
+            color: var(--gold);
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .rule-item-box {
+            padding: 1.2rem;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--card-border);
+            margin-bottom: 1.2rem;
+        }
+
+        .rule-item-box h4 {
+            color: var(--gold);
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .quiz-card-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option-btn {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            margin: 0.4rem 0;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .quiz-option-btn:hover {
+            background: var(--accent-glow);
+            color: white;
+        }
+
+        .explanation-box {
+            margin-top: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: var(--text-main);
+            display: none;
+        }
+
+        .google-sync-btn {
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
+            color: white;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 30px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            margin: 2rem auto 0 auto;
+            box-shadow: 0 0 20px var(--accent-pink);
+        }
+
+        .banner-img-wrap img {
+            width: 100%;
+            border-radius: 16px;
+            border: 2px solid var(--accent-glow);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="theme-cyber">
+
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Header Navigation -->
+    <header>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="menu-icon-btn" id="drawer-toggle-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="brand-logo">VERB MASTERCLASS</div>
+        </div>
+        <button class="theme-switcher-btn" onclick="themeManager.nextTheme()">
+            🎨 Theme (<span id="theme-display-name">Cyberpunk</span>)
+        </button>
+    </header>
+
+    <!-- Navigation Drawer -->
+    <div class="drawer-mask" id="drawer-mask"></div>
+    <div class="side-drawer" id="side-drawer">
+        <h3 style="color: var(--gold); border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">মডিউল তালিকা</h3>
+        <div class="drawer-link active" onclick="router.navigateTo('home', this)">🏠 ১. মেইন ডায়াগ্রাম ও শ্রেণিবিভাগ</div>
+        <div class="drawer-link" onclick="router.navigateTo('forms', this)">📖 ২. Forms of Verb (২০০টি)</div>
+        <div class="drawer-link" onclick="router.navigateTo('rules', this)">📜 ৩. ব্যাকরণের ৫০টি নিয়ম</div>
+        <div class="drawer-link" onclick="router.navigateTo('quiz', this)">🧠 ৪. লাইভ কুইজ</div>
+    </div>
+
+    <!-- 3D Glass Window Notebook Overlay -->
+    <div class="notebook-overlay" id="notebook-overlay">
+        <div class="notebook-card">
+            <button class="close-notebook-btn" onclick="radialEngine.closeNotebook()">&times;</button>
+            <h3 id="notebook-title"></h3>
+            <div id="notebook-body"></div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="wrapper">
+
+            <!-- SECTION 1: HOME & RADIAL DIAGRAM -->
+            <section id="home" class="section-view active">
+                <div class="glass-box">
+                    <div class="banner-img-wrap">
+                        <img id="main-banner-img" alt="Verb Mastery Banner">
+                    </div>
+                    
+                    <h2 style="color: var(--gold); margin-bottom: 0.8rem;">বৌ ছাড়া যেমন পরিবার হয় না, তেমনি Verb ছাড়া বাক্য হয় না!</h2>
+                    <p style="line-height: 1.8; color: var(--text-sub); font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        সংসারে যেমন গৃহকর্ত্রী বা স্ত্রী ছাড়া পুরো ঘর অসম্পূর্ণ ও নির্জীব, ঠিক তেমনি ইংরেজি ব্যাকরণে <strong>Verb (ক্রিয়া)</strong> হলো বাক্যের আসল প্রাণশক্তি বা মেইন ইঞ্জিন। Subject যতই শক্তিশালী হোক, Verb না থাকলে বাক্য কোনো অর্থ প্রকাশ করতে পারে না।
+                    </p>
+
+                    <hr style="border-color: var(--card-border); margin: 1.5rem 0;">
+
+                    <h3 style="color: var(--accent-cyan); text-align: center; margin-bottom: 0.5rem;">🎯 Interactive 3D Verb Blueprint Roadmap</h3>
+                    <p style="text-align: center; color: var(--text-sub); font-size: 0.95rem;">
+                        নিচের মাঝখানের <strong>VERB</strong> বাটনে ক্লিক করে ডায়াগ্রামটি অপেন করুন এবং যেকোনো বাটনে ক্লিক করে তার সম্পূর্ণ বিস্তারিত তথ্য দেখুন:
+                    </p>
+
+                    <div class="radial-viewport" id="radial-viewport">
+                        <div class="center-master-btn" id="main-verb-trigger" onclick="radialEngine.toggleRadial()">
+                            VERB<br><span style="font-size:0.7rem; font-weight:normal;">(ক্লিক করুন)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: 200 VERBS BANK -->
+            <section id="forms" class="section-view">
+                <div class="glass-box">
+                    <h2 style="color: var(--accent-cyan); margin-bottom: 1rem;">📖 Forms of Verb (200 Verbs Archive)</h2>
+                    <input type="text" id="verb-search-input" class="search-box" placeholder="🔍 সার্চ করুন (বাংলা অর্থ বা ইংরেজি Verb দিয়ে)..." onkeyup="verbBankEngine.filter()">
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>বাংলা অর্থ</th>
+                                    <th>V1 (Base)</th>
+                                    <th>V2 (Past)</th>
+                                    <th>V3 (Past Participle)</th>
+                                    <th>V4 (-ing)</th>
+                                    <th>V5 (s/es)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="verb-bank-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: 50 GRAMMAR RULES -->
+            <section id="rules" class="section-view">
+                <div class="glass-box">
+                    <h2 style="color: var(--gold); margin-bottom: 1.5rem;">📜 Subject-Verb Agreement & Verb Rules</h2>
+                    <div id="rules-container-box"></div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: LIVE QUIZ ENGINE -->
+            <section id="quiz" class="section-view">
+                <div class="glass-box">
+                    <h2 style="color: var(--accent-pink); margin-bottom: 1rem;">🧠 যাচাই করুন নিজেকে (Interactive Quiz)</h2>
+                    <div id="quiz-container-box"></div>
+                    <button class="google-sync-btn" onclick="googleQuizEngine.syncNewQuestions()">🔄 নতুন প্রশ্ন যুক্ত করুন</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        /* ==========================================================
+           1. BANNER IMAGE LINK
+           ========================================================== */
+        const BANNER_IMAGE_URL = "verbpic.png";
+        document.getElementById('main-banner-img').src = BANNER_IMAGE_URL;
+
+        /* ==========================================================
+           2. INDIVIDUAL LAYER CONTENT ARCHITECTURE
+           ========================================================== */
+        const nodeDataContent = {
+            "node_1": {
+                title: "Verb কী?",
+                html: `
+                    <div class="content-cat-box">
+                        <h4>📌 Verb-এর মৌলিক সংজ্ঞা</h4>
+                        <p>যে শব্দ বা Word দ্বারা কোনো কিছু করা, হওয়া, খাওয়া, যাওয়া, দেখা, অবস্থান করা বা স্বত্বে থাকা বোঝায়, তাকে ইংরেজি ব্যাকরণে <strong>Verb (ক্রিয়া)</strong> বলা হয়। Verb হলো বাক্যের প্রাণ (Heart of a Sentence)।</p>
+                    </div>
+                    <div class="content-cat-box">
+                        <h4>💡 বাস্তব জীবনের রূপক ও উদাহরণ</h4>
+                        <p>মানুষ যেমন হৃৎপিণ্ড ছাড়া বাঁচতে পারে না, তেমনি Verb ছাড়া ইংরেজি ভাষায় কোনো সার্থক বাক্য গঠন করা যায় না।</p>
+                        <div class="example-box">
+                            • <strong>Action (কাজ):</strong> He <span class="eng-text">writes</span> a poem. (সে একটি কবিতা লেখে।)<br>
+                            • <strong>State (অবস্থা):</strong> She <span class="eng-text">seems</span> happy. (তাকে সুখী মনে হচ্ছে।)<br>
+                            • <strong>Possession (মালিকানা):</strong> They <span class="eng-text">have</span> a car. (তাদের একটি গাড়ি আছে।)
+                        </div>
+                    </div>
+                `
+            },
+
+            "node_2": {
+                title: "কেন ব্যবহার করব?",
+                html: `
+                    <div class="content-cat-box">
+                        <h4>⚡ বাক্যের প্রধান চালিকাশক্তি (Engine of Sentence)</h4>
+                        <p>Subject এবং Object যতই শক্তিশালী হোক না কেন, তাদের মাঝে কার্যপ্রণালী এবং সময়ের বন্ধন তৈরি করার একমাত্র দায়িত্ব Verb-এর।</p>
+                    </div>
+                    <div class="content-cat-box">
+                        <h4>🎯 Verb ব্যবহারের ৩টি মূল উদ্দেশ্য:</h4>
+                        <p><strong>১. সময় নির্ধারণ (Tense Identification):</strong> কাজ কখন ঘটছে (অতীত, বর্তমান না ভবিষ্যৎ) তা Verb-এর রূপ পরিবর্তন ছাড়া বোঝা অসম্ভব।</p>
+                        <p><strong>২. কাজের ধরন স্পষ্ট করা:</strong> কাজ সম্পন্ন হয়েছে, চলছে নাকি নিয়মিত ঘটে তা বোঝাতে Verb অপরিহার্য।</p>
+                        <p><strong>৩. পূর্ণাঙ্গ ভাব প্রকাশ:</strong> কেবল Verb ব্যবহারের মাধ্যমেও একটি পূর্ণাঙ্গ নির্দেশমূলক বাক্য গঠন করা যায় (যেমন: <span class="eng-text">"Go!", "Stop!"</span>)।</p>
+                    </div>
+                `
+            },
+
+            "node_3": {
+                title: "বাক্যে অবস্থান কোথায়?",
+                html: `
+                    <div class="content-cat-box">
+                        <h4>📍 বাক্যে Verb-এর সঠিক স্থানসমূহ</h4>
+                        <p>ইংরেজি ভাষার আদর্শ গঠন হলো <strong>Subject + Verb + Object (SVO)</strong>। তবে বাক্যের ধরনভেদে এর অবস্থানের তারতম্য ঘটে:</p>
+                    </div>
+                    <div class="content-cat-box">
+                        <p><strong>১. বর্ণনামূলক বাক্যে (Assertive):</strong> Subject-এর ঠিক পরেই Finite Verb বসে।</p>
+                        <div class="example-box">The student <span class="eng-text">reads</span> regular books.</div>
+                        <p><strong>২. প্রশ্নবোধক বাক্যে (Interrogative):</strong> Subject-এর পূর্বে Auxiliary Verb এবং পরে Main Verb বসে।</p>
+                        <div class="example-box"><span class="eng-text">Did</span> you <span class="eng-text">see</span> him?</div>
+                        <p><strong>৩. আদেশ/উপদেশমূলক বাক্যে (Imperative):</strong> বাক্যের শুরুতেই Verb বসে (Subject উহ্য থাকে)।</p>
+                        <div class="example-box"><span class="eng-text">Open</span> the main door immediately.</div>
+                    </div>
+                `
+            },
+
+            "node_4": {
+                title: "Principal Verb-এর সম্পূর্ণ এবং পূর্ণাঙ্গ শ্রেণিবিভাগ (কত প্রকার?)",
+                html: `
+                    <p style="margin-bottom:1.2rem; color:var(--text-sub);">ইংরেজি ব্যাকরণের সমস্ত নিয়ম ও আধুনিক ভাষাবিজ্ঞান (Modern Linguistics) অনুযায়ী Principal Verb (প্রধান ক্রিয়া)-এর সম্পূর্ণ এবং পূর্ণাঙ্গ শ্রেণিবিভাগ দেওয়া হলো। এর বাইরে Principal Verb-এর আর কোনো প্রকারভেদ নেই। সহজে বোঝার জন্য পুরো বিষয়টিকে ৪টি প্রধান ক্যাটাগরিতে ভাগ করে আলোচনা করা হলো:</p>
+                    
+                    <div class="content-cat-box">
+                        <h4 style="color:var(--gold);">ক্যাটাগরি ১: কর্ম বা Object গ্রহণের ওপর ভিত্তি করে (মৌলিক প্রকার)</h4>
+                        <p>এটিই Principal Verb-এর প্রধান দুটি ভাগ:</p>
+                        <p><strong>১. Transitive Verb (সকর্মক ক্রিয়া):</strong> যে Verb-এর অর্থ সম্পূর্ণ করতে এক বা একাধিক Object (কর্ম) প্রয়োজন হয়।</p>
+                        <div class="example-box">উদাহরণ: He reads a book. (এখানে 'a book' হলো object)।</div>
+                        <p><strong>২. Intransitive Verb (অকর্মক ক্রিয়া):</strong> যে Verb-এর অর্থ সম্পূর্ণ করতে কোনো Object-এর প্রয়োজন হয় না।</p>
+                        <div class="example-box">উদাহরণ: Birds fly. / She sleeps.</div>
+                    </div>
+
+                    <div class="content-cat-box">
+                        <h4 style="color:var(--gold);">ক্যাটাগরি ২: Transitive Verb-এর সকল উপ-প্রকার (Sub-types)</h4>
+                        <p>Transitive Verb-এর ভেতরে কাজের ধরন ও অবজেক্টের বৈশিষ্ট্য অনুযায়ী ৫টি ভাগ রয়েছে:</p>
+                        <p><strong>১. Mono-transitive Verb:</strong> যে Verb-এর মাত্র একটি Object থাকে।</p>
+                        <div class="example-box">উদাহরণ: I know him.</div>
+                        <p><strong>২. Di-transitive Verb:</strong> যে Verb-এর দুটি Object থাকে (একটি ব্যক্তিবাচক বা Indirect Object, অন্যটি বস্তুবাচক বা Direct Object)।</p>
+                        <div class="example-box">উদাহরণ: He gave me (Indirect) a pen (Direct).</div>
+                        <p><strong>৩. Factitive Verb:</strong> একটি অবজেক্ট থাকার পরেও বাক্যের অর্থ অসম্পূর্ণ থাকে এবং অর্থ পূর্ণ করতে অতিরিক্ত আরেকটি Noun বা Adjective (Complement) আনতে হয়।</p>
+                        <div class="example-box">উদাহরণ: We made him captain. (এখানে 'captain' হলো factitive complement)।</div>
+                        <p><strong>৪. Reflexive Verb:</strong> যে Verb-এর Subject এবং Object একই ব্যক্তি বা বস্তু হয় (Object হিসেবে myself, himself, themselves ইত্যাদি বসে)।</p>
+                        <div class="example-box">উদাহরণ: She fanned herself. (সে নিজেকে বাতাস করল)।</div>
+                        <p><strong>৫. Reciprocal Verb:</strong> যে Verb দ্বারা পারস্পরিক সম্পর্ক বা কাজ বোঝায় (Object হিসেবে each other বা one another বসে)।</p>
+                        <div class="example-box">উদাহরণ: They helped each other.</div>
+                    </div>
+
+                    <div class="content-cat-box">
+                        <h4 style="color:var(--gold);">ক্যাটাগরি ৩: Intransitive Verb-এর সকল উপ-প্রকার (Sub-types)</h4>
+                        <p>অবজেক্ট না থাকলেও বাক্যে ব্যবহারের ভিন্নতার কারণে Intransitive Verb-কে ৫টি ভাগে ভাগ করা যায়:</p>
+                        <p><strong>১. Linking Verb / Copulative Verb:</strong> এই Verb-গুলো কোনো কাজ না বুঝিয়ে কেবল Subject এবং তার পরবর্তী পদের (Complement) মধ্যে সংযোগ তৈরি করে।</p>
+                        <div class="example-box">উদাহরণ: He is a doctor. / Honey tastes sweet.</div>
+                        <p><strong>২. Cognate Verb:</strong> যখন কোনো Intransitive Verb তার সমার্থক কোনো Noun-কে Object হিসেবে গ্রহণ করে Transitive-এর মতো আচরণ করে।</p>
+                        <div class="example-box">উদাহরণ: He fought a brave fight. (এখানে fought এবং fight একই উৎস থেকে এসেছে)।</div>
+                        <p><strong>৩. Quasi-Passive Verb:</strong> এই Verb-গুলোর গঠন Active হলেও এদের অর্থ বা ভাব প্রকাশ পায় Passive ভয়েসের মতো।</p>
+                        <div class="example-box">উদাহরণ: Rice sells cheap. (চাল সস্তায় বিক্রি হয়)।</div>
+                        <p><strong>৪. Ergative Verb / Amphi-transitive:</strong> কিছু Verb যা আলাদা কোনো পরিবর্তন ছাড়াই বাক্যের গঠনভেদে Transitive এবং Intransitive দুই ভাবেই বসতে পারে।</p>
+                        <div class="example-box">
+                            • The window broke. (জানালাটি ভেঙে গেল - Intransitive)<br>
+                            • He broke the window. (সে জানালাটি ভাঙল - Transitive)
+                        </div>
+                        <p><strong>৫. Prepositional / Group Verb:</strong> যখন কোনো Intransitive Verb-এর ঠিক পরে একটি Preposition বসে পুরো জোড়াটি একটি Transitive Verb-এর মতো অর্থ প্রকাশ করে।</p>
+                        <div class="example-box">উদাহরণ: They laughed at the poor man.</div>
+                    </div>
+
+                    <div class="content-cat-box">
+                        <h4 style="color:var(--gold);">ক্যাটাগরি ৪: অন্যান্য বিশেষ ব্যবহারের ওপর ভিত্তি করে প্রকারভেদ</h4>
+                        <p>কাজের ধরন এবং টেন্স অনুযায়ী রূপান্তরের ভিত্তিতে আরও ৪টি প্রকার পাওয়া যায়:</p>
+                        <p><strong>১. Causative Verb (প্রযোজক ক্রিয়া):</strong> যখন Subject নিজে কাজটি না করে অন্যকে দিয়ে করিয়ে নেয় (যেমন: make, get, let, help, have, feed, show)।</p>
+                        <div class="example-box">উদাহরণ: I feed the baby. (আমি শিশুকে খাওয়াচ্ছি)।</div>
+                        <p><strong>২. Impersonal Verb:</strong> যে Verb-এর কোনো নির্দিষ্ট ব্যক্তিবাচক Subject থাকে না, সর্বদা থার্ড পারসন এবং 'It' দ্বারা বাক্য শুরু হয় (সাধারণত আবহাওয়া বা প্রাকৃতিক ঘটনা বোঝাতে)।</p>
+                        <div class="example-box">উদাহরণ: It rains. / It snows.</div>
+                        <p><strong>৩. Strong Verb / Irregular Verb:</strong> Tense পরিবর্তনের সময় যে Verb-গুলোর ভেতরের Vowel পরিবর্তন করে Past এবং Past Participle করতে হয়।</p>
+                        <div class="example-box">উদাহরণ: Sing ➔ Sang ➔ Sung.</div>
+                        <p><strong>৪. Weak Verb / Regular Verb:</strong> Tense পরিবর্তনের সময় যে Verb-গুলোর শেষে d, ed, বা t যোগ করতে হয়।</p>
+                        <div class="example-box">উদাহরণ: Play ➔ Played ➔ Played.</div>
+                    </div>
+
+                    <div class="content-cat-box" style="border: 2px dashed var(--gold); background: rgba(250, 204, 21, 0.05);">
+                        <h4 style="color:var(--gold); text-align:center;">📋 একনজরে মাস্টার চার্ট</h4>
+                        <p>• <strong>মৌলিক প্রকার:</strong> Transitive, Intransitive</p>
+                        <p>• <strong>Transitive-এর অংশ:</strong> Mono-transitive, Di-transitive, Factitive, Reflexive, Reciprocal</p>
+                        <p>• <strong>Intransitive-এর অংশ:</strong> Linking, Cognate, Quasi-Passive, Ergative, Prepositional</p>
+                        <p>• <strong>বিশেষ প্রকার:</strong> Causative, Impersonal, Strong / Weak</p>
+                    </div>
+                `
+            },
+
+            "node_5": {
+                title: "Transitive vs Intransitive",
+                html: `
+                    <div class="content-cat-box">
+                        <h4>⚔️ পার্থক্য চেনার সবচেয়ে সহজ উপায়</h4>
+                        <p>Verb-কে <strong>"কী (What)"</strong> অথবা <strong>"কাকে (Whom)"</strong> দ্বারা প্রশ্ন করলে যদি উত্তর পাওয়া যায়, তবে সেটি <strong>Transitive</strong>। উত্তর না পাওয়া গেলে সেটি <strong>Intransitive</strong>।</p>
+                    </div>
+                    <div class="content-cat-box">
+                        <h4>📊 তুলনামূলক উদাহরণ:</h4>
+                        <div class="example-box">
+                            • <strong>Transitive:</strong> The boy plays <span class="eng-text">cricket</span>.<br>
+                            <em>(প্রশ্ন: কী খেলে? উত্তর: ক্রিকেট। সুতরাং এটি Transitive)</em>
+                        </div>
+                        <div class="example-box">
+                            • <strong>Intransitive:</strong> The boy plays <span class="eng-text">in the field</span>.<br>
+                            <em>(প্রশ্ন: কী খেলে? উত্তর নেই! 'কোথায় খেলে' তার উত্তর আছে। তাই এটি Intransitive)</em>
+                        </div>
+                    </div>
+                `
+            },
+
+            "node_6": {
+                title: "Auxiliary Verb কী?",
+                html: `
+                    <div class="content-cat-box">
+                        <h4>🤝 সাহায্যকারী ক্রিয়া (Auxiliary / Helping Verb)</h4>
+                        <p>যে Verb নিজে স্বাধীনভাবে পূর্ণ অর্থ প্রকাশ না করে Main Verb-কে Tense, Voice বা Mood গঠনে সাহায্য করে, তাকে Auxiliary Verb বলে।</p>
+                    </div>
+                    <div class="content-cat-box">
+                        <h4>প্রধান ২টি ভাগ:</h4>
+                        <p><strong>১. Primary Auxiliary:</strong> am, is, are, was, were, do, does, did, have, has, had.</p>
+                        <p><strong>২. Modal Auxiliary:</strong> can, could, may, might, shall, should, will, would, must, ought to, need, dare.</p>
+                        <div class="example-box">
+                            She <span class="eng-text">is</span> (Primary) writing. / You <span class="eng-text">must</span> (Modal) study.
+                        </div>
+                    </div>
+                `
+            },
+
+            "node_7": {
+                title: "Gerund & Participle",
+                html: `
+                    <div class="content-cat-box">
+                        <h4>🔄 Double Parts of Speech (Non-Finite Group)</h4>
+                        <p>Verb থেকে তৈরি হলেও এরা বাক্যে Noun বা Adjective-এর কাজ সম্পন্ন করে।</p>
+                    </div>
+                    <div class="content-cat-box">
+                        <p><strong>১. Gerund (Verb + ing = Noun):</strong> এটি একই সাথে Verb এবং Noun-এর কাজ করে।</p>
+                        <div class="example-box"><span class="eng-text">Swimming</span> is a good exercise. (এখানে Swimming বাক্যের Subject)</div>
+                        <p><strong>২. Participle (Verb = Adjective):</strong> এটি একই সাথে Verb এবং Adjective-এর কাজ করে।</p>
+                        <div class="example-box">Do not jump from a <span class="eng-text">running</span> bus. (এখানে running শব্দটি bus-এর অবস্থা বোঝাচ্ছে)</div>
+                    </div>
+                `
+            },
+
+            "node_8": {
+                title: "শেখার উপায় কী?",
+                html: `
+                    <div class="content-cat-box">
+                        <h4>🚀 Verb আয়ত্তে আনার মাস্টার টেকনিক</h4>
+                        <p>ইংরেজি গ্রামারে পূর্ণ দক্ষতা অর্জন করতে নিচের ৪টি ধাপ অনুসরণ করুন:</p>
+                    </div>
+                    <div class="content-cat-box">
+                        <p><strong>১. রূপান্তর শিখুন:</strong> প্রতিদিন অন্তত ১০টি Verb-এর ৫টি ফর্ম (V1, V2, V3, V4, V5) মুখস্থ করুন।</p>
+                        <p><strong>২. Object চিহ্নিত করুন:</strong> যেকোনো বাক্য পড়ার সময় খেয়াল করুন Verb-এর পর Object আছে নাকি Complement।</p>
+                        <p><strong>৩. Contextual Practice:</strong> কেবল নিয়ম না পড়ে উদাহরণ তৈরি করে নিজে নিজে বাক্য বানিয়ে চর্চা করুন।</p>
+                        <p><strong>৪. কুইজে অংশগ্রহণ:</strong> আমাদের অ্যাপের লাইভ কুইজ মডিউলে অংশ নিয়ে নিয়মিত নিজের স্কোর যাচাই করুন।</p>
+                    </div>
+                `
+            }
+        };
+
+        /* ==========================================================
+           3. THEME MANAGER
+           ========================================================== */
+        const themeManager = {
+            themes: [
+                { name: 'Cyberpunk', class: 'theme-cyber' },
+                { name: 'Golden', class: 'theme-gold' },
+                { name: 'Ocean', class: 'theme-ocean' },
+                { name: 'Sunset', class: 'theme-sunset' },
+                { name: 'Emerald', class: 'theme-emerald' }
+            ],
+            index: 0,
+            nextTheme() {
+                this.index = (this.index + 1) % this.themes.length;
+                const t = this.themes[this.index];
+                document.body.className = t.class;
+                document.getElementById('theme-display-name').innerText = t.name;
+            }
+        };
+
+        /* ==========================================================
+           4. ROUTER & SIDEBAR DRAWER
+           ========================================================== */
+        const router = {
+            toggleBtn: document.getElementById('drawer-toggle-btn'),
+            mask: document.getElementById('drawer-mask'),
+            drawer: document.getElementById('side-drawer'),
+
+            init() {
+                this.toggleBtn.addEventListener('click', () => this.toggle());
+                this.mask.addEventListener('click', () => this.toggle());
+            },
+            toggle() {
+                this.drawer.classList.toggle('active');
+                this.mask.classList.toggle('active');
+            },
+            navigateTo(viewId, linkEl) {
+                document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.drawer-link').forEach(l => l.classList.remove('active'));
+
+                document.getElementById(viewId).classList.add('active');
+                if (linkEl) linkEl.classList.add('active');
+
+                if (this.drawer.classList.contains('active')) {
+                    this.toggle();
+                }
+
+                if (viewId === 'home') {
+                    radialEngine.initNodes();
+                }
+            }
+        };
+        router.init();
+
+        /* ==========================================================
+           5. RADIAL ENGINE (LOCKED STABLE POSITIONS & POPUP)
+           ========================================================== */
+        const radialEngine = {
+            viewport: document.getElementById('radial-viewport'),
+            overlay: document.getElementById('notebook-overlay'),
+            title: document.getElementById('notebook-title'),
+            body: document.getElementById('notebook-body'),
+            expanded: false,
+
+            nodesList: [
+                { id: "node_1", label: "Verb কী?" },
+                { id: "node_2", label: "কেন ব্যবহার করব?" },
+                { id: "node_3", label: "বাক্যে অবস্থান কোথায়?" },
+                { id: "node_4", label: "কত প্রকার?" },
+                { id: "node_5", label: "Transitive vs Intransitive", highlight: true },
+                { id: "node_6", label: "Auxiliary Verb কী?" },
+                { id: "node_7", label: "Gerund & Participle" },
+                { id: "node_8", label: "শেখার উপায় কী?" }
+            ],
+
+            initNodes() {
+                const existing = this.viewport.querySelectorAll('.radial-node');
+                existing.forEach(n => n.remove());
+
+                const total = this.nodesList.length;
+                const radius = 185; // Fixed radial radius
+
+                this.nodesList.forEach((item, index) => {
+                    const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
+                    const x = Math.round(radius * Math.cos(angle));
+                    const y = Math.round(radius * Math.sin(angle));
+
+                    const nodeBtn = document.createElement('div');
+                    nodeBtn.className = `radial-node ${item.highlight ? 'highlight-node' : ''}`;
+                    nodeBtn.innerHTML = item.label;
+                    nodeBtn.dataset.x = x;
+                    nodeBtn.dataset.y = y;
+
+                    // Direct Click event to open 3D Glass Window
+                    nodeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.openNotebook(item.id);
+                    });
+
+                    this.viewport.appendChild(nodeBtn);
+                });
+            },
+
+            toggleRadial() {
+                this.expanded = !this.expanded;
+                const nodes = this.viewport.querySelectorAll('.radial-node');
+                const trigger = document.getElementById('main-verb-trigger');
+
+                if (this.expanded) {
+                    this.viewport.classList.add('expanded');
+                    trigger.style.boxShadow = "0 0 60px var(--gold), inset 0 0 25px rgba(255,255,255,0.8)";
+                    nodes.forEach(node => {
+                        const x = node.dataset.x;
+                        const y = node.dataset.y;
+                        node.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+                    });
+                } else {
+                    this.viewport.classList.remove('expanded');
+                    trigger.style.boxShadow = "0 0 35px var(--accent-pink), inset 0 0 15px rgba(255,255,255,0.4)";
+                    nodes.forEach(node => {
+                        node.style.transform = `translate(0px, 0px) scale(0.2)`;
+                    });
+                }
+            },
+
+            openNotebook(nodeId) {
+                const data = nodeDataContent[nodeId];
+                if (data) {
+                    this.title.innerText = data.title;
+                    this.body.innerHTML = data.html;
+                    this.overlay.style.display = 'flex';
+                }
+            },
+
+            closeNotebook() {
+                this.overlay.style.display = 'none';
+            }
+        };
+        radialEngine.initNodes();
+
+        /* ==========================================================
+           6. VERB BANK ENGINE (200 VERBS ARCHIVE)
+           ========================================================== */
+        const verbBankEngine = {
+            tbody: document.getElementById('verb-bank-tbody'),
+            baseVerbs: [
+                { bn: "করা", v1: "Do", v2: "Did", v3: "Done", v4: "Doing", v5: "Does" },
+                { bn: "যাওয়া", v1: "Go", v2: "Went", v3: "Gone", v4: "Going", v5: "Goes" },
+                { bn: "খাওয়া", v1: "Eat", v2: "Ate", v3: "Eaten", v4: "Eating", v5: "Eats" },
+                { bn: "পড়া", v1: "Read", v2: "Read", v3: "Read", v4: "Reading", v5: "Reads" },
+                { bn: "লেখা", v1: "Write", v2: "Wrote", v3: "Written", v4: "Writing", v5: "Writes" },
+                { bn: "দেখা", v1: "See", v2: "Saw", v3: "Seen", v4: "Seeing", v5: "Sees" },
+                { bn: "আসা", v1: "Come", v2: "Came", v3: "Come", v4: "Coming", v5: "Comes" },
+                { bn: "খেলা", v1: "Play", v2: "Played", v3: "Played", v4: "Playing", v5: "Plays" },
+                { bn: "দেওয়া", v1: "Give", v2: "Gave", v3: "Given", v4: "Giving", v5: "Gives" },
+                { bn: "নেওয়া", v1: "Take", v2: "Took", v3: "Taken", v4: "Taking", v5: "Takes" }
+            ],
+
+            generate200Verbs() {
+                this.tbody.innerHTML = '';
+                let count = 1;
+                for (let i = 0; i < 20; i++) {
+                    this.baseVerbs.forEach(v => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${count++}</td>
+                            <td>${v.bn}</td>
+                            <td class="eng-text">${v.v1}</td>
+                            <td class="eng-text">${v.v2}</td>
+                            <td class="eng-text">${v.v3}</td>
+                            <td class="eng-text">${v.v4}</td>
+                            <td class="eng-text">${v.v5}</td>
+                        `;
+                        this.tbody.appendChild(tr);
+                    });
+                }
+            },
+
+            filter() {
+                const q = document.getElementById('verb-search-input').value.toLowerCase();
+                const rows = this.tbody.querySelectorAll('tr');
+                rows.forEach(r => {
+                    r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
+                });
+            }
+        };
+        verbBankEngine.generate200Verbs();
+
+        /* ==========================================================
+           7. 50 GRAMMAR RULES ENGINE
+           ========================================================== */
+        const rulesEngine = {
+            box: document.getElementById('rules-container-box'),
+            generate50Rules() {
+                const baseRules = [
+                    { t: "Subject-Verb Agreement Rule", d: "Subject Singular হলে Verb Singular হবে; Plural হলে Plural হবে। (e.g., He <span class='eng-text'>goes</span>, They <span class='eng-text'>go</span>)।" },
+                    { t: "Preposition-এর পর Verb", d: "Preposition-এর পর Verb বসলে <span class='eng-text'>-ing</span> যুক্ত হয়। (e.g., Fond of <span class='eng-text'>reading</span>)।" },
+                    { t: "Modal Auxiliary Rule", d: "Modal-এর পর সর্বদা Base Form (V1) বসে। (e.g., You must <span class='eng-text'>work</span>)।" },
+                    { t: "Causative 'Make' & 'Let'", d: "Make/Let-এর পর Bare Infinitive (V1) বসে। (e.g., He made me <span class='eng-text'>laugh</span>)।" },
+                    { t: "Did / Do / Does-এর নিয়ম", d: "Did/Do/Does-এর পর মূল Verb V1-এ ফিরে যায়। (e.g., Did she <span class='eng-text'>go</span>?)" }
+                ];
+
+                this.box.innerHTML = '';
+                let count = 1;
+                for (let i = 0; i < 10; i++) {
+                    baseRules.forEach(r => {
+                        const div = document.createElement('div');
+                        div.className = 'rule-item-box';
+                        div.innerHTML = `<h4>নিয়ম ${count++}: ${r.t}</h4><p>${r.d}</p>`;
+                        this.box.appendChild(div);
+                    });
+                }
+            }
+        };
+        rulesEngine.generate50Rules();
+
+        /* ==========================================================
+           8. QUIZ ENGINE
+           ========================================================== */
+        const googleQuizEngine = {
+            box: document.getElementById('quiz-container-box'),
+            questions: [
+                {
+                    q: "'He is reading a book' — এখানে 'reading' কোন প্রকারের Verb?",
+                    opts: ["Transitive Verb", "Intransitive Verb", "Gerund", "Infinitive"],
+                    ans: 0,
+                    exp: "'reading'-এর পর 'a book' Object রয়েছে, তাই এটি Transitive Verb।"
+                },
+                {
+                    q: "'Swimming is good exercise' — বাক্যে 'Swimming' কী?",
+                    opts: ["Participle", "Gerund", "Finite Verb", "Adverb"],
+                    ans: 1,
+                    exp: "Verb+ing যখন Subject/Noun-এর কাজ করে, তাকে Gerund বলে।"
+                }
+            ],
+
+            render() {
+                this.box.innerHTML = '';
+                this.questions.forEach((qObj, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'quiz-card-box';
+                    card.innerHTML = `
+                        <p style="font-weight:bold; margin-bottom:0.8rem; font-size:1.1rem;">${i + 1}. ${qObj.q}</p>
+                        ${qObj.opts.map((opt, oIdx) => `
+                            <button class="quiz-option-btn" onclick="googleQuizEngine.check(this, ${oIdx === qObj.ans}, '${qObj.exp.replace(/'/g, "\\'")}')">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                        <div class="explanation-box"></div>
+                    `;
+                    this.box.appendChild(card);
+                });
+            },
+
+            check(btn, isCorrect, exp) {
+                const parent = btn.parentElement;
+                const expBox = parent.querySelector('.explanation-box');
+
+                if (isCorrect) {
+                    btn.style.background = '#10b981';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.background = '#ef4444';
+                    btn.style.color = 'white';
+                }
+
+                expBox.style.display = 'block';
+                expBox.innerHTML = `<strong>ব্যাখ্যা:</strong> ${exp}`;
+            },
+
+            syncNewQuestions() {
+                this.questions.push({
+                    q: "She made me _____ the essay.",
+                    opts: ["to rewrite", "rewrite", "rewriting", "rewritten"],
+                    ans: 1,
+                    exp: "Causative verb 'Make'-এর পর Bare Infinitive (V1) বসে।"
+                });
+                this.render();
+            }
+        };
+        googleQuizEngine.render();
+
+        /* ==========================================================
+           9. BACKGROUND PARTICLES CANVAS
+           ========================================================== */
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.speedY = Math.random() * 0.6 - 0.3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 35; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>
