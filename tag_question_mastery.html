@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Tag Question Mastery - পূর্ণাঙ্গ গাইড</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for Quiz Celebration -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        bangla: ['"Tiro Bangla"', 'serif'],
+                        english: ['"Times New Roman"', 'Times', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        cinzel: ['"Cinzel"', 'serif'],
+                    },
+                    colors: {
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        indigoDark: '#0b0f19',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom 3D Book & Glassmorphism Styling */
+        body {
+            background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, #0f172a 50%, #020617 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            font-family: 'Tiro Bangla', 'Plus Jakarta Sans', serif;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-golden {
+            background: rgba(45, 35, 15, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .3d-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .3d-card:hover {
+            transform: translateY(-8px) rotateX(4deg) rotateY(-2deg);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.35);
+        }
+
+        /* Animated Page Flip Container */
+        .book-container {
+            perspective: 1500px;
+        }
+
+        .page-content {
+            display: none;
+            opacity: 0;
+            transform: rotateY(-15deg) scale(0.96);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform-origin: left center;
+        }
+
+        .page-content.active {
+            display: block;
+            opacity: 1;
+            transform: rotateY(0deg) scale(1);
+        }
+
+        /* Glowing accents */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+        }
+
+        .glow-blue {
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen justify-between selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goToPage(0)">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-book-open text-slate-950 font-bold text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-cinzel text-lg md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-yellow-200 to-indigo-300">
+                        TAG QUESTION MASTERY
+                    </h1>
+                    <p class="text-xs text-slate-400 font-bangla hidden sm:block">ইংরেজি ব্যাকরণের সহজ ও পূর্ণাঙ্গ গাইড</p>
+                </div>
+            </div>
+
+            <!-- Page Selector Indicators -->
+            <div class="hidden lg:flex items-center space-x-1 bg-slate-900/90 p-1.5 rounded-full border border-slate-800 text-xs">
+                <button onclick="goToPage(0)" class="nav-btn px-3 py-1.5 rounded-full transition-all text-slate-300 hover:text-white" data-page="0">প্রচ্ছদ</button>
+                <button onclick="goToPage(1)" class="nav-btn px-3 py-1.5 rounded-full transition-all text-slate-300 hover:text-white" data-page="1">১. প্রশ্নের প্রকার</button>
+                <button onclick="goToPage(2)" class="nav-btn px-3 py-1.5 rounded-full transition-all text-slate-300 hover:text-white" data-page="2">২. Tag Question কী?</button>
+                <button onclick="goToPage(3)" class="nav-btn px-3 py-1.5 rounded-full transition-all text-slate-300 hover:text-white" data-page="3">৩. ৫টি স্বর্ণালী নিয়ম</button>
+                <button onclick="goToPage(4)" class="nav-btn px-3 py-1.5 rounded-full transition-all text-slate-300 hover:text-white" data-page="4">৪. বিশেষ ব্যতিক্রম</button>
+                <button onclick="goToPage(5)" class="nav-btn px-3 py-1.5 rounded-full transition-all text-slate-300 hover:text-white" data-page="5">৫. উদাহরণ ও অডিও</button>
+                <button onclick="goToPage(6)" class="nav-btn px-3 py-1.5 rounded-full transition-all text-slate-300 hover:text-white" data-page="6">৬. কুইজ অ্যারেনা</button>
+            </div>
+
+            <!-- Audio Voice Accent Selector -->
+            <div class="flex items-center space-x-2">
+                <button id="voiceToggleBtn" onclick="toggleVoiceAccent()" class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs px-3 py-2 rounded-lg border border-amber-500/30 transition-all">
+                    <i class="fa-solid fa-volume-high"></i>
+                    <span id="voiceLabel" class="hidden sm:inline font-sans">Voice: US English</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Content Container -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6 md:py-10 book-container">
+        
+        <!-- PAGE 0: COVER / HERO SECTION -->
+        <section id="page-0" class="page-content active">
+            <div class="glass-card-golden rounded-3xl p-8 md:p-14 text-center relative overflow-hidden my-auto border border-amber-500/30">
+                <!-- Background decorative shapes -->
+                <div class="absolute -top-24 -left-24 w-72 h-72 bg-indigo-600/30 rounded-full filter blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-amber-500/20 rounded-full filter blur-3xl pointer-events-none"></div>
+
+                <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-sm font-semibold mb-6 tracking-wide uppercase">
+                    3D Interactive Master Class
+                </span>
+
+                <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-100 glow-text mb-4 leading-tight">
+                    COMPLETE TAG QUESTION MASTERY
+                </h1>
+                
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-bangla text-indigo-200 font-bold mb-6">
+                    সহজ বাংলায় ইংরেজি ট্যাগ কোশ্চেন-এর এ টু জেড পূর্ণাঙ্গ ডিজিটাল বই
+                </h2>
+
+                <p class="max-w-3xl mx-auto text-slate-300 text-base md:text-lg font-bangla leading-relaxed mb-10">
+                    তুমি কি ইংরেজি প্রশ্ন এবং ট্যাগ কোশ্চেন নিয়ে চিন্তিত? আর কোনো ভয় নেই! নিয়ম, স্পোকেন অডিও প্র্যাকটিস, বাস্তব জীবনের উদাহরণ এবং ইন্টারেক্টিভ কুইজ নিয়ে তৈরি এই অ্যাপটি তোমাকে Tag Question-এ ১০০% দক্ষ করে তুলবে।
+                </p>
+
+                <!-- Quick Navigation Cards Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+                    <div onclick="goToPage(1)" class="3d-card p-4 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-amber-400/60 cursor-pointer text-left">
+                        <i class="fa-solid fa-circle-question text-amber-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-white text-sm md:text-base font-bangla">১. প্রশ্নের প্রকারভেদ</h3>
+                        <p class="text-xs text-slate-400 font-bangla">Yes/No ও WH Question</p>
+                    </div>
+                    <div onclick="goToPage(2)" class="3d-card p-4 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-amber-400/60 cursor-pointer text-left">
+                        <i class="fa-solid fa-comment-dots text-indigo-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-white text-sm md:text-base font-bangla">২. Tag Question কী?</h3>
+                        <p class="text-xs text-slate-400 font-bangla">মূল ধারণা ও মূলভাব</p>
+                    </div>
+                    <div onclick="goToPage(3)" class="3d-card p-4 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-amber-400/60 cursor-pointer text-left">
+                        <i class="fa-solid fa-list-check text-emerald-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-white text-sm md:text-base font-bangla">৩. ৫টি স্বর্ণালী নিয়ম</h3>
+                        <p class="text-xs text-slate-400 font-bangla">সহজ সূত্র ও প্রনউন টেবিল</p>
+                    </div>
+                    <div onclick="goToPage(4)" class="3d-card p-4 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-amber-400/60 cursor-pointer text-left">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-white text-sm md:text-base font-bangla">৪. বিশেষ ব্যতিক্রম</h3>
+                        <p class="text-xs text-slate-400 font-bangla">Imperative, Seldom ইত্যাদি</p>
+                    </div>
+                    <div onclick="goToPage(5)" class="3d-card p-4 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-amber-400/60 cursor-pointer text-left">
+                        <i class="fa-solid fa-volume-high text-cyan-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-white text-sm md:text-base font-bangla">৫. উদাহরণ ও অডিও</h3>
+                        <p class="text-xs text-slate-400 font-bangla">অর্থসহ অডিও সেশন</p>
+                    </div>
+                    <div onclick="goToPage(6)" class="3d-card p-4 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-amber-400/60 cursor-pointer text-left">
+                        <i class="fa-solid fa-trophy text-yellow-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-white text-sm md:text-base font-bangla">৬. কুইজ অ্যারেনা</h3>
+                        <p class="text-xs text-slate-400 font-bangla">নিজেকে যাচাই করো</p>
+                    </div>
+                </div>
+
+                <button onclick="goToPage(1)" class="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-extrabold text-lg shadow-xl shadow-amber-500/25 transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center space-x-3 mx-auto">
+                    <span>পড়া শুরু করুন</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 1: QUESTIONS OVERVIEW -->
+        <section id="page-1" class="page-content">
+            <div class="mb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">অধ্যায় ১</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-bangla text-white">ইংরেজিতে প্রশ্ন করার ২ প্রধান মাধ্যম</h2>
+                <p class="text-slate-400 text-base font-bangla mt-1">ইংরেজিতে সাধারণ প্রশ্ন মূলত ২ প্রকারের হয়ে থাকে।</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Type 1 Card -->
+                <div class="3d-card glass-card rounded-2xl p-6 border-t-4 border-t-emerald-500 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/30">প্রকার ১</span>
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold font-bangla text-emerald-300 mb-2">Yes / No Question</h3>
+                        <p class="text-slate-300 text-sm font-bangla leading-relaxed mb-4">
+                            যে প্রশ্নের উত্তর কেবল **'হ্যাঁ' (Yes)** বা **'না' (No)** দিয়ে শেষ করা যায়। এই ধরনের প্রশ্ন সর্বদা **Auxiliary Verb** (সাহায্যকারী ক্রিয়া) দ্বারা শুরু হয়। বাংলায় একে সর্বদা **'কি?'** দিয়ে প্রকাশ করা হয়।
+                        </p>
+                        
+                        <!-- Formula Box -->
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700/80 mb-4 text-xs md:text-sm font-english text-emerald-300">
+                            <strong>Formula:</strong> Auxiliary Verb + Subject + Main Verb + Object?
+                        </div>
+
+                        <!-- Example -->
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="font-english text-lg text-white font-semibold">Do you do the work?</p>
+                                    <p class="text-xs text-slate-400 font-bangla mt-0.5">তুমি কি কাজটি করছ?</p>
+                                </div>
+                                <button onclick="speakText('Do you do the work?')" class="p-2.5 rounded-full bg-slate-700 hover:bg-emerald-600 text-white transition-colors">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                            </div>
+                            <div class="mt-3 flex items-center space-x-2 text-xs">
+                                <span class="bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">উত্তর:</span>
+                                <span class="text-slate-300 font-bangla">হ্যাঁ (Yes) / না (No) 👍</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Type 2 Card -->
+                <div class="3d-card glass-card rounded-2xl p-6 border-t-4 border-t-indigo-500 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 text-xs font-bold rounded-full border border-indigo-500/30">প্রকার ২</span>
+                            <i class="fa-solid fa-circle-info text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold font-bangla text-indigo-300 mb-2">Explanation Question (WH Question)</h3>
+                        <p class="text-slate-300 text-sm font-bangla leading-relaxed mb-4">
+                            যে প্রশ্নের উত্তর কেবল 'হ্যাঁ' বা 'না' দিয়ে শেষ করা যায় না; বরং সম্পূর্ণ **ব্যাখ্যা বা তথ্য** প্রদান করতে হয়। এগুলো **WH Word** (Where, What, Why, How ইত্যাদি) দিয়ে শুরু হয়।
+                        </p>
+
+                        <!-- Formula Box -->
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700/80 mb-4 text-xs md:text-sm font-english text-indigo-300">
+                            <strong>Formula:</strong> WH Word + Auxiliary Verb + Subject + Main Verb + Object?
+                        </div>
+
+                        <!-- Example -->
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="font-english text-lg text-white font-semibold">Where do you want to go?</p>
+                                    <p class="text-xs text-slate-400 font-bangla mt-0.5">তুমি কোথায় যেতে চাও?</p>
+                                </div>
+                                <button onclick="speakText('Where do you want to go?')" class="p-2.5 rounded-full bg-slate-700 hover:bg-indigo-600 text-white transition-colors">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                            </div>
+
+                            <!-- Right / Wrong badges -->
+                            <div class="mt-3 space-y-1.5 text-xs font-bangla">
+                                <div class="flex items-center space-x-2 text-rose-400">
+                                    <span class="bg-rose-950 px-2 py-0.5 rounded border border-rose-800">ভুল উত্তর:</span>
+                                    <span>হ্যাঁ / না ✖️</span>
+                                </div>
+                                <div class="flex items-center space-x-2 text-emerald-400">
+                                    <span class="bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">সঠিক উত্তর:</span>
+                                    <span>আমি বাড়ি যেতে চাই। 👍</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Note Box -->
+            <div class="mt-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-start space-x-3">
+                <i class="fa-solid fa-lightbulb text-amber-400 text-xl mt-0.5"></i>
+                <p class="text-xs md:text-sm text-amber-200 font-bangla">
+                    <strong>মনে রেখো:</strong> Yes/No প্রশ্ন সরাসরি তথ্য চায় আর WH প্রশ্ন বিস্তারিত বিবরণ চায়। কিন্তু আমরা যখন আমাদের কোনো কথা অপরজন দ্বারা নিশ্চিত করতে চাই, তখনই প্রয়োজন হয় **Tag Question**-এর!
+                </p>
+            </div>
+        </section>
+
+        <!-- PAGE 2: WHAT IS TAG QUESTION? -->
+        <section id="page-2" class="page-content">
+            <div class="mb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">অধ্যায় ২</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-bangla text-white">তাহলে Tag Question কী?</h2>
+                <p class="text-slate-400 text-base font-bangla mt-1">ট্যাগ কোশ্চেনের মূল ধারণা ও এর প্রয়োগবিধি</p>
+            </div>
+
+            <div class="glass-card-golden rounded-2xl p-6 md:p-8 mb-8 border border-amber-500/30">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-400 text-2xl border border-amber-500/40">
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold font-bangla text-white">সংজ্ঞা (Definition)</h3>
+                        <p class="text-xs text-amber-300 font-sans">Meaning of 'Tag' = জুড়ে দেওয়া</p>
+                    </div>
+                </div>
+                <p class="text-slate-200 text-base md:text-lg font-bangla leading-relaxed">
+                    কথোপকথনের সময় বক্তা তার কোনো বক্তব্যের সত্যতা নিশ্চিত করার জন্য অথবা শ্রোতার সম্মতি পাওয়ার জন্য বাক্যের একদম শেষে যে সংক্ষিপ্ত প্রশ্ন জুড়ে দেয়, তাকেই **Tag Question** বলে। বাংলায় আমরা কথায় কথায় যেমন বলি— <span class="text-amber-300 font-semibold">"তাই না?"</span>, <span class="text-amber-300 font-semibold">"তাই তো?"</span> বা <span class="text-amber-300 font-semibold">"হয় কি?"</span>।
+                </p>
+            </div>
+
+            <!-- Interactive Example Card -->
+            <div class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 px-4 py-1 bg-amber-500 text-slate-950 text-xs font-bold font-sans rounded-bl-xl uppercase tracking-wider">
+                    Interactive Demo
+                </div>
+
+                <h3 class="text-xl font-bold font-bangla text-indigo-300 mb-6">বাস্তব জীবনের উদাহরণ দেখুন:</h3>
+
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="font-english text-xl md:text-2xl text-white">
+                            <span class="text-slate-300">You want to go,</span> 
+                            <span class="text-amber-400 font-bold underline decoration-amber-500 decoration-2 underline-offset-4">don't you?</span>
+                        </div>
+                        <button onclick="speakText('You want to go, don\'t you?')" class="self-start md:self-auto px-4 py-2 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold rounded-xl text-sm flex items-center space-x-2 transition-all">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>উচ্চারণ শুনুন</span>
+                        </button>
+                    </div>
+
+                    <hr class="border-slate-800">
+
+                    <div class="grid sm:grid-cols-2 gap-4 pt-2 font-bangla">
+                        <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800">
+                            <p class="text-xs text-slate-400 uppercase tracking-wide">মূল বাক্য (Statement)</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1">তুমি যেতে চাও,</p>
+                        </div>
+                        <div class="p-3 bg-amber-950/40 rounded-xl border border-amber-500/30">
+                            <p class="text-xs text-amber-400 uppercase tracking-wide">Tag (সংক্ষিপ্ত প্রশ্ন)</p>
+                            <p class="text-sm font-semibold text-amber-300 mt-1">তাই না?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: THE 5 GOLDEN RULES -->
+        <section id="page-3" class="page-content">
+            <div class="mb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">অধ্যায় ৩</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-bangla text-white">Tag Question করার ৫টি স্বর্ণালী নিয়ম</h2>
+                <p class="text-slate-400 text-base font-bangla mt-1">এই ৫টি ধাপ অনুসরণ করলে যেকোনো ট্যাগ কোশ্চেন নিখুঁতভাবে করা সম্ভব!</p>
+            </div>
+
+            <!-- 5 Rules Dynamic Grid -->
+            <div class="space-y-4 mb-8">
+                <!-- Rule 1 -->
+                <div class="3d-card glass-card rounded-2xl p-5 border-l-4 border-l-amber-500 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 font-extrabold flex items-center justify-center shrink-0 border border-amber-500/40 text-lg">
+                        ১
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold font-bangla text-white">Subject ও Auxiliary Verb (HV) নির্ধারণ</h3>
+                        <p class="text-sm text-slate-300 font-bangla mt-1 leading-relaxed">
+                            বাক্যের Main Clause থেকে Subject এবং সাহায্যকারী Verb (HV) নিতে হবে। বাক্যে যদি সরাসরি Auxiliary Verb (is, are, was, have, can ইত্যাদি) না থাকে, তবে Tense অনুযায়ী <strong class="text-amber-300">do, does</strong> বা <strong class="text-amber-300">did</strong> আনতে হবে।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule 2 -->
+                <div class="3d-card glass-card rounded-2xl p-5 border-l-4 border-l-indigo-500 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 font-extrabold flex items-center justify-center shrink-0 border border-indigo-500/40 text-lg">
+                        ২
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold font-bangla text-white">HV + Subject-এর Pronoun রূপ</h3>
+                        <p class="text-sm text-slate-300 font-bangla mt-1 leading-relaxed">
+                            Tag-এ কখনো আসল Noun সরাসরি বসে না। Subject-এর সর্বনাম বা **Pronoun form** বসাতে হবে। 
+                            (যেমন: Rahim $\rightarrow$ he, Girls $\rightarrow$ they)।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule 3 -->
+                <div class="3d-card glass-card rounded-2xl p-5 border-l-4 border-l-emerald-500 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 font-extrabold flex items-center justify-center shrink-0 border border-emerald-500/40 text-lg">
+                        ৩
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold font-bangla text-white">বিপরীতমুখী নিয়ম (Affirmative $\leftrightarrow$ Negative)</h3>
+                        <p class="text-sm text-slate-300 font-bangla mt-1 leading-relaxed">
+                            মূল বাক্যটি **Affirmative (হ্যাঁ-সূচক)** হলে Tag হবে **Negative (না-সূচক)** (সংক্ষিপ্ত রূপ যেমন: *don't, isn't, didn't*)। আর মূল বাক্যটি **Negative (না-সূচক)** হলে Tag হবে **Affirmative (হ্যাঁ-সূচক)**।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule 4 Pronoun Table Rule -->
+                <div class="3d-card glass-card rounded-2xl p-5 border-l-4 border-l-cyan-500 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 font-extrabold flex items-center justify-center shrink-0 border border-cyan-500/40 text-lg">
+                        ৪
+                    </div>
+                    <div class="w-full">
+                        <h3 class="text-lg font-bold font-bangla text-white">Pronoun ব্যবহারের নিয়ম একনজরে</h3>
+                        <p class="text-sm text-slate-300 font-bangla mt-1 mb-3">বাক্যের Subject অনুযায়ী সঠিক Pronoun সিলেক্ট করার চার্ট:</p>
+
+                        <!-- Pronoun Quick Reference Table -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-bangla">
+                            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-700">
+                                <span class="text-slate-400 block mb-1">পুরুষ বোঝালে</span>
+                                <span class="font-english font-bold text-amber-400 text-sm">He</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-700">
+                                <span class="text-slate-400 block mb-1">নারী বোঝালে</span>
+                                <span class="font-english font-bold text-amber-400 text-sm">She</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-700">
+                                <span class="text-slate-400 block mb-1">বস্তু/ইতর প্রাণী</span>
+                                <span class="font-english font-bold text-amber-400 text-sm">It</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-700">
+                                <span class="text-slate-400 block mb-1">Plural (বহুবচন)</span>
+                                <span class="font-english font-bold text-amber-400 text-sm">They</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rule 5 -->
+                <div class="3d-card glass-card rounded-2xl p-5 border-l-4 border-l-rose-500 flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-rose-500/20 text-rose-400 font-extrabold flex items-center justify-center shrink-0 border border-rose-500/40 text-lg">
+                        ৫
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold font-bangla text-white">প্রশ্নবোধক চিহ্ন (?) বাধ্যতামূলক</h3>
+                        <p class="text-sm text-slate-300 font-bangla mt-1 leading-relaxed">
+                            ট্যাগ কোশ্চেনের একদম শেষে অবশ্যই **প্রশ্নবোধক চিহ্ন (?)** দিতে হবে। চিহ্ন না দিলে পুরো উত্তরটি পরীক্ষায় ভুল বলে গণ্য হবে!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: ADVANCED RULES & EXCEPTIONS -->
+        <section id="page-4" class="page-content">
+            <div class="mb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">অধ্যায় ৪</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-bangla text-white">বিশেষ ব্যতিক্রম ও অ্যাডভান্সড নিয়মসমূহ</h2>
+                <p class="text-slate-400 text-base font-bangla mt-1">পরীক্ষায় সচরাচর আসা সবচেয়ে গুরুত্বপূর্ণ এক্সেপশনাল রুলস</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Exception 1: Negative Words -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-rose-500">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-ghost text-rose-400 text-xl"></i>
+                        <h3 class="font-bold text-lg font-bangla text-white">১. ছদ্মবেশী Negative শব্দ</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 font-bangla leading-relaxed mb-3">
+                        বাক্যে <span class="text-amber-300 font-english font-bold">seldom, hardly, barely, scarcely, little, few, never</span> থাকলে বাক্যটি দেখতে Affirmative হলেও অর্থগতভাবে **Negative**! তাই এর Tag অবশ্যই **Affirmative** হবে।
+                    </p>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-english">
+                        <div class="flex justify-between items-center">
+                            <span>Barking dogs <strong>seldom</strong> bite,</span>
+                            <span class="text-emerald-400 font-bold">do they?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exception 2: Let's / Let us -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-amber-500">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-users text-amber-400 text-xl"></i>
+                        <h3 class="font-bold text-lg font-bangla text-white">২. Let's / Let us থাকলে</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 font-bangla leading-relaxed mb-3">
+                        বাক্যটি যদি <span class="text-amber-300 font-english font-bold">Let's</span> বা <span class="text-amber-300 font-english font-bold">Let us</span> দিয়ে শুরু হয় (প্রস্তাব বোঝালে), তবে চোখ বন্ধ করে Tag হবে <strong class="text-amber-400 font-english">shall we?</strong>
+                    </p>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-english">
+                        <div class="flex justify-between items-center">
+                            <span><strong>Let's</strong> go out for a walk,</span>
+                            <span class="text-amber-400 font-bold">shall we?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exception 3: Imperative Sentence -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-indigo-500">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-hand-point-right text-indigo-400 text-xl"></i>
+                        <h3 class="font-bold text-lg font-bangla text-white">৩. Imperative Sentence (আদেশ/অনুরোধ)</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 font-bangla leading-relaxed mb-3">
+                        মূল Verb দিয়ে বাক্য শুরু হলে (আদেশ, অনুরোধ বা উপদেশ বোঝালে) Tag-এ সাধারণত <strong class="text-indigo-300 font-english">will you?</strong> বা <strong class="text-indigo-300 font-english">won't you?</strong> বসে। (Don't থাকলে সর্বদা **will you**)।
+                    </p>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-english space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span>Open the door,</span>
+                            <span class="text-indigo-400 font-bold">will you?</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-1 border-t border-slate-800">
+                            <span>Don't waste time,</span>
+                            <span class="text-indigo-400 font-bold">will you?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exception 4: Indefinite Pronouns -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-emerald-500">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-people-group text-emerald-400 text-xl"></i>
+                        <h3 class="font-bold text-lg font-bangla text-white">৪. Everybody / Nobody ইত্যাদি</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 font-bangla leading-relaxed mb-3">
+                        Subject হিসেবে <span class="text-amber-300 font-english">Everybody, Everyone, Somebody, Nobody, None</span> থাকলে Tag-এর Pronoun হবে <strong class="text-emerald-400 font-english">They</strong> (এবং Verb-ও Plural হবে)।
+                    </p>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-english">
+                        <div class="flex justify-between items-center">
+                            <span><strong>Everybody</strong> loves flowers,</span>
+                            <span class="text-emerald-400 font-bold">don't they?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exception 5: Subject 'There' & 'It' -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-cyan-500">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-location-dot text-cyan-400 text-xl"></i>
+                        <h3 class="font-bold text-lg font-bangla text-white">৫. There ও Nothing / Anything</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 font-bangla leading-relaxed mb-3">
+                        Subject হিসেবে <strong class="font-english text-cyan-300">There</strong> থাকলে Tag-এও *there* ই থাকবে। আর বস্তুবাচক <strong class="font-english text-cyan-300">Nothing, Anything</strong> থাকলে Pronoun হবে <strong class="font-english text-cyan-300">it</strong>।
+                    </p>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-english space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span><strong>There</strong> is a pond here,</span>
+                            <span class="text-cyan-400 font-bold">isn't there?</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-1 border-t border-slate-800">
+                            <span><strong>Nothing</strong> is impossible,</span>
+                            <span class="text-cyan-400 font-bold">is it?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exception 6: I am rule -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-yellow-500">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-user text-yellow-400 text-xl"></i>
+                        <h3 class="font-bold text-lg font-bangla text-white">৬. "I am" এর বিশেষ নিয়ম</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 font-bangla leading-relaxed mb-3">
+                        মূল বাক্যে <strong class="font-english text-yellow-300">I am</strong> থাকলে তার Negative Tag প্রশ্নের রূপ হবে <strong class="font-english text-yellow-300">aren't I?</strong> (বা *ain't I?*)। কিন্তু Negative থাকলে স্বাভাবিকভাবে <strong class="font-english text-yellow-300">am I?</strong> হবে।
+                    </p>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-english">
+                        <div class="flex justify-between items-center">
+                            <span><strong>I am</strong> a good student,</span>
+                            <span class="text-yellow-400 font-bold">aren't I?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: DUAL-LANGUAGE EXAMPLE TABLE WITH AUDIO -->
+        <section id="page-5" class="page-content">
+            <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">অধ্যায় ৫</span>
+                    <h2 class="text-3xl md:text-4xl font-bold font-bangla text-white">বাস্তব উদাহরণের ভাণ্ডার ও অডিও প্র্যাকটিস</h2>
+                    <p class="text-slate-400 text-base font-bangla mt-1">সব নিয়মের সম্মিলিত উদাহরণ বাংলা অর্থসহ</p>
+                </div>
+
+                <!-- Toggle All Answers Button -->
+                <button onclick="toggleAllAnswers()" class="self-start md:self-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 rounded-xl text-xs font-bold font-bangla transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-eye"></i>
+                    <span id="toggleAllBtnText">সকল উত্তর দেখুন / লুকান</span>
+                </button>
+            </div>
+
+            <!-- Interactive Example Table -->
+            <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-950/90 text-amber-300 font-bangla text-xs md:text-sm uppercase border-b border-slate-800">
+                                <th class="p-4 w-12 text-center">নং</th>
+                                <th class="p-4">মূল বাক্য (Statement)</th>
+                                <th class="p-4">Tag Question</th>
+                                <th class="p-4">বাংলা অর্থ</th>
+                                <th class="p-4 text-center">অডিও</th>
+                            </tr>
+                        </thead>
+                        <tbody id="exampleTableBody" class="divide-y divide-slate-800/60 text-xs md:text-sm font-english">
+                            <!-- JS populated rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: ULTIMATE PRACTICE ARENA -->
+        <section id="page-6" class="page-content">
+            <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">অধ্যায় ৬</span>
+                    <h2 class="text-3xl md:text-4xl font-bold font-bangla text-white">আলটিমেট কুইজ অ্যারেনা</h2>
+                    <p class="text-slate-400 text-base font-bangla mt-1">নিজেকে যাচাই করো এবং তাৎক্ষণিক রেজাল্ট দেখে নাও!</p>
+                </div>
+
+                <!-- Quiz Score Card -->
+                <div class="px-5 py-2.5 bg-slate-900/90 border border-amber-500/30 rounded-2xl flex items-center space-x-3 self-start sm:self-auto">
+                    <i class="fa-solid fa-award text-amber-400 text-2xl"></i>
+                    <div>
+                        <div class="text-xs text-slate-400 font-bangla">আপনার স্কোর</div>
+                        <div class="text-lg font-bold font-sans text-amber-300"><span id="quizScore">0</span> / 10</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <div id="quizContainer" class="space-y-6">
+                <!-- Dynamically rendered quiz cards -->
+            </div>
+
+            <!-- Quiz Finish Controls -->
+            <div class="mt-8 flex justify-center">
+                <button onclick="resetQuiz()" class="px-8 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold font-bangla text-sm border border-amber-500/30 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>কুইজ পুনরায় শুরু করুন</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Toolbar -->
+    <footer class="sticky bottom-0 z-40 bg-slate-950/90 backdrop-blur-md border-t border-slate-800/80 px-4 py-3">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <button id="prevBtn" onclick="changePage(-1)" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white font-bangla text-sm border border-slate-800 transition-all flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="hidden sm:inline">পূর্ববর্তী পৃষ্ঠা</span>
+            </button>
+
+            <!-- Page Number Indicator -->
+            <div class="text-xs md:text-sm font-bangla text-amber-300/90 font-medium bg-slate-900 px-4 py-1.5 rounded-full border border-slate-800">
+                পৃষ্ঠা <span id="currentPageNum" class="font-bold text-white">0</span> / 6
+            </div>
+
+            <button id="nextBtn" onclick="changePage(1)" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold font-bangla text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                <span class="hidden sm:inline">পরবর্তী পৃষ্ঠা</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // App State
+        let currentPage = 0;
+        const totalPages = 6;
+        let selectedVoiceAccent = 'en-US'; // Default US Accent
+        let allAnswersVisible = false;
+
+        // Interactive Examples Master Data
+        const exampleData = [
+            { id: 1, statement: "He is a good student,", tag: "isn't he?", bangla: "সে একজন ভালো ছাত্র, তাই না?" },
+            { id: 2, statement: "They played well,", tag: "didn't they?", bangla: "তারা ভালো খেলেছিল, তাই না?" },
+            { id: 3, statement: "She can swim,", tag: "can't she?", bangla: "সে সাঁতার কাটতে পারে, তাই না?" },
+            { id: 4, statement: "You do not like tea,", tag: "do you?", bangla: "তুমি চা পছন্দ করো না, তাই তো?" },
+            { id: 5, statement: "Everybody loves flowers,", tag: "don't they?", bangla: "সবাই ফুল ভালোবাসে, তাই না?" },
+            { id: 6, statement: "Nothing is impossible,", tag: "is it?", bangla: "কোনো কিছুই অসম্ভব নয়, তাই কি?" },
+            { id: 7, statement: "Let us discuss the matter,", tag: "shall we?", bangla: "চলো বিষয়টি নিয়ে আলোচনা করি, তাই না?" },
+            { id: 8, statement: "Barking dogs seldom bite,", tag: "do they?", bangla: "ঘেউ ঘেউ করা কুকুর কদাচিৎ কামড়ায়, তাই না?" },
+            { id: 9, statement: "I am an early riser,", tag: "aren't I?", bangla: "আমি সকালে ওঠা লোক, তাই না?" },
+            { id: 10, statement: "Open the window,", tag: "will you?", bangla: "জানলাটি খোলো, ঠিক আছে?" },
+            { id: 11, statement: "There is no problem here,", tag: "is there?", bangla: "এখানে কোনো সমস্যা নেই, তাই তো?" },
+            { id: 12, statement: "Don't make a noise,", tag: "will you?", bangla: "গোলমাল করো না, ঠিক আছে?" }
+        ];
+
+        // Quiz Questions Data
+        const quizData = [
+            {
+                q: "She sings a sweet song, ______?",
+                options: ["doesn't she?", "isn't she?", "don't she?", "does she?"],
+                correct: 0,
+                exp: "Present Indefinite Tense-এ Subject 'She' হওয়ায় Auxiliary verb হিসেবে 'does' আসবে। বাক্যটি Affirmative তাই Tag হবে Negative (doesn't she?)।"
+            },
+            {
+                q: "I am a student, ______?",
+                options: ["am not I?", "aren't I?", "don't I?", "is I?"],
+                correct: 1,
+                exp: "'I am' যুক্ত Affirmative বাক্যের Tag কোশ্চেন সর্বদা 'aren't I?' হয়।"
+            },
+            {
+                q: "Don't waste your time, ______?",
+                options: ["will you?", "won't you?", "do you?", "don't you?"],
+                correct: 0,
+                exp: "Imperative negative বাক্য হলে Tag কোশ্চেন সর্বদা 'will you?' হয়।"
+            },
+            {
+                q: "Barking dogs seldom bite, ______?",
+                options: ["don't they?", "do they?", "aren't they?", "didn't they?"],
+                correct: 1,
+                exp: "'Seldom' শব্দটি নেগেটিভ অর্থ প্রকাশ করে, তাই এর Tag কোশ্চেন Affirmative (do they?) হবে।"
+            },
+            {
+                q: "Everybody knows the truth, ______?",
+                options: ["doesn't he?", "don't they?", "do they?", "knows not they?"],
+                correct: 1,
+                exp: "Everybody-এর পরিবর্তে Pronoun 'they' বসে। They-এর সাথে Plural verb 'don't' বসে।"
+            },
+            {
+                q: "Let us start the work, ______?",
+                options: ["will you?", "shall we?", "won't we?", "can we?"],
+                correct: 1,
+                exp: "Let us বা Let's দিয়ে প্রস্তাব বোঝালে Tag সর্বদা 'shall we?' হয়।"
+            },
+            {
+                q: "Nothing can stop us, ______?",
+                options: ["can't it?", "can it?", "can't they?", "can they?"],
+                correct: 1,
+                exp: "'Nothing' নেগেটিভ এবং এর Pronoun 'it'। তাই Tag হবে Affirmative 'can it?'।"
+            },
+            {
+                q: "Rahim and Karim went to school, ______?",
+                options: ["didn't he?", "didn't they?", "don't they?", "did they?"],
+                correct: 1,
+                exp: "Past Indefinite Tense হওয়ায় 'did' আসবে। দু'জন ব্যক্তি বলে Pronoun 'they' হবে (didn't they?)।"
+            },
+            {
+                q: "There is a pond in our village, ______?",
+                options: ["isn't it?", "isn't there?", "is there?", "is it?"],
+                correct: 1,
+                exp: "Subject হিসেবে 'There' থাকলে Tag-এ Pronoun হিসেবে 'there'-ই বসে (isn't there?)।"
+            },
+            {
+                q: "You do not like tea, ______?",
+                options: ["don't you?", "do you?", "are you?", "did you?"],
+                correct: 1,
+                exp: "মূল বাক্যটি Negative (do not), তাই Tag হবে Affirmative (do you?)।"
+            }
+        ];
+
+        // User Quiz State Tracker
+        let userQuizAnswers = new Array(quizData.length).fill(null);
+
+        // Page Navigation Control
+        function goToPage(pageIndex) {
+            if (pageIndex < 0 || pageIndex > totalPages) return;
+
+            // Hide old page
+            const currentEl = document.getElementById(`page-${currentPage}`);
+            if (currentEl) {
+                currentEl.classList.remove('active');
+            }
+
+            currentPage = pageIndex;
+
+            // Show new page
+            const nextEl = document.getElementById(`page-${currentPage}`);
+            if (nextEl) {
+                nextEl.classList.add('active');
+            }
+
+            // Update UI elements
+            document.getElementById('currentPageNum').innerText = currentPage;
+            updateNavButtons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changePage(delta) {
+            goToPage(currentPage + delta);
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = (currentPage === 0);
+            document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+
+            // Active Tab Highlight
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const pageNum = parseInt(btn.getAttribute('data-page'));
+                if (pageNum === currentPage) {
+                    btn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold');
+                    btn.classList.remove('text-slate-300');
+                } else {
+                    btn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold');
+                    btn.classList.add('text-slate-300');
+                }
+            });
+        }
+
+        // Web Speech API Integration
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop ongoing speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = selectedVoiceAccent;
+                utterance.rate = 0.9; // Slightly slower for clear learning
+                utterance.pitch = 1.0;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("আপনার ব্রাউজারে স্পিচ সাপোর্ট নেই।");
+            }
+        }
+
+        function toggleVoiceAccent() {
+            if (selectedVoiceAccent === 'en-US') {
+                selectedVoiceAccent = 'en-GB';
+                document.getElementById('voiceLabel').innerText = 'Voice: UK English';
+            } else {
+                selectedVoiceAccent = 'en-US';
+                document.getElementById('voiceLabel').innerText = 'Voice: US English';
+            }
+        }
+
+        // Populate Page 5 Examples Table
+        function renderExamplesTable() {
+            const tbody = document.getElementById('exampleTableBody');
+            tbody.innerHTML = '';
+
+            exampleData.forEach((item) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-900/50 transition-colors";
+
+                tr.innerHTML = `
+                    <td class="p-4 text-center font-bold text-amber-400 font-sans">${item.id}</td>
+                    <td class="p-4 font-semibold text-white">${item.statement}</td>
+                    <td class="p-4">
+                        <span id="answer-${item.id}" class="tag-answer text-amber-300 font-bold bg-amber-950/60 px-3 py-1 rounded-lg border border-amber-500/30 inline-block cursor-pointer" onclick="toggleSingleAnswer(${item.id})">
+                            ${allAnswersVisible ? item.tag : '??? (ক্লিক করুন)'}
+                        </span>
+                    </td>
+                    <td class="p-4 text-slate-300 font-bangla">${item.bangla}</td>
+                    <td class="p-4 text-center">
+                        <button onclick="speakText('${item.statement} ${item.tag}')" class="p-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-amber-400 transition-all">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function toggleSingleAnswer(id) {
+            const el = document.getElementById(`answer-${id}`);
+            const item = exampleData.find(x => x.id === id);
+            if (el.innerText.includes('???')) {
+                el.innerText = item.tag;
+            } else {
+                el.innerText = '??? (ক্লিক করুন)';
+            }
+        }
+
+        function toggleAllAnswers() {
+            allAnswersVisible = !allAnswersVisible;
+            renderExamplesTable();
+        }
+
+        // Render Page 6 Quiz Arena
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '';
+
+            quizData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-2xl border border-slate-800 relative";
+                
+                let optionsHTML = '';
+                item.options.forEach((opt, optIdx) => {
+                    optionsHTML += `
+                        <button onclick="selectOption(${index}, ${optIdx})" class="quiz-opt-${index}-${optIdx} text-left p-3.5 rounded-xl border border-slate-700 bg-slate-900 hover:border-amber-400/50 text-sm font-english transition-all flex items-center justify-between">
+                            <span>${opt}</span>
+                            <i class="fa-regular fa-circle text-slate-600 icon-status"></i>
+                        </button>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="px-3 py-1 bg-amber-500/20 text-amber-300 text-xs font-bold rounded-full border border-amber-500/30">প্রশ্ন ${index + 1}</span>
+                    </div>
+                    <h3 class="text-base md:text-lg font-bold font-english text-white mb-4">${item.q}</h3>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-4">
+                        ${optionsHTML}
+                    </div>
+                    <div id="quiz-exp-${index}" class="hidden p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bangla text-slate-300">
+                        <strong class="text-amber-400 block mb-1">ব্যাখ্যা:</strong>
+                        ${item.exp}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function selectOption(qIdx, optIdx) {
+            userQuizAnswers[qIdx] = optIdx;
+            const correctOpt = quizData[qIdx].correct;
+
+            // Highlight Options
+            quizData[qIdx].options.forEach((_, idx) => {
+                const btn = document.querySelector(`.quiz-opt-${qIdx}-${idx}`);
+                btn.disabled = true;
+                const icon = btn.querySelector('.icon-status');
+
+                if (idx === correctOpt) {
+                    btn.className = "text-left p-3.5 rounded-xl border border-emerald-500/60 bg-emerald-950/60 text-emerald-200 text-sm font-english transition-all flex items-center justify-between";
+                    icon.className = "fa-solid fa-circle-check text-emerald-400";
+                } else if (idx === optIdx && optIdx !== correctOpt) {
+                    btn.className = "text-left p-3.5 rounded-xl border border-rose-500/60 bg-rose-950/60 text-rose-200 text-sm font-english transition-all flex items-center justify-between";
+                    icon.className = "fa-solid fa-circle-xmark text-rose-400";
+                } else {
+                    btn.className = "text-left p-3.5 rounded-xl border border-slate-800 bg-slate-900/40 text-slate-500 text-sm font-english transition-all flex items-center justify-between opacity-50";
+                }
+            });
+
+            // Show explanation
+            document.getElementById(`quiz-exp-${qIdx}`).classList.remove('hidden');
+
+            // Update Score
+            calculateScore();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            userQuizAnswers.forEach((ans, idx) => {
+                if (ans === quizData[idx].correct) {
+                    score++;
+                }
+            });
+            document.getElementById('quizScore').innerText = score;
+
+            // Confetti effect on full score
+            if (score === quizData.length) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        function resetQuiz() {
+            userQuizAnswers = new Array(quizData.length).fill(null);
+            document.getElementById('quizScore').innerText = '0';
+            renderQuiz();
+        }
+
+        // Swipe & Touch Support for Navigation
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchendX < touchstartX - 60) {
+                changePage(1); // Swipe left -> Next Page
+            }
+            if (touchendX > touchstartX + 60) {
+                changePage(-1); // Swipe right -> Prev Page
+            }
+        }
+
+        // Initial Initialization on Window Load
+        window.onload = function () {
+            renderExamplesTable();
+            renderQuiz();
+            updateNavButtons();
+        };
+    </script>
+</body>
+</html>
