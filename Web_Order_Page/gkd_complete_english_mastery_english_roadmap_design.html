@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f2147">
+<title>GKD Complete English Mastery | Interactive 3D Visual Flowchart & Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef3fb;
+    --bg-pattern: radial-gradient(circle at 12% 8%, #dbe7ff 0%, transparent 38%), radial-gradient(circle at 88% 18%, #d6f4f7 0%, transparent 36%);
+    --surface: #ffffff;
+    --surface-soft: #f5f8ff;
+    --ink: #152238;
+    --muted: #556682;
+    --primary: #19489e;
+    --primary-deep: #0e1f42;
+    --cyan: #0b8fa3;
+    --red: #dc2f2f;
+    --green: #128548;
+    --purple: #6b44c2;
+    --pink: #c72498;
+    --orange: #cf790e;
+    --border: #d2def0;
+    --shadow-3d: 0 10px 0 #c5d3ea, 0 22px 40px rgba(14, 31, 66, 0.14);
+    --shadow-card: 0 6px 0 #d3dff2, 0 14px 26px rgba(14, 31, 66, 0.09);
+    --arrow-main: #19489e;
+    --arrow-pulse: #00d2ff;
+  }
+
+  body.theme-midnight {
+    --bg: #081122;
+    --bg-pattern: radial-gradient(circle at 15% 10%, #152a54 0%, transparent 40%), radial-gradient(circle at 85% 22%, #0c3545 0%, transparent 38%);
+    --surface: #12203b;
+    --surface-soft: #182b4d;
+    --ink: #eef4ff;
+    --muted: #a3b5d4;
+    --primary: #6ca4ff;
+    --primary-deep: #060d1b;
+    --cyan: #2fd4e8;
+    --red: #ff6b6b;
+    --green: #38d382;
+    --purple: #b18eff;
+    --pink: #ff6bd6;
+    --orange: #ffb347;
+    --border: #293f66;
+    --shadow-3d: 0 10px 0 #050b17, 0 22px 42px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 6px 0 #091326, 0 14px 28px rgba(0, 0, 0, 0.35);
+    --arrow-main: #6ca4ff;
+    --arrow-pulse: #38f2ff;
+  }
+
+  body.theme-emerald {
+    --bg: #ebf7f2;
+    --bg-pattern: radial-gradient(circle at 15% 10%, #cff0e0 0%, transparent 40%), radial-gradient(circle at 85% 20%, #e1f3d5 0%, transparent 38%);
+    --surface: #ffffff;
+    --surface-soft: #f2fbf7;
+    --ink: #112b22;
+    --muted: #496b5d;
+    --primary: #0e7350;
+    --primary-deep: #08402d;
+    --cyan: #0b8799;
+    --red: #d63636;
+    --green: #128046;
+    --purple: #6745b8;
+    --pink: #bf228f;
+    --orange: #c4720e;
+    --border: #c2e0d2;
+    --shadow-3d: 0 10px 0 #b3d9c7, 0 22px 40px rgba(8, 64, 45, 0.14);
+    --shadow-card: 0 6px 0 #c2e2d3, 0 14px 26px rgba(8, 64, 45, 0.09);
+    --arrow-main: #0e7350;
+    --arrow-pulse: #26e09e;
+  }
+
+  body.theme-gold {
+    --bg: #fbf6ed;
+    --bg-pattern: radial-gradient(circle at 15% 10%, #f6e8cc 0%, transparent 40%), radial-gradient(circle at 85% 20%, #f0e1c9 0%, transparent 38%);
+    --surface: #ffffff;
+    --surface-soft: #fdf9f0;
+    --ink: #291f10;
+    --muted: #6b5a42;
+    --primary: #995f12;
+    --primary-deep: #3b2406;
+    --cyan: #147a8a;
+    --red: #c93030;
+    --green: #197a46;
+    --purple: #6a44b5;
+    --pink: #b8238a;
+    --orange: #c26a0c;
+    --border: #e4d2b4;
+    --shadow-3d: 0 10px 0 #dbc59e, 0 22px 40px rgba(59, 36, 6, 0.14);
+    --shadow-card: 0 6px 0 #e4d1b1, 0 14px 26px rgba(59, 36, 6, 0.09);
+    --arrow-main: #995f12;
+    --arrow-pulse: #ffb703;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image: var(--bg-pattern);
+    color: var(--ink);
+    font-family: "Tiro Bangla", "Times New Roman", serif;
+    line-height: 1.72;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    overflow-x: hidden;
+  }
+
+  .en { font-family: "Times New Roman", Times, serif; font-weight: bold; letter-spacing: 0.2px; }
+  .en-reg { font-family: "Times New Roman", Times, serif; }
+  button, select { font: inherit; }
+
+  /* Sticky Top Header */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--primary-deep);
+    color: #ffffff;
+    padding: 10px clamp(12px, 3vw, 30px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+  }
+  .brand-wrap { display: flex; align-items: center; gap: 11px; }
+  .brand-logo {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, #2b72ff, #12b8c8);
+    display: grid; place-items: center;
+    font: bold 17px "Times New Roman", serif;
+    color: #fff;
+    box-shadow: 0 4px 0 #08152e;
+    flex: none;
+  }
+  .brand-title { font: bold clamp(15px, 2.1vw, 19px) "Times New Roman", serif; letter-spacing: 0.5px; line-height: 1.2; }
+  .brand-sub { font-size: 12px; color: #c4d6f5; display: block; }
+
+  .controls { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .ctrl-btn, .theme-select {
+    background: rgba(255, 255, 255, 0.13);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 10px;
+    padding: 6px 11px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+  }
+  .theme-select option { background: #0f2147; color: #fff; }
+  .ctrl-btn:hover, .theme-select:hover { background: rgba(255, 255, 255, 0.24); transform: translateY(-2px); }
+  .ctrl-btn:active { transform: translateY(2px); box-shadow: none; }
+  .ctrl-btn.accent { background: linear-gradient(135deg, #149e64, #0b8fa3); border-color: transparent; font-weight: bold; }
+
+  .progress-bar-wrap { width: 100%; height: 4px; background: rgba(255, 255, 255, 0.15); }
+  .progress-bar-fill {
+    height: 100%; width: 14%;
+    background: linear-gradient(90deg, #3ee0cf, #ffd166, #ff6b6b);
+    transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Main Flowchart Stage */
+  .stage {
+    position: relative;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 20px clamp(12px, 2.5vw, 28px) 70px;
+    perspective: 1400px;
+  }
+
+  /* Dynamic SVG Overlay for Real-Time Animated Connectors */
+  #dynamicArrowsSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .flow-path-base {
+    fill: none;
+    stroke: var(--arrow-main);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.35;
+  }
+  .flow-path-anim {
+    fill: none;
+    stroke: var(--arrow-main);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 10 8;
+    animation: marchFlow 1.2s linear infinite;
+  }
+  .flow-path-anim.red { stroke: var(--red); }
+  .flow-path-anim.green { stroke: var(--green); }
+  .flow-path-anim.purple { stroke: var(--purple); }
+  .flow-path-anim.orange { stroke: var(--orange); }
+
+  @keyframes marchFlow {
+    to { stroke-dashoffset: -36; }
+  }
+
+  /* Ensure all nodes sit above SVG connectors */
+  .node-layer { position: relative; z-index: 5; }
+
+  /* Guide Strip */
+  .guide-strip {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .guide-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 13px;
+    color: var(--muted);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  /* STEP 1: Giant 3D Start Node */
+  .hero-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 54px;
+  }
+  .hero-3d-box {
+    background: linear-gradient(135deg, #0f2147 0%, #1c4ea8 55%, #0b8fa3 100%);
+    color: #fff;
+    border: 3px solid rgba(255, 255, 255, 0.35);
+    border-radius: 28px;
+    padding: clamp(22px, 3.8vw, 34px) clamp(26px, 5vw, 56px);
+    text-align: center;
+    max-width: 680px;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 12px 0 #071229, 0 24px 48px rgba(15, 33, 71, 0.35);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    user-select: none;
+  }
+  .hero-3d-box:hover {
+    transform: translateY(-6px) rotateX(3deg);
+    box-shadow: 0 18px 0 #071229, 0 32px 58px rgba(15, 33, 71, 0.42);
+  }
+  .hero-3d-box:active {
+    transform: translateY(6px);
+    box-shadow: 0 4px 0 #071229, 0 10px 20px rgba(15, 33, 71, 0.3);
+  }
+  .step-badge-3d {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 3px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .hero-3d-box h1 {
+    font-size: clamp(32px, 5.2vw, 54px);
+    line-height: 1.15;
+    margin: 4px 0 8px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .tap-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffd166;
+    color: #0f2147;
+    font-weight: bold;
+    padding: 7px 18px;
+    border-radius: 99px;
+    font-size: 14px;
+    margin-top: 10px;
+    box-shadow: 0 4px 0 #b88a1e;
+    animation: bouncePulse 2s infinite;
+  }
+  @keyframes bouncePulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  /* Step Reveal Wrapper */
+  .step-section {
+    display: none;
+    opacity: 0;
+    margin-bottom: 58px;
+  }
+  .step-section.visible {
+    display: block;
+    animation: revealPop 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes revealPop {
+    from { opacity: 0; transform: translateY(22px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Flow Direction Label Pill */
+  .flow-direction-tag {
+    display: flex;
+    justify-content: center;
+    margin: -34px auto 18px;
+    position: relative;
+    z-index: 6;
+  }
+  .flow-direction-tag span {
+    background: var(--primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 14px;
+    border-radius: 99px;
+    border: 2px solid var(--surface);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .flow-direction-tag.red span { background: var(--red); }
+  .flow-direction-tag.green span { background: var(--green); }
+
+  /* Card Base */
+  .card-3d {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 22px;
+    padding: clamp(16px, 2.4vw, 24px);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.22s ease;
+    position: relative;
+  }
+  .card-3d.interactive { cursor: pointer; }
+  .card-3d.interactive:hover { transform: translateY(-4px); border-color: var(--primary); }
+  .card-3d.red-border {
+    border: 3px solid var(--red);
+    box-shadow: 0 8px 0 rgba(220, 47, 47, 0.22), 0 18px 36px rgba(220, 47, 47, 0.14);
+  }
+
+  .meta-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 11px;
+    border-radius: 99px;
+    background: var(--surface-soft);
+    color: var(--primary);
+    border: 1px solid var(--border);
+    margin-bottom: 6px;
+  }
+  .meta-tag.red { background: rgba(220, 47, 47, 0.1); color: var(--red); border-color: rgba(220, 47, 47, 0.35); }
+  .meta-tag.green { background: rgba(18, 133, 72, 0.1); color: var(--green); border-color: rgba(18, 133, 72, 0.35); }
+
+  /* What / Why / Example Structured Mini-Blocks */
+  .wwe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+    text-align: left;
+  }
+  .wwe-box {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 10px 12px;
+    font-size: 13.5px;
+  }
+  .wwe-box b { display: block; color: var(--primary); margin-bottom: 2px; font-size: 14px; }
+
+  /* Step 3: 3 Core Elements Grid */
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip {
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 8px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+  }
+
+  /* Step 4: Dual Branching Layout (Left/Down: Sentence Structure & Types | Right: Grammar Manual) */
+  .dual-branch-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1.15fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* Interactive Sentence Dissection Box */
+  .dissect-panel {
+    background: var(--surface-soft);
+    border: 2px dashed var(--red);
+    border-radius: 18px;
+    padding: 16px;
+    margin: 14px 0;
+  }
+  .sentence-switcher {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .sw-btn {
+    padding: 5px 13px;
+    border-radius: 99px;
+    border: 1.5px solid var(--primary);
+    background: var(--surface);
+    color: var(--primary);
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .sw-btn.active { background: var(--primary); color: #fff; }
+
+  .word-tokens-row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .w-token {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 8px 12px;
+    text-align: center;
+    min-width: 82px;
+    box-shadow: 0 4px 0 var(--border);
+    transition: transform 0.2s;
+  }
+  .w-token:hover { transform: translateY(-4px); }
+  .w-token .word {
+    display: block;
+    font: bold clamp(22px, 3.2vw, 32px) "Times New Roman", serif;
+    line-height: 1.15;
+  }
+  .w-token .arrow-down {
+    display: block;
+    font-size: 14px;
+    line-height: 1.1;
+    margin: 3px 0;
+    font-weight: bold;
+  }
+  .w-token .role-pill {
+    display: block;
+    font-size: 11.5px;
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 6px;
+    margin-bottom: 3px;
+  }
+  .w-token .pos-sub {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: bold;
+  }
+
+  .c-pink { border-color: var(--pink); } .c-pink .word, .c-pink .arrow-down { color: var(--pink); } .c-pink .role-pill { background: var(--pink); }
+  .c-blue { border-color: var(--primary); } .c-blue .word, .c-blue .arrow-down { color: var(--primary); } .c-blue .role-pill { background: var(--primary); }
+  .c-purple { border-color: var(--purple); } .c-purple .word, .c-purple .arrow-down { color: var(--purple); } .c-purple .role-pill { background: var(--purple); }
+  .c-orange { border-color: var(--orange); } .c-orange .word, .c-orange .arrow-down { color: var(--orange); } .c-orange .role-pill { background: var(--orange); }
+  .c-green { border-color: var(--green); } .c-green .word, .c-green .arrow-down { color: var(--green); } .c-green .role-pill { background: var(--green); }
+
+  /* Accordions for Deep Content */
+  .acc-item {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 15px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .acc-item.open { border-color: var(--primary); }
+  .acc-btn {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    padding: 12px 15px;
+    text-align: left;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .acc-btn:hover { background: var(--surface-soft); }
+  .acc-title { font-weight: bold; font-size: 16px; color: var(--primary); }
+  .acc-sub { display: block; font-size: 12.5px; color: var(--muted); }
+  .acc-icon {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    display: grid; place-items: center;
+    font-size: 12px;
+    transition: transform 0.25s;
+    flex: none;
+  }
+  .acc-item.open .acc-icon { transform: rotate(180deg); background: var(--primary); color: #fff; }
+  .acc-body {
+    display: none;
+    padding: 12px 15px 15px;
+    border-top: 1px solid var(--border);
+    background: var(--surface-soft);
+    font-size: 14px;
+  }
+  .acc-item.open .acc-body { display: block; }
+
+  .ex-strip {
+    background: var(--surface);
+    border-left: 3.5px solid var(--cyan);
+    padding: 7px 11px;
+    border-radius: 8px;
+    margin-top: 7px;
+  }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; margin-top: 10px; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--surface); }
+  th { background: var(--primary-deep); color: #fff; text-align: left; padding: 8px 10px; }
+  td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--surface-soft); }
+
+  /* 4 Skills Grid */
+  .four-col {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .skill-box {
+    border-radius: 18px;
+    padding: 16px;
+    color: #fff;
+    box-shadow: 0 7px 0 rgba(0, 0, 0, 0.18), 0 14px 26px rgba(0, 0, 0, 0.14);
+  }
+  .skill-box h4 { margin: 4px 0; font: bold 20px "Times New Roman", serif; }
+  .sk-l { background: linear-gradient(135deg, #0d698a, #17a0b5); }
+  .sk-s { background: linear-gradient(135deg, #6b3eb0, #b346ab); }
+  .sk-r { background: linear-gradient(135deg, #146b47, #2da16e); }
+  .sk-w { background: linear-gradient(135deg, #a65612, #db9125); }
+
+  /* 5 Levels Mastery Chain */
+  .levels-chain {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .lvl-card {
+    background: var(--surface-soft);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    text-align: center;
+  }
+  .lvl-num {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    font: bold 11px "Times New Roman", serif;
+    padding: 2px 9px;
+    border-radius: 99px;
+    margin-bottom: 5px;
+  }
+
+  /* Quiz */
+  .quiz-card {
+    background: var(--surface-soft);
+    border: 1.5px solid var(--border);
+    border-radius: 15px;
+    padding: 14px;
+    margin-top: 10px;
+  }
+  .q-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .q-btn {
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    font-size: 13.5px;
+  }
+  .q-btn:hover:not(:disabled) { border-color: var(--primary); }
+  .q-btn.ok { background: rgba(18, 133, 72, 0.16); border-color: var(--green); color: var(--green); font-weight: bold; }
+  .q-btn.no { background: rgba(220, 47, 47, 0.14); border-color: var(--red); color: var(--red); }
+
+  /* Next Step Button */
+  .next-action {
+    text-align: center;
+    margin-top: 18px;
+  }
+  .btn-flow-next {
+    background: linear-gradient(135deg, #19489e, #0b8fa3);
+    color: #fff;
+    border: 0;
+    border-radius: 99px;
+    padding: 11px 24px;
+    font-size: 14.5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #0b2454, 0 12px 24px rgba(25, 72, 158, 0.25);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .btn-flow-next:hover { transform: translateY(-3px); }
+  .btn-flow-next:active { transform: translateY(3px); box-shadow: 0 1px 0 #0b2454; }
+
+  footer {
+    text-align: center;
+    background: var(--primary-deep);
+    color: #e6efff;
+    padding: 26px 16px;
+    border-radius: 24px;
+    margin-top: 24px;
+    position: relative;
+    z-index: 5;
+  }
+
+  @media (max-width: 980px) {
+    .wwe-grid, .three-col, .dual-branch-grid { grid-template-columns: 1fr; }
+    .four-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .levels-chain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .four-col, .levels-chain, .q-grid { grid-template-columns: 1fr; }
+    .topbar { justify-content: center; text-align: center; }
+  }
+  @media print {
+    .topbar, .next-action, .tap-cta, #dynamicArrowsSvg { display: none !important; }
+    .step-section { display: block !important; opacity: 1 !important; margin-bottom: 24px !important; }
+    .acc-body { display: block !important; }
+    body { background: #fff !important; color: #000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand-wrap">
+    <div class="brand-logo">GKD</div>
+    <div>
+      <div class="brand-title">GKD COMPLETE ENGLISH MASTERY</div>
+      <span class="brand-sub">Visual 3D Flowchart & Complete Language Roadmap · Mentor: Gopal Krishna Das</span>
+    </div>
+  </div>
+  <div class="controls">
+    <select class="theme-select" id="themePicker" aria-label="থিম নির্বাচন" onchange="setTheme(this.value)">
+      <option value="default">🎨 Royal Academic (Light)</option>
+      <option value="theme-midnight">🌙 Midnight 3D (Dark)</option>
+      <option value="theme-emerald">🌿 Emerald Scholar</option>
+      <option value="theme-gold">👑 Royal Gold</option>
+    </select>
+    <button class="ctrl-btn accent" id="toggleAllBtn" onclick="toggleExpandAll()">✦ সব ধাপ একসাথে দেখুন</button>
+    <button class="ctrl-btn" onclick="resetFlow()">↺ শুরু থেকে দেখুন</button>
+    <button class="ctrl-btn" onclick="window.print()">⎙ PDF / Print</button>
+    <button class="ctrl-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+</header>
+
+<main class="stage" id="flowchartStage">
+  <!-- Dynamic Real-Time Animated SVG Arrows Layer -->
+  <svg id="dynamicArrowsSvg" aria-hidden="true">
+    <defs>
+      <marker id="arr-blue" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M1 1 L8 4.5 L1 8 Z" fill="var(--arrow-main)"/>
+      </marker>
+      <marker id="arr-red" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M1 1 L8 4.5 L1 8 Z" fill="var(--red)"/>
+      </marker>
+      <marker id="arr-green" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M1 1 L8 4.5 L1 8 Z" fill="var(--green)"/>
+      </marker>
+    </defs>
+    <g id="arrowPathsGroup"></g>
+  </svg>
+
+  <div class="node-layer">
+    <div class="guide-strip">
+      <span class="guide-pill">🧭 প্রতিটি বক্সের <b>কী (What)</b>, <b>কেন (Why)</b> ও <b>উদাহরণ (Example)</b> দেখে এবং অ্যানিমেটেড তীরচিহ্ন অনুসরণ করে ধাপে ধাপে শিখুন</span>
+    </div>
+
+    <!-- =========================================================
+         STEP 1: START NODE ("English কী?")
+    ========================================================== -->
+    <div class="hero-center">
+      <div class="hero-3d-box" id="node-step1" onclick="revealStep(2)" role="button" tabindex="0">
+        <div class="step-badge-3d">ধাপ ০১ · যাত্রা শুরু (<span class="en-reg">START HERE</span>)</div>
+        <h1><span class="en">English</span> কী?</h1>
+        <p style="margin:0;color:#e3eeff;font-size:15.5px;">ইংরেজি কি শুধুই মুখস্থ করার বিষয়, নাকি একটি জীবন্ত যোগাযোগের মাধ্যম?</p>
+        <div class="tap-cta">👇 ক্লিক করুন — নিচের তীরচিহ্ন ধরে ধাপ ০২ খুলবে</div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         STEP 2: CORE DEFINITION ("Language / ভাষা")
+    ========================================================== -->
+    <section class="step-section" id="section-step2">
+      <div class="flow-direction-tag"><span>⬇ ধাপ ০১ থেকে ↓ নিচের দিকে প্রবাহ</span></div>
+
+      <div class="card-3d interactive" id="node-step2" onclick="revealStep(3)" style="max-width:960px;margin:0 auto;">
+        <span class="meta-tag">ধাপ ০২ · মূল পরিচয় (<span class="en-reg">Core Identity</span>)</span>
+        <h2 style="margin:4px 0 8px;color:var(--primary);font-size:clamp(24px,3.5vw,34px);text-align:center;">
+          <span class="en">English</span> = <span class="en">Language</span> / ভাষা
+        </h2>
+        <p style="text-align:center;margin:0 0 10px;font-size:15.5px;">
+          <b>ভাষা (<span class="en-reg">Language</span>)</b> হলো মানুষের মনের ভাব, তথ্য, অনুভূতি, অভিজ্ঞতা ও নির্দেশ আদান-প্রদানের জন্য ব্যবহৃত অর্থবহ ও নিয়মবদ্ধ প্রতীক-ব্যবস্থা।
+        </p>
+
+        <div class="wwe-grid">
+          <div class="wwe-box">
+            <b>📌 এটি কী (<span class="en-reg">What</span>)?</b>
+            একটি প্রাকৃতিক মানবভাষা—যা ধ্বনি (<span class="en-reg">Sound</span>), বর্ণ (<span class="en-reg">Letter</span>), শব্দ (<span class="en-reg">Word</span>) ও বাক্যের (<span class="en-reg">Sentence</span>) মাধ্যমে কাজ করে।
+          </div>
+          <div class="wwe-box">
+            <b>🎯 কেন শিখব (<span class="en-reg">Why</span>)?</b>
+            উচ্চশিক্ষা, আন্তর্জাতিক যোগাযোগ, প্রযুক্তি, ক্যারিয়ার এবং বিশ্বজ্ঞান নিজের আয়ত্তে আনার প্রধান মাধ্যম।
+          </div>
+          <div class="wwe-box">
+            <b>💡 মূল সূত্র (<span class="en-reg">Formula</span>):</b>
+            <span class="en">Sound + Word + Grammar + Context = Meaningful Communication</span>
+          </div>
+        </div>
+
+        <div class="next-action">
+          <button class="btn-flow-next" onclick="event.stopPropagation(); revealStep(3)">ধাপ ০৩: ভাষার ৩টি প্রধান উপাদানে যান ↓</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 3: 3 MAIN ELEMENTS OF LANGUAGE
+    ========================================================== -->
+    <section class="step-section" id="section-step3">
+      <div class="flow-direction-tag"><span>⬇ ধাপ ০২ থেকে ↓ ভাষার ৩টি প্রধান উপাদানে বিভক্ত</span></div>
+
+      <div style="text-align:center;margin-bottom:14px;">
+        <span class="meta-tag" style="font-size:14px;padding:5px 18px;">ধাপ ০৩ · ভাষার ৩টি প্রধান উপাদান (<span class="en-reg">3 Core Building Blocks of Language</span>)</span>
+      </div>
+
+      <div class="three-col">
+        <!-- 3.1 Letter & Sound -->
+        <div class="card-3d" id="node-el-letter">
+          <span class="meta-tag">উপাদান ১ · ক্ষুদ্রতম একক</span>
+          <h3 style="margin:4px 0 6px;color:var(--primary);font-size:21px;">বর্ণ / অক্ষর / <span class="en">Letter & Sound</span></h3>
+          <p style="font-size:14px;margin:4px 0;"><b>কী:</b> লেখার চিহ্ন হলো <span class="en-reg">Letter</span> (২৬টি: <span class="en-reg">A–Z</span>) এবং মুখের উচ্চারিত আওয়াজ হলো <span class="en-reg">Speech Sound</span> (৪৪টি <span class="en-reg">IPA Sound</span>)।</p>
+          <p style="font-size:14px;margin:4px 0;"><b>কেন জরুরি:</b> ইংরেজিতে <span class="en-reg">Letter ≠ Sound</span>। যেমন <span class="en">c</span> বর্ণটি <span class="en">cat</span>-এ /k/ এবং <span class="en">city</span>-তে /s/ উচ্চারিত হয়।</p>
+          <div class="chip-row">
+            <span class="chip en">5 Vowel Letters</span>
+            <span class="chip en">21 Consonant Letters</span>
+            <span class="chip en">44 IPA Sounds</span>
+            <span class="chip en">Syllable & Stress</span>
+            <span class="chip en">Silent Letters (know)</span>
+          </div>
+        </div>
+
+        <!-- 3.2 Word -->
+        <div class="card-3d" id="node-el-word">
+          <span class="meta-tag">উপাদান ২ · অর্থের একক</span>
+          <h3 style="margin:4px 0 6px;color:var(--primary);font-size:21px;">শব্দ / <span class="en">Word / Sound</span></h3>
+          <p style="font-size:14px;margin:4px 0;"><b>কী:</b> এক বা একাধিক <span class="en-reg">Letter</span> ও <span class="en-reg">Sound</span> পাশাপাশি বসে যখন নির্দিষ্ট অর্থ প্রকাশ করে, তখন তাকে <span class="en-reg">Word</span> বলে।</p>
+          <p style="font-size:14px;margin:4px 0;"><b>কীভাবে বাড়াবেন:</b> মূল শব্দের আগে <span class="en-reg">Prefix</span> ও পরে <span class="en-reg">Suffix</span> যোগ করে (<span class="en">happy → unhappy → happiness</span>)।</p>
+          <div class="chip-row">
+            <span class="chip en">Root + Prefix/Suffix</span>
+            <span class="chip en">Word Family</span>
+            <span class="chip en">Synonym & Antonym</span>
+            <span class="chip en">Collocation</span>
+            <span class="chip en">Phrasal Verb & Idiom</span>
+          </div>
+        </div>
+
+        <!-- 3.3 Sentence (Red Focus Node) -->
+        <div class="card-3d red-border interactive" id="node-el-sentence" onclick="revealStep(4)">
+          <span class="meta-tag red">উপাদান ৩ · মূল কেন্দ্রবিন্দু (<span class="en-reg">CORE HUB</span>)</span>
+          <h3 style="margin:4px 0 6px;color:var(--red);font-size:21px;">বাক্য / <span class="en">Sentence</span></h3>
+          <p style="font-size:14px;margin:4px 0;"><b>কী ও কেন:</b> বিচ্ছিন্ন শব্দ দিয়ে মনের ভাব সম্পূর্ণ হয় না। <b>পূর্ণভাবে মনের ভাব প্রকাশের জন্য একাধিক শব্দ সুশৃঙ্খলভাবে সাজিয়ে <span class="en-reg">Sentence</span> বলতে হয়।</b></p>
+          <div class="ex-strip" style="border-left-color:var(--red);font-size:13.5px;">
+            <b>পরবর্তী প্রবাহ (২টি তীরচিহ্ন):</b><br>
+            ➡ <b>ডানদিকে:</b> শুদ্ধভাবে <span class="en">Sentence</span> গঠনের <span class="en">Manual = Grammar</span><br>
+            ⬇ <b>নিচের দিকে:</b> <span class="en">SVO / SOV</span> ও <span class="en">Sentence</span>-এর সকল প্রকারভেদ
+          </div>
+        </div>
+      </div>
+
+      <div class="next-action">
+        <button class="btn-flow-next" onclick="revealStep(4)">ধাপ ০৪: Sentence থেকে Grammar ও প্রকারভেদের শাখা দেখুন ➔</button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 4: DUAL BRANCHING FROM SENTENCE (LEFT/DOWN: STRUCTURE & TYPES | RIGHT: GRAMMAR MANUAL)
+    ========================================================== -->
+    <section class="step-section" id="section-step4">
+      <div class="flow-direction-tag red"><span>⬇ & ➡ ধাপ ০৩-এর Sentence বক্স থেকে দুটি প্রধান শাখা বের হয়েছে</span></div>
+
+      <div class="dual-branch-grid">
+        <!-- LEFT / DOWN BRANCH: SVO/SOV + ALL SENTENCE CLASSIFICATIONS -->
+        <div class="card-3d" id="node-branch-down">
+          <span class="meta-tag">শাখা খ (নিচের তীরচিহ্ন ↓) · গঠন ও প্রকারভেদ</span>
+          <h3 style="margin:4px 0 6px;color:var(--primary);font-size:22px;">বাক্যের শব্দক্রম (<span class="en">SVO / SOV</span>) ও প্রকারভেদ</h3>
+          <p style="font-size:14px;margin:4px 0;">প্রতিটি ভাষায় বাক্যে শব্দ বসানোর নিজস্ব ক্রম আছে:</p>
+
+          <div class="wwe-grid" style="grid-template-columns:1fr 1fr;margin-top:8px;">
+            <div class="wwe-box">
+              <b>🇬🇧 ইংরেজি ক্রম: <span class="en">SVO</span></b>
+              <span class="en">Subject + Verb + Object</span><br>
+              উদাহরণ: <span class="en">I (S) eat (V) rice (O).</span>
+            </div>
+            <div class="wwe-box">
+              <b>🇧🇩 বাংলা ক্রম: <span class="en">SOV</span></b>
+              <span class="en">Subject + Object + Verb</span><br>
+              উদাহরণ: আমি (<span class="en">S</span>) ভাত (<span class="en">O</span>) খাই (<span class="en">V</span>)।
+            </div>
+          </div>
+
+          <!-- 7 Sentence Patterns Accordion -->
+          <div class="acc-item" id="acc-patterns">
+            <button class="acc-btn" onclick="toggleAcc('acc-patterns')">
+              <span>
+                <span class="acc-title">📐 ইংরেজির ৭টি মৌলিক <span class="en">Sentence Patterns</span></span>
+                <span class="acc-sub en">SV · SVC · SVA · SVO · SVOO · SVOC · SVOA</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="tbl-wrap">
+                <table>
+                  <thead><tr><th>Pattern</th><th>Example</th><th>বাংলা অর্থ</th></tr></thead>
+                  <tbody>
+                    <tr><td class="en">SV</td><td class="en">Birds fly.</td><td>পাখিরা ওড়ে।</td></tr>
+                    <tr><td class="en">SVC</td><td class="en">She is happy.</td><td>সে সুখী।</td></tr>
+                    <tr><td class="en">SVA</td><td class="en">He is at home.</td><td>সে বাড়িতে আছে।</td></tr>
+                    <tr><td class="en">SVO</td><td class="en">I read books.</td><td>আমি বই পড়ি।</td></tr>
+                    <tr><td class="en">SVOO</td><td class="en">She gave me a pen.</td><td>সে আমাকে একটি কলম দিল।</td></tr>
+                    <tr><td class="en">SVOC</td><td class="en">They elected him captain.</td><td>তারা তাকে অধিনায়ক করল।</td></tr>
+                    <tr><td class="en">SVOA</td><td class="en">She put the book on the table.</td><td>সে বইটি টেবিলে রাখল।</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="margin:16px 0 6px;color:var(--primary);font-size:18px;">⬇ <span class="en">Sentence</span> বিভিন্নভাবে বিভিন্ন প্রকার (উদাহরণসহ):</h4>
+
+          <!-- 1. Structure (3 types) -->
+          <div class="acc-item open" id="acc-type-struct">
+            <button class="acc-btn" onclick="toggleAcc('acc-type-struct')">
+              <span>
+                <span class="acc-title">১. গঠনগত দিক থেকে ৩ প্রকার (<span class="en">By Structure</span>)</span>
+                <span class="acc-sub en">Simple · Complex · Compound</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="ex-strip"><b>① <span class="en">Simple</span> (সরল):</b> ১টি <span class="en-reg">Subject</span> ও ১টি <span class="en-reg">Finite Verb</span>।<br><span class="en">He came to help me.</span></div>
+              <div class="ex-strip"><b>② <span class="en">Complex</span> (জটিল):</b> ১টি <span class="en-reg">Main Clause</span> + ১ বা একাধিক <span class="en-reg">Dependent Clause</span> (<span class="en-reg">because, if, although, who</span>)।<br><span class="en">He came because I called him.</span></div>
+              <div class="ex-strip"><b>③ <span class="en">Compound</span> (যৌগিক):</b> ২ বা ততোধিক <span class="en-reg">Independent Clause</span> (<span class="en-reg">and, but, or, so</span> দ্বারা যুক্ত)।<br><span class="en">I called him, and he came.</span></div>
+            </div>
+          </div>
+
+          <!-- 2. Meaning (5 types) -->
+          <div class="acc-item open" id="acc-type-meaning">
+            <button class="acc-btn" onclick="toggleAcc('acc-type-meaning')">
+              <span>
+                <span class="acc-title">২. অর্থগত / উদ্দেশ্যগত দিক থেকে ৫ প্রকার (<span class="en">By Meaning</span>)</span>
+                <span class="acc-sub en">Assertive · Interrogative · Imperative · Optative · Exclamatory</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="ex-strip"><b>① <span class="en">Assertive</span> (বিবৃতিমূলক):</b> <span class="en">She is a good student.</span></div>
+              <div class="ex-strip"><b>② <span class="en">Interrogative</span> (প্রশ্নবোধক):</b> <span class="en">Are you ready to learn?</span></div>
+              <div class="ex-strip"><b>③ <span class="en">Imperative</span> (আদেশ/অনুরোধ):</b> <span class="en">Please open the door.</span></div>
+              <div class="ex-strip"><b>④ <span class="en">Optative</span> (ইচ্ছা/প্রার্থনা):</b> <span class="en">May you succeed in life.</span></div>
+              <div class="ex-strip"><b>⑤ <span class="en">Exclamatory</span> (বিস্ময়সূচক):</b> <span class="en">What a wonderful day it is!</span></div>
+            </div>
+          </div>
+
+          <!-- 3. Degree (3 types) -->
+          <div class="acc-item" id="acc-type-degree">
+            <button class="acc-btn" onclick="toggleAcc('acc-type-degree')">
+              <span>
+                <span class="acc-title">৩. তুলনার দিক থেকে <span class="en">Degree</span> ৩ প্রকার (<span class="en">Comparison</span>)</span>
+                <span class="acc-sub en">Positive · Comparative · Superlative</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="ex-strip"><b>① <span class="en">Positive</span>:</b> <span class="en">Rina is tall.</span> / <span class="en">No other girl is as tall as Rina.</span></div>
+              <div class="ex-strip"><b>② <span class="en">Comparative</span>:</b> <span class="en">Rina is taller than Mina.</span></div>
+              <div class="ex-strip"><b>③ <span class="en">Superlative</span>:</b> <span class="en">Rina is the tallest girl in the class.</span></div>
+            </div>
+          </div>
+
+          <!-- 4. Voice (2 types) -->
+          <div class="acc-item" id="acc-type-voice">
+            <button class="acc-btn" onclick="toggleAcc('acc-type-voice')">
+              <span>
+                <span class="acc-title">৪. সক্রিয়তার ওপর <span class="en">Voice</span> ২ প্রকার (<span class="en">Action</span>)</span>
+                <span class="acc-sub en">Active Voice · Passive Voice</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="ex-strip"><b>① <span class="en">Active Voice</span> (কর্তা নিজে কাজ করে):</b> <span class="en">The boy plays football.</span></div>
+              <div class="ex-strip"><b>② <span class="en">Passive Voice</span> (কর্মের ওপর কাজ হয়):</b> <span class="en">Football is played by the boy.</span></div>
+            </div>
+          </div>
+
+          <!-- 5. Polarity & Narration & Finite/Non-finite -->
+          <div class="acc-item" id="acc-type-more">
+            <button class="acc-btn" onclick="toggleAcc('acc-type-more')">
+              <span>
+                <span class="acc-title">৫. আরও প্রকারভেদ: <span class="en">Polarity, Narration & Verb</span></span>
+                <span class="acc-sub en">Affirmative/Negative · Direct/Indirect Speech · Finite/Non-finite</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="ex-strip"><b>হ্যাঁ/না-বাচক (<span class="en">Polarity</span>):</b> <span class="en">Affirmative: He is honest.</span> | <span class="en">Negative: He is not dishonest.</span></div>
+              <div class="ex-strip"><b>উক্তি (<span class="en">Speech / Narration</span>):</b> <span class="en">Direct: He said, “I am busy.”</span> | <span class="en">Indirect: He said that he was busy.</span></div>
+              <div class="ex-strip"><b>ক্রিয়ার সমাপ্তি (<span class="en">Verb</span>):</b> <span class="en">Finite</span> (<span class="en-reg">Tense</span> মেনে চলে: <span class="en">She works</span>) বনাম <span class="en">Non-finite</span> (<span class="en">Gerund: swimming, Infinitive: to swim, Participle: broken</span>)।</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT BRANCH: GRAMMAR MANUAL + LIVE SENTENCE DISSECTION -->
+        <div class="card-3d red-border" id="node-branch-right">
+          <span class="meta-tag red">শাখা ক (ডানদিকের তীরচিহ্ন ➡) · <span class="en-reg">Grammar Manual</span></span>
+          <h3 style="margin:4px 0 6px;color:var(--red);font-size:22px;">শুদ্ধভাবে <span class="en">Sentence</span> গঠনে <span class="en">Grammar</span></h3>
+          <p style="font-size:14.5px;margin:4px 0;">
+            <b><span class="en">Grammar</span> কী ও কেন?</b> একটি <span class="en-reg">Sentence</span>-কে কীভাবে সঠিকরূপে তৈরি ও ব্যবহার করতে হয়, তার নিয়মাবলি বা <b><span class="en">Manual</span></b>-ই হলো <span class="en-reg">Grammar</span>। এটি ছাড়া শব্দের অর্থ এলোমেলো হয়ে যায়।
+          </p>
+
+          <!-- Interactive Sentence Dissection (Matches User Sketch + Transitive Comparison) -->
+          <div class="dissect-panel">
+            <div style="text-align:center;font-size:13px;font-weight:bold;color:var(--primary);margin-bottom:6px;">
+              🔍 বাক্যের ব্যবচ্ছেদ দেখুন (ক্লিক করে বাক্য পরিবর্তন করুন):
+            </div>
+            <div class="sentence-switcher">
+              <button class="sw-btn active" id="btn-sent-1" onclick="renderDissection(1)">বাক্য ১: "I am a student."</button>
+              <button class="sw-btn" id="btn-sent-2" onclick="renderDissection(2)">বাক্য ২: "I read a book."</button>
+            </div>
+
+            <div class="word-tokens-row" id="tokensContainer"></div>
+
+            <div style="text-align:center;margin-top:8px;">
+              <span style="display:inline-block;padding:4px 14px;border-radius:99px;background:rgba(25,72,158,0.12);border:1.5px solid var(--primary);color:var(--primary);font-size:12.5px;font-weight:bold;">
+                ⬆ উপরের প্রতিটি শব্দই এক একটি <span class="en">Parts of Speech</span> (৮ প্রকার)
+              </span>
+            </div>
+            <div id="dissectNote" style="margin-top:10px;font-size:13px;background:var(--surface);padding:9px 12px;border-radius:10px;border:1px solid var(--border);"></div>
+          </div>
+
+          <h4 style="margin:14px 0 6px;color:var(--primary);font-size:18px;">➡ <span class="en">Grammar</span>-এর ভেতরে কী কী আছে? (পূর্ণ তালিকা):</h4>
+
+          <!-- Grammar Pillar 1: 8 Parts of Speech -->
+          <div class="acc-item open" id="acc-gram-pos">
+            <button class="acc-btn" onclick="toggleAcc('acc-gram-pos')">
+              <span>
+                <span class="acc-title">১. <span class="en">Parts of Speech</span> (৮ প্রকার) ও <span class="en">Determiners</span></span>
+                <span class="acc-sub">বাক্যে শব্দের অবস্থান ও কাজ অনুযায়ী শ্রেণিবিভাগ</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="tbl-wrap">
+                <table>
+                  <thead><tr><th>নাম</th><th>বাংলা</th><th>উদাহরণ</th><th>কাজ</th></tr></thead>
+                  <tbody>
+                    <tr><td class="en">Noun</td><td>বিশেষ্য</td><td class="en">Rahim, book, honesty</td><td>নাম বোঝায়</td></tr>
+                    <tr><td class="en">Pronoun</td><td>সর্বনাম</td><td class="en">I, he, she, it, they</td><td>Noun-এর বদলে বসে</td></tr>
+                    <tr><td class="en">Adjective</td><td>বিশেষণ</td><td class="en">good, tall, beautiful</td><td>Noun/Pronoun-এর গুণ</td></tr>
+                    <tr><td class="en">Verb</td><td>ক্রিয়া</td><td class="en">am, read, write, play</td><td>কাজ বা অবস্থা বোঝায়</td></tr>
+                    <tr><td class="en">Adverb</td><td>ক্রিয়া বিশেষণ</td><td class="en">quickly, slowly, very</td><td>Verb/Adj.-কে বিশেষায়িত করে</td></tr>
+                    <tr><td class="en">Preposition</td><td>পদান্বয়ী অব্যয়</td><td class="en">in, on, at, under, to</td><td>সম্পর্ক ও অবস্থান বোঝায়</td></tr>
+                    <tr><td class="en">Conjunction</td><td>সংযোজক</td><td class="en">and, but, because, if</td><td>শব্দ বা বাক্য যুক্ত করে</td></tr>
+                    <tr><td class="en">Interjection</td><td>আবেগসূচক</td><td class="en">Wow! Alas! Hurrah!</td><td>আকস্মিক আবেগ প্রকাশ করে</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grammar Pillar 2: Tense & Verb System -->
+          <div class="acc-item" id="acc-gram-tense">
+            <button class="acc-btn" onclick="toggleAcc('acc-gram-tense')">
+              <span>
+                <span class="acc-title">২. <span class="en">Tense</span> (১২টি রূপ), <span class="en">Verb Forms</span> ও <span class="en">Agreement</span></span>
+                <span class="acc-sub">কাজের সময় ও অবস্থা প্রকাশের নিয়ম</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <p style="margin:0 0 6px;"><b>৩টি প্রধান কাল (<span class="en">Present, Past, Future</span>) × ৪টি রূপ (<span class="en">Simple, Continuous, Perfect, Perfect Continuous</span>) = ১২টি <span class="en">Tense</span>।</b></p>
+              <div class="ex-strip"><b>Present:</b> <span class="en">I read</span> / <span class="en">I am reading</span> / <span class="en">I have read</span> / <span class="en">I have been reading.</span></div>
+              <div class="ex-strip"><b>Past:</b> <span class="en">I read</span> / <span class="en">I was reading</span> / <span class="en">I had read</span> / <span class="en">I had been reading.</span></div>
+              <div class="ex-strip"><b>Future:</b> <span class="en">I will read</span> / <span class="en">I will be reading</span> / <span class="en">I will have read</span> / <span class="en">I will have been reading.</span></div>
+              <div class="ex-strip"><b>Subject–Verb Agreement:</b> কর্তা একবচন হলে ক্রিয়া একবচন (<span class="en">He goes</span>), বহুবচন হলে বহুবচন (<span class="en">They go</span>)।</div>
+            </div>
+          </div>
+
+          <!-- Grammar Pillar 3: Article, Preposition, Modifier, Connector, Tag, Conditional -->
+          <div class="acc-item" id="acc-gram-advanced">
+            <button class="acc-btn" onclick="toggleAcc('acc-gram-advanced')">
+              <span>
+                <span class="acc-title">৩. <span class="en">Article, Preposition, Modifier, Connector & Conditionals</span></span>
+                <span class="acc-sub">বাক্যকে নিখুঁত ও প্রাঞ্জল করার অপরিহার্য অধ্যায়সমূহ</span>
+              </span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="acc-body">
+              <div class="ex-strip"><b>Article (<span class="en">a, an, the</span>):</b> ধ্বনি অনুযায়ী <span class="en">a university</span> (ইউ উচ্চারণ), <span class="en">an hour</span> (আওয়ার—h নীরব), <span class="en">the sun</span>।</div>
+              <div class="ex-strip"><b>Phrase & Clause:</b> <span class="en">Phrase</span> (<span class="en">in the garden</span>) বনাম <span class="en">Clause</span> (<span class="en">Noun, Adjective, Adverbial Clause</span>)।</div>
+              <div class="ex-strip"><b>Conditionals (<span class="en">If-clauses</span>):</b> <span class="en">If you study hard, you will succeed.</span></div>
+              <div class="ex-strip"><b>Modifier, Connector & Tag Question:</b> <span class="en">however, therefore</span>; <span class="en">You are a student, aren't you?</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-action">
+        <button class="btn-flow-next" onclick="revealStep(5)">ধাপ ০৫: ইংরেজীতে আর কী কী আছে? (4 Language Skills) দেখুন ↓</button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 5: WHAT ELSE IS IN ENGLISH? (4 CORE LANGUAGE SKILLS + DISCOURSE)
+    ========================================================== -->
+    <section class="step-section" id="section-step5">
+      <div class="flow-direction-tag green"><span>⬇ ধাপ ০৪ থেকে ↓ বাস্তব জীবনে ভাষা প্রয়োগের ৪টি দক্ষতা</span></div>
+
+      <div class="card-3d" id="node-step5">
+        <span class="meta-tag green">ধাপ ০৫ · ইংরেজীতে আর কী কী আছে? (<span class="en-reg">Beyond Grammar: 4 Core Skills</span>)</span>
+        <h2 style="margin:4px 0 6px;color:var(--primary);font-size:clamp(22px,3.2vw,30px);">
+          ভাষা ব্যবহারের ৪টি প্রধান দক্ষতা (<span class="en">4 Language Skills</span>) ও <span class="en">Discourse</span>
+        </h2>
+        <p style="font-size:14.5px;margin:0 0 12px;">
+          শুধু <span class="en-reg">Grammar</span> জানলেই ভাষা পূর্ণ হয় না। বাস্তব জীবনে ইংরেজি ব্যবহার করতে ৪টি দক্ষতা লাগে—২টি <b>গ্রহণমূলক (<span class="en-reg">Receptive</span>)</b> এবং ২টি <b>প্রকাশমূলক (<span class="en-reg">Productive</span>)</b>:
+        </p>
+
+        <div class="four-col">
+          <div class="skill-box sk-l">
+            <div style="font-size:11.5px;opacity:0.9;">01 · RECEPTIVE (গ্রহণমূলক)</div>
+            <h4>LISTENING</h4>
+            <b>শোনা ও বোঝা</b>
+            <p style="font-size:13px;margin:6px 0 0;">ইংরেজি কথা, উচ্চারণ, <span class="en-reg">Intonation</span> ও কথোপকথনের মূলভাব শুনে বুঝতে পারা।</p>
+          </div>
+          <div class="skill-box sk-r">
+            <div style="font-size:11.5px;opacity:0.9;">02 · RECEPTIVE (গ্রহণমূলক)</div>
+            <h4>READING</h4>
+            <b>পড়া ও বোঝা</b>
+            <p style="font-size:13px;margin:6px 0 0;"><span class="en-reg">Skimming</span> (মূলভাব), <span class="en-reg">Scanning</span> (নির্দিষ্ট তথ্য) ও প্রসঙ্গ থেকে অজানা শব্দের অর্থ বোঝা।</p>
+          </div>
+          <div class="skill-box sk-s">
+            <div style="font-size:11.5px;opacity:0.9;">03 · PRODUCTIVE (প্রকাশমূলক)</div>
+            <h4>SPEAKING</h4>
+            <b>কথা বলা</b>
+            <p style="font-size:13px;margin:6px 0 0;">স্পষ্ট উচ্চারণ, সঠিক বাক্য গঠন ও জড়তাহীন সাবলীলতায় (<span class="en-reg">Fluency</span>) মনের ভাব প্রকাশ।</p>
+          </div>
+          <div class="skill-box sk-w">
+            <div style="font-size:11.5px;opacity:0.9;">04 · PRODUCTIVE (প্রকাশমূলক)</div>
+            <h4>WRITING</h4>
+            <b>লেখা ও প্রকাশ</b>
+            <p style="font-size:13px;margin:6px 0 0;"><span class="en-reg">Sentence → Paragraph (Topic, Supporting, Concluding) → Essay, Email, Application</span>।</p>
+          </div>
+        </div>
+
+        <div class="wwe-grid" style="margin-top:14px;">
+          <div class="wwe-box">
+            <b>🔗 <span class="en">Cohesion & Coherence</span></b>
+            বাক্যগুলোর মধ্যে <span class="en-reg">Pronoun</span> ও <span class="en-reg">Connector</span> দিয়ে সংযোগ এবং ভাবের যৌক্তিক ধারাবাহিকতা।
+          </div>
+          <div class="wwe-box">
+            <b>🎭 <span class="en">Register & Pragmatics</span></b>
+            পরিস্থিতি অনুযায়ী <span class="en-reg">Formal</span> (<span class="en">Could you please help me?</span>) বনাম <span class="en-reg">Informal</span> ভাষা নির্বাচন।
+          </div>
+          <div class="wwe-box">
+            <b>📈 বাক্যের বিস্তার (<span class="en">Hierarchy</span>)</b>
+            <span class="en">Letter → Word → Phrase → Clause → Sentence → Paragraph → Essay</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-action">
+        <button class="btn-flow-next" onclick="revealStep(6)">ধাপ ০৬: কীভাবে পুরো ইংরেজি আয়ত্তে আনা যায়? (Mastery System) দেখুন ↓</button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STEP 6: HOW TO MASTER COMPLETE ENGLISH? (5 LEVELS + 60-MIN ROUTINE + QUIZ)
+    ========================================================== -->
+    <section class="step-section" id="section-step6">
+      <div class="flow-direction-tag"><span>⬇ ধাপ ০৫ থেকে ↓ শূন্য থেকে পূর্ণ দক্ষতা অর্জনের বৈজ্ঞানিক পদ্ধতি</span></div>
+
+      <div class="card-3d" id="node-step6">
+        <span class="meta-tag">ধাপ ০৬ · চূড়ান্ত রোডম্যাপ (<span class="en-reg">Complete Mastery System</span>)</span>
+        <h2 style="margin:4px 0 6px;color:var(--primary);font-size:clamp(22px,3.2vw,30px);">
+          কীভাবে পুরো ইংরেজি শেখা ও আয়ত্তে আনা যায়?
+        </h2>
+        <p style="font-size:14.5px;margin:0 0 10px;">
+          ভাষা শেখার বৈজ্ঞানিক চক্র: <b>শুনব (<span class="en-reg">Input</span>) ➔ বুঝব (<span class="en-reg">Process</span>) ➔ বলব ও লিখব (<span class="en-reg">Output</span>) ➔ ভুল সংশোধন করব (<span class="en-reg">Feedback</span>)</b>।
+        </p>
+
+        <!-- 5 Levels Progression -->
+        <h4 style="margin:12px 0 6px;color:var(--primary);">🚀 ৫টি ধাপে উত্তরণের রোডম্যাপ (<span class="en">Level 1 → Level 5</span>):</h4>
+        <div class="levels-chain">
+          <div class="lvl-card">
+            <span class="lvl-num">LEVEL 1</span>
+            <b style="display:block;font-size:14px;">Foundation</b>
+            <span style="font-size:12.5px;color:var(--muted);">বর্ণ, ধ্বনি, পরিচিত শব্দ ও ছোট বাক্য বোঝা।</span>
+          </div>
+          <div class="lvl-card">
+            <span class="lvl-num">LEVEL 2</span>
+            <b style="display:block;font-size:14px;">Sentence Builder</b>
+            <span style="font-size:12.5px;color:var(--muted);">নিজে সঠিক বাক্য গঠন, প্রশ্ন করা ও উত্তর দেওয়া।</span>
+          </div>
+          <div class="lvl-card">
+            <span class="lvl-num">LEVEL 3</span>
+            <b style="display:block;font-size:14px;">Independent User</b>
+            <span style="font-size:12.5px;color:var(--muted);">দৈনন্দিন বিষয়ে কথোপকথন ও অনুচ্ছেদ লেখা।</span>
+          </div>
+          <div class="lvl-card">
+            <span class="lvl-num">LEVEL 4</span>
+            <b style="display:block;font-size:14px;">Confident Speaker</b>
+            <span style="font-size:12.5px;color:var(--muted);">যেকোনো পরিস্থিতিতে যুক্তিসহ মতামত ও ব্যাখ্যা দেওয়া।</span>
+          </div>
+          <div class="lvl-card">
+            <span class="lvl-num" style="background:var(--green);">LEVEL 5</span>
+            <b style="display:block;font-size:14px;">Complete Mastery</b>
+            <span style="font-size:12.5px;color:var(--muted);">একাডেমিক, প্রফেশনাল ও জটিল ইংরেজিতে পূর্ণ দক্ষতা।</span>
+          </div>
+        </div>
+
+        <!-- 60-Min Routine + Myths vs Reality -->
+        <div class="dual-branch-grid" style="margin-top:18px;">
+          <div>
+            <h4 style="margin:0 0 8px;color:var(--primary);">⏱️ দৈনিক ৬০ মিনিটের বাস্তব অনুশীলন রুটিন:</h4>
+            <div class="tbl-wrap">
+              <table>
+                <thead><tr><th>সময়</th><th>দক্ষতা</th><th>প্রতিদিনের করণীয়</th></tr></thead>
+                <tbody>
+                  <tr><td>১০ মি.</td><td class="en">Listening</td><td>সহজ ইংরেজি অডিও/ভিডিও শুনে মূলভাব বোঝা।</td></tr>
+                  <tr><td>১০ মি.</td><td class="en">Reading</td><td>ছোট অনুচ্ছেদ পড়ে প্রসঙ্গ থেকে শব্দের অর্থ অনুমান।</td></tr>
+                  <tr><td>১০ মি.</td><td class="en">Vocabulary</td><td>৫টি নতুন শব্দ (<span class="en-reg">Word Family + Collocation</span>)।</td></tr>
+                  <tr><td>১০ মি.</td><td class="en">Grammar</td><td>১টি নিয়ম বুঝে নিজের ৩টি নতুন বাক্য তৈরি।</td></tr>
+                  <tr><td>১০ মি.</td><td class="en">Speaking</td><td>নিজের দিন বা বিষয় নিয়ে ১ মিনিট রেকর্ড করে বলা।</td></tr>
+                  <tr><td>১০ মি.</td><td class="en">Writing</td><td>৫–৮টি বাক্য লিখে নিজে ভুল খুঁজে সংশোধন করা।</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="margin:0 0 8px;color:var(--red);">⚠️ ভুল ধারণা বনাম সঠিক ধারণা:</h4>
+            <div class="ex-strip" style="border-left-color:var(--red);">
+              ❌ <b>ভুল:</b> শুধু <span class="en-reg">Grammar</span> মুখস্থ করলেই ইংরেজি বলা যায়।<br>
+              ✅ <b>সঠিক:</b> <span class="en-reg">Grammar</span> হলো <span class="en-reg">Manual</span>; নিয়মটি বাক্যে ও কথায় প্রয়োগ করতে হবে।
+            </div>
+            <div class="ex-strip" style="border-left-color:var(--red);">
+              ❌ <b>ভুল:</b> ভুল হওয়ার ভয়ে কথা বলা বন্ধ রাখা।<br>
+              ✅ <b>সঠিক:</b> ভুল শনাক্ত করে সংশোধন করাই শেখার মূল সিঁড়ি।
+            </div>
+            <div class="ex-strip" style="border-left-color:var(--red);">
+              ❌ <b>ভুল:</b> বাংলা শব্দে-শব্দে অনুবাদ করে ইংরেজি বলা।<br>
+              ✅ <b>সঠিক:</b> বাংলা <span class="en">SOV</span>, কিন্তু ইংরেজির স্বাভাবিক কাঠামো <span class="en">SVO</span>।
+            </div>
+          </div>
+        </div>
+
+        <!-- Self-Check Quiz -->
+        <div style="margin-top:20px;padding-top:16px;border-top:1.5px solid var(--border);">
+          <h4 style="margin:0 0 6px;color:var(--primary);font-size:19px;">🎯 নিজের শেখা যাচাই করুন (স্কোর: <span id="quizScoreText">০ / ৩</span>)</h4>
+
+          <div class="quiz-card">
+            <b>১. গ্রামার (<span class="en">Grammar</span>)-এর সবচেয়ে সহজ ও সঠিক সংজ্ঞা কী?</b>
+            <div class="q-grid">
+              <button class="q-btn" onclick="answerQuiz(this, 0, 1, 'একটি Sentence-কে কীভাবে সঠিকরূপে তৈরি ও ব্যবহার করতে হয় তার নিয়মাবলি বা Manual-ই হলো Grammar।')">A. শুধু কিছু মুখস্থ সূত্র</button>
+              <button class="q-btn" onclick="answerQuiz(this, 1, 1, 'একটি Sentence-কে কীভাবে সঠিকরূপে তৈরি ও ব্যবহার করতে হয় তার নিয়মাবলি বা Manual-ই হলো Grammar।')">B. শুদ্ধভাবে Sentence গঠনের Manual</button>
+              <button class="q-btn" onclick="answerQuiz(this, 2, 1, 'একটি Sentence-কে কীভাবে সঠিকরূপে তৈরি ও ব্যবহার করতে হয় তার নিয়মাবলি বা Manual-ই হলো Grammar।')">C. শুধু ইংরেজি শব্দভান্ডার</button>
+              <button class="q-btn" onclick="answerQuiz(this, 3, 1, 'একটি Sentence-কে কীভাবে সঠিকরূপে তৈরি ও ব্যবহার করতে হয় তার নিয়মাবলি বা Manual-ই হলো Grammar।')">D. শুধু অনুবাদ করার কৌশল</button>
+            </div>
+            <div class="q-feedback" style="font-size:13px;margin-top:6px;"></div>
+          </div>
+
+          <div class="quiz-card">
+            <b>২. “I am a student.” বাক্যে ‘student’ ব্যাকরণগতভাবে কী?</b>
+            <div class="q-grid">
+              <button class="q-btn" onclick="answerQuiz(this, 0, 2, '‘am’ একটি Linking Verb হওয়ায় ‘a student’ কর্তার পরিচয় প্রকাশকারী Subject Complement।')">A. Direct Object</button>
+              <button class="q-btn" onclick="answerQuiz(this, 1, 2, '‘am’ একটি Linking Verb হওয়ায় ‘a student’ কর্তার পরিচয় প্রকাশকারী Subject Complement।')">B. Preposition</button>
+              <button class="q-btn" onclick="answerQuiz(this, 2, 2, '‘am’ একটি Linking Verb হওয়ায় ‘a student’ কর্তার পরিচয় প্রকাশকারী Subject Complement।')">C. Subject Complement (Noun)</button>
+              <button class="q-btn" onclick="answerQuiz(this, 3, 2, '‘am’ একটি Linking Verb হওয়ায় ‘a student’ কর্তার পরিচয় প্রকাশকারী Subject Complement।')">D. Conjunction</button>
+            </div>
+            <div class="q-feedback" style="font-size:13px;margin-top:6px;"></div>
+          </div>
+
+          <div class="quiz-card">
+            <b>৩. ইংরেজি ও বাংলা বাক্যের স্বাভাবিক শব্দক্রম যথাক্রমে কোনটি?</b>
+            <div class="q-grid">
+              <button class="q-btn" onclick="answerQuiz(this, 0, 0, 'ইংরেজিতে Subject + Verb + Object (SVO) এবং বাংলায় Subject + Object + Verb (SOV) ব্যবহৃত হয়।')">A. SVO এবং SOV</button>
+              <button class="q-btn" onclick="answerQuiz(this, 1, 0, 'ইংরেজিতে Subject + Verb + Object (SVO) এবং বাংলায় Subject + Object + Verb (SOV) ব্যবহৃত হয়।')">B. SOV এবং SVO</button>
+              <button class="q-btn" onclick="answerQuiz(this, 2, 0, 'ইংরেজিতে Subject + Verb + Object (SVO) এবং বাংলায় Subject + Object + Verb (SOV) ব্যবহৃত হয়।')">C. VSO এবং OVS</button>
+              <button class="q-btn" onclick="answerQuiz(this, 3, 0, 'ইংরেজিতে Subject + Verb + Object (SVO) এবং বাংলায় Subject + Object + Verb (SOV) ব্যবহৃত হয়।')">D. OSV এবং VOS</button>
+            </div>
+            <div class="q-feedback" style="font-size:13px;margin-top:6px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="en" style="font-size:24px;letter-spacing:1px;">GKD COMPLETE ENGLISH MASTERY</div>
+      <div style="margin:4px 0;font-size:15px;">Mentor: <b>Gopal Krishna Das</b></div>
+      <div class="en-reg" style="font-size:13px;opacity:0.85;">What is English · 3 Building Blocks · Sentence & Grammar Manual · 4 Skills · Complete Mastery</div>
+    </footer>
+  </div>
+</main>
+
+<script>
+  let currentStep = 1;
+  let allExpanded = false;
+  let quizScore = 0;
+  const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+
+  function toBn(n) {
+    return String(n).replace(/\d/g, d => bnDigits[Number(d)]);
+  }
+
+  /* Interactive Sentence Dissection Data */
+  const dissections = {
+    1: {
+      tokens: [
+        { word: 'I', role: 'Subject (কর্তা)', pos: 'Pronoun', cls: 'c-pink' },
+        { word: 'am', role: 'Linking Verb', pos: 'Verb', cls: 'c-blue' },
+        { word: 'a', role: 'Determiner', pos: 'Article', cls: 'c-purple' },
+        { word: 'student', role: 'Complement', pos: 'Noun', cls: 'c-orange' },
+        { word: '.', role: 'Full Stop', pos: 'Punctuation', cls: 'c-green' }
+      ],
+      note: '<b>বিশ্লেষণ:</b> শুরুতে বড় হাতের অক্ষর (<b>Capital Letter: I</b>) ও শেষে <b>Full Stop (.)</b> বসেছে। এখানে <b>am</b> হলো <span class="en">Linking Verb</span>, তাই <b>a student</b> হলো <span class="en">Subject Complement</span> (কর্তার পরিচয় দেয়)।'
+    },
+    2: {
+      tokens: [
+        { word: 'I', role: 'Subject (কর্তা)', pos: 'Pronoun', cls: 'c-pink' },
+        { word: 'read', role: 'Action Verb', pos: 'Transitive Verb', cls: 'c-blue' },
+        { word: 'a', role: 'Determiner', pos: 'Article', cls: 'c-purple' },
+        { word: 'book', role: 'Object (কর্ম)', pos: 'Noun', cls: 'c-orange' },
+        { word: '.', role: 'Full Stop', pos: 'Punctuation', cls: 'c-green' }
+      ],
+      note: '<b>বিশ্লেষণ:</b> এখানে <b>read</b> হলো <span class="en">Action / Transitive Verb</span> (কাজ করা বোঝায়), তাই কাজটি যার ওপর পড়ছে সেই <b>a book</b> হলো <b><span class="en">Object</span> (কর্ম)</b> এবং গঠনটি হলো <b><span class="en">SVO</span></b>।'
+    }
+  };
+
+  function renderDissection(id) {
+    const data = dissections[id];
+    const container = document.getElementById('tokensContainer');
+    container.innerHTML = data.tokens.map(t => `
+      <div class="w-token ${t.cls}">
+        <span class="word">${t.word}</span>
+        <span class="arrow-down">↓</span>
+        <span class="role-pill">${t.role}</span>
+        <span class="pos-sub">${t.pos}</span>
+      </div>
+    `).join('');
+    document.getElementById('dissectNote').innerHTML = data.note;
+
+    document.getElementById('btn-sent-1').classList.toggle('active', id === 1);
+    document.getElementById('btn-sent-2').classList.toggle('active', id === 2);
+    setTimeout(drawAllArrows, 60);
+  }
+
+  function updateProgress() {
+    const pct = Math.round((currentStep / 6) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+  }
+
+  function revealStep(stepNum) {
+    for (let s = 2; s <= stepNum; s++) {
+      const sec = document.getElementById('section-step' + s);
+      if (sec && !sec.classList.contains('visible')) {
+        sec.classList.add('visible');
+      }
+    }
+    if (stepNum > currentStep) {
+      currentStep = stepNum;
+      updateProgress();
+    }
+    setTimeout(() => {
+      drawAllArrows();
+      const target = document.getElementById('section-step' + stepNum);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 90);
+  }
+
+  function toggleExpandAll() {
+    const btn = document.getElementById('toggleAllBtn');
+    if (!allExpanded) {
+      allExpanded = true;
+      revealStep(6);
+      document.querySelectorAll('.acc-item').forEach(el => el.classList.add('open'));
+      btn.textContent = '⊟ ধাপগুলো গুছিয়ে রাখুন';
+      setTimeout(drawAllArrows, 120);
+    } else {
+      allExpanded = false;
+      resetFlow();
+      btn.textContent = '✦ সব ধাপ একসাথে দেখুন';
+    }
+  }
+
+  function resetFlow() {
+    for (let s = 2; s <= 6; s++) {
+      const sec = document.getElementById('section-step' + s);
+      if (sec) sec.classList.remove('visible');
+    }
+    currentStep = 1;
+    allExpanded = false;
+    document.getElementById('toggleAllBtn').textContent = '✦ সব ধাপ একসাথে দেখুন';
+    updateProgress();
+    setTimeout(() => {
+      drawAllArrows();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 60);
+  }
+
+  function toggleAcc(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.toggle('open');
+      setTimeout(drawAllArrows, 60);
+    }
+  }
+
+  function setTheme(themeName) {
+    document.body.className = themeName === 'default' ? '' : themeName;
+    try { localStorage.setItem('gkd_master_theme', themeName); } catch (e) {}
+    setTimeout(drawAllArrows, 80);
+  }
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.().catch(() => {});
+    } else {
+      document.exitFullscreen?.().catch(() => {});
+    }
+  }
+
+  function answerQuiz(btn, chosen, correct, explanation) {
+    const parent = btn.parentElement;
+    if (parent.dataset.done) return;
+    parent.dataset.done = '1';
+
+    Array.from(parent.children).forEach((b, i) => {
+      b.disabled = true;
+      if (i === correct) b.classList.add('ok');
+    });
+
+    const fb = parent.nextElementSibling;
+    if (chosen === correct) {
+      quizScore++;
+      document.getElementById('quizScoreText').textContent = `${toBn(quizScore)} / ${toBn(3)}`;
+      fb.innerHTML = `✅ <b>সঠিক!</b> ${explanation}`;
+      fb.style.color = 'var(--green)';
+    } else {
+      btn.classList.add('no');
+      fb.innerHTML = `❌ <b>সঠিক উত্তর সবুজ রঙে দেখানো হয়েছে।</b> ${explanation}`;
+      fb.style.color = 'var(--red)';
+    }
+    setTimeout(drawAllArrows, 60);
+  }
+
+  /* =========================================================
+     DYNAMIC REAL-TIME SVG CONNECTOR ENGINE
+     Draws smooth animated arrows between visible nodes
+  ========================================================== */
+  function getRelBox(el, stageRect) {
+    const r = el.getBoundingClientRect();
+    return {
+      top: r.top - stageRect.top,
+      bottom: r.bottom - stageRect.top,
+      left: r.left - stageRect.left,
+      right: r.right - stageRect.left,
+      cx: (r.left + r.right) / 2 - stageRect.left,
+      cy: (r.top + r.bottom) / 2 - stageRect.top
+    };
+  }
+
+  function makePath(d, colorClass, markerId) {
+    return `
+      <path class="flow-path-base" d="${d}"></path>
+      <path class="flow-path-anim ${colorClass}" d="${d}" marker-end="url(#${markerId})"></path>
+    `;
+  }
+
+  function drawAllArrows() {
+    const stage = document.getElementById('flowchartStage');
+    const group = document.getElementById('arrowPathsGroup');
+    if (!stage || !group) return;
+
+    const sRect = stage.getBoundingClientRect();
+    let svgMarkup = '';
+
+    // 1. Step 1 (English কী?) -> Step 2 (Language)
+    const n1 = document.getElementById('node-step1');
+    const sec2 = document.getElementById('section-step2');
+    const n2 = document.getElementById('node-step2');
+    if (n1 && sec2 && sec2.classList.contains('visible') && n2) {
+      const b1 = getRelBox(n1, sRect);
+      const b2 = getRelBox(n2, sRect);
+      svgMarkup += makePath(`M ${b1.cx} ${b1.bottom} L ${b2.cx} ${b2.top - 6}`, '', 'arr-blue');
+    }
+
+    // 2. Step 2 (Language) -> Step 3 (3 Elements: Letter, Word, Sentence)
+    const sec3 = document.getElementById('section-step3');
+    const nLetter = document.getElementById('node-el-letter');
+    const nWord = document.getElementById('node-el-word');
+    const nSent = document.getElementById('node-el-sentence');
+    if (n2 && sec3 && sec3.classList.contains('visible') && nLetter && nWord && nSent) {
+      const b2 = getRelBox(n2, sRect);
+      const bL = getRelBox(nLetter, sRect);
+      const bW = getRelBox(nWord, sRect);
+      const bS = getRelBox(nSent, sRect);
+      const midY = b2.bottom + (bW.top - b2.bottom) * 0.55;
+
+      svgMarkup += makePath(`M ${b2.cx} ${b2.bottom} L ${b2.cx} ${midY} L ${bL.cx} ${midY} L ${bL.cx} ${bL.top - 6}`, '', 'arr-blue');
+      svgMarkup += makePath(`M ${b2.cx} ${b2.bottom} L ${bW.cx} ${bW.top - 6}`, '', 'arr-blue');
+      svgMarkup += makePath(`M ${b2.cx} ${b2.bottom} L ${b2.cx} ${midY} L ${bS.cx} ${midY} L ${bS.cx} ${bS.top - 6}`, 'red', 'arr-red');
+    }
+
+    // 3. Step 3 (Sentence) -> Step 4 (Branch Down: SVO/Types & Branch Right: Grammar Manual)
+    const sec4 = document.getElementById('section-step4');
+    const bDown = document.getElementById('node-branch-down');
+    const bRight = document.getElementById('node-branch-right');
+    if (nSent && sec4 && sec4.classList.contains('visible') && bDown && bRight) {
+      const bS = getRelBox(nSent, sRect);
+      const bD = getRelBox(bDown, sRect);
+      const bR = getRelBox(bRight, sRect);
+      const splitY = bS.bottom + (Math.min(bD.top, bR.top) - bS.bottom) * 0.52;
+
+      svgMarkup += makePath(`M ${bS.cx} ${bS.bottom} L ${bS.cx} ${splitY} L ${bD.cx} ${splitY} L ${bD.cx} ${bD.top - 6}`, '', 'arr-blue');
+      svgMarkup += makePath(`M ${bS.cx} ${bS.bottom} L ${bS.cx} ${splitY} L ${bR.cx} ${splitY} L ${bR.cx} ${bR.top - 6}`, 'red', 'arr-red');
+    }
+
+    // 4. Step 4 -> Step 5 (4 Language Skills)
+    const sec5 = document.getElementById('section-step5');
+    const n5 = document.getElementById('node-step5');
+    if (sec4 && sec4.classList.contains('visible') && sec5 && sec5.classList.contains('visible') && bDown && bRight && n5) {
+      const bD = getRelBox(bDown, sRect);
+      const bR = getRelBox(bRight, sRect);
+      const b5 = getRelBox(n5, sRect);
+      const startY = Math.max(bD.bottom, bR.bottom);
+      svgMarkup += makePath(`M ${b5.cx} ${startY + 4} L ${b5.cx} ${b5.top - 6}`, 'green', 'arr-green');
+    }
+
+    // 5. Step 5 -> Step 6 (Complete Mastery System)
+    const sec6 = document.getElementById('section-step6');
+    const n6 = document.getElementById('node-step6');
+    if (n5 && sec6 && sec6.classList.contains('visible') && n6) {
+      const b5 = getRelBox(n5, sRect);
+      const b6 = getRelBox(n6, sRect);
+      svgMarkup += makePath(`M ${b5.cx} ${b5.bottom} L ${b6.cx} ${b6.top - 6}`, '', 'arr-blue');
+    }
+
+    group.innerHTML = svgMarkup;
+  }
+
+  // Initialize
+  renderDissection(1);
+  updateProgress();
+  window.addEventListener('resize', drawAllArrows);
+  window.addEventListener('load', drawAllArrows);
+
+  document.getElementById('node-step1').addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      revealStep(2);
+    }
+  });
+
+  try {
+    const savedTheme = localStorage.getItem('gkd_master_theme');
+    if (savedTheme) {
+      document.getElementById('themePicker').value = savedTheme;
+      setTheme(savedTheme);
+    }
+  } catch (e) {}
+</script>
+</body>
+</html>
