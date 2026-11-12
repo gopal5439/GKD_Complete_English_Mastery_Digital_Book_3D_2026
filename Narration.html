@@ -1,481 +1,2042 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GKD Complete Narration Mastery</title>
-<style>
-:root{--navy:#10234d;--blue:#2457d6;--cyan:#1bb8c8;--purple:#7b3fe4;--pink:#f15bb5;--gold:#ffc857;--ink:#172033;--paper:#fff;--soft:#eef5ff}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans Bengali","SolaimanLipi","Kalpurush",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 10%,#e4f4ff,transparent 30%),linear-gradient(135deg,#f5f7ff,#eaf8ff);overflow-x:hidden}
-.topbar{position:sticky;top:0;z-index:20;background:rgba(12,29,65,.94);color:white;padding:10px 14px;box-shadow:0 8px 25px #0c1d4130;backdrop-filter:blur(12px)}
-.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1100px;margin:auto}.brand h1{font-size:clamp(16px,2.5vw,23px);margin:0}.brand small{opacity:.8;font-size:12px}.progress-wrap{height:5px;background:#ffffff30;border-radius:9px;margin:9px auto 0;max-width:1100px;overflow:hidden}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink));transition:width .4s}
-main{max-width:1100px;margin:20px auto 90px;padding:0 14px}.page{display:none;animation:pageIn .55s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(18px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
-.hero{position:relative;overflow:hidden;border-radius:26px;padding:clamp(22px,5vw,52px);color:white;background:linear-gradient(130deg,#10234d,#2457d6 55%,#7b3fe4);box-shadow:0 18px 0 #0d1d4930,0 25px 45px #243b7a35;margin-bottom:22px}
-.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#ffffff12;pointer-events:none}.hero:before{width:250px;height:250px;right:-45px;top:-85px}.hero:after{width:170px;height:170px;right:130px;bottom:-100px}
-.kicker{letter-spacing:2px;text-transform:uppercase;color:#bcecff;font-size:12px;font-weight:800}.hero h2{font-size:clamp(28px,5vw,48px);line-height:1.2;margin:12px 0}.hero p{font-size:clamp(14px,2vw,18px);line-height:1.8;max-width:780px}.pill{display:inline-block;border:1px solid #ffffff65;border-radius:999px;padding:7px 12px;margin:5px 5px 0 0;background:#ffffff14;font-size:13px}
-.card{background:rgba(255,255,255,.94);border:1px solid #dce7ff;border-radius:20px;padding:clamp(16px,3vw,26px);margin:16px 0;box-shadow:0 8px 0 #dbe6ff,0 15px 30px #243b7a13;transition:transform .25s,box-shadow .25s}
-.card:hover{transform:translateY(-3px);box-shadow:0 11px 0 #dbe6ff,0 20px 35px #243b7a1a}
-h3{font-size:clamp(19px,2.7vw,27px);color:#183d91;margin:0 0 14px}h4{color:#6a35c7;margin:18px 0 8px;font-size:17px}
-p,li{line-height:1.8}.lead{font-size:17px}.tag{display:inline-block;background:#e8f0ff;color:#2048a5;padding:4px 9px;border-radius:8px;font-weight:700;font-size:12px;margin:2px}
-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:13px;margin:12px 0 18px;font-size:14px}th{background:#183d91;color:white;text-align:left}td,th{padding:11px 12px;border-right:1px solid #dce5f7;border-bottom:1px solid #dce5f7;vertical-align:top}tr:nth-child(even) td{background:#f4f7ff}tr:nth-child(odd) td{background:#fff}
-.formula{border-left:5px solid var(--cyan);background:#eafaff;border-radius:12px;padding:13px 16px;margin:12px 0;font-weight:700;color:#123a61}
-.example{border:1px dashed #9bb6ed;background:#f8fbff;padding:13px 15px;border-radius:12px;margin:10px 0;line-height:1.85}.en{font-family:Arial,sans-serif;font-weight:600;color:#182c58}.bn{color:#46536d}.answer{display:none;margin-top:10px;background:#e9fff5;border-left:4px solid #16a66a;padding:12px;border-radius:10px;line-height:1.8}.answer.show{display:block;animation:pageIn .3s}.btn{border:0;border-radius:12px;padding:10px 15px;font:700 14px inherit;cursor:pointer;background:linear-gradient(135deg,#2457d6,#7b3fe4);color:white;box-shadow:0 4px 0 #192d79;transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #192d79}.btn.secondary{background:linear-gradient(135deg,#087f8c,#1bb8c8);box-shadow:0 4px 0 #07515b}.btn.light{background:#eef3ff;color:#173b8a;box-shadow:0 4px 0 #c8d6fb}.nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid #d7e2f8;padding:10px 14px;display:flex;justify-content:center;gap:10px;align-items:center}.nav button{min-width:110px}.nav .counter{font-weight:800;color:#243b7a;font-size:13px;min-width:78px;text-align:center}
-.page-title{display:flex;align-items:center;gap:12px;margin:6px 0 18px}.page-title .num{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:white;display:grid;place-items:center;font-weight:900;box-shadow:0 5px 0 #183d9160;flex-shrink:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px}.mini{padding:16px;border-radius:16px;background:linear-gradient(145deg,#fff,#f0f5ff);border:1px solid #dce7ff;box-shadow:inset 0 1px white}.mini b{color:#244bb0}
-.floaty{position:fixed;top:-40px;z-index:1;pointer-events:none;opacity:.7;animation:fall linear forwards;font-size:20px;filter:drop-shadow(0 3px 4px #5465a344)}@keyframes fall{0%{transform:translateY(-30px) rotate(0deg) translateX(0);opacity:0}10%{opacity:.8}50%{transform:translateY(55vh) rotate(180deg) translateX(35px)}100%{transform:translateY(110vh) rotate(360deg) translateX(-25px);opacity:0}}
-.wave{display:inline-block;cursor:pointer;transition:color .2s}.wave.waving{animation:wave .65s ease-in-out 2;color:#7b3fe4;text-shadow:0 3px 0 #e2d6ff}@keyframes wave{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-6px) rotate(-1deg)}50%{transform:translateY(3px) rotate(1deg)}75%{transform:translateY(-3px)}}
-.tap-effect{position:fixed;pointer-events:none;z-index:100;width:20px;height:20px;border:3px solid #18b8c8;border-radius:50%;animation:ripple .55s ease-out forwards}@keyframes ripple{to{transform:scale(5);opacity:0}}
-.note{padding:13px 15px;background:#fff8e5;border-left:5px solid #f3b52d;border-radius:10px;margin:12px 0}.good{background:#e9fff4;border-left-color:#1bb87a}.bad{background:#fff0f3;border-left-color:#f05b78}
-.practice{border:1px solid #dbe5ff;border-radius:16px;padding:16px;margin:14px 0;background:white}.practice h4{margin-top:0}.practice .qnum{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;background:#e8efff;color:#244bb0;margin-right:6px}.small{font-size:13px;color:#52617b}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.toc button{width:100%;text-align:left;margin:4px 0}.footer{text-align:center;font-size:12px;color:#64718a;margin:24px 0 10px}
-@media(max-width:600px){main{padding:0 10px;margin-top:12px}.nav{gap:6px;padding:8px}.nav button{min-width:0;flex:1;padding:10px 6px;font-size:12px}.nav .counter{min-width:55px;font-size:11px}.two-col{grid-template-columns:1fr}table{font-size:12px}td,th{padding:8px}.brand small{display:none}}
-@media print{.topbar,.nav,.floaty,.btn{display:none!important}.page{display:block!important;page-break-after:always}.card{box-shadow:none;break-inside:avoid}body{background:white}main{max-width:none}}
-</style>
-</head>
-<body>
-<header class="topbar"><div class="brand"><div><h1>✨ GKD COMPLETE NARRATION MASTERY</h1><small>বাংলা ব্যাখ্যা • নিয়ম • Solve Tricks • Practice</small></div><div id="pageLabel">পৃষ্ঠা ১</div></div><div class="progress-wrap"><div class="progress" id="progress"></div></div></header>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Narration Complete Mastery — উক্তি সম্পূর্ণ মাস্টারি</title>
 
+  <!-- Google Fonts: Tiro Bangla -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet" />
 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- GKD Book: Back to Lesson List -->
+  <!-- Three.js for 3D Human Narration Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-<div style="
-    position:sticky;
-    top:0;
-    z-index:9999;
-    padding:12px;
-    background:rgba(255,255,255,0.95);
-    text-align:center;
-    box-shadow:0 3px 12px #0002;
-">
-
-    <button onclick="window.location.href='../lesson_link.html'"
-    style="
-        padding:12px 24px;
-        border:none;
-        border-radius:12px;
-        background:linear-gradient(135deg,#142850,#274690);
-        color:white;
-        font-size:16px;
-        font-weight:bold;
-        cursor:pointer;
-    ">
-        📚 সূচিপত্র
-    </button>
-
-</div>
-
-
-
-<main id="book">
-<section class="page active">
-<div class="hero"><div class="kicker">Complete Grammar Guide</div><h2 class="wave">NARRATION<br>DIRECT & INDIRECT SPEECH</h2><p>সংজ্ঞা থেকে শুরু করে সব গুরুত্বপূর্ণ Rule, Sentence Type, Pronoun, Tense, Time & Place, Solve Tricks এবং Single ও Passage Narration Practice—এক জায়গায়।</p><span class="pill">📘 পূর্ণাঙ্গ নোট</span><span class="pill">🎯 Board Exam Focus</span><span class="pill">🌸 Animated Learning</span></div>
-
-
-
-
-
- <div class="narration-wrapper" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); padding: 25px; border-radius: 22px; max-width: 850px; margin: 15px auto; color: #ffffff; box-shadow: 0 25px 50px rgba(0,0,0,0.8); border: 3px solid #38bdf8;">
   <style>
-    .scene-head {
-      text-align: center;
-      color: #38bdf8;
-      font-size: 26px;
-      font-weight: 800;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    :root {
+      --bg-primary: #061b17;
+      --bg-secondary: #0c2b24;
+      --bg-card: rgba(14, 48, 40, 0.86);
+      --bg-card-solid: #0e3028;
+      --border-color: rgba(234, 179, 8, 0.35);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --accent: #eab308;
+      --accent-soft: rgba(234, 179, 8, 0.16);
+      --accent-2: #10b981;
+      --shadow-glow: 0 12px 35px -8px rgba(16, 185, 129, 0.35);
     }
-    .stage-box {
+
+    /* Theme 1: Royal Emerald & Gold (Default) */
+    [data-theme="emerald"] {
+      --bg-primary: #051915;
+      --bg-secondary: #0a2922;
+      --bg-card: rgba(12, 44, 37, 0.88);
+      --bg-card-solid: #0c2c25;
+      --border-color: rgba(234, 179, 8, 0.38);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --accent: #eab308;
+      --accent-soft: rgba(234, 179, 8, 0.15);
+      --accent-2: #10b981;
+      --shadow-glow: 0 14px 36px -10px rgba(234, 179, 8, 0.28);
+    }
+
+    /* Theme 2: Cosmic Midnight 3D */
+    [data-theme="cosmic"] {
+      --bg-primary: #080b1a;
+      --bg-secondary: #101633;
+      --bg-card: rgba(19, 27, 61, 0.88);
+      --bg-card-solid: #131b3d;
+      --border-color: rgba(56, 189, 248, 0.38);
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.16);
+      --accent-2: #a855f7;
+      --shadow-glow: 0 14px 36px -10px rgba(56, 189, 248, 0.32);
+    }
+
+    /* Theme 3: Classic Ivory Parchment (Light Mode) */
+    [data-theme="ivory"] {
+      --bg-primary: #f7f3e8;
+      --bg-secondary: #ede5d2;
+      --bg-card: rgba(255, 252, 245, 0.94);
+      --bg-card-solid: #fffcf5;
+      --border-color: rgba(146, 64, 14, 0.32);
+      --text-primary: #1c1917;
+      --text-secondary: #44403c;
+      --accent: #b45309;
+      --accent-soft: rgba(180, 83, 9, 0.12);
+      --accent-2: #047857;
+      --shadow-glow: 0 12px 30px -8px rgba(146, 64, 14, 0.18);
+    }
+
+    /* Theme 4: Vibrant Royal Sunset */
+    [data-theme="sunset"] {
+      --bg-primary: #1b0b19;
+      --bg-secondary: #2d1229;
+      --bg-card: rgba(48, 19, 44, 0.88);
+      --bg-card-solid: #30132c;
+      --border-color: rgba(251, 146, 60, 0.4);
+      --text-primary: #fff7ed;
+      --text-secondary: #fed7aa;
+      --accent: #fb923c;
+      --accent-soft: rgba(251, 146, 60, 0.18);
+      --accent-2: #f43f5e;
+      --shadow-glow: 0 14px 36px -10px rgba(244, 63, 94, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+      transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  color 0.35s ease,
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Tiro Bangla', 'Times New Roman', serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Specific Typography Rule: Tiro Bangla for Bengali & Times New Roman for English */
+    .font-bn {
+      font-family: 'Tiro Bangla', serif;
+      line-height: 1.75;
+    }
+
+    .font-en {
+      font-family: 'Times New Roman', Times, serif;
+      letter-spacing: 0.01em;
+    }
+
+    .mixed-text {
+      font-family: 'Times New Roman', 'Tiro Bangla', serif;
+      line-height: 1.75;
+    }
+
+    /* 3D Perspective & Tactile Card Styling */
+    .perspective-stage {
+      perspective: 1200px;
+    }
+
+    .card-3d {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+      transform-style: preserve-3d;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card-3d:hover {
+      border-color: var(--accent);
+    }
+
+    /* Tactile 3D Button with Physical Press Feel */
+    .btn-tactile {
       position: relative;
-      width: 100%;
-      height: 420px;
-      background: linear-gradient(to bottom, #0ea5e9 0%, #bae6fd 60%, #334155 60%, #0f172a 100%);
-      border-radius: 18px;
-      overflow: hidden;
-      border: 4px solid #6366f1;
-      box-shadow: inset 0 12px 30px rgba(0,0,0,0.5);
-    }
-    .road-track {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 140px;
-      background: #1e293b;
-      border-top: 6px solid #fbbf24;
-    }
-    .road-line {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      height: 5px;
-      background: repeating-linear-gradient(90deg, #fff, #fff 35px, transparent 35px, transparent 70px);
-    }
-    .sun {
-      position: absolute;
-      top: 25px;
-      right: 35px;
-      width: 55px;
-      height: 55px;
-      background: #facc15;
-      border-radius: 50%;
-      box-shadow: 0 0 35px #facc15;
-    }
-    .action-badge {
-      position: absolute;
-      font-size: 30px;
-      background: #ffffff;
-      color: #000;
-      padding: 6px 10px;
-      border-radius: 50%;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-      z-index: 50;
-      display: none;
-      animation: pulseGlow 0.8s infinite alternate;
-    }
-    @keyframes pulseGlow {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.18); }
-    }
-    .human-avatar {
-      position: absolute;
-      bottom: 12px;
-      height: 230px;
-      width: 100px;
-      transition: left 1.3s cubic-bezier(0.25, 1, 0.5, 1);
-      z-index: 10;
-      filter: drop-shadow(0 15px 12px rgba(0,0,0,0.6));
-    }
-    .boy1-img { left: 40px; }
-    .boy2-img { left: 170px; }
-    .friend-img { left: 680px; }
-
-    .dialog-box {
-      position: absolute;
-      background: #ffffff;
-      color: #0f172a;
-      padding: 16px 22px;
-      border-radius: 18px;
-      font-size: 20px;
-      font-weight: 800;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-      display: none;
-      z-index: 30;
-      max-width: 360px;
-      border: 3px solid #6366f1;
-      line-height: 1.5;
-    }
-    .box-boy1 { top: 25px; left: 30px; }
-    .box-boy2 { top: 25px; left: 380px; }
-    .dialog-box .sub-eng {
-      font-size: 17px;
-      color: #4f46e5;
-      margin-top: 8px;
-      border-top: 2px dashed #cbd5e1;
-      padding-top: 6px;
-      font-weight: 700;
-    }
-    .panel-box {
-      margin-top: 20px;
-      background: #1e1b4b;
-      padding: 20px;
-      border-radius: 16px;
-      border: 1px solid #6366f1;
-    }
-    .btn-center {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    .start-btn {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #ffffff;
-      border: none;
-      padding: 14px 40px;
-      border-radius: 40px;
+      transform: translateY(0);
+      transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.14s ease, filter 0.2s ease;
+      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.35), 0 8px 18px rgba(0, 0, 0, 0.25);
+      user-select: none;
       cursor: pointer;
-      font-weight: 800;
-      font-size: 20px;
-      box-shadow: 0 8px 25px rgba(34, 197, 94, 0.5);
-      transition: transform 0.2s;
     }
-    .start-btn:hover { transform: scale(1.05); }
-    .start-btn:disabled { background: #475569; cursor: not-allowed; transform: none; }
-    .info-text {
-      background: #0f172a;
-      padding: 16px 22px;
-      border-radius: 12px;
-      font-size: 19px;
-      border-left: 6px solid #38bdf8;
-      line-height: 1.7;
-      color: #f8fafc;
+
+    .btn-tactile:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 rgba(0, 0, 0, 0.35), 0 12px 22px rgba(0, 0, 0, 0.3);
     }
-    .info-text strong { color: #38bdf8; }
+
+    .btn-tactile:active {
+      transform: translateY(4px) scale(0.98);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Ripple Touch Effect */
+    .ripple-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .ripple-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(0);
+      animation: rippleAnim 0.55s linear;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Floating 3D Speech Bubbles over Canvas */
+    .speech-bubble-3d {
+      background: var(--bg-card-solid);
+      border: 2px solid var(--accent);
+      color: var(--text-primary);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45), 0 0 20px var(--accent-soft);
+      animation: floatBubble 3s ease-in-out infinite;
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* Smooth Accordion Reveal */
+    .reveal-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    .reveal-panel.open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    .reveal-inner {
+      overflow: hidden;
+    }
+
+    /* Ambient Animated Background Orbs */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: -1;
+      opacity: 0.25;
+      pointer-events: none;
+      animation: orbFloat 14s ease-in-out infinite alternate;
+    }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -30px) scale(1.15); }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    /* Tab Fade-in */
+    .tab-section {
+      display: none;
+      animation: pageEnter 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .tab-section.active {
+      display: block;
+    }
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.99);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Flowchart connector pulse */
+    .flow-arrow {
+      animation: arrowPulse 1.8s infinite ease-in-out;
+    }
+    @keyframes arrowPulse {
+      0%, 100% { transform: translateY(0); opacity: 0.75; }
+      50% { transform: translateY(4px); opacity: 1; }
+    }
   </style>
+</head>
+<body data-theme="emerald" class="antialiased selection:bg-yellow-500 selection:text-black">
 
-  <div class="scene-head">🎬 Direct to Indirect Speech (Interactive Animation)</div>
+  <!-- Ambient 3D Depth Orbs -->
+  <div class="ambient-orb w-80 h-80 top-10 left-10" style="background: var(--accent);"></div>
+  <div class="ambient-orb w-96 h-96 bottom-10 right-10" style="background: var(--accent-2); animation-delay: -5s;"></div>
 
-  <div class="stage-box">
-    <div class="sun"></div>
-    <div class="road-track"><div class="road-line"></div></div>
+  <!-- Top Sticky 3D Glass Header & Navigation -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl border-b" style="background: var(--bg-card); border-color: var(--border-color);">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <!-- Brand Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center font-en font-bold text-2xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform"
+               style="background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #090d16;">
+            N
+          </div>
+          <div>
+            <h1 class="font-en font-bold text-lg sm:text-2xl tracking-tight leading-none" style="color: var(--accent);">
+              NARRATION MASTERY
+            </h1>
+            <p class="font-bn text-xs sm:text-sm opacity-90" style="color: var(--text-secondary);">
+              উক্তি পরিবর্তনের সম্পূর্ণ থ্রি-ডি (3D) ডিজিটাল মাস্টারক্লাস
+            </p>
+          </div>
+        </div>
 
-    <div class="action-badge" id="speakerIcon">🔊</div>
-    <div class="action-badge" id="listenerIcon">👂</div>
+        <!-- Theme Switcher & Tactile Sound Toggle -->
+        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div class="flex items-center gap-1.5 p-1.5 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <span class="font-bn text-xs px-1.5 hidden md:inline" style="color: var(--text-secondary);">থিম:</span>
+            <button onclick="setTheme('emerald')" title="Royal Emerald & Gold" class="w-7 h-7 rounded-xl border-2 border-yellow-400 bg-emerald-950 hover:scale-110 transition-transform" aria-label="Emerald Theme"></button>
+            <button onclick="setTheme('cosmic')" title="Cosmic Midnight 3D" class="w-7 h-7 rounded-xl border-2 border-sky-400 bg-indigo-950 hover:scale-110 transition-transform" aria-label="Cosmic Theme"></button>
+            <button onclick="setTheme('ivory')" title="Classic Ivory Parchment" class="w-7 h-7 rounded-xl border-2 border-amber-700 bg-amber-50 hover:scale-110 transition-transform" aria-label="Ivory Theme"></button>
+            <button onclick="setTheme('sunset')" title="Vibrant Royal Sunset" class="w-7 h-7 rounded-xl border-2 border-orange-400 bg-fuchsia-950 hover:scale-110 transition-transform" aria-label="Sunset Theme"></button>
+          </div>
 
-    <!-- ছেলে ১ (বক্তা - নীল শার্ট) -->
-    <div class="human-avatar boy1-img">
-      <svg viewBox="0 0 100 230" width="100" height="230">
-        <circle cx="50" cy="30" r="22" fill="#ffdbac"/>
-        <path d="M 30 20 Q 50 2 70 20 Q 75 35 65 40 Q 50 30 35 40 Q 25 35 30 20" fill="#4a3525"/>
-        <rect x="30" y="52" width="40" height="90" rx="10" fill="#2563eb"/>
-        <rect x="35" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
-        <rect x="53" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
-      </svg>
+          <button id="soundToggleBtn" onclick="toggleSound()" class="btn-tactile px-3 py-2 rounded-xl border text-xs sm:text-sm font-bn flex items-center gap-1.5"
+                  style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+            <span id="soundIcon">🔊</span>
+            <span id="soundLabel" class="hidden sm:inline">সাউন্ড চালু</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Main Interactive Navigation Tabs -->
+      <nav class="mt-3 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+        <button onclick="switchTab('tab-3d')" id="nav-tab-3d"
+                class="nav-btn btn-tactile ripple-container py-2.5 px-3 rounded-2xl font-bn text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2"
+                style="background: var(--accent); color: #090d16; border-color: var(--accent);">
+          <span>🎬</span>
+          <span>১. Narration কী? (3D এনিমেশন)</span>
+        </button>
+
+        <button onclick="switchTab('tab-rules')" id="nav-tab-rules"
+                class="nav-btn btn-tactile ripple-container py-2.5 px-3 rounded-2xl font-bn text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2"
+                style="background: var(--bg-secondary); color: var(--text-primary); border-color: var(--border-color);">
+          <span>📜</span>
+          <span>২. সম্পূর্ণ নিয়মাবলী (Rule 1-6)</span>
+        </button>
+
+        <button onclick="switchTab('tab-tricks')" id="nav-tab-tricks"
+                class="nav-btn btn-tactile ripple-container py-2.5 px-3 rounded-2xl font-bn text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2"
+                style="background: var(--bg-secondary); color: var(--text-primary); border-color: var(--border-color);">
+          <span>🧠</span>
+          <span>৩. সমাধানের কৌশল (Solve Tricks)</span>
+        </button>
+
+        <button onclick="switchTab('tab-practice')" id="nav-tab-practice"
+                class="nav-btn btn-tactile ripple-container py-2.5 px-3 rounded-2xl font-bn text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2"
+                style="background: var(--bg-secondary); color: var(--text-primary); border-color: var(--border-color);">
+          <span>✍️</span>
+          <span>৪. অনুশীলন (১০ Single + ১০ Passage)</span>
+        </button>
+      </nav>
     </div>
+  </header>
 
-    <!-- ছেলে ২ (মধ্যবর্তী/চলমান - লাল শার্ট) -->
-    <div class="human-avatar boy2-img" id="movingBoy">
-      <svg viewBox="0 0 100 230" width="100" height="230">
-        <circle cx="50" cy="30" r="22" fill="#ffdbac"/>
-        <path d="M 30 20 Q 50 2 70 20 Q 75 35 65 40 Q 50 30 35 40 Q 25 35 30 20" fill="#111827"/>
-        <rect x="30" y="52" width="40" height="90" rx="10" fill="#dc2626"/>
-        <rect x="35" y="142" width="12" height="75" rx="5" fill="#334155"/>
-        <rect x="53" y="142" width="12" height="75" rx="5" fill="#334155"/>
-      </svg>
-    </div>
+  <!-- Main Content Area -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-8">
 
-    <!-- বন্ধু (শ্রোতা - সবুজ শার্ট) -->
-    <div class="human-avatar friend-img">
-      <svg viewBox="0 0 100 230" width="100" height="230">
-        <circle cx="50" cy="30" r="22" fill="#ffdbac"/>
-        <path d="M 30 20 Q 50 2 70 20 Q 75 35 65 40 Q 50 30 35 40 Q 25 35 30 20" fill="#78350f"/>
-        <rect x="30" y="52" width="40" height="90" rx="10" fill="#16a34a"/>
-        <rect x="35" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
-        <rect x="53" y="142" width="12" height="75" rx="5" fill="#1e293b"/>
-      </svg>
-    </div>
+    <!-- ========================================================= -->
+    <!-- TAB 1: NARRATION কী? (3D LIVE HUMAN STORY ANIMATION)       -->
+    <!-- ========================================================= -->
+    <section id="tab-3d" class="tab-section active space-y-6">
+      <!-- Hero Banner -->
+      <div class="card-3d rounded-3xl p-5 sm:p-8 text-center relative overflow-hidden">
+        <div class="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-bn mb-3 border"
+             style="background: var(--accent-soft); border-color: var(--accent); color: var(--accent);">
+          ✨ বাস্তব থ্রি-ডি (3D) চরিত্রের মাধ্যমে উক্তি পরিবর্তনের জীবন্ত অভিজ্ঞতা
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-bold mb-2">
+          <span class="font-en" style="color: var(--accent);">What is Narration?</span>
+          <span class="font-bn"> — Narration (উক্তি) কী?</span>
+        </h2>
+        <p class="font-bn text-base sm:text-lg max-w-3xl mx-auto" style="color: var(--text-secondary);">
+          বক্তা যা বলে তাই <span class="font-en font-bold" style="color: var(--accent);">Narration</span> বা উক্তি। নিচের থ্রি-ডি (3D) মঞ্চে দেখুন—প্রথম ব্যক্তি (<span class="font-en font-bold">Rahim</span>) সরাসরি কথা বলছে, দ্বিতীয় ব্যক্তি (<span class="font-en font-bold">Karim</span>) তা শুনে ঘুরে গিয়ে তৃতীয় ব্যক্তি (<span class="font-en font-bold">Hasan</span>)-কে নিজের ভাষায় বুঝিয়ে বলছে!
+        </p>
+      </div>
 
-    <div class="dialog-box box-boy1" id="boy1Talk">
-      “আমি আজকে যাব না।”
-      <div class="sub-eng">"I will not go today."</div>
-    </div>
+      <!-- 3D Interactive Stage Container -->
+      <div class="card-3d rounded-3xl p-3 sm:p-6 relative">
+        <!-- Stage Top Status Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3 px-2">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+            <span id="stageStatusText" class="font-bn text-sm sm:text-base font-bold" style="color: var(--accent);">
+              দৃশ্য ১: রহিম (Speaker) সরাসরি করিমকে বলছে (Direct Speech)
+            </span>
+          </div>
+          <span class="font-bn text-xs px-3 py-1 rounded-full border" style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-secondary);">
+            🖱️ মাউস বা আঙুল দিয়ে ঘুরিয়ে 3D দৃশ্য দেখুন
+          </span>
+        </div>
 
-    <div class="dialog-box box-boy2" id="boy2Talk">
-      সে বলল যে সে সেদিন যাবে না।
-      <div class="sub-eng">He said that he would not go that day.</div>
-    </div>
-  </div>
+        <!-- Three.js Canvas Wrapper -->
+        <div id="threeContainer" class="relative w-full h-[380px] sm:h-[460px] rounded-2xl overflow-hidden border-2 cursor-grab active:cursor-grabbing"
+             style="border-color: var(--border-color); background: radial-gradient(circle at center, #134e4a 0%, #041311 100%);">
 
-  <div class="panel-box">
-    <div class="btn-center">
-      <button class="start-btn" id="mainBtn" onclick="startAnimation()">▶ Play Animation</button>
-    </div>
-    <div class="info-text" id="statusBox">
-      <strong>নির্দেশনা:</strong> অ্যানিমেশন শুরু করতে <strong>Play Animation</strong> বাটনে ক্লিক করুন।
-    </div>
-  </div>
+          <!-- Floating 3D Speech Bubble 1: Direct Speech -->
+          <div id="bubbleDirect" class="speech-bubble-3d absolute top-4 left-3 sm:top-6 sm:left-8 max-w-[260px] sm:max-w-xs p-3.5 rounded-2xl z-10">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <span class="font-bn text-xs font-bold px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
+                🗣️ রহিম (বক্তা - Speaker)
+              </span>
+              <span class="font-en text-xs font-bold text-yellow-400">Direct</span>
+            </div>
+            <p class="font-en text-base sm:text-lg font-bold leading-snug">
+              Rahim said to Karim, <span class="text-yellow-400">“I am going to college now.”</span>
+            </p>
+            <p class="font-bn text-xs sm:text-sm mt-1 opacity-90">
+              রহিম করিমকে বলল, “আমি এখন কলেজে যাচ্ছি।”
+            </p>
+          </div>
 
+          <!-- Floating 3D Speech Bubble 2: Listener Thinking/Walking -->
+          <div id="bubbleRelay" class="speech-bubble-3d hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[280px] sm:max-w-sm p-3.5 rounded-2xl z-10 text-center">
+            <span class="font-bn text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/40">
+              🚶‍♂️ করিম ঘুরে হাসানের দিকে যাচ্ছে...
+            </span>
+            <p class="font-bn text-sm sm:text-base mt-1.5 font-bold">
+              করিম রহিমের কথাটি হুবহু না বলে নিজের ভাষায় পরিবর্তন করছে!
+            </p>
+            <p class="font-en text-xs sm:text-sm text-yellow-300 mt-1">
+              “I” → “he” | “am” → “was” | “now” → “then”
+            </p>
+          </div>
+
+          <!-- Floating 3D Speech Bubble 3: Indirect Speech -->
+          <div id="bubbleIndirect" class="speech-bubble-3d hidden absolute bottom-4 right-3 sm:bottom-6 sm:right-8 max-w-[275px] sm:max-w-sm p-3.5 rounded-2xl z-10">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <span class="font-bn text-xs font-bold px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 border border-amber-400/40">
+                💬 করিম → হাসানকে বলছে
+              </span>
+              <span class="font-en text-xs font-bold text-emerald-400">Indirect</span>
+            </div>
+            <p class="font-en text-base sm:text-lg font-bold leading-snug">
+              Rahim <span class="text-emerald-400">told</span> Karim <span class="text-sky-400">that</span> <span class="text-yellow-400">he</span> <span class="text-pink-400">was</span> going to college <span class="text-orange-400">then</span>.
+            </p>
+            <p class="font-bn text-xs sm:text-sm mt-1 opacity-90">
+              রহিম করিমকে বলেছিল যে সে তখন কলেজে যাচ্ছিল।
+            </p>
+          </div>
+
+          <!-- Character Labels Footer inside Canvas -->
+          <div class="absolute bottom-2 left-3 flex flex-wrap gap-2 z-10 pointer-events-none">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-bn bg-black/60 text-emerald-300 border border-emerald-500/40">
+              🧑 ১. রহিম (বক্তা)
+            </span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-bn bg-black/60 text-yellow-300 border border-yellow-500/40">
+              🧑 ২. করিম (শ্রোতা ও বর্ণনাকারী)
+            </span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-bn bg-black/60 text-sky-300 border border-sky-500/40">
+              🧑 ৩. হাসান (তৃতীয় ব্যক্তি)
+            </span>
+          </div>
+        </div>
+
+        <!-- 3D Animation Control Deck -->
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <button onclick="playSceneDirect()" class="btn-tactile ripple-container py-3 px-4 rounded-2xl font-bn text-sm sm:text-base font-bold border"
+                  style="background: var(--bg-secondary); border-color: var(--accent); color: var(--text-primary);">
+            🗣️ ১. Direct Speech (হুবহু উক্তি)
+          </button>
+          <button onclick="playSceneRelay()" class="btn-tactile ripple-container py-3 px-4 rounded-2xl font-bn text-sm sm:text-base font-bold border"
+                  style="background: var(--bg-secondary); border-color: var(--accent-2); color: var(--text-primary);">
+            🔄 ২. রূপান্তর ও ঘুরে যাওয়া
+          </button>
+          <button onclick="playSceneIndirect()" class="btn-tactile ripple-container py-3 px-4 rounded-2xl font-bn text-sm sm:text-base font-bold border"
+                  style="background: var(--bg-secondary); border-color: #38bdf8; color: var(--text-primary);">
+            💬 ৩. Indirect Speech (নিজের ভাষায়)
+          </button>
+          <button onclick="playFull3DStory()" class="btn-tactile ripple-container py-3 px-4 rounded-2xl font-bn text-sm sm:text-base font-bold"
+                  style="background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #090d16;">
+            ▶️ সম্পূর্ণ 3D গল্পটি চালান
+          </button>
+        </div>
+      </div>
+
+      <!-- Direct vs Indirect Core Concept Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card-3d tilt-card rounded-3xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-3 py-1 rounded-xl font-en font-bold text-sm" style="background: var(--accent-soft); color: var(--accent);">
+              1. Direct Narration (প্রত্যক্ষ উক্তি)
+            </span>
+            <span class="text-2xl">🎙️</span>
+          </div>
+          <p class="font-bn text-base sm:text-lg mb-3">
+            বক্তার বক্তব্যকে কোনো পরিবর্তন না করে অবিকল বা হুবহু তার নিজের ভাষায় <span class="font-en font-bold">(Inverted Comma “ ” এর ভেতরে)</span> প্রকাশ করাকে <span class="font-en font-bold">Direct Narration</span> বলে।
+          </p>
+          <div class="p-3.5 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <p class="font-en text-base sm:text-lg font-bold" style="color: var(--accent);">
+              Example: He said to me, “I am going to college now.”
+            </p>
+            <p class="font-bn text-sm mt-1" style="color: var(--text-secondary);">
+              বাংলা অর্থ: সে আমাকে বলল, “আমি এখন কলেজে যাচ্ছি।”
+            </p>
+          </div>
+        </div>
+
+        <div class="card-3d tilt-card rounded-3xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-3 py-1 rounded-xl font-en font-bold text-sm" style="background: var(--accent-soft); color: var(--accent-2);">
+              2. Indirect Narration (পরোক্ষ উক্তি)
+            </span>
+            <span class="text-2xl">🗣️</span>
+          </div>
+          <p class="font-bn text-base sm:text-lg mb-3">
+            বক্তার বক্তব্যকে হুবহু উদ্ধৃত না করে বর্ণনাকারী যখন নিজের ভাষায় অর্থ ঠিক রেখে প্রকাশ করে, তখন তাকে <span class="font-en font-bold">Indirect Narration</span> বলে।
+          </p>
+          <div class="p-3.5 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <p class="font-en text-base sm:text-lg font-bold" style="color: var(--accent-2);">
+              Example: He told me that he was going to college then.
+            </p>
+            <p class="font-bn text-sm mt-1" style="color: var(--text-secondary);">
+              বাংলা অর্থ: সে আমাকে বলেছিল যে সে তখন কলেজে যাচ্ছিল।
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action to Rules -->
+      <div class="text-center pt-2">
+        <button onclick="switchTab('tab-rules')" class="btn-tactile ripple-container px-8 py-4 rounded-2xl font-bn text-lg font-bold"
+                style="background: var(--accent); color: #090d16;">
+          পরবর্তী ধাপ: সম্পূর্ণ নিয়মাবলী (Rule 1 - 6) দেখুন ➡️
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- TAB 2: সম্পূর্ণ নিয়মাবলী (ALL RULES FROM IMAGE 1)        -->
+    <!-- ========================================================= -->
+    <section id="tab-rules" class="tab-section space-y-6">
+      <!-- Title Banner matching Image 1 Header -->
+      <div class="card-3d rounded-3xl p-6 sm:p-8 text-center border-2" style="border-color: var(--accent);">
+        <div class="inline-block px-6 py-2.5 rounded-2xl border-2 shadow-lg mb-4"
+             style="background: var(--bg-secondary); border-color: var(--accent);">
+          <h2 class="text-2xl sm:text-4xl font-bold tracking-wide">
+            <span class="font-en">NARRATION</span> <span class="font-bn">(উক্তি)</span>
+          </h2>
+        </div>
+
+        <!-- Formula Bar -->
+        <div class="max-w-3xl mx-auto p-3.5 rounded-2xl border font-en text-base sm:text-xl font-bold mb-4"
+             style="background: var(--bg-secondary); border-color: var(--border-color);">
+          ..........<span style="color: var(--accent);">Reporting verb</span>........., “..........<span style="color: var(--accent-2);">Reported speech</span>..........”
+        </div>
+
+        <div class="max-w-4xl mx-auto text-left sm:text-center space-y-2">
+          <p class="font-bn text-base sm:text-lg inline-block px-4 py-1 rounded-xl" style="background: var(--accent-soft);">
+            প্রকাশভঙ্গির উপর ভিত্তি করে <span class="font-en font-bold">Narration</span> ২ প্রকার। <span class="font-en font-bold" style="color: var(--accent);">Direct &amp; Indirect</span>
+          </p>
+          <p class="font-bn text-base sm:text-lg">
+            <span class="font-en font-bold" style="color: var(--accent);">Direct:</span> বক্তার বক্তব্যকে পরিবর্তন না করে হুবহু বলা। &nbsp;|&nbsp;
+            <span class="font-en font-bold" style="color: var(--accent-2);">Indirect:</span> বক্তার বক্তব্য অবিকল না বলে বর্ণনাকারীর ভাষায় বলা হয়।
+          </p>
+        </div>
+
+        <!-- 5 Change Points Interactive Highlight Box from Image 1 -->
+        <div class="mt-5 p-4 sm:p-5 rounded-2xl border-2 text-center" style="background: var(--bg-secondary); border-color: var(--accent);">
+          <p class="font-bn text-base sm:text-lg font-bold mb-3" style="color: var(--accent);">
+            ★ ইংরেজিতে <span class="font-en">Narration</span> ৫টি জায়গায় পরিবর্তন হয়। যেমন- (নিচের ৫টি রঙিন অংশে ক্লিক করে দেখুন)
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-2 font-en text-lg sm:text-2xl font-bold">
+            <span>He</span>
+            <button onclick="highlightChangeSpot(1)" class="btn-tactile px-3 py-1 rounded-xl bg-amber-500/25 border border-amber-400 text-amber-300">
+              ① said to
+            </button>
+            <span>me</span>
+            <button onclick="highlightChangeSpot(2)" class="btn-tactile px-3 py-1 rounded-xl bg-sky-500/25 border border-sky-400 text-sky-300">
+              ② , “
+            </button>
+            <button onclick="highlightChangeSpot(3)" class="btn-tactile px-3 py-1 rounded-xl bg-emerald-500/25 border border-emerald-400 text-emerald-300">
+              ③ I
+            </button>
+            <button onclick="highlightChangeSpot(4)" class="btn-tactile px-3 py-1 rounded-xl bg-pink-500/25 border border-pink-400 text-pink-300">
+              ④ am
+            </button>
+            <span>going to college</span>
+            <button onclick="highlightChangeSpot(5)" class="btn-tactile px-3 py-1 rounded-xl bg-purple-500/25 border border-purple-400 text-purple-300">
+              ⑤ now
+            </button>
+            <span>.”</span>
+          </div>
+          <p id="spotExplanation" class="font-bn text-sm sm:text-base mt-3 min-h-[28px]" style="color: var(--text-secondary);">
+            👆 যেকোনো একটি পরিবর্তনশীল স্থানে ক্লিক করলে তার ব্যাখ্যা এখানে দেখাবে।
+          </p>
+        </div>
+      </div>
+
+      <!-- RULE 1 & RULE 2 Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Rule-1: Said to এর পরিবর্তে -->
+        <div class="card-3d tilt-card rounded-3xl p-6">
+          <div class="flex items-center gap-3 mb-4 pb-3 border-b" style="border-color: var(--border-color);">
+            <span class="px-3.5 py-1.5 rounded-xl font-en font-bold text-base" style="background: var(--accent); color: #090d16;">
+              Rule-1
+            </span>
+            <h3 class="text-xl sm:text-2xl font-bold">
+              <span class="font-en">Said to</span> <span class="font-bn">এর পরিবর্তে-</span>
+            </h3>
+          </div>
+
+          <div class="space-y-3 text-base sm:text-lg">
+            <div class="p-3 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">Assertive sentence →</span>
+              <span class="mixed-text font-bold"><span class="font-en">Said to / told</span> <span class="font-bn">বসে।</span></span>
+            </div>
+
+            <div class="p-3 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">Interrogative sentence →</span>
+              <span class="mixed-text font-bold"><span class="font-en">Asked</span> <span class="font-bn">বসে।</span></span>
+            </div>
+
+            <div class="p-3.5 rounded-2xl border space-y-2" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <div class="font-en font-bold" style="color: var(--accent);">Imperative sentence →</div>
+              <ul class="space-y-1.5 pl-2 text-sm sm:text-base">
+                <li class="mixed-text">
+                  <span class="font-en font-bold text-yellow-400">(i) Verb + obj +</span>
+                  <span class="font-en font-bold">told / order / requested / prohibited / forbade / advised</span>
+                  <span class="font-bn">ইত্যাদি বসে।</span>
+                </li>
+                <li class="mixed-text">
+                  <span class="font-en font-bold text-emerald-400">(ii) Let us →</span>
+                  <span class="font-en font-bold">Proposed to</span> <span class="font-bn">বসে।</span>
+                </li>
+                <li class="mixed-text">
+                  <span class="font-en font-bold text-sky-400">(iii) Let me/him →</span>
+                  <span class="font-en font-bold">told</span> <span class="font-bn">বসে।</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-3 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">Optative sentence →</span>
+              <span class="mixed-text font-bold"><span class="font-en">Wished / prayed</span> <span class="font-bn">বসে।</span></span>
+            </div>
+
+            <div class="p-3 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">Exclamatory sentence →</span>
+              <span class="font-en font-bold">Exclaimed with joy / sorrow / wonder etc.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rule-2 & Rule-3 Stacked -->
+        <div class="space-y-6">
+          <!-- Rule-2: Inverted comma (“ ”) এর পরিবর্তে -->
+          <div class="card-3d tilt-card rounded-3xl p-6">
+            <div class="flex items-center gap-3 mb-4 pb-3 border-b" style="border-color: var(--border-color);">
+              <span class="px-3.5 py-1.5 rounded-xl font-en font-bold text-base" style="background: var(--accent-2); color: #090d16;">
+                Rule-2
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold">
+                <span class="font-en">Inverted comma (“ ”)</span> <span class="font-bn">এর পরিবর্তে-</span>
+              </h3>
+            </div>
+
+            <div class="space-y-2.5 text-base sm:text-lg">
+              <div class="p-3 rounded-2xl border flex items-center justify-between" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <span class="font-en font-bold" style="color: var(--accent);">Assertive sentence →</span>
+                <span class="mixed-text font-bold"><span class="font-en">That</span> <span class="font-bn">বসে।</span></span>
+              </div>
+              <div class="p-3 rounded-2xl border flex items-center justify-between" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <span class="font-en font-bold" style="color: var(--accent);">Interrogative sentence →</span>
+                <span class="mixed-text font-bold"><span class="font-en">If / WH word</span> <span class="font-bn">বসে।</span></span>
+              </div>
+              <div class="p-3 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <span class="font-en font-bold" style="color: var(--accent);">Imperative sentence →</span>
+                <span class="mixed-text font-bold"><span class="font-en">To /</span> <span class="font-bn">(<span class="font-en">let</span> থাকলে <span class="font-en">that</span> বসে।)</span></span>
+              </div>
+              <div class="p-3 rounded-2xl border flex items-center justify-between" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <span class="font-en font-bold" style="color: var(--accent);">Optative &amp; Exclamatory →</span>
+                <span class="mixed-text font-bold"><span class="font-en">That</span> <span class="font-bn">বসে।</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule-3: Person এর ক্ষেত্রে -->
+          <div class="card-3d tilt-card rounded-3xl p-6">
+            <div class="flex items-center gap-3 mb-4 pb-3 border-b" style="border-color: var(--border-color);">
+              <span class="px-3.5 py-1.5 rounded-xl font-en font-bold text-base bg-sky-400 text-slate-950">
+                Rule-3
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold">
+                <span class="font-en">Person</span> <span class="font-bn">এর ক্ষেত্রে- (SON Formula)</span>
+              </h3>
+            </div>
+
+            <div class="space-y-3 text-base sm:text-lg">
+              <div class="p-3 rounded-2xl border-l-4 border-emerald-400" style="background: var(--bg-secondary);">
+                <span class="font-en font-bold text-emerald-400">1<sup>st</sup> person (I, we, me, our, us....)</span>
+                <span class="font-bn"> → <span class="font-en font-bold underline">Subject</span> কে Follow করে।</span>
+              </div>
+              <div class="p-3 rounded-2xl border-l-4 border-amber-400" style="background: var(--bg-secondary);">
+                <span class="font-en font-bold text-amber-400">2<sup>nd</sup> person (You, your..)</span>
+                <span class="font-bn"> → <span class="font-en font-bold underline">Object</span> কে Follow করে।</span>
+              </div>
+              <div class="p-3 rounded-2xl border-l-4 border-sky-400" style="background: var(--bg-secondary);">
+                <span class="font-en font-bold text-sky-400">3<sup>rd</sup> person (He, she, it / নাম)</span>
+                <span class="font-bn"> → পরিবর্তন নেই (No Change)।</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RULE-4: কোন verb এর পরিবর্তে কোন verb বসবে (Complete 16-Item Table from Image 1) -->
+      <div class="card-3d rounded-3xl p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5 pb-3 border-b" style="border-color: var(--border-color);">
+          <div class="flex items-center gap-3">
+            <span class="px-3.5 py-1.5 rounded-xl font-en font-bold text-base bg-pink-500 text-white">
+              Rule-4
+            </span>
+            <h3 class="text-xl sm:text-2xl font-bold">
+              <span class="font-bn">কোন</span> <span class="font-en">verb</span> <span class="font-bn">এর পরিবর্তে কোন</span> <span class="font-en">verb</span> <span class="font-bn">বসবে-</span>
+            </h3>
+          </div>
+          <span class="font-bn text-xs sm:text-sm px-3 py-1 rounded-full" style="background: var(--accent-soft); color: var(--accent);">
+            Direct Verb → Indirect Verb (সম্পূর্ণ ১৬টি নিয়ম)
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-en text-base sm:text-lg">
+          <!-- Left Column (8 Verbs) -->
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Do / does</span>
+              <span class="font-bold" style="color: var(--accent);">→ Did</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Am / is / are</span>
+              <span class="font-bold" style="color: var(--accent);">→ Was / were</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Was / Were</span>
+              <span class="font-bold" style="color: var(--accent);">→ Was / were / had been</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Have / has</span>
+              <span class="font-bold" style="color: var(--accent);">→ Had</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Have / has been</span>
+              <span class="font-bold" style="color: var(--accent);">→ Had been</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Did</span>
+              <span class="font-bold" style="color: var(--accent);">→ Did / Had done</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Shall / Will</span>
+              <span class="font-bold" style="color: var(--accent);">→ Should / Would</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Can / May</span>
+              <span class="font-bold" style="color: var(--accent);">→ Could / Might</span>
+            </div>
+          </div>
+
+          <!-- Right Column (8 Modal/Semi-Modal Verbs) -->
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Must</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Must / Had to</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Should / Would</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Should / Would have</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Could</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Could have</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Might</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Might have</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Need</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Need have</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Ought to</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Ought to have</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Am / is / are to</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Was / were to</span>
+            </div>
+            <div class="p-3 rounded-2xl border flex items-center justify-between hover:scale-[1.01] transition-transform" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bold">Have / has to</span>
+              <span class="font-bold" style="color: var(--accent-2);">→ Had to</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RULE-5: অতিরিক্ত কিছু পরিবর্তন (Complete List from Image 1) -->
+      <div class="card-3d rounded-3xl p-6">
+        <div class="flex items-center gap-3 mb-5 pb-3 border-b" style="border-color: var(--border-color);">
+          <span class="px-3.5 py-1.5 rounded-xl font-en font-bold text-base bg-purple-500 text-white">
+            Rule-5
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold font-bn">
+            অতিরিক্ত কিছু পরিবর্তন- (নৈকট্যবাচক শব্দ ও বিশেষ অভিব্যক্তি)
+          </h3>
+        </div>
+
+        <!-- 10 Adverb/Demonstrative Pairs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 font-en text-base mb-5">
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Now</div>
+            <div class="font-bold" style="color: var(--accent);">→ Then</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">This</div>
+            <div class="font-bold" style="color: var(--accent);">→ That</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">These</div>
+            <div class="font-bold" style="color: var(--accent);">→ Those</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Today</div>
+            <div class="font-bold" style="color: var(--accent);">→ That day</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Yesterday</div>
+            <div class="font-bold" style="color: var(--accent);">→ The previous day</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Tomorrow</div>
+            <div class="font-bold" style="color: var(--accent-2);">→ The next day</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Last day</div>
+            <div class="font-bold" style="color: var(--accent-2);">→ The previous day</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Next day</div>
+            <div class="font-bold" style="color: var(--accent-2);">→ The following day</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Here</div>
+            <div class="font-bold" style="color: var(--accent-2);">→ There</div>
+          </div>
+          <div class="p-3 rounded-2xl border text-center" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <div class="font-bold">Come here</div>
+            <div class="font-bold" style="color: var(--accent-2);">→ Go there</div>
+          </div>
+        </div>
+
+        <!-- Special Expressions: Yes, No, Sir, Vocative (সম্বোধনমূলক শব্দ) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-base sm:text-lg">
+          <div class="p-3.5 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <span class="font-en font-bold text-emerald-400">Yes → Replied in the affirmative</span>
+          </div>
+          <div class="p-3.5 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <span class="font-en font-bold text-rose-400">No → Replied in the negative</span>
+          </div>
+          <div class="p-3.5 rounded-2xl border md:col-span-2" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <span class="font-en font-bold" style="color: var(--accent);">Sir → Respectfully</span>
+            <span class="font-bn"> — স্যার বা জনাব বলে সম্মান করা হচ্ছে তাই <span class="font-en font-bold">Respectfully</span> বসে।</span>
+          </div>
+          <div class="p-3.5 rounded-2xl border md:col-span-2" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <span class="font-bn font-bold" style="color: var(--accent-2);">সম্বোধনমূলক শব্দ:</span>
+            <span class="mixed-text"> যেমন- <span class="font-en font-bold">Mother → Addressing mother</span> (কিছু বলে কাউকে সম্বোধন করে ডাকতে <span class="font-en font-bold">Addressing</span> বসে।)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RULE-6 & Bonus Mastery Note -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="card-3d rounded-3xl p-6 border-2" style="border-color: var(--accent);">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="px-3.5 py-1.5 rounded-xl font-en font-bold text-base" style="background: var(--accent); color: #090d16;">
+              Rule-6
+            </span>
+            <h3 class="text-xl sm:text-2xl font-bold font-bn">
+              একই বক্তা বারবার বললে-
+            </h3>
+          </div>
+          <p class="mixed-text text-base sm:text-lg">
+            একই বক্তা একটানা একাধিক কথা বললে প্রথমবারের পর পরবর্তী বাক্যগুলোতে:
+            <span class="font-en font-bold block mt-2 p-3 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--accent);">
+              Again said / also said / added that / again asked / also asked ইত্যাদি বসে।
+            </span>
+          </p>
+        </div>
+
+        <!-- Extra Mastery Golden Rules (Universal Truth, By Allah, Thank you) -->
+        <div class="card-3d rounded-3xl p-6 border-2" style="border-color: var(--accent-2);">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="px-3.5 py-1.5 rounded-xl font-en font-bold text-base" style="background: var(--accent-2); color: #090d16;">
+              Bonus Mastery
+            </span>
+            <h3 class="text-xl sm:text-2xl font-bold font-bn">
+              আরও কিছু জরুরি ব্যতিক্রম নিয়ম
+            </h3>
+          </div>
+          <ul class="space-y-2 text-sm sm:text-base">
+            <li class="mixed-text">
+              🌟 <span class="font-bn font-bold">চিরন্তন সত্য (Universal Truth):</span> <span class="font-en">Reported speech</span> চিরন্তন সত্য হলে <span class="font-en">Verb/Tense</span>-এর কোনো পরিবর্তন হয় না। (যেমন: <span class="font-en">Honesty is the best policy</span>)।
+            </li>
+            <li class="mixed-text">
+              🌟 <span class="font-en font-bold">By Allah / By God:</span> শপথ বোঝালে শুরুতে <span class="font-en font-bold">Swearing by Allah / God</span> বসে।
+            </li>
+            <li class="mixed-text">
+              🌟 <span class="font-en font-bold">Thank you / Good morning:</span> <span class="font-en">Subject + thanked + object</span> এবং <span class="font-en">Subject + wished + object + good morning</span> বসে।
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Navigation CTA -->
+      <div class="text-center pt-2">
+        <button onclick="switchTab('tab-tricks')" class="btn-tactile ripple-container px-8 py-4 rounded-2xl font-bn text-lg font-bold"
+                style="background: var(--accent); color: #090d16;">
+          পরবর্তী ধাপ: সমাধানের কৌশল (Solve Tricks) শিখুন ➡️
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- TAB 3: সমাধানের কৌশল (SOLVE TRICKS FROM IMAGE 2)          -->
+    <!-- ========================================================= -->
+    <section id="tab-tricks" class="tab-section space-y-6">
+      <!-- Header -->
+      <div class="card-3d rounded-3xl p-6 text-center border-2" style="border-color: var(--accent);">
+        <div class="inline-block px-6 py-2 rounded-2xl border-2 shadow-md mb-2" style="background: var(--bg-secondary); border-color: var(--accent);">
+          <h2 class="font-en text-2xl sm:text-4xl font-bold" style="color: var(--accent);">Solve Tricks</h2>
+        </div>
+        <p class="font-bn text-base sm:text-lg" style="color: var(--text-secondary);">
+          যেকোনো <span class="font-en font-bold">Narration</span> নির্ভুলভাবে সমাধান করার ৬টি ধাপ ও জাদুকরী ফ্লো-চার্ট
+        </p>
+      </div>
+
+      <!-- 6 Branching Flowchart Nodes from Image 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Node 1: কি? -->
+        <div class="card-3d tilt-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3" style="background: var(--accent); color: #090d16;">
+              ১. কি? (What?)
+            </div>
+            <p class="mixed-text text-base">
+              <span class="font-en font-bold">Narration</span> হলো কোনো বক্তার উক্তি অন্যের মাধ্যমে প্রকাশ করার পদ্ধতি, যা <span class="font-en font-bold" style="color: var(--accent);">Direct</span> বা <span class="font-en font-bold" style="color: var(--accent-2);">Indirect</span> দুইভাবেই হতে পারে।
+            </p>
+          </div>
+          <div class="mt-3 text-right font-en text-xs opacity-70">Step 01 • Concept</div>
+        </div>
+
+        <!-- Node 2: কয়টি অংশ -->
+        <div class="card-3d tilt-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3" style="background: var(--accent-2); color: #090d16;">
+              ২. কয়টি অংশ? (২ টি অংশ)
+            </div>
+            <div class="space-y-2 text-base">
+              <p class="mixed-text">
+                <span class="font-en font-bold" style="color: var(--accent);">Reporting Verb:</span> যে/ যারা বলে। যেমন- <span class="font-en font-bold">He said,”</span>
+              </p>
+              <p class="mixed-text">
+                <span class="font-en font-bold" style="color: var(--accent-2);">Reported Speech:</span> যা কিছু বলে। যেমন- <span class="font-en font-bold">“I am fine.”</span>
+              </p>
+            </div>
+          </div>
+          <div class="mt-3 text-right font-en text-xs opacity-70">Step 02 • Structure</div>
+        </div>
+
+        <!-- Node 3: কত প্রকার -->
+        <div class="card-3d tilt-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3 bg-sky-400 text-slate-950">
+              ৩. কত প্রকার? (২ প্রকার)
+            </div>
+            <div class="space-y-2 text-base">
+              <p class="mixed-text">
+                <span class="font-en font-bold" style="color: var(--accent);">Direct Speech:</span> (বক্তার কথা হুবহু বলা)
+              </p>
+              <p class="mixed-text">
+                <span class="font-en font-bold" style="color: var(--accent-2);">Indirect Speech:</span> (বক্তার কথা নিজের মতো করে বলা)
+              </p>
+            </div>
+          </div>
+          <div class="mt-3 text-right font-en text-xs opacity-70">Step 03 • Types</div>
+        </div>
+
+        <!-- Node 4: সাধারণত কত প্রকার বাক্য থাকে -->
+        <div class="card-3d tilt-card rounded-3xl p-5 lg:col-span-2">
+          <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3 bg-pink-500 text-white">
+            ৪. সাধারণত কত প্রকার বাক্য থাকে? (৫ প্রকার)
+          </div>
+          <div class="space-y-2.5 text-sm sm:text-base">
+            <div class="p-2.5 rounded-xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">1. Assertive -</span>
+              <span class="font-bn">(সাধারণ বাক্য- <span class="font-en font-bold">S V O.</span>)</span>
+            </div>
+            <div class="p-2.5 rounded-xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">2. Interrogative -</span>
+              <span class="font-bn">(প্রশ্নবোধক- <span class="font-en font-bold">WH / AuxV + S...?</span>)</span>
+            </div>
+            <div class="p-2.5 rounded-xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">3. Imperative -</span>
+              <span class="font-bn">(<span class="font-en font-bold">V</span> দিয়ে বাক্য শুরু হয় / আদেশ-<span class="font-en">order</span>, উপদেশ-<span class="font-en">advice</span>, প্রস্তাব-<span class="font-en">propose</span>, নিষেধ-<span class="font-en">forbade</span> ইত্যাদি থাকে)</span>
+            </div>
+            <div class="p-2.5 rounded-xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">4. Optative -</span>
+              <span class="font-bn">(ইচ্ছা, আশির্বাদ, প্রার্থনা বোঝায়- <span class="font-en font-bold">wish / pray / will</span> ইত্যাদি থাকে।)</span>
+            </div>
+            <div class="p-2.5 rounded-xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-en font-bold" style="color: var(--accent);">5. Exclamatory -</span>
+              <span class="font-bn">(আবেগ, বিস্ময়, ভয়... <span class="font-en font-bold">wow, Hurra!... What/How+adj+......V!</span>)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 5: কয়টি স্থানে পরিবর্তন হয় -->
+        <div class="card-3d tilt-card rounded-3xl p-5">
+          <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3 bg-purple-500 text-white">
+            ৫. কয়টি স্থানে পরিবর্তন হয়? (সর্বোচ্চ ৫টি জায়গা)
+          </div>
+          <ol class="space-y-2 text-sm sm:text-base list-decimal list-inside">
+            <li class="font-en font-bold">Said / said to / told...</li>
+            <li class="mixed-text"><span class="font-en font-bold">, “</span> <span class="font-bn">(Comma Inverted comma)</span></li>
+            <li class="font-en font-bold">Person (1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>)</li>
+            <li class="mixed-text"><span class="font-en font-bold">Verb</span> <span class="font-bn">(<span class="font-en">Present</span>...থাকলে...<span class="font-en">Past</span>)</span></li>
+            <li class="mixed-text">
+              <span class="font-bn font-bold">অতিরিক্ত কিছু শব্দ -</span>
+              <span class="font-en block mt-1 text-xs sm:text-sm" style="color: var(--accent);">
+                now - then, today - that day, tomorrow - the next day, yesterday - the previous day, next day - the following day ইত্যাদি।
+              </span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Node 6: সমাধান (৫টি বিষয় মাথায় রাখো-) & Interactive Live Example Walkthrough -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Left 5 cols: ৫টি বিষয় মাথায় রাখো -->
+        <div class="lg:col-span-5 card-3d rounded-3xl p-6 border-2" style="border-color: var(--accent-2);">
+          <h3 class="font-bn text-xl sm:text-2xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color); color: var(--accent-2);">
+            ৬. সমাধান: ৫টি বিষয় মাথায় রাখো-
+          </h3>
+          <div class="space-y-3 text-base">
+            <div class="p-3 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bn">১. প্রথমে ভালো করে প্রশ্নটি বারবার পড়ো এবং বাংলা অর্থ বোঝার চেষ্টা করো।</span>
+            </div>
+            <div class="p-3 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="mixed-text">২. <span class="font-en font-bold">RV</span> ও <span class="font-en font-bold">“ RS”</span> আলাদা করো।</span>
+            </div>
+            <div class="p-3 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="mixed-text">৩. <span class="font-en font-bold">“ RS”</span> কোন ধরণের বাক্য তা নির্ণয় করো।</span>
+            </div>
+            <div class="p-3 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bn">৪. যে যে স্থানে পরিবর্তন করতে হয় তা চিহ্নিত করো।</span>
+            </div>
+            <div class="p-3 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <span class="font-bn">৫. নিয়ম মেনে ঐ ঐ জায়গাগুলো পরিবর্তন করে সমাধান করো।</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 7 cols: Interactive Step-by-Step Solver Demo from Image 2 -->
+        <div class="lg:col-span-7 card-3d rounded-3xl p-6 border-2 flex flex-col justify-between" style="border-color: var(--accent);">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <h3 class="font-bn text-xl sm:text-2xl font-bold" style="color: var(--accent);">
+                🎯 লাইভ সমাধান প্রদর্শনী (Interactive Walkthrough)
+              </h3>
+              <button onclick="advanceTricksDemo()" class="btn-tactile ripple-container px-4 py-2 rounded-xl font-bn text-sm font-bold"
+                      style="background: var(--accent); color: #090d16;">
+                পরবর্তী ধাপ দেখুন ➡️
+              </button>
+            </div>
+
+            <!-- Question Box -->
+            <div class="p-4 rounded-2xl border mb-4" style="background: var(--bg-secondary); border-color: var(--border-color);">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span class="px-3 py-1 rounded-lg font-en text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
+                  RV = He said to me
+                </span>
+                <span class="px-3 py-1 rounded-lg font-en text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-400/40">
+                  RS = “ I am reading now.” (Assertive Sentence)
+                </span>
+              </div>
+              <p class="font-en text-xl sm:text-2xl font-bold">
+                He <span class="underline decoration-amber-400">said to</span> me , <span class="underline decoration-sky-400">“</span> <span class="underline decoration-emerald-400">I</span> <span class="underline decoration-pink-400">am</span> reading <span class="underline decoration-purple-400">now</span>.”
+              </p>
+              <p class="font-bn text-base mt-1" style="color: var(--text-secondary);">
+                সে আমাকে বলল, “আমি এখন পড়তেছি।”
+              </p>
+            </div>
+
+            <!-- Rule Apply Thought Cloud -->
+            <div class="p-4 rounded-2xl border mb-4" style="background: var(--accent-soft); border-color: var(--accent);">
+              <p class="font-bn font-bold text-base mb-2" style="color: var(--accent);">
+                তাহলে, <span class="font-en">Assertive Sentence</span> এর <span class="font-en">Rule</span> গুলো <span class="font-en">Apply</span> করতে হবে:
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs sm:text-sm font-bn">
+                <button onclick="setDemoStep(1)" class="demo-step-btn p-2 rounded-xl border font-bold text-center" style="background: var(--bg-card-solid); border-color: var(--border-color);">
+                  ১. <span class="font-en">Said to</span> পরিবর্তন
+                </button>
+                <button onclick="setDemoStep(2)" class="demo-step-btn p-2 rounded-xl border font-bold text-center" style="background: var(--bg-card-solid); border-color: var(--border-color);">
+                  ২. <span class="font-en">, “</span> পরিবর্তন
+                </button>
+                <button onclick="setDemoStep(3)" class="demo-step-btn p-2 rounded-xl border font-bold text-center" style="background: var(--bg-card-solid); border-color: var(--border-color);">
+                  ৩. <span class="font-en">Person</span> পরিবর্তন
+                </button>
+                <button onclick="setDemoStep(4)" class="demo-step-btn p-2 rounded-xl border font-bold text-center" style="background: var(--bg-card-solid); border-color: var(--border-color);">
+                  ৪. <span class="font-en">Verb</span> পরিবর্তন
+                </button>
+                <button onclick="setDemoStep(5)" class="demo-step-btn p-2 rounded-xl border font-bold text-center" style="background: var(--bg-card-solid); border-color: var(--border-color);">
+                  ৫. <span class="font-en">now</span> পরিবর্তন
+                </button>
+              </div>
+            </div>
+
+            <!-- Transformed Output Box -->
+            <div class="p-4 rounded-2xl border-2" style="background: var(--bg-secondary); border-color: var(--accent-2);">
+              <div class="font-bn text-xs font-bold mb-1" style="color: var(--accent-2);">
+                ✅ চূড়ান্ত Indirect রূপান্তর:
+              </div>
+              <p id="demoOutputEn" class="font-en text-xl sm:text-2xl font-bold leading-relaxed">
+                He <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">{said to / told}</span> me
+                <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">{that}</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">{he}</span>
+                <span class="px-2 py-0.5 rounded bg-pink-500/20 text-pink-300">{was}</span> reading
+                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">{then}</span>.
+              </p>
+              <p class="font-bn text-base mt-2" style="color: var(--text-secondary);">
+                সে আমাকে বলেছিল যে সে তখন পড়তেছিল।
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- কিছু বিষয় জেনে রাখো Callout Card from Image 2 -->
+      <div class="card-3d rounded-3xl p-6 border-l-8" style="border-color: var(--accent);">
+        <h3 class="font-bn text-xl font-bold mb-2" style="color: var(--accent);">
+          💡 কিছু বিষয় জেনে রাখো-
+        </h3>
+        <p class="mixed-text text-base sm:text-lg">
+          সবসময় এমন ধরণের প্রশ্ন পাবে তা না। কখনো <span class="font-en font-bold">Reporting verb</span> টি <span class="font-en font-bold">Reported speech</span> এর আগে বা পরেও থাকতে পারে। আবার একই বক্তা একটানা একাধিকবার-ও বলতে পারে। এই বিষয়গুলি ভালোভাবে পড়ে বুঝতে হবে। তৎসঙ্গে প্রাথমিক অবস্থায় <span class="font-en font-bold">rule</span> গুলি মুখস্থ রাখতে হবে।
+        </p>
+      </div>
+
+      <!-- CTA to Practice -->
+      <div class="text-center pt-2">
+        <button onclick="switchTab('tab-practice')" class="btn-tactile ripple-container px-8 py-4 rounded-2xl font-bn text-lg font-bold"
+                style="background: var(--accent); color: #090d16;">
+          পরবর্তী ধাপ: ১০টি Single ও ১০টি Passage Narration অনুশীলন করুন ➡️
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- TAB 4: অনুশীলন ও সমাধান (10 SINGLE + 10 PASSAGE)         -->
+    <!-- ========================================================= -->
+    <section id="tab-practice" class="tab-section space-y-6">
+      <!-- Practice Header & Filter Controls -->
+      <div class="card-3d rounded-3xl p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold font-bn" style="color: var(--accent);">
+              ✍️ পূর্ণাঙ্গ অনুশীলন ভান্ডার (বাংলা অনুবাদ ও উত্তরসহ)
+            </h2>
+            <p class="font-bn text-sm sm:text-base mt-1" style="color: var(--text-secondary);">
+              প্রতিটি প্রশ্নের নিচে থাকা বাটনে ক্লিক করলে <span class="font-bold">বাংলা অনুবাদ</span> এবং <span class="font-bold">সঠিক উত্তর ও ব্যাখ্যা</span> খুলে যাবে।
+            </p>
+          </div>
+
+          <!-- Sub-tab Switcher: Single (10) vs Passage (10) -->
+          <div class="flex items-center gap-2 p-1.5 rounded-2xl border" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <button id="subBtnSingle" onclick="switchPracticeMode('single')" class="btn-tactile px-4 py-2.5 rounded-xl font-bn text-sm sm:text-base font-bold"
+                    style="background: var(--accent); color: #090d16;">
+              Single Sentence (১০টি)
+            </button>
+            <button id="subBtnPassage" onclick="switchPracticeMode('passage')" class="btn-tactile px-4 py-2.5 rounded-xl font-bn text-sm sm:text-base font-bold"
+                    style="background: transparent; color: var(--text-primary);">
+              Passage Narration (১০টি)
+            </button>
+          </div>
+        </div>
+
+        <!-- Bulk Expand / Collapse Controls -->
+        <div class="mt-4 pt-4 border-t flex flex-wrap items-center justify-between gap-3" style="border-color: var(--border-color);">
+          <span id="practiceCounterLabel" class="font-bn text-sm font-bold" style="color: var(--accent-2);">
+            বর্তমানে প্রদর্শিত: Single Sentence Narration (১ থেকে ১০)
+          </span>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="toggleAllReveals('bn', true)" class="btn-tactile px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bn border"
+                    style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+              👁️ সব বাংলা দেখুন
+            </button>
+            <button onclick="toggleAllReveals('ans', true)" class="btn-tactile px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bn border"
+                    style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+              ✅ সব উত্তর দেখুন
+            </button>
+            <button onclick="toggleAllReveals('all', false)" class="btn-tactile px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bn border"
+                    style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-secondary);">
+              🙈 সব লুকান
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Container for 10 Single Sentences or 10 Passages -->
+      <div id="practiceCardsContainer" class="space-y-5"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-12 border-t py-6 px-4 text-center" style="border-color: var(--border-color); background: var(--bg-card);">
+    <p class="font-en font-bold text-base sm:text-lg" style="color: var(--accent);">
+      NARRATION COMPLETE MASTERY
+    </p>
+    <p class="font-bn text-xs sm:text-sm mt-1" style="color: var(--text-secondary);">
+      শিক্ষার্থীদের ইংরেজি গ্রামারে সম্পূর্ণ দক্ষতা অর্জনের জন্য নির্মিত 3D ইন্টারঅ্যাক্টিভ লার্নিং প্ল্যাটফর্ম
+    </p>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT: 3D SCENE, WEB AUDIO TACTILE FX & DATA         -->
+  <!-- ========================================================= -->
   <script>
-    let isPlaying = false;
+    /* -----------------------------------------------------------
+       1. TACTILE SOUND ENGINE (Web Audio API - Zero External URLs)
+    ----------------------------------------------------------- */
+    let soundEnabled = true;
+    let audioCtx = null;
 
-    function startAnimation() {
-      if (isPlaying) return;
-      isPlaying = true;
-
-      const movingBoy = document.getElementById('movingBoy');
-      const boy1Talk = document.getElementById('boy1Talk');
-      const boy2Talk = document.getElementById('boy2Talk');
-      const speaker = document.getElementById('speakerIcon');
-      const listener = document.getElementById('listenerIcon');
-      const status = document.getElementById('statusBox');
-      const btn = document.getElementById('mainBtn');
-
-      btn.disabled = true;
-      btn.textContent = '⏳ এনিমেশন চলছে...';
-
-      movingBoy.style.left = '170px';
-      boy2Talk.style.display = 'none';
-      boy1Talk.style.display = 'block';
-
-      speaker.style.top = '170px';
-      speaker.style.left = '65px';
-      speaker.style.display = 'block';
-
-      listener.style.top = '170px';
-      listener.style.left = '195px';
-      listener.style.display = 'block';
-
-      status.innerHTML = '<strong>দৃশ্য ১ (Direct Speech):</strong> প্রথম ছেলেটি সরাসরি কথা বলছে (🔊) এবং দ্বিতীয় ছেলেটি শুনছে (👂):<br>“আমি আজকে যাব না।” / <em>"I will not go today."</em>';
-
-      setTimeout(() => {
-        boy1Talk.style.display = 'none';
-        speaker.style.display = 'none';
-        listener.style.display = 'none';
-
-        movingBoy.style.left = '560px';
-        status.innerHTML = '<strong>দৃশ্য ২ (Transition):</strong> দ্বিতীয় ছেলেটি হেঁটে তার বন্ধুর কাছে যাচ্ছে...';
-      }, 3500);
-
-      setTimeout(() => {
-        speaker.style.top = '170px';
-        speaker.style.left = '580px';
-        speaker.style.display = 'block';
-
-        listener.style.top = '170px';
-        listener.style.left = '700px';
-        listener.style.display = 'block';
-
-        boy2Talk.style.display = 'block';
-        status.innerHTML = '<strong>দৃশ্য ৩ (Indirect Speech):</strong> দ্বিতীয় ছেলেটি তার বন্ধুকে বিবরণ দিচ্ছে (🔊) আর বন্ধু শুনছে (👂):<br>“সে বলল যে সে সেদিন যাবে না।” / <em>"He said that he would not go that day."</em>';
-      }, 7000);
-
-      setTimeout(() => {
-        speaker.style.display = 'none';
-        listener.style.display = 'none';
-        btn.disabled = false;
-        btn.textContent = '🔄 Replay Animation';
-        status.innerHTML = '<strong>সম্পন্ন!</strong> অ্যানিমেশন সফলভাবে শেষ হয়েছে।';
-        isPlaying = false;
-      }, 11000);
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
     }
+
+    function playTactileSound(type = 'tap') {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === 'tap') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(180, now + 0.065);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.065);
+          osc.start(now);
+          osc.stop(now + 0.07);
+        } else if (type === 'reveal') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(380, now);
+          osc.frequency.exponentialRampToValueAtTime(680, now + 0.12);
+          gain.gain.setValueAtTime(0.11, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+          osc.start(now);
+          osc.stop(now + 0.14);
+        } else if (type === 'theme') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, now);
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+          osc.start(now);
+          osc.stop(now + 0.17);
+        }
+      } catch (e) {
+        // Ignore audio block errors on strict mobile policies
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+      document.getElementById('soundLabel').textContent = soundEnabled ? 'সাউন্ড চালু' : 'সাউন্ড বন্ধ';
+      if (soundEnabled) playTactileSound('reveal');
+    }
+
+    /* Ripple Touch Effect on Buttons */
+    document.addEventListener('click', function (e) {
+      const target = e.target.closest('.btn-tactile');
+      if (target) {
+        playTactileSound('tap');
+        const rect = target.getBoundingClientRect();
+        const circle = document.createElement('span');
+        const diameter = Math.max(rect.width, rect.height);
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+        circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+        circle.classList.add('ripple-circle');
+        target.appendChild(circle);
+        setTimeout(() => circle.remove(), 600);
+      }
+    });
+
+    /* -----------------------------------------------------------
+       2. MULTI-THEME & TAB NAVIGATION
+    ----------------------------------------------------------- */
+    function setTheme(themeName) {
+      document.body.setAttribute('data-theme', themeName);
+      playTactileSound('theme');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.style.background = 'var(--bg-secondary)';
+        btn.style.color = 'var(--text-primary)';
+        btn.style.borderColor = 'var(--border-color)';
+      });
+
+      const activeBtn = document.getElementById('nav-' + tabId);
+      if (activeBtn) {
+        activeBtn.style.background = 'var(--accent)';
+        activeBtn.style.color = '#090d16';
+        activeBtn.style.borderColor = 'var(--accent)';
+      }
+
+      if (tabId === 'tab-3d' && renderer) {
+        onWindowResize();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* -----------------------------------------------------------
+       3. THREE.JS 3D HUMAN NARRATION STORYTELLING STAGE
+    ----------------------------------------------------------- */
+    let scene, camera, renderer;
+    let person1, person2, person3;
+    let waveRing1, waveRing2, messageOrb;
+    let storyPhase = 'direct'; // 'direct', 'relay', 'indirect'
+    let storyTimer = null;
+    let isDragging = false;
+    let previousMouseX = 0;
+    let cameraAngle = 0;
+
+    function createHumanCharacter(shirtColor, pantsColor, skinColor, xPos, zPos, rotY) {
+      const group = new THREE.Group();
+
+      // Legs
+      const legGeo = new THREE.CylinderGeometry(0.14, 0.12, 1.1, 16);
+      const pantsMat = new THREE.MeshStandardMaterial({ color: pantsColor, roughness: 0.6 });
+      const leftLeg = new THREE.Mesh(legGeo, pantsMat);
+      leftLeg.position.set(-0.2, 0.55, 0);
+      leftLeg.castShadow = true;
+      const rightLeg = new THREE.Mesh(legGeo, pantsMat);
+      rightLeg.position.set(0.2, 0.55, 0);
+      rightLeg.castShadow = true;
+
+      // Torso
+      const torsoGeo = new THREE.CylinderGeometry(0.32, 0.26, 1.15, 20);
+      const shirtMat = new THREE.MeshStandardMaterial({ color: shirtColor, roughness: 0.45 });
+      const torso = new THREE.Mesh(torsoGeo, shirtMat);
+      torso.position.set(0, 1.65, 0);
+      torso.castShadow = true;
+
+      // Head
+      const headGeo = new THREE.SphereGeometry(0.34, 24, 24);
+      const skinMat = new THREE.MeshStandardMaterial({ color: skinColor, roughness: 0.5 });
+      const head = new THREE.Mesh(headGeo, skinMat);
+      head.position.set(0, 2.58, 0);
+      head.castShadow = true;
+
+      // Hair Cap
+      const hairGeo = new THREE.SphereGeometry(0.355, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.55);
+      const hairMat = new THREE.MeshStandardMaterial({ color: 0x1e1b18, roughness: 0.8 });
+      const hair = new THREE.Mesh(hairGeo, hairMat);
+      hair.position.set(0, 2.61, -0.02);
+      hair.rotation.x = -0.15;
+
+      // Eyes (Facing +Z local)
+      const eyeGeo = new THREE.SphereGeometry(0.045, 12, 12);
+      const eyeMat = new THREE.MeshBasicMaterial({ color: 0x111827 });
+      const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+      leftEye.position.set(-0.11, 2.6, 0.31);
+      const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+      rightEye.position.set(0.11, 2.6, 0.31);
+
+      // Arms (with pivot at shoulder)
+      const armGeo = new THREE.CylinderGeometry(0.09, 0.08, 0.9, 14);
+      const leftArmPivot = new THREE.Group();
+      leftArmPivot.position.set(-0.42, 2.15, 0);
+      const leftArm = new THREE.Mesh(armGeo, shirtMat);
+      leftArm.position.set(0, -0.4, 0);
+      leftArmPivot.add(leftArm);
+
+      const rightArmPivot = new THREE.Group();
+      rightArmPivot.position.set(0.42, 2.15, 0);
+      const rightArm = new THREE.Mesh(armGeo, shirtMat);
+      rightArm.position.set(0, -0.4, 0);
+      rightArmPivot.add(rightArm);
+
+      // Ground Pedestal Ring
+      const baseGeo = new THREE.CylinderGeometry(0.65, 0.72, 0.1, 32);
+      const baseMat = new THREE.MeshStandardMaterial({ color: shirtColor, metalness: 0.4, roughness: 0.3 });
+      const base = new THREE.Mesh(baseGeo, baseMat);
+      base.position.set(0, 0.05, 0);
+
+      group.add(leftLeg, rightLeg, torso, head, hair, leftEye, rightEye, leftArmPivot, rightArmPivot, base);
+      group.position.set(xPos, 0, zPos);
+      group.rotation.y = rotY;
+
+      group.userData = { leftArmPivot, rightArmPivot, leftLeg, rightLeg, head };
+      return group;
+    }
+
+    function init3DStage() {
+      const container = document.getElementById('threeContainer');
+      if (!container) return;
+
+      scene = new THREE.Scene();
+
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+      camera.position.set(0, 4.2, 9.2);
+      camera.lookAt(0, 1.6, 0);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      container.appendChild(renderer.domElement);
+
+      // Lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.72);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xfffbeb, 1.1);
+      dirLight.position.set(5, 10, 7);
+      dirLight.castShadow = true;
+      scene.add(dirLight);
+
+      const rimLight = new THREE.PointLight(0x38bdf8, 0.9, 20);
+      rimLight.position.set(-5, 4, -4);
+      scene.add(rimLight);
+
+      // 3D Stage Floor & Grid
+      const floorGeo = new THREE.CircleGeometry(6.5, 64);
+      const floorMat = new THREE.MeshStandardMaterial({
+        color: 0x0f2924,
+        roughness: 0.4,
+        metalness: 0.2
+      });
+      const floor = new THREE.Mesh(floorGeo, floorMat);
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      const gridHelper = new THREE.GridHelper(11, 22, 0xeab308, 0x1e4d43);
+      gridHelper.position.y = 0.01;
+      scene.add(gridHelper);
+
+      // Three Human Characters
+      // Person 1 (Rahim - Left, Emerald Shirt, facing Karim)
+      person1 = createHumanCharacter(0x10b981, 0x1e293b, 0xf1c27d, -3.2, 0.3, Math.PI / 2);
+      // Person 2 (Karim - Center, Golden Amber Shirt, starts facing Rahim)
+      person2 = createHumanCharacter(0xeab308, 0x0f172a, 0xe0ac69, -0.3, 0.3, -Math.PI / 2);
+      // Person 3 (Hasan - Right, Sky Blue Shirt, facing Karim)
+      person3 = createHumanCharacter(0x38bdf8, 0x1e293b, 0xf1c27d, 3.2, 0.3, -Math.PI / 2);
+
+      scene.add(person1, person2, person3);
+
+      // Glowing Sound Wave Rings & Message Orb
+      const ringGeo = new THREE.TorusGeometry(0.45, 0.04, 12, 32);
+      const ringMat1 = new THREE.MeshBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.85 });
+      waveRing1 = new THREE.Mesh(ringGeo, ringMat1);
+      waveRing1.position.set(-2.3, 2.4, 0.3);
+      waveRing1.rotation.y = Math.PI / 2;
+      scene.add(waveRing1);
+
+      const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.85 });
+      waveRing2 = new THREE.Mesh(ringGeo, ringMat2);
+      waveRing2.position.set(1.3, 2.4, 0.3);
+      waveRing2.rotation.y = Math.PI / 2;
+      waveRing2.visible = false;
+      scene.add(waveRing2);
+
+      const orbGeo = new THREE.SphereGeometry(0.18, 20, 20);
+      const orbMat = new THREE.MeshStandardMaterial({
+        color: 0xfacc15,
+        emissive: 0xeab308,
+        emissiveIntensity: 0.8
+      });
+      messageOrb = new THREE.Mesh(orbGeo, orbMat);
+      messageOrb.position.set(-2.5, 2.3, 0.3);
+      scene.add(messageOrb);
+
+      // Mouse & Touch Orbit Controls on 3D Canvas
+      const onPointerDown = (clientX) => {
+        isDragging = true;
+        previousMouseX = clientX;
+      };
+      const onPointerMove = (clientX) => {
+        if (!isDragging) return;
+        const deltaX = clientX - previousMouseX;
+        previousMouseX = clientX;
+        cameraAngle += deltaX * 0.008;
+      };
+      const onPointerUp = () => { isDragging = false; };
+
+      renderer.domElement.addEventListener('mousedown', (e) => onPointerDown(e.clientX));
+      window.addEventListener('mousemove', (e) => onPointerMove(e.clientX));
+      window.addEventListener('mouseup', onPointerUp);
+
+      renderer.domElement.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) onPointerDown(e.touches[0].clientX);
+      }, { passive: true });
+      renderer.domElement.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 1) onPointerMove(e.touches[0].clientX);
+      }, { passive: true });
+      renderer.domElement.addEventListener('touchend', onPointerUp);
+
+      window.addEventListener('resize', onWindowResize);
+      playSceneDirect();
+      animate3D();
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById('threeContainer');
+      if (!container || !renderer || !camera) return;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+
+    function playSceneDirect() {
+      if (storyTimer) clearTimeout(storyTimer);
+      storyPhase = 'direct';
+      document.getElementById('stageStatusText').textContent =
+        'দৃশ্য ১: রহিম (Speaker) সরাসরি করিমকে বলছে (Direct Speech)';
+      document.getElementById('bubbleDirect').classList.remove('hidden');
+      document.getElementById('bubbleRelay').classList.add('hidden');
+      document.getElementById('bubbleIndirect').classList.add('hidden');
+    }
+
+    function playSceneRelay() {
+      if (storyTimer) clearTimeout(storyTimer);
+      storyPhase = 'relay';
+      document.getElementById('stageStatusText').textContent =
+        'দৃশ্য ২: করিম রহিমের কথা শুনে ঘুরে গিয়ে হাসানের দিকে এগোচ্ছে...';
+      document.getElementById('bubbleDirect').classList.add('hidden');
+      document.getElementById('bubbleRelay').classList.remove('hidden');
+      document.getElementById('bubbleIndirect').classList.add('hidden');
+    }
+
+    function playSceneIndirect() {
+      if (storyTimer) clearTimeout(storyTimer);
+      storyPhase = 'indirect';
+      document.getElementById('stageStatusText').textContent =
+        'দৃশ্য ৩: করিম তৃতীয় ব্যক্তি হাসানকে নিজের ভাষায় বলছে (Indirect Speech)';
+      document.getElementById('bubbleDirect').classList.add('hidden');
+      document.getElementById('bubbleRelay').classList.add('hidden');
+      document.getElementById('bubbleIndirect').classList.remove('hidden');
+    }
+
+    function playFull3DStory() {
+      playSceneDirect();
+      storyTimer = setTimeout(() => {
+        playSceneRelay();
+        storyTimer = setTimeout(() => {
+          playSceneIndirect();
+        }, 3200);
+      }, 3400);
+    }
+
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+      const t = performance.now() * 0.003;
+
+      // Smooth Camera Orbit
+      const radius = 9.2;
+      camera.position.x = Math.sin(cameraAngle) * radius;
+      camera.position.z = Math.cos(cameraAngle) * radius;
+      camera.lookAt(0, 1.65, 0);
+
+      // Reset limbs smoothly
+      [person1, person2, person3].forEach(p => {
+        p.userData.leftLeg.rotation.x *= 0.85;
+        p.userData.rightLeg.rotation.x *= 0.85;
+        p.userData.rightArmPivot.rotation.x *= 0.85;
+        p.userData.leftArmPivot.rotation.x *= 0.85;
+      });
+
+      if (storyPhase === 'direct') {
+        // Karim stands near Rahim facing Left (-PI/2)
+        person2.position.x += (-0.6 - person2.position.x) * 0.08;
+        person2.rotation.y += (-Math.PI / 2 - person2.rotation.y) * 0.1;
+
+        // Rahim gestures while speaking
+        person1.userData.rightArmPivot.rotation.x = -0.9 + Math.sin(t * 2.5) * 0.35;
+        person1.userData.head.rotation.y = Math.sin(t * 2) * 0.12;
+        // Karim nods while listening
+        person2.userData.head.rotation.x = Math.sin(t * 2.2) * 0.12;
+
+        // Sound wave from Rahim -> Karim
+        waveRing1.visible = true;
+        waveRing2.visible = false;
+        const progress = (t * 0.7) % 1;
+        waveRing1.position.x = -2.4 + progress * 1.4;
+        waveRing1.scale.setScalar(0.6 + progress * 0.8);
+        waveRing1.material.opacity = 1 - progress;
+
+        messageOrb.position.set(-2.4 + progress * 1.5, 2.35 + Math.sin(progress * Math.PI) * 0.35, 0.3);
+      } else if (storyPhase === 'relay') {
+        // Karim turns around (PI/2) and walks towards Hasan (+0.7)
+        person2.rotation.y += (Math.PI / 2 - person2.rotation.y) * 0.09;
+        person2.position.x += (0.7 - person2.position.x) * 0.04;
+
+        // Walking leg & arm swing
+        person2.userData.leftLeg.rotation.x = Math.sin(t * 4) * 0.45;
+        person2.userData.rightLeg.rotation.x = -Math.sin(t * 4) * 0.45;
+        person2.userData.leftArmPivot.rotation.x = -Math.sin(t * 4) * 0.35;
+        person2.userData.rightArmPivot.rotation.x = Math.sin(t * 4) * 0.35;
+
+        waveRing1.visible = false;
+        waveRing2.visible = false;
+        messageOrb.position.set(person2.position.x, 3.3 + Math.sin(t * 3) * 0.15, 0.3);
+      } else if (storyPhase === 'indirect') {
+        // Karim stands near Hasan facing Right (+PI/2)
+        person2.position.x += (0.8 - person2.position.x) * 0.08;
+        person2.rotation.y += (Math.PI / 2 - person2.rotation.y) * 0.1;
+
+        // Karim gestures explaining in his own words
+        person2.userData.rightArmPivot.rotation.x = -0.95 + Math.sin(t * 2.6) * 0.35;
+        person3.userData.head.rotation.x = Math.sin(t * 2.1) * 0.14;
+
+        // Sound wave from Karim -> Hasan
+        waveRing1.visible = false;
+        waveRing2.visible = true;
+        const progress = (t * 0.7) % 1;
+        waveRing2.position.x = 1.4 + progress * 1.4;
+        waveRing2.scale.setScalar(0.6 + progress * 0.8);
+        waveRing2.material.opacity = 1 - progress;
+
+        messageOrb.position.set(1.3 + progress * 1.6, 2.35 + Math.sin(progress * Math.PI) * 0.35, 0.3);
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    /* -----------------------------------------------------------
+       4. INTERACTIVE HELPERS FOR TAB 2 & TAB 3
+    ----------------------------------------------------------- */
+    function highlightChangeSpot(num) {
+      const messages = {
+        1: '① Reporting Verb (said to): Assertive sentence হওয়ায় এবং Object (me) থাকায় "said to" পরিবর্তিত হয়ে "told" বসবে।',
+        2: '② Comma & Inverted Comma (, “): Assertive sentence-এ কমা ও ইনভার্টেড কমা উঠে গিয়ে Linker হিসেবে "that" বসবে।',
+        3: '③ Person (I): "I" হলো 1st Person, যা Reporting Verb-এর Subject "He"-কে অনুসরণ করে "he" হবে।',
+        4: '④ Verb / Tense (am): Reporting Verb Past Tense-এ থাকায় "am" পরিবর্তিত হয়ে Past Tense-এ "was" হবে।',
+        5: '⑤ নৈকট্যবাচক শব্দ (now): Rule-5 অনুযায়ী "now" পরিবর্তিত হয়ে দূরত্ববাচক শব্দ "then" বসবে।'
+      };
+      const el = document.getElementById('spotExplanation');
+      el.textContent = messages[num];
+      el.style.color = 'var(--accent)';
+      playTactileSound('reveal');
+    }
+
+    let currentDemoStep = 0;
+    function setDemoStep(step) {
+      currentDemoStep = step;
+      const out = document.getElementById('demoOutputEn');
+      const parts = [
+        'He ',
+        step >= 1
+          ? '<span class="px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold border border-amber-400">told</span>'
+          : '<span class="opacity-60">{said to / told}</span>',
+        ' me ',
+        step >= 2
+          ? '<span class="px-2 py-0.5 rounded bg-sky-500/30 text-sky-300 font-bold border border-sky-400">that</span>'
+          : '<span class="opacity-60">{that}</span>',
+        ' ',
+        step >= 3
+          ? '<span class="px-2 py-0.5 rounded bg-emerald-500/30 text-emerald-300 font-bold border border-emerald-400">he</span>'
+          : '<span class="opacity-60">{he}</span>',
+        ' ',
+        step >= 4
+          ? '<span class="px-2 py-0.5 rounded bg-pink-500/30 text-pink-300 font-bold border border-pink-400">was</span>'
+          : '<span class="opacity-60">{was}</span>',
+        ' reading ',
+        step >= 5
+          ? '<span class="px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 font-bold border border-purple-400">then</span>'
+          : '<span class="opacity-60">{then}</span>',
+        '.'
+      ];
+      out.innerHTML = parts.join('');
+      playTactileSound('reveal');
+    }
+
+    function advanceTricksDemo() {
+      currentDemoStep = currentDemoStep >= 5 ? 1 : currentDemoStep + 1;
+      setDemoStep(currentDemoStep);
+    }
+
+    /* -----------------------------------------------------------
+       5. PRACTICE DATA: 10 SINGLE SENTENCES + 10 PASSAGES
+    ----------------------------------------------------------- */
+    const singleQuestions = [
+      {
+        id: 1,
+        type: 'Assertive Sentence',
+        directEn: 'He said to me, “I am going to college now.”',
+        directBn: 'সে আমাকে বলল, “আমি এখন কলেজে যাচ্ছি।”',
+        indirectEn: 'He told me that he was going to college then.',
+        indirectBn: 'সে আমাকে বলেছিল যে সে তখন কলেজে যাচ্ছিল।',
+        note: 'Rule-1 অনুযায়ী said to → told, Rule-2 অনুযায়ী that, I → he, am → was এবং now → then হয়েছে।'
+      },
+      {
+        id: 2,
+        type: 'Interrogative Sentence (Yes/No)',
+        directEn: 'The teacher said to the student, “Have you prepared your lesson today?”',
+        directBn: 'শিক্ষক ছাত্রটিকে বললেন, “তুমি কি আজ তোমার পড়া তৈরি করেছ?”',
+        indirectEn: 'The teacher asked the student if he had prepared his lesson that day.',
+        indirectBn: 'শিক্ষক ছাত্রটিকে জিজ্ঞাসা করলেন সে সেদিন তার পড়া তৈরি করেছিল কি না।',
+        note: 'Auxiliary verb দিয়ে প্রশ্ন শুরু হওয়ায় Linker হিসেবে "if" বসেছে এবং have prepared → had prepared ও today → that day হয়েছে।'
+      },
+      {
+        id: 3,
+        type: 'Interrogative Sentence (WH-Word)',
+        directEn: 'Mother said to me, “Where did you go yesterday?”',
+        directBn: 'মা আমাকে বললেন, “তুমি গতকাল কোথায় গিয়েছিলে?”',
+        indirectEn: 'Mother asked me where I had gone the previous day.',
+        indirectBn: 'মা আমাকে জিজ্ঞাসা করলেন আমি আগের দিন কোথায় গিয়েছিলাম।',
+        note: 'WH-word (Where) থাকলে সেটিই Linker হিসেবে বসে এবং বাক্যটি Assertive গঠনে (Subject + had + V3) রূপান্তরিত হয়।'
+      },
+      {
+        id: 4,
+        type: 'Imperative Sentence (Order/Advice)',
+        directEn: 'Father said to his son, “Always speak the truth and never tell a lie.”',
+        directBn: 'বাবা তার ছেলেকে বললেন, “সর্বদা সত্য কথা বলবে এবং কখনো মিথ্যা বলবে না।”',
+        indirectEn: 'Father advised his son to speak the truth always and never to tell a lie.',
+        indirectBn: 'বাবা তার ছেলেকে সর্বদা সত্য কথা বলার এবং কখনো মিথ্যা না বলার উপদেশ দিলেন।'
+      },
+      {
+        id: 5,
+        type: 'Imperative Sentence (Request)',
+        directEn: 'The poor man said to me, “Please give me a glass of water.”',
+        directBn: 'গরিব লোকটি আমাকে বলল, “দয়া করে আমাকে এক গ্লাস পানি দিন।”',
+        indirectEn: 'The poor man requested me to give him a glass of water.',
+        indirectBn: 'গরিব লোকটি আমাকে তাকে এক গ্লাস পানি দেওয়ার জন্য অনুরোধ করল।',
+        note: '"Please" থাকায় Reporting verb "requested" হয়েছে এবং মূল verb-এর পূর্বে "to" বসেছে।'
+      },
+      {
+        id: 6,
+        type: 'Imperative Sentence (Let us - Proposal)',
+        directEn: 'Rafi said to his friends, “Let us go out for a walk.”',
+        directBn: 'রাফি তার বন্ধুদের বলল, “চলো আমরা বাইরে হাঁটতে যাই।”',
+        indirectEn: 'Rafi proposed to his friends that they should go out for a walk.',
+        indirectBn: 'রাফি তার বন্ধুদের প্রস্তাব দিল যে তাদের বাইরে হাঁটতে যাওয়া উচিত।',
+        note: 'Rule-1(ii) অনুযায়ী "Let us" থাকলে Proposed to বসে এবং that-এর পর they/we + should বসে।'
+      },
+      {
+        id: 7,
+        type: 'Imperative Sentence (Let me/him)',
+        directEn: 'The boy said to the teacher, “Let me come in, sir.”',
+        directBn: 'বালকটি শিক্ষককে বলল, “স্যার, আমাকে ভেতরে আসতে দিন।”',
+        indirectEn: 'The boy respectfully told the teacher that he might be allowed to come in.',
+        indirectBn: 'বালকটি সম্মানের সাথে শিক্ষককে বলল যে তাকে ভেতরে আসার অনুমতি দেওয়া হোক।',
+        note: 'Rule-1(iii) অনুযায়ী Let me থাকলে told বসে এবং "Sir" থাকায় Respectfully বসেছে।'
+      },
+      {
+        id: 8,
+        type: 'Optative Sentence (Prayer/Wish)',
+        directEn: 'Mother said to me, “May Allah bless you and grant you success.”',
+        directBn: 'মা আমাকে বললেন, “আল্লাহ তোমার মঙ্গল করুন এবং তোমাকে সফলতা দান করুন।”',
+        indirectEn: 'Mother prayed that Allah might bless me and grant me success.',
+        indirectBn: 'মা প্রার্থনা করলেন যে আল্লাহ যেন আমার মঙ্গল করেন এবং আমাকে সফলতা দান করেন।',
+        note: 'Optative বাক্যে prayed/wished বসে, Linker "that" এবং Subject-এর পর may → might হয়।'
+      },
+      {
+        id: 9,
+        type: 'Exclamatory Sentence (Joy/Sorrow)',
+        directEn: 'The players said, “Hurrah! We have won the match.”',
+        directBn: 'খেলোয়াড়েরা বলল, “হুররে! আমরা খেলায় জিতেছি।”',
+        indirectEn: 'The players exclaimed with joy that they had won the match.',
+        indirectBn: 'খেলোয়াড়েরা আনন্দের সাথে চিৎকার করে বলল যে তারা খেলায় জিতেছিল।',
+        note: '"Hurrah!" দ্বারা আনন্দ বোঝানোয় exclaimed with joy বসেছে।'
+      },
+      {
+        id: 10,
+        type: 'Universal Truth (চিরন্তন সত্য)',
+        directEn: 'The teacher said to the students, “The sun rises in the east and honesty is the best policy.”',
+        directBn: 'শিক্ষক শিক্ষার্থীদের বললেন, “সূর্য পূর্ব দিকে ওঠে এবং সততাই সর্বোৎকৃষ্ট পন্থা।”',
+        indirectEn: 'The teacher told the students that the sun rises in the east and honesty is the best policy.',
+        indirectBn: 'শিক্ষক শিক্ষার্থীদের বললেন যে সূর্য পূর্ব দিকে ওঠে এবং সততাই সর্বোৎকৃষ্ট পন্থা।',
+        note: 'চিরন্তন সত্য (Universal Truth) হওয়ায় Verb-এর Tense অপরিবর্তিত রয়েছে।'
+      }
+    ];
+
+    const passageQuestions = [
+      {
+        id: 1,
+        title: 'Passage 01 (Rashed & Television — Image 3)',
+        directEn: '“What are you doing now, Rashed?” I said. “I am watching an interesting program on television.” “Aren’t you wasting your time?” I said. “No, I don’t think so,” he said. “Remember, too much watching of TV makes people lazy.”',
+        directBn: '“তুমি এখন কী করছ রাশেদ?” আমি বললাম। “আমি টেলিভিশনে একটি মজাদার অনুষ্ঠান দেখছি।” “তুমি কি তোমার সময় নষ্ট করছ না?” আমি বললাম। “না, আমি এরূপ মনে করি না,” সে বলল। “মনে রেখো, অতিমাত্রায় টেলিভিশন দেখা মানুষকে অলস করে দেয়।”',
+        indirectEn: 'Addressing Rashed, I asked him what he was doing then. He replied that he was watching an interesting program on television. I again asked him if he was not wasting his time. He replied in the negative that he did not think so. I told/warned him to remember that too much watching of TV makes people lazy.',
+        indirectBn: 'রাশেদ বলে সম্বোধন করে আমি তাকে জিজ্ঞাসা করলাম সে তখন কী করছিল। সে উত্তর দিল যে সে টেলিভিশনে একটি মজাদার অনুষ্ঠান দেখছিল। আমি পুনরায় তাকে জিজ্ঞাসা করলাম সে তার সময় নষ্ট করছে না কি না। সে না-সূচক উত্তর দিল যে সে এরূপ মনে করছে না। আমি তাকে মনে রাখার জন্য বললাম/সতর্ক করলাম যে অতিমাত্রায় টেলিভিশন দেখা মানুষকে অলস করে দেয়।',
+        note: 'Addressing Rashed, again asked, replied in the negative এবং চিরন্তন সত্য (makes people lazy) অপরিবর্তিত রাখা হয়েছে।'
+      },
+      {
+        id: 2,
+        title: 'Passage 02 (The Old Man & Hidden Treasure — Image 3)',
+        directEn: '“My sons, listen to me. A great treasure lies hidden in the land. I am going to leave it to you.” “How will we find it?” said the sons. “You must dig the land for it,” said the old man.',
+        directBn: '“হে পুত্রগণ আমার কথা শোনো। জমিতে এক বিরাট সম্পদ লুকিয়ে আছে। আমি এটা তোমাদের জন্য রেখে যাচ্ছি।” “কীভাবে সেটা আমরা খুঁজে পাব?” সন্তানরা বলল। “তোমরা অবশ্যই এটার জন্য জমি খনন করবে,” বৃদ্ধ লোকটি বলল।',
+        indirectEn: 'Addressing his sons as my sons, the old man told them to listen to him and added that a great treasure lay hidden in the land. He again said that he was going to leave it to them. The sons asked how they would find it. The old man replied that they had to dig the land for it.',
+        indirectBn: 'তার সন্তানদের আমার সন্তান বলে সম্বোধন করে বৃদ্ধ লোকটি তাদেরকে তার কথা শুনতে বলেছিলেন এবং আরও বলেছিলেন যে জমিতে এক বিরাট সম্পদ লুকিয়ে ছিল। তিনি আবারও বললেন যে তিনি এটা তাদের জন্য রেখে যাচ্ছিলেন। সন্তানরা তাকে জিজ্ঞাসা করল কীভাবে তারা সেটা খুঁজে পাবে। বৃদ্ধ লোকটি উত্তর দিল যে তাদেরকে এটার জন্য জমি খনন করতে হবে।',
+        note: 'Rule-5 অনুযায়ী সম্বোধনমূলক শব্দে Addressing এবং Rule-4 অনুযায়ী must → had to ব্যবহৃত হয়েছে।'
+      },
+      {
+        id: 3,
+        title: 'Passage 03 (The Teacher & The Boy — Image 3)',
+        directEn: 'The teacher said to the boy, “Do you think that honesty is the best policy?” The boy said, “Yes, sir, I think so.” “Then learn to be honest from your boyhood,” said the teacher. “Thank you, sir,” said the boy. “May Allah grant you a long life,” said the teacher to the boy.',
+        directBn: 'শিক্ষক বালকটিকে বললেন, “তুমি কি মনে করো সততাই সর্বোৎকৃষ্ট পন্থা?” বালকটি বলল, “জ্বি স্যার, আমি তাই মনে করি।” “তাহলে তোমার বাল্যকাল থেকেই সৎ হতে শেখো,” শিক্ষক বললেন। “আপনাকে ধন্যবাদ, স্যার,” বালকটি বলল। “আল্লাহ তোমাকে দীর্ঘজীবী করুন,” শিক্ষক বালকটিকে বললেন।',
+        indirectEn: 'The teacher asked the boy if he thought that honesty is the best policy. The boy respectfully replied in the affirmative that he thought so. Then the teacher advised him to learn to be honest from his boyhood. The boy respectfully thanked him. The teacher prayed for the boy that Allah might grant him a long life.',
+        indirectBn: 'শিক্ষক বালকটিকে জিজ্ঞাসা করলেন সে মনে করে কি না যে সততাই সর্বোৎকৃষ্ট পন্থা। বালকটি সম্মানের সাথে হ্যাঁ-সূচক উত্তর দিল যে সে তাই মনে করে। তখন শিক্ষক তাকে তার বাল্যকাল থেকেই সৎ হতে শেখার উপদেশ দিলেন। বালকটি সম্মানের সাথে তাকে ধন্যবাদ জানাল। শিক্ষক বালকটির জন্য প্রার্থনা করলেন যে আল্লাহ যেন তাকে দীর্ঘজীবী করেন।'
+      },
+      {
+        id: 4,
+        title: 'Passage 04 (Alexander & Porus)',
+        directEn: '“How shall I treat you?” asked Alexander. “Like a king,” replied Porus. “And you have nothing else to request?” said Alexander. “No,” replied Porus.',
+        directBn: '“আমি তোমার সাথে কেমন আচরণ করব?” আলেকজান্ডার জিজ্ঞাসা করলেন। “একজন রাজার মতো,” পোরাস উত্তর দিলেন। “আর তোমার কি অনুরোধ করার মতো আর কিছু নেই?” আলেকজান্ডার বললেন। “না,” পোরাস উত্তর দিলেন।',
+        indirectEn: 'Alexander asked Porus how he (A) should treat him (P). Porus replied that he (A) should treat him (P) like a king. Alexander again asked if he (P) had nothing else to request. Porus replied in the negative.',
+        indirectBn: 'আলেকজান্ডার পোরাসকে জিজ্ঞাসা করলেন তিনি তার সাথে কেমন আচরণ করবেন। পোরাস উত্তর দিলেন যে তিনি যেন তার সাথে একজন রাজার মতো আচরণ করেন। আলেকজান্ডার পুনরায় জিজ্ঞাসা করলেন তার অনুরোধ করার মতো আর কিছু নেই কি না। পোরাস না-সূচক উত্তর দিলেন।'
+      },
+      {
+        id: 5,
+        title: 'Passage 05 (Mother & Son on Examination)',
+        directEn: '“Have you done your homework?” said mother. “No, I haven’t. I was suffering from a headache yesterday,” said the boy. “Why didn’t you tell me earlier? Take medicine now,” said mother.',
+        directBn: '“তুমি কি তোমার বাড়ির কাজ করেছ?” মা বললেন। “না, করিনি। গতকাল আমার মাথাব্যথা করছিল,” বালকটি বলল। “তুমি আমাকে আগে বলোনি কেন? এখন ওষুধ খেয়ে নাও,” মা বললেন।',
+        indirectEn: 'Mother asked her son if he had done his homework. The boy replied in the negative that he had not and added that he had been suffering from a headache the previous day. Mother asked him why he had not told her earlier and advised him to take medicine then.',
+        indirectBn: 'মা তার ছেলেকে জিজ্ঞাসা করলেন সে তার বাড়ির কাজ করেছে কি না। বালকটি না-সূচক উত্তর দিল যে সে করেনি এবং আরও বলল যে আগের দিন তার মাথাব্যথা করছিল। মা তাকে জিজ্ঞাসা করলেন সে কেন তাকে আগে বলেনি এবং তাকে তখন ওষুধ খেয়ে নেওয়ার উপদেশ দিলেন।'
+      },
+      {
+        id: 6,
+        title: 'Passage 06 (Two Friends & Picnic Proposal)',
+        directEn: '“Where are you going?” said Mina. “I am going to the library,” said Rina. “Let us go to the book fair tomorrow,” said Mina. “That’s a great idea!” said Rina.',
+        directBn: '“তুমি কোথায় যাচ্ছ?” মিনা বলল। “আমি লাইব্রেরিতে যাচ্ছি,” রিনা বলল। “চলো আমরা আগামীকাল বইমেলায় যাই,” মিনা বলল। “দারুণ বুদ্ধি তো!” রিনা বলল।',
+        indirectEn: 'Mina asked Rina where she (R) was going. Rina replied that she (R) was going to the library. Then Mina proposed to Rina that they should go to the book fair the next day. Rina exclaimed with joy that it was a great idea.',
+        indirectBn: 'মিনা রিনাকে জিজ্ঞাসা করল সে কোথায় যাচ্ছে। রিনা উত্তর দিল যে সে লাইব্রেরিতে যাচ্ছে। তখন মিনা রিনাকে প্রস্তাব দিল যে তাদের পরের দিন বইমেলায় যাওয়া উচিত। রিনা আনন্দের সাথে বলল যে এটি একটি দারুণ বুদ্ধি।'
+      },
+      {
+        id: 7,
+        title: 'Passage 07 (Doctor & Patient)',
+        directEn: '“What is your problem?” asked the doctor. “I have been suffering from fever for three days,” said the patient. “Don’t worry. Take these tablets twice a day,” said the doctor. “Thank you, doctor,” said the patient.',
+        directBn: '“আপনার সমস্যা কী?” ডাক্তার জিজ্ঞাসা করলেন। “আমি তিন দিন ধরে জ্বরে ভুগছি,” রোগী বলল। “চিন্তা করবেন না। এই ট্যাবলেটগুলো দিনে দুবার খাবেন,” ডাক্তার বললেন। “ধন্যবাদ, ডাক্তার,” রোগী বলল।',
+        indirectEn: 'The doctor asked the patient what his problem was. The patient replied that he had been suffering from fever for three days. The doctor told him not to worry and advised him to take those tablets twice a day. The patient thanked the doctor.',
+        indirectBn: 'ডাক্তার রোগীকে জিজ্ঞাসা করলেন তার সমস্যা কী। রোগী উত্তর দিল যে সে তিন দিন ধরে জ্বরে ভুগছিল। ডাক্তার তাকে চিন্তা না করতে বললেন এবং দিনে দুবার ঐ ট্যাবলেটগুলো খাওয়ার উপদেশ দিলেন। রোগী ডাক্তারকে ধন্যবাদ জানাল।'
+      },
+      {
+        id: 8,
+        title: 'Passage 08 (The Caliph & The Poor Woman)',
+        directEn: '“Why are your children crying?” asked the Caliph. “They have been starving for two days,” replied the woman. “May Allah help you. I will send food right now,” said the Caliph.',
+        directBn: '“তোমার সন্তানেরা কাঁদছে কেন?” খলিফা জিজ্ঞাসা করলেন। “তারা দুই দিন ধরে অনাহারে আছে,” মহিলাটি উত্তর দিলেন। “আল্লাহ তোমাকে সাহায্য করুন। আমি এখনই খাবার পাঠাব,” খলিফা বললেন।',
+        indirectEn: 'The Caliph asked the woman why her children were crying. The woman replied that they had been starving for two days. The Caliph prayed that Allah might help her and added that he would send food right then.',
+        indirectBn: 'খলিফা মহিলাটিকে জিজ্ঞাসা করলেন কেন তার সন্তানেরা কাঁদছিল। মহিলাটি উত্তর দিলেন যে তারা দুই দিন ধরে অনাহারে ছিল। খলিফা প্রার্থনা করলেন যে আল্লাহ যেন তাকে সাহায্য করেন এবং আরও বললেন যে তিনি ঠিক তখনই খাবার পাঠাবেন।'
+      },
+      {
+        id: 9,
+        title: 'Passage 09 (Passer-by & Stranger)',
+        directEn: '“Excuse me, can you tell me the way to the railway station?” said the stranger. “Yes, go straight and turn left,” said the passer-by. “How far is it from here?” asked the stranger.',
+        directBn: '“মাফ করবেন, আপনি কি আমাকে রেলস্টেশনে যাওয়ার রাস্তাটি বলতে পারেন?” আগন্তুক বলল। “হ্যাঁ, সোজা যান এবং বামে ঘুরুন,” পথচারী বলল। “এখান থেকে এটি কত দূরে?” আগন্তুক জিজ্ঞাসা করল।',
+        indirectEn: 'Drawing attention, the stranger asked the passer-by if he could tell him the way to the railway station. The passer-by replied in the affirmative and advised him to go straight and turn left. The stranger again asked how far it was from there.',
+        indirectBn: 'দৃষ্টি আকর্ষণ করে আগন্তুক পথচারীকে জিজ্ঞাসা করল সে তাকে রেলস্টেশনে যাওয়ার রাস্তাটি বলতে পারে কি না। পথচারী হ্যাঁ-সূচক উত্তর দিল এবং তাকে সোজা গিয়ে বামে ঘোরার পরামর্শ দিল। আগন্তুক পুনরায় জিজ্ঞাসা করল সেখান থেকে এটি কত দূরে।'
+      },
+      {
+        id: 10,
+        title: 'Passage 10 (Father & Daughter on Time)',
+        directEn: '“My dear daughter, time and tide wait for none,” said father. “I know it, father. I am trying my best to use every moment properly,” she replied. “May you shine in life,” said father.',
+        directBn: '“আমার প্রিয় কন্যা, সময় ও নদীর স্রোত কারো জন্য অপেক্ষা করে না,” বাবা বললেন। “আমি তা জানি, বাবা। আমি প্রতিটি মুহূর্ত সঠিকভাবে কাজে লাগানোর সর্বোচ্চ চেষ্টা করছি,” সে উত্তর দিল। “তুমি জীবনে উন্নতি করো,” বাবা বললেন।',
+        indirectEn: 'Addressing her as his dear daughter, father told her that time and tide wait for none. She replied affectionately that she knew it and added that she was trying her best to use every moment properly. Father wished/prayed that she might shine in life.',
+        indirectBn: 'তাকে তার প্রিয় কন্যা বলে সম্বোধন করে বাবা তাকে বললেন যে সময় ও নদীর স্রোত কারো জন্য অপেক্ষা করে না। সে স্নেহের সাথে উত্তর দিল যে সে তা জানে এবং আরও বলল যে সে প্রতিটি মুহূর্ত সঠিকভাবে কাজে লাগানোর সর্বোচ্চ চেষ্টা করছে। বাবা প্রার্থনা করলেন যে সে যেন জীবনে উন্নতি করে।'
+      }
+    ];
+
+    let currentPracticeMode = 'single';
+
+    function renderPracticeCards() {
+      const container = document.getElementById('practiceCardsContainer');
+      const items = currentPracticeMode === 'single' ? singleQuestions : passageQuestions;
+
+      container.innerHTML = items.map((item, idx) => `
+        <article class="card-3d rounded-3xl p-5 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <span class="px-3.5 py-1 rounded-xl font-en text-xs sm:text-sm font-bold"
+                  style="background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-color);">
+              ${currentPracticeMode === 'single' ? `Single #${item.id} • ${item.type}` : item.title}
+            </span>
+            <span class="font-bn text-xs opacity-75" style="color: var(--text-secondary);">
+              ক্লিক করে বাংলা ও উত্তর দেখুন 👇
+            </span>
+          </div>
+
+          <!-- Direct Question Text -->
+          <div class="p-4 rounded-2xl border mb-4" style="background: var(--bg-secondary); border-color: var(--border-color);">
+            <p class="font-en text-lg sm:text-xl font-bold leading-relaxed">
+              <span style="color: var(--accent);">${item.id}.</span> ${item.directEn}
+            </p>
+          </div>
+
+          <!-- Interactive Toggle Buttons -->
+          <div class="flex flex-wrap gap-3">
+            <button onclick="toggleReveal('bn-${currentPracticeMode}-${idx}')"
+                    class="btn-tactile ripple-container px-4 py-2.5 rounded-xl font-bn text-sm sm:text-base font-bold border flex items-center gap-2"
+                    style="background: var(--bg-secondary); border-color: var(--accent-2); color: var(--text-primary);">
+              <span>🇧🇩</span>
+              <span>বাংলা অনুবাদ দেখুন</span>
+            </button>
+
+            <button onclick="toggleReveal('ans-${currentPracticeMode}-${idx}')"
+                    class="btn-tactile ripple-container px-4 py-2.5 rounded-xl font-bn text-sm sm:text-base font-bold flex items-center gap-2"
+                    style="background: var(--accent); color: #090d16;">
+              <span>✅</span>
+              <span>উত্তর ও বাংলা অর্থ দেখুন</span>
+            </button>
+          </div>
+
+          <!-- Collapsible Panel 1: Bengali Translation of Question -->
+          <div id="bn-${currentPracticeMode}-${idx}" class="reveal-panel mt-3">
+            <div class="reveal-inner">
+              <div class="p-4 rounded-2xl border-l-4" style="background: var(--bg-secondary); border-color: var(--accent-2);">
+                <div class="font-bn text-xs font-bold mb-1" style="color: var(--accent-2);">
+                  📖 প্রশ্নের বাংলা অনুবাদ:
+                </div>
+                <p class="font-bn text-base sm:text-lg">${item.directBn}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Collapsible Panel 2: Indirect Answer + Bengali Answer + Rule Note -->
+          <div id="ans-${currentPracticeMode}-${idx}" class="reveal-panel mt-3">
+            <div class="reveal-inner">
+              <div class="p-4 rounded-2xl border-2 space-y-2.5" style="background: var(--bg-secondary); border-color: var(--accent);">
+                <div>
+                  <span class="font-en text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md"
+                        style="background: var(--accent); color: #090d16;">
+                    Indirect Answer
+                  </span>
+                  <p class="font-en text-lg sm:text-xl font-bold mt-1.5 leading-relaxed" style="color: var(--accent);">
+                    ${item.indirectEn}
+                  </p>
+                </div>
+
+                <div class="pt-2 border-t" style="border-color: var(--border-color);">
+                  <span class="font-bn text-xs font-bold" style="color: var(--accent-2);">
+                    📝 উত্তরের বাংলা অর্থ:
+                  </span>
+                  <p class="font-bn text-base sm:text-lg mt-0.5">${item.indirectBn}</p>
+                </div>
+
+                ${item.note ? `
+                  <div class="p-2.5 rounded-xl text-xs sm:text-sm mixed-text" style="background: var(--accent-soft);">
+                    💡 <span class="font-bn font-bold">ব্যাখ্যা:</span> ${item.note}
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function toggleReveal(panelId) {
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+      panel.classList.toggle('open');
+      playTactileSound('reveal');
+    }
+
+    function toggleAllReveals(type, openState) {
+      const panels = document.querySelectorAll('.reveal-panel');
+      panels.forEach(p => {
+        if (type === 'all' || p.id.startsWith(type + '-')) {
+          if (openState) p.classList.add('open');
+          else p.classList.remove('open');
+        }
+      });
+      playTactileSound('reveal');
+    }
+
+    function switchPracticeMode(mode) {
+      currentPracticeMode = mode;
+      const btnSingle = document.getElementById('subBtnSingle');
+      const btnPassage = document.getElementById('subBtnPassage');
+      const label = document.getElementById('practiceCounterLabel');
+
+      if (mode === 'single') {
+        btnSingle.style.background = 'var(--accent)';
+        btnSingle.style.color = '#090d16';
+        btnPassage.style.background = 'transparent';
+        btnPassage.style.color = 'var(--text-primary)';
+        label.textContent = 'বর্তমানে প্রদর্শিত: Single Sentence Narration (১ থেকে ১০)';
+      } else {
+        btnPassage.style.background = 'var(--accent)';
+        btnPassage.style.color = '#090d16';
+        btnSingle.style.background = 'transparent';
+        btnSingle.style.color = 'var(--text-primary)';
+        label.textContent = 'বর্তমানে প্রদর্শিত: Passage Narration (১ থেকে ১০)';
+      }
+      renderPracticeCards();
+    }
+
+    /* -----------------------------------------------------------
+       6. SUBTLE 3D TILT EFFECT ON DESKTOP POINTER HOVER
+    ----------------------------------------------------------- */
+    function initTiltCards() {
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          if (window.innerWidth < 768) return;
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) translateY(-2px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)';
+        });
+      });
+    }
+
+    /* Initialize Everything on Window Load */
+    window.onload = function () {
+      init3DStage();
+      renderPracticeCards();
+      initTiltCards();
+    };
   </script>
-</div>
-
-
-
-
-<div class="card"><h3>১. Narration কী?</h3><p class="lead">কোনো বক্তার বলা কথা অন্যের কাছে প্রকাশ করার পদ্ধতিকে <b>Narration</b> বলে।</p><div class="grid"><div class="mini"><b>Direct Speech</b><p>বক্তার কথা হুবহু quotation mark (“ ”)-এর মধ্যে প্রকাশ করা হয়।</p><div class="example"><span class="en">He said, “I am happy.”</span><br><span class="bn">সে বলল, “আমি সুখী।”</span></div></div><div class="mini"><b>Indirect Speech</b><p>বক্তার কথার মূল অর্থ ঠিক রেখে নিজের বাক্যগঠনে প্রকাশ করা হয়।</p><div class="example"><span class="en">He said that he was happy.</span><br><span class="bn">সে বলল যে সে সুখী ছিল।</span></div></div></div></div>
-<div class="card"><h3>২. Basic Structure ও পরিভাষা</h3><div class="formula">Reporting Part + “Reported Speech”</div><div class="example"><span class="en">He said to me, “I am reading a book now.”</span><br>Reporting Part: <b>He said to me</b><br>Reported Speech: <b>I am reading a book now.</b><br><span class="bn">বাংলা: সে আমাকে বলল, “আমি এখন একটি বই পড়ছি।”</span></div><p><b>Reporting Verb:</b> said / said to / asked ইত্যাদি—যে verb দিয়ে বক্তব্য জানানোর কাজ বোঝায়।</p><p><b>Reported Speech:</b> উদ্ধৃতির মধ্যে বক্তার আসল বক্তব্য।</p></div>
-<div class="card"><h3>৩. Narration-এর ৫টি প্রধান পরিবর্তনের জায়গা</h3><div class="grid"><div class="mini"><b>১. Reporting Verb</b><p>said → asked / told / ordered ইত্যাদি</p></div><div class="mini"><b>২. Connector</b><p>that / if / whether / WH-word / to</p></div><div class="mini"><b>৩. Person / Pronoun</b><p>I, we, you, he, she ইত্যাদি</p></div><div class="mini"><b>৪. Verb / Tense</b><p>am → was; will → would</p></div><div class="mini"><b>৫. Time & Place</b><p>now → then; here → there</p></div></div><div class="note">সব বাক্যে পাঁচটি পরিবর্তনই হবে না। বাক্যের ধরন, reporting verb, সময়-স্থান ও অর্থ অনুযায়ী প্রয়োজনীয় পরিবর্তন করবে।</div></div>
-<div class="card"><h3>৪. Narration-এর ৫ ধরনের Sentence</h3><table><tr><th>ধরন</th><th>কাজ</th><th>উদাহরণ</th></tr><tr><td>Assertive</td><td>বিবৃতি/সাধারণ বক্তব্য</td><td>He said, “I am fine.”</td></tr><tr><td>Interrogative</td><td>প্রশ্ন</td><td>He said, “Are you ready?”</td></tr><tr><td>Imperative</td><td>আদেশ, অনুরোধ, উপদেশ, নিষেধ</td><td>He said, “Open the door.”</td></tr><tr><td>Optative</td><td>ইচ্ছা, প্রার্থনা, আশীর্বাদ, অভিশাপ</td><td>He said, “May you win!”</td></tr><tr><td>Exclamatory</td><td>আনন্দ, দুঃখ, বিস্ময়, প্রশংসা</td><td>He said, “Hurrah!”</td></tr></table><p><span class="tag">Special</span> “Let” যুক্ত বাক্য সাধারণত Imperative-এর বিশেষ রূপ; পরীক্ষায় আলাদা করে অনুশীলন করা হয়।</p></div>
-</section>
-
-<section class="page"><div class="page-title"><div class="num">R1</div><h2>RULE–1: Reporting Verb-এর পরিবর্তন</h2></div>
-<div class="card"><h3>Sentence-এর ধরন অনুযায়ী Reporting Verb</h3><table><tr><th>Sentence Type</th><th>Reporting Verb / Structure</th></tr><tr><td>Assertive</td><td>said; said to + object → told + object</td></tr><tr><td>Interrogative</td><td>asked / inquired / wanted to know</td></tr><tr><td>Imperative—Order</td><td>ordered / commanded + object + to</td></tr><tr><td>Imperative—Request</td><td>requested / begged / entreated + object + to</td></tr><tr><td>Imperative—Advice</td><td>advised + object + to</td></tr><tr><td>Imperative—Prohibition</td><td>forbade / prohibited + object + from + V-ing; অথবা told/ordered + object + not to</td></tr><tr><td>Optative</td><td>wished / prayed; context অনুযায়ী blessed / cursed</td></tr><tr><td>Exclamatory</td><td>exclaimed with joy/sorrow/surprise/wonder</td></tr></table>
-<h4>A. Assertive Sentence</h4><div class="example"><span class="en">He said, “I am fine.”</span><br>→ He said that he was fine.<br><span class="bn">সে বলল যে সে ভালো ছিল।</span></div><div class="example"><span class="en">He said to me, “I am fine.”</span><br>→ He told me that he was fine.<br><span class="bn">সে আমাকে বলল যে সে ভালো ছিল।</span></div><div class="note bad">❌ He told that he was fine. &nbsp; ✅ He told <b>me</b> that he was fine. <b>Told-এর পরে সাধারণত object প্রয়োজন।</b></div>
-<h4>B. Interrogative</h4><div class="example"><span class="en">He said to me, “Are you ready?”</span><br>→ He asked me if I was ready.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি প্রস্তুত ছিলাম কি না।</span></div>
-<h4>C. Imperative</h4><div class="example"><span class="en">The teacher said to me, “Open the door.”</span><br>→ The teacher ordered me to open the door.<br><span class="bn">শিক্ষক আমাকে দরজা খুলতে আদেশ দিলেন।</span></div>
-<h4>D. Optative</h4><div class="example"><span class="en">He said, “May you be happy.”</span><br>→ He wished that I might be happy.<br><span class="bn">সে কামনা করল যেন আমি সুখী হই।</span></div>
-<h4>E. Exclamatory</h4><div class="example"><span class="en">He said, “Hurrah! We have won.”</span><br>→ He exclaimed with joy that they had won.<br><span class="bn">সে আনন্দের সঙ্গে বলল যে তারা জিতেছে/জিতেছিল।</span></div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">R2</div><h2>RULE–2: Inverted Comma (“ ”) ও Connector</h2></div>
-<div class="card"><table><tr><th>বাক্যের ধরন</th><th>Connector / Structure</th></tr><tr><td>Assertive</td><td>that</td></tr><tr><td>Interrogative—Yes/No</td><td>if / whether</td></tr><tr><td>Interrogative—WH</td><td>WH-word-টি থাকে</td></tr><tr><td>Imperative</td><td>to + verb</td></tr><tr><td>Negative Imperative</td><td>not to + verb</td></tr><tr><td>Optative</td><td>that</td></tr><tr><td>Exclamatory</td><td>that</td></tr></table>
-<h4>Assertive → that</h4><div class="example"><span class="en">He said, “I am happy.”</span><br>→ He said <b>that</b> he was happy.</div>
-<h4>Yes/No Question → if/whether</h4><div class="example"><span class="en">She said to me, “Do you know him?”</span><br>→ She asked me <b>if</b> I knew him.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি তাকে চিনি কি না।</span></div>
-<h4>WH Question → WH-word</h4><div class="example"><span class="en">He said, “Where do you live?”</span><br>→ He asked where I lived.<br><span class="bn">সে জিজ্ঞেস করল আমি কোথায় থাকি/থাকতাম।</span></div>
-<h4>Imperative → to / not to</h4><div class="example"><span class="en">He said to me, “Sit down.”</span><br>→ He told me <b>to sit</b> down.</div><div class="example"><span class="en">He said to me, “Do not run.”</span><br>→ He told me <b>not to run</b>.</div>
-<div class="note">Quotation mark ও comma বাদ যায়। Indirect speech-এ বাক্যের শেষে সাধারণত full stop হয়। তবে মূল অর্থ ও বাক্যের গঠন অক্ষুণ্ণ রাখতে হবে।</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">R3</div><h2>RULE–3: Person / Pronoun-এর পরিবর্তন</h2></div>
-<div class="card"><div class="formula">1st Person → Reporting Verb-এর Subject অনুসরণ করবে</div><p><b>1st Person:</b> I, we, me, us, my, our, mine, ours</p><div class="example"><span class="en">Rahim said, “I am happy.”</span><br>→ Rahim said that <b>he</b> was happy.<br><span class="bn">রহিম বলল যে সে সুখী ছিল।</span></div>
-<div class="formula">2nd Person → Reporting Verb-এর Object অনুসরণ করবে</div><p><b>2nd Person:</b> you, your, yours</p><div class="example"><span class="en">Rahim said to Karim, “You are honest.”</span><br>→ Rahim told Karim that <b>he</b> was honest.<br><span class="bn">রহিম করিমকে বলল যে সে সৎ।</span></div>
-<div class="formula">3rd Person → সাধারণত পরিবর্তন হয় না</div><p><b>3rd Person:</b> he, she, they, him, her, them, his, their ইত্যাদি</p><div class="example"><span class="en">Rahim said, “He is honest.”</span><br>→ Rahim said that <b>he</b> was honest.</div>
-<table><tr><th>Direct</th><th>সম্ভাব্য পরিবর্তন</th></tr><tr><td>I / me / my / mine</td><td>he, she / him, her / his, her / his, hers</td></tr><tr><td>we / us / our / ours</td><td>they / them / their / theirs</td></tr><tr><td>you / your / yours</td><td>বক্তা ও শ্রোতার পরিচয় অনুযায়ী I/we/he/she/they; my/our/his/her/their ইত্যাদি</td></tr><tr><td>he / she / they</td><td>সাধারণত অপরিবর্তিত</td></tr></table>
-<div class="note bad">এটি যান্ত্রিকভাবে pronoun বদলানোর নিয়ম নয়। “I/you” কাকে বোঝাচ্ছে তা বুঝে পরিবর্তন করতে হবে; একই বাক্যে একাধিক ব্যক্তি থাকলে অর্থ মিলিয়ে নেবে।</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">R4</div><h2>RULE–4: Verb / Tense-এর পরিবর্তন</h2></div>
-<div class="card"><p>Reporting Verb Past Tense হলে Reported Speech-এর tense সাধারণত এক ধাপ পিছিয়ে যায়। একে <b>Backshift of Tense</b> বলা হয়।</p>
-<table><tr><th>Direct Speech</th><th>Indirect Speech</th><th>উদাহরণ</th></tr><tr><td>Present Indefinite</td><td>Past Indefinite</td><td>play → played</td></tr><tr><td>Present Continuous</td><td>Past Continuous</td><td>am reading → was reading</td></tr><tr><td>Present Perfect</td><td>Past Perfect</td><td>have done → had done</td></tr><tr><td>Present Perfect Continuous</td><td>Past Perfect Continuous</td><td>have been reading → had been reading</td></tr><tr><td>Past Indefinite</td><td>Past Perfect</td><td>went → had gone</td></tr><tr><td>Past Continuous</td><td>Past Perfect Continuous</td><td>was reading → had been reading</td></tr><tr><td>Past Perfect</td><td>Past Perfect—No change</td><td>had done → had done</td></tr><tr><td>Past Perfect Continuous</td><td>Past Perfect Continuous—No change</td><td>had been working → had been working</td></tr></table>
-<h4>Modal Verb Chart</h4><table><tr><th>Direct</th><th>Indirect</th><th>নোট</th></tr><tr><td>will</td><td>would</td><td>সাধারণ backshift</td></tr><tr><td>shall</td><td>would / should</td><td>ব্যক্তি ও অর্থ অনুযায়ী</td></tr><tr><td>can</td><td>could</td><td>ক্ষমতা</td></tr><tr><td>may</td><td>might</td><td>সম্ভাবনা/অনুমতি</td></tr><tr><td>must</td><td>had to / must</td><td>অর্থ ও প্রয়োজন অনুযায়ী</td></tr><tr><td>could, would, should, might</td><td>সাধারণত অপরিবর্তিত</td><td>অর্থ বজায় রাখবে</td></tr><tr><td>ought to</td><td>সাধারণত ought to</td><td>কিছু প্রসঙ্গে ought to have</td></tr><tr><td>have/has to</td><td>had to</td><td>বাধ্যবাধকতা</td></tr><tr><td>am/is/are to</td><td>was/were to</td><td>নির্ধারিত কাজ</td></tr><tr><td>need</td><td>need / needed to</td><td>ব্যবহার ও অর্থ অনুযায়ী</td></tr></table>
-<h4>Verb-এর ছোট পরিবর্তন</h4><table><tr><th>Direct</th><th>Indirect</th></tr><tr><td>do/does</td><td>সাধারণত বাদ/মূল verb past হয়</td></tr><tr><td>am/is/are</td><td>was/were</td></tr><tr><td>was/were</td><td>had been (প্রয়োজন হলে)</td></tr><tr><td>have/has</td><td>had</td></tr><tr><td>did + base verb</td><td>had + past participle (প্রাসঙ্গিক হলে)</td></tr><tr><td>have/has been</td><td>had been</td></tr></table>
-<div class="note">“Do/does → did” শুধু শব্দ বদল নয়। যেমন “Do you know?” → “if I knew”; এখানে do বাদ যায় এবং মূল verb-এর tense বদলায়।</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">R4+</div><h2>Tense Change-এর ব্যতিক্রম</h2></div>
-<div class="card"><h3>কখন Tense পরিবর্তন হয় না?</h3><div class="example"><b>১. Reporting Verb Present/Future হলে</b><br><span class="en">He says, “I am happy.”</span><br>→ He says that he <b>is</b> happy.<br><span class="bn">সে বলে যে সে সুখী।</span></div>
-<div class="example"><b>২. Universal Truth / চিরন্তন সত্য</b><br><span class="en">The teacher said, “The earth moves round the sun.”</span><br>→ The teacher said that the earth <b>moves</b> round the sun.<br><span class="bn">শিক্ষক বললেন যে পৃথিবী সূর্যের চারদিকে ঘোরে।</span></div>
-<div class="example"><b>৩. Scientific Truth</b><br><span class="en">He said, “Water boils at 100°C at standard atmospheric pressure.”</span><br>→ He said that water <b>boils</b> at 100°C at standard atmospheric pressure.</div>
-<div class="example"><b>৪. Historical fact / এখনও সত্য এমন বক্তব্য</b><br><span class="en">He said, “Bangladesh became independent in 1971.”</span><br>→ He said that Bangladesh <b>became</b> independent in 1971.</div>
-<div class="example"><b>৫. Habitual truth / এখনও প্রযোজ্য বক্তব্য</b><br>বক্তব্যটি এখনও সত্য থাকলে অর্থ অনুযায়ী tense অপরিবর্তিত রাখা যায়।</div>
-<div class="note">পরীক্ষার প্রচলিত নিয়মে past reporting verb হলে tense backshift করা হয়; কিন্তু universal truth ও বর্তমানে সত্য বক্তব্যে অর্থ বজায় রাখাই প্রধান।</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">R5</div><h2>RULE–5: Time & Place-এর পরিবর্তন</h2></div>
-<div class="card"><table><tr><th>Direct Speech</th><th>Indirect Speech</th><th>বাংলা অর্থ</th></tr><tr><td>now</td><td>then</td><td>এখন → তখন</td></tr><tr><td>today</td><td>that day</td><td>আজ → সেদিন</td></tr><tr><td>tonight</td><td>that night</td><td>আজ রাতে → সেদিন রাতে</td></tr><tr><td>yesterday</td><td>the previous day / the day before</td><td>গতকাল → আগের দিন</td></tr><tr><td>tomorrow</td><td>the next day / the following day</td><td>আগামীকাল → পরের দিন</td></tr><tr><td>ago</td><td>before</td><td>আগে → তার আগে</td></tr><tr><td>last night</td><td>the previous night</td><td>গত রাতে → আগের রাতে</td></tr><tr><td>last week/month/year</td><td>the previous week/month/year</td><td>গত সপ্তাহ/মাস/বছর → আগের...</td></tr><tr><td>next week/month/year</td><td>the following week/month/year</td><td>পরের সপ্তাহ/মাস/বছর</td></tr><tr><td>this</td><td>that</td><td>এটি → সেটি</td></tr><tr><td>these</td><td>those</td><td>এগুলো → সেগুলো</td></tr><tr><td>here</td><td>there</td><td>এখানে → সেখানে</td></tr><tr><td>come</td><td>go (প্রয়োজন হলে)</td><td>এদিকে আসা → সেখানে যাওয়া</td></tr><tr><td>thus</td><td>so / in that way</td><td>এভাবে → সেভাবে</td></tr><tr><td>hence</td><td>thence / from there</td><td>এখান থেকে → সেখান থেকে</td></tr><tr><td>hither</td><td>thither</td><td>এদিকে → সেদিকে (পুরোনো/দুর্লভ)</td></tr></table>
-<div class="note">এই পরিবর্তনগুলো স্বয়ংক্রিয় নয়। বক্তব্য দেওয়ার সময় ও স্থান অপরিবর্তিত থাকলে now, today, here ইত্যাদি অপরিবর্তিতও থাকতে পারে। “last day/next day” সাধারণত প্রসঙ্গ বুঝে ব্যবহার করবে; প্রচলিত রূপ হলো yesterday→the previous day এবং tomorrow→the next day.</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">R6</div><h2>RULE–6: Repeated Speech, Yes/No, Addressing</h2></div>
-<div class="card"><h3>একই বক্তা বারবার বললে</h3><p>একই বক্তার ধারাবাহিক বক্তব্যে পুনরাবৃত্তি এড়াতে context অনুযায়ী ব্যবহার করা যায়:</p><div class="grid"><div class="mini"><b>again said</b><p>আবার বলল</p></div><div class="mini"><b>also said</b><p>এটাও বলল</p></div><div class="mini"><b>added that</b><p>আরও যোগ করল যে</p></div><div class="mini"><b>further said</b><p>আরও বলল</p></div><div class="mini"><b>again asked</b><p>আবার জিজ্ঞেস করল</p></div><div class="mini"><b>replied / answered</b><p>উত্তর দিল</p></div></div><div class="example"><span class="en">Rahim said, “I am tired.” He again said, “I need rest.”</span><br>→ Rahim said that he was tired and added that he needed rest.<br><span class="bn">রহিম বলল যে সে ক্লান্ত ছিল এবং আরও যোগ করল যে তার বিশ্রাম দরকার।</span></div>
-<h3>Yes / No-এর পরিবর্তন</h3><div class="example"><b>Yes → replied in the affirmative</b><br><b>No → replied in the negative</b><br><span class="en">He said, “Yes.”</span> → He replied in the affirmative.<br><span class="en">He said, “No.”</span> → He replied in the negative.</div>
-<h3>Sir / Madam / Respectful Addressing</h3><p>সম্মানসূচক সম্বোধন থাকলে respectfully / respectfully replied ইত্যাদি ব্যবহার করা যায়; শ্রোতা কে, তা স্পষ্ট হলে “the teacher” বা উপযুক্ত object ব্যবহার করা যায়।</p><div class="example"><span class="en">The student said, “Sir, I cannot understand it.”</span><br>→ The student respectfully told the teacher that he could not understand it.<br><span class="bn">শিক্ষার্থী সম্মানের সঙ্গে শিক্ষককে বলল যে সে বিষয়টি বুঝতে পারছে না।</span></div>
-<div class="note">Addressing—Mother, Father, friend, sir ইত্যাদি—বাক্যের অর্থ ও সম্পর্ক বুঝে Reporting Part-এ সাজাতে হবে; প্রতিটি সম্বোধনকে একইভাবে পরিবর্তন করা যায় না।</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">A</div><h2>ASSERTIVE SENTENCE — পূর্ণ নিয়ম</h2></div>
-<div class="card"><div class="formula">said → said; said to + object → told + object; connector → that</div><ol><li>সাধারণ বক্তব্যে said অপরিবর্তিত থাকতে পারে।</li><li>said to + object সাধারণত told + object হয়।</li><li>Quotation mark বাদ দিয়ে that বসে।</li><li>Person, tense এবং time/place প্রয়োজন অনুযায়ী বদলাবে।</li><li>Universal truth হলে tense সাধারণত অপরিবর্তিত থাকে।</li></ol>
-<div class="example"><span class="en">He said, “I play football.”</span><br>→ He said that he played football.<br><span class="bn">সে বলল যে সে ফুটবল খেলত।</span></div><div class="example"><span class="en">She said to me, “You have helped me.”</span><br>→ She told me that I had helped her.<br><span class="bn">সে আমাকে বলল যে আমি তাকে সাহায্য করেছিলাম।</span></div></div>
-<div class="page-title"><div class="num">Q</div><h2>INTERROGATIVE SENTENCE — পূর্ণ নিয়ম</h2></div>
-<div class="card"><h3>১. Yes/No Question</h3><div class="formula">asked + object + if/whether + subject + verb</div><ul><li>said to → asked</li><li>Do/does/did সাধারণত বাদ যায়; main verb-এর tense ঠিক করো।</li><li>is/are/was/were ইত্যাদি subject-এর পরে বসে।</li><li>Indirect speech-এ question mark সাধারণত full stop হয়।</li></ul><div class="example"><span class="en">He said to me, “Do you know me?”</span><br>→ He asked me if I knew him.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি তাকে চিনি কি না।</span></div>
-<h3>২. WH Question</h3><div class="formula">asked + object + WH-word + subject + verb</div><div class="example"><span class="en">He said to me, “Where are you going?”</span><br>→ He asked me where I was going.<br><span class="bn">সে আমাকে জিজ্ঞেস করল আমি কোথায় যাচ্ছিলাম।</span></div><div class="example"><span class="en">He said, “Who broke the glass?”</span><br>→ He asked who had broken the glass.<br><span class="bn">সে জিজ্ঞেস করল কে কাচটি ভেঙেছিল।</span></div><div class="note">WH-word নিজেই subject হলে তার পরে সরাসরি verb আসতে পারে: “Who came?” → He asked who had come.</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">I</div><h2>IMPERATIVE SENTENCE — পূর্ণ নিয়ম</h2></div>
-<div class="card"><div class="formula">Reporting Verb + Object + to + base verb</div><table><tr><th>অর্থ</th><th>Reporting Verb</th><th>Structure</th></tr><tr><td>আদেশ</td><td>ordered / commanded</td><td>object + to</td></tr><tr><td>অনুরোধ</td><td>requested / begged / entreated</td><td>object + to</td></tr><tr><td>উপদেশ</td><td>advised</td><td>object + to</td></tr><tr><td>সাধারণ নির্দেশ</td><td>told / asked</td><td>object + to</td></tr><tr><td>নিষেধ</td><td>told/ordered/advised</td><td>object + not to</td></tr></table>
-<div class="example"><b>Order</b><br><span class="en">The officer said to the soldier, “Stand up.”</span><br>→ The officer ordered the soldier to stand up.<br><span class="bn">কর্মকর্তা সৈনিককে দাঁড়াতে আদেশ দিলেন।</span></div>
-<div class="example"><b>Request</b><br><span class="en">He said to me, “Please help me.”</span><br>→ He requested me to help him.<br><span class="bn">সে আমাকে তাকে সাহায্য করতে অনুরোধ করল।</span></div>
-<div class="example"><b>Advice</b><br><span class="en">The doctor said to me, “Take regular exercise.”</span><br>→ The doctor advised me to take regular exercise.<br><span class="bn">ডাক্তার আমাকে নিয়মিত ব্যায়াম করতে পরামর্শ দিলেন।</span></div>
-<div class="example"><b>Negative command</b><br><span class="en">Mother said to me, “Never tell a lie.”</span><br>→ Mother advised me never to tell a lie.<br><span class="bn">মা আমাকে কখনো মিথ্যা না বলতে উপদেশ দিলেন।</span></div>
-<div class="note">Forbid-এর ব্যবহার: “He forbade me to go” = তিনি আমাকে যেতে নিষেধ করলেন। “He prohibited me from going” = তিনি আমাকে যাওয়া থেকে নিষেধ করলেন। একই বাক্যে “forbade me not to go” ব্যবহার করবে না, যদি উদ্দেশ্য হয় নিষেধ করা।</div></div>
-<div class="page-title"><div class="num">O</div><h2>OPTATIVE & EXCLAMATORY</h2></div>
-<div class="card"><h3>Optative Sentence</h3><p>Wish, prayer, blessing বা curse বোঝায়। wished / prayed / blessed / cursed + that ব্যবহার করা যায়। May সাধারণত might হয়।</p><div class="example"><span class="en">Mother said to me, “May you prosper in life.”</span><br>→ Mother wished that I might prosper in life.<br><span class="bn">মা কামনা করলেন যেন আমি জীবনে উন্নতি করি।</span></div><div class="example"><span class="en">He said, “May Allah help you.”</span><br>→ He prayed that Allah might help me.<br><span class="bn">সে প্রার্থনা করল যেন আল্লাহ আমাকে সাহায্য করেন।</span></div>
-<h3>Exclamatory Sentence</h3><p>Hurrah, Alas, Bravo, What/How ইত্যাদি থাকলে অনুভূতি অনুযায়ী reporting verb বেছে নাও। Exclamation mark বাদ যায়।</p><div class="example"><span class="en">He said, “Alas! I am undone.”</span><br>→ He exclaimed with sorrow that he was undone.<br><span class="bn">সে দুঃখের সঙ্গে বলল যে তার সর্বনাশ হয়েছিল।</span></div><div class="example"><span class="en">He said, “What a beautiful bird it is!”</span><br>→ He exclaimed with wonder that it was a very beautiful bird.<br><span class="bn">সে বিস্ময়ের সঙ্গে বলল যে পাখিটি খুব সুন্দর।</span></div><div class="example"><span class="en">He said, “Bravo! You have done well.”</span><br>→ He applauded me, saying that I had done well.<br><span class="bn">সে আমার প্রশংসা করে বলল যে আমি ভালো করেছি।</span></div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">L</div><h2>“LET” যুক্ত বাক্য ও বিশেষ নিয়ম</h2></div>
-<div class="card"><h3>Let us = Suggestion / Proposal</h3><div class="example"><span class="en">He said, “Let us go out.”</span><br>→ He suggested that they should go out.<br>অথবা: He proposed that they should go out.<br><span class="bn">সে প্রস্তাব দিল যে তাদের বাইরে যাওয়া উচিত।</span></div>
-<h3>Let me = Permission/Request</h3><div class="example"><span class="en">He said to me, “Let me go.”</span><br>→ He requested me to let him go.<br><span class="bn">সে আমাকে তাকে যেতে দিতে অনুরোধ করল।</span></div>
-<h3>Let him/her/them</h3><div class="example"><span class="en">He said to me, “Let him go.”</span><br>→ He told me to let him go.<br><span class="bn">সে আমাকে তাকে যেতে দিতে বলল।</span></div>
-<h3>Must</h3><p>সাধারণ বাধ্যবাধকতায় must → had to হতে পারে; স্থায়ী প্রয়োজন বা logical conclusion হলে must অপরিবর্তিত থাকতে পারে।</p><div class="example"><span class="en">He said, “I must go.”</span><br>→ He said that he had to go.<br><span class="bn">সে বলল যে তাকে যেতে হবে/হতো।</span></div>
-<h3>সবসময় অর্থ যাচাই করো</h3><p>“come → go”, “here → there” ইত্যাদি কেবল তখনই বদলাবে, যখন reporting context-এ দৃষ্টিকোণ বদলায়। একই স্থান ও সময় থাকলে সব শব্দ যান্ত্রিকভাবে বদলাবে না।</p></div></section>
-
-<section class="page"><div class="page-title"><div class="num">S</div><h2>SOLVE TRICKS — Step by Step</h2></div>
-<div class="card"><h3>যেকোনো Narration সমাধানের ১০ ধাপ</h3><ol><li><b>Reporting Part</b> ও <b>Reported Speech</b> আলাদা করো।</li><li>Reported Speech দেখে Sentence Type চেনো।</li><li>Reporting Verb পরিবর্তন করো।</li><li>Quotation mark বাদ দাও এবং সঠিক connector বসাও।</li><li>Person: 1st → Subject; 2nd → Object; 3rd → সাধারণত no change।</li><li>Reporting verb past হলে tense backshift করো—ব্যতিক্রম যাচাই করে।</li><li>Time & Place-এর শব্দ অর্থ অনুযায়ী বদলাও।</li><li>Question হলে subject + verb word order করো।</li><li>Imperative হলে to/not to এবং সঠিক reporting verb বসাও।</li><li>Punctuation ঠিক করে পুরো বাক্যের অর্থ মিলিয়ে নাও।</li></ol>
-<h3>সম্পূর্ণ Solve Example</h3><div class="example"><b>Direct:</b> <span class="en">He said to me, “I am reading a book now.”</span><br><b>Step 1:</b> Reporting Part = He said to me; Reported Speech = I am reading a book now.<br><b>Step 2:</b> Assertive → said to + object = told + object; connector = that.<br><b>Step 3:</b> I → he (1st person follows subject).<br><b>Step 4:</b> am reading → was reading (past reporting verb).<br><b>Step 5:</b> now → then.<br><b>Final:</b> <span class="en">He told me that he was reading a book then.</span><br><span class="bn">বাংলা: সে আমাকে বলল যে সে তখন একটি বই পড়ছিল।</span></div>
-<h3>Master Flowchart</h3><div class="grid"><div class="mini"><b>① TYPE</b><p>Assertive / Interrogative / Imperative / Optative / Exclamatory</p></div><div class="mini"><b>② REPORTING VERB</b><p>said / told / asked / ordered / requested...</p></div><div class="mini"><b>③ CONNECTOR</b><p>that / if-whether / WH / to / not to</p></div><div class="mini"><b>④ PERSON</b><p>1 → Subject; 2 → Object; 3 → No change (usually)</p></div><div class="mini"><b>⑤ TENSE</b><p>Present → Past; Past → Past Perfect (usually)</p></div><div class="mini"><b>⑥ TIME/PLACE</b><p>now → then; today → that day; here → there</p></div><div class="mini"><b>⑦ STRUCTURE</b><p>Question → Subject + Verb</p></div><div class="mini"><b>⑧ PUNCTUATION</b><p>Quotation marks ও প্রয়োজনহীন ? ! বাদ</p></div></div>
-<div class="note good"><b>Master Formula:</b> TYPE → REPORTING VERB → CONNECTOR → PERSON → TENSE → TIME/PLACE → STRUCTURE → PUNCTUATION → MEANING CHECK</div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">P1</div><h2>SINGLE NARRATION PRACTICE — ১–৫</h2></div><div class="card"><p>প্রতিটি Direct Speech নিজে Indirect Speech-এ পরিবর্তন করো। তারপর <b>উত্তর দেখুন</b> বাটনে চাপ দিয়ে উত্তর ও বাংলা অর্থ মিলিয়ে নাও।</p>
-<div class="practice"><h4><span class="qnum">১</span>Assertive</h4><p class="en">Rahim said, “I am tired.”</p><p class="bn">বাংলা: রহিম বলল, “আমি ক্লান্ত।”</p><button class="btn secondary" onclick="toggleAnswer('s1')">উত্তর দেখুন</button><div class="answer" id="s1"><b>Answer:</b> Rahim said that he was tired.<br><b>বাংলা অর্থ:</b> রহিম বলল যে সে ক্লান্ত ছিল।<br><b>কারণ:</b> I → he; am → was; Assertive-এ that.</div></div>
-<div class="practice"><h4><span class="qnum">২</span>Assertive + said to</h4><p class="en">Karim said to me, “You are honest.”</p><p class="bn">বাংলা: করিম আমাকে বলল, “তুমি সৎ।”</p><button class="btn secondary" onclick="toggleAnswer('s2')">উত্তর দেখুন</button><div class="answer" id="s2"><b>Answer:</b> Karim told me that I was honest.<br><b>বাংলা অর্থ:</b> করিম আমাকে বলল যে আমি সৎ ছিলাম।<br><b>কারণ:</b> said to → told; you → I (এখানে me-কে বোঝায়); are → was.</div></div>
-<div class="practice"><h4><h4><span class="qnum">৩</span>Universal Truth</h4><p class="en">The teacher said, “The earth moves round the sun.”</p><p class="bn">বাংলা: শিক্ষক বললেন, “পৃথিবী সূর্যের চারদিকে ঘোরে।”</p><button class="btn secondary" onclick="toggleAnswer('s3')">উত্তর দেখুন</button><div class="answer" id="s3"><b>Answer:</b> The teacher said that the earth moves round the sun.<br><b>বাংলা অর্থ:</b> শিক্ষক বললেন যে পৃথিবী সূর্যের চারদিকে ঘোরে।<br><b>কারণ:</b> Universal truth হওয়ায় moves অপরিবর্তিত।</div></div>
-<div class="practice"><h4><span class="qnum">৪</span>Yes/No Question</h4><p class="en">He said to me, “Are you ready?”</p><p class="bn">বাংলা: সে আমাকে জিজ্ঞেস করল, “তুমি কি প্রস্তুত?”</p><button class="btn secondary" onclick="toggleAnswer('s4')">উত্তর দেখুন</button><div class="answer" id="s4"><b>Answer:</b> He asked me if I was ready.<br><b>বাংলা অর্থ:</b> সে আমাকে জিজ্ঞেস করল আমি প্রস্তুত ছিলাম কি না।<br><b>কারণ:</b> asked + if; প্রশ্নের word order বদলেছে।</div></div>
-<div class="practice"><h4><span class="qnum">৫</span>WH Question</h4><p class="en">The teacher said to the boy, “Why are you late?”</p><p class="bn">বাংলা: শিক্ষক ছেলেটিকে জিজ্ঞেস করলেন, “তোমার দেরি কেন?”</p><button class="btn secondary" onclick="toggleAnswer('s5')">উত্তর দেখুন</button><div class="answer" id="s5"><b>Answer:</b> The teacher asked the boy why he was late.<br><b>বাংলা অর্থ:</b> শিক্ষক ছেলেটিকে জিজ্ঞেস করলেন সে কেন দেরি করেছিল।<br><b>কারণ:</b> why থাকবে; are → was; subject + verb order.</div></div></div></section>
-
-<section class="page"><div class="page-title"><div class="num">P2</div><h2>SINGLE NARRATION PRACTICE — ৬–১০</h2></div><div class="card">
-<div class="practice"><h4><span class="qnum">৬</span>Order</h4><p class="en">The officer said to the soldier, “Stand up.”</p><p class="bn">বাংলা: কর্মকর্তা সৈনিককে বললেন, “দাঁড়াও।”</p><button class="btn secondary" onclick="toggleAnswer('s6')">উত্তর দেখুন</button><div class="answer" id="s6"><b>Answer:</b> The officer ordered the soldier to stand up.<br><b>বাংলা অর্থ:</b> কর্মকর্তা সৈনিককে দাঁড়াতে আদেশ দিলেন।</div></div>
-<div class="practice"><h4><span class="qnum">৭</span>Request</h4><p class="en">He said to me, “Please lend me your pen.”</p><p class="bn">বাংলা: সে আমাকে বলল, “দয়া করে তোমার কলমটি আমাকে ধার দাও।”</p><button class="btn secondary" onclick="toggleAnswer('s7')">উত্তর দেখুন</button><div class="answer" id="s7"><b>Answer:</b> He requested me to lend him my pen.<br><b>বাংলা অর্থ:</b> সে আমাকে আমার কলমটি তাকে ধার দিতে অনুরোধ করল।</div></div>
-<div class="practice"><h4><span class="qnum">৮</span>Advice</h4><p class="en">The doctor said to me, “Take regular exercise.”</p><p class="bn">বাংলা: ডাক্তার আমাকে বললেন, “নিয়মিত ব্যায়াম করো।”</p><button class="btn secondary" onclick="toggleAnswer('s8')">উত্তর দেখুন</button><div class="answer" id="s8"><b>Answer:</b> The doctor advised me to take regular exercise.<br><b>বাংলা অর্থ:</b> ডাক্তার আমাকে নিয়মিত ব্যায়াম করতে পরামর্শ দিলেন।</div></div>
-<div class="practice"><h4><span class="qnum">৯</span>Optative</h4><p class="en">Mother said to me, “May you be happy.”</p><p class="bn">বাংলা: মা আমাকে বললেন, “তুমি সুখী হও।”</p><button class="btn secondary" onclick="toggleAnswer('s9')">উত্তর দেখুন</button><div class="answer" id="s9"><b>Answer:</b> Mother wished that I might be happy.<br><b>বাংলা অর্থ:</b> মা কামনা করলেন যেন আমি সুখী হই।</div></div>
-<div class="practice"><h4><span class="qnum">১০</span>Exclamatory</h4><p class="en">He said, “Hurrah! We have won the match.”</p><p class="bn">বাংলা: সে বলল, “হুররে! আমরা খেলায় জিতেছি।”</p><button class="btn secondary" onclick="toggleAnswer('s10')">উত্তর দেখুন</button><div class="answer" id="s10"><b>Answer:</b> He exclaimed with joy that they had won the match.<br><b>বাংলা অর্থ:</b> সে আনন্দের সঙ্গে বলল যে তারা খেলায় জিতেছিল।</div></div>
-</div></section>
-
-<section class="page"><div class="page-title"><div class="num">P3</div><h2>PASSAGE NARRATION PRACTICE — ১–৫</h2></div><div class="card"><p>প্রতিটি passage-এর সব বক্তব্যকে Indirect Speech-এ পরিবর্তন করো। উত্তর দেখার আগে নিজে চেষ্টা করো।</p>
-<div class="practice"><h4><span class="qnum">১</span>Assertive + Proposal</h4><p class="en">Rahim said to Karim, “I am going to school.” Karim said, “I shall go with you.” Rahim said, “Then let us go together.”</p><p class="bn">বাংলা: রহিম করিমকে বলল, “আমি স্কুলে যাচ্ছি।” করিম বলল, “আমি তোমার সঙ্গে যাব।” রহিম বলল, “তাহলে চলো একসঙ্গে যাই।”</p><button class="btn secondary" onclick="toggleAnswer('p1')">উত্তর দেখুন</button><div class="answer" id="p1"><b>Answer:</b> Rahim told Karim that he was going to school. Karim said that he would go with him. Rahim then proposed that they should go together.<br><b>বাংলা অর্থ:</b> রহিম করিমকে বলল যে সে স্কুলে যাচ্ছিল। করিম বলল যে সে তার সঙ্গে যাবে। রহিম তখন প্রস্তাব দিল যে তাদের একসঙ্গে যাওয়া উচিত।</div></div>
-<div class="practice"><h4><span class="qnum">২</span>Question + Answer</h4><p class="en">The teacher said to the boy, “Why are you late?” The boy said, “I missed the bus.” The teacher said, “Did you leave home late?”</p><p class="bn">বাংলা: শিক্ষক জিজ্ঞেস করলেন, “তোমার দেরি কেন?” ছেলেটি বলল, “আমি বাস মিস করেছি।” শিক্ষক বললেন, “তুমি কি বাড়ি থেকে দেরিতে বের হয়েছিলে?”</p><button class="btn secondary" onclick="toggleAnswer('p2')">উত্তর দেখুন</button><div class="answer" id="p2"><b>Answer:</b> The teacher asked the boy why he was late. The boy replied that he had missed the bus. The teacher then asked him if he had left home late.<br><b>বাংলা অর্থ:</b> শিক্ষক ছেলেটিকে জিজ্ঞেস করলেন সে কেন দেরি করেছিল। ছেলেটি উত্তর দিল যে সে বাস মিস করেছিল। শিক্ষক তাকে জিজ্ঞেস করলেন সে বাড়ি থেকে দেরিতে বের হয়েছিল কি না।</div></div>
-<div class="practice"><h4><span class="qnum">৩</span>Advice + Question + Prohibition</h4><p class="en">The doctor said to the patient, “Take regular exercise.” The patient said, “Can I eat oily food?” The doctor said, “No. Do not eat oily food.”</p><p class="bn">বাংলা: ডাক্তার বললেন, “নিয়মিত ব্যায়াম করুন।” রোগী জিজ্ঞেস করল, “আমি কি তেলযুক্ত খাবার খেতে পারি?” ডাক্তার বললেন, “না। তেলযুক্ত খাবার খাবেন না।”</p><button class="btn secondary" onclick="toggleAnswer('p3')">উত্তর দেখুন</button><div class="answer" id="p3"><b>Answer:</b> The doctor advised the patient to take regular exercise. The patient asked if he could eat oily food. The doctor replied in the negative and advised him not to eat oily food.<br><b>বাংলা অর্থ:</b> ডাক্তার রোগীকে নিয়মিত ব্যায়াম করতে পরামর্শ দিলেন। রোগী জিজ্ঞেস করল সে তেলযুক্ত খাবার খেতে পারবে কি না। ডাক্তার না-সূচক উত্তর দিয়ে তাকে তেলযুক্ত খাবার না খেতে পরামর্শ দিলেন।</div></div>
-<div class="practice"><h4><span class="qnum">৪</span>Request + WH Question</h4><p class="en">The poor man said to the rich man, “Please give me some food.” The rich man said, “Why do you need food?” The poor man said, “I have not eaten anything today.”</p><p class="bn">বাংলা: গরিব লোকটি বলল, “দয়া করে আমাকে খাবার দিন।” ধনী লোকটি জিজ্ঞেস করল, “তোমার খাবার কেন দরকার?” গরিব লোকটি বলল, “আমি আজ কিছুই খাইনি।”</p><button class="btn secondary" onclick="toggleAnswer('p4')">উত্তর দেখুন</button><div class="answer" id="p4"><b>Answer:</b> The poor man requested the rich man to give him some food. The rich man asked him why he needed food. The poor man replied that he had not eaten anything that day.<br><b>বাংলা অর্থ:</b> গরিব লোকটি ধনী লোকটিকে খাবার দিতে অনুরোধ করল। ধনী লোকটি জিজ্ঞেস করল তার খাবার কেন প্রয়োজন। গরিব লোকটি বলল যে সে সেদিন কিছুই খায়নি।</div></div>
-<div class="practice"><h4><span class="qnum">৫</span>Order + Question + Obligation</h4><p class="en">The captain said to the soldiers, “March forward.” A soldier said, “Sir, may we take a rest?” The captain said, “No. You must continue your journey.”</p><p class="bn">বাংলা: ক্যাপ্টেন বললেন, “সামনে এগিয়ে চলো।” এক সৈনিক বলল, “স্যার, আমরা কি বিশ্রাম নিতে পারি?” ক্যাপ্টেন বললেন, “না। তোমাদের যাত্রা চালিয়ে যেতে হবে।”</p><button class="btn secondary" onclick="toggleAnswer('p5')">উত্তর দেখুন</button><div class="answer" id="p5"><b>Answer:</b> The captain ordered the soldiers to march forward. A soldier respectfully asked the captain if they might take a rest. The captain replied in the negative and said that they had to continue their journey.<br><b>বাংলা অর্থ:</b> ক্যাপ্টেন সৈন্যদের সামনে এগিয়ে যাওয়ার আদেশ দিলেন। একজন সৈনিক সম্মানের সঙ্গে জিজ্ঞেস করল তারা বিশ্রাম নিতে পারবে কি না। ক্যাপ্টেন না-সূচক উত্তর দিয়ে বললেন যে তাদের যাত্রা চালিয়ে যেতে হবে।</div></div>
-</div></section>
-
-<section class="page"><div class="page-title"><div class="num">P4</div><h2>PASSAGE NARRATION PRACTICE — ৬–১০</h2></div><div class="card">
-<div class="practice"><h4><span class="qnum">৬</span>Optative + Thanks</h4><p class="en">The mother said to her son, “May you succeed in life.” The son said, “Thank you, mother.” The mother said, “May Allah bless you.”</p><p class="bn">বাংলা: মা বললেন, “তুমি জীবনে সফল হও।” ছেলে বলল, “ধন্যবাদ, মা।” মা বললেন, “আল্লাহ তোমাকে আশীর্বাদ করুন।”</p><button class="btn secondary" onclick="toggleAnswer('p6')">উত্তর দেখুন</button><div class="answer" id="p6"><b>Answer:</b> The mother wished that her son might succeed in life. The son thanked his mother. The mother prayed that Allah might bless him.<br><b>বাংলা অর্থ:</b> মা ছেলের জীবনে সফলতা কামনা করলেন। ছেলে মাকে ধন্যবাদ দিল। মা প্রার্থনা করলেন যেন আল্লাহ তাকে আশীর্বাদ করেন।</div></div>
-<div class="practice"><h4><span class="qnum">৭</span>Exclamatory + Assertive</h4><p class="en">The boy said, “Hurrah! We have won the match.” His friend said, “What a wonderful victory!” The boy said, “It is really exciting.”</p><p class="bn">বাংলা: ছেলেটি বলল, “হুররে! আমরা ম্যাচ জিতেছি।” বন্ধু বলল, “কী দারুণ বিজয়!” ছেলেটি বলল, “এটি সত্যিই রোমাঞ্চকর।”</p><button class="btn secondary" onclick="toggleAnswer('p7')">উত্তর দেখুন</button><div class="answer" id="p7"><b>Answer:</b> The boy exclaimed with joy that they had won the match. His friend exclaimed with wonder that it was a wonderful victory. The boy said that it was really exciting.<br><b>বাংলা অর্থ:</b> ছেলেটি আনন্দের সঙ্গে বলল যে তারা ম্যাচ জিতেছিল। তার বন্ধু বিস্ময়ের সঙ্গে বলল যে এটি একটি দারুণ বিজয় ছিল। ছেলেটি বলল যে এটি সত্যিই রোমাঞ্চকর ছিল।</div></div>
-<div class="practice"><h4><span class="qnum">৮</span>Let us + Agreement</h4><p class="en">Rafiq said to Karim, “Let us go to the library.” Karim said, “Yes, let us go.” Rafiq said, “We can study there.”</p><p class="bn">বাংলা: রফিক বলল, “চলো লাইব্রেরিতে যাই।” করিম বলল, “হ্যাঁ, চলো যাই।” রফিক বলল, “আমরা সেখানে পড়তে পারব।”</p><button class="btn secondary" onclick="toggleAnswer('p8')">উত্তর দেখুন</button><div class="answer" id="p8"><b>Answer:</b> Rafiq proposed to Karim that they should go to the library. Karim agreed and said that they should go. Rafiq said that they could study there.<br><b>বাংলা অর্থ:</b> রফিক করিমকে লাইব্রেরিতে যাওয়ার প্রস্তাব দিল। করিম সম্মতি জানাল এবং বলল যে তাদের যাওয়া উচিত। রফিক বলল যে তারা সেখানে পড়তে পারবে।</div></div>
-<div class="practice"><h4><span class="qnum">৯</span>Mixed Narration</h4><p class="en">Father said to me, “Why are you wasting your time?” I said, “I am not wasting my time.” Father said, “Then finish your homework.” I said, “Please give me another hour.”</p><p class="bn">বাংলা: বাবা জিজ্ঞেস করলেন, “তুমি সময় নষ্ট করছ কেন?” আমি বললাম, “আমি সময় নষ্ট করছি না।” বাবা বললেন, “তাহলে বাড়ির কাজ শেষ করো।” আমি বললাম, “দয়া করে আমাকে আরও এক ঘণ্টা দিন।”</p><button class="btn secondary" onclick="toggleAnswer('p9')">উত্তর দেখুন</button><div class="answer" id="p9"><b>Answer:</b> Father asked me why I was wasting my time. I replied that I was not wasting my time. Father then told me to finish my homework. I requested him to give me another hour.<br><b>বাংলা অর্থ:</b> বাবা আমাকে জিজ্ঞেস করলেন আমি কেন সময় নষ্ট করছিলাম। আমি উত্তর দিলাম যে আমি সময় নষ্ট করছিলাম না। বাবা আমাকে বাড়ির কাজ শেষ করতে বললেন। আমি তাঁকে আমাকে আরও এক ঘণ্টা দিতে অনুরোধ করলাম।</div></div>
-<div class="practice"><h4><span class="qnum">১০</span>Question + Request + Universal Truth + Advice</h4><p class="en">The teacher said to the student, “Do you know why trees are important?” The student said, “No, sir. Please tell me.” The teacher said, “Trees give us oxygen.” He also said, “Plant more trees and protect them.”</p><p class="bn">বাংলা: শিক্ষক জিজ্ঞেস করলেন, “তুমি কি জানো গাছ কেন গুরুত্বপূর্ণ?” শিক্ষার্থী বলল, “না, স্যার। দয়া করে বলুন।” শিক্ষক বললেন, “গাছ আমাদের অক্সিজেন দেয়।” তিনি আরও বললেন, “আরও গাছ লাগাও এবং সেগুলো রক্ষা করো।”</p><button class="btn secondary" onclick="toggleAnswer('p10')">উত্তর দেখুন</button><div class="answer" id="p10"><b>Answer:</b> The teacher asked the student if he knew why trees were important. The student respectfully replied in the negative and requested the teacher to tell him. The teacher said that trees give us oxygen. He also advised the student to plant more trees and protect them.<br><b>বাংলা অর্থ:</b> শিক্ষক শিক্ষার্থীকে জিজ্ঞেস করলেন সে জানে কি না গাছ কেন গুরুত্বপূর্ণ। শিক্ষার্থী সম্মানের সঙ্গে না-সূচক উত্তর দিয়ে শিক্ষককে বলতে অনুরোধ করল। শিক্ষক বললেন যে গাছ আমাদের অক্সিজেন দেয়। তিনি শিক্ষার্থীকে আরও গাছ লাগাতে ও সেগুলো রক্ষা করতে পরামর্শ দিলেন।</div></div>
-</div></section>
-
-<section class="page"><div class="page-title"><div class="num">REV</div><h2>শেষ মুহূর্তের Revision Sheet</h2></div>
-<div class="card"><h3>এক নজরে Master Chart</h3><table><tr><th>Sentence Type</th><th>Reporting Verb</th><th>Connector / Structure</th></tr><tr><td>Assertive</td><td>said / told</td><td>that</td></tr><tr><td>Yes/No Question</td><td>asked</td><td>if / whether</td></tr><tr><td>WH Question</td><td>asked</td><td>WH-word + subject + verb</td></tr><tr><td>Order</td><td>ordered / commanded</td><td>object + to</td></tr><tr><td>Request</td><td>requested / begged</td><td>object + to</td></tr><tr><td>Advice</td><td>advised</td><td>object + to</td></tr><tr><td>Negative command</td><td>told / ordered / advised</td><td>object + not to</td></tr><tr><td>Prohibition</td><td>forbade / prohibited</td><td>object + to / from + V-ing (গঠন অনুযায়ী)</td></tr><tr><td>Optative</td><td>wished / prayed</td><td>that + might (সাধারণত)</td></tr><tr><td>Exclamatory</td><td>exclaimed with...</td><td>that</td></tr><tr><td>Let us</td><td>suggested / proposed</td><td>that + subject + should</td></tr></table>
-<h3>Pronoun Golden Rule</h3><div class="formula">1st Person → Subject &nbsp; | &nbsp; 2nd Person → Object &nbsp; | &nbsp; 3rd Person → Usually no change</div>
-<h3>Common Time/Place</h3><div class="formula">now → then • today → that day • yesterday → the previous day • tomorrow → the next day • here → there • this → that • these → those</div>
-<h3>পরীক্ষার আগে ১০টি Checklist</h3><ol><li>Sentence type ঠিক ধরেছি?</li><li>Reporting Verb ঠিক হয়েছে?</li><li>Connector ঠিক হয়েছে?</li><li>Pronoun কার দিকে নির্দেশ করছে বুঝেছি?</li><li>Tense backshift প্রয়োজন কি না দেখেছি?</li><li>Universal truth-এর tense ঠিক রেখেছি?</li><li>Time/Place প্রসঙ্গ অনুযায়ী বদলেছি?</li><li>Question-এ subject + verb order করেছি?</li><li>Imperative-এ to/not to ঠিক বসিয়েছি?</li><li>Punctuation সরিয়ে অর্থ মিলিয়েছি?</li></ol><div class="note good"><b>স্মরণীয় সূত্র:</b> TYPE → REPORTING VERB → CONNECTOR → PERSON → TENSE → TIME/PLACE → STRUCTURE → PUNCTUATION → MEANING CHECK.</div></div><div class="footer">GKD Complete Narration Mastery • Learn • Practise • Master</div></section>
-</main>
-<nav class="nav"><button class="btn light" id="prev" onclick="movePage(-1)">← পূর্ববর্তী পৃষ্ঠা</button><div class="counter" id="counter">১ / ১৪</div><button class="btn" id="next" onclick="movePage(1)">পরবর্তী পৃষ্ঠা →</button></nav>
-<script>
-const pages=[...document.querySelectorAll('.page')];let current=0;
-const bnDigits=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
-function showPage(n){current=Math.max(0,Math.min(pages.length-1,n));pages.forEach((p,i)=>p.classList.toggle('active',i===current));document.getElementById('counter').textContent=bnDigits(current+1)+' / '+bnDigits(pages.length);document.getElementById('pageLabel').textContent='পৃষ্ঠা '+bnDigits(current+1);document.getElementById('progress').style.width=((current+1)/pages.length*100)+'%';document.getElementById('prev').disabled=current===0;document.getElementById('next').textContent=current===pages.length-1?'শেষ পৃষ্ঠা ✓':'পরবর্তী পৃষ্ঠা →';window.scrollTo({top:0,behavior:'smooth'});}
-function movePage(d){showPage(current+d)}
-function toggleAnswer(id){const el=document.getElementById(id);if(el)el.classList.toggle('show')}
-document.addEventListener('click',e=>{if(e.target.closest('button')){const r=document.createElement('span');r.className='tap-effect';r.style.left=e.clientX-10+'px';r.style.top=e.clientY-10+'px';document.body.appendChild(r);setTimeout(()=>r.remove(),600)}});
-document.querySelectorAll('.wave').forEach(el=>el.addEventListener('click',()=>{el.classList.remove('waving');void el.offsetWidth;el.classList.add('waving')}));
-const symbols=['✿','✦','✧','❀','★','✿','❋'];
-function floatSymbol(){const f=document.createElement('div');f.className='floaty';f.textContent=symbols[Math.floor(Math.random()*symbols.length)];f.style.left=Math.random()*100+'vw';f.style.animationDuration=(7+Math.random()*8)+'s';f.style.fontSize=(13+Math.random()*17)+'px';f.style.color=['#f15bb5','#2457d6','#1bb8c8','#ffc857','#7b3fe4'][Math.floor(Math.random()*5)];document.body.appendChild(f);setTimeout(()=>f.remove(),16000)}
-setInterval(floatSymbol,650);
-showPage(0);
-</script>
 </body>
 </html>
