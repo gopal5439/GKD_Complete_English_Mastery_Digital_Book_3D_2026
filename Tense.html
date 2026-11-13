@@ -316,7 +316,7 @@
             <span class="en text-xs uppercase tracking-widest px-2.5 py-0.5 rounded bg-white/20 backdrop-blur-sm font-bold">English Grammar Architecture</span>
             <h2 class="text-xl sm:text-3xl font-bold mt-1 en">Tense Complete Mastery</h2>
           </div>
-            </div>
+        </div>
       </div>
 
       <!-- Collapsible Image URL Input Bar -->
@@ -815,9 +815,13 @@
             সঠিক উত্তর: <span id="practice-score" class="en text-base">0</span>
           </div>
 
+          <div class="px-3.5 py-2 rounded-xl box-soft font-bold text-xs sm:text-sm">
+            মোট প্রশ্ন: <span id="total-practiced-count" class="en text-base">10</span>
+          </div>
+
           <button onclick="generateMorePracticeAI()" id="btn-more-practice" class="btn-3d-mix px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base gap-2">
             <i id="more-practice-icon" class="fa-solid fa-wand-magic-sparkles"></i>
-            <span id="more-practice-text" class="en">More Practice</span>
+            <span id="more-practice-text" class="en">More Practice ✨</span>
           </button>
         </div>
       </div>
@@ -860,7 +864,7 @@
 
         <button onclick="generateMorePracticeAI()" class="btn-3d-secondary btn-3d px-6 py-3 rounded-2xl font-bold text-sm sm:text-base gap-2">
           <i class="fa-solid fa-rotate"></i>
-          <span class="en">More Practice (নতুন প্রশ্ন সেট)</span>
+          <span class="en">More Practice ✨ (নতুন প্রশ্ন সেট)</span>
         </button>
       </div>
     </section>
@@ -1305,6 +1309,24 @@
 
     let currentPracticeMode = "mcq";
     let isGeneratingAI = false;
+    let totalGeneratedQuestions = 10;
+    let seenQuestionsHistory = new Set([
+      "She writes a letter every week.",
+      "It has been raining ___ morning.",
+      "I saw him yesterday.",
+      "The train had left before we ___ the station.",
+      "Rina sings a sweet song.",
+      "He bought a new book yesterday.",
+      "সূর্য পূর্ব দিকে ওঠে।",
+      "সকাল থেকে বৃষ্টি হচ্ছে।",
+      "Karim usually ______ (go) to college by bus.",
+      "Look! The birds ______ (fly) in the sky."
+    ]);
+
+    function updateTotalPracticedBadge() {
+      const badge = document.getElementById("total-practiced-count");
+      if (badge) badge.textContent = totalGeneratedQuestions;
+    }
 
     function switchPracticeMode(mode) {
       currentPracticeMode = mode;
@@ -1324,7 +1346,7 @@
         ws.innerHTML = `
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             ${practiceBank.mcq.map((item, qIdx) => `
-              <div class="box-soft rounded-2xl p-5 space-y-3">
+              <div class="box-soft rounded-2xl p-5 space-y-3 animate-step">
                 <p class="font-bold text-base sm:text-lg">${item.q}</p>
                 <div class="space-y-2" id="mcq-list-${qIdx}">
                   ${item.options.map((opt, oIdx) => `
@@ -1344,7 +1366,7 @@
         ws.innerHTML = `
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             ${practiceBank.transform.map((item, idx) => `
-              <div class="box-soft rounded-2xl p-5 space-y-3">
+              <div class="box-soft rounded-2xl p-5 space-y-3 animate-step">
                 <span class="text-xs font-bold px-2.5 py-1 rounded-md box-highlight en">${item.tense}</span>
                 <p class="en font-bold text-lg">Affirmative: ${item.base}</p>
                 <button onclick="revealTransformItem(${idx})" class="btn-3d px-4 py-2 rounded-xl text-xs sm:text-sm font-bold gap-1.5">
@@ -1364,7 +1386,7 @@
         ws.innerHTML = `
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             ${practiceBank.translate.map((item, idx) => `
-              <div class="box-soft rounded-2xl p-5 space-y-3">
+              <div class="box-soft rounded-2xl p-5 space-y-3 animate-step">
                 <p class="font-bold text-base sm:text-lg">${item.bn}</p>
                 <input type="text" placeholder="ইংরেজি অনুবাদ লিখুন..." class="w-full px-3.5 py-2 rounded-xl border bg-white text-gray-900 en text-base focus:outline-none" style="border-color: var(--border-color);" />
                 <div class="flex flex-wrap gap-2">
@@ -1381,7 +1403,7 @@
         ws.innerHTML = `
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             ${practiceBank.blanks.map((item, idx) => `
-              <div class="box-soft rounded-2xl p-5 space-y-3">
+              <div class="box-soft rounded-2xl p-5 space-y-3 animate-step">
                 <p class="en font-bold text-base sm:text-lg">${item.sentence}</p>
                 <div class="flex gap-2">
                   <input id="blk-in-${idx}" type="text" placeholder="সঠিক verb..." class="flex-1 px-3.5 py-2 rounded-xl border bg-white text-gray-900 en text-base focus:outline-none" style="border-color: var(--border-color);" />
@@ -1464,8 +1486,265 @@
     }
 
     /* ---------------------------------------------------------
-       6. GEMINI AI INTEGRATION FOR UNLIMITED 'MORE PRACTICE'
+       6. UNLIMITED PRACTICE GENERATOR (GEMINI AI + INSTANT ENGINE)
        --------------------------------------------------------- */
+    const dynamicLexicon = {
+      subjects: [
+        { en: "He", bn: "সে", type: "3s", auxPres: "does", bePres: "is", havePres: "has", bePast: "was", willAux: "will" },
+        { en: "She", bn: "সে", type: "3s", auxPres: "does", bePres: "is", havePres: "has", bePast: "was", willAux: "will" },
+        { en: "Rahim", bn: "রহিম", type: "3s", auxPres: "does", bePres: "is", havePres: "has", bePast: "was", willAux: "will" },
+        { en: "Nadia", bn: "নাদিয়া", type: "3s", auxPres: "does", bePres: "is", havePres: "has", bePast: "was", willAux: "will" },
+        { en: "The teacher", bn: "শিক্ষক", type: "3s", auxPres: "does", bePres: "is", havePres: "has", bePast: "was", willAux: "will" },
+        { en: "The boy", bn: "বালকটি", type: "3s", auxPres: "does", bePres: "is", havePres: "has", bePast: "was", willAux: "will" },
+        { en: "They", bn: "তারা", type: "pl", auxPres: "do", bePres: "are", havePres: "have", bePast: "were", willAux: "will" },
+        { en: "We", bn: "আমরা", type: "pl", auxPres: "do", bePres: "are", havePres: "have", bePast: "were", willAux: "shall" },
+        { en: "The students", bn: "ছাত্রছাত্রীরা", type: "pl", auxPres: "do", bePres: "are", havePres: "have", bePast: "were", willAux: "will" },
+        { en: "I", bn: "আমি", type: "1s", auxPres: "do", bePres: "am", havePres: "have", bePast: "was", willAux: "shall" }
+      ],
+      verbs: [
+        { v1: "read", v5: "reads", v2: "read", v3: "read", ing: "reading", objEn: "an English novel", objBn: "একটি ইংরেজি উপন্যাস", bnBase: "পড়" },
+        { v1: "write", v5: "writes", v2: "wrote", v3: "written", ing: "writing", objEn: "an important essay", objBn: "একটি গুরুত্বপূর্ণ রচনা", bnBase: "লিখ" },
+        { v1: "solve", v5: "solves", v2: "solved", v3: "solved", ing: "solving", objEn: "the math problem", objBn: "গণিতের সমস্যাটি", bnBase: "সমাধান কর" },
+        { v1: "play", v5: "plays", v2: "played", v3: "played", ing: "playing", objEn: "cricket in the field", objBn: "মাঠে ক্রিকেট", bnBase: "খেল" },
+        { v1: "learn", v5: "learns", v2: "learned", v3: "learned", ing: "learning", objEn: "English grammar", objBn: "ইংরেজি ব্যাকরণ", bnBase: "শিখ" },
+        { v1: "watch", v5: "watches", v2: "watched", v3: "watched", ing: "watching", objEn: "a science documentary", objBn: "একটি বিজ্ঞানভিত্তিক প্রামাণ্যচিত্র", bnBase: "দেখ" },
+        { v1: "build", v5: "builds", v2: "built", v3: "built", ing: "building", objEn: "a new bridge", objBn: "একটি নতুন সেতু", bnBase: "নির্মাণ কর" },
+        { v1: "draw", v5: "draws", v2: "drew", v3: "drawn", ing: "drawing", objEn: "a natural scenery", objBn: "একটি প্রাকৃতিক দৃশ্য", bnBase: "আঁক" },
+        { v1: "prepare", v5: "prepares", v2: "prepared", v3: "prepared", ing: "preparing", objEn: "the daily lesson", objBn: "প্রতিদিনের পাঠ", bnBase: "প্রস্তুত কর" },
+        { v1: "help", v5: "helps", v2: "helped", v3: "helped", ing: "helping", objEn: "the helpless people", objBn: "অসহায় মানুষদের", bnBase: "সাহায্য কর" }
+      ],
+      durations: [
+        { en: "for two hours", bn: "দুই ঘণ্টা ধরে" },
+        { en: "for three days", bn: "তিন দিন যাবৎ" },
+        { en: "since morning", bn: "সকাল থেকে" },
+        { en: "since Monday", bn: "সোমবার থেকে" },
+        { en: "for forty minutes", bn: "চল্লিশ মিনিট ধরে" }
+      ],
+      presClues: ["regularly", "every day", "often", "usually", "always"],
+      pastClues: ["yesterday", "last night", "two days ago", "last week"],
+      futClues: ["tomorrow", "next week", "next month", "tonight"]
+    };
+
+    function pickRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function capFirst(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function buildCombinatorialPracticeSet() {
+      const allTenses = [
+        "Present Indefinite", "Present Continuous", "Present Perfect", "Present Perfect Continuous",
+        "Past Indefinite", "Past Continuous", "Past Perfect", "Past Perfect Continuous",
+        "Future Indefinite", "Future Continuous", "Future Perfect", "Future Perfect Continuous"
+      ];
+
+      // 1. Generate 5 Unique MCQs
+      const mcqList = [];
+      let safety = 0;
+      while (mcqList.length < 5 && safety < 80) {
+        safety++;
+        const s = pickRandom(dynamicLexicon.subjects);
+        const v = pickRandom(dynamicLexicon.verbs);
+        const d = pickRandom(dynamicLexicon.durations);
+        const targetTense = pickRandom(allTenses);
+        let sentence = "";
+        let exp = "";
+
+        if (targetTense === "Present Indefinite") {
+          const verbForm = s.type === "3s" ? v.v5 : v.v1;
+          const clue = pickRandom(dynamicLexicon.presClues);
+          sentence = `${s.en} ${verbForm} ${v.objEn} ${clue}.`;
+          exp = `বাক্যে '${verbForm}' (${s.type === "3s" ? "V5" : "V1"}) এবং '${clue}' থাকায় এটি Present Indefinite Tense।`;
+        } else if (targetTense === "Present Continuous") {
+          sentence = `${s.en} ${s.bePres} ${v.ing} ${v.objEn} now.`;
+          exp = `বাক্যে '${s.bePres} + ${v.ing}' এবং 'now' থাকায় এটি Present Continuous Tense।`;
+        } else if (targetTense === "Present Perfect") {
+          sentence = `${s.en} ${s.havePres} already ${v.v3} ${v.objEn}.`;
+          exp = `বাক্যে '${s.havePres} + ${v.v3} (V3)' এবং 'already' থাকায় এটি Present Perfect Tense।`;
+        } else if (targetTense === "Present Perfect Continuous") {
+          sentence = `${s.en} ${s.havePres} been ${v.ing} ${v.objEn} ${d.en}.`;
+          exp = `বাক্যে '${s.havePres} been + ${v.ing}' এবং নির্দিষ্ট/ব্যাপক সময় '${d.en}' থাকায় এটি Present Perfect Continuous Tense।`;
+        } else if (targetTense === "Past Indefinite") {
+          const clue = pickRandom(dynamicLexicon.pastClues);
+          sentence = `${s.en} ${v.v2} ${v.objEn} ${clue}.`;
+          exp = `বাক্যে মূল verb-এর Past Form '${v.v2}' (V2) এবং '${clue}' থাকায় এটি Past Indefinite Tense।`;
+        } else if (targetTense === "Past Continuous") {
+          sentence = `${s.en} ${s.bePast} ${v.ing} ${v.objEn} at that time.`;
+          exp = `বাক্যে '${s.bePast} + ${v.ing}' এবং 'at that time' থাকায় এটি Past Continuous Tense।`;
+        } else if (targetTense === "Past Perfect") {
+          sentence = `${s.en} had ${v.v3} ${v.objEn} before sunset.`;
+          exp = `বাক্যে 'had + ${v.v3} (V3)' এবং 'before' থাকায় এটি Past Perfect Tense।`;
+        } else if (targetTense === "Past Perfect Continuous") {
+          sentence = `${s.en} had been ${v.ing} ${v.objEn} ${d.en}.`;
+          exp = `বাক্যে 'had been + ${v.ing}' এবং '${d.en}' থাকায় এটি Past Perfect Continuous Tense।`;
+        } else if (targetTense === "Future Indefinite") {
+          const clue = pickRandom(dynamicLexicon.futClues);
+          sentence = `${s.en} ${s.willAux} ${v.v1} ${v.objEn} ${clue}.`;
+          exp = `বাক্যে '${s.willAux} + ${v.v1} (V1)' এবং '${clue}' থাকায় এটি Future Indefinite Tense।`;
+        } else if (targetTense === "Future Continuous") {
+          sentence = `${s.en} ${s.willAux} be ${v.ing} ${v.objEn} then.`;
+          exp = `বাক্যে '${s.willAux} be + ${v.ing}' থাকায় এটি Future Continuous Tense।`;
+        } else if (targetTense === "Future Perfect") {
+          sentence = `${s.en} ${s.willAux} have ${v.v3} ${v.objEn} by evening.`;
+          exp = `বাক্যে '${s.willAux} have + ${v.v3} (V3)' থাকায় এটি Future Perfect Tense।`;
+        } else {
+          sentence = `${s.en} ${s.willAux} have been ${v.ing} ${v.objEn} ${d.en}.`;
+          exp = `বাক্যে '${s.willAux} have been + ${v.ing}' এবং '${d.en}' থাকায় এটি Future Perfect Continuous Tense।`;
+        }
+
+        if (seenQuestionsHistory.has(sentence)) continue;
+        seenQuestionsHistory.add(sentence);
+
+        const distractors = allTenses.filter(t => t !== targetTense).sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [...distractors, targetTense].sort(() => Math.random() - 0.5);
+        mcqList.push({
+          q: `${mcqList.length + 1}. '${sentence}' — এটি কোন Tense?`,
+          options,
+          ans: options.indexOf(targetTense),
+          exp
+        });
+      }
+
+      // 2. Generate 4 Unique Transformations
+      const transformList = [];
+      const transModes = ["Present Indefinite", "Present Continuous", "Present Perfect", "Past Indefinite", "Future Indefinite", "Present Perfect Continuous"];
+      for (let i = 0; i < 4; i++) {
+        const s = pickRandom(dynamicLexicon.subjects);
+        const v = pickRandom(dynamicLexicon.verbs);
+        const tMode = transModes[(i + Math.floor(Math.random() * transModes.length)) % transModes.length];
+
+        if (tMode === "Present Indefinite") {
+          const vf = s.type === "3s" ? v.v5 : v.v1;
+          transformList.push({
+            tense: "Present Indefinite Tense",
+            base: `${s.en} ${vf} ${v.objEn}.`,
+            neg: `${s.en} ${s.auxPres} not ${v.v1} ${v.objEn}.`,
+            int: `${capFirst(s.auxPres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} ${v.v1} ${v.objEn}?`,
+            intNeg: `${capFirst(s.auxPres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} not ${v.v1} ${v.objEn}?`
+          });
+        } else if (tMode === "Present Continuous") {
+          transformList.push({
+            tense: "Present Continuous Tense",
+            base: `${s.en} ${s.bePres} ${v.ing} ${v.objEn}.`,
+            neg: `${s.en} ${s.bePres} not ${v.ing} ${v.objEn}.`,
+            int: `${capFirst(s.bePres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} ${v.ing} ${v.objEn}?`,
+            intNeg: `${capFirst(s.bePres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} not ${v.ing} ${v.objEn}?`
+          });
+        } else if (tMode === "Present Perfect") {
+          transformList.push({
+            tense: "Present Perfect Tense",
+            base: `${s.en} ${s.havePres} ${v.v3} ${v.objEn}.`,
+            neg: `${s.en} ${s.havePres} not ${v.v3} ${v.objEn}.`,
+            int: `${capFirst(s.havePres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} ${v.v3} ${v.objEn}?`,
+            intNeg: `${capFirst(s.havePres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} not ${v.v3} ${v.objEn}?`
+          });
+        } else if (tMode === "Past Indefinite") {
+          transformList.push({
+            tense: "Past Indefinite Tense",
+            base: `${s.en} ${v.v2} ${v.objEn}.`,
+            neg: `${s.en} did not ${v.v1} ${v.objEn}.`,
+            int: `Did ${s.en === "I" ? "I" : s.en.toLowerCase()} ${v.v1} ${v.objEn}?`,
+            intNeg: `Did ${s.en === "I" ? "I" : s.en.toLowerCase()} not ${v.v1} ${v.objEn}?`
+          });
+        } else if (tMode === "Future Indefinite") {
+          transformList.push({
+            tense: "Future Indefinite Tense",
+            base: `${s.en} ${s.willAux} ${v.v1} ${v.objEn}.`,
+            neg: `${s.en} ${s.willAux} not ${v.v1} ${v.objEn}.`,
+            int: `${capFirst(s.willAux)} ${s.en === "I" ? "I" : s.en.toLowerCase()} ${v.v1} ${v.objEn}?`,
+            intNeg: `${capFirst(s.willAux)} ${s.en === "I" ? "I" : s.en.toLowerCase()} not ${v.v1} ${v.objEn}?`
+          });
+        } else {
+          const d = pickRandom(dynamicLexicon.durations);
+          transformList.push({
+            tense: "Present Perfect Continuous Tense",
+            base: `${s.en} ${s.havePres} been ${v.ing} ${v.objEn} ${d.en}.`,
+            neg: `${s.en} ${s.havePres} not been ${v.ing} ${v.objEn} ${d.en}.`,
+            int: `${capFirst(s.havePres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} been ${v.ing} ${v.objEn} ${d.en}?`,
+            intNeg: `${capFirst(s.havePres)} ${s.en === "I" ? "I" : s.en.toLowerCase()} not been ${v.ing} ${v.objEn} ${d.en}?`
+          });
+        }
+      }
+
+      // 3. Generate 4 Unique Bangla -> English Translations
+      const translateList = [];
+      for (let i = 0; i < 4; i++) {
+        const s = pickRandom(dynamicLexicon.subjects);
+        const v = pickRandom(dynamicLexicon.verbs);
+        const d = pickRandom(dynamicLexicon.durations);
+        const pattern = i % 4;
+
+        if (pattern === 0) {
+          const vf = s.type === "3s" ? v.v5 : v.v1;
+          translateList.push({
+            bn: `${i + 1}. ${s.bn} প্রতিদিন ${v.objBn} ${v.bnBase}ে।`,
+            hint: `Present Indefinite: ${s.en} + ${vf} + ${v.objEn} + every day.`,
+            en: `${s.en} ${vf} ${v.objEn} every day.`
+          });
+        } else if (pattern === 1) {
+          translateList.push({
+            bn: `${i + 1}. ${s.bn} এখন ${v.objBn} ${v.bnBase}ছে।`,
+            hint: `Present Continuous: ${s.en} + ${s.bePres} + ${v.ing} + ${v.objEn} + now.`,
+            en: `${s.en} ${s.bePres} ${v.ing} ${v.objEn} now.`
+          });
+        } else if (pattern === 2) {
+          translateList.push({
+            bn: `${i + 1}. ${s.bn} ${d.bn} ${v.objBn} ${v.bnBase}ছে।`,
+            hint: `Present Perfect Continuous: ${s.en} + ${s.havePres} been + ${v.ing} + ${v.objEn} + ${d.en}.`,
+            en: `${s.en} ${s.havePres} been ${v.ing} ${v.objEn} ${d.en}.`
+          });
+        } else {
+          translateList.push({
+            bn: `${i + 1}. ${s.bn} গতকাল ${v.objBn} ${v.bnBase}েছিল।`,
+            hint: `Past Indefinite: ${s.en} + ${v.v2} + ${v.objEn} + yesterday.`,
+            en: `${s.en} ${v.v2} ${v.objEn} yesterday.`
+          });
+        }
+      }
+
+      // 4. Generate 4 Unique Right Form of Verbs Blanks
+      const blanksList = [];
+      for (let i = 0; i < 4; i++) {
+        const s = pickRandom(dynamicLexicon.subjects);
+        const v = pickRandom(dynamicLexicon.verbs);
+        const d = pickRandom(dynamicLexicon.durations);
+        const pattern = i % 4;
+
+        if (pattern === 0) {
+          const ans = s.type === "3s" ? v.v5 : v.v1;
+          blanksList.push({
+            sentence: `${i + 1}. ${s.en} always ______ (${v.v1}) ${v.objEn}.`,
+            answer: ans,
+            exp: `'always' থাকায় Present Indefinite Tense এবং Subject '${s.en}' অনুযায়ী '${ans}' বসেছে।`
+          });
+        } else if (pattern === 1) {
+          const ans = `${s.bePres} ${v.ing}`;
+          blanksList.push({
+            sentence: `${i + 1}. At this moment, ${s.en === "I" ? "I" : s.en.toLowerCase()} ______ (${v.v1}) ${v.objEn}.`,
+            answer: ans,
+            exp: `'At this moment' দ্বারা বর্তমান চলমান কাজ বোঝাচ্ছে, তাই '${ans}' বসেছে।`
+          });
+        } else if (pattern === 2) {
+          const ans = `${s.havePres} been ${v.ing}`;
+          blanksList.push({
+            sentence: `${i + 1}. ${s.en} ______ (${v.v1}) ${v.objEn} ${d.en}.`,
+            answer: ans,
+            exp: `'${d.en}' থাকায় Present Perfect Continuous Tense অনুযায়ী '${ans}' বসেছে।`
+          });
+        } else {
+          blanksList.push({
+            sentence: `${i + 1}. ${s.en} ______ (${v.v1}) ${v.objEn} last night.`,
+            answer: v.v2,
+            exp: `'last night' থাকায় Past Indefinite Tense এবং মূল verb-এর Past Form '${v.v2}' (V2) বসেছে।`
+          });
+        }
+      }
+
+      return { mcq: mcqList, transform: transformList, translate: translateList, blanks: blanksList };
+    }
+
     async function generateMorePracticeAI() {
       if (isGeneratingAI) return;
       isGeneratingAI = true;
@@ -1480,22 +1759,25 @@
       icon.className = "fa-solid fa-spinner fa-spin";
       text.textContent = "Generating AI Questions...";
       statusBar.classList.remove("hidden");
-      statusMsg.textContent = "Google Gemini AI নতুন অনুশীলন প্রশ্ন তৈরি করছে...";
+      statusMsg.textContent = "Google Gemini AI নতুন প্রশ্ন সেট তৈরি করছে...";
 
       const apiKey = "";
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-      const promptText = `Generate a brand new, randomized set of English Tense practice exercises for Bangladeshi students (with Bangla explanations).
-      Seed randomizer: ${Date.now()}-${Math.random()}.
-      Include:
-      - 4 MCQ questions testing different Tenses (Present, Past, Future & their 4 aspects) with Bangla question text, 4 English options, 0-based answer index, and Bangla explanation.
-      - 2 Sentence Transformation items (Affirmative sentence with Tense name, plus Negative, Interrogative, and Interrogative-Negative forms).
-      - 2 Bangla to English translation items with Bangla sentence, English grammatical hint, and exact English answer.
-      - 2 Right Form of Verbs fill-in-the-blank items with base verb in parentheses, exact answer, and Bangla explanation.`;
+      const recentAvoidList = Array.from(seenQuestionsHistory).slice(-16).join(" | ");
+      const promptText = `Generate a completely fresh, non-repeating set of English Tense practice exercises for Bangladeshi students with Bangla explanations.
+      Unique Request Seed: ${Date.now()}-${Math.floor(Math.random() * 1000000)}.
+      CRITICAL: Do NOT repeat or reuse any of these previous sentences/questions: [${recentAvoidList}].
+      Generate:
+      1) "mcq": 5 new MCQ questions testing different Tenses across Present, Past, and Future (all 12 tenses), with numbered Bangla question text ("1. ..."), 4 distinct English options, 0-based "ans" integer, and clear Bangla explanation "exp".
+      2) "transform": 4 new Sentence Transformation items with "tense" name, "base" Affirmative sentence, "neg" Negative, "int" Interrogative, and "intNeg" Interrogative-Negative.
+      3) "translate": 4 new Bangla to English translation items with numbered Bangla sentence "bn", English grammar formula "hint", and exact English sentence "en".
+      4) "blanks": 4 new Right Form of Verbs fill-in-the-blank items with numbered English sentence containing ______ (base_verb) as "sentence", exact verb phrase "answer", and Bangla explanation "exp".`;
 
       const payload = {
         contents: [{ parts: [{ text: promptText }] }],
         generationConfig: {
+          temperature: 1.0,
           responseMimeType: "application/json",
           responseSchema: {
             type: "OBJECT",
@@ -1558,53 +1840,68 @@
       };
 
       let success = false;
-      for (let attempt = 0; attempt < 3; attempt++) {
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
         try {
           const response = await fetch(apiUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            signal: controller.signal
           });
+          clearTimeout(timeoutId);
           if (!response.ok) throw new Error("API error");
           const result = await response.json();
           const rawJson = result?.candidates?.[0]?.content?.parts?.[0]?.text;
           if (rawJson) {
             const parsed = JSON.parse(rawJson);
-            if (parsed.mcq && parsed.mcq.length > 0) {
+            if (parsed.mcq && parsed.mcq.length > 0 && parsed.transform && parsed.translate && parsed.blanks) {
+              parsed.mcq.forEach(item => seenQuestionsHistory.add(item.q));
+              parsed.transform.forEach(item => seenQuestionsHistory.add(item.base));
+              parsed.translate.forEach(item => seenQuestionsHistory.add(item.bn));
+              parsed.blanks.forEach(item => seenQuestionsHistory.add(item.sentence));
+
               practiceBank = parsed;
               success = true;
               break;
             }
           }
         } catch (err) {
-          await new Promise(res => setTimeout(res, Math.pow(2, attempt) * 1000));
+          clearTimeout(timeoutId);
+          await new Promise(res => setTimeout(res, 700));
         }
       }
 
-      if (success) {
-        statusMsg.textContent = "নতুন AI প্রশ্ন সেট লোড হয়েছে! অনুশীলন চালিয়ে যান।";
-        renderPracticeWorkspace();
-      } else {
-        // Fallback shuffle if offline
-        practiceBank.mcq.sort(() => Math.random() - 0.5);
-        practiceBank.mcq.forEach(item => delete item._scored);
-        practiceBank.transform.forEach(item => delete item._scored);
-        practiceBank.translate.forEach(item => delete item._scored);
-        practiceBank.blanks.forEach(item => delete item._scored);
-        statusMsg.textContent = "নতুন প্রশ্ন সেট প্রস্তুত করা হয়েছে।";
-        renderPracticeWorkspace();
+      if (!success) {
+        practiceBank = buildCombinatorialPracticeSet();
       }
+
+      const newCount =
+        (practiceBank.mcq?.length || 0) +
+        (practiceBank.transform?.length || 0) +
+        (practiceBank.translate?.length || 0) +
+        (practiceBank.blanks?.length || 0);
+      totalGeneratedQuestions += newCount;
+      updateTotalPracticedBadge();
+
+      statusMsg.textContent = success
+        ? `AI নতুন ${newCount}টি প্রশ্ন তৈরি করেছে! অনুশীলন শুরু করুন।`
+        : `নতুন ${newCount}টি প্রশ্ন সেট তৈরি হয়েছে! অনুশীলন শুরু করুন।`;
+
+      renderPracticeWorkspace();
 
       isGeneratingAI = false;
       btn.disabled = false;
       icon.className = "fa-solid fa-wand-magic-sparkles";
-      text.textContent = "More Practice";
+      text.textContent = "More Practice ✨";
     }
 
     // Initialize App on Load
     window.addEventListener("DOMContentLoaded", () => {
       renderPracticeWorkspace();
       updateProgress();
+      updateTotalPracticedBadge();
     });
   </script>
 </body>
