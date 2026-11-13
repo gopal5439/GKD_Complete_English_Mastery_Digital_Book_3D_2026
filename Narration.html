@@ -109,6 +109,18 @@
       min-height: 100vh;
     }
 
+    /* Auto-Hide Header on Scroll */
+    #mainHeader {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.35s ease;
+      will-change: transform;
+    }
+
+    #mainHeader.header-hidden {
+      transform: translateY(-100%);
+    }
+
     /* Specific Typography Rule: Tiro Bangla for Bengali & Times New Roman for English */
     .font-bn {
       font-family: 'Tiro Bangla', serif;
@@ -277,8 +289,8 @@
   <div class="ambient-orb w-80 h-80 top-10 left-10" style="background: var(--accent);"></div>
   <div class="ambient-orb w-96 h-96 bottom-10 right-10" style="background: var(--accent-2); animation-delay: -5s;"></div>
 
-  <!-- Top Sticky 3D Glass Header & Navigation -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl border-b" style="background: var(--bg-card); border-color: var(--border-color);">
+  <!-- Top Sticky 3D Glass Header & Navigation (Auto-hides on downward scroll) -->
+  <header id="mainHeader" class="sticky top-0 z-50 backdrop-blur-xl border-b" style="background: var(--bg-card); border-color: var(--border-color);">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <!-- Brand Logo -->
@@ -917,7 +929,7 @@
     </section>
 
     <!-- ========================================================= -->
-    <!-- TAB 3: সমাধানের কৌশল (SOLVE TRICKS FROM IMAGE 2)          -->
+    <!-- TAB 3: সমাধানের কৌশল (SOLVE TRICKS — NODES 4, 5, 6 & DEMO)  -->
     <!-- ========================================================= -->
     <section id="tab-tricks" class="tab-section space-y-6">
       <!-- Header -->
@@ -926,63 +938,14 @@
           <h2 class="font-en text-2xl sm:text-4xl font-bold" style="color: var(--accent);">Solve Tricks</h2>
         </div>
         <p class="font-bn text-base sm:text-lg" style="color: var(--text-secondary);">
-          যেকোনো <span class="font-en font-bold">Narration</span> নির্ভুলভাবে সমাধান করার ৬টি ধাপ ও জাদুকরী ফ্লো-চার্ট
+          যেকোনো <span class="font-en font-bold">Narration</span> নির্ভুলভাবে সমাধান করার জাদুকরী কৌশল ও ফ্লো-চার্ট
         </p>
       </div>
 
-      <!-- 6 Branching Flowchart Nodes from Image 2 -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Node 1: কি? -->
-        <div class="card-3d tilt-card rounded-3xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3" style="background: var(--accent); color: #090d16;">
-              ১. কি? (What?)
-            </div>
-            <p class="mixed-text text-base">
-              <span class="font-en font-bold">Narration</span> হলো কোনো বক্তার উক্তি অন্যের মাধ্যমে প্রকাশ করার পদ্ধতি, যা <span class="font-en font-bold" style="color: var(--accent);">Direct</span> বা <span class="font-en font-bold" style="color: var(--accent-2);">Indirect</span> দুইভাবেই হতে পারে।
-            </p>
-          </div>
-          <div class="mt-3 text-right font-en text-xs opacity-70">Step 01 • Concept</div>
-        </div>
-
-        <!-- Node 2: কয়টি অংশ -->
-        <div class="card-3d tilt-card rounded-3xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3" style="background: var(--accent-2); color: #090d16;">
-              ২. কয়টি অংশ? (২ টি অংশ)
-            </div>
-            <div class="space-y-2 text-base">
-              <p class="mixed-text">
-                <span class="font-en font-bold" style="color: var(--accent);">Reporting Verb:</span> যে/ যারা বলে। যেমন- <span class="font-en font-bold">He said,”</span>
-              </p>
-              <p class="mixed-text">
-                <span class="font-en font-bold" style="color: var(--accent-2);">Reported Speech:</span> যা কিছু বলে। যেমন- <span class="font-en font-bold">“I am fine.”</span>
-              </p>
-            </div>
-          </div>
-          <div class="mt-3 text-right font-en text-xs opacity-70">Step 02 • Structure</div>
-        </div>
-
-        <!-- Node 3: কত প্রকার -->
-        <div class="card-3d tilt-card rounded-3xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3 bg-sky-400 text-slate-950">
-              ৩. কত প্রকার? (২ প্রকার)
-            </div>
-            <div class="space-y-2 text-base">
-              <p class="mixed-text">
-                <span class="font-en font-bold" style="color: var(--accent);">Direct Speech:</span> (বক্তার কথা হুবহু বলা)
-              </p>
-              <p class="mixed-text">
-                <span class="font-en font-bold" style="color: var(--accent-2);">Indirect Speech:</span> (বক্তার কথা নিজের মতো করে বলা)
-              </p>
-            </div>
-          </div>
-          <div class="mt-3 text-right font-en text-xs opacity-70">Step 03 • Types</div>
-        </div>
-
+      <!-- Nodes 4 & 5 Side-by-Side Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <!-- Node 4: সাধারণত কত প্রকার বাক্য থাকে -->
-        <div class="card-3d tilt-card rounded-3xl p-5 lg:col-span-2">
+        <div class="card-3d tilt-card rounded-3xl p-5">
           <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3 bg-pink-500 text-white">
             ৪. সাধারণত কত প্রকার বাক্য থাকে? (৫ প্রকার)
           </div>
@@ -1011,22 +974,32 @@
         </div>
 
         <!-- Node 5: কয়টি স্থানে পরিবর্তন হয় -->
-        <div class="card-3d tilt-card rounded-3xl p-5">
-          <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3 bg-purple-500 text-white">
-            ৫. কয়টি স্থানে পরিবর্তন হয়? (সর্বোচ্চ ৫টি জায়গা)
+        <div class="card-3d tilt-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-4 py-1.5 rounded-xl font-bn font-bold text-base mb-3 bg-purple-500 text-white">
+              ৫. কয়টি স্থানে পরিবর্তন হয়? (সর্বোচ্চ ৫টি জায়গা)
+            </div>
+            <ol class="space-y-2.5 text-sm sm:text-base list-decimal list-inside">
+              <li class="p-2.5 rounded-xl border font-en font-bold" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                Said / said to / told...
+              </li>
+              <li class="p-2.5 rounded-xl border mixed-text" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <span class="font-en font-bold">, “</span> <span class="font-bn">(Comma Inverted comma)</span>
+              </li>
+              <li class="p-2.5 rounded-xl border font-en font-bold" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                Person (1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>)
+              </li>
+              <li class="p-2.5 rounded-xl border mixed-text" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <span class="font-en font-bold">Verb</span> <span class="font-bn">(<span class="font-en">Present</span>...থাকলে...<span class="font-en">Past</span>)</span>
+              </li>
+              <li class="p-2.5 rounded-xl border mixed-text" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                <span class="font-bn font-bold">অতিরিক্ত কিছু শব্দ -</span>
+                <span class="font-en block mt-1 text-xs sm:text-sm" style="color: var(--accent);">
+                  now - then, today - that day, tomorrow - the next day, yesterday - the previous day, next day - the following day ইত্যাদি।
+                </span>
+              </li>
+            </ol>
           </div>
-          <ol class="space-y-2 text-sm sm:text-base list-decimal list-inside">
-            <li class="font-en font-bold">Said / said to / told...</li>
-            <li class="mixed-text"><span class="font-en font-bold">, “</span> <span class="font-bn">(Comma Inverted comma)</span></li>
-            <li class="font-en font-bold">Person (1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>)</li>
-            <li class="mixed-text"><span class="font-en font-bold">Verb</span> <span class="font-bn">(<span class="font-en">Present</span>...থাকলে...<span class="font-en">Past</span>)</span></li>
-            <li class="mixed-text">
-              <span class="font-bn font-bold">অতিরিক্ত কিছু শব্দ -</span>
-              <span class="font-en block mt-1 text-xs sm:text-sm" style="color: var(--accent);">
-                now - then, today - that day, tomorrow - the next day, yesterday - the previous day, next day - the following day ইত্যাদি।
-              </span>
-            </li>
-          </ol>
         </div>
       </div>
 
@@ -1056,7 +1029,7 @@
           </div>
         </div>
 
-        <!-- Right 7 cols: Interactive Step-by-Step Solver Demo from Image 2 -->
+        <!-- Right 7 cols: Interactive Step-by-Step Solver Demo -->
         <div class="lg:col-span-7 card-3d rounded-3xl p-6 border-2 flex flex-col justify-between" style="border-color: var(--accent);">
           <div>
             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
@@ -1131,7 +1104,7 @@
         </div>
       </div>
 
-      <!-- কিছু বিষয় জেনে রাখো Callout Card from Image 2 -->
+      <!-- কিছু বিষয় জেনে রাখো Callout Card -->
       <div class="card-3d rounded-3xl p-6 border-l-8" style="border-color: var(--accent);">
         <h3 class="font-bn text-xl font-bold mb-2" style="color: var(--accent);">
           💡 কিছু বিষয় জেনে রাখো-
@@ -1221,6 +1194,40 @@
   <!-- JAVASCRIPT: 3D SCENE, WEB AUDIO TACTILE FX & DATA         -->
   <!-- ========================================================= -->
   <script>
+    /* -----------------------------------------------------------
+       0. AUTO-HIDE HEADER ON SCROLL
+    ----------------------------------------------------------- */
+    let lastScrollY = window.scrollY;
+    let scrollTicking = false;
+
+    function handleHeaderScroll() {
+      const header = document.getElementById('mainHeader');
+      if (!header) return;
+
+      const currentScrollY = window.scrollY;
+      const headerHeight = header.offsetHeight || 110;
+
+      if (currentScrollY <= headerHeight) {
+        header.classList.remove('header-hidden');
+      } else if (currentScrollY > lastScrollY + 6) {
+        // Scrolling down -> hide header to show full page
+        header.classList.add('header-hidden');
+      } else if (currentScrollY < lastScrollY - 6) {
+        // Scrolling up -> show header again
+        header.classList.remove('header-hidden');
+      }
+
+      lastScrollY = currentScrollY;
+      scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(handleHeaderScroll);
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
     /* -----------------------------------------------------------
        1. TACTILE SOUND ENGINE (Web Audio API - Zero External URLs)
     ----------------------------------------------------------- */
@@ -1327,6 +1334,9 @@
         activeBtn.style.color = '#090d16';
         activeBtn.style.borderColor = 'var(--accent)';
       }
+
+      const header = document.getElementById('mainHeader');
+      if (header) header.classList.remove('header-hidden');
 
       if (tabId === 'tab-3d' && renderer) {
         onWindowResize();
