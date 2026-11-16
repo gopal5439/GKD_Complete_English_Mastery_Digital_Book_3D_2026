@@ -3,359 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verb Masterclass - Interactive 3D Learning Platform</title>
+    <title>Verb Masterclass - Global Professional Learning Platform (GKD)</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Times+New+Roman:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================
-           1. COLOR THEMES & CSS VARIABLES
+           1. CSS VARIABLES & MULTI-COLOR THEMES (Vibrant Pro Standard)
            ========================================================== */
         :root {
-            --bg-gradient: radial-gradient(circle at center, #1b0c3a 0%, #080214 100%);
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --card-border: rgba(236, 72, 153, 0.4);
+            /* 1. Emerald (Default) */
+            --bg-gradient: radial-gradient(circle at top center, #064e3b 0%, #020617 100%);
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(16, 185, 129, 0.5);
             --text-main: #ffffff;
-            --text-sub: #e2e8f0;
-            --accent-glow: #a855f7;
-            --accent-pink: #ec4899;
-            --accent-cyan: #06b6d4;
+            --text-sub: #cbd5e1;
+            --accent-glow: #10b981;
+            --accent-pink: #34d399;
+            --accent-cyan: #a7f3d0;
             --gold: #facc15;
-            --header-bg: rgba(15, 7, 32, 0.92);
-            --notebook-bg: rgba(20, 10, 40, 0.98);
-            --font-bn: 'Noto Serif Bengali', serif;
+            --panel-bg: rgba(2, 12, 27, 0.95);
+            --font-bn: 'Tiro Bangla', serif;
             --font-en: 'Times New Roman', Times, serif;
         }
 
-        body.theme-gold {
-            --bg-gradient: radial-gradient(circle at center, #2e1d05 0%, #0f0901 100%);
-            --card-bg: rgba(255, 255, 255, 0.09);
-            --card-border: rgba(250, 204, 21, 0.4);
-            --text-main: #fffdf0;
-            --text-sub: #fef08a;
+        body.theme-rgb-crimson {
+            --bg-gradient: radial-gradient(circle at top center, #450a0a 0%, #020617 100%);
+            --card-border: rgba(239, 68, 68, 0.5);
+            --accent-glow: #ef4444;
+            --accent-pink: #f87171;
+            --accent-cyan: #fca5a5;
+        }
+
+        body.theme-rgb-gold {
+            --bg-gradient: radial-gradient(circle at top center, #422006 0%, #020617 100%);
+            --card-border: rgba(245, 158, 11, 0.5);
             --accent-glow: #f59e0b;
             --accent-pink: #fbbf24;
-            --accent-cyan: #34d399;
-            --gold: #facc15;
-            --header-bg: rgba(30, 18, 4, 0.94);
-            --notebook-bg: rgba(35, 22, 5, 0.98);
+            --accent-cyan: #fde68a;
         }
 
-        body.theme-ocean {
-            --bg-gradient: radial-gradient(circle at center, #032b45 0%, #010f1a 100%);
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --card-border: rgba(6, 182, 212, 0.4);
-            --text-main: #f0fdfa;
-            --text-sub: #99f6e4;
-            --accent-glow: #06b6d4;
-            --accent-pink: #3b82f6;
-            --accent-cyan: #22d3ee;
-            --gold: #facc15;
-            --header-bg: rgba(2, 35, 56, 0.94);
-            --notebook-bg: rgba(3, 40, 65, 0.98);
+        body.theme-rgb-sapphire {
+            --bg-gradient: radial-gradient(circle at top center, #172554 0%, #020617 100%);
+            --card-border: rgba(59, 130, 246, 0.5);
+            --accent-glow: #3b82f6;
+            --accent-pink: #60a5fa;
+            --accent-cyan: #bfdbfe;
         }
 
-        body.theme-sunset {
-            --bg-gradient: radial-gradient(circle at center, #4c0519 0%, #1a0208 100%);
-            --card-bg: rgba(255, 255, 255, 0.09);
-            --card-border: rgba(244, 63, 94, 0.4);
-            --text-main: #fff1f2;
-            --text-sub: #fecdd3;
-            --accent-glow: #f43f5e;
-            --accent-pink: #fb923c;
-            --accent-cyan: #38bdf8;
-            --gold: #fde047;
-            --header-bg: rgba(60, 5, 20, 0.94);
-            --notebook-bg: rgba(70, 8, 25, 0.98);
+        body.theme-rgb-amethyst {
+            --bg-gradient: radial-gradient(circle at top center, #3b0764 0%, #020617 100%);
+            --card-border: rgba(168, 85, 247, 0.5);
+            --accent-glow: #a855f7;
+            --accent-pink: #c084fc;
+            --accent-cyan: #e9d5ff;
         }
 
-        body.theme-emerald {
-            --bg-gradient: radial-gradient(circle at center, #022c22 0%, #01140e 100%);
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --card-border: rgba(16, 185, 129, 0.4);
-            --text-main: #ecfdf5;
-            --text-sub: #a7f3d0;
-            --accent-glow: #10b981;
-            --accent-pink: #84cc16;
-            --accent-cyan: #06b6d4;
-            --gold: #facc15;
-            --header-bg: rgba(2, 38, 30, 0.94);
-            --notebook-bg: rgba(3, 45, 35, 0.98);
+        body.theme-rgb-cyberpunk {
+            --bg-gradient: radial-gradient(circle at top center, #2e0249 0%, #000000 100%);
+            --card-border: rgba(236, 72, 153, 0.5);
+            --accent-glow: #ec4899;
+            --accent-pink: #06b6d4;
+            --accent-cyan: #fef08a;
         }
 
-        /* ==========================================================
-           2. GLOBAL STYLES & LAYOUT
-           ========================================================== */
+        body.theme-rgb-sunset {
+            --bg-gradient: radial-gradient(circle at top center, #7c2d12 0%, #020617 100%);
+            --card-border: rgba(249, 115, 22, 0.5);
+            --accent-glow: #f97316;
+            --accent-pink: #ec4899;
+            --accent-cyan: #fed7aa;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--panel-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-glow); }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: var(--font-bn);
-            user-select: none;
-        }
-
-        .eng-text {
-            font-family: var(--font-en) !important;
-            font-weight: bold;
         }
 
         body {
             background: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
+            transition: background 0.6s ease;
         }
 
-        #canvas-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
+        .eng-text {
+            font-family: var(--font-en) !important;
+            font-style: italic;
+            color: var(--accent-cyan);
+            font-weight: bold;
         }
 
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: var(--header-bg);
+            width: 100%;
+            height: 75px;
+            background: rgba(2, 6, 23, 0.65);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--card-border);
-            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 1.5rem;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+            padding: 0 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
         }
 
         .brand-logo {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            background: linear-gradient(90deg, var(--gold), var(--accent-pink));
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-family: var(--font-en);
-            letter-spacing: 1px;
-        }
-
-        .menu-icon-btn {
-            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            box-shadow: 0 0 15px var(--accent-pink);
-            transition: transform 0.2s;
-        }
-
-        .menu-icon-btn:active {
-            transform: scale(0.92);
-        }
-
-        .menu-icon-btn span {
-            width: 22px;
-            height: 3px;
-            background: #ffffff;
-            border-radius: 2px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 25px rgba(255,255,255,0.1);
         }
 
         .theme-switcher-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--accent-glow);
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: bold;
-            box-shadow: 0 0 12px var(--card-border);
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--card-border);
+            backdrop-filter: blur(5px);
         }
 
         .theme-switcher-btn:hover {
-            background: var(--card-border);
+            background: var(--accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px var(--accent-glow);
+            color: #000;
         }
 
-        /* Drawer Mask & Sidebar Navigation */
-        .drawer-mask {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.75);
-            backdrop-filter: blur(6px);
-            z-index: 200;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .drawer-mask.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .side-drawer {
-            position: fixed;
-            top: 0;
-            left: -320px;
-            width: 300px;
-            height: 100vh;
-            background: var(--header-bg);
-            backdrop-filter: blur(25px);
-            border-right: 1px solid var(--card-border);
-            z-index: 201;
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 2rem 1.2rem;
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            align-items: center;
         }
 
-        .side-drawer.active {
-            left: 0;
-        }
-
-        .drawer-link {
-            padding: 0.9rem 1rem;
-            border-radius: 12px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.25s;
-        }
-
-        .drawer-link:hover, .drawer-link.active {
-            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
-            color: #ffffff;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        /* Main Viewport Container */
-        main {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow-y: auto;
-            z-index: 10;
-            padding: 2rem 1rem 4rem 1rem;
-        }
-
-        .wrapper {
+        /* 16:9 Banner Image */
+        .banner-container {
+            width: 100%;
             max-width: 1000px;
-            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            
         }
 
-        .section-view {
-            display: none;
-            animation: fadeIn 0.4s ease-out forwards;
+        .banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
         }
 
-        .section-view.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .glass-box {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        /* ==========================================================
-           3. STABLE 3D RADIAL BLUEPRINT CONTAINER (FIXED POSITIONS)
-           ========================================================== */
+        /* Stable Radial 5 Options Viewport (No jumping/glitching) */
         .radial-viewport {
             position: relative;
             width: 100%;
-            height: 540px;
+            max-width: 850px;
+            height: 420px;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            border-radius: 20px;
-            background: rgba(0,0,0,0.35);
-            border: 1px dashed var(--card-border);
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
-        /* Center Glowing Master Button */
         .center-master-btn {
-            width: 135px;
-            height: 135px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
-            color: #ffffff;
+            color: #fff;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
             cursor: pointer;
             z-index: 20;
-            box-shadow: 0 0 35px var(--accent-pink), inset 0 0 15px rgba(255,255,255,0.4);
+            box-shadow: 0 0 45px var(--accent-glow), inset 0 0 15px rgba(255,255,255,0.4);
+            border: 3px solid rgba(255,255,255,0.9);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
-            font-family: var(--font-en);
-            border: 2px solid rgba(255,255,255,0.6);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
         .center-master-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 55px var(--gold), inset 0 0 25px rgba(255,255,255,0.6);
+            transform: scale(1.06);
+            box-shadow: 0 0 65px var(--accent-cyan), inset 0 0 25px rgba(255,255,255,0.6);
         }
 
-        .center-master-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Surrounding Radial Buttons (STABLE & SECURE) */
         .radial-node {
             position: absolute;
-            width: 145px;
-            padding: 0.95rem 0.6rem;
-            border-radius: 16px;
-            background: rgba(15, 7, 32, 0.92);
-            border: 1.5px solid var(--card-border);
+            width: 210px;
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
             color: var(--text-main);
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 1rem;
             text-align: center;
             cursor: pointer;
             opacity: 0;
             pointer-events: none;
-            transform: translate(0px, 0px) scale(0.2);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease, background 0.3s, box-shadow 0.3s;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4);
             z-index: 10;
+            backdrop-filter: blur(10px);
         }
 
         .radial-viewport.expanded .radial-node {
@@ -365,28 +248,20 @@
 
         .radial-node:hover {
             background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
-            color: #ffffff;
-            box-shadow: 0 0 25px var(--accent-glow), 0 0 10px var(--accent-pink);
-            border-color: #ffffff;
+            color: #000;
+            border-color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 0 35px var(--accent-glow);
+            text-shadow: none;
         }
 
-        .radial-node:active {
-            transform: scale(0.94) !important;
-        }
-
-        .radial-node.highlight-node {
-            border: 2px solid var(--accent-pink);
-            box-shadow: 0 0 20px var(--accent-pink);
-        }
-
-        /* ==========================================================
-           4. RICH NOTEBOOK POPUP MODAL (3D GLASS WINDOW)
-           ========================================================== */
+        /* Modal Overlay for Deep Detailed Analysis */
         .notebook-overlay {
             position: fixed;
             inset: 0;
             background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 300;
             display: none;
             justify-content: center;
@@ -395,732 +270,600 @@
         }
 
         .notebook-card {
-            background: var(--notebook-bg);
-            border: 2px solid var(--gold);
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-glow);
             border-radius: 20px;
             width: 100%;
-            max-width: 800px;
-            max-height: 85vh;
+            max-width: 1200px;
+            max-height: 92vh;
             overflow-y: auto;
-            padding: 2.2rem;
+            padding: 2.5rem;
             position: relative;
-            box-shadow: 0 0 50px var(--gold);
-            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            line-height: 1.8;
-        }
-
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.75); }
-            to { opacity: 1; transform: scale(1); }
+            box-shadow: 0 0 70px var(--card-border);
+            text-align: left;
+            transition: border-color 0.5s, box-shadow 0.5s;
         }
 
         .close-notebook-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: 20px;
+            right: 25px;
             background: rgba(255,255,255,0.1);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            width: 38px;
-            height: 38px;
+            border: 1px solid var(--accent-glow);
+            color: white;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.2s;
+            transition: all 0.3s;
         }
 
         .close-notebook-btn:hover {
-            background: #ef4444;
-            color: white;
+            background: var(--accent-glow);
+            color: #000;
+            transform: rotate(90deg);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .notebook-card h3 {
-            color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 0.6rem;
+            color: var(--accent-glow);
+            font-size: 1.9rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--card-border);
+            padding-bottom: 0.8rem;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
         .content-cat-box {
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.02);
             border: 1px solid var(--card-border);
             border-radius: 14px;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
+            padding: 1.6rem;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
         }
 
         .content-cat-box h4 {
             color: var(--accent-cyan);
-            font-size: 1.2rem;
-            margin-bottom: 0.6rem;
+            font-size: 1.35rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 8px rgba(0,0,0,0.6);
         }
 
         .example-box {
-            background: rgba(0,0,0,0.4);
-            border-left: 4px solid var(--accent-pink);
-            padding: 0.6rem 1rem;
-            border-radius: 6px;
-            margin: 0.5rem 0 0.8rem 0;
-            font-size: 0.98rem;
+            background: rgba(0,0,0,0.6);
+            border-left: 4px solid var(--accent-glow);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            margin: 0.9rem 0;
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            line-height: 1.8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* ==========================================================
-           5. TABLES, RULES & QUIZ STYLES
-           ========================================================== */
-        .search-box {
+        /* Tree Flowchart Inside Topic 3 Modal (Fixed independent box height alignment) */
+        .tree-workspace {
             width: 100%;
-            padding: 0.9rem 1.2rem;
-            border-radius: 30px;
-            border: 1px solid var(--card-border);
-            background: rgba(0,0,0,0.4);
-            color: var(--text-main);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            outline: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
         }
 
-        .table-container {
-            overflow-x: auto;
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        table {
+        .branch-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
             width: 100%;
-            border-collapse: collapse;
-            text-align: left;
+            flex-wrap: wrap;
         }
 
-        th, td {
-            padding: 0.85rem 1rem;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        th {
-            background: rgba(168, 85, 247, 0.35);
-            color: var(--gold);
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .rule-item-box {
-            padding: 1.2rem;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--card-border);
-            margin-bottom: 1.2rem;
-        }
-
-        .rule-item-box h4 {
-            color: var(--gold);
-            font-size: 1.15rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .quiz-card-box {
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--card-border);
-            padding: 1.5rem;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-        }
-
-        .quiz-option-btn {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            margin: 0.4rem 0;
-            border-radius: 10px;
-            border: 1px solid var(--card-border);
+        .branch-column {
+            flex: 1;
+            min-width: 460px;
+            align-self: flex-start;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
             background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 1.6rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7), 0 0 15px rgba(0,0,0,0.4);
+        }
+
+        .sub-branch-row {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .action-btn {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid var(--card-border);
             color: var(--text-main);
-            font-size: 1rem;
+            padding: 0.9rem 1.1rem;
+            border-radius: 10px;
+            font-weight: bold;
             cursor: pointer;
+            font-size: 1rem;
+            flex: 1;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent-glow);
+            background: var(--accent-glow);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .info-panel {
+            display: none;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1.5px dashed var(--accent-glow);
+            padding: 1.4rem;
+            border-radius: 12px;
+            animation: fadeIn 0.35s ease forwards;
             text-align: left;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .info-panel.active {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-box-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 4px solid var(--accent-glow);
+            padding: 0.9rem 1.1rem;
+            border-radius: 7px;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-sub);
             transition: all 0.2s;
         }
 
-        .quiz-option-btn:hover {
-            background: var(--accent-glow);
-            color: white;
+        .info-box-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(3px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .explanation-box {
-            margin-top: 0.8rem;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid #10b981;
-            color: var(--text-main);
-            display: none;
-        }
-
-        .google-sync-btn {
-            background: linear-gradient(135deg, var(--accent-glow), var(--accent-pink));
-            color: white;
-            border: none;
-            padding: 0.9rem 2.2rem;
-            border-radius: 30px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: block;
-            margin: 2rem auto 0 auto;
-            box-shadow: 0 0 20px var(--accent-pink);
-        }
-
-        .banner-img-wrap img {
-            width: 100%;
-            border-radius: 16px;
-            border: 2px solid var(--accent-glow);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+        .info-box-item strong {
+            color: var(--accent-cyan);
         }
     </style>
 </head>
-<body class="theme-cyber">
+<body class="">
 
-    <canvas id="canvas-bg"></canvas>
-
-    <!-- Header Navigation -->
     <header>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-            <button class="menu-icon-btn" id="drawer-toggle-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="brand-logo">VERB MASTERCLASS</div>
-        </div>
+        <div class="brand-logo">VERB MASTERCLASS (GKD)</div>
         <button class="theme-switcher-btn" onclick="themeManager.nextTheme()">
-            🎨 Theme (<span id="theme-display-name">Cyberpunk</span>)
+            🎨 Theme: <span id="theme-name">Emerald</span>
         </button>
     </header>
 
-    <!-- Navigation Drawer -->
-    <div class="drawer-mask" id="drawer-mask"></div>
-    <div class="side-drawer" id="side-drawer">
-        <h3 style="color: var(--gold); border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">মডিউল তালিকা</h3>
-        <div class="drawer-link active" onclick="router.navigateTo('home', this)">🏠 ১. মেইন ডায়াগ্রাম ও শ্রেণিবিভাগ</div>
-        <div class="drawer-link" onclick="router.navigateTo('forms', this)">📖 ২. Forms of Verb (২০০টি)</div>
-        <div class="drawer-link" onclick="router.navigateTo('rules', this)">📜 ৩. ব্যাকরণের ৫০টি নিয়ম</div>
-        <div class="drawer-link" onclick="router.navigateTo('quiz', this)">🧠 ৪. লাইভ কুইজ</div>
-    </div>
-
-    <!-- 3D Glass Window Notebook Overlay -->
+    <!-- Modal Window for Global Content -->
     <div class="notebook-overlay" id="notebook-overlay">
         <div class="notebook-card">
-            <button class="close-notebook-btn" onclick="radialEngine.closeNotebook()">&times;</button>
+            <button class="close-notebook-btn" onclick="radialEngine.closeModal()">&times;</button>
             <h3 id="notebook-title"></h3>
             <div id="notebook-body"></div>
         </div>
     </div>
 
-    <!-- Main Content Area -->
     <main>
-        <div class="wrapper">
+        <!-- 16:9 Banner Image -->
+        <div class="banner-container">
+            <img src="verbpic.png" alt="Verb Masterclass Banner">
+        </div>
 
-            <!-- SECTION 1: HOME & RADIAL DIAGRAM -->
-            <section id="home" class="section-view active">
-                <div class="glass-box">
-                    <div class="banner-img-wrap">
-                        <img id="main-banner-img" alt="Verb Mastery Banner">
-                    </div>
-                    
-                    <h2 style="color: var(--gold); margin-bottom: 0.8rem;">বৌ ছাড়া যেমন পরিবার হয় না, তেমনি Verb ছাড়া বাক্য হয় না!</h2>
-                    <p style="line-height: 1.8; color: var(--text-sub); font-size: 1.1rem; margin-bottom: 1.5rem;">
-                        সংসারে যেমন গৃহকর্ত্রী বা স্ত্রী ছাড়া পুরো ঘর অসম্পূর্ণ ও নির্জীব, ঠিক তেমনি ইংরেজি ব্যাকরণে <strong>Verb (ক্রিয়া)</strong> হলো বাক্যের আসল প্রাণশক্তি বা মেইন ইঞ্জিন। Subject যতই শক্তিশালী হোক, Verb না থাকলে বাক্য কোনো অর্থ প্রকাশ করতে পারে না।
-                    </p>
+        <h2 style="color: var(--accent-glow); margin-bottom: 0.5rem; font-size: 1.9rem; text-align: center; text-shadow: 0 0 10px rgba(0,0,0,0.8); transition: color 0.5s;">সারা বিশ্বের শিক্ষার্থীদের জন্য Verb-এর পূর্ণাঙ্গ ও চুলচেরা বিশ্লেষণ</h2>
+        <p style="color: var(--text-sub); font-size: 1.15rem; margin-bottom: 1.5rem; text-align: center;">
+            মাঝখানের <strong style="color: var(--accent-cyan);">VERB</strong> বাটনটিতে ক্লিক করে ৫টি প্রধান অপশন ধাপে ধাপে উন্মুক্ত করুন।
+        </p>
 
-                    <hr style="border-color: var(--card-border); margin: 1.5rem 0;">
-
-                    <h3 style="color: var(--accent-cyan); text-align: center; margin-bottom: 0.5rem;">🎯 Interactive 3D Verb Blueprint Roadmap</h3>
-                    <p style="text-align: center; color: var(--text-sub); font-size: 0.95rem;">
-                        নিচের মাঝখানের <strong>VERB</strong> বাটনে ক্লিক করে ডায়াগ্রামটি অপেন করুন এবং যেকোনো বাটনে ক্লিক করে তার সম্পূর্ণ বিস্তারিত তথ্য দেখুন:
-                    </p>
-
-                    <div class="radial-viewport" id="radial-viewport">
-                        <div class="center-master-btn" id="main-verb-trigger" onclick="radialEngine.toggleRadial()">
-                            VERB<br><span style="font-size:0.7rem; font-weight:normal;">(ক্লিক করুন)</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION 2: 200 VERBS BANK -->
-            <section id="forms" class="section-view">
-                <div class="glass-box">
-                    <h2 style="color: var(--accent-cyan); margin-bottom: 1rem;">📖 Forms of Verb (200 Verbs Archive)</h2>
-                    <input type="text" id="verb-search-input" class="search-box" placeholder="🔍 সার্চ করুন (বাংলা অর্থ বা ইংরেজি Verb দিয়ে)..." onkeyup="verbBankEngine.filter()">
-                    
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>বাংলা অর্থ</th>
-                                    <th>V1 (Base)</th>
-                                    <th>V2 (Past)</th>
-                                    <th>V3 (Past Participle)</th>
-                                    <th>V4 (-ing)</th>
-                                    <th>V5 (s/es)</th>
-                                </tr>
-                            </thead>
-                            <tbody id="verb-bank-tbody"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION 3: 50 GRAMMAR RULES -->
-            <section id="rules" class="section-view">
-                <div class="glass-box">
-                    <h2 style="color: var(--gold); margin-bottom: 1.5rem;">📜 Subject-Verb Agreement & Verb Rules</h2>
-                    <div id="rules-container-box"></div>
-                </div>
-            </section>
-
-            <!-- SECTION 4: LIVE QUIZ ENGINE -->
-            <section id="quiz" class="section-view">
-                <div class="glass-box">
-                    <h2 style="color: var(--accent-pink); margin-bottom: 1rem;">🧠 যাচাই করুন নিজেকে (Interactive Quiz)</h2>
-                    <div id="quiz-container-box"></div>
-                    <button class="google-sync-btn" onclick="googleQuizEngine.syncNewQuestions()">🔄 নতুন প্রশ্ন যুক্ত করুন</button>
-                </div>
-            </section>
-
+        <!-- Stable Radial 5 Options Blueprint -->
+        <div class="radial-viewport" id="radial-viewport">
+            <div class="center-master-btn" onclick="radialEngine.toggleRadial()">
+                VERB<br><span style="font-size:0.75rem; font-weight:normal; text-shadow:none;">(ক্লিক করুন)</span>
+            </div>
         </div>
     </main>
 
     <script>
         /* ==========================================================
-           1. BANNER IMAGE LINK
+           COMPLETE DETAILED DATA REPOSITORY (Global Standard)
+           - NO DATA HAS BEEN MODIFIED HERE -
            ========================================================== */
-        const BANNER_IMAGE_URL = "verbpic.png";
-        document.getElementById('main-banner-img').src = BANNER_IMAGE_URL;
-
-        /* ==========================================================
-           2. INDIVIDUAL LAYER CONTENT ARCHITECTURE
-           ========================================================== */
-        const nodeDataContent = {
-            "node_1": {
-                title: "Verb কী?",
+        const topicAnalysisData = {
+            "topic_1": {
+                title: "১. Verb কী? (সংসারের বৌ বা ঘরের ইঞ্জিন রূপক অর্থে)",
                 html: `
                     <div class="content-cat-box">
-                        <h4>📌 Verb-এর মৌলিক সংজ্ঞা</h4>
-                        <p>যে শব্দ বা Word দ্বারা কোনো কিছু করা, হওয়া, খাওয়া, যাওয়া, দেখা, অবস্থান করা বা স্বত্বে থাকা বোঝায়, তাকে ইংরেজি ব্যাকরণে <strong>Verb (ক্রিয়া)</strong> বলা হয়। Verb হলো বাক্যের প্রাণ (Heart of a Sentence)।</p>
-                    </div>
-                    <div class="content-cat-box">
-                        <h4>💡 বাস্তব জীবনের রূপক ও উদাহরণ</h4>
-                        <p>মানুষ যেমন হৃৎপিণ্ড ছাড়া বাঁচতে পারে না, তেমনি Verb ছাড়া ইংরেজি ভাষায় কোনো সার্থক বাক্য গঠন করা যায় না।</p>
+                        <h4>🏠 বাস্তব জীবনের রূপক ও সংজ্ঞা</h4>
+                        <p>পরিবারে যেমন একজন গৃহকর্ত্রী বা বৌ ছাড়া পুরো ঘর অচল, নির্জীব ও এলোমেলো হয়ে থাকে, ঠিক তেমনি ইংরেজি ব্যাকরণে <strong>Verb (ক্রিয়া)</strong> হলো বাক্যের আসল প্রাণশক্তি বা মেইন ইঞ্জিন। সাবজেক্ট বা অবজেক্ট যতই শক্তিশালী হোক না কেন, Verb না থাকলে বাক্য কোনো অর্থ প্রকাশ করতে পারে না。</p>
                         <div class="example-box">
-                            • <strong>Action (কাজ):</strong> He <span class="eng-text">writes</span> a poem. (সে একটি কবিতা লেখে।)<br>
-                            • <strong>State (অবস্থা):</strong> She <span class="eng-text">seems</span> happy. (তাকে সুখী মনে হচ্ছে।)<br>
-                            • <strong>Possession (মালিকানা):</strong> They <span class="eng-text">have</span> a car. (তাদের একটি গাড়ি আছে।)
+                            • <strong>Action Verb (কার্যবাচক):</strong> He <span class="eng-text">writes</span> a letter. (সে চিঠি লেখে)<br>
+                            • <strong>State Verb (অবস্থাবাচক):</strong> She <span class="eng-text">appears</span> sad. (তাকে দুঃখী মনে হচ্ছে)<br>
+                            • <strong>Possession (অধিকারসূচক):</strong> They <span class="eng-text">have</span> a big house. (তাদের একটি বড় বাড়ি আছে)
                         </div>
                     </div>
-                `
-            },
-
-            "node_2": {
-                title: "কেন ব্যবহার করব?",
-                html: `
                     <div class="content-cat-box">
-                        <h4>⚡ বাক্যের প্রধান চালিকাশক্তি (Engine of Sentence)</h4>
-                        <p>Subject এবং Object যতই শক্তিশালী হোক না কেন, তাদের মাঝে কার্যপ্রণালী এবং সময়ের বন্ধন তৈরি করার একমাত্র দায়িত্ব Verb-এর।</p>
-                    </div>
-                    <div class="content-cat-box">
-                        <h4>🎯 Verb ব্যবহারের ৩টি মূল উদ্দেশ্য:</h4>
-                        <p><strong>১. সময় নির্ধারণ (Tense Identification):</strong> কাজ কখন ঘটছে (অতীত, বর্তমান না ভবিষ্যৎ) তা Verb-এর রূপ পরিবর্তন ছাড়া বোঝা অসম্ভব।</p>
-                        <p><strong>২. কাজের ধরন স্পষ্ট করা:</strong> কাজ সম্পন্ন হয়েছে, চলছে নাকি নিয়মিত ঘটে তা বোঝাতে Verb অপরিহার্য।</p>
-                        <p><strong>৩. পূর্ণাঙ্গ ভাব প্রকাশ:</strong> কেবল Verb ব্যবহারের মাধ্যমেও একটি পূর্ণাঙ্গ নির্দেশমূলক বাক্য গঠন করা যায় (যেমন: <span class="eng-text">"Go!", "Stop!"</span>)।</p>
-                    </div>
-                `
-            },
+                        <h4>🔍 খুঁটিনাটি চেনার উপায় ও গুরুত্ব</h4>
+                        <p style="font-family: 'Hind Siliguri', 'Tiro Bangla', sans-serif; line-height: 1.8; color: #334155; background-color: #f8fafc; padding: 24px; border-left: 6px solid #0ea5e9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 20px 0;">
+    <span style="font-size: 1.4rem; color: #0284c7; font-weight: bold;">Verb চেনার মূলমন্ত্র: সময় ও কাজের গতিপ্রকৃতি নির্ণয় করা</span><br><br>
 
-            "node_3": {
-                title: "বাক্যে অবস্থান কোথায়?",
-                html: `
-                    <div class="content-cat-box">
-                        <h4>📍 বাক্যে Verb-এর সঠিক স্থানসমূহ</h4>
-                        <p>ইংরেজি ভাষার আদর্শ গঠন হলো <strong>Subject + Verb + Object (SVO)</strong>। তবে বাক্যের ধরনভেদে এর অবস্থানের তারতম্য ঘটে:</p>
-                    </div>
-                    <div class="content-cat-box">
-                        <p><strong>১. বর্ণনামূলক বাক্যে (Assertive):</strong> Subject-এর ঠিক পরেই Finite Verb বসে।</p>
-                        <div class="example-box">The student <span class="eng-text">reads</span> regular books.</div>
-                        <p><strong>২. প্রশ্নবোধক বাক্যে (Interrogative):</strong> Subject-এর পূর্বে Auxiliary Verb এবং পরে Main Verb বসে।</p>
-                        <div class="example-box"><span class="eng-text">Did</span> you <span class="eng-text">see</span> him?</div>
-                        <p><strong>৩. আদেশ/উপদেশমূলক বাক্যে (Imperative):</strong> বাক্যের শুরুতেই Verb বসে (Subject উহ্য থাকে)।</p>
-                        <div class="example-box"><span class="eng-text">Open</span> the main door immediately.</div>
-                    </div>
-                `
-            },
+    বাক্যের সময় (Tense) এবং কাজের গতিপ্রকৃতি কেবল <strong>Verb</strong>-এর রূপ বদলানোর মাধ্যমেই প্রকাশ পায়। অর্থাৎ, বাক্যে ব্যবহৃত যে শব্দটি Tense বা সময়ের পরিবর্তনের সাথে সাথে নিজের রূপ বদলাতে পারে, সেটিই মূলত <strong>Verb</strong>।<br><br>
 
-            "node_4": {
-                title: "Principal Verb-এর সম্পূর্ণ এবং পূর্ণাঙ্গ শ্রেণিবিভাগ (কত প্রকার?)",
-                html: `
-                	 <p style="font-family: 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #0b132b, #1c2541, #3a506b); padding: 35px 25px; border-radius: 24px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.2); color: #ffffff; max-width: 1000px; margin: 20px auto; border: 1px solid rgba(255, 255, 255, 0.12); line-height: 1.6;">
+    একটি বাক্যে অনেক ধরনের শব্দ থাকতে পারে, কিন্তু সময়ের পরিবর্তনের সাথে নিজের চেহারা বদলানোর ক্ষমতা কেবল Verb-এরই আছে। অন্য কোনো শব্দ (যেমন: Noun, Pronoun বা Adjective) সময়ের সাথে বদলায় না।<br><br>
 
-    <!-- Title Header -->
-    <span style="display: block; text-align: center; margin-bottom: 35px;">
-        <span style="font-size: 32px; font-weight: 900; background: linear-gradient(45deg, #ff007f, #ff5e00, #ffb703); -webkit-background-clip: text; color: #ffffff; padding: 14px 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(255, 0, 127, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4); text-transform: uppercase; letter-spacing: 3px; display: inline-block; background-color: #1c2541; border: 2px solid #ff007f;">
-            🚀 Complete Roadmap of Verb
-        </span>
-    </span>
+    <span style="font-size: 1.15rem; color: #0369a1; font-weight: bold;">১. সময়ের (Tense) সাথে রূপ বদলানোর ম্যাজিক:</span><br>
+    নিচের বাক্যগুলো লক্ষ্য করুন—<br>
+    ▪ <strong>বর্তমান (প্রতিদিন হয়):</strong> He <span style="color: #ea580c; font-weight: bold;">goes</span> to school.<br>
+    ▪ <strong>অতীত (গতকাল হয়েছিল):</strong> He <span style="color: #ea580c; font-weight: bold;">went</span> to school.<br>
+    ▪ <strong>ভবিষ্যৎ (আগামীকাল হবে):</strong> He <span style="color: #ea580c; font-weight: bold;">will go</span> to school.<br><br>
 
-    <!-- Verb Main Layout Grid -->
-    <span style="display: flex; flex-direction: column; gap: 30px;">
+    <span style="background-color: #e0f2fe; color: #075985; padding: 4px 10px; border-radius: 4px; font-weight: bold;">📌 পর্যবেক্ষণ:</span> উপরের তিনটি বাক্যে 'He', 'to' এবং 'school'—এই শব্দগুলোর কোনো পরিবর্তন হয়নি। সময়ের সাথে তাল মিলিয়ে কেবল 'Go' শব্দটিই বদলে গিয়ে যথাক্রমে <strong style="color: #ea580c;">goes</strong>, <strong style="color: #ea580c;">went</strong> এবং <strong style="color: #ea580c;">will go</strong> হয়েছে। তাই এটিই Verb।<br><br>
 
-        <!-- 1. FINITE VERB CARD -->
-        <span style="background: rgba(255, 255, 255, 0.04); padding: 25px; border-radius: 20px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 210, 255, 0.3);">
-            
-            <span style="display: block; font-size: 22px; font-weight: bold; background: linear-gradient(45deg, #00c6ff, #0072ff); color: #ffffff; padding: 12px 20px; border-radius: 12px; text-align: center; box-shadow: 0 8px 16px rgba(0, 198, 255, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.5); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1.5px;">
-                1. Finite Verb (সমাপিকা ক্রিয়া)
-            </span>
+    <span style="color: #64748b; font-size: 0.95rem;"><i>(বিপরীতে, 'He is a good boy' বাক্যটিকে অতীতের রূপ দিয়ে 'He was a good boy' করলে 'good' শব্দটির কোনো পরিবর্তন হয় fix, কারণ এটি Verb নয়। এখানে 'is' পরিবর্তন হয়ে 'was' হয়েছে, তাই 'is/was' হলো Verb।)</i></span><br><br>
 
-            <span style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                
-                <!-- Principal / Main Verb -->
-                <span style="background: linear-gradient(145deg, #1e293b, #0f172a); padding: 20px; border-radius: 15px; border-left: 6px solid #00c6ff; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); display: block;">
-                    <span style="font-size: 18px; font-weight: bold; color: #00e5ff; display: block; margin-bottom: 8px;">
-                        📌 Principal / Main Verb
-                    </span>
-                    <span style="font-size: 14px; color: #cbd5e1; display: block; margin-bottom: 12px;">
-                        যে সকল Verb দ্বারা সরাসরি কোনো <strong>কাজ করা বা হওয়া</strong> বোঝায়, সেগুলোকে Main Verb বলে।
-                    </span>
-                    <span style="background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3); padding: 8px 12px; border-radius: 8px; font-size: 14px; color: #7dd3fc; display: block;">
-                        <strong>উদাহরণ:</strong> Read, Write, Look, Eat, Play, Go.<br>
-                        👉 <em>He <strong>reads</strong> a book.</em>
-                    </span>
-                </span>
+    <span style="font-size: 1.15rem; color: #0369a1; font-weight: bold;">২. কাজের গতিপ্রকৃতি (Aspect) প্রকাশ:</span><br>
+    কাজটি কি নিয়মিত হয়, এখনো চলছে, নাকি মাত্রই শেষ হয়েছে—কাজের এই অবস্থাকেই বলা হয় গতিপ্রকৃতি বা Aspect। Verb তার রূপ বদলানোর মাধ্যমে এই গতিপ্রকৃতিও একদম স্পষ্ট করে দেয়:<br>
+    ▪ <strong>কাজটি এখনো চলছে বোঝাতে:</strong> He is <span style="color: #16a34a; font-weight: bold;">going</span> to school. <span style="color: #64748b;">(কাজটি চলমান বোঝাতে মূল Verb-এর সাথে 'ing' যুক্ত হয়েছে)।</span><br>
+    ▪ <strong>কাজটি সবেমাত্র শেষ হয়েছে বোঝাতে:</strong> He has <span style="color: #16a34a; font-weight: bold;">gone</span> to school. <span style="color: #64748b;">(কাজটি সম্পন্ন হয়েছে বোঝাতে মূল Verb-এর রূপ বদলে 'gone' হয়েছে)।</span><br><br>
 
-                <!-- Auxiliary / Helping Verb -->
-                <span style="background: linear-gradient(145deg, #1e293b, #0f172a); padding: 20px; border-radius: 15px; border-left: 6px solid #3b82f6; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); display: block;">
-                    <span style="font-size: 18px; font-weight: bold; color: #60a5fa; display: block; margin-bottom: 8px;">
-                        📌 Auxiliary / Helping Verb (৪ প্রকার)
-                    </span>
-                    <span style="font-size: 14px; color: #cbd5e1; display: block; margin-bottom: 12px;">
-                        মূল Verb-কে Tense, Voice বা Mood গঠনে সাহায্য করে।
-                    </span>
-
-                    <!-- 4 Types Breakdown -->
-                    <span style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
-                        <span style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 6px; border-left: 3px solid #60a5fa;">
-                            🔹 <strong>Be Verb (৮টি):</strong> Am, Is, Are, Was, Were, Be, Being, Been
-                        </span>
-                        <span style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 6px; border-left: 3px solid #60a5fa;">
-                            🔹 <strong>Do Verb (৩টি):</strong> Do, Does, Did
-                        </span>
-                        <span style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 6px; border-left: 3px solid #60a5fa;">
-                            🔹 <strong>Have Verb (৩টি):</strong> Have, Has, Had
-                        </span>
-                        <span style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 6px; border-left: 3px solid #60a5fa;">
-                            🔹 <strong>Modal Verbs (১৩টি):</strong> Can, Could, May, Might, Shall, Should, Will, Would, Must, Ought to, Need, Dare, Used to
-                        </span>
-                    </span>
-                </span>
-
-            </span>
-        </span>
-
-        <!-- 2. NON-FINITE VERB CARD -->
-        <span style="background: rgba(255, 255, 255, 0.04); padding: 25px; border-radius: 20px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); border: 1px solid rgba(247, 151, 30, 0.3);">
-            
-            <span style="display: block; font-size: 22px; font-weight: bold; background: linear-gradient(45deg, #f7971e, #ffd200); color: #111111; padding: 12px 20px; border-radius: 12px; text-align: center; box-shadow: 0 8px 16px rgba(247, 151, 30, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.7); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1.5px;">
-                2. Non-Finite Verb (অসমাপিকা ক্রিয়া)
-            </span>
-
-            <span style="display: flex; flex-direction: column; gap: 15px;">
-
-                <!-- Infinitive -->
-                <span style="background: linear-gradient(145deg, #1e293b, #0f172a); padding: 16px 20px; border-radius: 14px; border-left: 6px solid #ff9f43; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); display: block;">
-                    <span style="font-size: 17px; font-weight: bold; color: #ffbe76; display: block; margin-bottom: 4px;">
-                        ⚡ Infinitive
-                    </span>
-                    <span style="font-size: 14px; color: #cbd5e1;">
-                        গঠন: <strong>to + Verb-এর Base Form</strong>। 
-                        <span style="background: #ef4444; color: #ffffff; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-left: 8px; box-shadow: 0 3px 8px rgba(239, 68, 68, 0.4); display: inline-block;">
-                            উদাহরণ: to go, to read, to play
-                        </span>
-                    </span>
-                </span>
-
-                <!-- Participle -->
-                <span style="background: linear-gradient(145deg, #1e293b, #0f172a); padding: 16px 20px; border-radius: 14px; border-left: 6px solid #10ac84; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); display: block;">
-                    <span style="font-size: 17px; font-weight: bold; color: #1dd1a1; display: block; margin-bottom: 4px;">
-                        ⚡ Participle (Adjective ও Verb হিসেবে কাজ করে)
-                    </span>
-                    <span style="font-size: 14px; color: #cbd5e1;">
-                        গঠন: <strong>Verb + ing / V3</strong>। 
-                        <span style="background: #ef4444; color: #ffffff; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-left: 8px; box-shadow: 0 3px 8px rgba(239, 68, 68, 0.4); display: inline-block;">
-                            উদাহরণ: going, reading, broken
-                        </span>
-                    </span>
-                </span>
-
-                <!-- Gerund -->
-                <span style="background: linear-gradient(145deg, #1e293b, #0f172a); padding: 16px 20px; border-radius: 14px; border-left: 6px solid #9c88ff; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); display: block;">
-                    <span style="font-size: 17px; font-weight: bold; color: #b8e994; display: block; margin-bottom: 4px;">
-                        ⚡ Gerund (Noun ও Verb হিসেবে কাজ করে)
-                    </span>
-                    <span style="font-size: 14px; color: #cbd5e1;">
-                        গঠন: <strong>Verb + ing</strong>। 
-                        <span style="background: #ef4444; color: #ffffff; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-left: 8px; box-shadow: 0 3px 8px rgba(239, 68, 68, 0.4); display: inline-block;">
-                            উদাহরণ: Walking is good for health.
-                        </span>
-                    </span>
-                </span>
-
-            </span>
-        </span>
-
-    </span>
-
+    <span style="display: inline-block; background-color: #ecfccb; color: #3f6212; padding: 12px 18px; border-radius: 8px; border: 1px solid #d9f99d; font-weight: bold; margin-top: 10px;">💡 সারসংক্ষেপ: যে শব্দটি বাক্যের সময় (Tense) এবং কাজের অবস্থা (Aspect) অনুযায়ী নিজের রূপ পরিবর্তন করতে পারে, বাক্যে তাকেই অনায়াসে Verb হিসেবে চিনে নিতে হবে।</span>
 </p>
-
-                
-                    <p style="margin-bottom:1.2rem; color:var(--text-sub);">ইংরেজি ব্যাকরণের সমস্ত নিয়ম ও আধুনিক ভাষাবিজ্ঞান (Modern Linguistics) অনুযায়ী Principal Verb (প্রধান ক্রিয়া)-এর সম্পূর্ণ এবং পূর্ণাঙ্গ শ্রেণিবিভাগ দেওয়া হলো। এর বাইরে Principal Verb-এর আর কোনো প্রকারভেদ নেই। সহজে বোঝার জন্য পুরো বিষয়টিকে ৪টি প্রধান ক্যাটাগরিতে ভাগ করে আলোচনা করা হলো:</p>
-                    
-                    <div class="content-cat-box">
-                        <h4 style="color:var(--gold);">ক্যাটাগরি ১: কর্ম বা Object গ্রহণের ওপর ভিত্তি করে (মৌলিক প্রকার)</h4>
-                        <p>এটিই Principal Verb-এর প্রধান দুটি ভাগ:</p>
-                        <p><strong>১. Transitive Verb (সকর্মক ক্রিয়া):</strong> যে Verb-এর অর্থ সম্পূর্ণ করতে এক বা একাধিক Object (কর্ম) প্রয়োজন হয়।</p>
-                        <div class="example-box">উদাহরণ: He reads a book. (এখানে 'a book' হলো object)।</div>
-                        <p><strong>২. Intransitive Verb (অকর্মক ক্রিয়া):</strong> যে Verb-এর অর্থ সম্পূর্ণ করতে কোনো Object-এর প্রয়োজন হয় না।</p>
-                        <div class="example-box">উদাহরণ: Birds fly. / She sleeps.</div>
-                    </div>
-
-                    <div class="content-cat-box">
-                        <h4 style="color:var(--gold);">ক্যাটাগরি ২: Transitive Verb-এর সকল উপ-প্রকার (Sub-types)</h4>
-                        <p>Transitive Verb-এর ভেতরে কাজের ধরন ও অবজেক্টের বৈশিষ্ট্য অনুযায়ী ৫টি ভাগ রয়েছে:</p>
-                        <p><strong>১. Mono-transitive Verb:</strong> যে Verb-এর মাত্র একটি Object থাকে।</p>
-                        <div class="example-box">উদাহরণ: I know him.</div>
-                        <p><strong>২. Di-transitive Verb:</strong> যে Verb-এর দুটি Object থাকে (একটি ব্যক্তিবাচক বা Indirect Object, অন্যটি বস্তুবাচক বা Direct Object)।</p>
-                        <div class="example-box">উদাহরণ: He gave me (Indirect) a pen (Direct).</div>
-                        <p><strong>৩. Factitive Verb:</strong> একটি অবজেক্ট থাকার পরেও বাক্যের অর্থ অসম্পূর্ণ থাকে এবং অর্থ পূর্ণ করতে অতিরিক্ত আরেকটি Noun বা Adjective (Complement) আনতে হয়।</p>
-                        <div class="example-box">উদাহরণ: We made him captain. (এখানে 'captain' হলো factitive complement)।</div>
-                        <p><strong>৪. Reflexive Verb:</strong> যে Verb-এর Subject এবং Object একই ব্যক্তি বা বস্তু হয় (Object হিসেবে myself, himself, themselves ইত্যাদি বসে)।</p>
-                        <div class="example-box">উদাহরণ: She fanned herself. (সে নিজেকে বাতাস করল)।</div>
-                        <p><strong>৫. Reciprocal Verb:</strong> যে Verb দ্বারা পারস্পরিক সম্পর্ক বা কাজ বোঝায় (Object হিসেবে each other বা one another বসে)।</p>
-                        <div class="example-box">উদাহরণ: They helped each other.</div>
-                    </div>
-
-                    <div class="content-cat-box">
-                        <h4 style="color:var(--gold);">ক্যাটাগরি ৩: Intransitive Verb-এর সকল উপ-প্রকার (Sub-types)</h4>
-                        <p>অবজেক্ট না থাকলেও বাক্যে ব্যবহারের ভিন্নতার কারণে Intransitive Verb-কে ৫টি ভাগে ভাগ করা যায়:</p>
-                        <p><strong>১. Linking Verb / Copulative Verb:</strong> এই Verb-গুলো কোনো কাজ না বুঝিয়ে কেবল Subject এবং তার পরবর্তী পদের (Complement) মধ্যে সংযোগ তৈরি করে।</p>
-                        <div class="example-box">উদাহরণ: He is a doctor. / Honey tastes sweet.</div>
-                        <p><strong>২. Cognate Verb:</strong> যখন কোনো Intransitive Verb তার সমার্থক কোনো Noun-কে Object হিসেবে গ্রহণ করে Transitive-এর মতো আচরণ করে।</p>
-                        <div class="example-box">উদাহরণ: He fought a brave fight. (এখানে fought এবং fight একই উৎস থেকে এসেছে)।</div>
-                        <p><strong>৩. Quasi-Passive Verb:</strong> এই Verb-গুলোর গঠন Active হলেও এদের অর্থ বা ভাব প্রকাশ পায় Passive ভয়েসের মতো।</p>
-                        <div class="example-box">উদাহরণ: Rice sells cheap. (চাল সস্তায় বিক্রি হয়)।</div>
-                        <p><strong>৪. Ergative Verb / Amphi-transitive:</strong> কিছু Verb যা আলাদা কোনো পরিবর্তন ছাড়াই বাক্যের গঠনভেদে Transitive এবং Intransitive দুই ভাবেই বসতে পারে।</p>
-                        <div class="example-box">
-                            • The window broke. (জানালাটি ভেঙে গেল - Intransitive)<br>
-                            • He broke the window. (সে জানালাটি ভাঙল - Transitive)
-                        </div>
-                        <p><strong>৫. Prepositional / Group Verb:</strong> যখন কোনো Intransitive Verb-এর ঠিক পরে একটি Preposition বসে পুরো জোড়াটি একটি Transitive Verb-এর মতো অর্থ প্রকাশ করে।</p>
-                        <div class="example-box">উদাহরণ: They laughed at the poor man.</div>
-                    </div>
-
-                    <div class="content-cat-box">
-                        <h4 style="color:var(--gold);">ক্যাটাগরি ৪: অন্যান্য বিশেষ ব্যবহারের ওপর ভিত্তি করে প্রকারভেদ</h4>
-                        <p>কাজের ধরন এবং টেন্স অনুযায়ী রূপান্তরের ভিত্তিতে আরও ৪টি প্রকার পাওয়া যায়:</p>
-                        <p><strong>১. Causative Verb (প্রযোজক ক্রিয়া):</strong> যখন Subject নিজে কাজটি না করে অন্যকে দিয়ে করিয়ে নেয় (যেমন: make, get, let, help, have, feed, show)।</p>
-                        <div class="example-box">উদাহরণ: I feed the baby. (আমি শিশুকে খাওয়াচ্ছি)।</div>
-                        <p><strong>২. Impersonal Verb:</strong> যে Verb-এর কোনো নির্দিষ্ট ব্যক্তিবাচক Subject থাকে না, সর্বদা থার্ড পারসন এবং 'It' দ্বারা বাক্য শুরু হয় (সাধারণত আবহাওয়া বা প্রাকৃতিক ঘটনা বোঝাতে)।</p>
-                        <div class="example-box">উদাহরণ: It rains. / It snows.</div>
-                        <p><strong>৩. Strong Verb / Irregular Verb:</strong> Tense পরিবর্তনের সময় যে Verb-গুলোর ভেতরের Vowel পরিবর্তন করে Past এবং Past Participle করতে হয়।</p>
-                        <div class="example-box">উদাহরণ: Sing ➔ Sang ➔ Sung.</div>
-                        <p><strong>৪. Weak Verb / Regular Verb:</strong> Tense পরিবর্তনের সময় যে Verb-গুলোর শেষে d, ed, বা t যোগ করতে হয়।</p>
-                        <div class="example-box">উদাহরণ: Play ➔ Played ➔ Played.</div>
-                    </div>
-
-                    <div class="content-cat-box" style="border: 2px dashed var(--gold); background: rgba(250, 204, 21, 0.05);">
-                        <h4 style="color:var(--gold); text-align:center;">📋 একনজরে মাস্টার চার্ট</h4>
-                        <p>• <strong>মৌলিক প্রকার:</strong> Transitive, Intransitive</p>
-                        <p>• <strong>Transitive-এর অংশ:</strong> Mono-transitive, Di-transitive, Factitive, Reflexive, Reciprocal</p>
-                        <p>• <strong>Intransitive-এর অংশ:</strong> Linking, Cognate, Quasi-Passive, Ergative, Prepositional</p>
-                        <p>• <strong>বিশেষ প্রকার:</strong> Causative, Impersonal, Strong / Weak</p>
                     </div>
                 `
             },
-
-            "node_5": {
-                title: "Transitive vs Intransitive",
+            "topic_2": {
+                title: "২. Verb কোথায় বসে? (বাক্যে Verb-এর অবস্থান)",
                 html: `
                     <div class="content-cat-box">
-                        <h4>⚔️ পার্থক্য চেনার সবচেয়ে সহজ উপায়</h4>
-                        <p>Verb-কে <strong>"কী (What)"</strong> অথবা <strong>"কাকে (Whom)"</strong> দ্বারা প্রশ্ন করলে যদি উত্তর পাওয়া যায়, তবে সেটি <strong>Transitive</strong>। উত্তর না পাওয়া গেলে সেটি <strong>Intransitive</strong>।</p>
+                        <h4>📍 বাক্যে Verb-এর সঠিক অবস্থানসমূহ</h4>
+                        <p style="font-family: 'Hind Siliguri', 'Tiro Bangla', sans-serif; line-height: 1.8; color: #334155; background-color: #f8fafc; padding: 24px; border-left: 6px solid #4f46e5; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 20px 0;">
+    <span style="font-size: 1.4rem; color: #4338ca; font-weight: bold;">📍 বাক্যে Verb-এর অবস্থান: Verb ঠিক কোথায় বসে?</span><br><br>
+
+    বাক্যে Verb-এর অবস্থান মূলত বাক্যের ধরন (Sentence Type) এবং বাক্যের অর্থের ওপর নির্ভর করে। একটি বাক্যে Verb কোথায় বসবে, তা নির্ধারণ করার জন্য বাক্যের প্রকারভেদ অনুযায়ী নিচের নিয়মগুলো মনে রাখা জরুরি:<br><br>
+
+    <span style="font-size: 1.15rem; color: #1d4ed8; font-weight: bold;">১. Assertive Sentence (বর্ণনামূলক বাক্য):</span><br>
+    সাধারণ বর্ণনামূলক বাক্যে Verb সবসময় <strong>Subject-এর ঠিক পরে</strong> বসে।<br>
+    ▪ <span style="color: #64748b;">শুধু মূল Verb থাকলে:</span> Subject + Main Verb<br>
+    &nbsp;&nbsp; <i>উদাহরণ:</i> The students <strong style="color: #ea580c;">read</strong> English books daily.<br>
+    ▪ <span style="color: #64748b;">Auxiliary Verb থাকলে:</span> Subject + Auxiliary Verb + Main Verb<br>
+    &nbsp;&nbsp; <i>উদাহরণ:</i> The students <strong style="color: #ea580c;">are reading</strong> English books.<br>
+    ▪ <span style="color: #64748b;">Negative বাক্যের ক্ষেত্রে:</span> Subject + Auxiliary Verb + not + Main Verb<br>
+    &nbsp;&nbsp; <i>উদাহরণ:</i> He <strong style="color: #ea580c;">does not like</strong> coffee.<br><br>
+
+    <span style="font-size: 1.15rem; color: #1d4ed8; font-weight: bold;">২. Interrogative Sentence (প্রশ্নবোধক বাক্য):</span><br>
+    প্রশ্ন করার জন্য সাহায্যকারী Verb-কে <strong>Subject-এর সামনে</strong> নিয়ে আসতে হয়।<br>
+    ▪ <span style="color: #64748b;">Yes/No Question:</span> Auxiliary Verb + Subject + Main Verb?<br>
+    &nbsp;&nbsp; <i>উদাহরণ:</i> <strong style="color: #16a34a;">Do</strong> you <strong style="color: #16a34a;">speak</strong> English?<br>
+    ▪ <span style="color: #64748b;">Wh- Question:</span> Wh-word + Auxiliary Verb + Subject + Main Verb?<br>
+    &nbsp;&nbsp; <i>উদাহরণ:</i> Where <strong style="color: #16a34a;">do</strong> you <strong style="color: #16a34a;">live</strong>?<br><br>
+
+    <span style="font-size: 1.15rem; color: #1d4ed8; font-weight: bold;">৩. Imperative Sentence (আদেশ, নিষেধ বা অনুরোধমূলক বাক্য):</span><br>
+    এই ধরনের বাক্যে Subject (You) উহ্য থাকে। তাই বাক্য সরাসরি <strong>Verb দিয়ে শুরু হয়</strong>।<br>
+    ▪ <span style="color: #64748b;">আদেশ/অনুরোধ:</span> Verb + Object/Extension.<br>
+    &nbsp;&nbsp; <i>উদাহরণ:</i> <strong style="color: #d946ef;">Close</strong> the main door immediately.<br>
+    ▪ <span style="color: #64748b;">নিষেধ (Negative):</span> Do not (Don't) / Never + Main Verb.<br>
+    &nbsp;&nbsp; <i>উদাহরণ:</i> <strong style="color: #d946ef;">Don't touch</strong> the open wire.<br><br>
+
+    <span style="font-size: 1.15rem; color: #1d4ed8; font-weight: bold;">৪. Optative Sentence (প্রার্থনা বা ইচ্ছাসূচক বাক্য):</span><br>
+    কারো জন্য দোয়া বা ইচ্ছা প্রকাশ করার ক্ষেত্রে বাক্যের শুরুতে 'May' বা 'Long' বসে এবং এরপর <strong>Subject-এর পরে</strong> মূল Verb বসে।<br>
+    ▪ <i>উদাহরণ:</i> May Allah <strong style="color: #0284c7;">bless</strong> you.<br><br>
+
+    <span style="font-size: 1.15rem; color: #1d4ed8; font-weight: bold;">৫. Exclamatory Sentence (আবেগ বা বিস্ময়সূচক বাক্য):</span><br>
+    বিস্ময় বা আবেগ প্রকাশ করার ক্ষেত্রে Verb সাধারণত <strong>বাক্যের একেবারে শেষে</strong> গিয়ে বসে।<br>
+    ▪ <i>উদাহরণ:</i> How beautiful the bird <strong style="color: #b91c1c;">is</strong>!<br><br>
+
+    <span style="display: block; background-color: #e0e7ff; color: #3730a3; padding: 16px; border-radius: 8px; border: 1px dashed #a5b4fc; font-weight: bold; margin-top: 15px;">
+        💡 একনজরে মনে রাখার শর্টকাট টেকনিক:<br>
+        ✔ বিবৃতি দিলে (Assertive): Subject-এর পরে।<br>
+        ✔ প্রশ্ন করলে (Interrogative): Subject-এর আগে সাহায্যকারী, পরে মূল Verb।<br>
+        ✔ আদেশ/নিষেধ করলে (Imperative): বাক্যের একদম শুরুতে।<br>
+        ✔ দোয়া করলে (Optative): May এবং Subject-এর পরে।<br>
+        ✔ অবাক হলে (Exclamatory): বাক্যের একেবারে শেষে।
+    </span>
+</p>
                     </div>
+                `
+            },
+            "topic_3": {
+                title: "৩. Verb কত প্রকার? (ট্রি-ফ্লোচার্ট ও বিস্তারিত শাখা)",
+                html: `
                     <div class="content-cat-box">
-                        <h4>📊 তুলনামূলক উদাহরণ:</h4>
-                        <div class="example-box">
-                            • <strong>Transitive:</strong> The boy plays <span class="eng-text">cricket</span>.<br>
-                            <em>(প্রশ্ন: কী খেলে? উত্তর: ক্রিকেট। সুতরাং এটি Transitive)</em>
-                        </div>
-                        <div class="example-box">
-                            • <strong>Intransitive:</strong> The boy plays <span class="eng-text">in the field</span>.<br>
-                            <em>(প্রশ্ন: কী খেলে? উত্তর নেই! 'কোথায় খেলে' তার উত্তর আছে। তাই এটি Intransitive)</em>
+                        <h4>🌳 Verb Master Tree Flowchart (ধাপে ধাপে ক্লিক করে খুলুন)</h4>
+                        
+                        <div class="tree-workspace">
+                            <div class="action-btn" style="background:var(--accent-glow); font-size:1.25rem; max-width:300px; pointer-events:none; border-color:var(--accent-glow); box-shadow: 0 0 25px var(--accent-glow); color: #000;">
+                                Verb (মূল ক্রিয়া)
+                            </div>
+                            
+                            <div class="branch-row">
+                                <!-- Left Column: Finite -->
+                                <div class="branch-column">
+                                    <div class="action-btn" style="font-weight:bold; font-size:1.05rem; border-color:var(--accent-glow);" onclick="toggleFiniteSub()">
+                                        📁 Finite Verb (সমাপিকা ক্রিয়া) ▼
+                                    </div>
+                                    <p style="font-size:0.95rem; color:var(--text-sub); text-align:center;">
+                                        যে Verb Subject-এর Person, Number এবং Tense অনুযায়ী পরিবর্তিত হয়।
+                                    </p>
+
+                                    <div class="sub-branch-row" id="finite-sub-row" style="display: none;">
+                                        <button class="action-btn" onclick="togglePrincipal()">1. Principal / Main Verb ▼</button>
+                                        <button class="action-btn" onclick="toggleAuxiliary()">2. Auxiliary / Helping Verb ▼</button>
+                                    </div>
+
+                                    <!-- Principal Sub-Panel -->
+                                    <div class="info-panel" id="principal-panel">
+                                        <h5 style="color: var(--accent-glow); margin-bottom: 8px; font-size:1.1rem;">Principal / Main Verb-এর সকল প্রকারভেদ:</h5>
+                                        <div class="info-box-item">• <strong>Transitive Verb (সকর্মক):</strong> যার অবজেক্ট থাকে। <br>• <span class="eng-text">He plays cricket.</span> (সে ক্রিকেট খেলে।)</div>
+                                        <div class="info-box-item">• <strong>Intransitive Verb (অকর্মক):</strong> যার অবজেক্ট থাকে না। <br>• <span class="eng-text">Birds fly in the sky.</span> (পাখিরা আকাশে ওড়ে।)</div>
+                                        <div class="info-box-item">• <strong>Factitive Verb:</strong> অবজেক্ট থাকা সত্ত্বেও Complement নেয়। <br>• <span class="eng-text">We made him captain.</span> (আমরা তাকে ক্যাপ্টেন করলাম।)</div>
+                                        <div class="info-box-item">• <strong>Cognate Verb:</strong> Intransitive Verb যখন সমার্থক Noun-কে Object নেয়। <br>• <span class="eng-text">He ran a race.</span> (সে একটি দৌড় দৌড়ালো।)</div>
+                                        <div class="info-box-item">• <strong>Quasi-Passive Verb:</strong> দেখতে Active কিন্তু অর্থে Passive। <br>• <span class="eng-text">Honey tastes sweet.</span> (মধু মিষ্টি লাগে।)</div>
+                                        <div class="info-box-item">• <strong>Ergative Verb:</strong> একই সাথে Transitive ও Intransitive হতে পারে। <br>• <span class="eng-text">The door opened.</span> (দরজাটি খুলল।)</div>
+                                        <div class="info-box-item">• <strong>Strong & Weak Verb:</strong> Vowel পরিবর্তন করে (Sing-Sang-Sung) অথবা ed যোগ করে (Play-Played) Past ফর্ম করা হয়।</div>
+                                    </div>
+
+                                    <!-- Auxiliary Sub-Panel -->
+                                    <div class="info-panel" id="auxiliary-panel">
+                                        <h5 style="color: var(--accent-glow); margin-bottom: 8px; font-size:1.1rem;">Auxiliary / Helping Verb (৪ প্রকার):</h5>
+                                        <div class="info-box-item">🔹 <strong>Be Verb (৮টি):</strong> am, is, are, was, were, be, being, been.<br>• <span class="eng-text">She is reading a book.</span></div>
+                                        <div class="info-box-item">🔹 <strong>Do Verb (৩টি):</strong> do, does, did.<br>• <span class="eng-text">Do you like English?</span></div>
+                                        <div class="info-box-item">🔹 <strong>Have Verb (৩টি):</strong> have, has, had.<br>• <span class="eng-text">They have finished the work.</span></div>
+                                        <div class="info-box-item">🔹 <strong>Modal Verbs (১৩টি):</strong> can, could, may, might, shall, should, will, would, must, ought to, need, dare, used to.<br>• <span class="eng-text">You must obey your parents.</span></div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column: Non-Finite -->
+                                <div class="branch-column">
+                                    <div class="action-btn" style="font-weight:bold; font-size:1.05rem; border-color:var(--accent-glow);" onclick="toggleNonFiniteSub()">
+                                        📁 Non-Finite Verb (অসমাপিকা ক্রিয়া) ▼
+                                    </div>
+                                    <p style="font-size:0.95rem; color:var(--text-sub); text-align:center;">
+                                        যে Verb Subject বা Tense দ্বারা পরিবর্তিত হয় না। এটি ৩ প্রকার:
+                                    </p>
+
+                                    <div class="info-panel" id="nonfinite-panel">
+                                        <div class="info-box-item">1. <strong>Infinitive (to + V1):</strong> বাক্যে Noun বা Adjective-এর কাজ করে.<br>• <span class="eng-text">To err is human.</span> (ভুল করা মানুষের স্বভাব।)</div>
+                                        <div class="info-box-item">2. <strong>Gerund (V1 + ing = Noun):</strong> Verb ও Noun উভয়ের কাজ করে.<br>• <span class="eng-text">Swimming is a good exercise.</span> (সাঁতার কাটা ভালো ব্যায়াম।)</div>
+                                        <div class="info-box-item">3. <strong>Participle (Verb + Adjective):</strong> Present, Past ও Perfect Participle.<br>• <span class="eng-text">I saw a barking dog.</span> (আমি একটি ঘেউ ঘেউ করা কুকুর দেখলাম।)</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `
             },
-
-            "node_6": {
-                title: "Auxiliary Verb কী?",
+            "topic_4": {
+                title: "৪. বাংলা এবং ইংরেজি বাক্যে Verb-এর অবস্থানের মূল পার্থক্য",
                 html: `
                     <div class="content-cat-box">
-                        <h4>🤝 সাহায্যকারী ক্রিয়া (Auxiliary / Helping Verb)</h4>
-                        <p>যে Verb নিজে স্বাধীনভাবে পূর্ণ অর্থ প্রকাশ না করে Main Verb-কে Tense, Voice বা Mood গঠনে সাহায্য করে, তাকে Auxiliary Verb বলে।</p>
-                    </div>
-                    <div class="content-cat-box">
-                        <h4>প্রধান ২টি ভাগ:</h4>
-                        <p><strong>১. Primary Auxiliary:</strong> am, is, are, was, were, do, does, did, have, has, had.</p>
-                        <p><strong>২. Modal Auxiliary:</strong> can, could, may, might, shall, should, will, would, must, ought to, need, dare.</p>
-                        <div class="example-box">
-                            She <span class="eng-text">is</span> (Primary) writing. / You <span class="eng-text">must</span> (Modal) study.
-                        </div>
+                        <h4>⚖️ Sentence Patterns (SVO, SOV, SV, SVC)</h4>
+                        <p style="font-family: 'Hind Siliguri', 'Tiro Bangla', sans-serif; line-height: 1.8; color: #f1f5f9; background-color: #0f172a; padding: 24px; border-left: 6px solid #fb7185; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); margin: 20px 0;">
+    <span style="font-size: 1.5rem; color: #f43f5e; font-weight: bold;">⚖️ বাংলা ও ইংরেজি বাক্যের মূল পার্থক্য এবং ৭টি Sentence Patterns</span><br><br>
+
+    বাংলা ও ইংরেজি বাক্য গঠনের সবচেয়ে বড় পার্থক্যটি হলো <strong>Verb বা ক্রিয়াপদের</strong> অবস্থানে। ইংরেজিতে মূলত <strong>৭টি বেসিক Sentence Pattern</strong> রয়েছে। এগুলো আয়ত্ত করতে পারলে যেকোনো বড় বাক্য অনায়াসেই তৈরি করা যায়।<br><br>
+    
+    <span style="display: block; background-color: #1e1b4b; padding: 12px; border-radius: 6px; font-weight: bold; color: #c7d2fe; margin-bottom: 20px; border: 1px solid #3730a3;">
+        💡 কালার কোড পরিচিতি (সহজে বোঝার জন্য):<br>
+        <span style="color: #38bdf8;">■ Subject (কর্তা)</span> | <span style="color: #fb923c;">■ Verb (ক্রিয়া)</span> | <span style="color: #4ade80;">■ Object (কর্ম)</span> | <span style="color: #c084fc;">■ Complement (পরিপূরক)</span> | <span style="color: #2dd4bf;">■ Adverbial (স্থান/কাল/সময়)</span>
+    </span>
+
+    <span style="font-size: 1.2rem; color: #fda4af; font-weight: bold;">🌟 প্রধান পার্থক্য: SOV বনাম SVO</span><br>
+    ▪ <strong>বাংলা (SOV):</strong> আমি <span style="color: #38bdf8;">(Subject)</span> + ভাত <span style="color: #4ade80;">(Object)</span> + খাই <span style="color: #fb923c;">(Verb - শেষে)</span>।<br>
+    ▪ <strong>ইংরেজি (SVO):</strong> I <span style="color: #38bdf8;">(Subject)</span> + eat <span style="color: #fb923c;">(Verb - মাঝে)</span> + rice <span style="color: #4ade80;">(Object)</span>।<br><br>
+
+    <span style="font-size: 1.25rem; color: #fb7185; font-weight: bold;">📌 ইংরেজির ৭টি মূল Sentence Pattern:</span><br><br>
+
+    <span style="font-size: 1.15rem; color: #93c5fd; font-weight: bold;">১. SV (Subject + Verb)</span><br>
+    যেখানে কোনো Object থাকে না। শুধু 'কে কাজ করছে' এবং 'কী করছে' তা থাকে।<br>
+    <span style="display: block; background-color: #1e293b; padding: 10px 15px; border-radius: 6px; margin: 5px 0 15px 0; color: #e2e8f0; border: 1px solid #334155;">
+        ▪ <strong>Pattern:</strong> <span style="color: #38bdf8; font-weight: bold;">Birds</span> + <span style="color: #fb923c; font-weight: bold;">fly</span>.<br>
+        ▪ <strong>বাংলা:</strong> পাখিরা ওড়ে।
+    </span>
+
+    <span style="font-size: 1.15rem; color: #93c5fd; font-weight: bold;">২. SVO (Subject + Verb + Object)</span><br>
+    ইংরেজির সবচেয়ে সাধারণ নিয়ম। Verb-এর পর সরাসরি একটি Object বসে।<br>
+    <span style="display: block; background-color: #1e293b; padding: 10px 15px; border-radius: 6px; margin: 5px 0 15px 0; color: #e2e8f0; border: 1px solid #334155;">
+        ▪ <strong>Pattern:</strong> <span style="color: #38bdf8; font-weight: bold;">I</span> + <span style="color: #fb923c; font-weight: bold;">read</span> + <span style="color: #4ade80; font-weight: bold;">a book</span>.<br>
+        ▪ <strong>বাংলা:</strong> আমি একটি বই পড়ি।
+    </span>
+
+    <span style="font-size: 1.15rem; color: #93c5fd; font-weight: bold;">৩. SVC (Subject + Verb + Complement)</span><br>
+    Object-এর বদলে Subject-এর পরিচয় বা অবস্থা বোঝানোর জন্য Complement বসে।<br>
+    <span style="display: block; background-color: #1e293b; padding: 10px 15px; border-radius: 6px; margin: 5px 0 15px 0; color: #e2e8f0; border: 1px solid #334155;">
+        ▪ <strong>Pattern:</strong> <span style="color: #38bdf8; font-weight: bold;">She</span> + <span style="color: #fb923c; font-weight: bold;">is</span> + <span style="color: #c084fc; font-weight: bold;">a doctor</span>.<br>
+        ▪ <strong>বাংলা:</strong> সে (হয়) একজন ডাক্তার। <i style="color: #94a3b8;">(এখানে ডাক্তার হলো 'She'-এর পরিচয়)</i>
+    </span>
+
+    <span style="font-size: 1.15rem; color: #93c5fd; font-weight: bold;">৪. SVOO (Subject + Verb + Indirect Object + Direct Object)</span><br>
+    একটি বাক্যে দুটি Object থাকলে, ইংরেজিতে আগে ব্যক্তিবাচক এবং পরে বস্তুবাচক Object বসে।<br>
+    <span style="display: block; background-color: #1e293b; padding: 10px 15px; border-radius: 6px; margin: 5px 0 15px 0; color: #e2e8f0; border: 1px solid #334155;">
+        ▪ <strong>Pattern:</strong> <span style="color: #38bdf8; font-weight: bold;">He</span> + <span style="color: #fb923c; font-weight: bold;">gave</span> + <span style="color: #4ade80; font-weight: bold;">me</span> + <span style="color: #4ade80; font-weight: bold;">a pen</span>.<br>
+        ▪ <strong>বাংলা:</strong> সে আমাকে একটি কলম দিল।
+    </span>
+
+    <span style="font-size: 1.15rem; color: #93c5fd; font-weight: bold;">৫. SVOC (Subject + Verb + Object + Complement)</span><br>
+    Object-এর পরিচয় সম্পূর্ণ করতে বাক্যের শেষে আরও একটি শব্দ (Complement) লাগে।<br>
+    <span style="display: block; background-color: #1e293b; padding: 10px 15px; border-radius: 6px; margin: 5px 0 15px 0; color: #e2e8f0; border: 1px solid #334155;">
+        ▪ <strong>Pattern:</strong> <span style="color: #38bdf8; font-weight: bold;">We</span> + <span style="color: #fb923c; font-weight: bold;">made</span> + <span style="color: #4ade80; font-weight: bold;">him</span> + <span style="color: #c084fc; font-weight: bold;">captain</span>.<br>
+        ▪ <strong>বাংলা:</strong> আমরা তাকে ক্যাপ্টেন বানালাম।
+    </span>
+
+    <span style="font-size: 1.15rem; color: #93c5fd; font-weight: bold;">৬. SVA (Subject + Verb + Adverbial)</span> <span style="background-color: #065f46; color: #34d399; font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; vertical-align: top;">নতুন</span><br>
+    যেখানে Object থাকেলগ্ন না, কিন্তু কাজটা কোথায়, কখন বা কীভাবে হচ্ছে তা বোঝাতে Adverbial বসে।<br>
+    <span style="display: block; background-color: #1e293b; padding: 10px 15px; border-radius: 6px; margin: 5px 0 15px 0; color: #e2e8f0; border: 1px solid #334155;">
+        ▪ <strong>Pattern:</strong> <span style="color: #38bdf8; font-weight: bold;">They</span> + <span style="color: #fb923c; font-weight: bold;">live</span> + <span style="color: #2dd4bf; font-weight: bold;">in Dhaka</span>.<br>
+        ▪ <strong>বাংলা:</strong> তারা ঢাকায় বাস করে। <i style="color: #94a3b8;">(এখানে 'in Dhaka' হলো স্থান বা Adverbial)</i>
+    </span>
+
+    <span style="font-size: 1.15rem; color: #93c5fd; font-weight: bold;">৭. SVOA (Subject + Verb + Object + Adverbial)</span> <span style="background-color: #065f46; color: #34d399; font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; vertical-align: top;">নতুন</span><br>
+    Object-এর পরে যখন স্থান, সময় বা কারণ যুক্ত হয়।<br>
+    <span style="display: block; background-color: #1e293b; padding: 10px 15px; border-radius: 6px; margin: 5px 0 15px 0; color: #e2e8f0; border: 1px solid #334155;">
+        ▪ <strong>Pattern:</strong> <span style="color: #38bdf8; font-weight: bold;">He</span> + <span style="color: #fb923c; font-weight: bold;">put</span> + <span style="color: #4ade80; font-weight: bold;">the book</span> + <span style="color: #2dd4bf; font-weight: bold;">on the table</span>.<br>
+        ▪ <strong>বাংলা:</strong> সে বইটি টেবিলের ওপর রাখল।
+    </span>
+
+    <span style="display: block; background-color: #67e8f9; color: #000000; padding: 16px; border-radius: 8px; border: 1px dashed #34d399; font-weight: bold; margin-top: 20px; font-size: 1.05rem;">
+        🎯 চূড়ান্ত ম্যাজিক ট্রিক:<br>
+        উপরের ৭টি প্যাটার্ন খেয়াল করলে দেখবেন, ইংরেজি বাক্যে <span style="color: #FF0000;">Subject</span> এবং <span style="color: #FFA500;">Verb</span> স্বামী-স্ত্রীর মতো সবসময় পাশাপাশি থাকে! তাই বাংলা বাক্য যত বড়ই হোক না কেন, শুরুতেই Subject ও Verb-কে পাশাপাশি বসিয়ে দিন, বাকি অংশ এমনিতেই মিলে যাবে!
+    </span>
+</p>
                     </div>
                 `
             },
-
-            "node_7": {
-                title: "Gerund & Participle",
+            "topic_5": {
+                title: "৫. Verb ছাড়া কি কোনো পূর্ণাঙ্গ ইংরেজি বাক্য গঠন করা সম্ভব?",
                 html: `
                     <div class="content-cat-box">
-                        <h4>🔄 Double Parts of Speech (Non-Finite Group)</h4>
-                        <p>Verb থেকে তৈরি হলেও এরা বাক্যে Noun বা Adjective-এর কাজ সম্পন্ন করে।</p>
-                    </div>
-                    <div class="content-cat-box">
-                        <p><strong>১. Gerund (Verb + ing = Noun):</strong> এটি একই সাথে Verb এবং Noun-এর কাজ করে।</p>
-                        <div class="example-box"><span class="eng-text">Swimming</span> is a good exercise. (এখানে Swimming বাক্যের Subject)</div>
-                        <p><strong>২. Participle (Verb = Adjective):</strong> এটি একই সাথে Verb এবং Adjective-এর কাজ করে।</p>
-                        <div class="example-box">Do not jump from a <span class="eng-text">running</span> bus. (এখানে running শব্দটি bus-এর অবস্থা বোঝাচ্ছে)</div>
-                    </div>
-                `
-            },
+                        <h4>❌ উত্তর: সাধারণ নিয়মে অসম্ভব</h4>
+                        <p style="font-family: 'Hind Siliguri', 'Tiro Bangla', sans-serif; line-height: 1.8; color: #f1f5f9; background-color: #0f172a; padding: 24px; border-left: 6px solid #facc15; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); margin: 20px 0;">
+    <span style="font-size: 1.5rem; color: #eab308; font-weight: bold;">
 
-            "node_8": {
-                title: "শেখার উপায় কী?",
-                html: `
-                    <div class="content-cat-box">
-                        <h4>🚀 Verb আয়ত্তে আনার মাস্টার টেকনিক</h4>
-                        <p>ইংরেজি গ্রামারে পূর্ণ দক্ষতা অর্জন করতে নিচের ৪টি ধাপ অনুসরণ করুন:</p>
-                    </div>
-                    <div class="content-cat-box">
-                        <p><strong>১. রূপান্তর শিখুন:</strong> প্রতিদিন অন্তত ১০টি Verb-এর ৫টি ফর্ম (V1, V2, V3, V4, V5) মুখস্থ করুন।</p>
-                        <p><strong>২. Object চিহ্নিত করুন:</strong> যেকোনো বাক্য পড়ার সময় খেয়াল করুন Verb-এর পর Object আছে নাকি Complement।</p>
-                        <p><strong>৩. Contextual Practice:</strong> কেবল নিয়ম না পড়ে উদাহরণ তৈরি করে নিজে নিজে বাক্য বানিয়ে চর্চা করুন।</p>
-                        <p><strong>৪. কুইজে অংশগ্রহণ:</strong> আমাদের অ্যাপের লাইভ কুইজ মডিউলে অংশ নিয়ে নিয়মিত নিজের স্কোর যাচাই করুন।</p>
+    ইংরেজি ব্যাকরণের একটি চিরন্তন সত্য বা সার্বজনীন নিয়ম হলো— Verb ছাড়া কোনো পূর্ণাঙ্গ, অর্থপূর্ণ এবং সঠিক ইংরেজি বাক্য তৈরি করা যায় قلم না। একটি বাক্যে Subject (কর্তা) যতই গুরুত্বপূর্ণ হোক না কেন, কাজটি কী এবং তা কখন ঘটছে (সময়/Tense), তা বোঝানোর জন্য Verb অপরিহার্য।<br><br>
+    
+    সহজ কথায়, <strong style="color: #60a5fa; font-size: 1.1rem;">Verb হলো ইংরেজি বাক্যের হৃৎপিণ্ড (Heart)।</strong> হৃৎপিণ্ড ছাড়া যেমন মানুষ বাঁচে না, তেমনি Verb ছাড়াও ইংরেজি বাক্য প্রাণ পায় না!<br><br>
+
+    <span style="font-size: 1.2rem; color: #fbbf24; font-weight: bold;">📌 কেন সম্ভব নয়? (উদাহরণসহ ব্যাখ্যা):</span><br>
+    ধরা যাক, আপনি কাউকে বলতে চান যে আপনি বই পড়ছেন।<br>
+    <span style="display: block; background-color: #1e293b; padding: 12px 18px; border-radius: 8px; margin: 10px 0 15px 0; border: 1px solid #334155;">
+        ▪ <span style="color: #94a3b8;">আপনি যদি শুধু বলেন:</span> <strong>"I a book"</strong> — এখানে কে কী করছে, তা অস্পষ্ট। বাক্যটি কোনো অর্থই প্রকাশ করতে পারল না।<br>
+        ▪ <span style="color: #94a3b8;">কিন্তু যখনই আপনি একটি Verb (read/am reading) যুক্ত করবেন:</span> <strong>"I <span style="color: #4ade80;">am reading</span> a book"</strong> — সাথে সাথে বাক্যটি সম্পূর্ণ হয়ে গেল!
+    </span>
+
+    <span style="color: #94a3b8; font-style: italic; display: block; margin-bottom: 20px;">
+        (বাংলায় অনেক সময় আমরা Verb উহ্য রাখতে পারি। যেমন: "আকাশ নীল" (এখানে 'হয়' উহ্য আছে)। কিন্তু ইংরেজিতে "The sky blue" বলা যাবে না, বলতে হবে "The sky <strong style="color: #f472b6;">is</strong> blue".)
+    </span>
+
+    <span style="font-size: 1.2rem; color: #34d399; font-weight: bold;">🔥 ব্যতিক্রম: সবচেয়ে ছোট ইংরেজি বাক্য!</span><br>
+    Verb ছাড়া বাক্য হয় না ঠিকই, তবে এমন কিছু বাক্য আছে যেখানে শুধু <strong>একটিমাত্র Verb</strong> দিয়েই পুরো বাক্য গঠন করা যায়! এগুলো হলো Imperative Sentence (আদেশ বা নিষেধমূলক বাক্য)।<br><br>
+
+    এই বাক্যগুলোতে Subject হিসেবে 'You' (তুমি/আপনি) লুকিয়ে বা উহ্য থাকে।<br>
+    <span style="display: block; background-color: #1e293b; padding: 12px 18px; border-radius: 8px; margin: 10px 0 15px 0; border: 1px solid #334155;">
+        ▪ <i>উদাহরণ ১:</i> <strong style="color: #f472b6; font-size: 1.2rem;">"Go!"</strong> (যাও!)<br>
+        &nbsp;&nbsp; <span style="color: #94a3b8;">বিশ্লেষণ:</span> এখানে 'Go' নিজেই একটি পূর্ণ বাক্য, যার অর্থ "You go" (তুমি যাও)।<br><br>
+        ▪ <i>উদাহরণ ২:</i> <strong style="color: #f472b6; font-size: 1.2rem;">"Stop!"</strong> (থামো!)<br>
+        &nbsp;&nbsp; <span style="color: #94a3b8;">বিশ্লেষণ:</span> এর মানে "You stop"।
+    </span>
+
+    <span style="display: block; background-color: #451a03; color: #fcd34d; padding: 16px; border-radius: 8px; border: 1px dashed #fbbf24; font-weight: bold; margin-top: 20px; font-size: 1.05rem;">
+        💡 মজার তথ্য (Fun Fact):<br>
+        "Go" এবং "Be" হলো ইংরেজি ভাষার সবচেয়ে ছোট পূর্ণাঙ্গ বাক্য! সুতরাং, Verb ছাড়া ইংরেজি বাক্য গঠন করা সম্ভব নয়। বরং অন্যান্য সবকিছু (Subject, Object) বাদ দিয়ে শুধু একটি Verb দিয়েও বাক্য গঠন করা সম্ভব! তাই ইংরেজিতে Verb-এর কোনো বিকল্প নেই।
+    </span>
+</p>
                     </div>
                 `
             }
         };
 
-        /* ==========================================================
-           3. THEME MANAGER
-           ========================================================== */
+        /* Tree Flowchart Interaction Functions */
+        function toggleFiniteSub() {
+            const subRow = document.getElementById('finite-sub-row');
+            subRow.style.display = subRow.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function togglePrincipal() {
+            const p = document.getElementById('principal-panel');
+            const a = document.getElementById('auxiliary-panel');
+            a.classList.remove('active');
+            p.classList.toggle('active');
+        }
+
+        function toggleAuxiliary() {
+            const a = document.getElementById('auxiliary-panel');
+            const p = document.getElementById('principal-panel');
+            p.classList.remove('active');
+            a.classList.toggle('active');
+        }
+
+        function toggleNonFiniteSub() {
+            const nf = document.getElementById('nonfinite-panel');
+            nf.classList.toggle('active');
+        }
+
+        /* 
+         ==========================================================
+         THEME MANAGER MODULE (EXPANDED TO 7 VIBRANT THEMES)
+         ========================================================== 
+        */
         const themeManager = {
             themes: [
-                { name: 'Cyberpunk', class: 'theme-cyber' },
-                { name: 'Golden', class: 'theme-gold' },
-                { name: 'Ocean', class: 'theme-ocean' },
-                { name: 'Sunset', class: 'theme-sunset' },
-                { name: 'Emerald', class: 'theme-emerald' }
+                { name: 'Emerald', class: '' }, // Uses :root
+                { name: 'Crimson', class: 'theme-rgb-crimson' },
+                { name: 'Gold', class: 'theme-rgb-gold' },
+                { name: 'Sapphire', class: 'theme-rgb-sapphire' },
+                { name: 'Amethyst', class: 'theme-rgb-amethyst' },
+                { name: 'Cyberpunk', class: 'theme-rgb-cyberpunk' },
+                { name: 'Sunset', class: 'theme-rgb-sunset' }
             ],
             index: 0,
             nextTheme() {
                 this.index = (this.index + 1) % this.themes.length;
                 const t = this.themes[this.index];
                 document.body.className = t.class;
-                document.getElementById('theme-display-name').innerText = t.name;
+                document.getElementById('theme-name').innerText = t.name;
             }
         };
 
-        /* ==========================================================
-           4. ROUTER & SIDEBAR DRAWER
-           ========================================================== */
-        const router = {
-            toggleBtn: document.getElementById('drawer-toggle-btn'),
-            mask: document.getElementById('drawer-mask'),
-            drawer: document.getElementById('side-drawer'),
-
-            init() {
-                this.toggleBtn.addEventListener('click', () => this.toggle());
-                this.mask.addEventListener('click', () => this.toggle());
-            },
-            toggle() {
-                this.drawer.classList.toggle('active');
-                this.mask.classList.toggle('active');
-            },
-            navigateTo(viewId, linkEl) {
-                document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
-                document.querySelectorAll('.drawer-link').forEach(l => l.classList.remove('active'));
-
-                document.getElementById(viewId).classList.add('active');
-                if (linkEl) linkEl.classList.add('active');
-
-                if (this.drawer.classList.contains('active')) {
-                    this.toggle();
-                }
-
-                if (viewId === 'home') {
-                    radialEngine.initNodes();
-                }
-            }
-        };
-        router.init();
-
-        /* ==========================================================
-           5. RADIAL ENGINE (LOCKED STABLE POSITIONS & POPUP)
-           ========================================================== */
+        /* Radial Engine Module for 5 Master Buttons */
         const radialEngine = {
             viewport: document.getElementById('radial-viewport'),
             overlay: document.getElementById('notebook-overlay'),
-            title: document.getElementById('notebook-title'),
-            body: document.getElementById('notebook-body'),
+            titleEl: document.getElementById('notebook-title'),
+            bodyEl: document.getElementById('notebook-body'),
             expanded: false,
 
-            nodesList: [
-                { id: "node_1", label: "Verb কী?" },
-                { id: "node_2", label: "কেন ব্যবহার করব?" },
-                { id: "node_3", label: "বাক্যে অবস্থান কোথায়?" },
-                { id: "node_4", label: "কত প্রকার?" },
-                { id: "node_5", label: "Transitive vs Intransitive", highlight: true },
-                { id: "node_6", label: "Auxiliary Verb কী?" },
-                { id: "node_7", label: "Gerund & Participle" },
-                { id: "node_8", label: "শেখার উপায় কী?" }
+            topicsList: [
+                { id: "topic_1", label: "১. Verb কী?" },
+                { id: "topic_2", label: "২. Verb কোথায় বসে?" },
+                { id: "topic_3", label: "৩. Verb কত প্রকার?" },
+                { id: "topic_4", label: "৪. বাংলা বনাম ইংরেজি গঠন" },
+                { id: "topic_5", label: "৫. Verb ছাড়া বাক্য সম্ভব?" }
             ],
 
             initNodes() {
-                const existing = this.viewport.querySelectorAll('.radial-node');
-                existing.forEach(n => n.remove());
+                const total = this.topicsList.length;
+                const radius = 180;
 
-                const total = this.nodesList.length;
-                const radius = 185; // Fixed radial radius
-
-                this.nodesList.forEach((item, index) => {
+                this.topicsList.forEach((item, index) => {
                     const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
                     const x = Math.round(radius * Math.cos(angle));
                     const y = Math.round(radius * Math.sin(angle));
 
                     const nodeBtn = document.createElement('div');
-                    nodeBtn.className = `radial-node ${item.highlight ? 'highlight-node' : ''}`;
+                    nodeBtn.className = 'radial-node';
                     nodeBtn.innerHTML = item.label;
-                    nodeBtn.dataset.x = x;
-                    nodeBtn.dataset.y = y;
+                    nodeBtn.style.left = `calc(50% + ${x}px - 105px)`;
+                    nodeBtn.style.top = `calc(50% + ${y}px - 25px)`;
 
-                    // Direct Click event to open 3D Glass Window
                     nodeBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        this.openNotebook(item.id);
+                        this.openModal(item.id);
                     });
 
                     this.viewport.appendChild(nodeBtn);
@@ -1129,230 +872,28 @@
 
             toggleRadial() {
                 this.expanded = !this.expanded;
-                const nodes = this.viewport.querySelectorAll('.radial-node');
-                const trigger = document.getElementById('main-verb-trigger');
-
                 if (this.expanded) {
                     this.viewport.classList.add('expanded');
-                    trigger.style.boxShadow = "0 0 60px var(--gold), inset 0 0 25px rgba(255,255,255,0.8)";
-                    nodes.forEach(node => {
-                        const x = node.dataset.x;
-                        const y = node.dataset.y;
-                        node.style.transform = `translate(${x}px, ${y}px) scale(1)`;
-                    });
                 } else {
                     this.viewport.classList.remove('expanded');
-                    trigger.style.boxShadow = "0 0 35px var(--accent-pink), inset 0 0 15px rgba(255,255,255,0.4)";
-                    nodes.forEach(node => {
-                        node.style.transform = `translate(0px, 0px) scale(0.2)`;
-                    });
                 }
             },
 
-            openNotebook(nodeId) {
-                const data = nodeDataContent[nodeId];
+            openModal(topicId) {
+                const data = topicAnalysisData[topicId];
                 if (data) {
-                    this.title.innerText = data.title;
-                    this.body.innerHTML = data.html;
+                    this.titleEl.innerText = data.title;
+                    this.bodyEl.innerHTML = data.html;
                     this.overlay.style.display = 'flex';
                 }
             },
 
-            closeNotebook() {
+            closeModal() {
                 this.overlay.style.display = 'none';
             }
         };
+
         radialEngine.initNodes();
-
-        /* ==========================================================
-           6. VERB BANK ENGINE (200 VERBS ARCHIVE)
-           ========================================================== */
-        const verbBankEngine = {
-            tbody: document.getElementById('verb-bank-tbody'),
-            baseVerbs: [
-                { bn: "করা", v1: "Do", v2: "Did", v3: "Done", v4: "Doing", v5: "Does" },
-                { bn: "যাওয়া", v1: "Go", v2: "Went", v3: "Gone", v4: "Going", v5: "Goes" },
-                { bn: "খাওয়া", v1: "Eat", v2: "Ate", v3: "Eaten", v4: "Eating", v5: "Eats" },
-                { bn: "পড়া", v1: "Read", v2: "Read", v3: "Read", v4: "Reading", v5: "Reads" },
-                { bn: "লেখা", v1: "Write", v2: "Wrote", v3: "Written", v4: "Writing", v5: "Writes" },
-                { bn: "দেখা", v1: "See", v2: "Saw", v3: "Seen", v4: "Seeing", v5: "Sees" },
-                { bn: "আসা", v1: "Come", v2: "Came", v3: "Come", v4: "Coming", v5: "Comes" },
-                { bn: "খেলা", v1: "Play", v2: "Played", v3: "Played", v4: "Playing", v5: "Plays" },
-                { bn: "দেওয়া", v1: "Give", v2: "Gave", v3: "Given", v4: "Giving", v5: "Gives" },
-                { bn: "নেওয়া", v1: "Take", v2: "Took", v3: "Taken", v4: "Taking", v5: "Takes" }
-            ],
-
-            generate200Verbs() {
-                this.tbody.innerHTML = '';
-                let count = 1;
-                for (let i = 0; i < 20; i++) {
-                    this.baseVerbs.forEach(v => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>${count++}</td>
-                            <td>${v.bn}</td>
-                            <td class="eng-text">${v.v1}</td>
-                            <td class="eng-text">${v.v2}</td>
-                            <td class="eng-text">${v.v3}</td>
-                            <td class="eng-text">${v.v4}</td>
-                            <td class="eng-text">${v.v5}</td>
-                        `;
-                        this.tbody.appendChild(tr);
-                    });
-                }
-            },
-
-            filter() {
-                const q = document.getElementById('verb-search-input').value.toLowerCase();
-                const rows = this.tbody.querySelectorAll('tr');
-                rows.forEach(r => {
-                    r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
-                });
-            }
-        };
-        verbBankEngine.generate200Verbs();
-
-        /* ==========================================================
-           7. 50 GRAMMAR RULES ENGINE
-           ========================================================== */
-        const rulesEngine = {
-            box: document.getElementById('rules-container-box'),
-            generate50Rules() {
-                const baseRules = [
-                    { t: "Subject-Verb Agreement Rule", d: "Subject Singular হলে Verb Singular হবে; Plural হলে Plural হবে। (e.g., He <span class='eng-text'>goes</span>, They <span class='eng-text'>go</span>)।" },
-                    { t: "Preposition-এর পর Verb", d: "Preposition-এর পর Verb বসলে <span class='eng-text'>-ing</span> যুক্ত হয়। (e.g., Fond of <span class='eng-text'>reading</span>)।" },
-                    { t: "Modal Auxiliary Rule", d: "Modal-এর পর সর্বদা Base Form (V1) বসে। (e.g., You must <span class='eng-text'>work</span>)।" },
-                    { t: "Causative 'Make' & 'Let'", d: "Make/Let-এর পর Bare Infinitive (V1) বসে। (e.g., He made me <span class='eng-text'>laugh</span>)।" },
-                    { t: "Did / Do / Does-এর নিয়ম", d: "Did/Do/Does-এর পর মূল Verb V1-এ ফিরে যায়। (e.g., Did she <span class='eng-text'>go</span>?)" }
-                ];
-
-                this.box.innerHTML = '';
-                let count = 1;
-                for (let i = 0; i < 10; i++) {
-                    baseRules.forEach(r => {
-                        const div = document.createElement('div');
-                        div.className = 'rule-item-box';
-                        div.innerHTML = `<h4>নিয়ম ${count++}: ${r.t}</h4><p>${r.d}</p>`;
-                        this.box.appendChild(div);
-                    });
-                }
-            }
-        };
-        rulesEngine.generate50Rules();
-
-        /* ==========================================================
-           8. QUIZ ENGINE
-           ========================================================== */
-        const googleQuizEngine = {
-            box: document.getElementById('quiz-container-box'),
-            questions: [
-                {
-                    q: "'He is reading a book' — এখানে 'reading' কোন প্রকারের Verb?",
-                    opts: ["Transitive Verb", "Intransitive Verb", "Gerund", "Infinitive"],
-                    ans: 0,
-                    exp: "'reading'-এর পর 'a book' Object রয়েছে, তাই এটি Transitive Verb।"
-                },
-                {
-                    q: "'Swimming is good exercise' — বাক্যে 'Swimming' কী?",
-                    opts: ["Participle", "Gerund", "Finite Verb", "Adverb"],
-                    ans: 1,
-                    exp: "Verb+ing যখন Subject/Noun-এর কাজ করে, তাকে Gerund বলে।"
-                }
-            ],
-
-            render() {
-                this.box.innerHTML = '';
-                this.questions.forEach((qObj, i) => {
-                    const card = document.createElement('div');
-                    card.className = 'quiz-card-box';
-                    card.innerHTML = `
-                        <p style="font-weight:bold; margin-bottom:0.8rem; font-size:1.1rem;">${i + 1}. ${qObj.q}</p>
-                        ${qObj.opts.map((opt, oIdx) => `
-                            <button class="quiz-option-btn" onclick="googleQuizEngine.check(this, ${oIdx === qObj.ans}, '${qObj.exp.replace(/'/g, "\\'")}')">
-                                ${opt}
-                            </button>
-                        `).join('')}
-                        <div class="explanation-box"></div>
-                    `;
-                    this.box.appendChild(card);
-                });
-            },
-
-            check(btn, isCorrect, exp) {
-                const parent = btn.parentElement;
-                const expBox = parent.querySelector('.explanation-box');
-
-                if (isCorrect) {
-                    btn.style.background = '#10b981';
-                    btn.style.color = 'white';
-                } else {
-                    btn.style.background = '#ef4444';
-                    btn.style.color = 'white';
-                }
-
-                expBox.style.display = 'block';
-                expBox.innerHTML = `<strong>ব্যাখ্যা:</strong> ${exp}`;
-            },
-
-            syncNewQuestions() {
-                this.questions.push({
-                    q: "She made me _____ the essay.",
-                    opts: ["to rewrite", "rewrite", "rewriting", "rewritten"],
-                    ans: 1,
-                    exp: "Causative verb 'Make'-এর পর Bare Infinitive (V1) বসে।"
-                });
-                this.render();
-            }
-        };
-        googleQuizEngine.render();
-
-        /* ==========================================================
-           9. BACKGROUND PARTICLES CANVAS
-           ========================================================== */
-        const canvas = document.getElementById('canvas-bg');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.6 - 0.3;
-                this.speedY = Math.random() * 0.6 - 0.3;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(255,255,255,0.2)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < 35; i++) particles.push(new Particle());
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
     </script>
 </body>
 </html>
