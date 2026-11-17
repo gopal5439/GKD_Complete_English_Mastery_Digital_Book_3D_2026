@@ -2,63 +2,346 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Suffix &amp; Prefix কমপ্লিট মাস্টার গাইড</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
-:root{--primary:#6366f1;--primary-hover:#4f46e5;--secondary:#ec4899;--accent:#10b981;--text-main:#0f172a;--text-muted:#475569;--border-color:#e2e8f0;--success:#059669;--error:#dc2626}
-*{box-sizing:border-box}
-body{margin:0;font-family:'Hind Siliguri','Poppins',sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b 50%,#0f172a);color:var(--text-main);min-height:100vh}
-#master-ebook-practice-root{padding:30px 15px}
-.ebook-container{max-width:1100px;margin:auto;background:rgba(255,255,255,.97);border-radius:24px;box-shadow:0 25px 50px -12px #0008;overflow:hidden;animation:floatUp .6s ease-out}
-@keyframes floatUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.ebook-header{background:linear-gradient(135deg,#6366f1,#ec4899);color:white;padding:40px 25px;text-align:center}
-.ebook-header h1{margin:0;font-size:clamp(25px,4vw,36px);font-weight:700;text-shadow:0 2px 4px #0003}
-.ebook-header p{margin:12px auto 0;max-width:850px;font-size:16px;line-height:1.7}
-.book-badge{display:inline-block;background:#ffffff33;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:12px;letter-spacing:.3px}
-.nav-tabs{display:flex;align-items:stretch;background:#f8fafc;border-bottom:2px solid var(--border-color);overflow-x:auto;position:sticky;top:0;z-index:10}
-.nav-tab{flex:1;min-width:max-content;padding:15px 13px;text-align:center;background:transparent;border:0;font-family:inherit;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:.25s;white-space:nowrap}
-.nav-tab:hover{color:var(--primary);background:#6366f10d}.nav-tab.active{color:var(--primary);background:#fff;box-shadow:inset 0 -3px var(--secondary)}
-.nav-tab.toc{background:linear-gradient(135deg,#142850,#274690);color:white}
-.chapter-content{display:none;padding:clamp(18px,4vw,40px);animation:fadeIn .3s ease}.chapter-content.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.chapter-title{font-size:clamp(21px,3vw,27px);color:var(--primary);border-bottom:3px solid #e0e7ff;padding-bottom:12px;margin:0 0 25px}
-.section-box{background:#f8fafc;border:1px solid var(--border-color);border-radius:14px;padding:clamp(15px,3vw,24px);margin-bottom:24px;transition:.2s}
-.section-box:hover{box-shadow:0 8px 18px #0000000a}
-.section-box h3{margin:0 0 12px;color:var(--primary-hover);font-size:19px;border-left:4px solid var(--secondary);padding-left:10px}
-.section-box p,.section-box li{line-height:1.8}
-.custom-table{width:100%;border-collapse:collapse;margin-top:15px;background:#fff;box-shadow:0 2px 8px #00000008}
-.table-wrap{overflow-x:auto;border-radius:9px}
-.custom-table th,.custom-table td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--border-color);font-size:14px;line-height:1.6;vertical-align:top}
-.custom-table th{background:#e0e7ff;color:#3730a3;font-weight:700}.custom-table tr:hover td{background:#f8fafc}
-.rule-list{padding-left:22px;margin:10px 0}.rule-list li{margin-bottom:10px}
-.badge-rule{background:#e0e7ff;color:#3730a3;padding:2px 8px;border-radius:5px;font-weight:600;font-size:13px}
-.formula-box{background:#f0fdf4;border-left:4px solid var(--accent);padding:12px 16px;border-radius:7px;margin:10px 0;color:#166534;font-weight:600;line-height:1.7}
-.note-box{background:#fff7ed;border-left:4px solid #f97316;padding:12px 16px;border-radius:7px;line-height:1.7;margin:12px 0}
-.question-card{margin-bottom:17px;padding:16px;background:#fff;border:1px solid var(--border-color);border-radius:11px;transition:.2s}
-.question-card:hover{box-shadow:0 4px 12px #0000000a;border-color:#cbd5e1}
-.q-text{font-size:15px;font-weight:500;line-height:1.8;margin-bottom:12px}
-.q-input{padding:9px 12px;border:2px solid var(--border-color);border-radius:7px;font-family:inherit;font-size:14px;outline:none;width:180px;max-width:100%}
-.q-input:focus{border-color:var(--primary)}
-.btn,.btn-page{background:var(--primary);color:white;border:0;padding:9px 14px;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:600;font-size:13px;transition:.2s}
-.btn:hover,.btn-page:hover:not(:disabled){background:var(--primary-hover);transform:translateY(-1px)}
-.btn-outline{background:white;color:var(--primary);border:1px solid var(--primary)}.btn-outline:hover{background:var(--primary);color:white}
-.explanation-box{margin-top:12px;padding:12px 15px;background:#f1f5f9;border-left:4px solid var(--primary);border-radius:5px;font-size:14px;line-height:1.8;display:none}
-.result-msg{font-weight:700;font-size:13px}.correct{color:var(--success)}.incorrect{color:var(--error)}
-.pagination{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:25px;border-top:1px solid var(--border-color);padding-top:20px}
-.btn-page{padding:10px 18px;font-size:14px}.btn-page:disabled{background:#cbd5e1;cursor:not-allowed;transform:none}
-.footer{text-align:center;padding:18px;background:#f8fafc;color:#64748b;font-size:13px;border-top:1px solid var(--border-color)}
-@media(max-width:650px){#master-ebook-practice-root{padding:10px 6px}.ebook-container{border-radius:15px}.ebook-header{padding:30px 16px}.nav-tab{padding:13px 10px}.custom-table th,.custom-table td{padding:9px 10px;font-size:13px}.pagination{justify-content:center}.pagination span{order:-1;width:100%;text-align:center}}
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap');
+
+:root {
+  /* Default Theme Colors */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary: #ec4899;
+  --accent: #10b981;
+  
+  --text-main: #1e293b;
+  --text-muted: #334155;
+  --text-highlight: #000000;
+  
+  --border-color: #64748b; /* Thick visible border */
+  --border-width: 2px;
+
+  --bg-body: linear-gradient(135deg, #0f172a, #1e1b4b 50%, #0f172a);
+  --bg-container: rgba(255, 255, 255, 0.98);
+  --bg-card: #ffffff;
+  --bg-section: #f8fafc;
+  
+  --table-head: #e0e7ff;
+  --table-head-text: #3730a3;
+  --table-hover: #f1f5f9;
+  
+  --success: #059669;
+  --error: #dc2626;
+}
+
+body.theme-dark {
+  --primary: #818cf8;
+  --primary-hover: #6366f1;
+  --secondary: #f472b6;
+  --accent: #34d399;
+  
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-highlight: #38bdf8;
+  
+  --border-color: #94a3b8;
+  
+  --bg-body: #020617;
+  --bg-container: #0f172a;
+  --bg-card: #1e293b;
+  --bg-section: #111827;
+  
+  --table-head: #312e81;
+  --table-head-text: #e0e7ff;
+  --table-hover: #1e293b;
+}
+
+body.theme-rgb {
+  --primary: #ff007f;
+  --primary-hover: #ff0055;
+  --secondary: #00d4ff;
+  --accent: #00ffcc;
+  
+  --text-main: #ffffff;
+  --text-muted: #f1f5f9;
+  --text-highlight: #ffea00;
+  
+  --border-color: #ff007f;
+  
+  --bg-body: linear-gradient(45deg, #ff007f, #7f00ff, #00d4ff);
+  background-size: 300% 300%;
+  animation: rgbFlow 8s ease infinite;
+  
+  --bg-container: rgba(10, 10, 10, 0.9);
+  --bg-card: rgba(25, 25, 25, 0.95);
+  --bg-section: rgba(20, 20, 20, 0.95);
+  
+  --table-head: #7f00ff;
+  --table-head-text: #00ffcc;
+  --table-hover: rgba(127, 0, 255, 0.2);
+}
+
+@keyframes rgbFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Tiro Bangla', 'Times New Roman', serif;
+  background: var(--bg-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+#master-ebook-practice-root { padding: 30px 15px; }
+
+.ebook-container {
+  max-width: 1200px;
+  margin: auto;
+  background: var(--bg-container);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  overflow: hidden;
+  animation: floatUp 0.6s ease-out;
+  transition: background 0.4s, border-color 0.4s;
+}
+
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Banner / Header Tactile & Vibe */
+.ebook-header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--primary-hover));
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+  color: white;
+  padding: 40px 25px;
+  text-align: center;
+  box-shadow: inset 0 -8px 0 rgba(0,0,0,0.25), 0 15px 25px rgba(0,0,0,0.3);
+  border-bottom: var(--border-width) solid var(--border-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.ebook-header:active {
+  transform: scale(0.99) translateY(4px);
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.3), 0 5px 10px rgba(0,0,0,0.3);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header-highlight {
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 12px;
+  display: inline-block;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ebook-header h1 {
+  margin: 0; font-size: clamp(25px, 4vw, 36px); font-weight: 700;
+}
+.ebook-header p {
+  margin: 15px auto 0; max-width: 850px; font-size: 17px; line-height: 1.7; font-weight: 700;
+}
+
+.theme-switcher {
+  display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;
+}
+.theme-btn {
+  padding: 8px 18px;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 12px;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  color: white;
+  background: rgba(0,0,0,0.2);
+  transition: 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.theme-btn:hover { background: rgba(255,255,255,0.2); border-color: white; }
+.theme-btn:active { transform: scale(0.92); }
+.btn-rgb { background: linear-gradient(45deg, #ff007f, #7f00ff, #00d4ff); border-color: #00ffcc; }
+
+.book-badge {
+  display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 16px;
+  border-radius: 20px; font-size: 14px; font-weight: 700; margin-bottom: 12px;
+}
+
+/* Tabs */
+.nav-tabs {
+  display: flex; align-items: stretch; background: var(--bg-section);
+  border-bottom: var(--border-width) solid var(--border-color);
+  overflow-x: auto; position: sticky; top: 0; z-index: 10;
+}
+.nav-tab {
+  flex: 1; min-width: max-content; padding: 15px 13px; text-align: center;
+  background: transparent; border: 0; border-right: 1px solid var(--border-color);
+  font-family: inherit; font-size: 15px; font-weight: 700;
+  color: var(--text-main); cursor: pointer; transition: 0.25s;
+}
+.nav-tab:hover { background: var(--table-hover); color: var(--primary); }
+.nav-tab.active {
+  color: var(--primary); background: var(--bg-card);
+  box-shadow: inset 0 -4px var(--secondary);
+}
+.nav-tab.toc { background: linear-gradient(135deg, #142850, #274690); color: white; }
+
+.chapter-content { display: none; padding: clamp(18px, 4vw, 40px); animation: fadeIn 0.3s ease; }
+.chapter-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.chapter-title {
+  font-size: clamp(21px, 3vw, 27px); color: var(--primary); font-weight: 700;
+  border-bottom: 3px solid var(--border-color); padding-bottom: 12px; margin: 0 0 25px;
+}
+
+/* Clear Borders for Sections and Tables */
+.section-box {
+  background: var(--bg-section);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 14px; padding: clamp(15px, 3vw, 24px); margin-bottom: 24px;
+  transition: 0.2s; color: var(--text-main); font-weight: 500;
+}
+.section-box:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.1); border-color: var(--primary); }
+.section-box h3 {
+  margin: 0 0 12px; color: var(--primary); font-size: 21px; font-weight: 700;
+  border-left: 5px solid var(--secondary); padding-left: 10px;
+}
+.section-box p, .section-box li { line-height: 1.8; font-size: 16px; }
+
+.custom-table {
+  width: 100%; border-collapse: collapse; margin-top: 15px;
+  background: var(--bg-card); box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.table-wrap { overflow-x: auto; border-radius: 9px; border: var(--border-width) solid var(--border-color); }
+.custom-table th, .custom-table td {
+  padding: 12px 14px; text-align: left;
+  border: var(--border-width) solid var(--border-color);
+  font-size: 16px; line-height: 1.6; vertical-align: top;
+  color: var(--text-main); font-weight: 500;
+}
+.custom-table th { background: var(--table-head); color: var(--table-head-text); font-weight: 700; }
+.custom-table tr:hover td { background: var(--table-hover); }
+
+.rule-list { padding-left: 22px; margin: 10px 0; }
+.rule-list li { margin-bottom: 10px; font-size: 16px; }
+.badge-rule {
+  background: var(--table-head); color: var(--table-head-text);
+  padding: 3px 10px; border-radius: 5px; font-weight: 700; font-size: 14px;
+  border: 1px solid var(--border-color);
+}
+
+.formula-box {
+  background: rgba(16, 185, 129, 0.1); border: var(--border-width) solid var(--border-color);
+  border-left: 5px solid var(--accent); padding: 12px 16px; border-radius: 7px;
+  margin: 10px 0; color: var(--text-main); font-weight: 700; line-height: 1.7; font-size: 16px;
+}
+.note-box {
+  background: rgba(249, 115, 22, 0.1); border: var(--border-width) solid var(--border-color);
+  border-left: 5px solid #f97316; padding: 12px 16px; border-radius: 7px;
+  line-height: 1.7; margin: 12px 0; font-weight: 700; font-size: 16px;
+}
+
+/* Practice Area: 2 Columns */
+#quiz-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media(max-width: 850px) {
+  #quiz-container { grid-template-columns: 1fr; }
+}
+
+.question-card {
+  padding: 18px; background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 12px; transition: 0.2s;
+}
+.question-card:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15); border-color: var(--primary);
+  transform: translateY(-2px);
+}
+.q-text {
+  font-size: 17px; font-weight: 700; line-height: 1.8; margin-bottom: 12px;
+  color: var(--text-main);
+}
+.q-text span {
+  color: var(--text-highlight); text-shadow: 1px 1px 2px rgba(0,0,0,0.1); font-weight: 700;
+}
+.q-input {
+  padding: 10px 14px; border: var(--border-width) solid var(--border-color);
+  border-radius: 7px; font-family: inherit; font-size: 15px; font-weight: 700;
+  background: var(--bg-container); color: var(--text-main);
+  outline: none; width: 170px; max-width: 100%; transition: 0.3s;
+}
+.q-input:focus { border-color: var(--primary); box-shadow: 0 0 5px var(--primary); }
+
+.btn, .btn-page {
+  background: var(--primary); color: white; border: 2px solid var(--primary);
+  padding: 10px 15px; border-radius: 7px; cursor: pointer;
+  font-family: inherit; font-weight: 700; font-size: 15px; transition: 0.2s;
+}
+.btn:hover, .btn-page:hover:not(:disabled) {
+  background: var(--primary-hover); transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.btn-outline { background: transparent; color: var(--primary); border-color: var(--primary); }
+.btn-outline:hover { background: var(--primary); color: white; }
+
+.explanation-box {
+  margin-top: 15px; padding: 12px 15px;
+  background: var(--bg-section); border: var(--border-width) solid var(--border-color);
+  border-left: 5px solid var(--primary); border-radius: 5px;
+  font-size: 15px; font-weight: 600; line-height: 1.8; display: none;
+}
+.result-msg { font-weight: 800; font-size: 15px; letter-spacing: 0.5px; }
+.correct { color: var(--success); text-shadow: 0 0 2px rgba(5,150,105,0.4); }
+.incorrect { color: var(--error); text-shadow: 0 0 2px rgba(220,38,38,0.4); }
+
+.pagination {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  flex-wrap: wrap; margin-top: 30px; border-top: var(--border-width) solid var(--border-color);
+  padding-top: 20px; font-weight: 700;
+}
+.btn-page { padding: 10px 18px; font-size: 15px; }
+.btn-page:disabled { background: var(--text-muted); border-color: var(--text-muted); cursor: not-allowed; transform: none; box-shadow: none; }
+
+.footer {
+  text-align: center; padding: 20px; background: var(--bg-section);
+  color: var(--text-main); font-weight: 700; font-size: 15px;
+  border-top: var(--border-width) solid var(--border-color);
+}
 </style>
 </head>
 <body>
 <div id="master-ebook-practice-root">
 <div class="ebook-container">
 <header class="ebook-header">
-<span class="book-badge">Ultimate Master &amp; Practice Book</span>
-<h1>Suffix &amp; Prefix কমপ্লিট মাস্টার গাইড</h1>
-<p>একাডেমিক পরীক্ষা (SSC &amp; HSC) ও প্রতিযোগিতামূলক প্রস্তুতি: গুরুত্বপূর্ণ নিয়ম, Prefix, Suffix এবং ১০০টি অনুশীলন</p>
+<div class="theme-switcher">
+  <button class="theme-btn" style="background:#4f46e5" onclick="changeTheme('default')">Default Theme</button>
+  <button class="theme-btn" style="background:#1e293b" onclick="changeTheme('dark')">Dark Theme</button>
+  <button class="theme-btn btn-rgb" onclick="changeTheme('rgb')">RGB Vibe</button>
+</div>
+<span class="book-badge">Ultimate Master &amp; Practice Book</span><br>
+<h1 class="header-highlight">Suffix &amp; Prefix কমপ্লিট মাস্টার গাইড</h1><br>
+<p class="header-highlight">একাডেমিক পরীক্ষা (SSC &amp; HSC) ও প্রতিযোগিতামূলক প্রস্তুতি: গুরুত্বপূর্ণ নিয়ম, Prefix, Suffix এবং ১০০টি অনুশীলন</p>
 </header>
 <nav class="nav-tabs" aria-label="অধ্যায় নির্বাচন">
 <button class="nav-tab toc" onclick="goToContents()">📚 সূচিপত্র</button>
@@ -157,7 +440,7 @@ body{margin:0;font-family:'Hind Siliguri','Poppins',sans-serif;background:linear
 <tr><td><b>-ly</b></td><td>অনেক Adjective থেকে Adverb</td><td>slow → slowly; quick → quickly</td><td>ধীরে; দ্রুত</td></tr>
 <tr><td><b>-ward / -wards</b></td><td>দিক / অভিমুখ</td><td>back → backward; home → homeward</td><td>পেছনের দিকে; বাড়ির দিকে</td></tr>
 <tr><td><b>-wise</b></td><td>দিক / পদ্ধতি / বিবেচনায়</td><td>clock → clockwise; length → lengthwise</td><td>ঘড়ির কাঁটার দিকে; দৈর্ঘ্য বরাবর</td></tr>
-</tbody></table></div><div class="note-box">সতর্কতা: সব -ly শব্দ Adverb নয়। যেমন friendly, lovely, lively সাধারণত Adjective। একইভাবে শব্দের শেষাংশ দেখেই Parts of Speech নিশ্চিত করা যাবে না; বাক্যে ব্যবহারও দেখতে হবে।</div></div>
+</tbody></table></div><div class="note-box">সতর্কতা: সব -ly শব্দ Adverb নয়। যেমন friendly, lovely, lively সাধারণত Adjective। একইভাবে শব্দের শেষাংশ দেখেই Parts of Speech নিশ্চিত করা যাবে অমর; বাক্যে ব্যবহারও দেখতে হবে।</div></div>
 </section>
 
 <section id="tab-4" class="chapter-content">
@@ -180,173 +463,243 @@ body{margin:0;font-family:'Hind Siliguri','Poppins',sans-serif;background:linear
 
 <section id="tab-6" class="chapter-content">
 <h2 class="chapter-title">✍️ Suffix &amp; Prefix চূড়ান্ত প্র্যাকটিস সেট (১–১০০)</h2>
-<p style="margin-bottom:20px;color:var(--text-muted);line-height:1.8">প্রতি পেজে ১০টি প্রশ্ন। শূন্যস্থানে সঠিক শব্দরূপ লিখে <b>সাবমিট</b> করুন। ব্যাখ্যা বাটনে বাংলা অর্থ ও ব্যাকরণগত কারণ দেখুন। আলাদা উত্তরমালা নেই—প্রতিটি প্রশ্নের উত্তর সেখানেই দেখা যাবে।</p>
+<p style="margin-bottom:25px;font-weight:700;font-size:16px;line-height:1.8;">প্রতি পেজে ২০টি প্রশ্ন (২ কলামে)। শূন্যস্থানে সঠিক শব্দরূপ লিখে <b>সাবমিট</b> করুন। ব্যাখ্যা বাটনে বাংলা অর্থ ও ব্যাকরণগত কারণ দেখুন।</p>
 <div id="quiz-container"></div>
-<div class="pagination"><button class="btn-page" id="prev-btn" onclick="changeQuizPage(-1)">← পূর্ববর্তী পেজ</button><span id="quiz-page-info">পেজ ১ / ১০</span><button class="btn-page" id="next-btn" onclick="changeQuizPage(1)">পরবর্তী পেজ →</button></div>
+<div class="pagination">
+  <button class="btn-page" id="prev-btn" onclick="changeQuizPage(-1)">← পূর্ববর্তী পেজ</button>
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <span>পেজ নির্বাচন: </span>
+    <select id="page-select" onchange="jumpToPage(this.value)" style="padding: 6px 12px; border-radius: 8px; font-family: inherit; font-size: 15px; font-weight: 700; border: 2px solid var(--primary); background: var(--bg-card); color: var(--text-main); cursor: pointer;">
+      <!-- Options injected by JS -->
+    </select>
+  </div>
+  <button class="btn-page" id="next-btn" onclick="changeQuizPage(1)">পরবর্তী পেজ →</button>
+</div>
 </section>
 <footer class="footer">Suffix &amp; Prefix কমপ্লিট মাস্টার গাইড · শিখুন, অনুশীলন করুন, দক্ষতা বাড়ান</footer>
 </div>
 </div>
 
 <script>
+function changeTheme(themeName) {
+  document.body.className = '';
+  if (themeName !== 'default') {
+    document.body.classList.add('theme-' + themeName);
+  }
+}
+
 const questions = [
-{q:"Government takes steps for the [educate] of all.",ans:"education",meaning:"শিক্ষা",exp:"Preposition ‘for’-এর পরে এখানে Noun ‘education’ বসেছে।"},
-{q:"Tolerance is a great [kind].",ans:"kindness",meaning:"দয়া",exp:"Adjective ‘great’-এর পরে Noun ‘kindness’ বসেছে।"},
-{q:"[Know] is power.",ans:"knowledge",meaning:"জ্ঞান",exp:"বাক্যের Subject হিসেবে Noun ‘knowledge’ বসেছে।"},
-{q:"Acquire [wise] from your elders.",ans:"wisdom",meaning:"প্রজ্ঞা",exp:"Verb ‘Acquire’-এর Object হিসেবে Noun ‘wisdom’ বসেছে।"},
-{q:"A [learn] person is respected everywhere.",ans:"learned",meaning:"শিক্ষিত",exp:"Noun ‘person’-এর আগে Adjective ‘learned’ বসেছে।"},
-{q:"This book is very [read].",ans:"readable",meaning:"পাঠযোগ্য",exp:"Suffix -able যোগে Adjective ‘readable’ হয়েছে।"},
-{q:"Give me some [inform].",ans:"information",meaning:"তথ্য",exp:"‘some’-এর পরে Uncountable Noun ‘information’ বসেছে।"},
-{q:"Follow the [instruct] of your teacher.",ans:"instructions",meaning:"নির্দেশাবলি",exp:"এখানে একাধিক নির্দেশ বোঝাতে Plural Noun ‘instructions’ ব্যবহৃত হয়েছে।"},
-{q:"Listen to the teacher [attention].",ans:"attentively",meaning:"মনোযোগ সহকারে",exp:"কীভাবে শুনবে বোঝাতে Adverb ‘attentively’ ব্যবহৃত হয়েছে।"},
-{q:"Education [bright] our future.",ans:"brightens",meaning:"উজ্জ্বল করে",exp:"Singular Subject ‘Education’-এর Present Simple Verb ‘brightens’ হয়েছে।"},
-{q:"Physical [health] is essential for all.",ans:"fitness",meaning:"সুস্থতা / শারীরিক সক্ষমতা",exp:"এখানে ‘physical fitness’ একটি প্রচলিত Noun phrase।"},
-{q:"[Pure] of water is necessary.",ans:"purity",meaning:"বিশুদ্ধতা",exp:"Subject হিসেবে Noun ‘purity’ বসেছে।"},
-{q:"Water [pollute] causes many diseases.",ans:"pollution",meaning:"দূষণ",exp:"Noun ‘pollution’ পানি দূষণের বিষয়টি প্রকাশ করে।"},
-{q:"Smoking is [harm] to health.",ans:"harmful",meaning:"ক্ষতিকর",exp:"Linking verb ‘is’-এর পরে Adjective ‘harmful’ বসেছে।"},
-{q:"Tigers are [danger] animals.",ans:"dangerous",meaning:"বিপজ্জনক",exp:"Noun ‘animals’-এর আগে Adjective ‘dangerous’ বসেছে।"},
-{q:"[Tree] is essential for our survival. (গাছ লাগানোর কাজ বোঝাও)",ans:"plantation",meaning:"বৃক্ষরোপণ",exp:"বৃক্ষরোপণের কাজ বোঝাতে Noun ‘plantation’ ব্যবহৃত হয়েছে।"},
-{q:"I have a severe head[ache] in my head. (মাথাব্যথা বোঝাতে এক শব্দ)",ans:"headache",meaning:"মাথাব্যথা",exp:"‘Headache’ একটি প্রচলিত Compound Noun; বাক্যটির স্বাভাবিক রূপ: I have a severe headache."},
-{q:"Proper [nurse] can help a patient recover.",ans:"nursing",meaning:"সেবা / পরিচর্যা",exp:"‘Proper nursing’ Noun phrase হিসেবে ব্যবহৃত হয়েছে।"},
-{q:"[Active] helps us to stay healthy. (কর্মতৎপরতা)",ans:"activity",meaning:"কর্মতৎপরতা",exp:"Subject হিসেবে Noun ‘activity’ বসেছে।"},
-{q:"Drug addiction may lead to mental [sane] (বিপরীত অর্থে).",ans:"insanity",meaning:"মানসিক ভারসাম্যহীনতা",exp:"Prefix in- ও Noun-forming ending মিলিয়ে ‘insanity’ হয়েছে; এটি অনিয়মিত শব্দরূপ।"},
-{q:"[Honest] is the best policy.",ans:"honesty",meaning:"সততা",exp:"Subject হিসেবে Noun ‘honesty’ বসেছে।"},
-{q:"Always speak the [truth].",ans:"truth",meaning:"সত্য",exp:"‘Truth’ নিজেই Noun; এখানে পরিবর্তন প্রয়োজন নেই।"},
-{q:"An [obey] student is liked by all.",ans:"obedient",meaning:"বাধ্য / অনুগত",exp:"Noun ‘student’-এর আগে Adjective ‘obedient’ বসেছে।"},
-{q:"Show [kind] to the poor.",ans:"kindness",meaning:"দয়া",exp:"Verb ‘Show’-এর Object হিসেবে Noun ‘kindness’ বসেছে।"},
-{q:"He is a [faith] friend.",ans:"faithful",meaning:"বিশ্বস্ত",exp:"Suffix -ful যোগে Adjective ‘faithful’ হয়েছে।"},
-{q:"A [trust] man never tells a lie. (বিশ্বাসযোগ্য)",ans:"trustworthy",meaning:"বিশ্বাসযোগ্য",exp:"‘Trustworthy’ একটি প্রচলিত Adjective।"},
-{q:"[Sincere] is the key to success.",ans:"sincerity",meaning:"আন্তরিকতা",exp:"Subject হিসেবে Noun ‘sincerity’ বসেছে।"},
-{q:"We should perform our [duty] properly. (একাধিক কর্তব্য)",ans:"duties",meaning:"কর্তব্যসমূহ",exp:"Plural করতে consonant + y-এর y বদলে ies হয়: duty → duties।"},
-{q:"[Patient] has its reward. (ধৈর্য)",ans:"patience",meaning:"ধৈর্য",exp:"এখানে Noun ‘patience’ প্রয়োজন।"},
-{q:"His conduct is [praise]. (প্রশংসার যোগ্য)",ans:"praiseworthy",meaning:"প্রশংসনীয়",exp:"Suffix -worthy যোগে Adjective ‘praiseworthy’ হয়েছে।"},
-{q:"Hard work brings [succeed].",ans:"success",meaning:"সাফল্য",exp:"Verb ‘brings’-এর Object হিসেবে Noun ‘success’ বসেছে।"},
-{q:"[Fail] is the pillar of success.",ans:"failure",meaning:"ব্যর্থতা",exp:"Subject হিসেবে Noun ‘failure’ বসেছে।"},
-{q:"He is a [fortune] man.",ans:"fortunate",meaning:"সৌভাগ্যবান",exp:"Noun ‘man’-এর আগে Adjective ‘fortunate’ বসেছে।"},
-{q:"Industry is the [active] of success. (কর্মতৎপরতা)",ans:"activity",meaning:"কর্মতৎপরতা",exp:"এখানে Noun ‘activity’ বসেছে।"},
-{q:"Fortune favours the [courage]. (সাহসী ব্যক্তি)",ans:"courageous",meaning:"সাহসী",exp:"Adjective ‘courageous’ সাহসী ব্যক্তিকে বোঝাচ্ছে; আরও স্বাভাবিক বাক্য: Fortune favours the courageous."},
-{q:"Self-[depend] is a great virtue.",ans:"dependence",meaning:"নির্ভরতা",exp:"‘Self-dependence’ Noun হিসেবে ব্যবহৃত; ‘self-reliance’ আরও প্রচলিত।"},
-{q:"Slow and steady wins the race; it is a wise [move].",ans:"movement",meaning:"চলন / আন্দোলন",exp:"‘Movement’ Noun, তবে এই বাক্যে ‘decision’ বা ‘approach’ আরও স্বাভাবিক হতে পারে।"},
-{q:"Trees contribute to our economic [grow].",ans:"growth",meaning:"বৃদ্ধি",exp:"Adjective ‘economic’-এর পরে Noun ‘growth’ বসেছে।"},
-{q:"Have you made any [decide] yet?",ans:"decision",meaning:"সিদ্ধান্ত",exp:"‘Make a decision’ প্রচলিত Noun phrase।"},
-{q:"We need a permanent [solve] to this problem.",ans:"solution",meaning:"সমাধান",exp:"Adjective ‘permanent’-এর পরে Noun ‘solution’ বসেছে।"},
-{q:"We need good [friend] in life. (একাধিক বন্ধু)",ans:"friends",meaning:"বন্ধুরা",exp:"Plural Noun ‘friends’ বসেছে।"},
-{q:"Man is a [society] being.",ans:"social",meaning:"সামাজিক",exp:"Noun ‘being’-এর আগে Adjective ‘social’ বসেছে।"},
-{q:"A [peace] life is desired by all.",ans:"peaceful",meaning:"শান্তিময়",exp:"Suffix -ful যোগে Adjective ‘peaceful’ হয়েছে।"},
-{q:"[Happy] does not lie in wealth.",ans:"happiness",meaning:"সুখ",exp:"Subject হিসেবে Noun ‘happiness’ বসেছে।"},
-{q:"Mankind should live in [harmony].",ans:"harmony",meaning:"সম্প্রীতি",exp:"‘Harmony’ নিজেই Noun; বাক্যটি সঠিকভাবে সম্পূর্ণ হয়েছে।"},
-{q:"God is [mercy] to us.",ans:"merciful",meaning:"দয়ালু",exp:"Linking verb ‘is’-এর পরে Adjective ‘merciful’ বসেছে।"},
-{q:"[Charity] begins at home.",ans:"charity",meaning:"দানশীলতা",exp:"‘Charity’ নিজেই Noun এবং Subject হিসেবে ব্যবহৃত হয়েছে।"},
-{q:"Government works for the removal of [poor].",ans:"poverty",meaning:"দারিদ্র্য",exp:"‘Removal of poverty’ একটি প্রচলিত Noun phrase।"},
-{q:"Bangladesh is an independent [nation].",ans:"nation",meaning:"জাতি",exp:"‘Nation’ নিজেই Noun; বাক্যে এটি সঠিক।"},
-{q:"His [hero] act saved the boy.",ans:"heroic",meaning:"বীরত্বপূর্ণ",exp:"Noun ‘act’-এর আগে Adjective ‘heroic’ বসেছে।"},
-{q:"[Science] has changed our life.",ans:"science",meaning:"বিজ্ঞান",exp:"‘Science’ নিজেই Noun ও Subject।"},
-{q:"Newton was a great [science].",ans:"scientist",meaning:"বিজ্ঞানী",exp:"ব্যক্তি বোঝাতে Noun ‘scientist’ বসেছে।"},
-{q:"The computer is a great [wonder] of modern science.",ans:"wonder",meaning:"বিস্ময়",exp:"‘Wonder’ নিজেই Noun।"},
-{q:"God is the [create] of the universe.",ans:"creator",meaning:"সৃষ্টিকর্তা",exp:"কাজকারী ব্যক্তি বোঝাতে -or যোগে ‘creator’ হয়েছে।"},
-{q:"This theory has no [base]. (ভিত্তি বোঝাও)",ans:"basis",meaning:"ভিত্তি",exp:"এই অর্থে সঠিক Noun হলো ‘basis’; এটি অনিয়মিত রূপ।"},
-{q:"[True] speaking, science is a blessing.",ans:"truly",meaning:"সত্যি বলতে",exp:"‘Speaking’-কে modify করা introductory Adverb হিসেবে ‘truly’ ব্যবহৃত হয়েছে।"},
-{q:"Electricity is of great [use] to us. (উপযোগিতা)",ans:"usefulness",meaning:"উপযোগিতা",exp:"‘Of great usefulness’ বলা যায়; তবে ‘of great use’ নিজেও সঠিক।"},
-{q:"Marconi made the [invent] of radio.",ans:"invention",meaning:"আবিষ্কার",exp:"‘The invention of radio’ Noun phrase।"},
-{q:"Columbus [discover] America.",ans:"discovered",meaning:"আবিষ্কার করেছিলেন",exp:"অতীতের ঘটনা বোঝাতে Past Simple ‘discovered’ বসেছে।"},
-{q:"We must [modern] our education system.",ans:"modernize",meaning:"আধুনিক করা",exp:"Modal ‘must’-এর পরে Base Verb ‘modernize’ বসেছে।"},
-{q:"Mass [communicate] is very powerful.",ans:"communication",meaning:"যোগাযোগ",exp:"Subject phrase-এ Noun ‘communication’ বসেছে।"},
-{q:"The internet is a global [connect]. (সংযোগ)",ans:"connection",meaning:"সংযোগ",exp:"Adjective ‘global’-এর পরে Noun ‘connection’ বসেছে।"},
-{q:"Language is a medium of [express].",ans:"expression",meaning:"প্রকাশ",exp:"Preposition ‘of’-এর পরে Noun ‘expression’ বসেছে।"},
-{q:"English is an [nation] language used worldwide.",ans:"international",meaning:"আন্তর্জাতিক",exp:"Noun ‘language’-এর আগে Adjective ‘international’ বসেছে।"},
-{q:"What is the [mean] of this word?",ans:"meaning",meaning:"অর্থ",exp:"‘The’-এর পরে Noun ‘meaning’ বসেছে।"},
-{q:"Read the text [clear].",ans:"clearly",meaning:"স্পষ্টভাবে",exp:"Verb ‘Read’-কে modify করতে Adverb ‘clearly’ বসেছে।"},
-{q:"I am [sure] of his success.",ans:"sure",meaning:"নিশ্চিত",exp:"‘Sure’ নিজেই Adjective; Linking verb ‘am’-এর পরে বসেছে।"},
-{q:"[Regular] brings success in life. (নিয়মিত হওয়ার গুণ)",ans:"regularity",meaning:"নিয়মিততা",exp:"Subject হিসেবে Noun ‘regularity’ বসেছে।"},
-{q:"[Polite] wins friends.",ans:"politeness",meaning:"ভদ্রতা",exp:"Subject হিসেবে Noun ‘politeness’ বসেছে।"},
-{q:"[Patient] is necessary in hard times. (ধৈর্য)",ans:"patience",meaning:"ধৈর্য",exp:"এখানে Noun ‘patience’ প্রয়োজন।"},
-{q:"Bangladesh is a [develop] country. (উন্নয়নশীল)",ans:"developing",meaning:"উন্নয়নশীল",exp:"Present participle ‘developing’ এখানে Adjective হিসেবে ব্যবহৃত হয়েছে।"},
-{q:"[Poor] is a curse for a nation. (দারিদ্র্য)",ans:"poverty",meaning:"দারিদ্র্য",exp:"Subject হিসেবে Noun ‘poverty’ বসেছে।"},
-{q:"Unemployment is a big [employ] problem. (কর্মসংস্থান)",ans:"employment",meaning:"কর্মসংস্থান",exp:"Noun ‘employment’ এখানে আরেকটি Noun ‘problem’-কে নির্দিষ্ট করছে।"},
-{q:"Rice is the chief [produce] of our country. (উৎপাদিত বস্তু)",ans:"product",meaning:"পণ্য / উৎপাদিত বস্তু",exp:"এখানে Noun ‘product’ বসেছে।"},
-{q:"[Industry] workers are the asset of a country. (শিল্পসংক্রান্ত)",ans:"industrial",meaning:"শিল্পসংক্রান্ত",exp:"Noun ‘workers’-এর আগে Adjective ‘industrial’ বসেছে।"},
-{q:"Health is [compare] to gold.",ans:"comparable",meaning:"তুলনীয়",exp:"‘Comparable to’ অর্থ তুলনীয়; Adjective প্রয়োজন।"},
-{q:"Time once gone is gone forever; it is [value]. (অমূল্য)",ans:"invaluable",meaning:"অমূল্য",exp:"Prefix in- দিয়ে ‘invaluable’—অমূল্য—হয়েছে; এর অর্থ valueless নয়।"},
-{q:"Do not [waste] your valuable time.",ans:"waste",meaning:"অপচয় করা",exp:"‘Do not’-এর পরে Base Verb ‘waste’ বসেছে।"},
-{q:"There are [differ] opinions on this issue.",ans:"different",meaning:"ভিন্ন",exp:"Noun ‘opinions’-এর আগে Adjective ‘different’ বসেছে।"},
-{q:"We should not be [depend] on others.",ans:"dependent",meaning:"নির্ভরশীল",exp:"‘Be’-এর পরে Adjective ‘dependent’ বসেছে।"},
-{q:"[Travel] broadens our mind.",ans:"travelling",meaning:"ভ্রমণ",exp:"Gerund ‘travelling’ Subject হিসেবে ব্যবহৃত হয়েছে।"},
-{q:"Natural beauty [charm] us.",ans:"charms",meaning:"মুগ্ধ করে",exp:"Singular Subject ‘beauty’-এর সঙ্গে Present Simple Verb ‘charms’ বসেছে।"},
-{q:"Cox's Bazar is a very [attract] place.",ans:"attractive",meaning:"আকর্ষণীয়",exp:"Noun ‘place’-এর আগে Adjective ‘attractive’ বসেছে।"},
-{q:"The journey was very [enjoy].",ans:"enjoyable",meaning:"উপভোগ্য",exp:"Linking verb ‘was’-এর পরে Adjective ‘enjoyable’ বসেছে।"},
-{q:"We were [excite] at the news.",ans:"excited",meaning:"উত্তেজিত / রোমাঞ্চিত",exp:"ব্যক্তির অনুভূতি বোঝাতে Adjective ‘excited’ বসেছে।"},
-{q:"It was a [please] experience. (মনোরম)",ans:"pleasant",meaning:"মনোরম",exp:"‘Pleasure’ থেকে আলাদা Adjective ‘pleasant’ ব্যবহৃত হয়।"},
-{q:"The scenery is [wonder].",ans:"wonderful",meaning:"চমৎকার",exp:"Linking verb ‘is’-এর পরে Adjective ‘wonderful’ বসেছে।"},
-{q:"Beautiful [sight] relieve our eyes. (একাধিক দৃশ্য)",ans:"sights",meaning:"দৃশ্যসমূহ",exp:"Plural Subject ‘sights’-এর সঙ্গে Verb-ও plural ‘relieve’ হয়েছে।"},
-{q:"A silent night brings [peace] to mind.",ans:"peace",meaning:"শান্তি",exp:"‘Peace’ নিজেই Noun; ‘brings peace’ একটি স্বাভাবিক গঠন।"},
-{q:"[Free] movement in nature refreshes us. (মুক্ত)",ans:"free",meaning:"মুক্ত",exp:"‘Movement’-এর আগে Adjective ‘free’ বসেছে।"},
-{q:"Always keep your valuables in a [safe] place.",ans:"safe",meaning:"নিরাপদ",exp:"Noun ‘place’-এর আগে Adjective ‘safe’ বসেছে।"},
-{q:"Do not put yourself in [danger].",ans:"danger",meaning:"বিপদ",exp:"Preposition ‘in’-এর পরে Noun ‘danger’ বসেছে।"},
-{q:"There is no [true] in his words. (সত্যতা)",ans:"truth",meaning:"সত্যতা",exp:"‘No’-এর পরে Noun ‘truth’ বসেছে।"},
-{q:"[Just] must prevail in society. (ন্যায়বিচার)",ans:"justice",meaning:"ন্যায়বিচার",exp:"Subject হিসেবে Noun ‘justice’ বসেছে।"},
-{q:"Act [wise] in critical situations.",ans:"wisely",meaning:"বুদ্ধিমত্তার সঙ্গে",exp:"Verb ‘Act’-কে modify করতে Adverb ‘wisely’ বসেছে।"},
-{q:"[Able] is better than riches. (যোগ্যতা)",ans:"ability",meaning:"যোগ্যতা",exp:"Subject হিসেবে Noun ‘ability’ বসেছে।"},
-{q:"Inactivity leads to [active]. (নিষ্ক্রিয়তা)",ans:"inactivity",meaning:"নিষ্ক্রিয়তা",exp:"Prefix in- ও Suffix -ity-সহ Noun ‘inactivity’ হয়েছে।"},
-{q:"[Fortunate] he escaped the accident.",ans:"fortunately",meaning:"সৌভাগ্যবশত",exp:"পুরো বাক্যকে modify করতে Adverb ‘Fortunately’ বসেছে।"},
-{q:"He got the [appoint].",ans:"appointment",meaning:"নিয়োগ / সাক্ষাতের সময়",exp:"‘The’-এর পরে Noun ‘appointment’ বসেছে।"},
-{q:"I am fully [satisfy] with your work.",ans:"satisfied",meaning:"সন্তুষ্ট",exp:"‘Am’ ও ‘fully’-এর পরে Adjective ‘satisfied’ বসেছে।"}
+{q:"Government takes steps for the [educate] of all.",ans:"education",meaning:"শিক্ষা",exp:"Preposition 'for'-এর পরে এখানে Noun 'education' বসেছে।"},
+{q:"Tolerance is a great [kind].",ans:"kindness",meaning:"দয়া",exp:"Adjective 'great'-এর পরে Noun 'kindness' বসেছে।"},
+{q:"[Know] is power.",ans:"knowledge",meaning:"জ্ঞান",exp:"বাক্যের Subject হিসেবে Noun 'knowledge' বসেছে।"},
+{q:"Acquire [wise] from your elders.",ans:"wisdom",meaning:"প্রজ্ঞা",exp:"Verb 'Acquire'-এর Object হিসেবে Noun 'wisdom' বসেছে।"},
+{q:"A [learn] person is respected everywhere.",ans:"learned",meaning:"শিক্ষিত",exp:"Noun 'person'-এর আগে Adjective 'learned' বসেছে।"},
+{q:"This book is very [read].",ans:"readable",meaning:"পাঠযোগ্য",exp:"Suffix -able যোগে Adjective 'readable' হয়েছে।"},
+{q:"Give me some [inform].",ans:"information",meaning:"তথ্য",exp:"'some'-এর পরে Uncountable Noun 'information' বসেছে।"},
+{q:"Follow the [instruct] of your teacher.",ans:"instructions",meaning:"নির্দেশাবলি",exp:"এখানে একাধিক নির্দেশ বোঝাতে Plural Noun 'instructions' ব্যবহৃত হয়েছে।"},
+{q:"Listen to the teacher [attention].",ans:"attentively",meaning:"মনোযোগ সহকারে",exp:"কীভাবে শুনবে বোঝাতে Adverb 'attentively' ব্যবহৃত হয়েছে।"},
+{q:"Education [bright] our future.",ans:"brightens",meaning:"উজ্জ্বল করে",exp:"Singular Subject 'Education'-এর Present Simple Verb 'brightens' হয়েছে।"},
+{q:"Physical [health] is essential for all.",ans:"fitness",meaning:"সুস্থতা / শারীরিক সক্ষমতা",exp:"এখানে 'physical fitness' একটি প্রচলিত Noun phrase।"},
+{q:"[Pure] of water is necessary.",ans:"purity",meaning:"বিশুদ্ধতা",exp:"Subject হিসেবে Noun 'purity' বসেছে।"},
+{q:"Water [pollute] causes many diseases.",ans:"pollution",meaning:"দূষণ",exp:"Noun 'pollution' পানি দূষণের বিষয়টি প্রকাশ করে।"},
+{q:"Smoking is [harm] to health.",ans:"harmful",meaning:"ক্ষতিকর",exp:"Linking verb 'is'-এর পরে Adjective 'harmful' বসেছে।"},
+{q:"Tigers are [danger] animals.",ans:"dangerous",meaning:"বিপজ্জনক",exp:"Noun 'animals'-এর আগে Adjective 'dangerous' বসেছে।"},
+{q:"[Tree] is essential for our survival. (গাছ লাগানোর কাজ বোঝাও)",ans:"plantation",meaning:"বৃক্ষরোপণ",exp:"বৃক্ষরোপণের কাজ বোঝাতে Noun 'plantation' ব্যবহৃত হয়েছে।"},
+{q:"I have a severe head[ache] in my head.",ans:"headache",meaning:"মাথাব্যথা",exp:"'Headache' একটি প্রচলিত Compound Noun."},
+{q:"Proper [nurse] can help a patient recover.",ans:"nursing",meaning:"সেবা / পরিচর্যা",exp:"'Proper nursing' Noun phrase হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"[Active] helps us to stay healthy.",ans:"activity",meaning:"কর্মতৎপরতা",exp:"Subject হিসেবে Noun 'activity' বসেছে।"},
+{q:"Drug addiction may lead to mental [sane].",ans:"insanity",meaning:"মানসিক ভারসাম্যহীনতা",exp:"Prefix in- ও Noun-forming ending মিলিয়ে 'insanity' হয়েছে।"},
+{q:"[Honest] is the best policy.",ans:"honesty",meaning:"সততা",exp:"Subject হিসেবে Noun 'honesty' বসেছে।"},
+{q:"Always speak the [truth].",ans:"truth",meaning:"সত্য",exp:"'Truth' নিজেই Noun; এখানে পরিবর্তন প্রয়োজন নেই।"},
+{q:"An [obey] student is liked by all.",ans:"obedient",meaning:"বাধ্য / অনুগত",exp:"Noun 'student'-এর আগে Adjective 'obedient' বসেছে।"},
+{q:"Show [kind] to the poor.",ans:"kindness",meaning:"দয়া",exp:"Verb 'Show'-এর Object হিসেবে Noun 'kindness' বসেছে।"},
+{q:"He is a [faith] friend.",ans:"faithful",meaning:"বিশ্বস্ত",exp:"Suffix -ful যোগে Adjective 'faithful' হয়েছে।"},
+{q:"A [trust] man never tells a lie.",ans:"trustworthy",meaning:"বিশ্বাসযোগ্য",exp:"'Trustworthy' একটি প্রচলিত Adjective।"},
+{q:"[Sincere] is the key to success.",ans:"sincerity",meaning:"আন্তরিকতা",exp:"Subject হিসেবে Noun 'sincerity' বসেছে।"},
+{q:"We should perform our [duty] properly.",ans:"duties",meaning:"কর্তব্যসমূহ",exp:"Plural করতে consonant + y-এর y বদলে ies হয়: duty → duties।"},
+{q:"[Patient] has its reward.",ans:"patience",meaning:"ধৈর্য",exp:"এখানে Noun 'patience' প্রয়োজন।"},
+{q:"His conduct is [praise].",ans:"praiseworthy",meaning:"প্রশংসনীয়",exp:"Suffix -worthy যোগে Adjective 'praiseworthy' হয়েছে।"},
+{q:"Hard work brings [succeed].",ans:"success",meaning:"সাফল্য",exp:"Verb 'brings'-এর Object হিসেবে Noun 'success' বসেছে।"},
+{q:"[Fail] is the pillar of success.",ans:"failure",meaning:"ব্যর্থতা",exp:"Subject হিসেবে Noun 'failure' বসেছে।"},
+{q:"He is a [fortune] man.",ans:"fortunate",meaning:"সৌভাগ্যবান",exp:"Noun 'man'-এর আগে Adjective 'fortunate' বসেছে।"},
+{q:"Industry is the [active] of success.",ans:"activity",meaning:"কর্মতৎপরতা",exp:"এখানে Noun 'activity' বসেছে।"},
+{q:"Fortune favours the [courage].",ans:"courageous",meaning:"সাহসী",exp:"Adjective 'courageous' সাহসী ব্যক্তিকে বোঝাচ্ছে।"},
+{q:"Self-[depend] is a great virtue.",ans:"dependence",meaning:"নির্ভরতা",exp:"'Self-dependence' Noun হিসেবে ব্যবহৃত।"},
+{q:"Slow and steady wins the race; it is a wise [move].",ans:"movement",meaning:"চলন / আন্দোলন",exp:"'Movement' Noun হিসেবে ব্যবহৃত।"},
+{q:"Trees contribute to our economic [grow].",ans:"growth",meaning:"বৃদ্ধি",exp:"Adjective 'economic'-এর পরে Noun 'growth' বসেছে।"},
+{q:"Have you made any [decide] yet?",ans:"decision",meaning:"সিদ্ধান্ত",exp:"'Make a decision' প্রচলিত Noun phrase।"},
+{q:"We need a permanent [solve] to this problem.",ans:"solution",meaning:"সমাধান",exp:"Adjective 'permanent'-এর পরে Noun 'solution' বসেছে।"},
+{q:"We need good [friend] in life.",ans:"friends",meaning:"বন্ধুরা",exp:"Plural Noun 'friends' বসেছে।"},
+{q:"Man is a [society] being.",ans:"social",meaning:"সামাজিক",exp:"Noun 'being'-এর আগে Adjective 'social' বসেছে।"},
+{q:"A [peace] life is desired by all.",ans:"peaceful",meaning:"শান্তিময়",exp:"Suffix -ful যোগে Adjective 'peaceful' হয়েছে।"},
+{q:"[Happy] does not lie in wealth.",ans:"happiness",meaning:"সুখ",exp:"Subject হিসেবে Noun 'happiness' বসেছে।"},
+{q:"Mankind should live in [harmony].",ans:"harmony",meaning:"সম্প্রীতি",exp:"'Harmony' নিজেই Noun; বাক্যটি সঠিকভাবে সম্পূর্ণ হয়েছে।"},
+{q:"God is [mercy] to us.",ans:"merciful",meaning:"দয়ালু",exp:"Linking verb 'is'-এর পরে Adjective 'merciful' বসেছে।"},
+{q:"[Charity] begins at home.",ans:"charity",meaning:"দানশীলতা",exp:"'Charity' নিজেই Noun এবং Subject হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"Government works for the removal of [poor].",ans:"poverty",meaning:"দারিদ্র্য",exp:"'Removal of poverty' একটি প্রচলিত Noun phrase।"},
+{q:"Bangladesh is an independent [nation].",ans:"nation",meaning:"জাতি",exp:"'Nation' নিজেই Noun; বাক্যে এটি সঠিক।"},
+{q:"His [hero] act saved the boy.",ans:"heroic",meaning:"বীরত্বপূর্ণ",exp:"Noun 'act'-এর আগে Adjective 'heroic' বসেছে।"},
+{q:"[Science] has changed our life.",ans:"science",meaning:"বিজ্ঞান",exp:"'Science' নিজেই Noun ও Subject।"},
+{q:"Newton was a great [science].",ans:"scientist",meaning:"বিজ্ঞানী",exp:"ব্যক্তি বোঝাতে Noun 'scientist' বসেছে।"},
+{q:"The computer is a great [wonder] of modern science.",ans:"wonder",meaning:"বিস্ময়",exp:"'Wonder' নিজেই Noun।"},
+{q:"God is the [create] of the universe.",ans:"creator",meaning:"সৃষ্টিকর্তা",exp:"কাজকারী ব্যক্তি বোঝাতে -or যোগে 'creator' হয়েছে।"},
+{q:"This theory has no [base].",ans:"basis",meaning:"ভিত্তি",exp:"এই অর্থে সঠিক Noun হলো 'basis'; এটি অনিয়মিত রূপ।"},
+{q:"[True] speaking, science is a blessing.",ans:"truly",meaning:"সত্যি বলতে",exp:"'Speaking'-কে modify করা introductory Adverb হিসেবে 'truly' ব্যবহৃত হয়েছে।"},
+{q:"Electricity is of great [use] to us.",ans:"usefulness",meaning:"উপযোগিতা",exp:"Noun form হিসেবে 'usefulness' বা 'use' বসবে।"},
+{q:"Marconi made the [invent] of radio.",ans:"invention",meaning:"আবিষ্কার",exp:"'The invention of radio' Noun phrase।"},
+{q:"Columbus [discover] America.",ans:"discovered",meaning:"আবিষ্কার করেছিলেন",exp:"অতীতের ঘটনা বোঝাতে Past Simple 'discovered' বসেছে।"},
+{q:"We must [modern] our education system.",ans:"modernize",meaning:"আধুনিক করা",exp:"Modal 'must'-এর পরে Base Verb 'modernize' বসেছে।"},
+{q:"Mass [communicate] is very powerful.",ans:"communication",meaning:"যোগাযোগ",exp:"Subject phrase-এ Noun 'communication' বসেছে।"},
+{q:"The internet is a global [connect].",ans:"connection",meaning:"সংযোগ",exp:"Adjective 'global'-এর পরে Noun 'connection' বসেছে।"},
+{q:"Language is a medium of [express].",ans:"expression",meaning:"প্রকাশ",exp:"Preposition 'of'-এর পরে Noun 'expression' বসেছে।"},
+{q:"English is an [nation] language used worldwide.",ans:"international",meaning:"আন্তর্জাতিক",exp:"Noun 'language'-এর আগে Adjective 'international' বসেছে।"},
+{q:"What is the [mean] of this word?",ans:"meaning",meaning:"অর্থ",exp:"'The'-এর পরে Noun 'meaning' বসেছে।"},
+{q:"Read the text [clear].",ans:"clearly",meaning:"স্পষ্টভাবে",exp:"Verb 'Read'-কে modify করতে Adverb 'clearly' বসেছে।"},
+{q:"I am [sure] of his success.",ans:"sure",meaning:"নিশ্চিত",exp:"'Sure' নিজেই Adjective; Linking verb 'am'-এর পরে বসেছে।"},
+{q:"[Regular] brings success in life.",ans:"regularity",meaning:"নিয়মিততা",exp:"Subject হিসেবে Noun 'regularity' বসেছে।"},
+{q:"[Polite] wins friends.",ans:"politeness",meaning:"ভদ্রতা",exp:"Subject হিসেবে Noun 'politeness' বসেছে।"},
+{q:"[Patient] is necessary in hard times.",ans:"patience",meaning:"ধৈর্য",exp:"এখানে Noun 'patience' প্রয়োজন।"},
+{q:"Bangladesh is a [develop] country.",ans:"developing",meaning:"উন্নয়নশীল",exp:"Present participle 'developing' এখানে Adjective হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"[Poor] is a curse for a nation.",ans:"poverty",meaning:"দারিদ্র্য",exp:"Subject হিসেবে Noun 'poverty' বসেছে।"},
+{q:"Unemployment is a big [employ] problem.",ans:"employment",meaning:"কর্মসংস্থান",exp:"Noun 'employment' এখানে আরেকটি Noun 'problem'-কে নির্দিষ্ট করছে।"},
+{q:"Rice is the chief [produce] of our country.",ans:"product",meaning:"পণ্য / উৎপাদিত বস্তু",exp:"এখানে Noun 'product' বসেছে।"},
+{q:"[Industry] workers are the asset of a country.",ans:"industrial",meaning:"শিল্পসংক্রান্ত",exp:"Noun 'workers'-এর আগে Adjective 'industrial' বসেছে।"},
+{q:"Health is [compare] to gold.",ans:"comparable",meaning:"তুলনীয়",exp:"'Comparable to' অর্থ তুলনীয়; Adjective প্রয়োজন।"},
+{q:"Time once gone is gone forever; it is [value].",ans:"invaluable",meaning:"অমূল্য",exp:"Prefix in- দিয়ে 'invaluable'—অমূল্য—হয়েছে।"},
+{q:"Do not [waste] your valuable time.",ans:"waste",meaning:"অপচয় করা",exp:"'Do not'-এর পরে Base Verb 'waste' বসেছে।"},
+{q:"There are [differ] opinions on this issue.",ans:"different",meaning:"ভিন্ন",exp:"Noun 'opinions'-এর আগে Adjective 'different' বসেছে।"},
+{q:"We should not be [depend] on others.",ans:"dependent",meaning:"নির্ভরশীল",exp:"'Be'-এর পরে Adjective 'dependent' বসেছে।"},
+{q:"[Travel] broadens our mind.",ans:"travelling",meaning:"ভ্রমণ",exp:"Gerund 'travelling' Subject হিসেবে ব্যবহৃত হয়েছে।"},
+{q:"Natural beauty [charm] us.",ans:"charms",meaning:"মুগ্ধ করে",exp:"Singular Subject 'beauty'-এর সঙ্গে Present Simple Verb 'charms' বসেছে।"},
+{q:"Cox's Bazar is a very [attract] place.",ans:"attractive",meaning:"আকর্ষণীয়",exp:"Noun 'place'-এর আগে Adjective 'attractive' বসেছে।"},
+{q:"The journey was very [enjoy].",ans:"enjoyable",meaning:"উপভোগ্য",exp:"Linking verb 'was'-এর পরে Adjective 'enjoyable' বসেছে।"},
+{q:"We were [excite] at the news.",ans:"excited",meaning:"উত্তেজিত / রোমাঞ্চিত",exp:"ব্যক্তির অনুভূতি বোঝাতে Adjective 'excited' বসেছে।"},
+{q:"It was a [please] experience.",ans:"pleasant",meaning:"মনোরম",exp:"'Pleasure' থেকে আলাদা Adjective 'pleasant' ব্যবহৃত হয়।"},
+{q:"The scenery is [wonder].",ans:"wonderful",meaning:"চমৎকার",exp:"Linking verb 'is'-এর পরে Adjective 'wonderful' বসেছে।"},
+{q:"Beautiful [sight] relieve our eyes.",ans:"sights",meaning:"দৃশ্যসমূহ",exp:"Plural Subject 'sights'-এর সঙ্গে Verb-ও plural 'relieve' হয়েছে।"},
+{q:"A silent night brings [peace] to mind.",ans:"peace",meaning:"শান্তি",exp:"'Peace' নিজেই Noun; 'brings peace' একটি স্বাভাবিক গঠন।"},
+{q:"[Free] movement in nature refreshes us.",ans:"free",meaning:"মুক্ত",exp:"'Movement'-এর আগে Adjective 'free' বসেছে।"},
+{q:"Always keep your valuables in a [safe] place.",ans:"safe",meaning:"নিরাপদ",exp:"Noun 'place'-এর আগে Adjective 'safe' বসেছে।"},
+{q:"Do not put yourself in [danger].",ans:"danger",meaning:"বিপদ",exp:"Preposition 'in'-এর পরে Noun 'danger' বসেছে।"},
+{q:"There is no [true] in his words.",ans:"truth",meaning:"সত্যতা",exp:"'No'-এর পরে Noun 'truth' বসেছে।"},
+{q:"[Just] must prevail in society.",ans:"justice",meaning:"ন্যায়বিচার",exp:"Subject হিসেবে Noun 'justice' বসেছে।"},
+{q:"Act [wise] in critical situations.",ans:"wisely",meaning:"বুদ্ধিমত্তার সঙ্গে",exp:"Verb 'Act'-কে modify করতে Adverb 'wisely' বসেছে।"},
+{q:"[Able] is better than riches.",ans:"ability",meaning:"যোগ্যতা",exp:"Subject হিসেবে Noun 'ability' বসেছে।"},
+{q:"Inactivity leads to [active].",ans:"inactivity",meaning:"নিষ্ক্রিয়তা",exp:"Prefix in- ও Suffix -ity-সহ Noun 'inactivity' হয়েছে।"},
+{q:"[Fortunate] he escaped the accident.",ans:"fortunately",meaning:"সৌভাগ্যবশত",exp:"পুরো বাক্যকে modify করতে Adverb 'Fortunately' বসেছে।"},
+{q:"He got the [appoint].",ans:"appointment",meaning:"নিয়োগ / সাক্ষাতের সময়",exp:"'The'-এর পরে Noun 'appointment' বসেছে।"},
+{q:"I am fully [satisfy] with your work.",ans:"satisfied",meaning:"সন্তুষ্ট",exp:"'Am' ও 'fully'-এর পরে Adjective 'satisfied' বসেছে।"},
+{q:"It is [nature] for a child to play.",ans:"natural",meaning:"স্বাভাবিক",exp:"Noun 'nature'-এর Adjective form 'natural' বসেছে।"},
+{q:"We must protect our [environ].",ans:"environment",meaning:"পরিবেশ",exp:"Possessive pronoun 'our'-এর পরে Noun বসেছে।"},
+{q:"She is a very [care] driver.",ans:"careful",meaning:"সতর্ক",exp:"Noun 'driver'-কে modify করতে Adjective বসেছে।"},
+{q:"His [absent] was noticed by everyone.",ans:"absence",meaning:"অনুপস্থিতি",exp:"Possessive 'His'-এর পরে Noun form বসেছে।"},
+{q:"They reached an [agree].",ans:"agreement",meaning:"চুক্তি / সম্মত হওয়া",exp:"Article 'an'-এর পরে Noun বসেছে।"},
+{q:"The boy was [punish] for his misconduct.",ans:"punished",meaning:"শাস্তি দেওয়া হয়েছিল",exp:"Passive voice-এ past participle form বসেছে।"},
+{q:"She has no [intent] to hurt you.",ans:"intention",meaning:"উদ্দেশ্য",exp:"'no'-এর পরে Noun form বসেছে।"},
+{q:"The [manage] of the company is good.",ans:"management",meaning:"ব্যবস্থাপনা",exp:"বাক্যের Subject হিসেবে Noun বসেছে।"},
+{q:"It is an [accept] truth.",ans:"acceptable",meaning:"গ্রহণযোগ্য",exp:"Noun 'truth'-কে modify করতে Adjective বসেছে।"},
+{q:"There is a [differ] between the two.",ans:"difference",meaning:"পার্থক্য",exp:"Article 'a'-এর পরে Noun form বসেছে।"},
+{q:"He handled the situation [skill].",ans:"skilfully",meaning:"দক্ষতার সাথে",exp:"Verb-কে modify করতে Adverb বসেছে।"},
+{q:"Her dress was very [color].",ans:"colourful",meaning:"রঙিন",exp:"Subject-কে modify করতে Adjective বসেছে।"},
+{q:"The [perform] of the team was poor.",ans:"performance",meaning:"প্রদর্শন",exp:"Subject হিসেবে Noun form বসেছে।"},
+{q:"It is [legal] to drive without a license.",ans:"illegal",meaning:"বেআইনি",exp:"বিপরীত অর্থ বোঝাতে Prefix 'il' বসেছে।"},
+{q:"She is very [hope] about her success.",ans:"hopeful",meaning:"আশাবাদী",exp:"Linking verb-এর পর Adjective বসেছে।"},
+{q:"There is a [vacant] in our office.",ans:"vacancy",meaning:"খালি পদ",exp:"Noun form হিসেবে 'vacancy' বসেছে।"}
 ];
 
-let currentQuizPage=1;
-const itemsPerPage=10;
-function switchTab(tabNum){
+let currentQuizPage = 1;
+const itemsPerPage = 20;
+
+function switchTab(tabNum) {
  document.querySelectorAll('.chapter-content').forEach(el=>el.classList.remove('active'));
- const target=document.getElementById('tab-'+tabNum);
- if(target)target.classList.add('active');
+ const target = document.getElementById('tab-'+tabNum);
+ if(target) target.classList.add('active');
  document.querySelectorAll('.nav-tab:not(.toc)').forEach((el,index)=>el.classList.toggle('active',index+1===tabNum));
  document.querySelector('.ebook-container').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function goToContents(){window.location.href='../lesson_link.html';}
-function renderQuizPage(){
- const container=document.getElementById('quiz-container');
- container.innerHTML='';
- const start=(currentQuizPage-1)*itemsPerPage;
- questions.slice(start,start+itemsPerPage).forEach((item,index)=>{
-  const globalIndex=start+index;
-  const card=document.createElement('div');card.className='question-card';
-  const q=document.createElement('div');q.className='q-text';
-  q.innerHTML=(globalIndex+1)+'. '+item.q.replace(/\[(.*?)\]/g,'<span style="color:var(--primary);font-weight:700">($1)</span> ______');
-  const row=document.createElement('div');row.style.cssText='display:flex;align-items:center;flex-wrap:wrap;gap:8px';
-  const input=document.createElement('input');input.type='text';input.className='q-input';input.id='q-input-'+globalIndex;input.placeholder='উত্তর লিখুন';input.setAttribute('aria-label','প্রশ্ন '+(globalIndex+1)+'-এর উত্তর');
-  input.addEventListener('keydown',e=>{if(e.key==='Enter')checkQuizAnswer(globalIndex)});
-  const submit=document.createElement('button');submit.className='btn';submit.textContent='সাবমিট';submit.onclick=()=>checkQuizAnswer(globalIndex);
-  const explain=document.createElement('button');explain.className='btn btn-outline';explain.textContent='ব্যাখ্যা';explain.onclick=()=>toggleExp(globalIndex);
-  const result=document.createElement('span');result.className='result-msg';result.id='q-res-'+globalIndex;
-  row.append(input,submit,explain,result);
-  const exp=document.createElement('div');exp.className='explanation-box';exp.id='q-exp-'+globalIndex;
-  const meaning=document.createElement('div');meaning.innerHTML='<strong>বাংলা অর্থ:</strong> ';meaning.append(document.createTextNode(item.meaning));
-  const explanation=document.createElement('div');explanation.innerHTML='<strong>ব্যাকরণগত ব্যাখ্যা:</strong> ';explanation.append(document.createTextNode(item.exp));
-  exp.append(meaning,explanation);card.append(q,row,exp);container.appendChild(card);
+
+function goToContents() { window.location.href = '../lesson_link.html'; }
+
+function renderQuizPage() {
+ const container = document.getElementById('quiz-container');
+ container.innerHTML = '';
+ const start = (currentQuizPage - 1) * itemsPerPage;
+ questions.slice(start, start + itemsPerPage).forEach((item, index) => {
+  const globalIndex = start + index;
+  const card = document.createElement('div'); card.className = 'question-card';
+  const q = document.createElement('div'); q.className = 'q-text';
+  q.innerHTML = (globalIndex + 1) + '. ' + item.q.replace(/\[(.*?)\]/g, '<span>($1)</span> ______');
+  
+  const row = document.createElement('div'); row.style.cssText = 'display:flex;align-items:center;flex-wrap:wrap;gap:8px';
+  const input = document.createElement('input'); input.type = 'text'; input.className = 'q-input'; 
+  input.id = 'q-input-'+globalIndex; input.placeholder = 'উত্তর লিখুন';
+  
+  input.addEventListener('keydown', e => { if(e.key==='Enter') checkQuizAnswer(globalIndex) });
+  
+  const submit = document.createElement('button'); submit.className = 'btn'; submit.textContent = 'সাবমিট';
+  submit.onclick = () => checkQuizAnswer(globalIndex);
+  
+  const explain = document.createElement('button'); explain.className = 'btn btn-outline'; explain.textContent = 'ব্যাখ্যা';
+  explain.onclick = () => toggleExp(globalIndex);
+  
+  const result = document.createElement('span'); result.className = 'result-msg'; result.id = 'q-res-'+globalIndex;
+  
+  row.append(input, submit, explain, result);
+  
+  const exp = document.createElement('div'); exp.className = 'explanation-box'; exp.id = 'q-exp-'+globalIndex;
+  const meaning = document.createElement('div'); meaning.innerHTML = '<strong>বাংলা অর্থ:</strong> ' + item.meaning;
+  const explanation = document.createElement('div'); explanation.innerHTML = '<strong>ব্যাকরণগত ব্যাখ্যা:</strong> ' + item.exp;
+  
+  exp.append(meaning, explanation); card.append(q, row, exp); container.appendChild(card);
  });
- const totalPages=Math.ceil(questions.length/itemsPerPage);
- document.getElementById('quiz-page-info').textContent=`পেজ ${currentQuizPage} / ${totalPages} · মোট ${questions.length}টি প্রশ্ন`;
- document.getElementById('prev-btn').disabled=currentQuizPage===1;
- document.getElementById('next-btn').disabled=currentQuizPage===totalPages;
+ 
+ const totalPages = Math.ceil(questions.length / itemsPerPage);
+ 
+ // Update Page Select Dropdown
+ const pageSelect = document.getElementById('page-select');
+ pageSelect.innerHTML = '';
+ for (let i = 1; i <= totalPages; i++) {
+   const option = document.createElement('option');
+   option.value = i;
+   option.textContent = `পেজ ${i} / ${totalPages}`;
+   if (i === currentQuizPage) option.selected = true;
+   pageSelect.appendChild(option);
+ }
+ 
+ document.getElementById('prev-btn').disabled = currentQuizPage === 1;
+ document.getElementById('next-btn').disabled = currentQuizPage === totalPages;
 }
-function checkQuizAnswer(index){
- const input=document.getElementById('q-input-'+index);
- const userVal=input.value.trim().toLowerCase();
- const item=questions[index];const res=document.getElementById('q-res-'+index);
+
+function checkQuizAnswer(index) {
+ const input = document.getElementById('q-input-'+index);
+ const userVal = input.value.trim().toLowerCase();
+ const item = questions[index];
+ const res = document.getElementById('q-res-'+index);
  if(!userVal){res.textContent='আগে উত্তর লিখুন!';res.className='result-msg incorrect';return;}
- if(userVal===item.ans.toLowerCase()){res.textContent='✔ সঠিক উত্তর!';res.className='result-msg correct';}
+ if(userVal === item.ans.toLowerCase()){res.textContent='✔ সঠিক উত্তর!';res.className='result-msg correct';}
  else{res.textContent='✘ সঠিক উত্তর: '+item.ans;res.className='result-msg incorrect';}
- const exp=document.getElementById('q-exp-'+index);exp.style.display='block';
+ const exp = document.getElementById('q-exp-'+index); exp.style.display='block';
 }
-function toggleExp(index){
- const box=document.getElementById('q-exp-'+index);
- box.style.display=box.style.display==='block'?'none':'block';
+
+function toggleExp(index) {
+ const box = document.getElementById('q-exp-'+index);
+ box.style.display = box.style.display === 'block' ? 'none' : 'block';
 }
-function changeQuizPage(dir){
- const totalPages=Math.ceil(questions.length/itemsPerPage);
- currentQuizPage=Math.max(1,Math.min(totalPages,currentQuizPage+dir));
+
+function changeQuizPage(dir) {
+ const totalPages = Math.ceil(questions.length / itemsPerPage);
+ currentQuizPage = Math.max(1, Math.min(totalPages, currentQuizPage + dir));
  renderQuizPage();
- document.getElementById('quiz-container').scrollIntoView({behavior:'smooth',block:'start'});
+ document.querySelector('#tab-6 h2').scrollIntoView({behavior:'smooth',block:'start'});
 }
+
+function jumpToPage(pageNum) {
+  currentQuizPage = parseInt(pageNum);
+  renderQuizPage();
+  document.querySelector('#tab-6 h2').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Initial render
 renderQuizPage();
 </script>
 </body>
