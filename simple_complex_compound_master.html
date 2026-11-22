@@ -1,0 +1,3414 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="white">
+<head>
+  <!-- =====================================================================
+       [PART 1: CSS THEME & TIRO BANGLA TYPOGRAPHY SYSTEM]
+       - Primary font across the entire software: 'Tiro Bangla'
+       - Supports 5 distinct themes: white, dark, rgb, emerald, parchment
+       - Responsive layout, 3D tactile cards, print stylesheet, no alert()
+       ===================================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple, Complex ও Compound Sentence — SSC & HSC মাস্টার ল্যাব</title>
+
+  <!-- Google Fonts: Tiro Bangla (Primary), Hind Siliguri, Poppins, Inter & Times New Roman -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      /* Signature Tiro Bangla Font Stack across the entire software */
+      --font-tiro: 'Tiro Bangla', 'Hind Siliguri', sans-serif;
+      --font-en-classic: 'Times New Roman', Georgia, serif;
+      --font-en-ui: 'Poppins', 'Inter', 'Tiro Bangla', sans-serif;
+
+      --text-scale: 1;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --spring: cubic-bezier(0.22, 1, 0.36, 1);
+
+      /* Theme 1: Classic Daylight White (Default) */
+      --bg-canvas: #f4f7fb;
+      --bg-gradient:
+        radial-gradient(circle at 12% 10%, rgba(37, 99, 235, 0.09), transparent 42%),
+        radial-gradient(circle at 88% 18%, rgba(14, 165, 233, 0.08), transparent 45%),
+        linear-gradient(180deg, #f8faff 0%, #eef3f9 100%);
+      --surface-card: rgba(255, 255, 255, 0.94);
+      --surface-elevated: #ffffff;
+      --surface-subtle: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent-primary: #2563eb;
+      --accent-secondary: #0ea5e9;
+      --accent-tertiary: #7c3aed;
+      --accent-success: #059669;
+      --accent-warning: #d97706;
+      --accent-danger: #dc2626;
+      --border-soft: rgba(15, 23, 42, 0.1);
+      --border-strong: rgba(37, 99, 235, 0.28);
+      --shadow-3d:
+        0 14px 32px -12px rgba(15, 23, 42, 0.13),
+        0 4px 10px -2px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+      --shadow-3d-hover:
+        0 24px 46px -14px rgba(37, 99, 235, 0.22),
+        0 8px 18px -4px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+      --laser-color: #2563eb;
+      --laser-glow: rgba(37, 99, 235, 0.35);
+    }
+
+    html[data-theme="dark"] {
+      --bg-canvas: #090d16;
+      --bg-gradient:
+        radial-gradient(circle at 15% 12%, rgba(56, 189, 248, 0.13), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(129, 140, 248, 0.12), transparent 42%),
+        linear-gradient(180deg, #090d16 0%, #0f172a 100%);
+      --surface-card: rgba(17, 24, 39, 0.9);
+      --surface-elevated: #162033;
+      --surface-subtle: #1e293b;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-tertiary: #c084fc;
+      --accent-success: #34d399;
+      --accent-warning: #fbbf24;
+      --accent-danger: #f87171;
+      --border-soft: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(56, 189, 248, 0.35);
+      --shadow-3d:
+        0 16px 36px -12px rgba(0, 0, 0, 0.65),
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      --shadow-3d-hover:
+        0 26px 52px -12px rgba(56, 189, 248, 0.25),
+        0 10px 20px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      --laser-color: #38bdf8;
+      --laser-glow: rgba(56, 189, 248, 0.45);
+    }
+
+    html[data-theme="rgb"] {
+      --bg-canvas: #0b0d17;
+      --bg-gradient:
+        radial-gradient(circle at 12% 12%, rgba(236, 72, 153, 0.16), transparent 40%),
+        radial-gradient(circle at 50% 8%, rgba(56, 189, 248, 0.15), transparent 45%),
+        radial-gradient(circle at 88% 15%, rgba(16, 185, 129, 0.15), transparent 40%),
+        linear-gradient(180deg, #090c16 0%, #111629 100%);
+      --surface-card: rgba(16, 21, 38, 0.92);
+      --surface-elevated: #171f38;
+      --surface-subtle: #1f2947;
+      --text-primary: #f8fafc;
+      --text-secondary: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent-primary: #ec4899;
+      --accent-secondary: #06b6d4;
+      --accent-tertiary: #a855f7;
+      --accent-success: #10b981;
+      --accent-warning: #f59e0b;
+      --accent-danger: #f43f5e;
+      --border-soft: rgba(255, 255, 255, 0.14);
+      --border-strong: rgba(236, 72, 153, 0.42);
+      --shadow-3d:
+        0 16px 38px -10px rgba(0, 0, 0, 0.65),
+        0 0 22px -6px rgba(168, 85, 247, 0.25);
+      --shadow-3d-hover:
+        0 26px 56px -10px rgba(0, 0, 0, 0.75),
+        0 0 32px -4px rgba(236, 72, 153, 0.42);
+      --laser-color: #f43f5e;
+      --laser-glow: rgba(244, 63, 94, 0.5);
+    }
+
+    html[data-theme="emerald"] {
+      --bg-canvas: #f2fbf8;
+      --bg-gradient:
+        radial-gradient(circle at 12% 10%, rgba(5, 150, 105, 0.12), transparent 42%),
+        radial-gradient(circle at 88% 18%, rgba(13, 148, 136, 0.11), transparent 45%),
+        linear-gradient(180deg, #f5fcf9 0%, #e6f5ef 100%);
+      --surface-card: rgba(255, 255, 255, 0.94);
+      --surface-elevated: #ffffff;
+      --surface-subtle: #e6f4ee;
+      --text-primary: #062822;
+      --text-secondary: #1e463e;
+      --text-muted: #4b7269;
+      --accent-primary: #059669;
+      --accent-secondary: #0d9488;
+      --accent-tertiary: #0284c7;
+      --accent-success: #16a34a;
+      --accent-warning: #d97706;
+      --accent-danger: #dc2626;
+      --border-soft: rgba(6, 40, 34, 0.1);
+      --border-strong: rgba(5, 150, 105, 0.28);
+      --shadow-3d:
+        0 14px 32px -12px rgba(6, 78, 59, 0.14),
+        0 4px 10px -2px rgba(6, 78, 59, 0.06);
+      --shadow-3d-hover:
+        0 24px 46px -14px rgba(5, 150, 105, 0.24),
+        0 8px 18px -4px rgba(6, 78, 59, 0.1);
+      --laser-color: #059669;
+      --laser-glow: rgba(5, 150, 105, 0.35);
+    }
+
+    html[data-theme="parchment"] {
+      --bg-canvas: #fbf5ea;
+      --bg-gradient:
+        radial-gradient(circle at 14% 12%, rgba(217, 119, 6, 0.12), transparent 42%),
+        radial-gradient(circle at 86% 15%, rgba(180, 83, 9, 0.09), transparent 45%),
+        linear-gradient(180deg, #fdf8ef 0%, #f5ebd8 100%);
+      --surface-card: rgba(255, 251, 243, 0.95);
+      --surface-elevated: #fffdf8;
+      --surface-subtle: #f3e8d2;
+      --text-primary: #291d12;
+      --text-secondary: #4a3725;
+      --text-muted: #785f46;
+      --accent-primary: #b45309;
+      --accent-secondary: #c2410c;
+      --accent-tertiary: #7c2d12;
+      --accent-success: #15803d;
+      --accent-warning: #d97706;
+      --accent-danger: #b91c1c;
+      --border-soft: rgba(41, 29, 18, 0.11);
+      --border-strong: rgba(180, 83, 9, 0.28);
+      --shadow-3d:
+        0 14px 32px -12px rgba(120, 53, 15, 0.14),
+        0 4px 10px -2px rgba(120, 53, 15, 0.06);
+      --shadow-3d-hover:
+        0 24px 46px -14px rgba(180, 83, 9, 0.24),
+        0 8px 18px -4px rgba(120, 53, 15, 0.1);
+      --laser-color: #c2410c;
+      --laser-glow: rgba(194, 65, 12, 0.35);
+    }
+
+    @keyframes rgbShift {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: calc(16px * var(--text-scale));
+    }
+
+    body,
+    button,
+    input,
+    select,
+    textarea {
+      font-family: var(--font-tiro);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      line-height: 1.78;
+      overflow-x: hidden;
+      transition: background-color 0.35s var(--spring), color 0.35s var(--spring);
+    }
+
+    .font-en-sentence {
+      font-family: var(--font-en-classic);
+    }
+
+    .font-en-code {
+      font-family: var(--font-en-ui);
+    }
+
+    /* Toast Notification (replaces browser alert()) */
+    .toast-banner {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 2000;
+      max-width: min(380px, 90vw);
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-3d-hover);
+      font-size: 0.94rem;
+      font-weight: 600;
+      transform: translateY(24px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.28s var(--spring);
+    }
+
+    .toast-banner.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Cursor Laser Canvas */
+    #laser-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.92;
+      transition: opacity 0.25s ease;
+    }
+
+    #laser-canvas.hidden-trail {
+      opacity: 0;
+      display: none;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      #laser-canvas {
+        display: none !important;
+      }
+    }
+
+    /* Progress Bar & Sticky Header */
+    .reading-progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(148, 163, 184, 0.2);
+      z-index: 1200;
+    }
+
+    .reading-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+      transition: width 0.12s linear;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 4px;
+      z-index: 1100;
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      background: var(--surface-card);
+      border-bottom: 1px solid var(--border-soft);
+      box-shadow: 0 8px 24px -10px rgba(15, 23, 42, 0.12);
+      transform: translateY(0);
+      opacity: 1;
+      transition: transform 0.34s var(--spring), opacity 0.28s ease, box-shadow 0.3s ease;
+    }
+
+    .topbar.auto-hidden {
+      transform: translateY(calc(-100% - 8px));
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    .topbar-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hamburger-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: var(--shadow-3d);
+      transition: transform 0.2s var(--spring), border-color 0.2s ease;
+    }
+
+    .hamburger-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-primary);
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 20px;
+      height: 2.3px;
+      border-radius: 99px;
+      background: currentColor;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      color: var(--accent-primary);
+      display: block;
+    }
+
+    .topbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .theme-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-soft);
+    }
+
+    .theme-pill {
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s var(--spring);
+      white-space: nowrap;
+    }
+
+    .theme-pill .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+    }
+
+    .theme-pill.active {
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .ctrl-btn {
+      border: 1px solid var(--border-soft);
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      padding: 7px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px -4px rgba(15, 23, 42, 0.12);
+      transition: transform 0.2s var(--spring), border-color 0.2s ease, background 0.2s ease;
+      min-height: 38px;
+    }
+
+    .ctrl-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-primary);
+    }
+
+    .ctrl-btn.primary-print {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #ffffff;
+      border: none;
+    }
+
+    .ctrl-btn.active-toggle {
+      border-color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--accent-primary);
+    }
+
+    .quick-jump-strip {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 18px 10px;
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .jump-chip {
+      flex: 0 0 auto;
+      text-decoration: none;
+      font-size: 0.88rem;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-soft);
+      transition: all 0.2s var(--spring);
+    }
+
+    .jump-chip:hover {
+      background: var(--accent-primary);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* Slide-Out Drawer */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.56);
+      backdrop-filter: blur(4px);
+      z-index: 1400;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: min(350px, 88vw);
+      height: 100vh;
+      background: var(--surface-elevated);
+      border-right: 1px solid var(--border-strong);
+      box-shadow: 24px 0 60px rgba(0, 0, 0, 0.35);
+      z-index: 1500;
+      transform: translateX(-104%);
+      transition: transform 0.34s var(--spring);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .nav-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 14px;
+    }
+
+    .drawer-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: var(--surface-subtle);
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .drawer-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .drawer-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      background: var(--surface-subtle);
+      border: 1px solid transparent;
+      font-size: 0.96rem;
+      transition: all 0.2s var(--spring);
+    }
+
+    .drawer-link:hover {
+      border-color: var(--accent-primary);
+      transform: translateX(4px);
+    }
+
+    .drawer-section-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin: 12px 0 8px;
+    }
+
+    .font-scale-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    /* Main Container & 3D Cards */
+    .main-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 26px 18px 80px;
+    }
+
+    .card-3d {
+      position: relative;
+      background: var(--surface-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-3d);
+      transition: transform 0.3s var(--spring), box-shadow 0.3s var(--spring), border-color 0.3s ease;
+      overflow: hidden;
+    }
+
+    html[data-theme="rgb"] .card-3d::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(120deg, #ec4899, #8b5cf6, #06b6d4, #10b981, #f59e0b, #ec4899);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.72;
+      animation: rgbShift 7s linear infinite;
+    }
+
+    .card-3d:hover {
+      box-shadow: var(--shadow-3d-hover);
+      border-color: var(--border-strong);
+    }
+
+    .hero-card {
+      padding: 30px 26px;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid rgba(37, 99, 235, 0.24);
+    }
+
+    .hero-title {
+      font-size: clamp(1.75rem, 3.6vw, 2.55rem);
+      line-height: 1.35;
+      margin: 0 0 10px;
+      color: var(--text-primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--accent-secondary);
+      margin: 0 0 14px;
+    }
+
+    .hero-desc {
+      font-size: 1.04rem;
+      color: var(--text-secondary);
+      max-width: 940px;
+      margin: 0 0 22px;
+    }
+
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .stat-tile {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      box-shadow: 0 8px 20px -10px rgba(15, 23, 42, 0.14);
+    }
+
+    .stat-num {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Search & Filter Toolbar */
+    .search-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      background: var(--surface-subtle);
+      padding: 12px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+    }
+
+    .search-input-wrap {
+      flex: 1 1 260px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 13px;
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border-soft);
+      background: var(--surface-elevated);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      padding: 8px 13px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s var(--spring);
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-primary);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .empty-search-state {
+      display: none;
+      text-align: center;
+      padding: 36px 20px;
+      margin: 18px 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface-elevated);
+      border: 1px dashed var(--border-strong);
+    }
+
+    .empty-search-state.visible {
+      display: block;
+    }
+
+    /* Chapters & Sub-Cards */
+    .chapter-section {
+      margin-bottom: 36px;
+      scroll-margin-top: 28px;
+    }
+
+    .chapter-header-card {
+      padding: 24px 26px;
+      margin-bottom: 16px;
+    }
+
+    .chapter-tag-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .chapter-pill {
+      font-size: 0.84rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #fff;
+    }
+
+    .chapter-title {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      margin: 0 0 6px;
+      color: var(--text-primary);
+    }
+
+    .chapter-sub {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin: 0 0 10px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .sub-card {
+      padding: 20px 22px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-card);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-3d);
+      transition: transform 0.28s var(--spring), box-shadow 0.28s var(--spring);
+    }
+
+    .sub-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-3d-hover);
+    }
+
+    .sub-card h3 {
+      font-size: 1.24rem;
+      margin: 0 0 8px;
+      color: var(--text-primary);
+    }
+
+    .formula-box {
+      font-size: 0.92rem;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-subtle);
+      border-left: 4px solid var(--accent-primary);
+      color: var(--text-primary);
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+
+    .rule-item-card {
+      padding: 18px 20px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 10px 24px -12px rgba(15, 23, 42, 0.12);
+      margin-bottom: 14px;
+    }
+
+    .rule-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .rule-badge {
+      font-size: 0.84rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.13);
+      color: var(--accent-tertiary);
+    }
+
+    .action-mini-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .mini-btn {
+      border: 1px solid var(--border-soft);
+      background: var(--surface-subtle);
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.18s ease;
+    }
+
+    .mini-btn:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .mini-btn.bookmarked {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: var(--accent-warning);
+      color: var(--accent-warning);
+    }
+
+    .mini-btn.speaking {
+      background: rgba(5, 150, 105, 0.16);
+      border-color: var(--accent-success);
+      color: var(--accent-success);
+    }
+
+    .en-sentence {
+      font-family: var(--font-en-classic);
+      font-size: 1.14rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 6px 0 4px;
+    }
+
+    .bn-meaning {
+      font-size: 1.02rem;
+      color: var(--accent-primary);
+      margin: 0 0 6px;
+    }
+
+    .marker-highlight {
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      background: rgba(14, 165, 233, 0.14);
+      color: var(--accent-primary);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+    }
+
+    /* Tables & Diagrams */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: var(--surface-elevated);
+      box-shadow: var(--shadow-3d);
+      margin: 14px 0;
+    }
+
+    table.master-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    table.master-table th {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+      color: #ffffff;
+      font-size: 0.96rem;
+      text-align: left;
+      padding: 13px 14px;
+    }
+
+    table.master-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 0.96rem;
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+
+    table.master-table td strong {
+      color: var(--text-primary);
+    }
+
+    .diagram-card {
+      padding: 20px;
+      border-radius: var(--radius-xl);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-3d);
+      margin: 16px 0;
+    }
+
+    .diagram-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Transformation Lab */
+    .lab-panel {
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-3d);
+      margin: 16px 0 24px;
+    }
+
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .preset-btn {
+      border: 1px solid var(--border-soft);
+      background: var(--surface-subtle);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      padding: 7px 13px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s var(--spring);
+    }
+
+    .preset-btn.active {
+      background: var(--accent-primary);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .lab-tri-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .lab-box {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: var(--surface-card);
+      border: 1px solid var(--border-soft);
+    }
+
+    .lab-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+    }
+
+    /* 50 SSC & HSC Practice Cards (3-Click / Step-by-Step Reveal) */
+    .practice-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 16px 18px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-3d);
+      margin-bottom: 16px;
+    }
+
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .practice-card {
+      padding: 18px 20px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-3d);
+      cursor: pointer;
+      transition: transform 0.25s var(--spring), box-shadow 0.25s var(--spring), border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .practice-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-3d-hover);
+      border-color: var(--border-strong);
+    }
+
+    .practice-card.step-1 {
+      border-left: 5px solid var(--accent-secondary);
+    }
+
+    .practice-card.step-2 {
+      border-left: 5px solid var(--accent-success);
+    }
+
+    .step-pill {
+      font-size: 0.82rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-soft);
+    }
+
+    .step-pill.active-1 {
+      background: rgba(14, 165, 233, 0.14);
+      color: var(--accent-secondary);
+      border-color: rgba(14, 165, 233, 0.35);
+    }
+
+    .step-pill.active-2 {
+      background: rgba(5, 150, 105, 0.15);
+      color: var(--accent-success);
+      border-color: rgba(5, 150, 105, 0.35);
+    }
+
+    .reveal-meaning-box {
+      display: none;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(14, 165, 233, 0.09);
+      border-left: 4px solid var(--accent-secondary);
+      font-size: 0.98rem;
+      color: var(--text-primary);
+    }
+
+    .reveal-meaning-box.show {
+      display: block;
+    }
+
+    .reveal-rule-box {
+      display: none;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(5, 150, 105, 0.09);
+      border-left: 4px solid var(--accent-success);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .reveal-rule-box.show {
+      display: block;
+    }
+
+    /* Self-Test Quiz */
+    .quiz-card {
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-soft);
+      margin-bottom: 14px;
+      box-shadow: 0 10px 24px -14px rgba(15, 23, 42, 0.15);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .quiz-opt-btn {
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: var(--surface-subtle);
+      color: var(--text-primary);
+      font-size: 0.94rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .quiz-opt-btn:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-1px);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(5, 150, 105, 0.16);
+      border-color: var(--accent-success);
+      color: var(--accent-success);
+    }
+
+    .quiz-opt-btn.wrong {
+      background: rgba(220, 38, 38, 0.14);
+      border-color: var(--accent-danger);
+      color: var(--accent-danger);
+    }
+
+    .feedback-box {
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 8px;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .feedback-box.show {
+      display: block;
+    }
+
+    .feedback-box.ok {
+      background: rgba(5, 150, 105, 0.12);
+      border-left: 4px solid var(--accent-success);
+    }
+
+    .feedback-box.bad {
+      background: rgba(220, 38, 38, 0.12);
+      border-left: 4px solid var(--accent-danger);
+    }
+
+    .score-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(124, 58, 237, 0.12));
+      border: 1px solid var(--border-strong);
+      margin-bottom: 18px;
+    }
+
+    /* A4 Print Stylesheet */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+
+      html {
+        font-size: 10.5pt !important;
+        background: #ffffff !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        background-image: none !important;
+        color: #000000 !important;
+        line-height: 1.48 !important;
+      }
+
+      .topbar,
+      .quick-jump-strip,
+      .drawer-backdrop,
+      .nav-drawer,
+      #laser-canvas,
+      .toast-banner,
+      .action-mini-group,
+      .search-filter-bar,
+      .preset-row,
+      .practice-toolbar,
+      .no-print {
+        display: none !important;
+      }
+
+      .main-container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .card-3d,
+      .sub-card,
+      .rule-item-card,
+      .diagram-card,
+      .lab-panel,
+      .quiz-card,
+      .practice-card,
+      .table-wrap {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .reveal-meaning-box,
+      .reveal-rule-box {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- =====================================================================
+       [PART 2: LAYOUT, STICKY HEADER, DRAWER & SECTIONS]
+       ===================================================================== -->
+  <div class="reading-progress-track no-print">
+    <div class="reading-progress-fill" id="readingProgressFill"></div>
+  </div>
+
+  <div class="toast-banner no-print" id="toastBanner" role="status" aria-live="polite"></div>
+  <canvas id="laser-canvas" aria-hidden="true"></canvas>
+
+  <!-- Drawer Backdrop & Slide-Out Menu -->
+  <div class="drawer-backdrop no-print" id="drawerBackdrop"></div>
+  <aside class="nav-drawer no-print" id="navDrawer" aria-label="অধ্যায় ও টুলস মেনু">
+    <div class="drawer-header">
+      <div>
+        <div style="font-weight:700; font-size:1.12rem;">অধ্যায় ও টুলস মেনু</div>
+        <div style="font-size:0.84rem; color:var(--text-muted);">SSC ও HSC সহজ নেভিগেশন</div>
+      </div>
+      <button class="drawer-close" id="closeDrawerBtn" aria-label="মেনু বন্ধ করুন">✕</button>
+    </div>
+
+    <div class="drawer-nav-list">
+      <a href="#ch1" class="drawer-link"><span>১. মূল সংজ্ঞা ও চেনার কৌশল</span><span>অধ্যায় ১</span></a>
+      <a href="#ch2" class="drawer-link"><span>২. Clause, Phrase ও Connectors</span><span>অধ্যায় ২</span></a>
+      <a href="#ch3" class="drawer-link"><span>৩. Simple ↔ Complex রূপান্তর</span><span>অধ্যায় ৩</span></a>
+      <a href="#ch4" class="drawer-link"><span>৪. Complex ↔ Compound রূপান্তর</span><span>অধ্যায় ৪</span></a>
+      <a href="#ch5" class="drawer-link"><span>৫. Simple ↔ Compound রূপান্তর</span><span>অধ্যায় ৫</span></a>
+      <a href="#ch6" class="drawer-link"><span>৬. বিশেষ নিয়ম ও ভুল সংশোধন</span><span>অধ্যায় ৬</span></a>
+      <a href="#ch7" class="drawer-link"><span>৭. ল্যাব, ৫০ প্রশ্ন ও কুইজ</span><span>অধ্যায় ৭</span></a>
+    </div>
+
+    <div class="drawer-section-title">ফন্ট সাইজ নিয়ন্ত্রণ</div>
+    <div class="font-scale-group">
+      <button class="ctrl-btn" id="fontDecBtn">অ- ছোট</button>
+      <button class="ctrl-btn" id="fontResetBtn">অ স্বাভাবিক</button>
+      <button class="ctrl-btn" id="fontIncBtn">অ+ বড়</button>
+    </div>
+
+    <div class="drawer-section-title">আপনার অগ্রগতি</div>
+    <div class="sub-card" style="padding:14px; box-shadow:none;">
+      <div style="display:flex; justify-content:space-between; font-size:0.94rem; margin-bottom:6px;">
+        <span>৫০টি প্রশ্নে দেখা হয়েছে</span>
+        <span id="drawerSeenCount">০ / ৫০</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:0.94rem; margin-bottom:6px;">
+        <span>সেলফ-টেস্ট কুইজ</span>
+        <span id="drawerScoreText">০ / ১২</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:0.94rem;">
+        <span>সেভ করা নিয়ম</span>
+        <span id="drawerBookmarkCount">০ টি</span>
+      </div>
+    </div>
+
+    <div class="drawer-section-title">দ্রুত অ্যাকশন</div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <button class="ctrl-btn" id="drawerSavedFilterBtn">⭐ সেভ করা নিয়ম দেখুন</button>
+      <button class="ctrl-btn primary-print" id="drawerPrintBtn">🖨️ প্রিন্ট করুন (A4 শিট)</button>
+    </div>
+  </aside>
+
+  <!-- Sticky Topbar -->
+  <header class="topbar no-print">
+    <div class="topbar-inner">
+      <div class="brand-group">
+        <button class="hamburger-btn" id="openDrawerBtn" aria-label="মেনু খুলুন" title="৩-লাইন মেনু">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div>
+          <h1 class="brand-title">Simple, Complex ও Compound Sentence — SSC & HSC মাস্টার ল্যাব</h1>
+          <span class="brand-sub">তিরো বাংলা ইন্টারফেস • রূপান্তর নিয়ম • ৫০টি বোর্ড প্রশ্ন (৩-ক্লিক ব্যাখ্যা) • অডিও ল্যাব</span>
+        </div>
+      </div>
+
+      <div class="topbar-controls">
+        <div class="theme-switcher" role="group" aria-label="থিম পরিবর্তন">
+          <button class="theme-pill active" data-set-theme="white">
+            <span class="dot" style="background:#ffffff;"></span>হোয়াইট
+          </button>
+          <button class="theme-pill" data-set-theme="dark">
+            <span class="dot" style="background:#0f172a;"></span>ডার্ক
+          </button>
+          <button class="theme-pill" data-set-theme="rgb">
+            <span class="dot" style="background:linear-gradient(45deg,#ec4899,#06b6d4,#10b981);"></span>RGB
+          </button>
+          <button class="theme-pill" data-set-theme="emerald">
+            <span class="dot" style="background:#059669;"></span>এমারেল্ড
+          </button>
+          <button class="theme-pill" data-set-theme="parchment">
+            <span class="dot" style="background:#d97706;"></span>পার্চমেন্ট
+          </button>
+        </div>
+
+        <button class="ctrl-btn" id="toggleLaserBtn" title="লেজার ট্রেইল চালু/বন্ধ">✨ লেজার ট্রেইল</button>
+        <button class="ctrl-btn" id="stopAudioBtn" title="অডিও বন্ধ করুন">⏹️ অডিও বন্ধ</button>
+        <button class="ctrl-btn primary-print" id="topPrintBtn" title="A4 প্রিন্ট">🖨️ প্রিন্ট করুন</button>
+      </div>
+    </div>
+
+    <nav class="quick-jump-strip" aria-label="অধ্যায় দ্রুত জাম্প">
+      <a href="#ch1" class="jump-chip">অধ্যায় ১: মূল সংজ্ঞা</a>
+      <a href="#ch2" class="jump-chip">অধ্যায় ২: Clause ও Connectors</a>
+      <a href="#ch3" class="jump-chip">অধ্যায় ৩: Simple ↔ Complex</a>
+      <a href="#ch4" class="jump-chip">অধ্যায় ৪: Complex ↔ Compound</a>
+      <a href="#ch5" class="jump-chip">অধ্যায় ৫: Simple ↔ Compound</a>
+      <a href="#ch6" class="jump-chip">অধ্যায় ৬: বিশেষ নিয়ম ও ভুল</a>
+      <a href="#practice50Section" class="jump-chip">অনুশীলন: ৫০টি SSC/HSC প্রশ্ন</a>
+      <a href="#ch7" class="jump-chip">অধ্যায় ৭: ল্যাব ও কুইজ</a>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    <!-- Hero & Search / Filter -->
+    <section class="card-3d hero-card">
+      <div class="hero-badge-row">
+        <span class="badge-chip">📘 SSC ও HSC বোর্ড স্ট্যান্ডার্ড</span>
+        <span class="badge-chip">🖋️ তিরো বাংলা ফন্ট</span>
+        <span class="badge-chip">🎯 ৫০টি প্রশ্ন (১ম ক্লিকে অর্থ, ২য় ক্লিকে Ruleসহ ব্যাখ্যা)</span>
+        <span class="badge-chip">🔊 উচ্চারণ ও প্রিন্ট সুবিধা</span>
+      </div>
+
+      <h2 class="hero-title">ইংরেজি বাক্যের গঠনগত মাস্টারি: Simple, Complex ও Compound Sentence</h2>
+      <p class="hero-subtitle">SSC ও HSC পরীক্ষার্থী, শিক্ষক এবং যেকোনো শিক্ষার্থীর জন্য সম্পূর্ণ মডিউলার ও ইন্টারেক্টিভ গাইড</p>
+      <p class="hero-desc">
+        প্রতিটি অধ্যায়, রূপান্তর নিয়ম, উদাহরণ ও ৫০টি SSC/HSC অনুশীলন প্রশ্ন আলাদা ডাটা ও রেন্ডারার মডিউলে সাজানো হয়েছে—যাতে ভবিষ্যতে যেকোনো অংশ সহজেই যোগ বা পরিবর্তন করা যায়। অনুশীলন অংশে প্রতিটি প্রশ্নে <strong>প্রথম ক্লিকে বাংলা অর্থ</strong> এবং <strong>দ্বিতীয় ক্লিকে সঠিক উত্তর ও Ruleসহ ব্যাখ্যা</strong> দেখা যাবে।
+      </p>
+
+      <div class="hero-stats-grid">
+        <div class="stat-tile">
+          <div class="stat-num">৩ প্রকার</div>
+          <div class="stat-label">Simple, Complex ও Compound</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-num">১৫+ নিয়ম</div>
+          <div class="stat-label">দ্বিমুখী বাক্য রূপান্তর</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-num">৫০টি প্রশ্ন</div>
+          <div class="stat-label">SSC ও HSC বোর্ড অনুশীলন</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-num" id="heroProgressStat">০ / ১২</div>
+          <div class="stat-label">সেলফ-টেস্ট কুইজ স্কোর</div>
+        </div>
+      </div>
+
+      <div class="search-filter-bar no-print">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input
+            type="search"
+            id="liveSearchInput"
+            class="search-input"
+            placeholder="নিয়ম, Conjunction (although, because, despite, since, unless) বা বাংলা অর্থ খুঁজুন..."
+          />
+        </div>
+        <div class="filter-pills" id="filterPills">
+          <button class="filter-btn active" data-filter="all">সব দেখুন</button>
+          <button class="filter-btn" data-filter="simple">Simple</button>
+          <button class="filter-btn" data-filter="complex">Complex</button>
+          <button class="filter-btn" data-filter="compound">Compound</button>
+          <button class="filter-btn" data-filter="transformation">রূপান্তর নিয়ম</button>
+          <button class="filter-btn" data-filter="saved">⭐ সেভ করা</button>
+        </div>
+      </div>
+
+      <div class="empty-search-state" id="emptySearchState">
+        <div style="font-size:1.15rem; font-weight:700; margin-bottom:8px;">কোনো ফলাফল পাওয়া যায়নি</div>
+        <div style="color:var(--text-secondary); margin-bottom:12px;">অন্য কোনো শব্দ দিয়ে খুঁজুন অথবা ফিল্টার রিসেট করুন।</div>
+        <button class="ctrl-btn" id="resetSearchFilterBtn">↺ ফিল্টার রিসেট করুন</button>
+      </div>
+    </section>
+
+    <!-- Visual SVG Architecture Diagram -->
+    <section class="diagram-card" aria-label="বাক্য গঠনের ডায়াগ্রাম">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+        <h3 style="margin:0; font-size:1.22rem;">ভিজ্যুয়াল ডায়াগ্রাম: Finite Verb, Clause এবং ৩ প্রকার বাক্যের গঠন</h3>
+        <span class="badge-chip">গঠনগত মানচিত্র</span>
+      </div>
+      <svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simple, Complex এবং Compound বাক্যের তুলনামূলক ডায়াগ্রাম">
+        <defs>
+          <linearGradient id="gSimple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2563eb" />
+            <stop offset="100%" stop-color="#0ea5e9" />
+          </linearGradient>
+          <linearGradient id="gComplex" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#059669" />
+            <stop offset="100%" stop-color="#10b981" />
+          </linearGradient>
+          <linearGradient id="gCompound" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7c3aed" />
+            <stop offset="100%" stop-color="#ec4899" />
+          </linearGradient>
+          <marker id="arrowHead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+          </marker>
+        </defs>
+
+        <rect x="315" y="12" width="370" height="56" rx="14" fill="#1e293b" />
+        <text x="500" y="36" fill="#ffffff" font-family="Tiro Bangla, sans-serif" font-size="16" text-anchor="middle">বাক্যের গঠনগত শ্রেণিবিভাগ (Finite Verb ও Clause)</text>
+        <text x="500" y="57" fill="#cbd5e1" font-family="Tiro Bangla, sans-serif" font-size="13.5" text-anchor="middle">একটি বাক্যে কয়টি Finite Verb ও কোন Clause আছে তার ওপর নির্ভর করে ৩ প্রকার</text>
+
+        <line x1="390" y1="68" x2="170" y2="104" stroke="#64748b" stroke-width="2.2" marker-end="url(#arrowHead)" />
+        <line x1="500" y1="68" x2="500" y2="104" stroke="#64748b" stroke-width="2.2" marker-end="url(#arrowHead)" />
+        <line x1="610" y1="68" x2="830" y2="104" stroke="#64748b" stroke-width="2.2" marker-end="url(#arrowHead)" />
+
+        <!-- Simple -->
+        <rect x="24" y="108" width="292" height="258" rx="18" fill="rgba(37, 99, 235, 0.07)" stroke="#2563eb" stroke-width="2" />
+        <rect x="40" y="122" width="260" height="36" rx="10" fill="url(#gSimple)" />
+        <text x="170" y="146" fill="#ffffff" font-family="Tiro Bangla, sans-serif" font-size="15" text-anchor="middle">১. Simple Sentence (সরল বাক্য)</text>
+        <rect x="40" y="168" width="260" height="68" rx="12" fill="#ffffff" stroke="#cbd5e1" />
+        <text x="170" y="191" fill="#0f172a" font-family="Tiro Bangla, sans-serif" font-size="14" text-anchor="middle">মাত্র ১টি Independent Clause থাকে</text>
+        <text x="170" y="216" fill="#334155" font-family="Tiro Bangla, sans-serif" font-size="13" text-anchor="middle">• Finite Verb ১টি • Phrase থাকতে পারে</text>
+        <rect x="40" y="246" width="260" height="106" rx="12" fill="#eff6ff" stroke="#93c5fd" />
+        <text x="170" y="270" fill="#1e3a8a" font-family="Tiro Bangla, sans-serif" font-size="13" text-anchor="middle">উদাহরণ (Despite / Because of / V-ing):</text>
+        <text x="170" y="295" fill="#0f172a" font-family="Times New Roman, serif" font-size="14" font-weight="bold" text-anchor="middle">"Despite his illness, he attended class."</text>
+        <text x="170" y="320" fill="#1d4ed8" font-family="Tiro Bangla, sans-serif" font-size="13.5" text-anchor="middle">অসুস্থতা সত্ত্বেও সে ক্লাসে গিয়েছিল।</text>
+
+        <!-- Complex -->
+        <rect x="354" y="108" width="292" height="258" rx="18" fill="rgba(5, 150, 105, 0.07)" stroke="#059669" stroke-width="2" />
+        <rect x="370" y="122" width="260" height="36" rx="10" fill="url(#gComplex)" />
+        <text x="500" y="146" fill="#ffffff" font-family="Tiro Bangla, sans-serif" font-size="15" text-anchor="middle">২. Complex Sentence (জটিল বাক্য)</text>
+        <rect x="370" y="168" width="260" height="68" rx="12" fill="#ffffff" stroke="#cbd5e1" />
+        <text x="500" y="191" fill="#0f172a" font-family="Tiro Bangla, sans-serif" font-size="14" text-anchor="middle">১টি Independent + ১+ Dependent Clause</text>
+        <text x="500" y="216" fill="#334155" font-family="Tiro Bangla, sans-serif" font-size="13" text-anchor="middle">because, since, although, if, when, who</text>
+        <rect x="370" y="246" width="260" height="106" rx="12" fill="#ecfdf5" stroke="#6ee7b7" />
+        <text x="500" y="270" fill="#065f46" font-family="Tiro Bangla, sans-serif" font-size="13" text-anchor="middle">উদাহরণ (Although / Since / If):</text>
+        <text x="500" y="295" fill="#0f172a" font-family="Times New Roman, serif" font-size="14" font-weight="bold" text-anchor="middle">"Although he was ill, he attended class."</text>
+        <text x="500" y="320" fill="#047857" font-family="Tiro Bangla, sans-serif" font-size="13.5" text-anchor="middle">যদিও সে অসুস্থ ছিল, তবুও ক্লাসে গিয়েছিল।</text>
+
+        <!-- Compound -->
+        <rect x="684" y="108" width="292" height="258" rx="18" fill="rgba(124, 58, 237, 0.07)" stroke="#7c3aed" stroke-width="2" />
+        <rect x="700" y="122" width="260" height="36" rx="10" fill="url(#gCompound)" />
+        <text x="830" y="146" fill="#ffffff" font-family="Tiro Bangla, sans-serif" font-size="15" text-anchor="middle">৩. Compound Sentence (যৌগিক বাক্য)</text>
+        <rect x="700" y="168" width="260" height="68" rx="12" fill="#ffffff" stroke="#cbd5e1" />
+        <text x="830" y="191" fill="#0f172a" font-family="Tiro Bangla, sans-serif" font-size="14" text-anchor="middle">২+ Independent Clause সমান গুরুত্বসহ যুক্ত</text>
+        <text x="830" y="216" fill="#334155" font-family="Tiro Bangla, sans-serif" font-size="13" text-anchor="middle">FANBOYS (and, but, or, so, yet) বা Semicolon (;)</text>
+        <rect x="700" y="246" width="260" height="106" rx="12" fill="#f5f3ff" stroke="#c4b5fd" />
+        <text x="830" y="270" fill="#5b21b6" font-family="Tiro Bangla, sans-serif" font-size="13" text-anchor="middle">উদাহরণ (Main 1 + , yet + Main 2):</text>
+        <text x="830" y="295" fill="#0f172a" font-family="Times New Roman, serif" font-size="14" font-weight="bold" text-anchor="middle">"He was ill, yet he attended class."</text>
+        <text x="830" y="320" fill="#6d28d9" font-family="Tiro Bangla, sans-serif" font-size="13.5" text-anchor="middle">সে অসুস্থ ছিল, তবুও সে ক্লাসে গিয়েছিল।</text>
+      </svg>
+    </section>
+
+    <!-- Chapter 1: Definitions -->
+    <section id="ch1" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০১</span>
+          <span class="badge-chip">মূল সংজ্ঞা, Finite Verb ও Clause চেনার কৌশল</span>
+        </div>
+        <h2 class="chapter-title">অধ্যায় ১: Simple, Complex ও Compound Sentence-এর মূল সংজ্ঞা ও গঠনতত্ত্ব</h2>
+        <p class="chapter-sub">Finite Verb (সমাপিকা ক্রিয়া), Non-Finite Verb এবং Phrase বনাম Clause বুঝে বাক্য চেনার ভিত্তি</p>
+        <p style="margin:0 0 10px; color:var(--text-secondary);">
+          ইংরেজি বাক্যের গঠনগত শ্রেণিবিভাগ (Simple, Complex এবং Compound) বোঝার প্রথম ও প্রধান চাবিকাঠি হলো <strong>Finite Verb</strong> (সমাপিকা ক্রিয়া) এবং <strong>Clause</strong> (খণ্ডবাক্য) সঠিকভাবে চিনতে পারা। যে Verb বা ক্রিয়াপদ Subject-এর Number/Person এবং Tense অনুযায়ী রূপ বদলায়, তাকে <strong>Finite Verb</strong> বলে। একটি Finite Verb-এর সাথে Subject যুক্ত থাকলে একটি Clause গঠিত হয়।
+        </p>
+        <div class="formula-box" style="margin:0;">
+          মূল সূত্র: ১টি Finite Verb = সাধারণত ১টি Clause • ২টি Finite Verb = সাধারণত ২টি Clause • Phrase-এ কোনো Finite Verb থাকে না
+        </div>
+      </div>
+
+      <!-- Finite vs Non-Finite & Phrase vs Clause Breakdown -->
+      <div class="grid-2">
+        <div class="sub-card searchable-block" data-bm-id="ch1-finite-nonfinite" data-tags="simple complex compound finite non-finite verb">
+          <div class="rule-top-bar">
+            <span class="rule-badge">FINITE VS. NON-FINITE VERB</span>
+            <button class="mini-btn bookmark-btn" data-bm-id="ch1-finite-nonfinite">☆ সেভ</button>
+          </div>
+          <h3>ক. Finite Verb বনাম Non-Finite Verb</h3>
+          <p style="color:var(--text-secondary); margin-bottom:8px;">
+            <strong>Finite Verb (সমাপিকা ক্রিয়া):</strong> Subject ও Tense বদলালে এই ক্রিয়ার রূপও বদলায়। যেমন: <em>He <u>goes</u></em> (Present) → <em>He <u>went</u></em> (Past) → <em>They <u>go</u></em> (Plural)।
+          </p>
+          <p style="color:var(--text-secondary); margin-bottom:10px;">
+            <strong>Non-Finite Verb (অসমাপিকা ক্রিয়া):</strong> Gerund (<em>V-ing</em>), Participle (<em>V-ing / V3 / Having+V3</em>) এবং Infinitive (<em>to + V1</em>)—এগুলো Subject বা Tense অনুযায়ী রূপ বদলায় না এবং নতুন Clause তৈরি করে না। তাই Simple বাক্যে Non-Finite Verb থাকলে সেটি Simple-ই থাকে।
+          </p>
+          <p class="en-sentence">"Seeing the police, the thief ran away."</p>
+          <p class="bn-meaning">পুলিশ দেখে চোরটি পালিয়ে গেল। (Finite Verb: <em>ran</em> [১টি], Non-Finite: <em>Seeing</em> → Simple Sentence)</p>
+          <div class="action-mini-group">
+            <button class="mini-btn tts-en-btn" data-text="Seeing the police, the thief ran away.">🔊 ইংরেজি শুনুন</button>
+            <button class="mini-btn tts-bn-btn" data-text="পুলিশ দেখে চোরটি পালিয়ে গেল।">🗣️ বাংলা শুনুন</button>
+          </div>
+        </div>
+
+        <div class="sub-card searchable-block" data-bm-id="ch1-phrase-clause" data-tags="simple complex compound phrase clause independent dependent">
+          <div class="rule-top-bar">
+            <span class="rule-badge" style="background:rgba(14,165,233,0.14); color:var(--accent-secondary);">PHRASE VS. CLAUSE</span>
+            <button class="mini-btn bookmark-btn" data-bm-id="ch1-phrase-clause">☆ সেভ</button>
+          </div>
+          <h3>খ. Phrase বনাম Clause (Independent ও Dependent)</h3>
+          <p style="color:var(--text-secondary); margin-bottom:8px;">
+            <strong>Phrase (শব্দগুচ্ছ):</strong> একাধিক শব্দ একত্রে বসে একটি Parts of Speech-এর কাজ করে, কিন্তু এতে <em>Subject + Finite Verb</em> থাকে না। যেমন: <em>in the morning</em>, <em>because of illness</em>।
+          </p>
+          <p style="color:var(--text-secondary); margin-bottom:10px;">
+            <strong>Independent Clause:</strong> যার নিজস্ব Subject ও Finite Verb আছে এবং একা দাঁড়িয়ে পূর্ণ অর্থ প্রকাশ করতে পারে।<br/>
+            <strong>Dependent / Subordinate Clause:</strong> যার Subject ও Finite Verb থাকলেও Conjunction বা Relative শব্দের কারণে একা পূর্ণ অর্থ দিতে পারে না; মূল Clause-এর ওপর নির্ভর করে।
+          </p>
+          <p class="en-sentence">"Although he tried hard, he could not win."</p>
+          <p class="bn-meaning">যদিও সে কঠোর চেষ্টা করেছিল, তবুও সে জিততে পারেনি। (Dependent + Independent → Complex)</p>
+          <div class="action-mini-group">
+            <button class="mini-btn tts-en-btn" data-text="Although he tried hard, he could not win.">🔊 ইংরেজি শুনুন</button>
+            <button class="mini-btn tts-bn-btn" data-text="যদিও সে কঠোর চেষ্টা করেছিল, তবুও সে জিততে পারেনি।">🗣️ বাংলা শুনুন</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="sub-card searchable-block" data-bm-id="ch1-simple" data-tags="simple definition">
+          <div class="rule-top-bar">
+            <span class="rule-badge">SIMPLE SENTENCE</span>
+            <button class="mini-btn bookmark-btn" data-bm-id="ch1-simple">☆ সেভ</button>
+          </div>
+          <h3>১. Simple Sentence (সরল বাক্য)</h3>
+          <p style="color:var(--text-secondary);">
+            যে বাক্যে <strong>মাত্র ১টি Independent Clause</strong> থাকে এবং কোনো Dependent Clause থাকে না, তাকে Simple Sentence বলে। এতে এক বা একাধিক শব্দগুচ্ছ (Phrase) থাকতে পারে, কিন্তু Finite Verb একটাই থাকে।
+          </p>
+          <div class="formula-box">গঠন: ১টি Independent Clause = Subject + ১টি Finite Verb + (Phrase)</div>
+          <p style="font-size:0.93rem; color:var(--text-secondary); margin:6px 0;">
+            <strong>চেনার উপায়:</strong> বাক্যে কোনো Subordinating Conjunction বা FANBOYS Conjunction দিয়ে দুটি পূর্ণ Clause যুক্ত থাকবে না; <em>despite, in spite of, because of, due to, by+V-ing, without+V-ing, too...to</em> থাকতে পারে।
+          </p>
+          <p class="en-sentence">"Reading newspapers broadens our outlook."</p>
+          <p class="bn-meaning">সংবাদপত্র পড়া আমাদের দৃষ্টিভঙ্গি প্রসারিত করে।</p>
+          <div class="action-mini-group">
+            <button class="mini-btn tts-en-btn" data-text="Reading newspapers broadens our outlook.">🔊 ইংরেজি শুনুন</button>
+            <button class="mini-btn tts-bn-btn" data-text="সংবাদপত্র পড়া আমাদের দৃষ্টিভঙ্গি প্রসারিত করে।">🗣️ বাংলা শুনুন</button>
+          </div>
+        </div>
+
+        <div class="sub-card searchable-block" data-bm-id="ch1-complex" data-tags="complex definition">
+          <div class="rule-top-bar">
+            <span class="rule-badge" style="background:rgba(5,150,105,0.14); color:var(--accent-success);">COMPLEX SENTENCE</span>
+            <button class="mini-btn bookmark-btn" data-bm-id="ch1-complex">☆ সেভ</button>
+          </div>
+          <h3>২. Complex Sentence (জটিল বাক্য)</h3>
+          <p style="color:var(--text-secondary);">
+            যে বাক্যে <strong>১টি Independent Clause</strong> এবং <strong>কমপক্ষে ১টি Dependent Clause</strong> থাকে, যা Subordinating Conjunction বা Relative Pronoun দিয়ে যুক্ত হয়, তাকে Complex Sentence বলে।
+          </p>
+          <div class="formula-box">গঠন: [১টি Independent Clause] + [Subordinating Conjunction + Dependent Clause]</div>
+          <p style="font-size:0.93rem; color:var(--text-secondary); margin:6px 0;">
+            <strong>চেনার উপায়:</strong> <em>because, since, as, although, though, if, unless, when, while, so that, who, which, that, where</em> ইত্যাদি শব্দ দিয়ে একটি অধীন Clause যুক্ত থাকে।
+          </p>
+          <p class="en-sentence">"We stayed indoors because it was raining cats and dogs."</p>
+          <p class="bn-meaning">মুষলধারে বৃষ্টি হওয়ায় আমরা ঘরের ভেতরে অবস্থান করেছিলাম।</p>
+          <div class="action-mini-group">
+            <button class="mini-btn tts-en-btn" data-text="We stayed indoors because it was raining cats and dogs.">🔊 ইংরেজি শুনুন</button>
+            <button class="mini-btn tts-bn-btn" data-text="মুষলধারে বৃষ্টি হওয়ায় আমরা ঘরের ভেতরে অবস্থান করেছিলাম।">🗣️ বাংলা শুনুন</button>
+          </div>
+        </div>
+
+        <div class="sub-card searchable-block" data-bm-id="ch1-compound" data-tags="compound definition fanboys">
+          <div class="rule-top-bar">
+            <span class="rule-badge" style="background:rgba(236,72,153,0.14); color:var(--accent-primary);">COMPOUND SENTENCE</span>
+            <button class="mini-btn bookmark-btn" data-bm-id="ch1-compound">☆ সেভ</button>
+          </div>
+          <h3>৩. Compound Sentence (যৌগিক বাক্য)</h3>
+          <p style="color:var(--text-secondary);">
+            যে বাক্যে <strong>দুই বা ততোধিক Independent Clause</strong> সমান গুরুত্ব নিয়ে Coordinating Conjunction (<strong>FANBOYS</strong>) বা Semicolon (;) দ্বারা যুক্ত থাকে, তাকে Compound Sentence বলে।
+          </p>
+          <div class="formula-box">গঠন: [Independent Clause 1] + [, FANBOYS / ;] + [Independent Clause 2]</div>
+          <p style="font-size:0.93rem; color:var(--text-secondary); margin:6px 0;">
+            <strong>চেনার উপায়:</strong> সংযোজকের আগে ও পরের উভয় অংশই আলাদাভাবে পূর্ণ বাক্য হতে পারে। সাধারণত <em>and, but, or, so, yet, for, nor</em> ব্যবহৃত হয়।
+          </p>
+          <p class="en-sentence">"The train arrived late, but the passengers waited patiently."</p>
+          <p class="bn-meaning">ট্রেনটি দেরিতে পৌঁছেছিল, কিন্তু যাত্রীরা ধৈর্য ধরে অপেক্ষা করেছিলেন।</p>
+          <div class="action-mini-group">
+            <button class="mini-btn tts-en-btn" data-text="The train arrived late, but the passengers waited patiently.">🔊 ইংরেজি শুনুন</button>
+            <button class="mini-btn tts-bn-btn" data-text="ট্রেনটি দেরিতে পৌঁছেছিল, কিন্তু যাত্রীরা ধৈর্য ধরে অপেক্ষা করেছিলেন।">🗣️ বাংলা শুনুন</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 2: Connectors & Clauses -->
+    <section id="ch2" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০২</span>
+          <span class="badge-chip">Clause, Phrase ও Connectors</span>
+        </div>
+        <h2 class="chapter-title">অধ্যায় ২: Clause, Phrase এবং Connectors-এর পূর্ণাঙ্গ মানচিত্র</h2>
+        <p class="chapter-sub">কোন শব্দ বা চিহ্ন থাকলে বাক্যটি Simple, Complex নাকি Compound হয় তার বিস্তারিত নিয়ম ও উদাহরণ</p>
+        <p style="margin:0; color:var(--text-secondary);">
+          পরীক্ষায় দ্রুত বাক্য চিনতে ও রূপান্তর করতে কোন Connector কোন ধরনের Clause বা Phrase তৈরি করে তা জানা জরুরি। নিচের সারণিতে প্রতিটি ক্যাটাগরির গঠন, ব্যবহারের নিয়ম ও উদাহরণ দেওয়া হলো।
+        </p>
+      </div>
+
+      <div class="table-wrap searchable-block" data-tags="simple complex compound clause phrase connectors">
+        <table class="master-table">
+          <thead>
+            <tr>
+              <th style="width:18%;">শ্রেণি / গ্রুপ</th>
+              <th style="width:28%;">প্রধান শব্দ / চিহ্ন ও নিয়ম</th>
+              <th style="width:24%;">কী প্রকাশ করে ও কীভাবে কাজ করে?</th>
+              <th style="width:30%;">উদাহরণ ও বাংলা অর্থ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Simple Phrase Markers</strong><br/>(Clause তৈরি করে না)</td>
+              <td><span class="font-en-code">because of, due to, owing to, in spite of, despite, by + V-ing, without + V-ing, too...to, having + V3</span><br/><small>নিয়ম: এদের পরে Subject + Finite Verb থাকে না; Noun/Gerund/Infinitive বসে।</small></td>
+              <td>কারণ, বৈপরীত্য, শর্ত, সময় বা উদ্দেশ্যকে সংক্ষিপ্ত Phrase আকারে প্রকাশ করে এবং বাক্যে মাত্র ১টি Finite Verb রাখে।</td>
+              <td><strong class="font-en-sentence">Despite poverty, he is honest.</strong><br/>দারিদ্র্য সত্ত্বেও সে সৎ।<br/><strong class="font-en-sentence">By working hard, you can shine.</strong><br/>কঠোর পরিশ্রম করে তুমি উন্নতি করতে পারো।</td>
+            </tr>
+            <tr>
+              <td><strong>Subordinating Conjunctions</strong><br/>(Complex Clause তৈরি করে)</td>
+              <td><span class="font-en-code">because, since, as, although, though, even though, if, unless, provided that, when, while, after, before, until, so that</span><br/><small>নিয়ম: এই শব্দগুলোর পর Subject + Finite Verb যুক্ত হয়ে Dependent Clause হয়।</small></td>
+              <td>Dependent Clause শুরু করে এবং মূল বাক্যের সাথে কারণ, শর্ত, সময়, উদ্দেশ্য বা বৈপরীত্যের সম্পর্ক স্থাপন করে।</td>
+              <td><strong class="font-en-sentence">Although he is poor, he is honest.</strong><br/>যদিও সে গরিব, তবুও সে সৎ।<br/><strong class="font-en-sentence">We read so that we can learn.</strong><br/>আমরা পড়ি যাতে শিখতে পারি।</td>
+            </tr>
+            <tr>
+              <td><strong>Relative Pronouns / Adverbs</strong><br/>(Complex Clause তৈরি করে)</td>
+              <td><span class="font-en-code">who, whom, whose, which, that, where, why, how, what</span><br/><small>নিয়ম: পূর্ববর্তী Noun/Pronoun বা ক্রিয়ার অর্থ ব্যাখ্যা করে Dependent Clause তৈরি করে।</small></td>
+              <td>Adjective Clause বা Noun Clause গঠন করে ব্যক্তি, বস্তু, স্থান, সময় বা তথ্য সম্পর্কে অতিরিক্ত ব্যাখ্যা দেয়।</td>
+              <td><strong class="font-en-sentence">The book that you gave me is rare.</strong><br/>তুমি আমাকে যে বইটি দিয়েছিলে তা দুর্লভ।<br/><strong class="font-en-sentence">I know where he lives.</strong><br/>আমি জানি সে কোথায় থাকে।</td>
+            </tr>
+            <tr>
+              <td><strong>Coordinating (FANBOYS)</strong><br/>(Compound Clause যুক্ত করে)</td>
+              <td><span class="font-en-code">For, And, Nor, But, Or, Yet, So</span><br/><small>নিয়ম: সাধারণত আগের Clause-এর শেষে কমা (,) দিয়ে দুটি Independent Clause যুক্ত করে।</small></td>
+              <td>দুটি সমান মর্যাদার Independent Clause-কে সংযোজন, বৈপরীত্য, বিকল্প বা ফলাফল বোঝাতে যুক্ত করে।</td>
+              <td><strong class="font-en-sentence">He is poor, but he is honest.</strong><br/>সে গরিব, কিন্তু সে সৎ।<br/><strong class="font-en-sentence">Hurry up, or you will be late.</strong><br/>তাড়াতাড়ি করো, নতুবা দেরি হবে।</td>
+            </tr>
+            <tr>
+              <td><strong>Semicolon ও Conjunctive Adverbs</strong><br/>(উন্নত Compound)</td>
+              <td><span class="font-en-code">;</span> , <span class="font-en-code">; however,</span> , <span class="font-en-code">; therefore,</span> , <span class="font-en-code">; moreover,</span> , <span class="font-en-code">; consequently,</span><br/><small>নিয়ম: দুটি পূর্ণ স্বাধীন বাক্যের মাঝখানে Semicolon (;) বসিয়ে যুক্তিসম্পন্ন সংযোগ তৈরি করে।</small></td>
+              <td>HSC ও একাডেমিক লেখায় দুটি স্বতন্ত্র Independent Clause-কে পরিশীলিতভাবে যুক্ত করে ফলাফল বা বৈপরীত্য বোঝায়।</td>
+              <td><strong class="font-en-sentence">He worked hard; therefore, he stood first.</strong><br/>সে কঠোর পরিশ্রম করেছিল; সুতরাং প্রথম হয়েছিল।</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Chapter 3: Simple <-> Complex -->
+    <section id="ch3" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০৩</span>
+          <span class="badge-chip">Simple ↔ Complex রূপান্তর নিয়ম</span>
+        </div>
+        <h2 class="chapter-title">অধ্যায় ৩: Simple ↔ Complex রূপান্তরের সকল নিয়ম</h2>
+        <p class="chapter-sub">Phrase থেকে Subordinate Clause এবং Subordinate Clause থেকে Phrase-এ রূপান্তর</p>
+      </div>
+      <div id="ch3RulesContainer"></div>
+    </section>
+
+    <!-- Chapter 4: Complex <-> Compound -->
+    <section id="ch4" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০৪</span>
+          <span class="badge-chip">Complex ↔ Compound রূপান্তর নিয়ম</span>
+        </div>
+        <h2 class="chapter-title">অধ্যায় ৪: Complex ↔ Compound রূপান্তরের সকল নিয়ম</h2>
+        <p class="chapter-sub">Subordinating Conjunction থেকে FANBOYS (and, but, or, so, yet)-এ রূপান্তর</p>
+      </div>
+      <div id="ch4RulesContainer"></div>
+    </section>
+
+    <!-- Chapter 5: Simple <-> Compound -->
+    <section id="ch5" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০৫</span>
+          <span class="badge-chip">Simple ↔ Compound রূপান্তর নিয়ম</span>
+        </div>
+        <h2 class="chapter-title">অধ্যায় ৫: Simple ↔ Compound রূপান্তরের সকল নিয়ম</h2>
+        <p class="chapter-sub">এক Clause-এর Phrase বাক্য থেকে একাধিক Independent Clause-এর Compound বাক্যে রূপান্তর</p>
+      </div>
+      <div id="ch5RulesContainer"></div>
+    </section>
+
+    <!-- Chapter 6: Special Rules & Common Errors -->
+    <section id="ch6" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০৬</span>
+          <span class="badge-chip">বিশেষ নিয়ম, ব্যতিক্রম ও ভুল সংশোধন</span>
+        </div>
+        <h2 class="chapter-title">অধ্যায় ৬: SSC ও HSC বোর্ড পরীক্ষার বিশেষ নিয়ম ও প্রচলিত ভুল</h2>
+        <p class="chapter-sub">যে ভুলগুলো পরীক্ষায় নম্বর কমায় এবং যে বিশেষ কাঠামোগুলো থেকে নিয়মিত প্রশ্ন আসে—তার নির্ভুল সমাধান</p>
+        <p style="margin:0; color:var(--text-secondary);">
+          রূপান্তর করার সময় অর্থ ঠিক রাখা এবং একই বাক্যে পরস্পরবিরোধী Conjunction বা খণ্ডবাক্য (Fragment) এড়ানো অত্যন্ত গুরুত্বপূর্ণ। নিচে বোর্ড ও এডমিশন পরীক্ষার সবচেয়ে গুরুত্বপূর্ণ বিশেষ নিয়ম ও ভুল সংশোধন দেওয়া হলো।
+        </p>
+      </div>
+
+      <div class="table-wrap searchable-block" data-tags="special exceptions errors simple complex compound">
+        <table class="master-table">
+          <thead>
+            <tr>
+              <th style="width:20%;">নিয়ম / ত্রুটির ধরন</th>
+              <th style="width:28%;">ভুল বা বিভ্রান্তিকর রূপ</th>
+              <th style="width:24%;">ব্যাখ্যা / ব্যতিক্রম</th>
+              <th style="width:28%;">সঠিক রূপ ও বাংলা অর্থ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>১. Double Conjunction</strong><br/>(Although + But)</td>
+              <td>❌ <span class="font-en-sentence">Although he is poor, but he is honest.</span></td>
+              <td>একই বাক্যে Subordinating Conjunction (<em>Although/Though</em>) এবং Coordinating Conjunction (<em>but</em>) একসাথে বসে না।</td>
+              <td>✅ <strong class="font-en-sentence">Although he is poor, he is honest.</strong> (Complex)<br/>✅ <strong class="font-en-sentence">He is poor, but he is honest.</strong> (Compound)</td>
+            </tr>
+            <tr>
+              <td><strong>২. Comma Splice</strong><br/>(শুধু কমা দিয়ে ২টি Clause)</td>
+              <td>❌ <span class="font-en-sentence">It rained heavily, we could not go out.</span></td>
+              <td>দুটি স্বাধীন বাক্যকে শুধু কমা (,) দিয়ে জোড়া দেওয়া ভুল। কমা + FANBOYS বা Semicolon (;) লাগবে।</td>
+              <td>✅ <strong class="font-en-sentence">It rained heavily, so we could not go out.</strong><br/>✅ <strong class="font-en-sentence">It rained heavily; we could not go out.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>৩. Sentence Fragment</strong><br/>(অসম্পূর্ণ Dependent Clause)</td>
+              <td>❌ <span class="font-en-sentence">Because he worked hard for the exam.</span></td>
+              <td>শুধু Dependent Clause লিখলে তা অসম্পূর্ণ খণ্ডবাক্য (Fragment) হয়; মূল Clause যুক্ত করতে হবে।</td>
+              <td>✅ <strong class="font-en-sentence">He passed because he worked hard for the exam.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>৪. ভিন্ন Subject-এ Participle</strong><br/>(Nominative Absolute)</td>
+              <td>❌ <span class="font-en-sentence">Being a rainy day, I took an umbrella.</span></td>
+              <td>উভয় অংশের Subject ভিন্ন হলে Simple বাক্যে Nominative Absolute (<em>It being a rainy day...</em>) ব্যবহার করতে হয়।</td>
+              <td>✅ <strong class="font-en-sentence">It being a rainy day, I took an umbrella.</strong> (Simple)<br/>✅ <strong class="font-en-sentence">As it was a rainy day, I took an umbrella.</strong> (Complex)</td>
+            </tr>
+            <tr>
+              <td><strong>৫. 'Since' ও 'When'-এর ব্যবহার</strong></td>
+              <td><em>Since</em> = কারণ বা সময়<br/><em>When</em> = সময় বা শর্ত/বৈপরীত্য</td>
+              <td>বাক্যের অর্থ অনুযায়ী <em>since</em> বা <em>when</em>-এর সঠিক রূপ (<em>because / after / while</em>) বেছে নিতে হয়।</td>
+              <td>✅ <strong class="font-en-sentence">Since he was tired, he slept.</strong> (কারণ)<br/>✅ <strong class="font-en-sentence">I have lived here since 2020.</strong> (সময়)</td>
+            </tr>
+            <tr>
+              <td><strong>৬. No sooner had...than / Hardly...when</strong><br/>(তাৎক্ষণিক অতীত ঘটনা)</td>
+              <td>❌ <span class="font-en-sentence">No sooner had I reached the station when the train left.</span></td>
+              <td><em>No sooner had</em>-এর সাথে <strong>than</strong> বসে; আর <em>Hardly/Scarcely had</em>-এর সাথে <strong>when/before</strong> বসে। Simple-এ <em>Just after / On</em> ব্যবহৃত হয়।</td>
+              <td>✅ <strong class="font-en-sentence">No sooner had I reached the station than the train left.</strong> (Complex)<br/>✅ <strong class="font-en-sentence">Just after my reaching the station, the train left.</strong> (Simple)</td>
+            </tr>
+            <tr>
+              <td><strong>৭. Despite বনাম In spite of</strong></td>
+              <td>❌ <span class="font-en-sentence">Despite of his illness, he came.</span></td>
+              <td><em>Despite</em>-এর পরে সরাসরি <strong>of</strong> বসে না; কিন্তু <em>in spite</em>-এর পরে অবশ্যই <strong>of</strong> বসে।</td>
+              <td>✅ <strong class="font-en-sentence">Despite his illness, he came.</strong><br/>✅ <strong class="font-en-sentence">In spite of his illness, he came.</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 50 SSC & HSC Practice Questions Section (3-Click Interactive Reveal) -->
+    <section id="practice50Section" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অনুশীলন • ৫০টি প্রশ্ন</span>
+          <span class="badge-chip">১ম ক্লিক: বাংলা অর্থ • ২য় ক্লিক: Ruleসহ ব্যাখ্যা</span>
+        </div>
+        <h2 class="chapter-title">SSC ও HSC বোর্ড অনুশীলন: ৫০টি গুরুত্বপূর্ণ প্রশ্ন ও উত্তর</h2>
+        <p class="chapter-sub">
+          যেকোনো প্রশ্ন কার্ডে <strong>প্রথমবার ক্লিক করলে বাংলা অর্থ</strong> দেখাবে, <strong>দ্বিতীয়বার ক্লিক করলে সঠিক উত্তর ও Ruleসহ ব্যাখ্যা</strong> দেখাবে, এবং <strong>তৃতীয়বার ক্লিক করলে</strong> আবার প্রাথমিক অবস্থায় ফিরে যাবে।
+        </p>
+      </div>
+
+      <div class="practice-toolbar no-print">
+        <div style="display:flex; flex-wrap:wrap; gap:6px;" id="practiceFilterGroup">
+          <button class="filter-btn active" data-pfilter="all">সব ৫০টি প্রশ্ন</button>
+          <button class="filter-btn" data-pfilter="SSC">SSC স্টাইল</button>
+          <button class="filter-btn" data-pfilter="HSC">HSC স্টাইল</button>
+          <button class="filter-btn" data-pfilter="Simple">Simple</button>
+          <button class="filter-btn" data-pfilter="Complex">Complex</button>
+          <button class="filter-btn" data-pfilter="Compound">Compound</button>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="badge-chip" id="practiceSeenCounter">দেখা হয়েছে: ০ / ৫০</span>
+          <button class="ctrl-btn" id="revealAllMeaningsBtn">১ম ধাপ: সব অর্থ দেখুন</button>
+          <button class="ctrl-btn" id="revealAllRulesBtn">২য় ধাপ: সব Rule দেখুন</button>
+          <button class="ctrl-btn" id="resetAllPracticeBtn">↺ সব রিসেট</button>
+        </div>
+      </div>
+
+      <div class="practice-grid" id="practice50Grid"></div>
+    </section>
+
+    <!-- Chapter 7: Interactive Lab & Self-Test Quiz -->
+    <section id="ch7" class="chapter-section">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০৭</span>
+          <span class="badge-chip">লাইভ রূপান্তর ল্যাব ও সেলফ-টেস্ট</span>
+        </div>
+        <h2 class="chapter-title">অধ্যায় ৭: লাইভ রূপান্তর ল্যাব ও সেলফ-টেস্ট কুইজ</h2>
+        <p class="chapter-sub">একই বাক্যের Simple, Complex ও Compound রূপ তুলনা করুন এবং কুইজে নিজেকে যাচাই করুন</p>
+      </div>
+
+      <div class="lab-panel no-print">
+        <h3 style="margin:0 0 6px; font-size:1.25rem;">🔬 Interactive Transformation Lab (একই বাক্যের ৩ রূপ)</h3>
+        <p style="margin:0 0 12px; color:var(--text-secondary);">
+          নিচের যেকোনো প্রেসেট নির্বাচন করে Simple, Complex ও Compound-এর গঠনগত পার্থক্য ও বাংলা অর্থ দেখুন:
+        </p>
+        <div class="preset-row" id="labPresetRow"></div>
+        <div id="labResultContainer"></div>
+      </div>
+
+      <div class="score-banner no-print">
+        <div>
+          <div style="font-size:1.18rem; font-weight:700;">📝 সেলফ-টেস্ট কুইজ (SSC, HSC ও এডমিশন প্রস্তুতি)</div>
+          <div style="font-size:0.9rem; color:var(--text-secondary);">প্রতিটি প্রশ্নের উত্তর দিন, প্রয়োজনে Hint দেখুন এবং ব্যাখ্যা বুঝে নিন।</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="badge-chip" id="quizScoreBadge" style="font-size:0.92rem; padding:7px 14px;">স্কোর: ০ / ১২</span>
+          <button class="ctrl-btn" id="resetQuizBtn">🔄 কুইজ রিসেট</button>
+        </div>
+      </div>
+
+      <div id="quizContainer"></div>
+    </section>
+  </main>
+
+  <script>
+    /* =========================================================================
+       [PART 3: MODULAR DATA MODULES]
+       - rulesData: Chapters 3, 4, 5 transformation rules (easy to edit/add)
+       - labPresetsData: 3-form transformation presets for the live lab
+       - sscHscQuestionsData: 50 authentic SSC & HSC questions with Bengali
+         meaning and detailed Rule explanation
+       - selfTestQuizData: 12 interactive multiple-choice questions
+       ========================================================================= */
+    const rulesData = {
+      ch3: [
+        {
+          id: "r3-1",
+          category: "কারণ (Cause / Reason)",
+          tags: "simple complex transformation because of since as because",
+          formulaA: "Because of / Due to / Owing to + Noun / V-ing Phrase + Main Clause",
+          formulaB: "Because / Since / As + Subject + Finite Verb + Main Clause",
+          exA: "Because of his sudden illness, he could not attend the seminar.",
+          exB: "Since he fell suddenly ill, he could not attend the seminar.",
+          meaning: "হঠাৎ অসুস্থতার কারণে সে সেমিনারে উপস্থিত হতে পারেনি।",
+          markers: ["Because of", "Since"],
+          note: "Simple বাক্যে 'Because of / Due to' এর পর Clause হয় না; Complex বাক্যে 'Because / Since / As' এর পর Subject + Finite Verb বসে।"
+        },
+        {
+          id: "r3-2",
+          category: "বৈপরীত্য (Contrast / Concession)",
+          tags: "simple complex transformation despite in spite of although though",
+          formulaA: "In spite of / Despite + Noun Phrase / (Being + Adj / V-ing) + Main Clause",
+          formulaB: "Although / Though / Even though + Subject + Finite Verb + Main Clause",
+          exA: "In spite of facing tough competition, the startup succeeded.",
+          exB: "Although the startup faced tough competition, it succeeded.",
+          meaning: "কঠিন প্রতিযোগিতার সম্মুখীন হয়েও স্টার্টআপটি সফল হয়েছিল।",
+          markers: ["In spite of", "Although"],
+          note: "Simple-এ 'In spite of' বা 'Despite' (এর পর 'of' বসে না) ব্যবহৃত হয়; Complex-এ 'Although / Though' বসে।"
+        },
+        {
+          id: "r3-3",
+          category: "ইতিবাচক শর্ত (Positive Condition)",
+          tags: "simple complex transformation by if condition",
+          formulaA: "By + Verb-ing + ... + Main Clause",
+          formulaB: "If + Subject + Affirmative Verb + ... + Main Clause",
+          exA: "By practicing English daily, you can speak fluently.",
+          exB: "If you practice English daily, you can speak fluently.",
+          meaning: "প্রতিদিন ইংরেজি অনুশীলন করে তুমি সাবলীলভাবে কথা বলতে পারো।",
+          markers: ["By ... -ing", "If"],
+          note: "ইতিবাচক শর্ত বোঝাতে Simple-এ 'By + V-ing' এবং Complex-এ 'If + হ্যাঁ-বোধক Clause' ব্যবহৃত হয়।"
+        },
+        {
+          id: "r3-4",
+          category: "নেতিবাচক শর্ত (Negative Condition)",
+          tags: "simple complex transformation without unless if not",
+          formulaA: "Without + Verb-ing + ... + Main Clause",
+          formulaB: "Unless + Subject + Affirmative Verb (বা If + Subject + Negative Verb)",
+          exA: "Without reading the instructions carefully, you may make mistakes.",
+          exB: "Unless you read the instructions carefully, you may make mistakes.",
+          meaning: "নির্দেশাবলি মনোযোগ দিয়ে না পড়লে তুমি ভুল করতে পারো।",
+          markers: ["Without ... -ing", "Unless"],
+          note: "'Unless' নিজেই নেতিবাচক অর্থ দেয়, তাই Unless যুক্ত Clause-এ সাধারণত 'not' বসে না।"
+        },
+        {
+          id: "r3-5",
+          category: "সময় ও তাৎক্ষণিক কাজ (Time)",
+          tags: "simple complex transformation when as soon as participle",
+          formulaA: "Present Participle (V-ing) / On + V-ing + Main Clause",
+          formulaB: "When / As soon as + Subject + Finite Verb + Main Clause",
+          exA: "On hearing the alarm, the firefighters rushed out.",
+          exB: "As soon as the firefighters heard the alarm, they rushed out.",
+          meaning: "অ্যালার্ম শুনেই দমকলকর্মীরা দ্রুত বাইরে ছুটে গেলেন।",
+          markers: ["On ... -ing", "As soon as"],
+          note: "তাৎক্ষণিক ঘটনা বোঝাতে Complex-এ 'As soon as' বা 'When' এবং Simple-এ 'V-ing' বা 'On + V-ing' ব্যবহৃত হয়।"
+        },
+        {
+          id: "r3-6",
+          category: "উদ্দেশ্য (Purpose)",
+          tags: "simple complex transformation to so that in order that",
+          formulaA: "To / In order to + Base Verb (V1) + ...",
+          formulaB: "... so that / in order that + Subject + can / could / may / might + V1",
+          exA: "We maintain detailed notes to revise quickly before exams.",
+          exB: "We maintain detailed notes so that we can revise quickly before exams.",
+          meaning: "পরীক্ষার আগে দ্রুত রিভিশন দেওয়ার জন্য আমরা বিস্তারিত নোট রাখি।",
+          markers: ["to + V1", "so that ... can"],
+          note: "Present Tense-এ 'can/may' এবং Past Tense-এ 'could/might' ব্যবহৃত হয়।"
+        },
+        {
+          id: "r3-7",
+          category: "Too...to ↔ So...that",
+          tags: "simple complex transformation too to so that",
+          formulaA: "Subject + Verb + too + Adjective/Adverb + to + V1",
+          formulaB: "Subject + Verb + so + Adjective/Adverb + that + Subject + cannot/could not + V1",
+          exA: "The problem is too complex to solve in five minutes.",
+          exB: "The problem is so complex that nobody can solve it in five minutes.",
+          meaning: "সমস্যাটি এতই জটিল যে পাঁচ মিনিটে কেউ এটি সমাধান করতে পারবে না।",
+          markers: ["too ... to", "so ... that ... cannot"],
+          note: "Simple-এর 'too...to' রূপান্তর করলে Complex-এ 'so...that' এবং নেতিবাচক Modal (cannot/could not) আসে।"
+        }
+      ],
+      ch4: [
+        {
+          id: "r4-1",
+          category: "কারণ থেকে ফলাফল (Cause → Effect)",
+          tags: "complex compound transformation because since so",
+          formulaA: "Because / Since / As + [Cause Clause], [Result Clause]",
+          formulaB: "[Cause Clause], so + [Result Clause]",
+          exA: "Because the server crashed, the online class was delayed.",
+          exB: "The server crashed, so the online class was delayed.",
+          meaning: "সার্ভার ক্র্যাশ করায় অনলাইন ক্লাসটি দেরিতে শুরু হয়েছিল।",
+          markers: ["Because", ", so"],
+          note: "Complex বাক্যে কারণ অংশের আগে 'Because/Since' থাকে; Compound বাক্যে কারণটি প্রথমে বসে এবং ফলাফলের আগে ', so' বসে।"
+        },
+        {
+          id: "r4-2",
+          category: "বৈপরীত্য (Contrast)",
+          tags: "complex compound transformation although though but yet",
+          formulaA: "Although / Though + [Contrast Clause], [Main Clause]",
+          formulaB: "[Clause 1], but / yet + [Clause 2]",
+          exA: "Although the draft was rough, the idea was brilliant.",
+          exB: "The draft was rough, yet the idea was brilliant.",
+          meaning: "খসড়াটি কাঁচা হলেও ধারণাটি ছিল অসাধারণ।",
+          markers: ["Although", ", yet"],
+          note: "Complex-এ 'Although/Though' এবং Compound-এ ', but' বা ', yet' ব্যবহৃত হয়।"
+        },
+        {
+          id: "r4-3",
+          category: "ইতিবাচক শর্ত ও ফলাফল",
+          tags: "complex compound transformation if and",
+          formulaA: "If + [Condition Clause], [Result Clause]",
+          formulaB: "[Imperative / Clause 1], and + [Result Clause]",
+          exA: "If you revise these rules weekly, you will master sentence transformation.",
+          exB: "Revise these rules weekly, and you will master sentence transformation.",
+          meaning: "সপ্তাহে এই নিয়মগুলো রিভিশন দিলে তুমি বাক্য রূপান্তরে দক্ষ হয়ে উঠবে।",
+          markers: ["If", ", and"],
+          note: "Complex-এর 'If' শর্তকে Compound-এ রূপান্তর করতে প্রথম অংশকে অনুজ্ঞাসূচক (Imperative) বা স্বাধীন বাক্যে এনে ', and' দিয়ে যুক্ত করা হয়।"
+        },
+        {
+          id: "r4-4",
+          category: "নেতিবাচক শর্ত ও বিকল্প",
+          tags: "complex compound transformation unless if not or",
+          formulaA: "Unless + [Condition Clause], [Result Clause]",
+          formulaB: "[Imperative / Clause 1], or / otherwise + [Alternative Clause]",
+          exA: "Unless you back up your files, you may lose important work.",
+          exB: "Back up your files, or you may lose important work.",
+          meaning: "ফাইলগুলোর ব্যাকআপ না রাখলে তুমি গুরুত্বপূর্ণ কাজ হারাতে পারো।",
+          markers: ["Unless", ", or"],
+          note: "Complex-এর 'Unless' বা 'If...not' Compound বাক্যে ', or' বা ', otherwise' এ রূপান্তরিত হয়।"
+        }
+      ],
+      ch5: [
+        {
+          id: "r5-1",
+          category: "অতিরিক্ত তথ্য (Besides ↔ Not only...but also / and)",
+          tags: "simple compound transformation besides not only but also and",
+          formulaA: "Besides + (V-ing / Noun Phrase), [Main Clause]",
+          formulaB: "[Clause 1], and + [Clause 2] / Not only + [Clause 1], but also + [Clause 2]",
+          exA: "Besides teaching grammar, he designs interactive study tools.",
+          exB: "He not only teaches grammar, but also designs interactive study tools.",
+          meaning: "ব্যাকরণ পড়ানোর পাশাপাশি তিনি ইন্টারেক্টিভ স্টাডি টুলও তৈরি করেন।",
+          markers: ["Besides ... -ing", "not only ... but also"],
+          note: "Simple-এ 'Besides + V-ing' থাকলে Compound-এ ', and' অথবা 'not only... but also' দিয়ে দুটি স্বাধীন Clause যুক্ত করা হয়।"
+        },
+        {
+          id: "r5-2",
+          category: "কারণ ও ফল (Because of / Due to ↔ so)",
+          tags: "simple compound transformation because of due to so",
+          formulaA: "Due to / Because of + Noun Phrase, [Main Clause]",
+          formulaB: "[Cause Clause], so + [Effect Clause]",
+          exA: "Due to heavy fog, all morning flights were rescheduled.",
+          exB: "There was heavy fog, so all morning flights were rescheduled.",
+          meaning: "ঘন কুয়াশার কারণে সকালের সব ফ্লাইটের সময়সূচি পরিবর্তন করা হয়েছিল।",
+          markers: ["Due to", ", so"],
+          note: "Simple-এর কারণসূচক Phrase-কে Compound-এ একটি পূর্ণ Clause বানিয়ে ', so' দিয়ে ফলাফলের Clause-এর সাথে যুক্ত করা হয়।"
+        },
+        {
+          id: "r5-3",
+          category: "বৈপরীত্য (Despite / In spite of ↔ but / yet)",
+          tags: "simple compound transformation despite in spite of but yet",
+          formulaA: "Despite / In spite of + Noun/Gerund Phrase, [Main Clause]",
+          formulaB: "[Clause 1], but / yet + [Clause 2]",
+          exA: "Despite limited resources, the team delivered the project on time.",
+          exB: "Resources were limited, but the team delivered the project on time.",
+          meaning: "সীমিত সম্পদ থাকা সত্ত্বেও দলটি সময়মতো প্রজেক্টটি সরবরাহ করেছিল।",
+          markers: ["Despite", ", but"],
+          note: "Simple-এ 'Despite/In spite of' থাকলে Compound-এ বিপরীত ভাব বোঝাতে ', but' বা ', yet' ব্যবহৃত হয়।"
+        },
+        {
+          id: "r5-4",
+          category: "নেতিবাচক শর্ত (Without ↔ or / otherwise)",
+          tags: "simple compound transformation without or otherwise",
+          formulaA: "Without + V-ing, [Main Clause]",
+          formulaB: "[Imperative Verb], or / otherwise + [Clause 2]",
+          exA: "Without saving money regularly, emergencies become stressful.",
+          exB: "Save money regularly, or emergencies will become stressful.",
+          meaning: "নিয়মিত টাকা না জমালে জরুরি অবস্থায় দুশ্চিন্তা বাড়ে।",
+          markers: ["Without ... -ing", ", or"],
+          note: "Simple-এর 'Without + V-ing' Compound বাক্যে ', or' বা ', otherwise' দিয়ে সতর্কবার্তা বা ফলাফলের সাথে যুক্ত হয়।"
+        }
+      ]
+    };
+
+    const labPresetsData = [
+      {
+        id: "preset-contrast",
+        label: "১. বৈপরীত্য (Contrast)",
+        bnIdea: "কঠোর পরিশ্রম করা সত্ত্বেও লক্ষ্য অর্জন না হওয়া",
+        simple: {
+          text: "In spite of working tirelessly, she missed the target.",
+          bn: "ক্লান্তিহীনভাবে পরিশ্রম করা সত্ত্বেও সে লক্ষ্যটি মিস করেছিল।",
+          marker: "In spite of working tirelessly",
+          explain: "১টি Independent Clause ('she missed the target') এবং ১টি Prepositional/Gerund Phrase ('In spite of working tirelessly')।"
+        },
+        complex: {
+          text: "Although she worked tirelessly, she missed the target.",
+          bn: "যদিও সে ক্লান্তিহীনভাবে পরিশ্রম করেছিল, তবুও সে লক্ষ্যটি মিস করেছিল।",
+          marker: "Although",
+          explain: "'Although she worked tirelessly' হলো Dependent Clause এবং 'she missed the target' হলো Independent Clause।"
+        },
+        compound: {
+          text: "She worked tirelessly, yet she missed the target.",
+          bn: "সে ক্লান্তিহীনভাবে পরিশ্রম করেছিল, তবুও সে লক্ষ্যটি মিস করেছিল।",
+          marker: ", yet",
+          explain: "দুটি সমান Independent Clause ('She worked tirelessly' এবং 'she missed the target') ', yet' দ্বারা যুক্ত।"
+        }
+      },
+      {
+        id: "preset-cause",
+        label: "২. কারণ ও ফল (Cause & Effect)",
+        bnIdea: "বৃষ্টির কারণে খেলা স্থগিত হওয়া",
+        simple: {
+          text: "Because of heavy rain, the match was postponed.",
+          bn: "প্রচণ্ড বৃষ্টির কারণে ম্যাচটি স্থগিত করা হয়েছিল।",
+          marker: "Because of heavy rain",
+          explain: "মাত্র ১টি Finite Verb ('was postponed'); 'Because of heavy rain' একটি Phrase।"
+        },
+        complex: {
+          text: "Since it rained heavily, the match was postponed.",
+          bn: "যেহেতু প্রচণ্ড বৃষ্টি হয়েছিল, ম্যাচটি স্থগিত করা হয়েছিল।",
+          marker: "Since",
+          explain: "'Since it rained heavily' হলো Dependent Clause; 'the match was postponed' হলো Main Clause।"
+        },
+        compound: {
+          text: "It rained heavily, so the match was postponed.",
+          bn: "প্রচণ্ড বৃষ্টি হয়েছিল, তাই ম্যাচটি স্থগিত করা হয়েছিল।",
+          marker: ", so",
+          explain: "কারণের বাক্য + ', so' + ফলাফলের বাক্য—উভয়ই Independent Clause।"
+        }
+      },
+      {
+        id: "preset-condition",
+        label: "৩. শর্ত (Condition)",
+        bnIdea: "অনুশীলন করলে দক্ষতা অর্জন করা",
+        simple: {
+          text: "By practicing regularly, you can master grammar.",
+          bn: "নিয়মিত অনুশীলন করে তুমি ব্যাকরণে দক্ষতা অর্জন করতে পারো।",
+          marker: "By practicing regularly",
+          explain: "'By + V-ing' যুক্ত Phrase এবং ১টি Independent Clause ('you can master grammar')।"
+        },
+        complex: {
+          text: "If you practice regularly, you can master grammar.",
+          bn: "তুমি যদি নিয়মিত অনুশীলন করো, তবে ব্যাকরণে দক্ষতা অর্জন করতে পারো।",
+          marker: "If",
+          explain: "'If you practice regularly' হলো শর্তসূচক Dependent Clause।"
+        },
+        compound: {
+          text: "Practice regularly, and you can master grammar.",
+          bn: "নিয়মিত অনুশীলন করো, এবং তুমি ব্যাকরণে দক্ষতা অর্জন করতে পারো।",
+          marker: ", and",
+          explain: "Imperative Clause ('Practice regularly') + ', and' + Independent Clause ('you can master grammar')।"
+        }
+      },
+      {
+        id: "preset-too-to",
+        label: "৪. Too...to ↔ So...that",
+        bnIdea: "বাক্সটি এত ভারী যে তোলা যায় না",
+        simple: {
+          text: "The box is too heavy to lift.",
+          bn: "বাক্সটি এতই ভারী যে তোলা যায় না।",
+          marker: "too ... to",
+          explain: "একটি মাত্র Finite Verb ('is'); 'to lift' হলো Non-Finite Infinitive Phrase।"
+        },
+        complex: {
+          text: "The box is so heavy that no one can lift it.",
+          bn: "বাক্সটি এতই ভারী যে কেউ এটি তুলতে পারে না।",
+          marker: "so ... that ... can",
+          explain: "'that no one can lift it' হলো Dependent Clause।"
+        },
+        compound: {
+          text: "The box is very heavy, and no one can lift it.",
+          bn: "বাক্সটি খুব ভারী, এবং কেউ এটি তুলতে পারে না।",
+          marker: ", and",
+          explain: "দুটি Independent Clause ', and' দ্বারা যুক্ত।"
+        }
+      }
+    ];
+
+    /* 50 SSC & HSC Practice Questions Data Module */
+    const sscHscQuestionsData = [
+      {
+        no: 1, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"He is too weak to walk.\"",
+        meaning: "সে এতই দুর্বল যে হাঁটতে পারে না।",
+        answer: "He is so weak that he cannot walk.",
+        rule: "Rule (Too...to → So...that): 'too'-এর স্থলে 'so' এবং 'to walk'-এর স্থলে 'that + Subject + cannot/could not + V1' বসে।"
+      },
+      {
+        no: 2, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"Although he is poor, he is honest.\"",
+        meaning: "যদিও সে গরিব, তবুও সে সৎ।",
+        answer: "In spite of his poverty, he is honest.",
+        rule: "Rule (Although → In spite of): বৈপরীত্য বোঝাতে Complex-এর 'Although' বাদ দিয়ে Simple বাক্যে 'In spite of + Noun Phrase' বসে।"
+      },
+      {
+        no: 3, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"Because he worked hard, he prospered in life.\"",
+        meaning: "যেহেতু সে কঠোর পরিশ্রম করেছিল, সে জীবনে উন্নতি করেছিল।",
+        answer: "He worked hard, so he prospered in life.",
+        rule: "Rule (Because/Since → , so): কারণসূচক Complex বাক্যকে Compound করতে ফলাফলের আগে ', so' ব্যবহার করে দুটি স্বাধীন Clause যুক্ত করা হয়।"
+      },
+      {
+        no: 4, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"By reading books, you can enrich your mind.\"",
+        meaning: "বই পড়ে তুমি তোমার মনকে সমৃদ্ধ করতে পারো।",
+        answer: "If you read books, you can enrich your mind.",
+        rule: "Rule (By + V-ing → If): ইতিবাচক শর্ত বোঝাতে Simple-এর 'By + V-ing' রূপান্তরিত হয়ে Complex বাক্যে 'If + Subject + Verb' হয়।"
+      },
+      {
+        no: 5, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"Without working hard, you will not shine in life.\"",
+        meaning: "কঠোর পরিশ্রম না করলে তুমি জীবনে উন্নতি করতে পারবে না।",
+        answer: "Work hard, or you will not shine in life.",
+        rule: "Rule (Without + V-ing → , or): নেতিবাচক শর্ত বোঝাতে Compound বাক্যে অনুজ্ঞাসূচক অংশের পর ', or' বা ', otherwise' বসে।"
+      },
+      {
+        no: 6, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"When the sun had set, we returned home.\"",
+        meaning: "সূর্য অস্ত গেলে আমরা বাড়ি ফিরেছিলাম।",
+        answer: "The sun having set, we returned home.",
+        rule: "Rule (Nominative Absolute): উভয় অংশের Subject ভিন্ন হলে Complex-এর সময়সূচক Clause-কে Simple-এ 'Noun + having + V3' আকারে লেখা হয়।"
+      },
+      {
+        no: 7, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"Health is wealth.\"",
+        meaning: "স্বাস্থ্যই সম্পদ।",
+        answer: "It is health which is wealth.",
+        rule: "Rule (Cleft/Relative Clause): Simple বাক্যের মূল অংশকে Relative Pronoun ('which') যুক্ত Dependent Clause-এ রূপান্তর করে Complex করা যায়।"
+      },
+      {
+        no: 8, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"Though it rained heavily, the match continued.\"",
+        meaning: "যদিও প্রচণ্ড বৃষ্টি হয়েছিল, ম্যাচটি চলছিল।",
+        answer: "It rained heavily, yet the match continued.",
+        rule: "Rule (Though → , yet / , but): বৈপরীত্য বোঝাতে Compound বাক্যে ', yet' বা ', but' দিয়ে দুটি Independent Clause যুক্ত করা হয়।"
+      },
+      {
+        no: 9, level: "HSC", targetType: "Simple",
+        question: "Transform into Simple: \"We eat so that we may live.\"",
+        meaning: "আমরা খাই যাতে আমরা বাঁচতে পারি।",
+        answer: "We eat to live.",
+        rule: "Rule (so that → to + V1): উদ্দেশ্যসূচক Complex বাক্যের 'so that + Sub + may/can + V1' অংশটি Simple বাক্যে 'to + V1'-এ সংক্ষিপ্ত হয়।"
+      },
+      {
+        no: 10, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"I saw a bird flying in the sky.\"",
+        meaning: "আমি আকাশে উড়ন্ত একটি পাখি দেখলাম।",
+        answer: "I saw a bird which was flying in the sky.",
+        rule: "Rule (Participle → Relative Clause): Simple বাক্যের Present Participle ('flying') Complex বাক্যে 'which was flying' Relative Clause-এ রূপান্তরিত হয়।"
+      },
+      {
+        no: 11, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"Besides being a scholar, he is a good orator.\"",
+        meaning: "একজন পণ্ডিত হওয়ার পাশাপাশি তিনি একজন ভালো বক্তাও।",
+        answer: "He is not only a scholar, but also a good orator.",
+        rule: "Rule (Besides + V-ing → not only...but also): অতিরিক্ত গুণ বা তথ্য যুক্ত করতে Compound বাক্যে 'not only...but also' ব্যবহৃত হয়।"
+      },
+      {
+        no: 12, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"Since he was ill, he could not attend school.\"",
+        meaning: "যেহেতু সে অসুস্থ ছিল, সে স্কুলে যেতে পারেনি।",
+        answer: "Because of his illness, he could not attend school.",
+        rule: "Rule (Since/Because → Because of): কারণ বোঝাতে Complex-এর Clause-কে Simple বাক্যে 'Because of + Noun Phrase'-এ রূপান্তর করা হয়।"
+      },
+      {
+        no: 13, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"Speak the truth and you will be respected.\"",
+        meaning: "সত্য কথা বলো এবং তুমি সম্মানিত হবে।",
+        answer: "If you speak the truth, you will be respected.",
+        rule: "Rule (Imperative + and → If): Compound বাক্যের ', and' শর্ত Complex বাক্যে 'If + Subject + Verb'-এ রূপান্তরিত হয়।"
+      },
+      {
+        no: 14, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"As soon as the teacher entered, the students stood up.\"",
+        meaning: "শিক্ষক প্রবেশ করা মাত্রই শিক্ষার্থীরা দাঁড়িয়ে গেল।",
+        answer: "The teacher entered, and the students stood up at once.",
+        rule: "Rule (As soon as → , and ... at once): তাৎক্ষণিক পরপর ঘটা দুটি কাজ Compound বাক্যে ', and' দিয়ে যুক্ত করে 'at once' যোগ করা যায়।"
+      },
+      {
+        no: 15, level: "HSC", targetType: "Simple",
+        question: "Transform into Simple: \"The sum is so difficult that I cannot solve it.\"",
+        meaning: "অঙ্কটি এতই কঠিন যে আমি এটি সমাধান করতে পারি না।",
+        answer: "The sum is too difficult for me to solve.",
+        rule: "Rule (So...that → Too...to): ভিন্ন কর্তা থাকলে 'for + Object (me) + to + V1' ব্যবহার করে Simple বাক্য গঠিত হয়।"
+      },
+      {
+        no: 16, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"I know his birthplace.\"",
+        meaning: "আমি তার জন্মস্থান জানি।",
+        answer: "I know where he was born.",
+        rule: "Rule (Noun Phrase → Noun Clause): 'his birthplace' শব্দগুচ্ছটি Complex বাক্যে 'where he was born' Noun Clause-এ রূপান্তরিত হয়েছে।"
+      },
+      {
+        no: 17, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"Unless you obey traffic rules, you may face accidents.\"",
+        meaning: "ট্রাফিক আইন না মানলে তুমি দুর্ঘটনার সম্মুখীন হতে পারো।",
+        answer: "Obey traffic rules, or you may face accidents.",
+        rule: "Rule (Unless → , or): নেতিবাচক শর্তসূচক Complex বাক্যকে Compound করতে ', or' দিয়ে বিকল্প ফলাফল দেখানো হয়।"
+      },
+      {
+        no: 18, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"While he was walking in the garden, he saw a snake.\"",
+        meaning: "যখন সে বাগানে হাঁটছিল, তখন সে একটি সাপ দেখল।",
+        answer: "While walking in the garden, he saw a snake.",
+        rule: "Rule (While + Sub + be + V-ing → While + V-ing): উভয় অংশের Subject এক হলে 'While'-এর পর Subject ও Auxiliary Verb বাদ দিয়ে V-ing রাখা যায়।"
+      },
+      {
+        no: 19, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"Despite having wealth, the miser is unhappy.\"",
+        meaning: "সম্পদ থাকা সত্ত্বেও কৃপণ ব্যক্তি অসুখী।",
+        answer: "Although the miser has wealth, he is unhappy.",
+        rule: "Rule (Despite → Although): বৈপরীত্য বোঝাতে Simple-এর 'Despite having wealth' রূপান্তরিত হয়ে 'Although the miser has wealth' হয়।"
+      },
+      {
+        no: 20, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"Because of fog, the ferry service stopped.\"",
+        meaning: "কুয়াশার কারণে ফেরি চলাচল বন্ধ হয়ে গিয়েছিল।",
+        answer: "There was fog, so the ferry service stopped.",
+        rule: "Rule (Because of + Noun → Clause + , so): কারণকে স্বাধীন বাক্যে নিয়ে ', so' দিয়ে ফলাফলের সাথে যুক্ত করা হয়েছে।"
+      },
+      {
+        no: 21, level: "HSC", targetType: "Simple",
+        question: "Transform into Simple: \"People who are industrious succeed in life.\"",
+        meaning: "যেসব মানুষ পরিশ্রমী তারা জীবনে সফল হয়।",
+        answer: "Industrious people succeed in life.",
+        rule: "Rule (Relative Clause → Adjective): 'who are industrious' Adjective Clause-টি Simple বাক্যে 'Industrious' বিশেষণে রূপান্তরিত হয়েছে।"
+      },
+      {
+        no: 22, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"Do or die.\"",
+        meaning: "করো অথবা মরো।",
+        answer: "If you do not do, you will die.",
+        rule: "Rule (Imperative + or → If...not): বিকল্প শর্ত বোঝাতে Compound-এর 'or' Complex বাক্যে 'If...not'-এ রূপান্তরিত হয়।"
+      },
+      {
+        no: 23, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"The girl who is singing is my sister.\"",
+        meaning: "যে মেয়েটি গান গাইছে সে আমার বোন।",
+        answer: "A girl is singing, and she is my sister.",
+        rule: "Rule (Relative Clause → , and): Complex-এর তথ্যকে দুটি সমান স্বাধীন বাক্যে ভাগ করে ', and' দিয়ে যুক্ত করা হয়েছে।"
+      },
+      {
+        no: 24, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"He confessed that he was guilty.\"",
+        meaning: "সে স্বীকার করল যে সে দোষী।",
+        answer: "He confessed his guilt.",
+        rule: "Rule (Noun Clause → Noun): 'that he was guilty' Noun Clause-টি Simple বাক্যে 'his guilt' Noun Phrase-এ রূপান্তরিত হয়েছে।"
+      },
+      {
+        no: 25, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"He is too proud to apologize.\"",
+        meaning: "সে এতই অহংকারী যে ক্ষমা চাইবে না।",
+        answer: "He is so proud that he will not apologize.",
+        rule: "Rule (Too...to → So...that): ভবিষ্যৎ বা স্বাভাবিক ফলাফল বোঝাতে 'will not/would not' ব্যবহার করে Complex বাক্য গঠিত হয়।"
+      },
+      {
+        no: 26, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"In spite of trying repeatedly, he lost the game.\"",
+        meaning: "বারবার চেষ্টা করা সত্ত্বেও সে খেলায় হেরে গেল।",
+        answer: "He tried repeatedly, yet he lost the game.",
+        rule: "Rule (In spite of → , yet): বৈপরীত্য বোঝাতে দুটি স্বাধীন Clause-এর মাঝে ', yet' বসানো হয়েছে।"
+      },
+      {
+        no: 27, level: "HSC", targetType: "Simple",
+        question: "Transform into Simple: \"We must work hard so that we can earn a livelihood.\"",
+        meaning: "জীবিকা অর্জনের জন্য আমাদের কঠোর পরিশ্রম করতে হবে।",
+        answer: "We must work hard to earn a livelihood.",
+        rule: "Rule (so that → to + V1): উদ্দেশ্য বোঝাতে Complex-এর 'so that we can earn' অংশটি Simple-এ 'to earn' হয়।"
+      },
+      {
+        no: 28, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"Read newspaper regularly to gather knowledge.\"",
+        meaning: "জ্ঞান অর্জনের জন্য নিয়মিত সংবাদপত্র পড়ো।",
+        answer: "You should read newspaper regularly so that you can gather knowledge.",
+        rule: "Rule (to + V1 → so that): উদ্দেশ্যসূচক Infinitive ('to gather') Complex বাক্যে 'so that you can gather'-এ রূপান্তরিত হয়।"
+      },
+      {
+        no: 29, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"Since the weather was rough, the boat did not sail.\"",
+        meaning: "আবহাওয়া প্রতিকূল থাকায় নৌকাটি ছাড়েনি।",
+        answer: "The weather was rough, so the boat did not sail.",
+        rule: "Rule (Since → , so): কারণ ও ফলাফলের সম্পর্ক Compound বাক্যে ', so' দিয়ে প্রকাশ করা হয়।"
+      },
+      {
+        no: 30, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"I do not know when he will arrive.\"",
+        meaning: "আমি জানি না সে কখন পৌঁছাবে।",
+        answer: "I do not know his arrival time.",
+        rule: "Rule (Noun Clause → Noun Phrase): 'when he will arrive' Noun Clause-টি Simple-এ 'his arrival time' Phrase-এ রূপান্তরিত হয়েছে।"
+      },
+      {
+        no: 31, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"By helping the poor, we can please Allah.\"",
+        meaning: "গরিবদের সাহায্য করে আমরা আল্লাহকে সন্তুষ্ট করতে পারি।",
+        answer: "If we help the poor, we can please Allah.",
+        rule: "Rule (By + V-ing → If): ইতিবাচক শর্ত বোঝাতে Simple-এর 'By helping' Complex-এ 'If we help' হয়।"
+      },
+      {
+        no: 32, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"Without moving, he watched the scene.\"",
+        meaning: "নড়াচড়া না করেই সে দৃশ্যটি দেখছিল।",
+        answer: "He did not move, and he watched the scene.",
+        rule: "Rule (Without + V-ing → Negative Clause + , and): দুটি সমান্তরাল অবস্থাকে ', and' দিয়ে যুক্ত করা হয়েছে।"
+      },
+      {
+        no: 33, level: "HSC", targetType: "Simple",
+        question: "Transform into Simple: \"Although he is a genius, he lacks common sense.\"",
+        meaning: "যদিও তিনি একজন মেধাবী ব্যক্তি, তবুও তাঁর সাধারণ বোধের অভাব রয়েছে।",
+        answer: "Despite being a genius, he lacks common sense.",
+        rule: "Rule (Although → Despite + being): 'Although he is a genius' Simple বাক্যে 'Despite being a genius' Phrase-এ পরিণত হয়।"
+      },
+      {
+        no: 34, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"He is too honest to take a bribe.\"",
+        meaning: "তিনি এতই সৎ যে ঘুষ নেবেন না।",
+        answer: "He is so honest that he will not take a bribe.",
+        rule: "Rule (Too...to → So...that): 'too honest' এর স্থলে 'so honest' এবং 'to take' এর স্থলে 'that he will not take' বসে।"
+      },
+      {
+        no: 35, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"If you do not study now, you will regret later.\"",
+        meaning: "এখন পড়াশোনা না করলে পরে আফসোস করবে।",
+        answer: "Study now, or you will regret later.",
+        rule: "Rule (If...not → , or): শর্ত ও তার নেতিবাচক পরিণতি Compound বাক্যে ', or' দিয়ে যুক্ত হয়।"
+      },
+      {
+        no: 36, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"When it was midnight, the thief entered the house.\"",
+        meaning: "যখন মধ্যরাত হয়েছিল, চোরটি ঘরে প্রবেশ করেছিল।",
+        answer: "At midnight, the thief entered the house.",
+        rule: "Rule (Time Clause → Adverbial Phrase): সময়সূচক Clause-কে সংক্ষিপ্ত করে Simple বাক্যে 'At midnight' Phrase বসানো হয়েছে।"
+      },
+      {
+        no: 37, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"Honesty is the best policy.\"",
+        meaning: "সততাই সর্বোৎকৃষ্ট পন্থা।",
+        answer: "It is honesty which is the best policy.",
+        rule: "Rule (Relative Clause): মূল গুণটিকে 'which is the best policy' Relative Clause দিয়ে Complex করা হয়েছে।"
+      },
+      {
+        no: 38, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"Because the road was slippery, the car skidded.\"",
+        meaning: "রাস্তা পিচ্ছিল হওয়ায় গাড়িটি পিছলে গিয়েছিল।",
+        answer: "The road was slippery, so the car skidded.",
+        rule: "Rule (Because → , so): কারণ ও ফলাফলকে দুটি স্বাধীন Clause বানিয়ে ', so' দিয়ে যুক্ত করা হয়েছে।"
+      },
+      {
+        no: 39, level: "HSC", targetType: "Simple",
+        question: "Transform into Simple: \"The mobile phone which I bought yesterday is costly.\"",
+        meaning: "গতকাল আমি যে মোবাইল ফোনটি কিনেছিলাম তা দামি।",
+        answer: "The mobile phone bought by me yesterday is costly.",
+        rule: "Rule (Relative Clause → Past Participle): 'which I bought' Passive Relative Clause-টি Simple-এ 'bought by me' Past Participle Phrase হয়।"
+      },
+      {
+        no: 40, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"He worked hard to pass the examination.\"",
+        meaning: "পরীক্ষায় পাস করার জন্য সে কঠোর পরিশ্রম করেছিল।",
+        answer: "He worked hard so that he could pass the examination.",
+        rule: "Rule (to + V1 → so that ... could): Past Tense হওয়ায় 'so that he could pass' ব্যবহৃত হয়েছে।"
+      },
+      {
+        no: 41, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"Though she had a headache, she joined the meeting.\"",
+        meaning: "যদিও তার মাথাব্যথা ছিল, তবুও সে মিটিংয়ে যোগ দিয়েছিল।",
+        answer: "She had a headache, yet she joined the meeting.",
+        rule: "Rule (Though → , yet): বৈপরীত্য বোঝাতে দুটি স্বাধীন Clause-এর মাঝখানে ', yet' বসে।"
+      },
+      {
+        no: 42, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"As soon as the bell rang, the class ended.\"",
+        meaning: "ঘণ্টা বাজা মাত্রই ক্লাস শেষ হয়ে গেল।",
+        answer: "On the ringing of the bell, the class ended.",
+        rule: "Rule (As soon as → On + Noun/Gerund): তাৎক্ষণিক ঘটনাকে Simple বাক্যে 'On + Noun/Gerund' Phrase দিয়ে প্রকাশ করা যায়।"
+      },
+      {
+        no: 43, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"Be punctual and you will succeed.\"",
+        meaning: "সময়ানুবর্তী হও এবং তুমি সফল হবে।",
+        answer: "If you are punctual, you will succeed.",
+        rule: "Rule (Imperative + and → If): Compound-এর 'and' শর্ত Complex বাক্যে 'If you are punctual'-এ রূপান্তরিত হয়।"
+      },
+      {
+        no: 44, level: "SSC", targetType: "Compound",
+        question: "Transform into Compound: \"Besides being intelligent, he is disciplined.\"",
+        meaning: "বুদ্ধিমান হওয়ার পাশাপাশি সে সুশৃঙ্খলও।",
+        answer: "He is not only intelligent, but also disciplined.",
+        rule: "Rule (Besides + V-ing → not only...but also): দুটি ইতিবাচক বৈশিষ্ট্যকে Compound বাক্যে 'not only...but also' দিয়ে যুক্ত করা হয়েছে।"
+      },
+      {
+        no: 45, level: "HSC", targetType: "Simple",
+        question: "Transform into Simple: \"Since he was dismissed from his job, he became helpless.\"",
+        meaning: "চাকরি থেকে বরখাস্ত হওয়ায় সে অসহায় হয়ে পড়েছিল।",
+        answer: "Being dismissed from his job, he became helpless.",
+        rule: "Rule (Since + Passive Clause → Being + V3): Subject একই হলে Passive Clause-কে 'Being + V3' Participle Phrase করা যায়।"
+      },
+      {
+        no: 46, level: "SSC", targetType: "Complex",
+        question: "Transform into Complex: \"The tea is too hot to drink.\"",
+        meaning: "চা এতই গরম যে পান করা যায় না।",
+        answer: "The tea is so hot that one cannot drink it.",
+        rule: "Rule (Too...to → So...that): সাধারণভাবে 'one cannot drink it' বা 'it cannot be drunk' দিয়ে Complex বাক্য করা হয়।"
+      },
+      {
+        no: 47, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"Unless you practice speaking, you will hesitate.\"",
+        meaning: "কথা বলার অনুশীলন না করলে তুমি দ্বিধাগ্রস্ত হবে।",
+        answer: "Practice speaking, or you will hesitate.",
+        rule: "Rule (Unless → , or): নেতিবাচক শর্তের বিকল্প ফলাফল Compound বাক্যে ', or' দিয়ে দেখানো হয়েছে।"
+      },
+      {
+        no: 48, level: "SSC", targetType: "Simple",
+        question: "Transform into Simple: \"I hope that she will do well.\"",
+        meaning: "আমি আশা করি সে ভালো করবে।",
+        answer: "I hope for her good result.",
+        rule: "Rule (Noun Clause → Prepositional Phrase): 'that she will do well' Clause-টি Simple বাক্যে 'for her good result' Phrase হয়েছে।"
+      },
+      {
+        no: 49, level: "HSC", targetType: "Complex",
+        question: "Transform into Complex: \"He failed in spite of his best efforts.\"",
+        meaning: "সর্বাত্মক প্রচেষ্টা সত্ত্বেও সে ব্যর্থ হয়েছিল।",
+        answer: "Although he made his best efforts, he failed.",
+        rule: "Rule (In spite of → Although): বৈপরীত্য বোঝাতে 'In spite of his best efforts' রূপান্তরিত হয়ে 'Although he made his best efforts' হয়।"
+      },
+      {
+        no: 50, level: "HSC", targetType: "Compound",
+        question: "Transform into Compound: \"Because of power cut, the study stopped.\"",
+        meaning: "বিদ্যুৎ বিভ্রাটের কারণে পড়াশোনা বন্ধ হয়ে গিয়েছিল।",
+        answer: "There was a power cut, so the study stopped.",
+        rule: "Rule (Because of → Clause + , so): কারণকে স্বাধীন বাক্যে নিয়ে ', so' দিয়ে মূল ফলাফলের সাথে যুক্ত করা হয়েছে।"
+      }
+    ];
+
+    const selfTestQuizData = [
+      {
+        id: "q1",
+        q: "১. বাক্যটি কোন ধরনের? \"In spite of his hard work, he failed to win the prize.\"",
+        hint: "বাক্যে কয়টি Finite Verb আছে? 'failed' ছাড়া আর কোনো Finite Verb আছে কি?",
+        options: ["Simple Sentence", "Complex Sentence", "Compound Sentence", "Fragment"],
+        answer: "Simple Sentence",
+        explain: "এখানে 'In spite of his hard work' একটি Phrase এবং 'failed' হলো একমাত্র Finite Verb। তাই এটি Simple Sentence।"
+      },
+      {
+        id: "q2",
+        q: "২. বাক্যটি কোন ধরনের? \"Although she was tired, she completed the assignment.\"",
+        hint: "'Although' কোন ধরনের Conjunction?",
+        options: ["Simple Sentence", "Complex Sentence", "Compound Sentence", "Imperative Sentence"],
+        answer: "Complex Sentence",
+        explain: "'Although she was tired' একটি Dependent Clause এবং 'she completed the assignment' একটি Independent Clause।"
+      },
+      {
+        id: "q3",
+        q: "৩. বাক্যটি কোন ধরনের? \"Study attentively, or you will miss the scholarship.\"",
+        hint: "মাঝখানে ', or' দিয়ে দুটি স্বতন্ত্র পূর্ণ বাক্য যুক্ত হয়েছে।",
+        options: ["Simple Sentence", "Complex Sentence", "Compound Sentence", "Phrase"],
+        answer: "Compound Sentence",
+        explain: "'Study attentively' এবং 'you will miss the scholarship'—উভয়ই Independent Clause এবং ', or' দ্বারা যুক্ত।"
+      },
+      {
+        id: "q4",
+        q: "৪. Complex-এ রূপান্তর করুন: \"Because of his honesty, everyone respects him.\"",
+        hint: "'Because of his honesty'-কে Clause বানিয়ে 'Since' বা 'Because' ব্যবহার করুন।",
+        options: [
+          "Since he is honest, everyone respects him.",
+          "He is honest, so everyone respects him.",
+          "In spite of his honesty, everyone respects him.",
+          "Everyone respects him and he is honest."
+        ],
+        answer: "Since he is honest, everyone respects him.",
+        explain: "'Since he is honest' একটি Dependent Clause এবং 'everyone respects him' হলো Main Clause।"
+      },
+      {
+        id: "q5",
+        q: "৫. Compound-এ রূপান্তর করুন: \"Though he is rich, he is not happy.\"",
+        hint: "বৈপরীত্য বোঝাতে Compound বাক্যে 'but' বা 'yet' বসে।",
+        options: [
+          "Despite being rich, he is not happy.",
+          "He is rich, yet he is not happy.",
+          "Because he is rich, he is not happy.",
+          "He is rich and he is not happy."
+        ],
+        answer: "He is rich, yet he is not happy.",
+        explain: "দুটি Independent Clause-কে বৈপরীত্যসূচক সংযোজক ', yet' (বা ', but') দিয়ে যুক্ত করলে Compound Sentence হয়।"
+      },
+      {
+        id: "q6",
+        q: "৬. Simple-এ রূপান্তর করুন: \"If you do not hurry, you will miss the train.\"",
+        hint: "নেতিবাচক শর্ত বোঝাতে Simple বাক্যে 'Without + V-ing' ব্যবহৃত হয়।",
+        options: [
+          "Hurry, or you will miss the train.",
+          "Without hurrying, you will miss the train.",
+          "Unless you hurry, you will miss the train.",
+          "You hurry and you will miss the train."
+        ],
+        answer: "Without hurrying, you will miss the train.",
+        explain: "'Without hurrying' একটি Phrase এবং বাক্যে Finite Verb মাত্র ১টি ('will miss')।"
+      },
+      {
+        id: "q7",
+        q: "৭. কোন বাক্যটি ব্যাকরণগতভাবে শুদ্ধ?",
+        hint: "'Although' এবং 'but' একসাথে বসে না; দুটি স্বাধীন বাক্য শুধু কমা দিয়ে যুক্ত হয় না।",
+        options: [
+          "Although he tried hard, but he failed.",
+          "He worked hard, he passed the test.",
+          "Although he tried hard, he failed.",
+          "Because the rain stopped."
+        ],
+        answer: "Although he tried hard, he failed.",
+        explain: "'Although' যুক্ত Clause-এর পর সঠিক নিয়মে কমা বসে, কিন্তু 'but' বসে না।"
+      },
+      {
+        id: "q8",
+        q: "৮. Simple-এ রূপান্তর করুন: \"He is so weak that he cannot walk.\"",
+        hint: "'so ... that ... cannot' এর Simple রূপ হলো 'too ... to'।",
+        options: [
+          "He is too weak to walk.",
+          "He is very weak, so he cannot walk.",
+          "Though he is weak, he can walk.",
+          "He is weak enough to walk."
+        ],
+        answer: "He is too weak to walk.",
+        explain: "Simple বাক্যে 'too weak to walk' ব্যবহার করা হয় (Finite Verb মাত্র ১টি: 'is')।"
+      },
+      {
+        id: "q9",
+        q: "৯. বাক্যটি কোন ধরনের? \"The boy who came yesterday is my cousin.\"",
+        hint: "'who came yesterday' অংশটি 'The boy' সম্পর্কে তথ্য দিচ্ছে।",
+        options: ["Simple Sentence", "Complex Sentence", "Compound Sentence", "Exclamatory Sentence"],
+        answer: "Complex Sentence",
+        explain: "'who came yesterday' একটি Dependent Relative Clause এবং 'The boy is my cousin' হলো Main Clause।"
+      },
+      {
+        id: "q10",
+        q: "১০. Compound-এ রূপান্তর করুন: \"Besides being a doctor, she is a writer.\"",
+        hint: "অতিরিক্ত তথ্য যোগ করতে Compound বাক্যে 'not only... but also' বা 'and' ব্যবহৃত হয়।",
+        options: [
+          "She is not only a doctor, but also a writer.",
+          "Although she is a doctor, she is a writer.",
+          "Because she is a doctor, she is a writer.",
+          "She is a doctor, yet she is a writer."
+        ],
+        answer: "She is not only a doctor, but also a writer.",
+        explain: "'not only... but also' দুটি সমান বৈশিষ্ট্য বা Clause-কে সংযুক্ত করে Compound বাক্য তৈরি করে।"
+      },
+      {
+        id: "q11",
+        q: "১১. কোনটি FANBOYS Coordinating Conjunction?",
+        hint: "For, And, Nor, But, Or, Yet, So এর মধ্যে কোনটি আছে?",
+        options: ["Although", "Because", "Yet", "Unless"],
+        answer: "Yet",
+        explain: "'Yet' হলো FANBOYS-এর 'Y'—যা একটি Coordinating Conjunction এবং Compound Sentence গঠনে ব্যবহৃত হয়।"
+      },
+      {
+        id: "q12",
+        q: "১২. Complex-এ রূপান্তর করুন: \"We eat to live.\"",
+        hint: "উদ্দেশ্য বোঝাতে Complex বাক্যে 'so that' ব্যবহৃত হয়।",
+        options: [
+          "We eat so that we may live.",
+          "We eat, so we live.",
+          "In order to live, we eat.",
+          "We eat and we live."
+        ],
+        answer: "We eat so that we may live.",
+        explain: "'so that we may live' হলো Adverbial Clause of Purpose, যা বাক্যটিকে Complex Sentence করে।"
+      }
+    ];
+
+    /* =========================================================================
+       [PART 4: RENDERERS & STATE CONTROLLERS]
+       - RulesRenderer
+       - LabRenderer
+       - Practice50Renderer (3-click reveal: 1st = Bengali meaning, 2nd = Rule + Answer, 3rd = Reset)
+       - QuizRenderer
+       - ThemeAndDrawerController
+       - AudioAndLaserController
+       ========================================================================= */
+
+    function showToast(msg) {
+      const toast = document.getElementById("toastBanner");
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    function toBengaliDigits(num) {
+      const map = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+      return String(num).replace(/\d/g, d => map[Number(d)]);
+    }
+
+    // --- 1. RulesRenderer ---
+    const RulesRenderer = {
+      getBookmarks() {
+        try {
+          return JSON.parse(localStorage.getItem("scc_bm_v2") || "[]");
+        } catch {
+          return [];
+        }
+      },
+      toggleBookmark(id) {
+        const list = this.getBookmarks();
+        const idx = list.indexOf(id);
+        if (idx >= 0) {
+          list.splice(idx, 1);
+          showToast("নিয়মটি বুকমার্ক থেকে সরানো হয়েছে।");
+        } else {
+          list.push(id);
+          showToast("নিয়মটি সেভ করা হয়েছে।");
+        }
+        localStorage.setItem("scc_bm_v2", JSON.stringify(list));
+        this.renderAll();
+        ThemeAndDrawerController.syncProgressLabels();
+        SearchFilterController.apply();
+      },
+      renderGroup(items, containerId, labelPrefix) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const bookmarks = this.getBookmarks();
+
+        container.innerHTML = items.map(r => {
+          const saved = bookmarks.includes(r.id);
+          return `
+            <article class="rule-item-card searchable-block" data-bm-id="${r.id}" data-tags="${r.tags}">
+              <div class="rule-top-bar">
+                <span class="rule-badge">${labelPrefix} • ${r.category}</span>
+                <div class="action-mini-group">
+                  <button class="mini-btn bookmark-btn ${saved ? 'bookmarked' : ''}" data-bm-id="${r.id}">
+                    ${saved ? '★ সেভ করা' : '☆ সেভ'}
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid-2" style="margin-bottom:8px;">
+                <div class="sub-card" style="padding:14px; box-shadow:none;">
+                  <div style="font-size:0.86rem; color:var(--accent-primary);">কাঠামো ১</div>
+                  <div class="formula-box" style="margin:6px 0 8px;">${r.formulaA}</div>
+                  <p class="en-sentence">"${r.exA}"</p>
+                  <button class="mini-btn tts-en-btn" data-text="${r.exA.replace(/"/g, '&quot;')}">🔊 ইংরেজি শুনুন</button>
+                </div>
+
+                <div class="sub-card" style="padding:14px; box-shadow:none;">
+                  <div style="font-size:0.86rem; color:var(--accent-success);">কাঠামো ২</div>
+                  <div class="formula-box" style="margin:6px 0 8px; border-left-color:var(--accent-success);">${r.formulaB}</div>
+                  <p class="en-sentence">"${r.exB}"</p>
+                  <button class="mini-btn tts-en-btn" data-text="${r.exB.replace(/"/g, '&quot;')}">🔊 ইংরেজি শুনুন</button>
+                </div>
+              </div>
+
+              <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; padding-top:8px; border-top:1px dashed var(--border-soft);">
+                <div>
+                  <p class="bn-meaning" style="margin:0;">বাংলা অর্থ: ${r.meaning}</p>
+                  <div style="font-size:0.94rem; color:var(--text-secondary); margin-top:3px;">💡 <strong>নিয়ম নোট:</strong> ${r.note}</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                  ${r.markers.map(m => `<span class="marker-highlight">${m}</span>`).join("")}
+                  <button class="mini-btn tts-bn-btn" data-text="${r.meaning.replace(/"/g, '&quot;')}">🗣️ বাংলা শুনুন</button>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("");
+      },
+      renderAll() {
+        this.renderGroup(rulesData.ch3, "ch3RulesContainer", "Simple ↔ Complex");
+        this.renderGroup(rulesData.ch4, "ch4RulesContainer", "Complex ↔ Compound");
+        this.renderGroup(rulesData.ch5, "ch5RulesContainer", "Simple ↔ Compound");
+      }
+    };
+
+    // --- 2. LabRenderer ---
+    const LabRenderer = {
+      activeId: labPresetsData[0].id,
+      render() {
+        const presetRow = document.getElementById("labPresetRow");
+        const resultBox = document.getElementById("labResultContainer");
+        if (!presetRow || !resultBox) return;
+
+        presetRow.innerHTML = labPresetsData.map(p => `
+          <button class="preset-btn ${p.id === this.activeId ? 'active' : ''}" data-preset="${p.id}">
+            ${p.label}
+          </button>
+        `).join("");
+
+        const current = labPresetsData.find(p => p.id === this.activeId) || labPresetsData[0];
+        const cols = [
+          { title: "১. SIMPLE SENTENCE", item: current.simple, color: "var(--accent-primary)" },
+          { title: "২. COMPLEX SENTENCE", item: current.complex, color: "var(--accent-success)" },
+          { title: "৩. COMPOUND SENTENCE", item: current.compound, color: "var(--accent-tertiary)" }
+        ];
+
+        resultBox.innerHTML = `
+          <div style="padding:10px 14px; border-radius:12px; background:var(--surface-subtle); font-size:0.96rem;">
+            🎯 মূল ভাব: <strong style="color:var(--accent-primary);">${current.bnIdea}</strong>
+          </div>
+          <div class="lab-tri-grid">
+            ${cols.map(c => `
+              <div class="lab-box" style="border-top:4px solid ${c.color};">
+                <div class="lab-box-header">
+                  <span style="color:${c.color}; font-weight:700;">${c.title}</span>
+                  <span class="marker-highlight">${c.item.marker}</span>
+                </div>
+                <p class="en-sentence">"${c.item.text}"</p>
+                <p class="bn-meaning">${c.item.bn}</p>
+                <p style="margin:6px 0 10px; font-size:0.92rem; color:var(--text-secondary);">${c.item.explain}</p>
+                <div class="action-mini-group">
+                  <button class="mini-btn tts-en-btn" data-text="${c.item.text.replace(/"/g, '&quot;')}">🔊 ইংরেজি</button>
+                  <button class="mini-btn tts-bn-btn" data-text="${c.item.bn.replace(/"/g, '&quot;')}">🗣️ বাংলা</button>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+    };
+
+    // --- 3. Practice50Renderer (50 SSC & HSC Questions, 3-Click Cycle) ---
+    const Practice50Renderer = {
+      // revealStep[qNo]: 0 = hidden, 1 = Bengali meaning shown, 2 = Answer + Rule shown
+      revealSteps: {},
+      filterType: "all",
+
+      cycleStep(qNo) {
+        const prev = this.revealSteps[qNo] || 0;
+        const next = (prev + 1) % 3;
+        this.revealSteps[qNo] = next;
+        this.renderGrid();
+        this.updateSeenCounter();
+      },
+
+      setAllSteps(stepVal) {
+        sscHscQuestionsData.forEach(item => {
+          this.revealSteps[item.no] = stepVal;
+        });
+        this.renderGrid();
+        this.updateSeenCounter();
+      },
+
+      updateSeenCounter() {
+        const seenCount = Object.values(this.revealSteps).filter(s => s >= 1).length;
+        const total = sscHscQuestionsData.length;
+        const badge = document.getElementById("practiceSeenCounter");
+        const drawerSeen = document.getElementById("drawerSeenCount");
+        if (badge) badge.textContent = `দেখা হয়েছে: ${toBengaliDigits(seenCount)} / ${toBengaliDigits(total)}`;
+        if (drawerSeen) drawerSeen.textContent = `${toBengaliDigits(seenCount)} / ${toBengaliDigits(total)}`;
+      },
+
+      getFilteredQuestions() {
+        if (this.filterType === "all") return sscHscQuestionsData;
+        if (this.filterType === "SSC" || this.filterType === "HSC") {
+          return sscHscQuestionsData.filter(q => q.level === this.filterType);
+        }
+        return sscHscQuestionsData.filter(q => q.targetType === this.filterType);
+      },
+
+      renderGrid() {
+        const grid = document.getElementById("practice50Grid");
+        if (!grid) return;
+        const list = this.getFilteredQuestions();
+
+        grid.innerHTML = list.map(q => {
+          const step = this.revealSteps[q.no] || 0;
+          let stepLabel = "১ম ক্লিক: বাংলা অর্থ দেখুন";
+          let pillClass = "step-pill";
+          let cardClass = "practice-card";
+
+          if (step === 1) {
+            stepLabel = "২য় ক্লিক: Rule ও উত্তর দেখুন";
+            pillClass = "step-pill active-1";
+            cardClass = "practice-card step-1";
+          } else if (step === 2) {
+            stepLabel = "৩য় ক্লিক: রিসেট করুন";
+            pillClass = "step-pill active-2";
+            cardClass = "practice-card step-2";
+          }
+
+          return `
+            <article class="${cardClass}" data-practice-no="${q.no}">
+              <div>
+                <div class="rule-top-bar">
+                  <span class="rule-badge">প্রশ্ন #${toBengaliDigits(q.no)} • ${q.level} → ${q.targetType}</span>
+                  <span class="${pillClass}">${stepLabel}</span>
+                </div>
+
+                <p class="en-sentence" style="margin:8px 0 10px;">${q.question}</p>
+
+                <div class="reveal-meaning-box ${step >= 1 ? 'show' : ''}">
+                  <strong>১. বাংলা অর্থ:</strong> ${q.meaning}
+                </div>
+
+                <div class="reveal-rule-box ${step >= 2 ? 'show' : ''}" style="margin-top:8px;">
+                  <div><strong>২. সঠিক উত্তর:</strong> <span class="font-en-sentence" style="font-weight:700;">${q.answer}</span></div>
+                  <div style="margin-top:5px;"><strong>৩. Rule ব্যাখ্যা:</strong> ${q.rule}</div>
+                </div>
+              </div>
+
+              <div class="action-mini-group" style="padding-top:6px; border-top:1px dashed var(--border-soft);">
+                <button class="mini-btn tts-en-btn" data-text="${q.question.replace(/^[^"]*"|".*$/g, '') || q.question}">🔊 প্রশ্ন শুনুন</button>
+                <button class="mini-btn tts-bn-btn" data-text="${q.meaning.replace(/"/g, '&quot;')}">🗣️ অর্থ শুনুন</button>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+    };
+
+    // --- 4. QuizRenderer ---
+    const QuizRenderer = {
+      answered: {},
+      updateScore() {
+        const total = selfTestQuizData.length;
+        const attempted = Object.keys(this.answered).length;
+        const correct = Object.values(this.answered).filter(v => v.isCorrect).length;
+
+        const badge = document.getElementById("quizScoreBadge");
+        const heroStat = document.getElementById("heroProgressStat");
+        const drawerScore = document.getElementById("drawerScoreText");
+
+        if (badge) badge.textContent = `স্কোর: ${toBengaliDigits(correct)} / ${toBengaliDigits(total)} (${toBengaliDigits(attempted)} উত্তর দেওয়া হয়েছে)`;
+        if (heroStat) heroStat.textContent = `${toBengaliDigits(correct)} / ${toBengaliDigits(total)}`;
+        if (drawerScore) drawerScore.textContent = `${toBengaliDigits(attempted)} / ${toBengaliDigits(total)} (${toBengaliDigits(correct)} সঠিক)`;
+      },
+      render() {
+        const container = document.getElementById("quizContainer");
+        if (!container) return;
+
+        container.innerHTML = selfTestQuizData.map(item => {
+          const state = this.answered[item.id];
+          return `
+            <div class="quiz-card" id="card-${item.id}">
+              <div class="rule-top-bar">
+                <strong style="font-size:1.02rem; color:var(--text-primary);">${item.q}</strong>
+                <div class="action-mini-group">
+                  <button class="mini-btn hint-toggle-btn" data-target="hint-${item.id}">💡 Hint</button>
+                  <button class="mini-btn tts-en-btn" data-text="${item.q.replace(/^[^"]*"|".*$/g, '') || item.q}">🔊 শুনুন</button>
+                </div>
+              </div>
+
+              <div id="hint-${item.id}" style="display:none; font-size:0.9rem; color:var(--accent-warning); background:rgba(217,119,6,0.1); padding:8px 12px; border-radius:8px; margin-bottom:8px;">
+                💡 <strong>Hint:</strong> ${item.hint}
+              </div>
+
+              <div class="quiz-options">
+                ${item.options.map(opt => {
+                  let cls = "quiz-opt-btn";
+                  if (state) {
+                    if (opt === item.answer) cls += " correct";
+                    else if (opt === state.chosen && !state.isCorrect) cls += " wrong";
+                  }
+                  return `<button class="${cls}" data-qid="${item.id}" data-opt="${opt.replace(/"/g, '&quot;')}">${opt}</button>`;
+                }).join("")}
+              </div>
+
+              <div class="feedback-box ${state ? (state.isCorrect ? 'show ok' : 'show bad') : ''}" id="fb-${item.id}">
+                ${state ? (
+                  state.isCorrect
+                    ? `✅ <strong>সঠিক উত্তর!</strong> ${item.explain}`
+                    : `❌ <strong>ভুল উত্তর।</strong> সঠিক উত্তর: <strong>${item.answer}</strong> — ${item.explain}`
+                ) : ""}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+    };
+
+    // --- 5. SearchFilterController ---
+    const SearchFilterController = {
+      currentFilter: "all",
+      apply() {
+        const q = (document.getElementById("liveSearchInput")?.value || "").trim().toLowerCase();
+        const savedIds = RulesRenderer.getBookmarks();
+        let visibleCount = 0;
+
+        document.querySelectorAll(".searchable-block").forEach(block => {
+          const text = block.innerText.toLowerCase();
+          const tags = (block.dataset.tags || "").toLowerCase();
+          const bmId = block.dataset.bmId || "";
+
+          const matchesQuery = !q || text.includes(q) || tags.includes(q);
+          let matchesFilter = true;
+
+          if (this.currentFilter === "simple") matchesFilter = tags.includes("simple");
+          else if (this.currentFilter === "complex") matchesFilter = tags.includes("complex");
+          else if (this.currentFilter === "compound") matchesFilter = tags.includes("compound");
+          else if (this.currentFilter === "transformation") matchesFilter = tags.includes("transformation");
+          else if (this.currentFilter === "saved") matchesFilter = Boolean(bmId && savedIds.includes(bmId));
+
+          const show = matchesQuery && matchesFilter;
+          block.style.display = show ? "" : "none";
+          if (show) visibleCount += 1;
+        });
+
+        const emptyState = document.getElementById("emptySearchState");
+        if (emptyState) {
+          emptyState.classList.toggle("visible", visibleCount === 0);
+        }
+      },
+      reset() {
+        const input = document.getElementById("liveSearchInput");
+        if (input) input.value = "";
+        this.currentFilter = "all";
+        document.querySelectorAll("#filterPills .filter-btn").forEach(b => {
+          b.classList.toggle("active", b.dataset.filter === "all");
+        });
+        this.apply();
+      }
+    };
+
+    // --- 6. ThemeAndDrawerController ---
+    const ThemeAndDrawerController = {
+      lastScrollY: 0,
+      scrollTicking: false,
+
+      syncHeaderAutoHide() {
+        const header = document.querySelector(".topbar");
+        if (!header) return;
+
+        // Keep header visible when drawer is open or near top of page
+        if (document.getElementById("navDrawer")?.classList.contains("open")) {
+          header.classList.remove("auto-hidden");
+          this.lastScrollY = window.scrollY;
+          return;
+        }
+
+        const currentY = Math.max(0, window.scrollY);
+        const delta = currentY - this.lastScrollY;
+
+        if (currentY <= 70) {
+          header.classList.remove("auto-hidden");
+        } else if (delta > 6 && currentY > 90) {
+          // Scrolling downward past threshold -> hide top header banner
+          header.classList.add("auto-hidden");
+        } else if (delta < -6) {
+          // Scrolling upward -> reveal top header banner
+          header.classList.remove("auto-hidden");
+        }
+
+        this.lastScrollY = currentY;
+      },
+
+      applyTheme(themeName) {
+        document.documentElement.setAttribute("data-theme", themeName);
+        localStorage.setItem("scc_theme_v2", themeName);
+        document.querySelectorAll(".theme-pill").forEach(p => {
+          p.classList.toggle("active", p.dataset.setTheme === themeName);
+        });
+      },
+      setFontScale(val) {
+        const clamped = Math.min(1.24, Math.max(0.86, Number(val.toFixed(2))));
+        document.documentElement.style.setProperty("--text-scale", clamped);
+        localStorage.setItem("scc_font_scale_v2", clamped);
+        this.currentScale = clamped;
+      },
+      currentScale: 1,
+      openDrawer() {
+        document.getElementById("navDrawer")?.classList.add("open");
+        document.getElementById("drawerBackdrop")?.classList.add("open");
+        document.querySelector(".topbar")?.classList.remove("auto-hidden");
+      },
+      closeDrawer() {
+        document.getElementById("navDrawer")?.classList.remove("open");
+        document.getElementById("drawerBackdrop")?.classList.remove("open");
+      },
+      syncProgressLabels() {
+        const bmCount = RulesRenderer.getBookmarks().length;
+        const bmEl = document.getElementById("drawerBookmarkCount");
+        if (bmEl) bmEl.textContent = `${toBengaliDigits(bmCount)} টি`;
+      },
+      init() {
+        const savedTheme = localStorage.getItem("scc_theme_v2") || "white";
+        this.applyTheme(savedTheme);
+
+        const savedScale = parseFloat(localStorage.getItem("scc_font_scale_v2") || "1");
+        this.setFontScale(savedScale);
+        this.syncProgressLabels();
+
+        document.querySelectorAll(".theme-pill").forEach(pill => {
+          pill.addEventListener("click", () => this.applyTheme(pill.dataset.setTheme));
+        });
+
+        document.getElementById("fontDecBtn")?.addEventListener("click", () => this.setFontScale(this.currentScale - 0.06));
+        document.getElementById("fontResetBtn")?.addEventListener("click", () => this.setFontScale(1));
+        document.getElementById("fontIncBtn")?.addEventListener("click", () => this.setFontScale(this.currentScale + 0.06));
+
+        document.getElementById("openDrawerBtn")?.addEventListener("click", () => this.openDrawer());
+        document.getElementById("closeDrawerBtn")?.addEventListener("click", () => this.closeDrawer());
+        document.getElementById("drawerBackdrop")?.addEventListener("click", () => this.closeDrawer());
+        document.querySelectorAll("#navDrawer .drawer-link").forEach(a => {
+          a.addEventListener("click", () => this.closeDrawer());
+        });
+
+        const doPrint = () => {
+          this.closeDrawer();
+          setTimeout(() => window.print(), 120);
+        };
+        document.getElementById("topPrintBtn")?.addEventListener("click", doPrint);
+        document.getElementById("drawerPrintBtn")?.addEventListener("click", doPrint);
+
+        document.getElementById("drawerSavedFilterBtn")?.addEventListener("click", () => {
+          SearchFilterController.currentFilter = "saved";
+          document.querySelectorAll("#filterPills .filter-btn").forEach(b => {
+            b.classList.toggle("active", b.dataset.filter === "saved");
+          });
+          SearchFilterController.apply();
+          this.closeDrawer();
+          document.getElementById("ch3")?.scrollIntoView({ behavior: "smooth" });
+        });
+
+        this.lastScrollY = Math.max(0, window.scrollY);
+        window.addEventListener("scroll", () => {
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = h > 0 ? Math.min(100, Math.max(0, (window.scrollY / h) * 100)) : 0;
+          const fill = document.getElementById("readingProgressFill");
+          if (fill) fill.style.width = `${pct}%`;
+
+          if (!this.scrollTicking) {
+            this.scrollTicking = true;
+            requestAnimationFrame(() => {
+              this.syncHeaderAutoHide();
+              this.scrollTicking = false;
+            });
+          }
+        }, { passive: true });
+      }
+    };
+
+    // --- 7. AudioAndLaserController ---
+    const AudioAndLaserController = {
+      cachedVoices: [],
+      laserEnabled: localStorage.getItem("scc_laser_v2") !== "off",
+      trailPoints: [],
+
+      initSpeech() {
+        if (!("speechSynthesis" in window)) return;
+        const loadVoices = () => {
+          try {
+            this.cachedVoices = window.speechSynthesis.getVoices() || [];
+          } catch {
+            this.cachedVoices = [];
+          }
+        };
+        loadVoices();
+        if (typeof window.speechSynthesis.onvoiceschanged !== "undefined") {
+          window.speechSynthesis.onvoiceschanged = loadVoices;
+        }
+      },
+
+      speak(text, langCode, btnEl) {
+        if (!text) return;
+        if (!("speechSynthesis" in window)) {
+          showToast("এই ব্রাউজারে অডিও উচ্চারণ সমর্থিত নয়।");
+          return;
+        }
+        try {
+          window.speechSynthesis.cancel();
+          document.querySelectorAll(".mini-btn.speaking").forEach(b => b.classList.remove("speaking"));
+
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = langCode;
+          utter.rate = 0.94;
+
+          const voices = this.cachedVoices.length ? this.cachedVoices : window.speechSynthesis.getVoices();
+          const prefix = langCode.split("-")[0].toLowerCase();
+          const matched = voices.find(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
+          if (matched) utter.voice = matched;
+
+          if (btnEl) btnEl.classList.add("speaking");
+          const clearState = () => {
+            if (btnEl) btnEl.classList.remove("speaking");
+          };
+          utter.onend = clearState;
+          utter.onerror = clearState;
+
+          window.speechSynthesis.speak(utter);
+          setTimeout(clearState, 8000);
+        } catch {
+          showToast("অডিও প্লে করতে সমস্যা হয়েছে।");
+        }
+      },
+
+      stopSpeech() {
+        try {
+          if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        } catch {}
+        document.querySelectorAll(".mini-btn.speaking").forEach(b => b.classList.remove("speaking"));
+        showToast("অডিও বন্ধ করা হয়েছে।");
+      },
+
+      initLaser() {
+        const canvas = document.getElementById("laser-canvas");
+        const toggleBtn = document.getElementById("toggleLaserBtn");
+        if (!canvas || !toggleBtn) return;
+
+        const syncBtn = () => {
+          canvas.classList.toggle("hidden-trail", !this.laserEnabled);
+          toggleBtn.classList.toggle("active-toggle", this.laserEnabled);
+        };
+        syncBtn();
+
+        toggleBtn.addEventListener("click", () => {
+          this.laserEnabled = !this.laserEnabled;
+          localStorage.setItem("scc_laser_v2", this.laserEnabled ? "on" : "off");
+          syncBtn();
+          showToast(this.laserEnabled ? "লেজার ট্রেইল চালু হয়েছে।" : "লেজার ট্রেইল বন্ধ হয়েছে।");
+        });
+
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener("resize", resize);
+
+        window.addEventListener("pointermove", (e) => {
+          if (!this.laserEnabled || e.pointerType !== "mouse") return;
+          this.trailPoints.push({ x: e.clientX, y: e.clientY, age: 0 });
+          if (this.trailPoints.length > 26) this.trailPoints.shift();
+        }, { passive: true });
+
+        const ctx = canvas.getContext("2d");
+        const loop = () => {
+          if (ctx && this.laserEnabled) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const styles = getComputedStyle(document.documentElement);
+            const color = styles.getPropertyValue("--laser-color").trim() || "#2563eb";
+            const glow = styles.getPropertyValue("--laser-glow").trim() || "rgba(37,99,235,0.35)";
+
+            for (let i = 0; i < this.trailPoints.length; i++) {
+              const pt = this.trailPoints[i];
+              pt.age += 1;
+              const ratio = Math.max(0, 1 - pt.age / 22);
+              if (ratio > 0 && i > 0) {
+                const prev = this.trailPoints[i - 1];
+                ctx.beginPath();
+                ctx.moveTo(prev.x, prev.y);
+                ctx.lineTo(pt.x, pt.y);
+                ctx.strokeStyle = color;
+                ctx.globalAlpha = ratio * 0.78;
+                ctx.lineWidth = ratio * 5;
+                ctx.lineCap = "round";
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = glow;
+                ctx.stroke();
+              }
+            }
+            ctx.globalAlpha = 1;
+            ctx.shadowBlur = 0;
+            while (this.trailPoints.length > 0 && this.trailPoints[0].age >= 22) {
+              this.trailPoints.shift();
+            }
+          }
+          requestAnimationFrame(loop);
+        };
+        loop();
+      }
+    };
+
+    /* =========================================================================
+       APPLICATION INITIALIZATION & DELEGATED EVENTS
+       ========================================================================= */
+    function initApp() {
+      RulesRenderer.renderAll();
+      LabRenderer.render();
+      Practice50Renderer.renderGrid();
+      Practice50Renderer.updateSeenCounter();
+      QuizRenderer.render();
+      QuizRenderer.updateScore();
+      ThemeAndDrawerController.init();
+      AudioAndLaserController.initSpeech();
+      AudioAndLaserController.initLaser();
+
+      // Unified Click Delegation (prevents stopPropagation/re-render issues)
+      document.addEventListener("click", (e) => {
+        // Audio buttons take priority without toggling practice card
+        const enBtn = e.target.closest(".tts-en-btn");
+        if (enBtn) {
+          e.stopPropagation();
+          AudioAndLaserController.speak(enBtn.dataset.text || "", "en-US", enBtn);
+          return;
+        }
+
+        const bnBtn = e.target.closest(".tts-bn-btn");
+        if (bnBtn) {
+          e.stopPropagation();
+          AudioAndLaserController.speak(bnBtn.dataset.text || "", "bn-BD", bnBtn);
+          return;
+        }
+
+        // Bookmark buttons
+        const bmBtn = e.target.closest(".bookmark-btn");
+        if (bmBtn) {
+          e.stopPropagation();
+          RulesRenderer.toggleBookmark(bmBtn.dataset.bmId);
+          return;
+        }
+
+        // Lab preset buttons
+        const presetBtn = e.target.closest(".preset-btn");
+        if (presetBtn) {
+          LabRenderer.activeId = presetBtn.dataset.preset;
+          LabRenderer.render();
+          return;
+        }
+
+        // 50 Practice filter buttons
+        const pFilterBtn = e.target.closest("#practiceFilterGroup .filter-btn");
+        if (pFilterBtn) {
+          document.querySelectorAll("#practiceFilterGroup .filter-btn").forEach(b => b.classList.remove("active"));
+          pFilterBtn.classList.add("active");
+          Practice50Renderer.filterType = pFilterBtn.dataset.pfilter;
+          Practice50Renderer.renderGrid();
+          return;
+        }
+
+        // 50 Practice card 3-click cycle
+        const practiceCard = e.target.closest(".practice-card");
+        if (practiceCard) {
+          const qNo = Number(practiceCard.dataset.practiceNo);
+          if (qNo) Practice50Renderer.cycleStep(qNo);
+          return;
+        }
+
+        // Quiz option buttons
+        const optBtn = e.target.closest(".quiz-opt-btn");
+        if (optBtn) {
+          const qid = optBtn.dataset.qid;
+          const chosen = optBtn.dataset.opt;
+          const qObj = selfTestQuizData.find(x => x.id === qid);
+          if (qObj) {
+            QuizRenderer.answered[qid] = {
+              chosen,
+              isCorrect: chosen === qObj.answer
+            };
+            QuizRenderer.render();
+            QuizRenderer.updateScore();
+          }
+          return;
+        }
+
+        // Quiz hint toggle
+        const hintBtn = e.target.closest(".hint-toggle-btn");
+        if (hintBtn) {
+          const target = document.getElementById(hintBtn.dataset.target);
+          if (target) {
+            target.style.display = target.style.display === "none" ? "block" : "none";
+          }
+        }
+      });
+
+      // Global search & filter controls
+      document.getElementById("liveSearchInput")?.addEventListener("input", () => SearchFilterController.apply());
+      document.querySelectorAll("#filterPills .filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("#filterPills .filter-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          SearchFilterController.currentFilter = btn.dataset.filter;
+          SearchFilterController.apply();
+        });
+      });
+      document.getElementById("resetSearchFilterBtn")?.addEventListener("click", () => SearchFilterController.reset());
+
+      // 50 Practice bulk step buttons
+      document.getElementById("revealAllMeaningsBtn")?.addEventListener("click", () => {
+        Practice50Renderer.setAllSteps(1);
+        showToast("সব ৫০টি প্রশ্নের বাংলা অর্থ দেখানো হয়েছে।");
+      });
+      document.getElementById("revealAllRulesBtn")?.addEventListener("click", () => {
+        Practice50Renderer.setAllSteps(2);
+        showToast("সব ৫০টি প্রশ্নের উত্তর ও Rule ব্যাখ্যা দেখানো হয়েছে।");
+      });
+      document.getElementById("resetAllPracticeBtn")?.addEventListener("click", () => {
+        Practice50Renderer.setAllSteps(0);
+        showToast("অনুশীলন কার্ডগুলো রিসেট করা হয়েছে।");
+      });
+
+      // Quiz reset & stop audio
+      document.getElementById("resetQuizBtn")?.addEventListener("click", () => {
+        Object.keys(QuizRenderer.answered).forEach(k => delete QuizRenderer.answered[k]);
+        QuizRenderer.render();
+        QuizRenderer.updateScore();
+        showToast("কুইজ রিসেট করা হয়েছে।");
+      });
+      document.getElementById("stopAudioBtn")?.addEventListener("click", () => AudioAndLaserController.stopSpeech());
+    }
+
+    window.addEventListener("DOMContentLoaded", initApp);
+  </script>
+</body>
+</html>
