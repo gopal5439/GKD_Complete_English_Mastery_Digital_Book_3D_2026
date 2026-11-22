@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>পরিবর্তনশীল বাক্য (Changing Sentence)</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Tiro Bangla & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =========================================================================
+       DESIGN TOKENS & 5 THEMES (DARK, LIGHT, RGB DYNAMIC, CYBER NEON, EMERALD)
+       ========================================================================= */
+    :root {
+      --bg-canvas: #090d16;
+      --bg-surface: #111827;
+      --bg-surface-hover: #172238;
+      --bg-pill: #131c2e;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --border-subtle: rgba(148, 163, 184, 0.16);
+      --border-hover: rgba(56, 189, 248, 0.55);
+      --shadow-3d:
+        0 10px 24px -8px rgba(0, 0, 0, 0.65),
+        0 4px 0 0 #050811,
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+      --shadow-3d-hover:
+        0 18px 34px -10px rgba(0, 0, 0, 0.82),
+        0 6px 0 0 #050811,
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.24);
+      --shadow-3d-press:
+        0 3px 8px -2px rgba(0, 0, 0, 0.75),
+        0 1px 0 0 #050811,
+        inset 0 2px 6px rgba(0, 0, 0, 0.45);
+      --glow-radial: radial-gradient(720px circle at 50% -140px, rgba(56, 189, 248, 0.18), transparent 70%);
+      --font-bn: 'Tiro Bangla', serif;
+      --font-en: 'Poppins', sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg-canvas: #f1f5f9;
+      --bg-surface: #ffffff;
+      --bg-surface-hover: #f8fafc;
+      --bg-pill: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-secondary: #4f46e5;
+      --accent-soft: rgba(37, 99, 235, 0.11);
+      --border-subtle: rgba(15, 23, 42, 0.11);
+      --border-hover: rgba(37, 99, 235, 0.5);
+      --shadow-3d:
+        0 10px 22px -8px rgba(15, 23, 42, 0.14),
+        0 4px 0 0 #cbd5e1,
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+      --shadow-3d-hover:
+        0 16px 30px -10px rgba(37, 99, 235, 0.22),
+        0 6px 0 0 #94a3b8,
+        inset 0 1px 0 0 rgba(255, 255, 255, 1);
+      --shadow-3d-press:
+        0 3px 8px -2px rgba(15, 23, 42, 0.16),
+        0 1px 0 0 #cbd5e1,
+        inset 0 2px 5px rgba(15, 23, 42, 0.12);
+      --glow-radial: radial-gradient(720px circle at 50% -140px, rgba(37, 99, 235, 0.1), transparent 70%);
+    }
+
+    [data-theme="rgb"] {
+      --bg-canvas: #07070d;
+      --bg-surface: #10101c;
+      --bg-surface-hover: #171729;
+      --bg-pill: #151526;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --accent: #ff2a85;
+      --accent-secondary: #00f5d4;
+      --accent-soft: rgba(255, 42, 133, 0.16);
+      --border-subtle: rgba(255, 255, 255, 0.15);
+      --border-hover: rgba(0, 245, 212, 0.6);
+      --shadow-3d:
+        0 12px 26px -8px rgba(0, 0, 0, 0.8),
+        0 4px 0 0 #040408,
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+      --shadow-3d-hover:
+        0 18px 36px -8px rgba(255, 42, 133, 0.32),
+        0 6px 0 0 #040408,
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.28);
+      --shadow-3d-press:
+        0 3px 10px -2px rgba(0, 0, 0, 0.85),
+        0 1px 0 0 #040408,
+        inset 0 2px 6px rgba(0, 0, 0, 0.55);
+      --glow-radial: radial-gradient(760px circle at 50% -140px, rgba(255, 42, 133, 0.22), transparent 72%);
+    }
+
+    [data-theme="cyber"] {
+      --bg-canvas: #050811;
+      --bg-surface: #0a1022;
+      --bg-surface-hover: #101934;
+      --bg-pill: #0d162e;
+      --text-primary: #ecfeff;
+      --text-secondary: #a5f3fc;
+      --text-muted: #67e8f9;
+      --accent: #00f0ff;
+      --accent-secondary: #ff007f;
+      --accent-soft: rgba(0, 240, 255, 0.15);
+      --border-subtle: rgba(0, 240, 255, 0.22);
+      --border-hover: rgba(0, 240, 255, 0.65);
+      --shadow-3d:
+        0 12px 26px -8px rgba(0, 0, 0, 0.85),
+        0 4px 0 0 #02040a,
+        0 0 18px -5px rgba(0, 240, 255, 0.22),
+        inset 0 1px 0 0 rgba(0, 240, 255, 0.25);
+      --shadow-3d-hover:
+        0 18px 36px -8px rgba(0, 0, 0, 0.9),
+        0 6px 0 0 #02040a,
+        0 0 28px -3px rgba(0, 240, 255, 0.42),
+        inset 0 1px 0 0 rgba(0, 240, 255, 0.38);
+      --shadow-3d-press:
+        0 3px 8px -2px rgba(0, 0, 0, 0.88),
+        0 1px 0 0 #02040a,
+        inset 0 2px 8px rgba(0, 240, 255, 0.25);
+      --glow-radial: radial-gradient(760px circle at 50% -140px, rgba(0, 240, 255, 0.18), transparent 72%);
+    }
+
+    [data-theme="emerald"] {
+      --bg-canvas: #051311;
+      --bg-surface: #0a1f1c;
+      --bg-surface-hover: #102e29;
+      --bg-pill: #0d2723;
+      --text-primary: #ecfdf5;
+      --text-secondary: #a7f3d0;
+      --text-muted: #6ee7b7;
+      --accent: #10b981;
+      --accent-secondary: #34d399;
+      --accent-soft: rgba(16, 185, 129, 0.16);
+      --border-subtle: rgba(52, 211, 153, 0.2);
+      --border-hover: rgba(52, 211, 153, 0.58);
+      --shadow-3d:
+        0 12px 26px -8px rgba(0, 0, 0, 0.78),
+        0 4px 0 0 #02100d,
+        inset 0 1px 0 0 rgba(167, 243, 208, 0.2);
+      --shadow-3d-hover:
+        0 18px 36px -8px rgba(16, 185, 129, 0.28),
+        0 6px 0 0 #02100d,
+        inset 0 1px 0 0 rgba(167, 243, 208, 0.32);
+      --shadow-3d-press:
+        0 3px 8px -2px rgba(0, 0, 0, 0.82),
+        0 1px 0 0 #02100d,
+        inset 0 2px 6px rgba(0, 0, 0, 0.5);
+      --glow-radial: radial-gradient(760px circle at 50% -140px, rgba(16, 185, 129, 0.18), transparent 72%);
+    }
+
+    /* =========================================================================
+       BASE TYPOGRAPHY & SMOOTH TRANSITIONS
+       ========================================================================= */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      background-image: var(--glow-radial);
+      background-repeat: no-repeat;
+      color: var(--text-primary);
+      font-family: var(--font-bn);
+      transition: background-color 0.35s ease, color 0.25s ease;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .font-bn {
+      font-family: var(--font-bn);
+    }
+
+    .font-en {
+      font-family: var(--font-en);
+    }
+
+    /* RGB Dynamic subtle accent cycle */
+    [data-theme="rgb"] .rgb-cycle-border {
+      animation: rgbBorderCycle 5s linear infinite;
+    }
+
+    [data-theme="rgb"] .rgb-cycle-text {
+      background: linear-gradient(90deg, #ff2a85, #ffbe0b, #00f5d4, #38bdf8, #ff2a85);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rgbTextFlow 4s linear infinite;
+    }
+
+    @keyframes rgbBorderCycle {
+      0% { border-color: rgba(255, 42, 133, 0.65); }
+      33% { border-color: rgba(255, 190, 11, 0.65); }
+      66% { border-color: rgba(0, 245, 212, 0.65); }
+      100% { border-color: rgba(255, 42, 133, 0.65); }
+    }
+
+    @keyframes rgbTextFlow {
+      0% { background-position: 0% center; }
+      100% { background-position: 250% center; }
+    }
+
+    /* 3D Tactile Control Button */
+    .tactile-btn {
+      background-color: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.75rem;
+      box-shadow: var(--shadow-3d);
+      transition:
+        transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tactile-btn:hover {
+      transform: translateY(-2px);
+      background-color: var(--bg-surface-hover);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-3d-hover);
+    }
+
+    .tactile-btn:active {
+      transform: translateY(2px);
+      box-shadow: var(--shadow-3d-press);
+    }
+
+    .tactile-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #ffffff;
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    /* Pure Full-Card 3D Link Button (<a>) */
+    .full-link-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      aspect-ratio: 1 / 1;
+      min-height: 170px;
+      text-decoration: none;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-3d);
+      transform-style: preserve-3d;
+      transition:
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+      animation: cardEnter 0.42s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .full-link-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      background-color: var(--bg-surface-hover);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-3d-hover);
+    }
+
+    .full-link-card:active {
+      transform: translateY(3px) scale(0.975);
+      box-shadow: var(--shadow-3d-press);
+    }
+
+    .full-link-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .full-link-card.link-unset {
+      opacity: 0.85;
+      border-style: dashed;
+    }
+
+    .full-link-card:hover .link-arrow {
+      transform: translateX(3px);
+      background-color: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .link-arrow {
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Fullscreen Smooth Cursor & Touch Laser Canvas */
+    #laser-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+    }
+
+    /* Minimal Toast */
+    .toast-pill {
+      animation: toastUp 0.22s ease forwards;
+    }
+
+    @keyframes toastUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Smooth Color-Changing Cursor & Touch Laser Trail -->
+  <canvas id="laser-canvas" aria-hidden="true"></canvas>
+
+  <div class="relative z-10 min-h-screen flex flex-col">
+    <!-- Top Header & Clean Controls -->
+    <header class="w-full pt-4 px-4 sm:px-6">
+      <div
+        class="max-w-6xl mx-auto rounded-2xl border px-4 py-4 sm:px-6 sm:py-5 rgb-cycle-border"
+        style="background-color: var(--bg-surface); border-color: var(--border-subtle); box-shadow: var(--shadow-3d);"
+      >
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <!-- Title & Subtitle -->
+          <div>
+            <h1 class="font-bn text-2xl sm:text-3xl leading-snug rgb-cycle-text">
+              পরিবর্তনশীল বাক্য (Changing Sentence)
+            </h1>
+            <p class="text-xs sm:text-sm mt-1" style="color: var(--text-secondary);">
+              সব ক্যাটাগরির বাটনে ক্লিক করে সরাসরি নির্ধারিত লিংকে যান
+            </p>
+          </div>
+
+          <!-- Compact Controls: Theme Switcher, Laser Toggle & Sound Toggle -->
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Theme Selector -->
+            <div
+              role="group"
+              aria-label="থিম নির্বাচন"
+              class="inline-flex flex-wrap items-center gap-1 p-1 rounded-xl border"
+              style="background-color: var(--bg-pill); border-color: var(--border-subtle);"
+            >
+              <button type="button" data-theme-choice="dark" class="tactile-btn px-2.5 py-1.5 text-xs">
+                Dark
+              </button>
+              <button type="button" data-theme-choice="light" class="tactile-btn px-2.5 py-1.5 text-xs">
+                Light
+              </button>
+              <button type="button" data-theme-choice="rgb" class="tactile-btn px-2.5 py-1.5 text-xs">
+                RGB
+              </button>
+              <button type="button" data-theme-choice="cyber" class="tactile-btn px-2.5 py-1.5 text-xs">
+                Cyber Neon
+              </button>
+              <button type="button" data-theme-choice="emerald" class="tactile-btn px-2.5 py-1.5 text-xs">
+                Royal Emerald
+              </button>
+            </div>
+
+            <!-- Cursor / Touch Laser Toggle -->
+            <button
+              id="laser-toggle"
+              type="button"
+              aria-pressed="true"
+              class="tactile-btn px-3 py-2 text-xs sm:text-sm font-medium inline-flex items-center gap-1.5"
+            >
+              <span id="laser-indicator" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>লেজার</span>
+            </button>
+
+            <!-- Subtle Click Sound Toggle -->
+            <button
+              id="sound-toggle"
+              type="button"
+              aria-pressed="true"
+              class="tactile-btn px-3 py-2 text-xs sm:text-sm font-medium inline-flex items-center gap-1.5"
+            >
+              <span id="sound-text">সাউন্ড অন</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Search & 8 Square 3D Full-Button Link Grid -->
+    <main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+      <!-- Search Bar & Button Counter -->
+      <section aria-label="অনুসন্ধান">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+          <div class="relative flex-1">
+            <input
+              id="search-box"
+              type="search"
+              autocomplete="off"
+              placeholder="টপিক খুঁজুন (Affirmative, Interrogative, Simple, Voice, Degree...)"
+              aria-label="টপিক খুঁজুন"
+              class="w-full px-4 py-3 pr-10 rounded-xl text-sm border focus:outline-none transition"
+              style="
+                background-color: var(--bg-surface);
+                border-color: var(--border-subtle);
+                color: var(--text-primary);
+                box-shadow: var(--shadow-3d);
+              "
+            />
+            <button
+              id="clear-search"
+              type="button"
+              aria-label="খোঁজা মুছুন"
+              class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full text-xs font-bold items-center justify-center"
+              style="background-color: var(--bg-pill); color: var(--text-secondary);"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div
+            class="px-4 py-3 rounded-xl text-xs sm:text-sm font-medium border shrink-0 self-start sm:self-auto"
+            style="
+              background-color: var(--bg-surface);
+              border-color: var(--border-subtle);
+              color: var(--text-secondary);
+              box-shadow: var(--shadow-3d);
+            "
+          >
+            বাটন: <span id="count-display" class="font-en font-semibold" style="color: var(--accent);">8</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 Large Square 3D Full-Card Link Buttons Grid -->
+      <section aria-label="পরিবর্তনশীল বাক্য বাটনসমূহ">
+        <div id="topics-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <!-- Pure <a> square 3D link cards rendered here -->
+        </div>
+
+        <!-- Empty State -->
+        <div
+          id="empty-box"
+          class="hidden rounded-2xl border p-10 text-center space-y-3"
+          style="
+            background-color: var(--bg-surface);
+            border-color: var(--border-subtle);
+            box-shadow: var(--shadow-3d);
+          "
+        >
+          <p class="font-bn text-lg sm:text-xl" style="color: var(--text-primary);">
+            কোনো টপিক খুঁজে পাওয়া যায়নি
+          </p>
+          <p class="text-xs sm:text-sm" style="color: var(--text-secondary);">
+            অন্য কোনো নাম লিখে খুঁজুন অথবা সব বাটন দেখুন।
+          </p>
+          <button
+            id="reset-view-btn"
+            type="button"
+            class="tactile-btn active px-4 py-2 text-xs sm:text-sm"
+          >
+            সব বাটন দেখুন
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Clean Footer -->
+    <footer class="w-full px-4 sm:px-6 pb-6 pt-2">
+      <div
+        class="max-w-6xl mx-auto rounded-xl border px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs"
+        style="
+          background-color: var(--bg-surface);
+          border-color: var(--border-subtle);
+          color: var(--text-muted);
+        "
+      >
+        <span class="font-bn">পরিবর্তনশীল বাক্য (Changing Sentence)</span>
+        <span class="font-en">Tiro Bangla &amp; Poppins</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Minimal Notice Toast -->
+  <div id="toast-area" class="fixed bottom-4 right-4 z-50 pointer-events-none"></div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =====================================================================
+         CHANGING SENTENCE LINKS MAP (কোডের ভেতর থেকে লিংক যুক্ত বা পরিবর্তন করুন)
+         প্রতিটি বাটনের পাশে আপনার নির্ধারিত পেজের URL বসান।
+         লিংক ফাঁকা ("") রাখলে ক্লিক করলে একটি ছোট নোটিফিকেশন দেখাবে।
+         ===================================================================== */
+      const CHANGING_SENTENCE_LINKS = {
+        "Affirmative to Negative": "",
+        "Assertive to Interrogative": "",
+        "Assertive to Imperative": "",
+        "Assertive to Optative": "",
+        "Assertive to Exclamatory": "",
+        "Simple to Complex": "",
+        "Voice (Active to Passive)": "",
+        "Degree": ""
+      };
+
+      /* =====================================================================
+         8 LARGE SQUARE 3D CHANGING SENTENCE TOPICS
+         ===================================================================== */
+      const TOPICS = [
+        {
+          id: "aff-to-neg",
+          enTitle: "Affirmative to Negative",
+          bnTitle: "হ্যাঁ-বাচক থেকে না-বাচক",
+          tag: "A ↔ N"
+        },
+        {
+          id: "ass-to-int",
+          enTitle: "Assertive to Interrogative",
+          bnTitle: "বিবৃতিমূলক থেকে প্রশ্নবোধক",
+          tag: "A ↔ ?"
+        },
+        {
+          id: "ass-to-imp",
+          enTitle: "Assertive to Imperative",
+          bnTitle: "বিবৃতিমূলক থেকে অনুজ্ঞাসূচক",
+          tag: "IMP"
+        },
+        {
+          id: "ass-to-opt",
+          enTitle: "Assertive to Optative",
+          bnTitle: "বিবৃতিমূলক থেকে ইচ্ছাসূচক",
+          tag: "OPT"
+        },
+        {
+          id: "ass-to-exc",
+          enTitle: "Assertive to Exclamatory",
+          bnTitle: "বিবৃতিমূলক থেকে বিস্ময়সূচক",
+          tag: "EXC !"
+        },
+        {
+          id: "simple-to-complex",
+          enTitle: "Simple to Complex",
+          bnTitle: "সরল থেকে জটিল বাক্য",
+          tag: "S → Cx"
+        },
+        {
+          id: "voice-active-to-passive",
+          enTitle: "Voice (Active to Passive)",
+          bnTitle: "সক্রিয় থেকে কর্মবাচ্য",
+          tag: "VOICE"
+        },
+        {
+          id: "degree",
+          enTitle: "Degree",
+          bnTitle: "তুলনামূলক মাত্রা পরিবর্তন",
+          tag: "DEGREE"
+        }
+      ];
+
+      const STORAGE_KEYS = {
+        THEME: "cs_portal_theme_v3",
+        LASER: "cs_portal_laser_v3",
+        SOUND: "cs_portal_sound_v3"
+      };
+
+      const state = {
+        theme: localStorage.getItem(STORAGE_KEYS.THEME) || "emerald",
+        laserOn: localStorage.getItem(STORAGE_KEYS.LASER) !== "false",
+        soundOn: localStorage.getItem(STORAGE_KEYS.SOUND) !== "false",
+        query: ""
+      };
+
+      const searchBox = document.getElementById("search-box");
+      const clearSearchBtn = document.getElementById("clear-search");
+      const topicsGridEl = document.getElementById("topics-grid");
+      const emptyBoxEl = document.getElementById("empty-box");
+      const countDisplayEl = document.getElementById("count-display");
+      const resetViewBtn = document.getElementById("reset-view-btn");
+      const laserToggleBtn = document.getElementById("laser-toggle");
+      const laserIndicator = document.getElementById("laser-indicator");
+      const soundToggleBtn = document.getElementById("sound-toggle");
+      const soundTextEl = document.getElementById("sound-text");
+      const toastArea = document.getElementById("toast-area");
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function resolveUrl(topic) {
+        const byTitle = CHANGING_SENTENCE_LINKS[topic.enTitle];
+        if (typeof byTitle === "string" && byTitle.trim()) return byTitle.trim();
+        const byId = CHANGING_SENTENCE_LINKS[topic.id];
+        if (typeof byId === "string" && byId.trim()) return byId.trim();
+        return "";
+      }
+
+      function showToast(msg) {
+        if (!toastArea) return;
+        toastArea.innerHTML = "";
+        const el = document.createElement("div");
+        el.className = "toast-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium border shadow-lg";
+        el.style.backgroundColor = "var(--bg-surface)";
+        el.style.borderColor = "var(--border-hover)";
+        el.style.color = "var(--text-primary)";
+        el.textContent = msg;
+        toastArea.appendChild(el);
+
+        window.clearTimeout(showToast._timer);
+        showToast._timer = window.setTimeout(() => {
+          el.style.opacity = "0";
+          el.style.transition = "opacity 0.2s ease";
+          window.setTimeout(() => el.remove(), 220);
+        }, 2200);
+      }
+
+      /* =====================================================================
+         SUBTLE TACTILE CLICK SOUND (WEB AUDIO API)
+         ===================================================================== */
+      let audioCtx = null;
+
+      function playClickTone(freq = 560, duration = 0.045) {
+        if (!state.soundOn) return;
+        try {
+          if (!audioCtx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            audioCtx = new AudioCtx();
+          }
+          if (audioCtx.state === "suspended") {
+            audioCtx.resume();
+          }
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(freq * 0.65, audioCtx.currentTime + duration);
+
+          gain.gain.setValueAtTime(0.055, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + duration);
+        } catch (_err) {
+          // Ignore audio context restrictions if triggered prior to interaction
+        }
+      }
+
+      /* =====================================================================
+         THEME, LASER & SOUND TOGGLE CONTROLLERS
+         ===================================================================== */
+      const themeButtons = document.querySelectorAll("[data-theme-choice]");
+
+      function applyTheme(themeName) {
+        state.theme = themeName;
+        document.documentElement.setAttribute("data-theme", themeName);
+        localStorage.setItem(STORAGE_KEYS.THEME, themeName);
+        themeButtons.forEach((btn) => {
+          const isMatch = btn.getAttribute("data-theme-choice") === themeName;
+          btn.classList.toggle("active", isMatch);
+          btn.setAttribute("aria-pressed", String(isMatch));
+        });
+      }
+
+      function applyLaserToggle(enabled) {
+        state.laserOn = Boolean(enabled);
+        localStorage.setItem(STORAGE_KEYS.LASER, String(state.laserOn));
+        if (laserToggleBtn) {
+          laserToggleBtn.setAttribute("aria-pressed", String(state.laserOn));
+          laserToggleBtn.style.borderColor = state.laserOn ? "var(--accent)" : "var(--border-subtle)";
+        }
+        if (laserIndicator) {
+          laserIndicator.className = state.laserOn
+            ? "w-2 h-2 rounded-full bg-emerald-400"
+            : "w-2 h-2 rounded-full bg-slate-500";
+        }
+      }
+
+      function applySoundToggle(enabled) {
+        state.soundOn = Boolean(enabled);
+        localStorage.setItem(STORAGE_KEYS.SOUND, String(state.soundOn));
+        if (soundToggleBtn) {
+          soundToggleBtn.setAttribute("aria-pressed", String(state.soundOn));
+        }
+        if (soundTextEl) {
+          soundTextEl.textContent = state.soundOn ? "সাউন্ড অন" : "সাউন্ড অফ";
+        }
+      }
+
+      themeButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const chosen = btn.getAttribute("data-theme-choice");
+          if (!chosen) return;
+          playClickTone(620);
+          applyTheme(chosen);
+        });
+      });
+
+      if (laserToggleBtn) {
+        laserToggleBtn.addEventListener("click", () => {
+          playClickTone(660);
+          applyLaserToggle(!state.laserOn);
+        });
+      }
+
+      if (soundToggleBtn) {
+        soundToggleBtn.addEventListener("click", () => {
+          const next = !state.soundOn;
+          applySoundToggle(next);
+          if (next) playClickTone(720);
+        });
+      }
+
+      /* =====================================================================
+         FULL-SQUARE 3D LINK BUTTON RENDERING
+         ===================================================================== */
+      function getFilteredTopics() {
+        const q = state.query.trim().toLowerCase();
+        if (!q) return TOPICS;
+        return TOPICS.filter((item) => {
+          const text = `${item.enTitle} ${item.bnTitle} ${item.tag}`.toLowerCase();
+          return text.includes(q);
+        });
+      }
+
+      function renderTopics() {
+        const items = getFilteredTopics();
+        countDisplayEl.textContent = String(items.length);
+        topicsGridEl.innerHTML = "";
+
+        if (items.length === 0) {
+          emptyBoxEl.classList.remove("hidden");
+          return;
+        }
+
+        emptyBoxEl.classList.add("hidden");
+
+        items.forEach((topic, idx) => {
+          const url = resolveUrl(topic);
+          const hasUrl = Boolean(url);
+
+          const cardLink = document.createElement("a");
+          cardLink.className = "full-link-card p-5 sm:p-6";
+          cardLink.style.animationDelay = `${Math.min(idx * 35, 280)}ms`;
+          cardLink.setAttribute("aria-label", `${topic.enTitle} — ${topic.bnTitle}`);
+
+          if (hasUrl) {
+            cardLink.href = url;
+            cardLink.target = "_blank";
+            cardLink.rel = "noopener noreferrer";
+          } else {
+            cardLink.href = "javascript:void(0)";
+          }
+
+          cardLink.addEventListener("click", (e) => {
+            playClickTone(640);
+            if (!hasUrl) {
+              e.preventDefault();
+              showToast(`"${topic.enTitle}"-এর লিংক কোডে (CHANGING_SENTENCE_LINKS) এখনো যুক্ত করা হয়নি।`);
+            }
+          });
+
+          cardLink.innerHTML = `
+            <span
+              class="font-en text-xs font-bold tracking-wider px-3 py-1 rounded-full mb-3.5"
+              style="background-color: var(--accent-soft); color: var(--accent);"
+            >
+              ${escapeHtml(topic.tag)}
+            </span>
+
+            <h2 class="font-en text-base sm:text-lg lg:text-xl font-bold leading-snug" style="color: var(--text-primary);">
+              ${escapeHtml(topic.enTitle)}
+            </h2>
+
+            <p class="font-bn text-sm sm:text-base mt-2 leading-snug" style="color: var(--text-secondary);">
+              ${escapeHtml(topic.bnTitle)}
+            </p>
+          `;
+
+          topicsGridEl.appendChild(cardLink);
+        });
+      }
+
+      /* =====================================================================
+         SEARCH INPUT HANDLERS
+         ===================================================================== */
+      searchBox.addEventListener("input", (e) => {
+        state.query = e.target.value;
+        const active = Boolean(state.query.trim());
+        clearSearchBtn.classList.toggle("hidden", !active);
+        clearSearchBtn.classList.toggle("flex", active);
+        renderTopics();
+      });
+
+      clearSearchBtn.addEventListener("click", () => {
+        playClickTone(480);
+        state.query = "";
+        searchBox.value = "";
+        clearSearchBtn.classList.add("hidden");
+        clearSearchBtn.classList.remove("flex");
+        renderTopics();
+        searchBox.focus();
+      });
+
+      resetViewBtn.addEventListener("click", () => {
+        playClickTone(580);
+        state.query = "";
+        searchBox.value = "";
+        clearSearchBtn.classList.add("hidden");
+        clearSearchBtn.classList.remove("flex");
+        renderTopics();
+      });
+
+      /* =====================================================================
+         SMOOTH COLOR-CHANGING CURSOR & TOUCH LASER CANVAS
+         ===================================================================== */
+      const canvas = document.getElementById("laser-canvas");
+      const ctx = canvas.getContext("2d");
+      const points = [];
+      let hue = 0;
+
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function pushLaserPoint(x, y) {
+        if (!state.laserOn) return;
+        hue = (hue + 7) % 360;
+        points.push({ x, y, hue, time: performance.now() });
+        if (points.length > 40) points.shift();
+      }
+
+      window.addEventListener("mousemove", (e) => pushLaserPoint(e.clientX, e.clientY));
+      window.addEventListener(
+        "touchmove",
+        (e) => {
+          if (e.touches && e.touches[0]) {
+            pushLaserPoint(e.touches[0].clientX, e.touches[0].clientY);
+          }
+        },
+        { passive: true }
+      );
+      window.addEventListener(
+        "touchstart",
+        (e) => {
+          if (e.touches && e.touches[0]) {
+            pushLaserPoint(e.touches[0].clientX, e.touches[0].clientY);
+          }
+        },
+        { passive: true }
+      );
+      window.addEventListener("resize", resizeCanvas);
+
+      function drawLaser(now) {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        while (points.length > 0 && now - points[0].time > 240) {
+          points.shift();
+        }
+
+        if (state.laserOn && points.length > 1) {
+          for (let i = 1; i < points.length; i++) {
+            const p0 = points[i - 1];
+            const p1 = points[i];
+            const life = Math.max(0, Math.min(1, (1 - (now - p1.time) / 240) * (i / points.length)));
+
+            ctx.beginPath();
+            ctx.moveTo(p0.x, p0.y);
+            ctx.lineTo(p1.x, p1.y);
+            ctx.strokeStyle = `hsla(${p1.hue}, 100%, 62%, ${life * 0.9})`;
+            ctx.lineWidth = Math.max(1.5, (i / points.length) * 6);
+            ctx.lineCap = "round";
+            ctx.shadowColor = `hsla(${p1.hue}, 100%, 60%, ${life * 0.85})`;
+            ctx.shadowBlur = 14;
+            ctx.stroke();
+          }
+
+          const tip = points[points.length - 1];
+          ctx.beginPath();
+          ctx.arc(tip.x, tip.y, 4, 0, Math.PI * 2);
+          ctx.fillStyle = `hsl(${tip.hue}, 100%, 75%)`;
+          ctx.shadowColor = `hsl(${tip.hue}, 100%, 60%)`;
+          ctx.shadowBlur = 16;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(drawLaser);
+      }
+
+      /* =====================================================================
+         INITIALIZE APP
+         ===================================================================== */
+      resizeCanvas();
+      applyTheme(state.theme);
+      applyLaserToggle(state.laserOn);
+      applySoundToggle(state.soundOn);
+      renderTopics();
+      requestAnimationFrame(drawLaser);
+    })();
+  </script>
+</body>
+</html>
