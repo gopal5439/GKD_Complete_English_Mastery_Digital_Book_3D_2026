@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="rgb">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affirmative to Negative Sentence — Complete Master Web Software</title>
+  
+  <!-- Google Fonts: Tiro Bangla & Plus Jakarta Sans / Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --font-bn: 'Tiro Bangla', serif;
+      --font-en: 'Tiro Bangla', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Tiro Bangla', serif !important;
+    }
+
+    body, html, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, span, div, a {
+      font-family: 'Tiro Bangla', serif !important;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      line-height: 1.75;
+    }
+
+    .font-en, .font-bn {
+      font-family: 'Tiro Bangla', serif !important;
+    }
+
+    /* Prevent Bengali Matra / Kar Clipping */
+    .bn-safe-heading {
+      line-height: 1.65 !important;
+      padding-top: 0.35rem !important;
+      padding-bottom: 0.35rem !important;
+      overflow: visible !important;
+      display: inline-block;
+    }
+
+    /* ================= THEME VARIABLES ================= */
+    /* 1. REAL RGB THEME */
+    [data-theme="rgb"] {
+      --bg-primary: #070913;
+      --bg-secondary: #0e1326;
+      --card-bg: rgba(16, 22, 46, 0.88);
+      --card-inner: rgba(25, 34, 68, 0.72);
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --accent: #00f5d4;
+      --accent-2: #ff2a85;
+      --border-3d: #1e293b;
+      --shadow-3d: 0 10px 0 #03050c, 0 18px 32px rgba(0, 245, 212, 0.18);
+      --shadow-3d-hover: 0 14px 0 #03050c, 0 24px 40px rgba(255, 42, 133, 0.28);
+      --shadow-3d-active: 0 3px 0 #03050c, 0 6px 14px rgba(0, 245, 212, 0.35);
+      --btn-shadow: 0 5px 0 #02040a;
+      --badge-bg: rgba(0, 245, 212, 0.14);
+      --badge-text: #00f5d4;
+    }
+
+    /* 2. WHITE THEME */
+    [data-theme="white"] {
+      --bg-primary: #eef2f6;
+      --bg-secondary: #ffffff;
+      --card-bg: #ffffff;
+      --card-inner: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #7c3aed;
+      --border-3d: #cbd5e1;
+      --shadow-3d: 0 8px 0 #cbd5e1, 0 16px 28px rgba(15, 23, 42, 0.08);
+      --shadow-3d-hover: 0 12px 0 #94a3b8, 0 20px 35px rgba(37, 99, 235, 0.14);
+      --shadow-3d-active: 0 2px 0 #94a3b8, 0 4px 10px rgba(15, 23, 42, 0.12);
+      --btn-shadow: 0 5px 0 #cbd5e1;
+      --badge-bg: #dbeafe;
+      --badge-text: #1d4ed8;
+    }
+
+    /* 3. DARK THEME */
+    [data-theme="dark"] {
+      --bg-primary: #0f1115;
+      --bg-secondary: #181b22;
+      --card-bg: #1c2029;
+      --card-inner: #252a36;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --border-3d: #2e3442;
+      --shadow-3d: 0 8px 0 #090a0d, 0 16px 30px rgba(0, 0, 0, 0.55);
+      --shadow-3d-hover: 0 12px 0 #090a0d, 0 22px 36px rgba(56, 189, 248, 0.18);
+      --shadow-3d-active: 0 2px 0 #090a0d, 0 5px 12px rgba(0, 0, 0, 0.6);
+      --btn-shadow: 0 5px 0 #08090c;
+      --badge-bg: rgba(56, 189, 248, 0.15);
+      --badge-text: #38bdf8;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+    }
+
+    /* Animated RGB Glow Border for Real RGB Theme */
+    @keyframes rgbFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    [data-theme="rgb"] .rgb-border-wrap {
+      position: relative;
+      background: linear-gradient(120deg, #ff0055, #ffaa00, #00ff88, #00d4ff, #aa00ff, #ff0055);
+      background-size: 300% 300%;
+      animation: rgbFlow 6s ease infinite;
+      padding: 2px;
+      border-radius: 1.25rem;
+    }
+
+    [data-theme="white"] .rgb-border-wrap,
+    [data-theme="dark"] .rgb-border-wrap {
+      padding: 1px;
+      background: var(--border-3d);
+      border-radius: 1.25rem;
+    }
+
+    /* 3D Tactile Card Architecture */
+    .card-3d {
+      background: var(--card-bg);
+      border-radius: 1.15rem;
+      box-shadow: var(--shadow-3d);
+      transform: translateY(0) perspective(1000px);
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-3d:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-3d-hover);
+    }
+
+    .card-3d.tactile-press:active,
+    .card-3d.pressed {
+      transform: translateY(5px) scale(0.992);
+      box-shadow: var(--shadow-3d-active);
+    }
+
+    .inner-box-3d {
+      background: var(--card-inner);
+      border: 1px solid var(--border-3d);
+      border-radius: 0.85rem;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 3D Tactile Buttons */
+    .btn-3d {
+      border-radius: 0.85rem;
+      box-shadow: var(--btn-shadow);
+      transform: translateY(0);
+      transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.14s ease, filter 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      font-weight: 600;
+    }
+
+    .btn-3d:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .btn-3d:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    /* Touch Ripple Effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear;
+      background-color: rgba(255, 255, 255, 0.28);
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Smooth Reveal Animation for Practice Steps */
+    @keyframes popReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .reveal-anim {
+      animation: popReveal 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Laser Pointer Canvas Overlay */
+    #laserCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-3d);
+      border-radius: 999px;
+    }
+
+    /* ================= PRINT MEDIA STYLES ================= */
+    @media print {
+      #laserCanvas,
+      .no-print {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt !important;
+      }
+
+      .rgb-border-wrap {
+        background: none !important;
+        padding: 0 !important;
+        border: 1px solid #cbd5e1 !important;
+        margin-bottom: 12px !important;
+        break-inside: avoid;
+      }
+
+      .card-3d {
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        border: none !important;
+        padding: 12px !important;
+      }
+
+      .inner-box-3d {
+        background: #f8fafc !important;
+        color: #000000 !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+      }
+
+      /* Reveal all hidden practice steps when printing */
+      .print-show-all {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .grid {
+        display: block !important;
+      }
+
+      .print-page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+  <!-- Laser Pointer Trail Canvas -->
+  <canvas id="laserCanvas"></canvas>
+
+  <!-- Floating Top Control Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl border-b transition-colors duration-300 no-print" style="background: rgba(10, 14, 28, 0.78); border-color: var(--border-3d);">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- Brand / Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl flex items-center justify-center font-en font-extrabold text-xl text-white shadow-lg" style="background: linear-gradient(135deg, #00f5d4, #2563eb, #ff2a85);">
+          A→N
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white leading-tight font-en">
+            Affirmative <span class="text-cyan-400">to</span> Negative
+          </h1>
+          <p class="text-xs text-slate-300 font-bn">সম্পূর্ণ ২৫টি নিয়ম ও ৫০টি বোর্ড অনুশীলনী মাস্টার সফটওয়্যার</p>
+        </div>
+      </div>
+
+      <!-- Theme Switcher & Interactive Controls -->
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- Theme Buttons -->
+        <div class="flex items-center p-1 rounded-xl bg-slate-900/90 border border-slate-700 gap-1" role="group" aria-label="Theme Selector">
+          <button onclick="setTheme('rgb')" id="btn-theme-rgb" class="btn-3d px-2.5 py-1.5 text-xs rounded-lg text-white bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500">
+            🌈 Real RGB
+          </button>
+          <button onclick="setTheme('white')" id="btn-theme-white" class="btn-3d px-2.5 py-1.5 text-xs rounded-lg bg-white text-slate-900">
+            ☀️ White
+          </button>
+          <button onclick="setTheme('dark')" id="btn-theme-dark" class="btn-3d px-2.5 py-1.5 text-xs rounded-lg bg-slate-800 text-slate-200 border border-slate-600">
+            🌙 Dark
+          </button>
+        </div>
+
+        <!-- Laser Toggle -->
+        <button onclick="toggleLaser()" id="btn-laser" class="btn-3d px-3 py-2 text-xs bg-rose-600 text-white" title="Toggle Laser Pointer">
+          🔴 লেজার: চালু
+        </button>
+
+        <!-- Sound Toggle -->
+        <button onclick="toggleSound()" id="btn-sound" class="btn-3d px-3 py-2 text-xs bg-emerald-600 text-white" title="Toggle Touch Sound">
+          🔊 সাউন্ড: চালু
+        </button>
+
+        <!-- Print Button -->
+        <button onclick="prepareAndPrint()" class="btn-3d px-3.5 py-2 text-xs bg-amber-500 text-slate-950 font-bold">
+          🖨️ প্রিন্ট / PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-6">
+    <div class="rgb-border-wrap">
+      <div class="card-3d p-6 sm:p-10 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 leading-relaxed" style="background: var(--badge-bg); color: var(--badge-text);">
+          ✨ Complete English Grammar Master Suite (All Classes • SSC • HSC)
+        </div>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold mb-3" style="line-height: 1.55; overflow: visible;">
+          <span class="block">Affirmative to Negative Sentence</span>
+          <span class="bn-safe-heading text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-pink-500">
+            সকল নিয়ম, উদাহরণ ও ৫০টি ইন্টারেক্টিভ অনুশীলনী
+          </span>
+        </h2>
+        <p class="max-w-3xl mx-auto text-sm sm:text-lg mb-6 leading-loose" style="color: var(--text-muted);">
+          মূল বাক্যের অর্থ অপরিবর্তিত রেখে Affirmative থেকে Negative করার <strong>পূর্ণাঙ্গ ২৫টি নিয়ম</strong> বাংলা অর্থ ও বিস্তারিত ব্যাখ্যাসহ শিখুন। প্রতিটি নিয়মে ও অনুশীলনী প্রশ্নে <strong>বারবার ক্লিক করে</strong> ধাপে ধাপে গঠন, ব্যাখ্যা, উদাহরণ ও উত্তর দেখুন।
+        </p>
+
+        <!-- Quick Navigation & Stats -->
+        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 no-print">
+          <a href="#rules-section" class="btn-3d px-5 py-3 text-sm sm:text-base bg-blue-600 text-white">
+            📘 ২৫টি নিয়ম পড়ুন
+          </a>
+          <a href="#practice-section" class="btn-3d px-5 py-3 text-sm sm:text-base bg-purple-600 text-white">
+            🎯 ৫০টি প্রশ্ন অনুশীলন করুন
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 1: 25 MASTER RULES ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+    <section id="rules-section" class="mb-16">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+        <div>
+          <h3 class="text-2xl sm:text-3xl font-bold flex flex-wrap items-center gap-2 leading-relaxed">
+            <span class="px-3 py-1 rounded-xl text-base bg-cyan-500/20 text-cyan-400">PART 01</span>
+            <span>Affirmative to Negative-এর ২৫টি পূর্ণাঙ্গ নিয়ম</span>
+          </h3>
+          <p class="text-sm sm:text-base mt-1 leading-relaxed" style="color: var(--text-muted);">
+            যেকোনো নিয়ম কার্ডে ক্লিক করুন: 
+            <span class="font-bold text-cyan-400">১ম ক্লিক</span> = গঠন ➔ 
+            <span class="font-bold text-emerald-400">২য় ক্লিক</span> = বাংলা ব্যাখ্যা ➔ 
+            <span class="font-bold text-amber-400">৩য় ক্লিক</span> = উদাহরণ ও অর্থ ➔ 
+            <span class="font-bold text-rose-400">৪র্থ ক্লিক</span> = সংকুচিত।
+          </p>
+        </div>
+
+        <!-- Search Filter & Expand/Collapse All -->
+        <div class="flex flex-wrap items-center gap-2.5 w-full lg:w-auto no-print">
+          <input
+            type="text"
+            id="ruleSearch"
+            oninput="filterRules()"
+            placeholder="🔍 নিয়ম খুঁজুন (যেমন: Only, Must, Too)..."
+            class="w-full sm:w-64 px-4 py-2.5 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 transition leading-relaxed"
+            style="background: var(--card-bg); color: var(--text-main); border-color: var(--border-3d);"
+          />
+          <button onclick="toggleAllRules()" id="btn-toggle-all-rules" class="btn-3d px-4 py-2.5 text-xs sm:text-sm bg-cyan-600 text-white whitespace-nowrap">
+            📂 সব নিয়ম একসাথে খুলুন
+          </button>
+        </div>
+      </div>
+
+      <!-- 25 Rules Grid -->
+      <div id="rulesContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: 50 INTERACTIVE PRACTICE QUESTIONS ==================== -->
+    <section id="practice-section" class="print-page-break pt-4">
+      <div class="rgb-border-wrap mb-8">
+        <div class="card-3d p-6 sm:p-8">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div>
+              <div class="inline-block px-3 py-1 rounded-lg text-xs font-bold font-en mb-2 bg-pink-500/20 text-pink-400">
+                PART 02 • INTERACTIVE CLICK-TO-LEARN ENGINE
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-bold">
+                SSC, HSC ও সকল শ্রেণির ৫০টি বিশেষ অনুশীলন প্রশ্ন
+              </h3>
+              <p class="text-sm sm:text-base mt-1" style="color: var(--text-muted);">
+                যেকোনো প্রশ্ন কার্ডে ক্লিক/টাচ করুন: 
+                <span class="font-bold text-cyan-400">১ম ক্লিক</span> = বাংলা অর্থ ➔ 
+                <span class="font-bold text-emerald-400">২য় ক্লিক</span> = সঠিক উত্তর ➔ 
+                <span class="font-bold text-amber-400">৩য় ক্লিক</span> = বিস্তারিত ব্যাখ্যা ➔ 
+                <span class="font-bold text-rose-400">৪র্থ ক্লিক</span> = রিসেট।
+              </p>
+            </div>
+
+            <!-- Practice Controls & Progress -->
+            <div class="flex flex-wrap items-center gap-3 no-print">
+              <div class="inner-box-3d px-4 py-2 text-center">
+                <div class="text-xs" style="color: var(--text-muted);">অনুশীলন অগ্রগতি</div>
+                <div id="progressCounter" class="text-lg font-extrabold font-en text-cyan-400">0 / 50</div>
+              </div>
+              <button onclick="shuffleQuestions()" class="btn-3d px-4 py-2.5 text-xs sm:text-sm bg-indigo-600 text-white">
+                🔀 এলোমেলো করুন
+              </button>
+              <button onclick="resetAllQuestions()" class="btn-3d px-4 py-2.5 text-xs sm:text-sm bg-rose-600 text-white">
+                🔄 সব রিসেট
+              </button>
+            </div>
+          </div>
+
+          <!-- Level Filter Tabs -->
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t no-print" style="border-color: var(--border-3d);">
+            <button onclick="filterQuestions('ALL')" class="q-filter-btn btn-3d px-3.5 py-1.5 text-xs bg-cyan-500 text-slate-950 font-bold" data-filter="ALL">
+              সব প্রশ্ন (৫০টি)
+            </button>
+            <button onclick="filterQuestions('SSC')" class="q-filter-btn btn-3d px-3.5 py-1.5 text-xs bg-slate-700 text-white" data-filter="SSC">
+              SSC Standard
+            </button>
+            <button onclick="filterQuestions('HSC')" class="q-filter-btn btn-3d px-3.5 py-1.5 text-xs bg-slate-700 text-white" data-filter="HSC">
+              HSC Standard
+            </button>
+            <button onclick="filterQuestions('Junior')" class="q-filter-btn btn-3d px-3.5 py-1.5 text-xs bg-slate-700 text-white" data-filter="Junior">
+              Class 6–8 / All Class
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 50 Questions Grid -->
+      <div id="questionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="max-w-7xl mx-auto px-4 sm:px-6 py-10 mt-12 border-t text-center text-sm" style="border-color: var(--border-3d); color: var(--text-muted);">
+    <p class="font-bold text-base mb-1" style="color: var(--text-main);">
+      Affirmative to Negative Sentence — Complete Master Web Software
+    </p>
+    <p>মূল বক্তব্যের অর্থ অটুট রেখে ইংরেজি গ্রামার শেখার আধুনিক ৩ডি ইন্টারেক্টিভ প্ল্যাটফর্ম।</p>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT DATA & ENGINE ==================== -->
+  <script>
+    // ==================== 1. COMPLETE 25 RULES DATA ====================
+    const grammarRules = [
+      {
+        num: 1,
+        titleEn: "Only / Alone (Referring to a Person)",
+        titleBn: "Only বা Alone (ব্যক্তি বা সৃষ্টিকর্তাকে বোঝালে)",
+        structure: "None but + বাক্যের বাকি অংশ",
+        explanation: "বাক্যে 'Only' বা 'Alone' যদি কোনো ব্যক্তি বা আল্লাহ/সৃষ্টিকর্তাকে নির্দেশ করে, তবে Negative করার সময় সেগুলোর পরিবর্তে বাক্যের শুরুতে 'None but' বসাতে হয়। বাকি অংশ অপরিবর্তিত থাকে।",
+        examples: [
+          { aff: "Only Allah can help us.", neg: "None but Allah can help us.", bn: "একমাত্র আল্লাহই আমাদের সাহায্য করতে পারেন।" },
+          { aff: "Only he can solve this problem.", neg: "None but he can solve this problem.", bn: "একমাত্র সেই এই সমস্যাটি সমাধান করতে পারে।" },
+          { aff: "Alone the brave deserve the fair.", neg: "None but the brave deserve the fair.", bn: "একমাত্র সাহসীরাই যোগ্য সম্মানের অধিকারী।" }
+        ]
+      },
+      {
+        num: 2,
+        titleEn: "Only (Referring to a Thing / Object)",
+        titleBn: "Only (কোনো বস্তু বা বিষয়কে বোঝালে)",
+        structure: "Subject + verb + nothing but + বস্তু/বাকি অংশ",
+        explanation: "বাক্যে 'Only' দ্বারা কোনো বস্তু, প্রাণী বা বিমূর্ত বিষয় বোঝালে 'Only'-এর ঠিক জায়গাতেই 'nothing but' বসাতে হয়।",
+        examples: [
+          { aff: "Only books can give us true knowledge.", neg: "Nothing but books can give us true knowledge.", bn: "একমাত্র বই-ই আমাদের প্রকৃত জ্ঞান দিতে পারে।" },
+          { aff: "The baby likes only sweets.", neg: "The baby likes nothing but sweets.", bn: "শিশুটি কেবল মিষ্টিই পছন্দ করে।" }
+        ]
+      },
+      {
+        num: 3,
+        titleEn: "Only (Referring to Age or Number)",
+        titleBn: "Only (বয়স, সংখ্যা বা পরিমাণ বোঝালে)",
+        structure: "Only এর পরিবর্তে not more than / not less than",
+        explanation: "বাক্যে 'Only' এর পরে কোনো সংখ্যা, বয়স বা পরিমাপ থাকলে 'Only' তুলে দিয়ে সেখানে 'not more than' (অনধিক) অথবা 'not less than' (অন্যূন) বসাতে হয়।",
+        examples: [
+          { aff: "He is only ten years old.", neg: "He is not more than ten years old.", bn: "তার বয়স মাত্র দশ বছর (দশ বছরের বেশি নয়)।" },
+          { aff: "I have only five hundred taka.", neg: "I have not more than five hundred taka.", bn: "আমার কাছে মাত্র পাঁচশত টাকা আছে।" }
+        ]
+      },
+      {
+        num: 4,
+        titleEn: "Must / Have to / Has to / Had to",
+        titleBn: "Must / Have to / Has to / Had to যুক্ত বাক্য",
+        structure: "Cannot but + V1  অথবা  Cannot help + (V1 + ing)",
+        explanation: "বাধ্যবাধকতা বোঝাতে Must, Have to বা Has to থাকলে তার পরিবর্তে 'cannot but' (এরপর মূল verb-এর base form) অথবা 'cannot help' (এরপর verb-এর সাথে ing) বসে। Past Tense-এ Had to থাকলে 'could not but' বা 'could not help' হয়।",
+        examples: [
+          { aff: "We must obey our parents.", neg: "We cannot but obey our parents. / We cannot help obeying our parents.", bn: "আমাদের অবশ্যই পিতামাতাকে মান্য করতে হবে।" },
+          { aff: "He had to leave the village.", neg: "He could not but leave the village.", bn: "তাকে গ্রামটি ত্যাগ করতেই হয়েছিল।" }
+        ]
+      },
+      {
+        num: 5,
+        titleEn: "Both ... and / And (Connecting two nouns/adjectives)",
+        titleBn: "Both ... and যুক্ত বাক্য",
+        structure: "Not only + ১ম অংশ + but also + ২য় অংশ",
+        explanation: "বাক্যে 'Both ... and' থাকলে Both-এর পরিবর্তে 'Not only' এবং and-এর পরিবর্তে 'but also' বসিয়ে বাক্যটি Negative করা হয়।",
+        examples: [
+          { aff: "Both Rina and Mina were present.", neg: "Not only Rina but also Mina were present.", bn: "রিনা এবং মিনা উভয়েই উপস্থিত ছিল।" },
+          { aff: "He is both honest and sincere.", neg: "He is not only honest but also sincere.", bn: "সে সৎ এবং আন্তরিক উভয়ই।" }
+        ]
+      },
+      {
+        num: 6,
+        titleEn: "Every / Everyone / Everybody",
+        titleBn: "Every / Everyone / Everybody যুক্ত বাক্য",
+        structure: "There is no + Noun + but + verb + বাকি অংশ",
+        explanation: "বাক্যের শুরুতে Every, Everyone বা Everybody থাকলে তার পরিবর্তে 'There is no' বসে, এরপর Every-এর পরের noun-টি বসে এবং তারপর 'but' বসিয়ে বাকি অংশ অপরিবর্তিত রাখা হয়। (Past tense হলে There was no বসে)।",
+        examples: [
+          { aff: "Every mother loves her child.", neg: "There is no mother but loves her child.", bn: "প্রত্যেক মা-ই তাঁর সন্তানকে ভালোবাসেন।" },
+          { aff: "Everyone hates a liar.", neg: "There is no one but hates a liar.", bn: "প্রত্যেকেই মিথ্যাবাদীকে ঘৃণা করে।" }
+        ]
+      },
+      {
+        num: 7,
+        titleEn: "All (Meaning 'Everyone' or 'Every')",
+        titleBn: "All (সকল অর্থে ব্যবহৃত হলে)",
+        structure: "No + Noun + Verb + বিপরীত শব্দ (Antonym)",
+        explanation: "বাক্যের শুরুতে 'All' দ্বারা সকল ব্যক্তি বা বস্তু বোঝালে All-এর পরিবর্তে 'No' বসে এবং বাক্যের মূল Adjective বা Verb-টির বিপরীত শব্দ (Antonym) বসাতে হয়।",
+        examples: [
+          { aff: "All men are mortal.", neg: "No men are immortal.", bn: "সকল মানুষই মরণশীল (কোনো মানুষ অমর নয়)।" },
+          { aff: "All must die.", neg: "None can escape death.", bn: "সকলকেই মরতে হবে।" }
+        ]
+      },
+      {
+        num: 8,
+        titleEn: "As soon as",
+        titleBn: "As soon as যুক্ত বাক্য",
+        structure: "No sooner had + Sub + V3 + ... + than + Past Indefinite",
+        explanation: "Past Tense-এ 'As soon as' থাকলে তার পরিবর্তে 'No sooner had' বসে, Subject-এর পর মূল Verb-এর Past Participle (V3) হয় এবং দুটি ক্লজের মাঝখানের কমার (,) পরিবর্তে 'than' বসে।",
+        examples: [
+          { aff: "As soon as the teacher entered the class, the students stood up.", neg: "No sooner had the teacher entered the class than the students stood up.", bn: "শিক্ষক শ্রেণিকক্ষে প্রবেশ করতে না করতেই ছাত্ররা দাঁড়িয়ে গেল।" },
+          { aff: "As soon as the thief saw the police, he ran away.", neg: "No sooner had the thief seen the police than he ran away.", bn: "চোরটি পুলিশ দেখতে না দেখতেই পালিয়ে গেল।" }
+        ]
+      },
+      {
+        num: 9,
+        titleEn: "Too ... to",
+        titleBn: "Too ... to যুক্ত বাক্য",
+        structure: "Sub + verb + so + Adj/Adv + that + Sub + cannot/could not + V1",
+        explanation: "'Too'-এর পরিবর্তে 'so' এবং 'to'-এর পরিবর্তে 'that' বসে। এরপর প্রথম Subject-এর Pronoun বসে এবং Present Tense হলে 'cannot', Past Tense হলে 'could not' বসে।",
+        examples: [
+          { aff: "He is too weak to walk.", neg: "He is so weak that he cannot walk.", bn: "সে এতই দুর্বল যে হাঁটতে পারে না।" },
+          { aff: "The old man was too tired to speak.", neg: "The old man was so tired that he could not speak.", bn: "বৃদ্ধ লোকটি এতই ক্লান্ত ছিলেন যে কথা বলতে পারছিলেন না।" }
+        ]
+      },
+      {
+        num: 10,
+        titleEn: "Always",
+        titleBn: "Always যুক্ত বাক্য",
+        structure: "Always এর পরিবর্তে Never + মূল শব্দের বিপরীত শব্দ",
+        explanation: "বাক্যে 'Always' থাকলে তার পরিবর্তে 'Never' বসে এবং বাক্যের মূল Verb বা Adjective-টির বিপরীত শব্দ (Antonym) বসাতে হয়।",
+        examples: [
+          { aff: "He always speaks the truth.", neg: "He never tells a lie.", bn: "সে সর্বদা সত্য কথা বলে (কখনো মিথ্যা বলে না)।" },
+          { aff: "I shall always remember you.", neg: "I shall never forget you.", bn: "আমি তোমাকে চিরকাল মনে রাখব।" }
+        ]
+      },
+      {
+        num: 11,
+        titleEn: "Sometimes",
+        titleBn: "Sometimes যুক্ত বাক্য",
+        structure: "Subject + (do/does/did) + not always + বাকি অংশ",
+        explanation: "বাক্যে 'Sometimes' (মাঝে মাঝে) থাকলে Negative করার সময় Subject ও Tense অনুযায়ী সাহায্যকারী ক্রিয়া এনে 'not always' বসাতে হয়।",
+        examples: [
+          { aff: "He sometimes visits my house.", neg: "He does not always visit my house.", bn: "সে মাঝে মাঝে আমার বাড়িতে আসে (সর্বদা আসে না)।" },
+          { aff: "The rich are sometimes happy.", neg: "The rich are not always happy.", bn: "ধনীরা মাঝে মাঝে সুখী হয়।" }
+        ]
+      },
+      {
+        num: 12,
+        titleEn: "Many (Countable Plural)",
+        titleBn: "Many যুক্ত বাক্য",
+        structure: "Many এর পরিবর্তে not a few",
+        explanation: "গণনাযোগ্য বহু সংখ্যক বোঝাতে 'Many' থাকলে Negative করার সময় 'Many'-এর পরিবর্তে 'not a few' (অল্প নয় অর্থাৎ অনেক) বসে।",
+        examples: [
+          { aff: "I have many friends.", neg: "I have not a few friends.", bn: "আমার অনেক বন্ধু আছে।" },
+          { aff: "There are many books in the library.", neg: "There are not a few books in the library.", bn: "গ্রন্থাগারে অনেক বই আছে।" }
+        ]
+      },
+      {
+        num: 13,
+        titleEn: "A few (Countable Small Number)",
+        titleBn: "A few যুক্ত বাক্য",
+        structure: "A few এর পরিবর্তে not many",
+        explanation: "গণনাযোগ্য অল্প সংখ্যক বোঝাতে 'A few' থাকলে তার পরিবর্তে 'not many' (অনেক নয় অর্থাৎ অল্প) বসে।",
+        examples: [
+          { aff: "He has a few books.", neg: "He has not many books.", bn: "তার অল্প কয়েকটি বই আছে।" },
+          { aff: "I ate a few mangoes.", neg: "I did not eat many mangoes.", bn: "আমি অল্প কয়েকটি আম খেয়েছিলাম।" }
+        ]
+      },
+      {
+        num: 14,
+        titleEn: "Much / A lot of (Uncountable Large Quantity)",
+        titleBn: "Much বা A lot of যুক্ত বাক্য",
+        structure: "Much / A lot of এর পরিবর্তে not a little",
+        explanation: "পরিমাপবাচক বেশি পরিমাণ বোঝাতে 'Much' বা 'A lot of' থাকলে তার পরিবর্তে 'not a little' (অল্প নয় অর্থাৎ প্রচুর) বসে।",
+        examples: [
+          { aff: "She has much money.", neg: "She has not a little money.", bn: "তার প্রচুর টাকা আছে।" },
+          { aff: "He drank a lot of water.", neg: "He did not drink a little water.", bn: "সে প্রচুর পানি পান করেছিল।" }
+        ]
+      },
+      {
+        num: 15,
+        titleEn: "A little (Uncountable Small Quantity)",
+        titleBn: "A little যুক্ত বাক্য",
+        structure: "A little এর পরিবর্তে not much",
+        explanation: "পরিমাপবাচক সামান্য পরিমাণ বোঝাতে 'A little' থাকলে তার পরিবর্তে 'not much' (বেশি নয় অর্থাৎ সামান্য) বসে।",
+        examples: [
+          { aff: "There is a little water in the glass.", neg: "There is not much water in the glass.", bn: "গ্লাসে সামান্য পানি আছে।" },
+          { aff: "I have a little rice.", neg: "I have not much rice.", bn: "আমার সামান্য চাল আছে।" }
+        ]
+      },
+      {
+        num: 16,
+        titleEn: "Superlative Degree (The + Superlative)",
+        titleBn: "Superlative Degree (The যুক্ত)",
+        structure: "No other + Superlative এর পরের অংশ + verb + as/so + Positive + as + Subject",
+        explanation: "'The + Superlative' যুক্ত বাক্যকে Negative করতে হলে বাক্যের শুরুতে 'No other' বসে, এরপর Superlative-এর পরের অংশ, তারপর verb এবং 'as/so + Positive Degree + as' বসে সবশেষে মূল Subject বসে।",
+        examples: [
+          { aff: "Dhaka is the largest city in Bangladesh.", neg: "No other city in Bangladesh is as large as Dhaka.", bn: "ঢাকা বাংলাদেশের সবচেয়ে বড় শহর।" },
+          { aff: "He is the best boy in the class.", neg: "No other boy in the class is as good as he.", bn: "সে শ্রেণির সবচেয়ে ভালো ছেলে।" }
+        ]
+      },
+      {
+        num: 17,
+        titleEn: "Superlative Degree (One of the + Superlative)",
+        titleBn: "Superlative Degree (One of the যুক্ত)",
+        structure: "Very few + পরের অংশ (Plural) + plural verb + as + Positive + as + Subject",
+        explanation: "বাক্যে 'One of the' থাকলে শুরুতে 'Very few' বসে, এরপর Plural Noun ও Plural Verb বসে এবং 'as + Positive Degree + as' বসিয়ে Subject লেখা হয়।",
+        examples: [
+          { aff: "Gold is one of the most precious metals.", neg: "Very few metals are as precious as gold.", bn: "সোনা অন্যতম মূল্যবান ধাতু।" },
+          { aff: "Shakespeare is one of the greatest dramatists.", neg: "Very few dramatists are as great as Shakespeare.", bn: "শেক্সপিয়ার অন্যতম শ্রেষ্ঠ নাট্যকার।" }
+        ]
+      },
+      {
+        num: 18,
+        titleEn: "Comparative Degree (Than যুক্ত সাধারণ তুলনা)",
+        titleBn: "Comparative Degree (Than যুক্ত বাক্য)",
+        structure: "Than এর পরের অংশ + verb + not as/so + Positive + as + ১ম Subject",
+        explanation: "দুটি ব্যক্তি বা বস্তুর মধ্যে Comparative তুলনা থাকলে শেষের Subject-টি প্রথমে আসে, Tense অনুযায়ী verb + not বসে এবং 'as/so + Positive Degree + as' বসে প্রথম Subject শেষে যায়।",
+        examples: [
+          { aff: "Karim is taller than Rahim.", neg: "Rahim is not as tall as Karim.", bn: "করিম রহিমের চেয়ে লম্বা (রহিম করিমের মতো অত লম্বা নয়)।" },
+          { aff: "A plane flies faster than a bird.", neg: "A bird does not fly as fast as a plane.", bn: "উড়োজাহাজ পাখির চেয়ে দ্রুত ওড়ে।" }
+        ]
+      },
+      {
+        num: 19,
+        titleEn: "Comparative Degree (Than any other / all other)",
+        titleBn: "Comparative Degree (Than any other যুক্ত)",
+        structure: "No other + any other এর পরের অংশ + verb + as + Positive + as + Subject",
+        explanation: "Comparative বাক্যে 'than any other' থাকলে 'No other' দিয়ে বাক্য শুরু করে Positive Degree-এর কাঠামোতে Negative করতে হয়।",
+        examples: [
+          { aff: "He is better than any other boy in the class.", neg: "No other boy in the class is as good as he.", bn: "সে শ্রেণির অন্য যেকোনো ছেলের চেয়ে ভালো।" },
+          { aff: "Iron is more useful than any other metal.", neg: "No other metal is as useful as iron.", bn: "লোহা অন্য যেকোনো ধাতুর চেয়ে বেশি প্রয়োজনীয়।" }
+        ]
+      },
+      {
+        num: 20,
+        titleEn: "Positive Degree (As ... as)",
+        titleBn: "As ... as যুক্ত সমতুলনামূলক বাক্য",
+        structure: "প্রথম as এর পরিবর্তে not less এবং দ্বিতীয় as এর পরিবর্তে than",
+        explanation: "Affirmative বাক্যে 'as + Adjective/Adverb + as' থাকলে প্রথম 'as'-এর জায়গায় 'not less' এবং দ্বিতীয় 'as'-এর জায়গায় 'than' বসালেই বাক্যটি অর্থ ঠিক রেখে Negative হয়ে যায়।",
+        examples: [
+          { aff: "He is as wise as his father.", neg: "He is not less wise than his father.", bn: "সে তার বাবার মতোই জ্ঞানী (বাবার চেয়ে কম জ্ঞানী নয়)।" },
+          { aff: "Simi is as beautiful as Rimi.", neg: "Simi is not less beautiful than Rimi.", bn: "সিমি রিমির মতোই সুন্দরী।" }
+        ]
+      },
+      {
+        num: 21,
+        titleEn: "Universal Truth / Habitual Fact",
+        titleBn: "চিরন্তন সত্য বা অভ্যাসগত সত্য বাক্য",
+        structure: "Auxiliary Verb + n't + Subject + মূল Verb + বাকি অংশ + ?",
+        explanation: "চিরন্তন সত্য (Universal Truth) বা বৈজ্ঞানিক সত্য বাক্যকে সরাসরি Negative করলে অর্থ মিথ্যা হয়ে যায়। তাই একে Negative-Interrogative (নেতিবাচক প্রশ্নবোধক) আকারে রূপান্তর করতে হয়।",
+        examples: [
+          { aff: "The sun rises in the east.", neg: "Doesn't the sun rise in the east?", bn: "সূর্য পূর্ব দিকে উদিত হয় (সূর্য কি পূর্ব দিকে উদিত হয় না?)।" },
+          { aff: "Health is wealth.", neg: "Isn't health wealth?", bn: "স্বাস্থ্যই সম্পদ (স্বাস্থ্য কি সম্পদ নয়?)।" }
+        ]
+      },
+      {
+        num: 22,
+        titleEn: "For a long time / Since",
+        titleBn: "For a long time বা সময়বাচক বাক্য",
+        structure: "Not + verb + for a short time",
+        explanation: "বাক্যে 'for a long time' (দীর্ঘদিন ধরে) থাকলে অর্থ অপরিবর্তিত রাখতে সাহায্যকারী ক্রিয়ার সাথে 'not' বসিয়ে শেষে 'for a short time' (অল্প সময়ের জন্য নয়) লেখা হয়।",
+        examples: [
+          { aff: "I have known him for a long time.", neg: "I have not known him for a short time.", bn: "আমি তাকে দীর্ঘদিন ধরে চিনি।" },
+          { aff: "They lived here for a long time.", neg: "They did not live here for a short time.", bn: "তারা এখানে দীর্ঘদিন বসবাস করেছিল।" }
+        ]
+      },
+      {
+        num: 23,
+        titleEn: "Too ... to (With 'for + object' or Passive sense)",
+        titleBn: "Too ... to (ভিন্ন Subject বা Passive অর্থে)",
+        structure: "Sub + verb + so + Adj + that + (Object এর Subjective রূপ) + cannot/could not + V1 + it",
+        explanation: "যদি 'Too + Adj + for + object + to + verb' থাকে, তবে 'that'-এর পর ওই object-এর Subjective রূপ (me -> I, him -> he) বসিয়ে cannot/could not আনতে হয়।",
+        examples: [
+          { aff: "The tea is too hot for me to drink.", neg: "The tea is so hot that I cannot drink it.", bn: "চা এতই গরম যে আমি পান করতে পারছি না।" },
+          { aff: "The load is too heavy for him to carry.", neg: "The load is so heavy that he cannot carry it.", bn: "বোঝাটি এতই ভারী যে সে বহন করতে পারছে না।" }
+        ]
+      },
+      {
+        num: 24,
+        titleEn: "Imperative / Advice / Reminder Sentences",
+        titleBn: "নির্দেশ, উপদেশ বা স্মরণ করিয়ে দেওয়া বাক্য",
+        structure: "Do not forget / Never + বিপরীত ক্রিয়া",
+        explanation: "আদেশ বা উপদেশমূলক বাক্যে 'Remember' থাকলে 'Do not forget' ব্যবহার করে অর্থ ঠিক রেখে Negative করা হয়।",
+        examples: [
+          { aff: "Remember to post the letter.", neg: "Do not forget to post the letter.", bn: "চিঠিটি পোস্ট করতে মনে রেখো (ভুলে যেও না)।" },
+          { aff: "Always respect your elders.", neg: "Never disrespect your elders.", bn: "সর্বদা বড়দের সম্মান করো।" }
+        ]
+      },
+      {
+        num: 25,
+        titleEn: "General Sentences using Antonym / Double Negative",
+        titleBn: "বিপরীত শব্দ (Antonym) বা Double Negative ব্যবহার",
+        structure: "Subject + Auxiliary + not + মূল শব্দের বিপরীত শব্দ (Antonym)",
+        explanation: "উপরের কোনো নির্দিষ্ট কাঠামো না থাকলে Tense ও Subject অনুযায়ী সাহায্যকারী ক্রিয়া (am/is/are/was/were বা do not/does not/did not) এনে মূল Adjective, Verb বা Adverb-এর বিপরীত শব্দ বসাতে হয়।",
+        examples: [
+          { aff: "She is a good girl.", neg: "She is not a bad girl.", bn: "সে একজন ভালো মেয়ে (খারাপ মেয়ে নয়)।" },
+          { aff: "They accepted my proposal.", neg: "They did not reject my proposal.", bn: "তারা আমার প্রস্তাব গ্রহণ করেছিল (প্রত্যাখ্যান করেনি)।" },
+          { aff: "His decision was wise.", neg: "His decision was not unwise.", bn: "তার সিদ্ধান্তটি বুদ্ধিমানের মতো ছিল।" }
+        ]
+      }
+    ];
+
+    // ==================== 2. 50 BOARD & ALL-CLASS PRACTICE QUESTIONS ====================
+    const practiceQuestions = [
+      {
+        id: 1,
+        level: "SSC",
+        ruleRef: "Rule 1 (Only - Person)",
+        aff: "Only the graduates should apply for the post.",
+        bn: "একমাত্র স্নাতক ডিগ্রিধারীদেরই পদটির জন্য আবেদন করা উচিত।",
+        neg: "None but the graduates should apply for the post.",
+        exp: "এখানে 'Only' দ্বারা ব্যক্তি (graduates) বোঝানো হয়েছে। তাই Rule 1 অনুযায়ী Only-এর পরিবর্তে বাক্যের শুরুতে 'None but' বসেছে।"
+      },
+      {
+        id: 2,
+        level: "Junior",
+        ruleRef: "Rule 2 (Only - Thing)",
+        aff: "A child likes only sweets.",
+        bn: "একটি শিশু কেবল মিষ্টিই পছন্দ করে।",
+        neg: "A child likes nothing but sweets.",
+        exp: "এখানে 'only' দ্বারা বস্তু (sweets) বোঝানো হয়েছে। তাই Rule 2 অনুযায়ী only-এর পরিবর্তে 'nothing but' বসেছে।"
+      },
+      {
+        id: 3,
+        level: "SSC",
+        ruleRef: "Rule 3 (Only - Number/Age)",
+        aff: "Rana is only twenty-two years old.",
+        bn: "রানার বয়স মাত্র বাইশ বছর।",
+        neg: "Rana is not more than twenty-two years old.",
+        exp: "এখানে 'only' দ্বারা বয়স/সংখ্যা (twenty-two) বোঝানো হয়েছে। তাই Rule 3 অনুযায়ী only-এর পরিবর্তে 'not more than' বসেছে।"
+      },
+      {
+        id: 4,
+        level: "HSC",
+        ruleRef: "Rule 4 (Must)",
+        aff: "We must yield to our fate.",
+        bn: "আমাদের অবশ্যই ভাগ্যের কাছে নতি স্বীকার করতে হবে।",
+        neg: "We cannot but yield to our fate.",
+        exp: "বাধ্যবাধকতা বোঝাতে 'must' থাকায় Rule 4 অনুযায়ী 'cannot but' বসেছে (অথবা 'cannot help yielding' লেখা যায়)।"
+      },
+      {
+        id: 5,
+        level: "SSC",
+        ruleRef: "Rule 4 (Had to - Past)",
+        aff: "He had to sell his ancestral land.",
+        bn: "তাকে তার পৈতৃক জমি বিক্রি করতে হয়েছিল।",
+        neg: "He could not but sell his ancestral land.",
+        exp: "বাক্যটি Past Tense-এ 'had to' যুক্ত থাকায় Rule 4 অনুযায়ী 'could not but' + V1 (sell) বসেছে।"
+      },
+      {
+        id: 6,
+        level: "Junior",
+        ruleRef: "Rule 5 (Both ... and)",
+        aff: "Both Karim and Rahim can do the work.",
+        bn: "করিম এবং রহিম উভয়েই কাজটি করতে পারে।",
+        neg: "Not only Karim but also Rahim can do the work.",
+        exp: "Rule 5 অনুযায়ী 'Both'-এর পরিবর্তে 'Not only' এবং 'and'-এর পরিবর্তে 'but also' ব্যবহার করা হয়েছে।"
+      },
+      {
+        id: 7,
+        level: "SSC",
+        ruleRef: "Rule 6 (Every)",
+        aff: "Every patriot loves his country.",
+        bn: "প্রত্যেক দেশপ্রেমিকই তাঁর দেশকে ভালোবাসেন।",
+        neg: "There is no patriot but loves his country.",
+        exp: "Rule 6 অনুযায়ী 'Every'-এর পরিবর্তে 'There is no' বসেছে এবং noun (patriot)-এর পর 'but' যুক্ত হয়েছে।"
+      },
+      {
+        id: 8,
+        level: "HSC",
+        ruleRef: "Rule 6 (Everybody)",
+        aff: "Everybody wants to be happy in life.",
+        bn: "প্রত্যেকেই জীবনে সুখী হতে চায়।",
+        neg: "There is nobody but wants to be happy in life.",
+        exp: "Rule 6 অনুযায়ী 'Everybody'-এর পরিবর্তে 'There is nobody but' বসিয়ে মূল অর্থ ঠিক রাখা হয়েছে।"
+      },
+      {
+        id: 9,
+        level: "Junior",
+        ruleRef: "Rule 7 (All)",
+        aff: "All men are mortal.",
+        bn: "সকল মানুষই মরণশীল।",
+        neg: "No men are immortal.",
+        exp: "Rule 7 অনুযায়ী 'All'-এর পরিবর্তে 'No' বসেছে এবং 'mortal' (মরণশীল)-এর বিপরীত শব্দ 'immortal' (অমর) বসেছে।"
+      },
+      {
+        id: 10,
+        level: "HSC",
+        ruleRef: "Rule 8 (As soon as)",
+        aff: "As soon as the rain stopped, we started our journey.",
+        bn: "বৃষ্টি থামতে না থামতেই আমরা আমাদের যাত্রা শুরু করলাম।",
+        neg: "No sooner had the rain stopped than we started our journey.",
+        exp: "Rule 8 অনুযায়ী 'As soon as'-এর পরিবর্তে 'No sooner had' বসেছে, verb-এর V3 (stopped) হয়েছে এবং কমার স্থানে 'than' বসেছে।"
+      },
+      {
+        id: 11,
+        level: "SSC",
+        ruleRef: "Rule 8 (As soon as)",
+        aff: "As soon as he saw me, he burst into tears.",
+        bn: "আমাকে দেখতে না দেখতেই সে কান্নায় ভেঙে পড়ল।",
+        neg: "No sooner had he seen me than he burst into tears.",
+        exp: "Past Indefinite 'saw'-এর Past Participle 'seen' হয়েছে এবং 'No sooner had ... than' কাঠামো বসেছে।"
+      },
+      {
+        id: 12,
+        level: "SSC",
+        ruleRef: "Rule 9 (Too ... to)",
+        aff: "The boy is too dull to understand this simple matter.",
+        bn: "ছেলেটি এতই নির্বোধ যে এই সহজ বিষয়টি বুঝতে পারে না।",
+        neg: "The boy is so dull that he cannot understand this simple matter.",
+        exp: "Rule 9 অনুযায়ী 'too'-এর বদলে 'so' ও 'to'-এর বদলে 'that' বসেছে এবং Present Tense হওয়ায় 'he cannot' যুক্ত হয়েছে।"
+      },
+      {
+        id: 13,
+        level: "HSC",
+        ruleRef: "Rule 9 (Too ... to - Past)",
+        aff: "She was too shocked to utter a single word.",
+        bn: "সে এতই মর্মাহত ছিল যে একটি শব্দও উচ্চারণ করতে পারেনি।",
+        neg: "She was so shocked that she could not utter a single word.",
+        exp: "বাক্যটি Past Tense ('was') হওয়ায় 'that she could not' ব্যবহৃত হয়েছে।"
+      },
+      {
+        id: 14,
+        level: "Junior",
+        ruleRef: "Rule 10 (Always)",
+        aff: "Honesty is always rewarded.",
+        bn: "সততা সর্বদা পুরস্কৃত হয়।",
+        neg: "Honesty is never unrewarded.",
+        exp: "Rule 10 অনুযায়ী 'always'-এর পরিবর্তে 'never' এবং 'rewarded'-এর বিপরীত শব্দ 'unrewarded' বসেছে।"
+      },
+      {
+        id: 15,
+        level: "SSC",
+        ruleRef: "Rule 10 (Always)",
+        aff: "He always attends his classes.",
+        bn: "সে সর্বদা তার ক্লাসে উপস্থিত থাকে।",
+        neg: "He never misses his classes.",
+        exp: "'always'-এর পরিবর্তে 'never' এবং 'attends' (উপস্থিত থাকা)-এর বিপরীত ক্রিয়া 'misses' (অনুপস্থিত থাকা) বসেছে।"
+      },
+      {
+        id: 16,
+        level: "SSC",
+        ruleRef: "Rule 11 (Sometimes)",
+        aff: "My friend sometimes comes to see me.",
+        bn: "আমার বন্ধু মাঝে মাঝে আমাকে দেখতে আসে।",
+        neg: "My friend does not always come to see me.",
+        exp: "Rule 11 অনুযায়ী Present Indefinite Tense হওয়ায় 'does not always' এবং মূল verb-এর base form 'come' বসেছে।"
+      },
+      {
+        id: 17,
+        level: "HSC",
+        ruleRef: "Rule 11 (Sometimes)",
+        aff: "The poor are sometimes happy.",
+        bn: "দরিদ্ররা মাঝে মাঝে সুখী হয়।",
+        neg: "The poor are not always happy.",
+        exp: "Auxiliary verb 'are' থাকায় এর পরে 'not always' বসিয়ে অর্থ ঠিক রাখা হয়েছে।"
+      },
+      {
+        id: 18,
+        level: "Junior",
+        ruleRef: "Rule 12 (Many)",
+        aff: "There are many trees in our school garden.",
+        bn: "আমাদের বিদ্যালয়ের বাগানে অনেক গাছ আছে।",
+        neg: "There are not a few trees in our school garden.",
+        exp: "Rule 12 অনুযায়ী গণনাযোগ্য 'many'-এর পরিবর্তে 'not a few' বসেছে।"
+      },
+      {
+        id: 19,
+        level: "SSC",
+        ruleRef: "Rule 13 (A few)",
+        aff: "He bought a few story books yesterday.",
+        bn: "সে গতকাল অল্প কয়েকটি গল্পের বই কিনেছিল।",
+        neg: "He did not buy many story books yesterday.",
+        exp: "Rule 13 অনুযায়ী Past Tense হওয়ায় 'did not buy' এবং 'a few'-এর পরিবর্তে 'many' বসেছে।"
+      },
+      {
+        id: 20,
+        level: "SSC",
+        ruleRef: "Rule 14 (Much / A lot of)",
+        aff: "A patriot has much love for his motherland.",
+        bn: "একজন দেশপ্রেমিকের তাঁর মাতৃভূমির প্রতি প্রচুর ভালোবাসা থাকে।",
+        neg: "A patriot does not have a little love for his motherland.",
+        exp: "Rule 14 অনুযায়ী 'much'-এর পরিবর্তে 'not a little' ব্যবহার করে মূল অর্থ বজায় রাখা হয়েছে।"
+      },
+      {
+        id: 21,
+        level: "Junior",
+        ruleRef: "Rule 15 (A little)",
+        aff: "I need a little sugar for my tea.",
+        bn: "আমার চায়ের জন্য সামান্য চিনি প্রয়োজন।",
+        neg: "I do not need much sugar for my tea.",
+        exp: "Rule 15 অনুযায়ী 'a little'-এর পরিবর্তে 'not much' বসেছে।"
+      },
+      {
+        id: 22,
+        level: "SSC",
+        ruleRef: "Rule 16 (Superlative - The)",
+        aff: "Cox's Bazar is the longest sea beach in the world.",
+        bn: "কক্সবাজার পৃথিবীর দীর্ঘতম সমুদ্রসৈকত।",
+        neg: "No other sea beach in the world is as long as Cox's Bazar.",
+        exp: "Rule 16 অনুযায়ী 'The + Superlative' থাকায় 'No other' দিয়ে শুরু করে Positive Degree (as long as) ব্যবহার করা হয়েছে।"
+      },
+      {
+        id: 23,
+        level: "HSC",
+        ruleRef: "Rule 16 (Superlative - The)",
+        aff: "Corruption is the most dangerous problem in our country.",
+        bn: "দুর্নীতি আমাদের দেশের সবচেয়ে বিপজ্জনক সমস্যা।",
+        neg: "No other problem in our country is as dangerous as corruption.",
+        exp: "'The most dangerous' এর পরিবর্তে 'No other ... is as dangerous as' কাঠামো ব্যবহৃত হয়েছে।"
+      },
+      {
+        id: 24,
+        level: "HSC",
+        ruleRef: "Rule 17 (Superlative - One of the)",
+        aff: "Dhaka is one of the oldest cities in South Asia.",
+        bn: "ঢাকা দক্ষিণ এশিয়ার অন্যতম প্রাচীন শহর।",
+        neg: "Very few cities in South Asia are as old as Dhaka.",
+        exp: "Rule 17 অনুযায়ী 'One of the' থাকায় 'Very few' + plural noun (cities) + plural verb (are) + as old as বসেছে।"
+      },
+      {
+        id: 25,
+        level: "SSC",
+        ruleRef: "Rule 17 (Superlative - One of the)",
+        aff: "Kazi Nazrul Islam is one of the greatest poets of Bengal.",
+        bn: "কাজী নজরুল ইসলাম বাংলার অন্যতম শ্রেষ্ঠ কবি।",
+        neg: "Very few poets of Bengal are as great as Kazi Nazrul Islam.",
+        exp: "'One of the greatest' কে Negative করতে 'Very few ... are as great as' ব্যবহার করা হয়েছে।"
+      },
+      {
+        id: 26,
+        level: "SSC",
+        ruleRef: "Rule 18 (Comparative - Than)",
+        aff: "Gold is more valuable than silver.",
+        bn: "সোনা রুপার চেয়ে বেশি মূল্যবান।",
+        neg: "Silver is not as valuable as gold.",
+        exp: "Rule 18 অনুযায়ী দ্বিতীয় Subject 'Silver' আগে এসেছে এবং 'is not as valuable as gold' বসেছে।"
+      },
+      {
+        id: 27,
+        level: "HSC",
+        ruleRef: "Rule 18 (Comparative - Than)",
+        aff: "He worked harder than I.",
+        bn: "সে আমার চেয়ে বেশি কঠোর পরিশ্রম করেছিল।",
+        neg: "I did not work as hard as he.",
+        exp: "Past Indefinite Tense হওয়ায় 'I did not work as hard as he' বসেছে।"
+      },
+      {
+        id: 28,
+        level: "HSC",
+        ruleRef: "Rule 19 (Comparative - Than any other)",
+        aff: "Truthfulness is greater than any other virtue.",
+        bn: "সত্যবাদিতা অন্য যেকোনো গুণের চেয়ে মহৎ।",
+        neg: "No other virtue is as great as truthfulness.",
+        exp: "Rule 19 অনুযায়ী 'than any other' থাকায় 'No other' দিয়ে শুরু করে Positive Degree করা হয়েছে।"
+      },
+      {
+        id: 29,
+        level: "SSC",
+        ruleRef: "Rule 20 (As ... as)",
+        aff: "A tiger is as ferocious as a lion.",
+        bn: "একটি বাঘ একটি সিংহের মতোই হিংস্র।",
+        neg: "A tiger is not less ferocious than a lion.",
+        exp: "Rule 20 অনুযায়ী প্রথম 'as'-এর পরিবর্তে 'not less' এবং দ্বিতীয় 'as'-এর পরিবর্তে 'than' বসেছে।"
+      },
+      {
+        id: 30,
+        level: "HSC",
+        ruleRef: "Rule 20 (As ... as)",
+        aff: "Mobile phone is as useful as computer.",
+        bn: "মোবাইল ফোন কম্পিউটারের মতোই প্রয়োজনীয়।",
+        neg: "Mobile phone is not less useful than computer.",
+        exp: "'as useful as'-এর পরিবর্তে 'not less useful than' বসিয়ে অর্থ অটুট রাখা হয়েছে।"
+      },
+      {
+        id: 31,
+        level: "Junior",
+        ruleRef: "Rule 21 (Universal Truth)",
+        aff: "Knowledge is power.",
+        bn: "জ্ঞানই শক্তি।",
+        neg: "Isn't knowledge power?",
+        exp: "Rule 21 অনুযায়ী চিরন্তন সত্য বাক্য হওয়ায় এটিকে Negative-Interrogative ('Isn't knowledge power?') করা হয়েছে।"
+      },
+      {
+        id: 32,
+        level: "SSC",
+        ruleRef: "Rule 21 (Universal Truth)",
+        aff: "The earth moves round the sun.",
+        bn: "পৃথিবী সূর্যের চারদিকে ঘোরে।",
+        neg: "Doesn't the earth move round the sun?",
+        exp: "বৈজ্ঞানিক চিরন্তন সত্য হওয়ায় Present Indefinite অনুযায়ী 'Doesn't' দিয়ে প্রশ্নবোধক নেতিবাচক করা হয়েছে।"
+      },
+      {
+        id: 33,
+        level: "HSC",
+        ruleRef: "Rule 22 (For a long time)",
+        aff: "We have been waiting here for a long time.",
+        bn: "আমরা দীর্ঘক্ষণ ধরে এখানে অপেক্ষা করছি।",
+        neg: "We have not been waiting here for a short time.",
+        exp: "Rule 22 অনুযায়ী 'have not' যুক্ত করে 'for a long time'-এর বিপরীতে 'for a short time' বসানো হয়েছে।"
+      },
+      {
+        id: 34,
+        level: "HSC",
+        ruleRef: "Rule 23 (Too ... to with 'for + object')",
+        aff: "The math problem was too hard for the students to solve.",
+        bn: "অঙ্কটি ছাত্রদের সমাধান করার জন্য অতিরিক্ত কঠিন ছিল।",
+        neg: "The math problem was so hard that the students could not solve it.",
+        exp: "Rule 23 অনুযায়ী 'for the students' অংশটি 'that'-এর পর Subject হয়েছে এবং Past Tense হওয়ায় 'could not solve it' বসেছে।"
+      },
+      {
+        id: 35,
+        level: "Junior",
+        ruleRef: "Rule 24 (Imperative / Reminder)",
+        aff: "Remember to switch off the fan.",
+        bn: "ফ্যানটি বন্ধ করতে মনে রেখো।",
+        neg: "Do not forget to switch off the fan.",
+        exp: "Rule 24 অনুযায়ী 'Remember'-এর পরিবর্তে 'Do not forget' বসিয়ে আদেশমূলক অর্থ অক্ষুণ্ণ রাখা হয়েছে।"
+      },
+      {
+        id: 36,
+        level: "Junior",
+        ruleRef: "Rule 25 (Antonym)",
+        aff: "Man is mortal.",
+        bn: "মানুষ মরণশীল।",
+        neg: "Man is not immortal.",
+        exp: "Rule 25 অনুযায়ী 'is'-এর পর 'not' এবং 'mortal'-এর বিপরীত শব্দ 'immortal' বসেছে।"
+      },
+      {
+        id: 37,
+        level: "SSC",
+        ruleRef: "Rule 25 (Antonym - Verb)",
+        aff: "I shall remember your kindness.",
+        bn: "আমি তোমার দয়ার কথা মনে রাখব।",
+        neg: "I shall not forget your kindness.",
+        exp: "'shall'-এর পর 'not' এবং 'remember' (মনে রাখা)-এর বিপরীত verb 'forget' (ভুলে যাওয়া) বসেছে।"
+      },
+      {
+        id: 38,
+        level: "HSC",
+        ruleRef: "Rule 25 (Double Negative)",
+        aff: "His contribution to the nation is undeniable.",
+        bn: "জাতির প্রতি তাঁর অবদান অনস্বীকার্য।",
+        neg: "His contribution to the nation is not deniable.",
+        exp: "'undeniable' (অনস্বীকার্য)-এর বিপরীত 'deniable' (অস্বীকারযোগ্য) নিয়ে 'not deniable' করা হয়েছে।"
+      },
+      {
+        id: 39,
+        level: "SSC",
+        ruleRef: "Rule 25 (Antonym)",
+        aff: "A frugal man is happy.",
+        bn: "একজন মিতব্যয়ী মানুষ সুখী।",
+        neg: "A frugal man is not unhappy.",
+        exp: "'happy'-এর বিপরীত শব্দ 'unhappy' ব্যবহার করে 'is not unhappy' করা হয়েছে।"
+      },
+      {
+        id: 40,
+        level: "HSC",
+        ruleRef: "Rule 1 (Only - Person)",
+        aff: "Only the wearer knows where the shoe pinches.",
+        bn: "যার জুতা সেই জানে কোথায় লাগে (ভুক্তভোগীই কেবল কষ্ট বোঝে)।",
+        neg: "None but the wearer knows where the shoe pinches.",
+        exp: "প্রবাদবাক্যটিতে 'Only the wearer' ব্যক্তিকে নির্দেশ করায় 'None but the wearer' বসেছে।"
+      },
+      {
+        id: 41,
+        level: "SSC",
+        ruleRef: "Rule 2 (Only - Abstract Thing)",
+        aff: "He wants only peace in his life.",
+        bn: "সে তার জীবনে কেবল শান্তিই চায়।",
+        neg: "He wants nothing but peace in his life.",
+        exp: "'peace' (শান্তি) একটি বিমূর্ত বিষয় হওয়ায় 'only'-এর পরিবর্তে 'nothing but' বসেছে।"
+      },
+      {
+        id: 42,
+        level: "HSC",
+        ruleRef: "Rule 4 (Cannot help + ing)",
+        aff: "Every citizen must abide by the laws of the country.",
+        bn: "প্রত্যেক নাগরিককে অবশ্যই দেশের আইন মেনে চলতে হবে।",
+        neg: "Every citizen cannot help abiding by the laws of the country.",
+        exp: "Rule 4-এর দ্বিতীয় বিকল্প অনুযায়ী 'must'-এর পরিবর্তে 'cannot help' এবং 'abide'-এর সাথে 'ing' (abiding) যুক্ত হয়েছে।"
+      },
+      {
+        id: 43,
+        level: "SSC",
+        ruleRef: "Rule 5 (Both ... and)",
+        aff: "They took both food and shelter.",
+        bn: "তারা খাবার এবং আশ্রয় উভয়ই নিয়েছিল।",
+        neg: "They took not only food but also shelter.",
+        exp: "'both ... and'-এর পরিবর্তে 'not only ... but also' বসেছে।"
+      },
+      {
+        id: 44,
+        level: "HSC",
+        ruleRef: "Rule 6 (Every + Noun)",
+        aff: "Every rose has a thorn.",
+        bn: "প্রত্যেক গোলাপেই কাঁটা থাকে।",
+        neg: "There is no rose without a thorn. / There is no rose but has a thorn.",
+        exp: "'Every rose' থাকায় 'There is no rose but has a thorn' (অথবা without a thorn) বসেছে।"
+      },
+      {
+        id: 45,
+        level: "HSC",
+        ruleRef: "Rule 8 (As soon as - Present)",
+        aff: "As soon as he reaches home, he calls his mother.",
+        bn: "সে বাড়ি পৌঁছাতে না পৌঁছাতেই তার মাকে ফোন করে।",
+        neg: "No sooner does he reach home than he calls his mother.",
+        exp: "বাক্যটি Present Indefinite Tense হওয়ায় 'No sooner does + Sub + V1 ... than' ব্যবহৃত হয়েছে।"
+      },
+      {
+        id: 46,
+        level: "SSC",
+        ruleRef: "Rule 9 (Too ... to)",
+        aff: "He is too honest to take a bribe.",
+        bn: "সে এতই সৎ যে ঘুষ নিতে পারে না।",
+        neg: "He is so honest that he cannot take a bribe.",
+        exp: "'too honest to take'-এর পরিবর্তে 'so honest that he cannot take' বসেছে।"
+      },
+      {
+        id: 47,
+        level: "HSC",
+        ruleRef: "Rule 16 (Superlative - The)",
+        aff: "Freedom is the greatest achievement of a nation.",
+        bn: "স্বাধীনতা একটি জাতির শ্রেষ্ঠ অর্জন।",
+        neg: "No other achievement of a nation is as great as freedom.",
+        exp: "'the greatest achievement' থাকায় 'No other achievement ... is as great as freedom' হয়েছে।"
+      },
+      {
+        id: 48,
+        level: "SSC",
+        ruleRef: "Rule 18 (Comparative - Than)",
+        aff: "Prevention is better than cure.",
+        bn: "প্রতিকারের চেয়ে প্রতিরোধ উত্তম।",
+        neg: "Cure is not as good as prevention.",
+        exp: "'Cure' আগে এসে 'is not as good as prevention' রূপে অর্থ ঠিক রেখে Negative হয়েছে।"
+      },
+      {
+        id: 49,
+        level: "Junior",
+        ruleRef: "Rule 25 (Antonym)",
+        aff: "He is a regular student.",
+        bn: "সে একজন নিয়মিত ছাত্র।",
+        neg: "He is not an irregular student.",
+        exp: "'regular'-এর বিপরীত শব্দ 'irregular' (যার আগে article 'an' বসে) ব্যবহার করে Negative করা হয়েছে।"
+      },
+      {
+        id: 50,
+        level: "HSC",
+        ruleRef: "Rule 25 (Antonym - Complex sense)",
+        aff: "Everybody doubts his honesty.",
+        bn: "প্রত্যেকেই তার সততা নিয়ে সন্দেহ করে।",
+        neg: "Nobody believes his honesty.",
+        exp: "'Everybody'-এর বিপরীত 'Nobody' এবং 'doubts' (সন্দেহ করা)-এর বিপরীত 'believes' (বিশ্বাস করা) বসিয়ে অর্থ অপরিবর্তিত রাখা হয়েছে।"
+      }
+    ];
+
+    // ==================== 3. STATE & RENDER FUNCTIONS ====================
+    let currentQuestions = [...practiceQuestions];
+    let ruleStates = {}; // { num: 0 | 1 | 2 | 3 }
+    let allRulesExpanded = false;
+    let questionStates = {}; // { id: 0 | 1 | 2 | 3 }
+    let currentFilter = "ALL";
+    let laserEnabled = true;
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    // Web Audio API Tactile Click Sound
+    function playTactileSound(step = 1) {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const freqs = [360, 480, 620, 300];
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freqs[step % freqs.length], audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.065);
+
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.065);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.07);
+      } catch (e) {
+        // Ignore audio errors if blocked
+      }
+    }
+
+    // Ripple Effect on Touch/Click
+    function triggerRipple(e, el) {
+      const rect = el.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      const diameter = Math.max(rect.width, rect.height);
+      const radius = diameter / 2;
+      const clientX = e.clientX || (e.touches && e.touches[0].clientX) || rect.left + radius;
+      const clientY = e.clientY || (e.touches && e.touches[0].clientY) || rect.top + radius;
+
+      ripple.style.width = ripple.style.height = `${diameter}px`;
+      ripple.style.left = `${clientX - rect.left - radius}px`;
+      ripple.style.top = `${clientY - rect.top - radius}px`;
+      ripple.classList.add('ripple');
+
+      const existing = el.querySelector('.ripple');
+      if (existing) existing.remove();
+      el.appendChild(ripple);
+    }
+
+    // Render 25 Rules (Progressive Step-by-Step Reveal)
+    function renderRules(rulesList) {
+      const container = document.getElementById('rulesContainer');
+      if (rulesList.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-10 text-lg" style="color: var(--text-muted);">দুঃখিত, আপনার খোঁজা শব্দে কোনো নিয়ম পাওয়া যায়নি।</div>`;
+        return;
+      }
+
+      const stepHints = [
+        "👆 ১ম ক্লিক: গঠন (Structure) দেখুন",
+        "👆 ২য় ক্লিক: বাংলা ব্যাখ্যা দেখুন",
+        "👆 ৩য় ক্লিক: উদাহরণ ও অর্থ দেখুন",
+        "🔄 ৪র্থ ক্লিক: বন্ধ করুন"
+      ];
+
+      const stepBadgeColors = [
+        "bg-cyan-500/20 text-cyan-400 border-cyan-500/40",
+        "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+        "bg-amber-500/20 text-amber-400 border-amber-500/40",
+        "bg-rose-500/20 text-rose-400 border-rose-500/40"
+      ];
+
+      container.innerHTML = rulesList.map(rule => {
+        const state = ruleStates[rule.num] || 0;
+        return `
+        <article class="rgb-border-wrap">
+          <div
+            onclick="advanceRuleState(${rule.num}, event, this)"
+            class="card-3d tactile-press p-5 sm:p-6 cursor-pointer select-none flex flex-col justify-between"
+            role="button"
+            tabindex="0"
+            aria-label="Rule ${rule.num}"
+          >
+            <div>
+              <!-- Compact Rule Title Header (Always Visible at Step 0) -->
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="w-10 h-10 rounded-xl flex items-center justify-center font-extrabold text-base shrink-0 shadow mt-0.5" style="background: var(--badge-bg); color: var(--badge-text);">
+                    ${String(rule.num).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h4 class="font-bold text-base sm:text-lg leading-relaxed">${rule.titleEn}</h4>
+                    <p class="text-sm sm:text-base font-semibold leading-relaxed" style="color: var(--accent);">${rule.titleBn}</p>
+                  </div>
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-bold border no-print shrink-0 ${stepBadgeColors[state]}">
+                  ${stepHints[state]}
+                </span>
+              </div>
+
+              <!-- Step 1: Formula / Structure -->
+              <div class="${state >= 1 ? 'block reveal-anim' : 'hidden'} print-show-all inner-box-3d px-4 py-3 mt-4 border-l-4 border-cyan-400">
+                <span class="text-xs sm:text-sm font-bold block mb-1" style="color: var(--accent-2);">📐 গঠন (Structure):</span>
+                <p class="text-sm sm:text-base font-semibold leading-relaxed">${rule.structure}</p>
+              </div>
+
+              <!-- Step 2: Detailed Explanation -->
+              <div class="${state >= 2 ? 'block reveal-anim' : 'hidden'} print-show-all inner-box-3d px-4 py-3 mt-3 border-l-4 border-emerald-400">
+                <p class="text-sm sm:text-base leading-loose" style="color: var(--text-muted);">
+                  <strong style="color: var(--text-main);">💡 বিস্তারিত ব্যাখ্যা:</strong> ${rule.explanation}
+                </p>
+              </div>
+
+              <!-- Step 3: Examples -->
+              <div class="${state >= 3 ? 'block reveal-anim' : 'hidden'} print-show-all space-y-2.5 pt-3 mt-3 border-t" style="border-color: var(--border-3d);">
+                <div class="text-xs sm:text-sm font-bold" style="color: var(--accent);">📝 উদাহরণ ও বাংলা অর্থ (Examples):</div>
+                ${rule.examples.map(ex => `
+                  <div class="inner-box-3d p-3.5 text-sm sm:text-base space-y-1.5 leading-relaxed">
+                    <div><span class="font-bold text-amber-400">Aff:</span> ${ex.aff}</div>
+                    <div><span class="font-bold text-emerald-400">Neg:</span> <span class="font-semibold">${ex.neg}</span></div>
+                    <div class="text-xs sm:text-sm pt-0.5 leading-relaxed" style="color: var(--text-muted);">🇧🇩 অর্থ: ${ex.bn}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Step Dots Footer -->
+            <div class="flex items-center justify-between pt-3 mt-4 border-t text-xs no-print" style="border-color: var(--border-3d); color: var(--text-muted);">
+              <span>ধাপ: ${state} / 3 উন্মুক্ত</span>
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full ${state >= 1 ? 'bg-cyan-400 scale-110' : 'bg-slate-600'} transition-all"></span>
+                <span class="w-2.5 h-2.5 rounded-full ${state >= 2 ? 'bg-emerald-400 scale-110' : 'bg-slate-600'} transition-all"></span>
+                <span class="w-2.5 h-2.5 rounded-full ${state >= 3 ? 'bg-amber-400 scale-110' : 'bg-slate-600'} transition-all"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `}).join('');
+    }
+
+    // Advance Rule Card Step on Click
+    function advanceRuleState(num, event, el) {
+      triggerRipple(event, el);
+      const current = ruleStates[num] || 0;
+      const next = (current + 1) % 4;
+      ruleStates[num] = next;
+      playTactileSound(next);
+      filterRules();
+    }
+
+    // Expand / Collapse All 25 Rules
+    function toggleAllRules() {
+      allRulesExpanded = !allRulesExpanded;
+      const btn = document.getElementById('btn-toggle-all-rules');
+      if (allRulesExpanded) {
+        grammarRules.forEach(r => ruleStates[r.num] = 3);
+        btn.textContent = "📁 সব নিয়ম সংকুচিত করুন";
+        playTactileSound(2);
+      } else {
+        ruleStates = {};
+        btn.textContent = "📂 সব নিয়ম একসাথে খুলুন";
+        playTactileSound(3);
+      }
+      filterRules();
+    }
+
+    // Filter Rules via Search
+    function filterRules() {
+      const q = document.getElementById('ruleSearch').value.toLowerCase().trim();
+      const filtered = grammarRules.filter(r =>
+        r.titleEn.toLowerCase().includes(q) ||
+        r.titleBn.toLowerCase().includes(q) ||
+        r.structure.toLowerCase().includes(q) ||
+        r.explanation.toLowerCase().includes(q) ||
+        String(r.num) === q
+      );
+      renderRules(filtered);
+    }
+
+    // Render 50 Interactive Questions
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      const filtered = currentFilter === "ALL"
+        ? currentQuestions
+        : currentQuestions.filter(q => q.level === currentFilter);
+
+      container.innerHTML = filtered.map((q, index) => {
+        const state = questionStates[q.id] || 0;
+        const stepLabels = [
+          "👆 ১ম ক্লিক: বাংলা অর্থ দেখুন",
+          "👆 ২য় ক্লিক: সঠিক উত্তর দেখুন",
+          "👆 ৩য় ক্লিক: বিস্তারিত ব্যাখ্যা দেখুন",
+          "🔄 ৪র্থ ক্লিক: রিসেট করুন"
+        ];
+        const stepColors = [
+          "bg-cyan-500/20 text-cyan-400 border-cyan-500/40",
+          "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+          "bg-amber-500/20 text-amber-400 border-amber-500/40",
+          "bg-rose-500/20 text-rose-400 border-rose-500/40"
+        ];
+
+        return `
+          <div class="rgb-border-wrap">
+            <div
+              onclick="advanceQuestionState(${q.id}, event, this)"
+              class="card-3d tactile-press p-5 sm:p-6 cursor-pointer select-none h-full flex flex-col justify-between"
+              role="button"
+              tabindex="0"
+              aria-label="Question ${q.id}"
+            >
+              <div>
+                <!-- Top Badges -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 rounded-lg font-en font-extrabold text-xs bg-blue-600 text-white shadow">
+                      Q-${String(q.id).padStart(2, '0')}
+                    </span>
+                    <span class="px-2.5 py-1 rounded-lg font-en font-bold text-xs" style="background: var(--badge-bg); color: var(--badge-text);">
+                      ${q.level}
+                    </span>
+                    <span class="text-xs font-en opacity-75 hidden sm:inline">${q.ruleRef}</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full text-xs font-bold border no-print ${stepColors[state]}">
+                    ${stepLabels[state]}
+                  </span>
+                </div>
+
+                <!-- Affirmative Question -->
+                <div class="mb-4">
+                  <div class="text-xs font-bold uppercase tracking-wider mb-1 text-amber-400">Affirmative Sentence:</div>
+                  <p class="font-en text-base sm:text-lg font-bold leading-snug">
+                    "${q.aff}"
+                  </p>
+                </div>
+
+                <!-- Step 1: Bengali Meaning -->
+                <div class="${state >= 1 ? 'block reveal-anim' : 'hidden'} print-show-all inner-box-3d p-3 mb-3 border-l-4 border-cyan-400">
+                  <div class="text-xs font-bold text-cyan-400 mb-0.5">🇧🇩 বাংলা অর্থ (Bengali Meaning):</div>
+                  <p class="text-sm sm:text-base">${q.bn}</p>
+                </div>
+
+                <!-- Step 2: Correct Negative Answer -->
+                <div class="${state >= 2 ? 'block reveal-anim' : 'hidden'} print-show-all inner-box-3d p-3 mb-3 border-l-4 border-emerald-400">
+                  <div class="text-xs font-bold text-emerald-400 mb-0.5">✅ সঠিক উত্তর (Negative Answer):</div>
+                  <p class="font-en text-sm sm:text-base font-extrabold text-emerald-400">${q.neg}</p>
+                </div>
+
+                <!-- Step 3: Detailed Explanation -->
+                <div class="${state >= 3 ? 'block reveal-anim' : 'hidden'} print-show-all inner-box-3d p-3 border-l-4 border-amber-400">
+                  <div class="text-xs font-bold text-amber-400 mb-0.5">💡 সঠিক বিস্তারিত ব্যাখ্যা (Explanation):</div>
+                  <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">${q.exp}</p>
+                </div>
+              </div>
+
+              <!-- Step Indicator Dots -->
+              <div class="flex items-center justify-between pt-4 mt-3 border-t text-xs no-print" style="border-color: var(--border-3d); color: var(--text-muted);">
+                <span>ধাপ: ${state} / 3 সম্পন্ন</span>
+                <div class="flex gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full ${state >= 1 ? 'bg-cyan-400 scale-110' : 'bg-slate-600'} transition-all"></span>
+                  <span class="w-2.5 h-2.5 rounded-full ${state >= 2 ? 'bg-emerald-400 scale-110' : 'bg-slate-600'} transition-all"></span>
+                  <span class="w-2.5 h-2.5 rounded-full ${state >= 3 ? 'bg-amber-400 scale-110' : 'bg-slate-600'} transition-all"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      updateProgress();
+    }
+
+    // Handle Multi-Stage Click on Question Card
+    function advanceQuestionState(id, event, el) {
+      triggerRipple(event, el);
+      const current = questionStates[id] || 0;
+      const next = (current + 1) % 4;
+      questionStates[id] = next;
+      playTactileSound(next);
+      renderQuestions();
+    }
+
+    // Update Progress Counter
+    function updateProgress() {
+      const practicedCount = Object.values(questionStates).filter(s => s > 0).length;
+      document.getElementById('progressCounter').textContent = `${practicedCount} / 50`;
+    }
+
+    // Filter Questions by Level
+    function filterQuestions(level) {
+      currentFilter = level;
+      playTactileSound(1);
+      document.querySelectorAll('.q-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === level) {
+          btn.className = "q-filter-btn btn-3d px-3.5 py-1.5 text-xs bg-cyan-500 text-slate-950 font-bold";
+        } else {
+          btn.className = "q-filter-btn btn-3d px-3.5 py-1.5 text-xs bg-slate-700 text-white";
+        }
+      });
+      renderQuestions();
+    }
+
+    // Shuffle Questions
+    function shuffleQuestions() {
+      playTactileSound(2);
+      for (let i = currentQuestions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];
+      }
+      renderQuestions();
+    }
+
+    // Reset All Questions
+    function resetAllQuestions() {
+      playTactileSound(3);
+      questionStates = {};
+      currentQuestions = [...practiceQuestions];
+      renderQuestions();
+    }
+
+    // Theme Switcher
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      playTactileSound(1);
+    }
+
+    // Toggle Laser
+    function toggleLaser() {
+      laserEnabled = !laserEnabled;
+      const btn = document.getElementById('btn-laser');
+      btn.textContent = laserEnabled ? '🔴 লেজার: চালু' : '⚪ লেজার: বন্ধ';
+      playTactileSound(1);
+    }
+
+    // Toggle Sound
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById('btn-sound');
+      btn.textContent = soundEnabled ? '🔊 সাউন্ড: চালু' : '🔇 সাউন্ড: বন্ধ';
+      if (soundEnabled) playTactileSound(2);
+    }
+
+    // Print Function
+    function prepareAndPrint() {
+      playTactileSound(2);
+      window.print();
+    }
+
+    // ==================== 4. REALISTIC LASER POINTER BEAM ENGINE ====================
+    const canvas = document.getElementById('laserCanvas');
+    const ctx = canvas.getContext('2d');
+    let points = [];
+    let pointer = { x: -100, y: -100, active: false };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function addPoint(x, y) {
+      pointer.x = x;
+      pointer.y = y;
+      pointer.active = true;
+      points.push({ x, y, life: 1.0 });
+      if (points.length > 28) points.shift();
+    }
+
+    window.addEventListener('mousemove', e => addPoint(e.clientX, e.clientY));
+    window.addEventListener('touchmove', e => {
+      if (e.touches.length > 0) {
+        addPoint(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+    window.addEventListener('touchstart', e => {
+      if (e.touches.length > 0) {
+        addPoint(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    function animateLaser() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (laserEnabled && points.length > 0) {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const coreColor = theme === 'rgb' ? '#ff0055' : (theme === 'white' ? '#ef4444' : '#00f5d4');
+        const glowColor = theme === 'rgb' ? 'rgba(255, 0, 85, 0.85)' : (theme === 'white' ? 'rgba(239, 68, 68, 0.7)' : 'rgba(0, 245, 212, 0.8)');
+
+        // Draw glowing laser tail
+        for (let i = 1; i < points.length; i++) {
+          const p1 = points[i - 1];
+          const p2 = points[i];
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = glowColor;
+          ctx.lineWidth = p2.life * 7;
+          ctx.lineCap = 'round';
+          ctx.shadowBlur = 16;
+          ctx.shadowColor = coreColor;
+          ctx.stroke();
+
+          // Bright white inner filament
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${p2.life * 0.9})`;
+          ctx.lineWidth = p2.life * 2.2;
+          ctx.stroke();
+        }
+
+        // Draw intense laser dot at tip
+        const tip = points[points.length - 1];
+        if (tip && tip.life > 0.1) {
+          ctx.beginPath();
+          ctx.arc(tip.x, tip.y, 6, 0, Math.PI * 2);
+          ctx.fillStyle = coreColor;
+          ctx.shadowBlur = 24;
+          ctx.shadowColor = coreColor;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(tip.x, tip.y, 2.8, 0, Math.PI * 2);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+        }
+
+        // Decay trail points
+        for (let i = 0; i < points.length; i++) {
+          points[i].life -= 0.045;
+        }
+        points = points.filter(p => p.life > 0);
+      }
+
+      requestAnimationFrame(animateLaser);
+    }
+
+    // Initialize on Window Load
+    window.onload = function () {
+      renderRules(grammarRules);
+      renderQuestions();
+      animateLaser();
+    };
+  </script>
+</body>
+</html>
