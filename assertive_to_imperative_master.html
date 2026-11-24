@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="rgb" data-laser="on">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assertive to Imperative Sentence — ১৮টি নিয়ম ও ৫০টি অনুশীলনী</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* =========================================================================
+       THEME DESIGN TOKENS & TYPOGRAPHY ('Tiro Bangla' + Inter + JetBrains Mono)
+       ========================================================================= */
+    :root {
+      --font-bn: 'Tiro Bangla', 'Inter', system-ui, -apple-system, sans-serif;
+      --font-en: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Real RGB Default Theme */
+      --bg-page: #05070f;
+      --bg-header: rgba(9, 13, 26, 0.86);
+      --bg-surface: rgba(13, 19, 36, 0.88);
+      --bg-surface-alt: rgba(19, 28, 52, 0.72);
+      --bg-hero: radial-gradient(circle at 18% 20%, rgba(16, 185, 129, 0.24), transparent 45%),
+                 radial-gradient(circle at 82% 24%, rgba(236, 72, 153, 0.22), transparent 45%),
+                 radial-gradient(circle at 52% 88%, rgba(56, 189, 248, 0.22), transparent 50%),
+                 linear-gradient(135deg, #090e1c 0%, #0f172a 55%, #091322 100%);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(148, 163, 184, 0.22);
+      --accent-cyan: #22d3ee;
+      --accent-emerald: #34d399;
+      --accent-pink: #f472b6;
+      --accent-violet: #a78bfa;
+      --accent-amber: #fbbf24;
+      --shadow-3d: 0 6px 0 rgba(2, 6, 23, 0.9), 0 14px 28px rgba(0, 0, 0, 0.55);
+      --shadow-3d-sm: 0 4px 0 rgba(2, 6, 23, 0.85), 0 8px 16px rgba(0, 0, 0, 0.4);
+      --shadow-3d-active: 0 1px 0 rgba(2, 6, 23, 0.9), 0 4px 10px rgba(0, 0, 0, 0.45);
+      --rgb-border-grad: linear-gradient(90deg, #22d3ee, #a78bfa, #f472b6, #34d399, #22d3ee);
+      --chip-bg: rgba(30, 41, 59, 0.85);
+    }
+
+    html[data-theme="dark"] {
+      --bg-page: #090d16;
+      --bg-header: rgba(15, 23, 42, 0.9);
+      --bg-surface: #111827;
+      --bg-surface-alt: #1e293b;
+      --bg-hero: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.14), transparent 50%),
+                 radial-gradient(circle at 80% 75%, rgba(167, 139, 250, 0.14), transparent 50%),
+                 linear-gradient(145deg, #0f172a 0%, #111827 100%);
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(148, 163, 184, 0.2);
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #2dd4bf;
+      --accent-pink: #fb7185;
+      --accent-violet: #a78bfa;
+      --accent-amber: #facc15;
+      --shadow-3d: 0 5px 0 #030712, 0 12px 24px rgba(0, 0, 0, 0.45);
+      --shadow-3d-sm: 0 3px 0 #030712, 0 6px 12px rgba(0, 0, 0, 0.35);
+      --shadow-3d-active: 0 1px 0 #030712, 0 3px 8px rgba(0, 0, 0, 0.35);
+      --rgb-border-grad: linear-gradient(90deg, #38bdf8, #818cf8, #2dd4bf, #38bdf8);
+      --chip-bg: #1e293b;
+    }
+
+    html[data-theme="white"] {
+      --bg-page: #f4f7fb;
+      --bg-header: rgba(255, 255, 255, 0.9);
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #f1f5f9;
+      --bg-hero: radial-gradient(circle at 18% 20%, rgba(14, 165, 233, 0.14), transparent 45%),
+                 radial-gradient(circle at 85% 25%, rgba(16, 185, 129, 0.14), transparent 45%),
+                 linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-subtle: rgba(15, 23, 42, 0.14);
+      --accent-cyan: #0284c7;
+      --accent-emerald: #059669;
+      --accent-pink: #db2777;
+      --accent-violet: #7c3aed;
+      --accent-amber: #d97706;
+      --shadow-3d: 0 5px 0 #cbd5e1, 0 12px 22px rgba(15, 23, 42, 0.08);
+      --shadow-3d-sm: 0 3px 0 #cbd5e1, 0 6px 12px rgba(15, 23, 42, 0.06);
+      --shadow-3d-active: 0 1px 0 #cbd5e1, 0 3px 6px rgba(15, 23, 42, 0.08);
+      --rgb-border-grad: linear-gradient(90deg, #0284c7, #7c3aed, #db2777, #059669, #0284c7);
+      --chip-bg: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: var(--font-bn);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-bn);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .font-bn {
+      font-family: var(--font-bn);
+    }
+
+    .font-en {
+      font-family: var(--font-en);
+    }
+
+    .font-mono-code {
+      font-family: var(--font-mono);
+    }
+
+    /* =========================================================================
+       TACTILE 3D BUTTONS & LASER SWEEP ANIMATION
+       ========================================================================= */
+    @keyframes laserSweep {
+      0% {
+        transform: translateX(-140%) skewX(-22deg);
+      }
+      55%, 100% {
+        transform: translateX(260%) skewX(-22deg);
+      }
+    }
+
+    @keyframes rgbBorderShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    .laser-host {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .laser-host::after {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: 0;
+      width: 48%;
+      height: 140%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.24),
+        rgba(34, 211, 238, 0.35),
+        transparent
+      );
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(-140%) skewX(-22deg);
+    }
+
+    html[data-laser="on"] .laser-host::after {
+      opacity: 1;
+      animation: laserSweep 4.2s ease-in-out infinite;
+    }
+
+    html[data-laser="off"] .laser-host::after {
+      opacity: 0;
+      animation: none;
+    }
+
+    .btn-3d {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border-radius: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: var(--shadow-3d-sm);
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 0.2s ease;
+    }
+
+    .btn-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-3d);
+      filter: brightness(1.05);
+    }
+
+    .btn-3d:active {
+      transform: translateY(2px);
+      box-shadow: var(--shadow-3d-active);
+    }
+
+    .btn-3d.is-selected {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+      transform: translateY(-1px);
+    }
+
+    /* =========================================================================
+       INTERACTIVE RULE & QUESTION CARDS WITH RGB ACCENT RIM
+       ========================================================================= */
+    .master-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1.15rem;
+      box-shadow: var(--shadow-3d-sm);
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.25s ease;
+      overflow: hidden;
+    }
+
+    .master-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: var(--rgb-border-grad);
+      background-size: 200% 100%;
+      opacity: 0.72;
+      transition: opacity 0.25s ease, height 0.25s ease;
+    }
+
+    html[data-theme="rgb"][data-laser="on"] .master-card::before {
+      animation: rgbBorderShift 5s linear infinite;
+      opacity: 0.95;
+    }
+
+    .master-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-3d);
+    }
+
+    .master-card:hover::before {
+      height: 4px;
+      opacity: 1;
+    }
+
+    .master-card:active {
+      transform: translateY(1px);
+      box-shadow: var(--shadow-3d-active);
+    }
+
+    .step-dot {
+      width: 0.52rem;
+      height: 0.52rem;
+      border-radius: 9999px;
+      background: rgba(148, 163, 184, 0.35);
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .step-dot.active {
+      background: var(--accent-emerald);
+      transform: scale(1.25);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .reveal-box {
+      border-radius: 0.85rem;
+      padding: 0.85rem 1rem;
+      margin-top: 0.75rem;
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-subtle);
+      animation: fadeSlideIn 0.25s ease;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Toast / Notification Pill (Never uses alert()) */
+    #toast-banner {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 90;
+      max-width: 24rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.9rem;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--accent-cyan);
+      box-shadow: var(--shadow-3d);
+      font-size: 0.92rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(14px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    #toast-banner.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================================
+       PRINT STYLESHEET
+       ========================================================================= */
+    @media print {
+      header,
+      .no-print,
+      #toast-banner {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .master-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin-bottom: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       STICKY TOP HEADER BAR
+       ======================================================================= -->
+  <header class="sticky top-0 z-50 backdrop-blur-md border-b" style="background: var(--bg-header); border-color: var(--border-subtle);">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- Brand Badge + Title -->
+      <div class="flex items-center gap-3 min-w-0">
+        <div
+          class="laser-host w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center font-en font-extrabold text-sm sm:text-base tracking-tight text-white shrink-0"
+          style="background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 52%, #ec4899 100%); box-shadow: var(--shadow-3d-sm);"
+        >
+          A→I
+        </div>
+        <div class="min-w-0">
+          <h1 class="font-en font-extrabold text-base sm:text-xl leading-tight truncate" style="color: var(--text-primary);">
+            Assertive to Imperative
+          </h1>
+          <p class="font-bn text-xs sm:text-sm leading-snug truncate" style="color: var(--text-muted);">
+            সম্পূর্ণ ১৮টি নিয়ম ও ৫০টি বোর্ড অনুশীলনী মাস্টার সফটওয়্যার
+          </p>
+        </div>
+      </div>
+
+      <!-- Tactile 3D Controls -->
+      <div class="flex flex-wrap items-center gap-2 no-print">
+        <!-- Theme Switchers -->
+        <button
+          id="theme-rgb-btn"
+          type="button"
+          onclick="setTheme('rgb')"
+          class="btn-3d laser-host px-3 py-1.5 text-xs sm:text-sm text-white is-selected"
+          style="background: linear-gradient(135deg, #2563eb 0%, #9333ea 55%, #db2777 100%);"
+          title="Real RGB থিম"
+        >
+          <span>🌈</span>
+          <span class="font-en font-bold">Real RGB</span>
+        </button>
+
+        <button
+          id="theme-white-btn"
+          type="button"
+          onclick="setTheme('white')"
+          class="btn-3d laser-host px-3 py-1.5 text-xs sm:text-sm font-bold"
+          style="background: #f8fafc; color: #0f172a; border: 1px solid rgba(15,23,42,0.18);"
+          title="White থিম"
+        >
+          <span>☀️</span>
+          <span class="font-en">White</span>
+        </button>
+
+        <button
+          id="theme-dark-btn"
+          type="button"
+          onclick="setTheme('dark')"
+          class="btn-3d laser-host px-3 py-1.5 text-xs sm:text-sm text-slate-100"
+          style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid rgba(148,163,184,0.25);"
+          title="Dark থিম"
+        >
+          <span>🌙</span>
+          <span class="font-en">Dark</span>
+        </button>
+
+        <!-- Laser Toggle -->
+        <button
+          id="laser-toggle-btn"
+          type="button"
+          onclick="toggleLaser()"
+          class="btn-3d laser-host px-3 py-1.5 text-xs sm:text-sm text-white"
+          style="background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);"
+        >
+          <span id="laser-dot">🔴</span>
+          <span id="laser-label" class="font-bn">লেজার: চালু</span>
+        </button>
+
+        <!-- Sound Toggle -->
+        <button
+          id="sound-toggle-btn"
+          type="button"
+          onclick="toggleSound()"
+          class="btn-3d laser-host px-3 py-1.5 text-xs sm:text-sm text-white"
+          style="background: linear-gradient(135deg, #0d9488 0%, #059669 100%);"
+        >
+          <span id="sound-icon">🔊</span>
+          <span id="sound-label" class="font-bn">সাউন্ড: চালু</span>
+        </button>
+
+        <!-- Print / PDF -->
+        <button
+          type="button"
+          onclick="handlePrint()"
+          class="btn-3d laser-host px-3 py-1.5 text-xs sm:text-sm text-slate-950"
+          style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);"
+        >
+          <span>🖨️</span>
+          <span class="font-bn">প্রিন্ট / PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =======================================================================
+       MAIN CONTENT CONTAINER
+       ======================================================================= -->
+  <main class="max-w-6xl mx-auto px-3 sm:px-6 pt-5 pb-16 space-y-12">
+
+    <!-- HERO SECTION -->
+    <section
+      class="laser-host rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-center border"
+      style="background: var(--bg-hero); border-color: var(--border-subtle); box-shadow: var(--shadow-3d);"
+    >
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-en font-semibold mb-4"
+        style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border: 1px solid rgba(52, 211, 153, 0.35);"
+      >
+        <span>✨</span>
+        <span>Complete English Grammar Master Suite (All Classes • SSC • HSC)</span>
+      </div>
+
+      <h2
+        class="font-en font-extrabold text-2xl sm:text-4xl md:text-5xl tracking-tight mb-2"
+        style="color: var(--text-primary);"
+      >
+        Assertive to Imperative Sentence
+      </h2>
+
+      <p
+        class="font-bn text-xl sm:text-2xl md:text-3xl font-bold mb-4"
+        style="color: var(--accent-cyan);"
+      >
+        সকল নিয়ম, উদাহরণ ও ৫০টি ইন্টারেক্টিভ অনুশীলনী
+      </p>
+
+      <p
+        class="font-bn max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed mb-7"
+        style="color: var(--text-secondary);"
+      >
+        মূল বাক্যের অর্থ অপরিবর্তিত রেখে Assertive থেকে Imperative করার পূর্ণাঙ্গ <strong style="color: var(--accent-amber);">১৮টি নিয়ম</strong> বাংলা অর্থ ও বিস্তারিত ব্যাখ্যাসহ শিখুন। প্রতিটি নিয়ম ও অনুশীলনী প্রশ্নে বারবার ক্লিক করে ধাপে ধাপে গঠন, বাংলা অর্থ, উত্তর ও ব্যাখ্যা দেখুন।
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 no-print">
+        <a
+          href="#rules-section"
+          onclick="playClickSound('nav')"
+          class="btn-3d laser-host px-5 sm:px-7 py-3 text-sm sm:text-base text-white"
+          style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"
+        >
+          <span>📘</span>
+          <span class="font-bn">১৮টি নিয়ম পড়ুন</span>
+        </a>
+
+        <a
+          href="#practice-section"
+          onclick="playClickSound('nav')"
+          class="btn-3d laser-host px-5 sm:px-7 py-3 text-sm sm:text-base text-white"
+          style="background: linear-gradient(135deg, #9333ea 0%, #c026d3 100%);"
+        >
+          <span>🎯</span>
+          <span class="font-bn">৫০টি প্রশ্ন অনুশীলন করুন</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 01: 18 COMPLETE RULES
+         ===================================================================== -->
+    <section id="rules-section" class="space-y-5">
+      <!-- Section Heading -->
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <span
+            class="font-en font-extrabold text-xs sm:text-sm px-3 py-1 rounded-full text-slate-950"
+            style="background: linear-gradient(135deg, #22d3ee 0%, #34d399 100%);"
+          >
+            PART 01
+          </span>
+          <h3 class="font-bn text-xl sm:text-2xl md:text-3xl font-bold" style="color: var(--text-primary);">
+            Assertive to Imperative-এর <span style="color: var(--accent-emerald);">১৮টি পূর্নাঙ্গ নিয়ম</span>
+          </h3>
+        </div>
+        <div class="text-xs sm:text-sm font-bn px-3 py-1 rounded-full" style="background: var(--chip-bg); color: var(--text-secondary);">
+          উন্মুক্ত নিয়ম: <strong id="rules-progress-text" style="color: var(--accent-cyan);">০ / ১৮</strong>
+        </div>
+      </div>
+
+      <!-- Instruction Banner -->
+      <div
+        class="rounded-xl px-4 py-3 text-xs sm:text-sm font-bn border"
+        style="background: var(--bg-surface-alt); border-color: var(--border-subtle); color: var(--text-secondary);"
+      >
+        যেকোনো নিয়ম কার্ডে ক্লিক করুন:
+        <strong style="color: var(--accent-cyan);">১ম ক্লিক = গঠন</strong> →
+        <strong style="color: var(--accent-emerald);">২য় ক্লিক = বাংলা ব্যাখ্যা</strong> →
+        <strong style="color: var(--accent-amber);">৩য় ক্লিক = উদাহরণ ও অর্থ</strong> →
+        <strong style="color: var(--accent-pink);">৪র্থ ক্লিক = সংকুচিত</strong>।
+      </div>
+
+      <!-- Search + Expand/Collapse All Controls -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 no-print">
+        <div class="relative flex-1">
+          <input
+            id="rule-search-input"
+            type="text"
+            oninput="renderRules()"
+            placeholder="🔍 নিয়ম খুঁজুন (যেমন: You, Let, Never, Had better, Please...)"
+            class="w-full px-4 py-2.5 rounded-xl font-bn text-sm sm:text-base outline-none transition"
+            style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-3d-sm);"
+          />
+        </div>
+        <button
+          id="toggle-all-rules-btn"
+          type="button"
+          onclick="toggleAllRules()"
+          class="btn-3d laser-host px-4 py-2.5 text-sm text-slate-950 shrink-0"
+          style="background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 100%);"
+        >
+          <span>📂</span>
+          <span class="font-bn">সব নিয়ম একসাথে খুলুন</span>
+        </button>
+      </div>
+
+      <!-- Rules List Grid -->
+      <div id="rules-container" class="space-y-4"></div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 02: 50 INTERACTIVE PRACTICE QUESTIONS
+         ===================================================================== -->
+    <section id="practice-section" class="space-y-5 pt-2">
+      <!-- Section Heading -->
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <span
+            class="font-en font-extrabold text-xs sm:text-sm px-3 py-1 rounded-full text-white"
+            style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);"
+          >
+            PART 02
+          </span>
+          <h3 class="font-bn text-xl sm:text-2xl md:text-3xl font-bold" style="color: var(--text-primary);">
+            <span style="color: var(--accent-pink);">৫০টি ইন্টারেক্টিভ</span> বোর্ড অনুশীলনী (All Classes • SSC • HSC)
+          </h3>
+        </div>
+        <div class="text-xs sm:text-sm font-bn px-3 py-1 rounded-full" style="background: var(--chip-bg); color: var(--text-secondary);">
+          উত্তর দেখা হয়েছে: <strong id="practice-progress-text" style="color: var(--accent-emerald);">০ / ৫০</strong>
+        </div>
+      </div>
+
+      <!-- Practice Instruction Banner -->
+      <div
+        class="rounded-xl px-4 py-3 text-xs sm:text-sm font-bn border"
+        style="background: var(--bg-surface-alt); border-color: var(--border-subtle); color: var(--text-secondary);"
+      >
+        প্রশ্ন কার্ডে ক্লিক করে ধাপে ধাপে অনুশীলন করুন:
+        <strong style="color: var(--accent-cyan);">১ম ক্লিক = বাংলা অর্থ</strong> →
+        <strong style="color: var(--accent-emerald);">২য় ক্লিক = সঠিক উত্তর</strong> →
+        <strong style="color: var(--accent-amber);">৩য় ক্লিক = বিস্তারিত ব্যাখ্যা</strong> →
+        <strong style="color: var(--accent-pink);">৪র্থ ক্লিক = পুনরায় শুরু</strong>।
+      </div>
+
+      <!-- Filter Tabs + Search + Reset All -->
+      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 no-print">
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            data-filter="all"
+            onclick="setPracticeFilter('all')"
+            class="practice-filter-btn btn-3d px-3.5 py-2 text-xs sm:text-sm text-white is-selected"
+            style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);"
+          >
+            সব (৫০)
+          </button>
+          <button
+            type="button"
+            data-filter="basic"
+            onclick="setPracticeFilter('basic')"
+            class="practice-filter-btn btn-3d px-3.5 py-2 text-xs sm:text-sm text-white"
+            style="background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);"
+          >
+            নিয়ম ১–৪ (You ও অনুরোধ)
+          </button>
+          <button
+            type="button"
+            data-filter="let"
+            onclick="setPracticeFilter('let')"
+            class="practice-filter-btn btn-3d px-3.5 py-2 text-xs sm:text-sm text-white"
+            style="background: linear-gradient(135deg, #9333ea 0%, #db2777 100%);"
+          >
+            নিয়ম ৫–১০ (Let ও বিশেষ)
+          </button>
+          <button
+            type="button"
+            data-filter="advanced"
+            onclick="setPracticeFilter('advanced')"
+            class="practice-filter-btn btn-3d px-3.5 py-2 text-xs sm:text-sm text-slate-950"
+            style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);"
+          >
+            নিয়ম ১১–১৮ (HSC ও অ্যাডভান্সড)
+          </button>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+          <input
+            id="practice-search-input"
+            type="text"
+            oninput="renderPractice()"
+            placeholder="🔍 প্রশ্ন বা নিয়ম খুঁজুন..."
+            class="px-3.5 py-2 rounded-xl font-bn text-sm outline-none"
+            style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-3d-sm);"
+          />
+          <button
+            type="button"
+            onclick="resetAllPractice()"
+            class="btn-3d px-3.5 py-2 text-xs sm:text-sm text-white shrink-0"
+            style="background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);"
+          >
+            <span>🔄</span>
+            <span class="font-bn">সব প্রশ্ন সংকুচিত করুন</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 50 Practice Questions Grid -->
+      <div id="practice-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="rounded-2xl p-5 text-center border text-xs sm:text-sm font-bn"
+      style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-muted);"
+    >
+      <p>
+        <strong style="color: var(--text-primary);">Assertive to Imperative Master Suite</strong> — তিরো বাংলা টাইপোগ্রাফি, ১৮টি পূর্ণাঙ্গ নিয়ম ও ৫০টি বোর্ড অনুশীলনীসহ নির্মিত।
+      </p>
+    </footer>
+  </main>
+
+  <!-- Toast Notification Banner -->
+  <div id="toast-banner" role="status" aria-live="polite"></div>
+
+  <script>
+    /* =======================================================================
+       18 COMPLETE ASSERTIVE TO IMPERATIVE GRAMMAR RULES DATA
+       ======================================================================= */
+    const RULES_DATA = [
+      {
+        num: "01",
+        titleEn: "Subject 'You' + Affirmative Sentence",
+        titleBn: "Subject 'You' যুক্ত হ্যাঁ-বোধক বাক্য (মূল Verb-এর Base Form V1 দিয়ে শুরু)",
+        structure: "Assertive (You + should/must/ought to/have to + V1...)  →  V1 (Base Form) + বাকি অংশ",
+        explanationBn: "Assertive বাক্যে Subject হিসেবে 'You' থাকলে এবং বাক্যটি হ্যাঁ-বোধক হলে 'You' ও should, must, ought to, have to বা সাধারণ Tense-এর auxiliary বাদ দিয়ে সরাসরি মূল Verb-এর Base form (V1) দিয়ে Imperative sentence শুরু করতে হয়।",
+        exampleAssertive: "You should read the book attentively.",
+        exampleAssertiveBn: "তোমার মনোযোগ দিয়ে বইটি পড়া উচিত।",
+        exampleImperative: "Read the book attentively.",
+        exampleImperativeBn: "মনোযোগ দিয়ে বইটি পড়ো।"
+      },
+      {
+        num: "02",
+        titleEn: "Subject 'You' + Negative Sentence",
+        titleBn: "Subject 'You' যুক্ত না-বোধক বাক্য (Do not / Don't দিয়ে শুরু)",
+        structure: "Assertive (You + do/does/did/should/must + not + V1...)  →  Do not / Don't + V1 + বাকি অংশ",
+        explanationBn: "Subject 'You' থাকলে এবং বাক্যটি না-বোধক হলে Subject ও auxiliary অংশ বাদ দিয়ে বাক্যের শুরুতে 'Do not' বা 'Don't' বসিয়ে মূল Verb-এর Base form (V1) লিখতে হয়।",
+        exampleAssertive: "You should not waste your valuable time.",
+        exampleAssertiveBn: "তোমার মূল্যবান সময় নষ্ট করা উচিত নয়।",
+        exampleImperative: "Don't waste your valuable time.",
+        exampleImperativeBn: "তোমার মূল্যবান সময় নষ্ট করো না।"
+      },
+      {
+        num: "03",
+        titleEn: "Sentences Containing 'Never'",
+        titleBn: "'Never' যুক্ত বাক্যের রূপান্তর (Never + V1)",
+        structure: "Assertive (You + should/must + never + V1...)  →  Never + V1 + বাকি অংশ",
+        explanationBn: "Assertive বাক্যে 'never' থাকলে 'Do not' না বসিয়ে সরাসরি 'Never' দিয়ে Imperative বাক্য শুরু করতে হয় এবং এর পর মূল Verb-এর Base form (V1) বসে।",
+        exampleAssertive: "You must never tell a lie.",
+        exampleAssertiveBn: "তোমার কখনোই মিথ্যা বলা উচিত নয়।",
+        exampleImperative: "Never tell a lie.",
+        exampleImperativeBn: "কখনো মিথ্যা বলো না।"
+      },
+      {
+        num: "04",
+        titleEn: "Expressing Polite Request ('Please' / 'Kindly')",
+        titleBn: "অনুরোধ বোঝালে ('Please' বা 'Kindly' যুক্ত করা)",
+        structure: "Please / Kindly + V1 + বাকি অংশ  (অথবা V1 + বাকি অংশ, please)",
+        explanationBn: "বাক্যে বিনীত অনুরোধের ভাব ফুটিয়ে তুলতে মূল Verb-এর Base form-এর আগে বা বাক্যের শেষে 'Please' অথবা 'Kindly' যুক্ত করা হয়।",
+        exampleAssertive: "You should open the window for some fresh air.",
+        exampleAssertiveBn: "কিছু তাজা বাতাসের জন্য তোমার জানালাটি খোলা উচিত।",
+        exampleImperative: "Please open the window for some fresh air.",
+        exampleImperativeBn: "অনুগ্রহ করে কিছু তাজা বাতাসের জন্য জানালাটি খোলো।"
+      },
+      {
+        num: "05",
+        titleEn: "1st / 3rd Person Affirmative ('Let' + Object + V1)",
+        titleBn: "First Person (I/We) বা Third Person (He/She/They/Noun) হ্যাঁ-বোধক বাক্য",
+        structure: "Let + Subject-এর Object form (me, us, him, her, them বা Noun) + V1 + বাকি অংশ",
+        explanationBn: "Assertive বাক্যের Subject 'You' না হয়ে 'I', 'we', 'he', 'she', 'they' বা কোনো নাম/Noun হলে এবং বাক্যটি হ্যাঁ-বোধক হলে 'Let' দিয়ে শুরু করে Subject-এর Object রূপ ও মূল Verb-এর Base form বসাতে হয়।",
+        exampleAssertive: "He wants to play football in the afternoon.",
+        exampleAssertiveBn: "সে বিকেলে ফুটবল খেলতে চায়।",
+        exampleImperative: "Let him play football in the afternoon.",
+        exampleImperativeBn: "তাকে বিকেলে ফুটবল খেলতে দাও।"
+      },
+      {
+        num: "06",
+        titleEn: "1st / 3rd Person Negative Sentence",
+        titleBn: "First Person বা Third Person না-বোধক বাক্য",
+        structure: "Let + Object + not + V1 + বাকি অংশ  (অথবা Don't let + Object + V1 + বাকি অংশ)",
+        explanationBn: "'You' ছাড়া অন্য Subject যুক্ত বাক্য না-বোধক হলে 'Let'-এর পর Object বসিয়ে 'not' + মূল Verb-এর Base form (V1) লেখা হয়।",
+        exampleAssertive: "They do not disturb the sleeping baby.",
+        exampleAssertiveBn: "তারা ঘুমন্ত শিশুটিকে বিরক্ত করে না।",
+        exampleImperative: "Let them not disturb the sleeping baby.",
+        exampleImperativeBn: "তাদের ঘুমন্ত শিশুটিকে বিরক্ত করতে দেওয়া উচিত নয় / দিয়ো না।"
+      },
+      {
+        num: "07",
+        titleEn: "'You are requested / ordered / advised / told to...'",
+        titleBn: "'You are requested / ordered / advised / told' যুক্ত বাক্য",
+        structure: "শুরুর 'You are requested/ordered/advised/told to' বাদ  →  (Please) + V1 + বাকি অংশ",
+        explanationBn: "Assertive বাক্যে 'You are requested to...', 'You are ordered to...', 'You are advised to...' বা 'You are told to...' থাকলে ওই ভূমিকা অংশ বাদ দিয়ে 'to'-এর পরের মূল Verb ও বাকি অংশ দিয়ে Imperative করা হয়।",
+        exampleAssertive: "You are ordered to submit the assignment today.",
+        exampleAssertiveBn: "তোমাকে আজই অ্যাসাইনমেন্ট জমা দেওয়ার আদেশ দেওয়া হচ্ছে।",
+        exampleImperative: "Submit the assignment today.",
+        exampleImperativeBn: "আজই অ্যাসাইনমেন্ট জমা দাও।"
+      },
+      {
+        num: "08",
+        titleEn: "'Need not' or 'Dare not' Clauses",
+        titleBn: "'Need not' বা 'Dare not' যুক্ত বাক্য",
+        structure: "Need not / Dare not বাদ  →  Do not / Don't + V1 + বাকি অংশ (ভাব অনুযায়ী)",
+        explanationBn: "Assertive বাক্যে 'need not' বা 'dare not' থাকলে সেগুলো অপসারণ করে অর্থ ও ভাব অনুযায়ী সরাসরি মূল Verb বা 'Do not' + V1 দিয়ে Imperative গঠন করা হয়।",
+        exampleAssertive: "You need not worry about the exam result.",
+        exampleAssertiveBn: "পরীক্ষার ফলাফল নিয়ে তোমার চিন্তার প্রয়োজন নেই।",
+        exampleImperative: "Don't worry about the exam result.",
+        exampleImperativeBn: "পরীক্ষার ফলাফল নিয়ে চিন্তা করো না।"
+      },
+      {
+        num: "09",
+        titleEn: "Proposal / Suggestion with 'Let us' ('Let's')",
+        titleBn: "'Let us' দিয়ে প্রস্তাবমূলক Imperative বাক্য",
+        structure: "We should / let's + V1...  →  Let us + V1 + বাকি অংশ",
+        explanationBn: "Subject 'we' হলে এবং যৌথ প্রস্তাব বা পরামর্শ বোঝালে 'Let us' (সংক্ষেপে Let's) দিয়ে শুরু করে মূল Verb-এর Base form বসাতে হয়।",
+        exampleAssertive: "We should go out for a walk in the morning.",
+        exampleAssertiveBn: "সকালে আমাদের হাঁটতে বের হওয়া উচিত।",
+        exampleImperative: "Let us go out for a walk in the morning.",
+        exampleImperativeBn: "চলো সকালে হাঁটতে বের হই।"
+      },
+      {
+        num: "10",
+        titleEn: "'Nothing' or 'Nobody' Subject Sentences",
+        titleBn: "'Nothing' বা 'Nobody' যুক্ত বাক্য",
+        structure: "Nothing / Nobody + verb...  →  Let nothing / Let nobody + V1 + বাকি অংশ",
+        explanationBn: "Assertive বাক্যের Subject হিসেবে 'Nothing' বা 'Nobody' থাকলে 'Let nothing...' বা 'Let nobody...' দিয়ে শুরু করে মূল ক্রিয়ার Base form (V1) বসাতে হয়।",
+        exampleAssertive: "Nothing can delay our departure.",
+        exampleAssertiveBn: "কোনো কিছুই আমাদের যাত্রা বিলম্বিত করতে পারবে না।",
+        exampleImperative: "Let nothing delay our departure.",
+        exampleImperativeBn: "কোনো কিছুই আমাদের যাত্রা বিলম্বিত করতে না দিক।"
+      },
+      {
+        num: "11",
+        titleEn: "'I wish' / 'I desire' / 'I want' Expressions",
+        titleBn: "'I wish', 'I desire' বা 'I want' যুক্ত বাক্য",
+        structure: "I wish/desire/want...  →  Let + Object + V1... (অথবা সরাসরি V1)",
+        explanationBn: "Assertive বাক্যে 'I wish', 'I desire' বা 'I want' দিয়ে অন্য কাউকে দিয়ে কিছু করানোর ইচ্ছা প্রকাশ পেলে অনেক ক্ষেত্রে 'Let' বা সরাসরি মূল ক্রিয়া দিয়ে Imperative করা হয়।",
+        exampleAssertive: "I wish he would help the poor boy.",
+        exampleAssertiveBn: "আমি চাই সে দরিদ্র ছেলেটিকে সাহায্য করুক।",
+        exampleImperative: "Let him help the poor boy.",
+        exampleImperativeBn: "তাকে দরিদ্র ছেলেটিকে সাহায্য করতে দাও।"
+      },
+      {
+        num: "12",
+        titleEn: "Polite / Official Request with 'Kindly' / 'Please'",
+        titleBn: "দাপ্তরিক বা বিনীত অনুরোধের রূপান্তর",
+        structure: "You will kindly / please + V1...  →  Kindly / Please + V1 + বাকি অংশ",
+        explanationBn: "বাক্যে দাপ্তরিক বা মার্জিত অনুরোধ থাকলে 'You will' বা অনুরূপ অংশ বাদ দিয়ে সরাসরি 'Kindly' বা 'Please' + V1 দিয়ে বাক্য শুরু করা হয়।",
+        exampleAssertive: "You will kindly grant me leave for two days.",
+        exampleAssertiveBn: "আপনি দয়া করে আমাকে দুই দিনের ছুটি মঞ্জুর করবেন।",
+        exampleImperative: "Kindly grant me leave for two days.",
+        exampleImperativeBn: "দয়া করে আমাকে দুই দিনের ছুটি মঞ্জুর করুন।"
+      },
+      {
+        num: "13",
+        titleEn: "Suggestion via 'Why don't you / we'",
+        titleBn: "'Why don't you / we' দিয়ে পরামর্শ বা প্রস্তাব বোঝানো বাক্য",
+        structure: "Why don't you + V1...?  →  V1 + বাকি অংশ  |  Why don't we + V1...?  →  Let us + V1 + বাকি অংশ",
+        explanationBn: "কথ্য বা আধুনিক ইংরেজিতে 'Why don't you...' দিয়ে উপদেশ বা 'Why don't we...' দিয়ে প্রস্তাব বোঝালে Imperative-এ তা যথাক্রমে সরাসরি V1 বা 'Let us + V1'-এ রূপান্তরিত হয়।",
+        exampleAssertive: "Why don't you take rest for a while?",
+        exampleAssertiveBn: "তুমি কিছুক্ষণ বিশ্রাম নিচ্ছ না কেন?",
+        exampleImperative: "Take rest for a while.",
+        exampleImperativeBn: "কিছুক্ষণ বিশ্রাম নাও।"
+      },
+      {
+        num: "14",
+        titleEn: "'You are' + Adjective Warning / State ('Be' + Adj.)",
+        titleBn: "'You are' + Adjective দিয়ে সতর্কতা বা অবস্থা বোঝালে ('Be' দিয়ে শুরু)",
+        structure: "You are + Adjective...  →  Be + Adjective + বাকি অংশ",
+        explanationBn: "Assertive বাক্যে 'You are' + Adjective থাকলে এবং তা দিয়ে কোনো সতর্কতা বা অবস্থা বোঝালে 'You are'-এর বদলে 'Be' বসিয়ে Adjective ও বাকি অংশ যুক্ত করতে হয়।",
+        exampleAssertive: "You are careful while crossing the busy road.",
+        exampleAssertiveBn: "ব্যস্ত রাস্তা পার হওয়ার সময় তুমি সতর্ক থাকো।",
+        exampleImperative: "Be careful while crossing the busy road.",
+        exampleImperativeBn: "ব্যস্ত রাস্তা পার হওয়ার সময় সতর্ক থাকো।"
+      },
+      {
+        num: "15",
+        titleEn: "Dropping Auxiliaries & Keeping Base Verb (V1)",
+        titleBn: "Auxiliary ও Modal Verb বাদ দিয়ে মূল Verb-এর Base Form (V1) রাখা",
+        structure: "am/is/are/was/were/have/has/had/can/could/may/might/will/would/should/must বাদ  →  V1",
+        explanationBn: "Imperative বাক্যে Tense-এর auxiliary বা Modal verb থাকে না; মূল ক্রিয়ার Base form (V1) বসে এবং এতে '-s/-es', '-ed' বা '-ing' যুক্ত হয় না।",
+        exampleAssertive: "You can solve this math easily.",
+        exampleAssertiveBn: "তুমি সহজেই এই অঙ্কটি সমাধান করতে পারো।",
+        exampleImperative: "Solve this math easily.",
+        exampleImperativeBn: "সহজেই এই অঙ্কটি সমাধান করো।"
+      },
+      {
+        num: "16",
+        titleEn: "Sentences with 'You had better' / 'Had better not'",
+        titleBn: "'You had better' বা 'Had better not' যুক্ত বাক্য",
+        structure: "You had better + V1...  →  V1...  |  You had better not + V1...  →  Do not + V1...",
+        explanationBn: "'had better' জোরালো উপদেশ বা সতর্কতা বোঝায়। Imperative করার সময় 'You had better' বাদ দিয়ে সরাসরি V1 (বা না-বোধক হলে 'Do not' + V1) দিয়ে বাক্য শুরু করতে হয়।",
+        exampleAssertive: "You had better leave the place before dark.",
+        exampleAssertiveBn: "অন্ধকার হওয়ার আগেই তোমার জায়গাটি ছেড়ে যাওয়া ভালো।",
+        exampleImperative: "Leave the place before dark.",
+        exampleImperativeBn: "অন্ধকার হওয়ার আগেই জায়গাটি ছেড়ে যাও।"
+      },
+      {
+        num: "17",
+        titleEn: "Condition or Warning Converted to Imperative",
+        titleBn: "শর্ত বা সতর্কতা বোঝানো বাক্য (Imperative + or / and বা নির্দেশ)",
+        structure: "You will ... if you do not + V1...  →  V1... or you will ... (অথবা মূল নির্দেশ)",
+        explanationBn: "Assertive বাক্যে কোনো শর্ত বা সতর্কতা থাকলে Imperative করার সময় করণীয় কাজটি সামনে এনে নির্দেশ বা 'or/and' যুক্ত কাঠামোয় প্রকাশ করা যায়।",
+        exampleAssertive: "You will miss the bus if you do not hurry.",
+        exampleAssertiveBn: "তুমি তাড়াহুড়ো না করলে বাসটি মিস করবে।",
+        exampleImperative: "Hurry up or you will miss the bus.",
+        exampleImperativeBn: "তাড়াহুড়ো করো, নইলে বাসটি মিস করবে।"
+      },
+      {
+        num: "18",
+        titleEn: "'Let' Negative: Traditional vs. Modern Structure",
+        titleBn: "'Let' যুক্ত নেগেটিভ বাক্যে Traditional বনাম Modern কাঠামো",
+        structure: "Traditional: Let + Object + not + V1...  |  Modern: Don't let + Object + V1...",
+        explanationBn: "পরীক্ষার অপশন বাছাইয়ে 'Let' যুক্ত নেগেটিভ বাক্যের দুটি রূপ দেখা যায়: ঐতিহ্যগতভাবে 'Let him not make a noise' এবং আধুনিক/কথ্য রীতিতে 'Don't let him make a noise' ব্যবহৃত হয়।",
+        exampleAssertive: "He should not make a noise in the class.",
+        exampleAssertiveBn: "ক্লাসে তার শব্দ করা উচিত নয়।",
+        exampleImperative: "Let him not make a noise in the class. (Modern: Don't let him make a noise in the class.)",
+        exampleImperativeBn: "ক্লাসে তাকে শব্দ করতে দেওয়া উচিত নয় / দিয়ো না।"
+      }
+    ];
+
+    /* =======================================================================
+       50 INTERACTIVE PRACTICE QUESTIONS (ALL CLASSES • SSC • HSC)
+       ======================================================================= */
+    const PRACTICE_DATA = [
+      {
+        id: 1,
+        group: "basic",
+        ruleRef: "নিয়ম ০১",
+        level: "Class 6–8",
+        assertive: "You should speak the truth.",
+        banglaMeaning: "তোমার সত্য কথা বলা উচিত।",
+        answer: "Speak the truth.",
+        answerBangla: "সত্য কথা বলো।",
+        explanation: "নিয়ম ০১ অনুযায়ী Subject 'You' এবং 'should' বাদ দিয়ে মূল Verb 'speak'-এর Base form (V1) দিয়ে বাক্য শুরু হয়েছে।"
+      },
+      {
+        id: 2,
+        group: "basic",
+        ruleRef: "নিয়ম ০১",
+        level: "SSC",
+        assertive: "You must obey your teachers.",
+        banglaMeaning: "তোমার অবশ্যই শিক্ষকদের মেনে চলা উচিত।",
+        answer: "Obey your teachers.",
+        answerBangla: "তোমার শিক্ষকদের মেনে চলো।",
+        explanation: "নিয়ম ০১ অনুসারে 'You must' বাদ দিয়ে 'Obey' (V1) দিয়ে Imperative sentence গঠিত হয়েছে।"
+      },
+      {
+        id: 3,
+        group: "basic",
+        ruleRef: "নিয়ম ০১",
+        level: "Class 6–7",
+        assertive: "You ought to help the helpless.",
+        banglaMeaning: "অসহায়দের সাহায্য করা তোমার কর্তব্য।",
+        answer: "Help the helpless.",
+        answerBangla: "অসহায়দের সাহায্য করো।",
+        explanation: "নিয়ম ০১ অনুযায়ী 'You ought to' বাদ দিয়ে মূল Verb 'Help' দিয়ে শুরু করা হয়েছে।"
+      },
+      {
+        id: 4,
+        group: "basic",
+        ruleRef: "নিয়ম ০১",
+        level: "HSC",
+        assertive: "You have to follow the traffic rules strictly.",
+        banglaMeaning: "তোমাকে কঠোরভাবে ট্রাফিক নিয়ম মেনে চলতে হবে।",
+        answer: "Follow the traffic rules strictly.",
+        answerBangla: "কঠোরভাবে ট্রাফিক নিয়ম মেনে চলো।",
+        explanation: "নিয়ম ০১ অনুযায়ী 'You have to' বাদ দিয়ে মূল Verb 'Follow' দিয়ে বাক্য শুরু হয়েছে।"
+      },
+      {
+        id: 5,
+        group: "basic",
+        ruleRef: "নিয়ম ০২",
+        level: "Class 6–8",
+        assertive: "You should not pluck flowers.",
+        banglaMeaning: "তোমার ফুল ছেঁড়া উচিত নয়।",
+        answer: "Don't pluck flowers.",
+        answerBangla: "ফুল ছিঁড়ো না।",
+        explanation: "নিয়ম ০২ অনুযায়ী 'You should not' বাদ দিয়ে শুরুতে 'Don't' + মূল Verb 'pluck' বসেছে।"
+      },
+      {
+        id: 6,
+        group: "basic",
+        ruleRef: "নিয়ম ০২",
+        level: "SSC",
+        assertive: "You do not run in the hot sun.",
+        banglaMeaning: "তুমি প্রখর রোদে দৌড়াও না।",
+        answer: "Do not run in the hot sun.",
+        answerBangla: "প্রখর রোদে দৌড়িও না।",
+        explanation: "নিয়ম ০২ অনুসারে 'You do not' এর বদলে 'Do not' + 'run' বসিয়ে না-বোধক Imperative করা হয়েছে।"
+      },
+      {
+        id: 7,
+        group: "basic",
+        ruleRef: "নিয়ম ০২",
+        level: "HSC",
+        assertive: "You must not neglect your studies.",
+        banglaMeaning: "তোমার পড়াশোনায় অবহেলা করা উচিত নয়।",
+        answer: "Don't neglect your studies.",
+        answerBangla: "পড়াশোনায় অবহেলা করো না।",
+        explanation: "নিয়ম ০২ অনুযায়ী 'You must not' বাদ দিয়ে 'Don't neglect' দিয়ে বাক্য শুরু হয়েছে।"
+      },
+      {
+        id: 8,
+        group: "basic",
+        ruleRef: "নিয়ম ০৩",
+        level: "SSC",
+        assertive: "You should never tell a lie.",
+        banglaMeaning: "তোমার কখনো মিথ্যা বলা উচিত নয়।",
+        answer: "Never tell a lie.",
+        answerBangla: "কখনো মিথ্যা বলো না।",
+        explanation: "নিয়ম ০৩ অনুযায়ী 'never' থাকলে 'Don't' না বসিয়ে সরাসরি 'Never' + V1 ('tell') দিয়ে বাক্য শুরু হয়।"
+      },
+      {
+        id: 9,
+        group: "basic",
+        ruleRef: "নিয়ম ০৩",
+        level: "HSC",
+        assertive: "You must never forget your roots.",
+        banglaMeaning: "তোমার নিজের শেকড় কখনোই ভোলা উচিত নয়।",
+        answer: "Never forget your roots.",
+        answerBangla: "নিজের শেকড় কখনো ভুলো না।",
+        explanation: "নিয়ম ০৩ অনুসারে 'You must' বাদ গিয়ে 'Never forget your roots.' হয়েছে।"
+      },
+      {
+        id: 10,
+        group: "basic",
+        ruleRef: "নিয়ম ০৩",
+        level: "Class 7–8",
+        assertive: "You should never insult a beggar.",
+        banglaMeaning: "তোমার কখনো একজন ভিক্ষুককে অপমান করা উচিত নয়।",
+        answer: "Never insult a beggar.",
+        answerBangla: "কখনো ভিক্ষুককে অপমান করো না।",
+        explanation: "নিয়ম ০৩ অনুযায়ী 'Never' অপরিবর্তিত রেখে মূল Verb 'insult'-এর Base form বসেছে।"
+      },
+      {
+        id: 11,
+        group: "basic",
+        ruleRef: "নিয়ম ০৪",
+        level: "Class 6–8",
+        assertive: "You are requested to open the door.",
+        banglaMeaning: "দরজাটি খোলার জন্য তোমাকে অনুরোধ করা হচ্ছে।",
+        answer: "Please open the door.",
+        answerBangla: "দয়া করে দরজাটি খোলো।",
+        explanation: "নিয়ম ০৪ ও ০৭ অনুযায়ী অনুরোধ বোঝাতে শুরুতে 'Please' যুক্ত করে 'open the door' বসানো হয়েছে।"
+      },
+      {
+        id: 12,
+        group: "basic",
+        ruleRef: "নিয়ম ০৪",
+        level: "SSC",
+        assertive: "You should pass me the salt, please.",
+        banglaMeaning: "দয়া করে আমাকে লবণটা এগিয়ে দাও।",
+        answer: "Pass me the salt, please.",
+        answerBangla: "দয়া করে লবণটা এগিয়ে দাও।",
+        explanation: "নিয়ম ০১ ও ০৪ অনুযায়ী 'You should' বাদ দিয়ে 'Pass me the salt, please.' করা হয়েছে।"
+      },
+      {
+        id: 13,
+        group: "let",
+        ruleRef: "নিয়ম ০৫",
+        level: "Class 6–8",
+        assertive: "I shall read the letter.",
+        banglaMeaning: "আমি চিঠিটি পড়ব।",
+        answer: "Let me read the letter.",
+        answerBangla: "আমাকে চিঠিটি পড়তে দাও।",
+        explanation: "নিয়ম ০৫ অনুযায়ী Subject 'I' হওয়ায় 'Let' + 'I'-এর Object 'me' + V1 'read' বসেছে।"
+      },
+      {
+        id: 14,
+        group: "let",
+        ruleRef: "নিয়ম ০৫",
+        level: "SSC",
+        assertive: "He wants to go out.",
+        banglaMeaning: "সে বাইরে যেতে চায়।",
+        answer: "Let him go out.",
+        answerBangla: "তাকে বাইরে যেতে দাও।",
+        explanation: "নিয়ম ০৫ অনুসারে 'He'-এর Object 'him' এবং মূল ক্রিয়া 'go out' দিয়ে বাক্য গঠিত হয়েছে।"
+      },
+      {
+        id: 15,
+        group: "let",
+        ruleRef: "নিয়ম ০৫",
+        level: "HSC",
+        assertive: "She desires to sing a folk song.",
+        banglaMeaning: "সে একটি লোকগীতি গাইতে ইচ্ছা প্রকাশ করে।",
+        answer: "Let her sing a folk song.",
+        answerBangla: "তাকে একটি লোকগীতি গাইতে দাও।",
+        explanation: "নিয়ম ০৫ অনুযায়ী 'She'-এর Object রূপ 'her' এবং মূল Verb 'sing'-এর Base form বসেছে।"
+      },
+      {
+        id: 16,
+        group: "let",
+        ruleRef: "নিয়ম ০৫",
+        level: "SSC",
+        assertive: "They play cricket in the field.",
+        banglaMeaning: "তারা মাঠে ক্রিকেট খেলে।",
+        answer: "Let them play cricket in the field.",
+        answerBangla: "তাদের মাঠে ক্রিকেট খেলতে দাও।",
+        explanation: "নিয়ম ০৫ অনুযায়ী Subject 'They'-এর Object 'them' বসিয়ে 'Let them play...' হয়েছে।"
+      },
+      {
+        id: 17,
+        group: "let",
+        ruleRef: "নিয়ম ০৫",
+        level: "Class 7–8",
+        assertive: "Rina draws a nice picture.",
+        banglaMeaning: "রীনা একটি সুন্দর ছবি আঁকে।",
+        answer: "Let Rina draw a nice picture.",
+        answerBangla: "রীনাকে একটি সুন্দর ছবি আঁকতে দাও।",
+        explanation: "নিয়ম ০৫ অনুযায়ী Noun 'Rina' অপরিবর্তিত রেখে 'Let Rina draw...' করা হয়েছে।"
+      },
+      {
+        id: 18,
+        group: "let",
+        ruleRef: "নিয়ম ০৬",
+        level: "SSC",
+        assertive: "He does not tell a lie.",
+        banglaMeaning: "সে মিথ্যা কথা বলে না।",
+        answer: "Let him not tell a lie.",
+        answerBangla: "তাকে মিথ্যা বলতে দেওয়া উচিত নয় / দিয়ো না।",
+        explanation: "নিয়ম ০৬ অনুযায়ী 'Let' + Object 'him' + 'not' + V1 'tell' বসেছে।"
+      },
+      {
+        id: 19,
+        group: "let",
+        ruleRef: "নিয়ম ০৬",
+        level: "HSC",
+        assertive: "She should not enter the room.",
+        banglaMeaning: "তার ঘরে প্রবেশ করা উচিত নয়।",
+        answer: "Let her not enter the room.",
+        answerBangla: "তাকে ঘরে প্রবেশ করতে দেওয়া উচিত নয়।",
+        explanation: "নিয়ম ০৬ অনুসারে 'Let her not enter the room.' হয়েছে।"
+      },
+      {
+        id: 20,
+        group: "let",
+        ruleRef: "নিয়ম ০৬",
+        level: "SSC",
+        assertive: "They do not waste water.",
+        banglaMeaning: "তারা পানি অপচয় করে না।",
+        answer: "Let them not waste water.",
+        answerBangla: "তাদের পানি অপচয় করতে দিয়ো না।",
+        explanation: "নিয়ম ০৬ অনুযায়ী 'Let them not waste water.' গঠিত হয়েছে।"
+      },
+      {
+        id: 21,
+        group: "let",
+        ruleRef: "নিয়ম ০৭",
+        level: "SSC",
+        assertive: "You are ordered to leave the class.",
+        banglaMeaning: "তোমাকে ক্লাস ত্যাগ করার আদেশ দেওয়া হচ্ছে।",
+        answer: "Leave the class.",
+        answerBangla: "ক্লাস ত্যাগ করো।",
+        explanation: "নিয়ম ০৭ অনুযায়ী 'You are ordered to' বাদ দিয়ে মূল Verb 'Leave' দিয়ে বাক্য শুরু হয়েছে।"
+      },
+      {
+        id: 22,
+        group: "let",
+        ruleRef: "নিয়ম ০৭",
+        level: "HSC",
+        assertive: "You are advised to consult a doctor.",
+        banglaMeaning: "তোমাকে একজন ডাক্তারের পরামর্শ নেওয়ার উপদেশ দেওয়া হচ্ছে।",
+        answer: "Consult a doctor.",
+        answerBangla: "একজন ডাক্তারের পরামর্শ নাও।",
+        explanation: "নিয়ম ০৭ অনুসারে 'You are advised to' বাদ দিয়ে 'Consult a doctor.' হয়েছে।"
+      },
+      {
+        id: 23,
+        group: "let",
+        ruleRef: "নিয়ম ০৭",
+        level: "Class 8",
+        assertive: "You are told to wait here.",
+        banglaMeaning: "তোমাকে এখানে অপেক্ষা করতে বলা হয়েছে।",
+        answer: "Wait here.",
+        answerBangla: "এখানে অপেক্ষা করো।",
+        explanation: "নিয়ম ০৭ অনুযায়ী 'You are told to' বাদ দিয়ে 'Wait here.' করা হয়েছে।"
+      },
+      {
+        id: 24,
+        group: "let",
+        ruleRef: "নিয়ম ০৮",
+        level: "SSC",
+        assertive: "You need not fear about the test.",
+        banglaMeaning: "পরীক্ষা নিয়ে তোমার ভয় পাওয়ার প্রয়োজন নেই।",
+        answer: "Don't fear about the test.",
+        answerBangla: "পরীক্ষা নিয়ে ভয় পেয়ো না।",
+        explanation: "নিয়ম ০৮ অনুযায়ী 'need not' বাদ দিয়ে 'Don't fear about the test.' হয়েছে।"
+      },
+      {
+        id: 25,
+        group: "let",
+        ruleRef: "নিয়ম ০৮",
+        level: "HSC",
+        assertive: "You dare not challenge the authority.",
+        banglaMeaning: "কর্তৃপক্ষকে চ্যালেঞ্জ করার সাহস তোমার নেই।",
+        answer: "Don't challenge the authority.",
+        answerBangla: "কর্তৃপক্ষকে চ্যালেঞ্জ কোরো না।",
+        explanation: "নিয়ম ০৮ অনুসারে 'dare not' বাদ দিয়ে 'Don't challenge the authority.' হয়েছে।"
+      },
+      {
+        id: 26,
+        group: "let",
+        ruleRef: "নিয়ম ০৯",
+        level: "Class 6–8",
+        assertive: "We should go out for a walk.",
+        banglaMeaning: "আমাদের হাঁটতে বের হওয়া উচিত।",
+        answer: "Let us go out for a walk.",
+        answerBangla: "চলো আমরা হাঁটতে বের হই।",
+        explanation: "নিয়ম ০৯ অনুযায়ী প্রস্তাব বোঝাতে 'Let us' + V1 'go out for a walk' বসেছে।"
+      },
+      {
+        id: 27,
+        group: "let",
+        ruleRef: "নিয়ম ০৯",
+        level: "SSC",
+        assertive: "We ought to help the flood victims.",
+        banglaMeaning: "বন্যায় ক্ষতিগ্রস্তদের সাহায্য করা আমাদের উচিত।",
+        answer: "Let us help the flood victims.",
+        answerBangla: "চলো আমরা বন্যায় ক্ষতিগ্রস্তদের সাহায্য করি।",
+        explanation: "নিয়ম ০৯ অনুযায়ী 'We ought to' এর বদলে 'Let us' + V1 'help' বসেছে।"
+      },
+      {
+        id: 28,
+        group: "let",
+        ruleRef: "নিয়ম ০৯",
+        level: "HSC",
+        assertive: "We should build a corruption-free society.",
+        banglaMeaning: "আমাদের একটি দুর্নীতিমুক্ত সমাজ গড়ে তোলা উচিত।",
+        answer: "Let us build a corruption-free society.",
+        answerBangla: "চলো আমরা একটি দুর্নীতিমুক্ত সমাজ গড়ে তুলি।",
+        explanation: "নিয়ম ০৯ অনুযায়ী 'Let us build...' দিয়ে প্রস্তাবমূলক Imperative গঠিত হয়েছে।"
+      },
+      {
+        id: 29,
+        group: "let",
+        ruleRef: "নিয়ম ১০",
+        level: "SSC",
+        assertive: "Nothing can stop a determined person.",
+        banglaMeaning: "দৃঢ়প্রতিজ্ঞ মানুষকে কোনো কিছুই থামাতে পারে না।",
+        answer: "Let nothing stop a determined person.",
+        answerBangla: "দৃঢ়প্রতিজ্ঞ মানুষকে কোনো কিছুই থামাতে না দিক।",
+        explanation: "নিয়ম ১০ অনুযায়ী 'Nothing' যুক্ত বাক্যে 'Let nothing' + V1 'stop' বসেছে।"
+      },
+      {
+        id: 30,
+        group: "let",
+        ruleRef: "নিয়ম ১০",
+        level: "HSC",
+        assertive: "Nobody should break the law.",
+        banglaMeaning: "কারও আইন ভঙ্গ করা উচিত নয়।",
+        answer: "Let nobody break the law.",
+        answerBangla: "কেউ যেন আইন ভঙ্গ না করে।",
+        explanation: "নিয়ম ১০ অনুসারে 'Nobody' যুক্ত বাক্যে 'Let nobody break the law.' হয়েছে।"
+      },
+      {
+        id: 31,
+        group: "advanced",
+        ruleRef: "নিয়ম ১১",
+        level: "HSC",
+        assertive: "I wish he would come on time.",
+        banglaMeaning: "আমি চাই সে সময়মতো আসুক।",
+        answer: "Let him come on time.",
+        answerBangla: "তাকে সময়মতো আসতে দাও।",
+        explanation: "নিয়ম ১১ অনুযায়ী ইচ্ছাসূচক 'I wish he would...' থেকে 'Let him come on time.' হয়েছে।"
+      },
+      {
+        id: 32,
+        group: "advanced",
+        ruleRef: "নিয়ম ১১",
+        level: "SSC",
+        assertive: "I want you to sit down.",
+        banglaMeaning: "আমি চাই তুমি বসে পড়ো।",
+        answer: "Sit down.",
+        answerBangla: "বসে পড়ো।",
+        explanation: "নিয়ম ১১ অনুযায়ী সরাসরি মূল ক্রিয়া 'Sit down.' দিয়ে Imperative করা হয়েছে।"
+      },
+      {
+        id: 33,
+        group: "advanced",
+        ruleRef: "নিয়ম ১২",
+        level: "SSC",
+        assertive: "You will kindly grant me leave for four days.",
+        banglaMeaning: "আপনি দয়া করে আমাকে চার দিনের ছুটি মঞ্জুর করবেন।",
+        answer: "Kindly grant me leave for four days.",
+        answerBangla: "দয়া করে আমাকে চার দিনের ছুটি মঞ্জুর করুন।",
+        explanation: "নিয়ম ১২ অনুযায়ী দাপ্তরিক বিনীত অনুরোধে 'You will' বাদ দিয়ে 'Kindly grant...' হয়েছে।"
+      },
+      {
+        id: 34,
+        group: "advanced",
+        ruleRef: "নিয়ম ১২",
+        level: "HSC",
+        assertive: "You will please send the documents soon.",
+        banglaMeaning: "আপনি অনুগ্রহ করে নথিগুলো শীঘ্রই পাঠাবেন।",
+        answer: "Please send the documents soon.",
+        answerBangla: "অনুগ্রহ করে নথিগুলো শীঘ্রই পাঠান।",
+        explanation: "নিয়ম ১২ অনুযায়ী 'Please send the documents soon.' দিয়ে বিনীত নির্দেশ প্রকাশ পেয়েছে।"
+      },
+      {
+        id: 35,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৩",
+        level: "SSC",
+        assertive: "Why don't you drink some water?",
+        banglaMeaning: "তুমি কিছু পানি খাচ্ছ না কেন?",
+        answer: "Drink some water.",
+        answerBangla: "কিছু পানি খাও।",
+        explanation: "নিয়ম ১৩ অনুযায়ী পরামর্শ বোঝাতে 'Why don't you' বাদ দিয়ে সরাসরি 'Drink some water.' হয়েছে।"
+      },
+      {
+        id: 36,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৩",
+        level: "HSC",
+        assertive: "Why don't we start the project today?",
+        banglaMeaning: "আমরা আজই প্রকল্পটি শুরু করছি না কেন?",
+        answer: "Let us start the project today.",
+        answerBangla: "চলো আজই প্রকল্পটি শুরু করি।",
+        explanation: "নিয়ম ১৩ অনুযায়ী 'Why don't we...' প্রস্তাবের রূপান্তর 'Let us start the project today.'।"
+      },
+      {
+        id: 37,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৪",
+        level: "SSC",
+        assertive: "You are careful about your health.",
+        banglaMeaning: "তুমি তোমার স্বাস্থ্যের প্রতি যত্নবান থাকো।",
+        answer: "Be careful about your health.",
+        answerBangla: "তোমার স্বাস্থ্যের প্রতি যত্নবান থাকো।",
+        explanation: "নিয়ম ১৪ অনুযায়ী 'You are' এর বদলে 'Be' + Adjective 'careful' বসেছে।"
+      },
+      {
+        id: 38,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৪",
+        level: "HSC",
+        assertive: "You are punctual in your duties.",
+        banglaMeaning: "তুমি তোমার কর্তব্যে সময়নিষ্ঠ থাকো।",
+        answer: "Be punctual in your duties.",
+        answerBangla: "তোমার কর্তব্যে সময়নিষ্ঠ থাকো।",
+        explanation: "নিয়ম ১৪ অনুযায়ী 'Be punctual in your duties.' দিয়ে সতর্কতা/নির্দেশ গঠিত হয়েছে।"
+      },
+      {
+        id: 39,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৪",
+        level: "Class 7–8",
+        assertive: "You are polite to your elders.",
+        banglaMeaning: "বড়দের প্রতি তুমি বিনয়ী থাকো।",
+        answer: "Be polite to your elders.",
+        answerBangla: "বড়দের প্রতি বিনয়ী থাকো।",
+        explanation: "নিয়ম ১৪ অনুযায়ী 'Be polite to your elders.' হয়েছে।"
+      },
+      {
+        id: 40,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৫",
+        level: "SSC",
+        assertive: "You can finish the task before evening.",
+        banglaMeaning: "তুমি সন্ধ্যার আগেই কাজটি শেষ করতে পারো।",
+        answer: "Finish the task before evening.",
+        answerBangla: "সন্ধ্যার আগেই কাজটি শেষ করো।",
+        explanation: "নিয়ম ১৫ অনুযায়ী Modal 'can' বাদ দিয়ে মূল Verb 'Finish'-এর Base form বসেছে।"
+      },
+      {
+        id: 41,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৫",
+        level: "HSC",
+        assertive: "You will keep your promise.",
+        banglaMeaning: "তুমি তোমার প্রতিশ্রুতি রক্ষা করবে।",
+        answer: "Keep your promise.",
+        answerBangla: "তোমার প্রতিশ্রুতি রক্ষা করো।",
+        explanation: "নিয়ম ১৫ অনুযায়ী 'You will' বাদ দিয়ে 'Keep your promise.' হয়েছে।"
+      },
+      {
+        id: 42,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৬",
+        level: "SSC",
+        assertive: "You had better start preparing now.",
+        banglaMeaning: "এখনই প্রস্তুতি নেওয়া তোমার জন্য ভালো।",
+        answer: "Start preparing now.",
+        answerBangla: "এখনই প্রস্তুতি নাও।",
+        explanation: "নিয়ম ১৬ অনুযায়ী 'You had better' বাদ দিয়ে 'Start preparing now.' হয়েছে।"
+      },
+      {
+        id: 43,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৬",
+        level: "HSC",
+        assertive: "You had better not argue with him.",
+        banglaMeaning: "তার সাথে তর্ক না করাই তোমার ভালো।",
+        answer: "Do not argue with him.",
+        answerBangla: "তার সাথে তর্ক কোরো না।",
+        explanation: "নিয়ম ১৬ অনুযায়ী 'You had better not' এর বদলে 'Do not argue with him.' বসেছে।"
+      },
+      {
+        id: 44,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৬",
+        level: "HSC",
+        assertive: "You had better stay indoors during the storm.",
+        banglaMeaning: "ঝড়ের সময় তোমার ঘরের ভেতরে থাকাই ভালো।",
+        answer: "Stay indoors during the storm.",
+        answerBangla: "ঝড়ের সময় ঘরের ভেতরে থাকো।",
+        explanation: "নিয়ম ১৬ অনুযায়ী 'You had better' বাদ দিয়ে 'Stay indoors during the storm.' হয়েছে।"
+      },
+      {
+        id: 45,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৭",
+        level: "SSC",
+        assertive: "You will miss the train if you do not walk fast.",
+        banglaMeaning: "দ্রুত না হাঁটলে তুমি ট্রেনটি মিস করবে।",
+        answer: "Walk fast or you will miss the train.",
+        answerBangla: "দ্রুত হাঁটো, নইলে ট্রেনটি মিস করবে।",
+        explanation: "নিয়ম ১৭ অনুযায়ী সতর্কতা/শর্ত যুক্ত বাক্যকে 'Walk fast or you will miss the train.' করা হয়েছে।"
+      },
+      {
+        id: 46,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৭",
+        level: "HSC",
+        assertive: "You will fail if you do not study regularly.",
+        banglaMeaning: "নিয়মিত পড়াশোনা না করলে তুমি ফেল করবে।",
+        answer: "Study regularly or you will fail.",
+        answerBangla: "নিয়মিত পড়াশোনা করো, নইলে ফেল করবে।",
+        explanation: "নিয়ম ১৭ অনুযায়ী মূল করণীয় 'Study regularly' সামনে এনে 'or you will fail.' যুক্ত হয়েছে।"
+      },
+      {
+        id: 47,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৮",
+        level: "SSC",
+        assertive: "He should not make a noise in the library.",
+        banglaMeaning: "লাইব্রেরিতে তার শব্দ করা উচিত নয়।",
+        answer: "Let him not make a noise in the library.",
+        answerBangla: "তাকে লাইব্রেরিতে শব্দ করতে দেওয়া উচিত নয় / দিয়ো না।",
+        explanation: "নিয়ম ১৮ অনুযায়ী Traditional কাঠামো 'Let him not make a noise...' ব্যবহার করা হয়েছে (Modern: Don't let him make a noise...)।"
+      },
+      {
+        id: 48,
+        group: "advanced",
+        ruleRef: "নিয়ম ১৮",
+        level: "HSC",
+        assertive: "She should not waste time on social media.",
+        banglaMeaning: "সোশ্যাল মিডিয়ায় তার সময় নষ্ট করা উচিত নয়।",
+        answer: "Let her not waste time on social media.",
+        answerBangla: "তাকে সোশ্যাল মিডিয়ায় সময় নষ্ট করতে দেওয়া উচিত নয়।",
+        explanation: "নিয়ম ১৮ অনুযায়ী 'Let her not waste...' (Traditional) এবং 'Don't let her waste...' (Modern) উভয় কাঠামো পরিচিত থাকা জরুরি।"
+      },
+      {
+        id: 49,
+        group: "let",
+        ruleRef: "নিয়ম ০৫–০৬",
+        level: "HSC",
+        assertive: "I want to help the distressed people.",
+        banglaMeaning: "আমি বিপদগ্রস্ত মানুষদের সাহায্য করতে চাই।",
+        answer: "Let me help the distressed people.",
+        answerBangla: "আমাকে বিপদগ্রস্ত মানুষদের সাহায্য করতে দাও।",
+        explanation: "নিয়ম ০৫ অনুযায়ী Subject 'I'-এর Object 'me' বসিয়ে 'Let me help...' করা হয়েছে।"
+      },
+      {
+        id: 50,
+        group: "advanced",
+        ruleRef: "নিয়ম ০১–০২",
+        level: "All Classes",
+        assertive: "You should always respect national flags.",
+        banglaMeaning: "তোমার সবসময় জাতীয় পতাকার প্রতি সম্মান দেখানো উচিত।",
+        answer: "Always respect national flags.",
+        answerBangla: "সবসময় জাতীয় পতাকার প্রতি সম্মান দেখাও।",
+        explanation: "নিয়ম ০১ অনুযায়ী 'You should' বাদ দিয়ে 'Always respect national flags.' হয়েছে।"
+      }
+    ];
+
+    /* =======================================================================
+       APPLICATION STATE
+       ======================================================================= */
+    const state = {
+      theme: "rgb",
+      laser: true,
+      sound: true,
+      ruleSteps: new Array(RULES_DATA.length).fill(0),
+      practiceSteps: new Array(PRACTICE_DATA.length).fill(0),
+      practiceFilter: "all",
+      allRulesExpanded: false
+    };
+
+    /* =======================================================================
+       WEB AUDIO API TACTILE SOUND EFFECTS (ZERO EXTERNAL FILES)
+       ======================================================================= */
+    let audioCtx = null;
+    function playClickSound(type = "step") {
+      if (!state.sound) return;
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        if (type === "collapse") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(420, now);
+          osc.frequency.exponentialRampToValueAtTime(210, now + 0.09);
+        } else if (type === "nav") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(760, now + 0.08);
+        } else {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(580, now);
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.075);
+        }
+
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.1);
+      } catch (err) {
+        // Ignore audio errors if blocked by browser policy
+      }
+    }
+
+    /* =======================================================================
+       TOAST NOTIFICATION HELPER (NO alert() OR confirm())
+       ======================================================================= */
+    let toastTimer = null;
+    function showToast(message) {
+      const el = document.getElementById("toast-banner");
+      if (!el) return;
+      el.textContent = message;
+      el.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        el.classList.remove("show");
+      }, 2400);
+    }
+
+    /* =======================================================================
+       THEME, LASER, SOUND & PRINT CONTROLS
+       ======================================================================= */
+    function setTheme(themeName) {
+      state.theme = themeName;
+      document.documentElement.setAttribute("data-theme", themeName);
+      playClickSound("nav");
+
+      const map = {
+        rgb: "theme-rgb-btn",
+        white: "theme-white-btn",
+        dark: "theme-dark-btn"
+      };
+      Object.entries(map).forEach(([key, id]) => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          btn.classList.toggle("is-selected", key === themeName);
+        }
+      });
+
+      const labelMap = {
+        rgb: "Real RGB থিম সক্রিয় হয়েছে",
+        white: "White থিম সক্রিয় হয়েছে",
+        dark: "Dark থিম সক্রিয় হয়েছে"
+      };
+      showToast(labelMap[themeName] || "থিম পরিবর্তন হয়েছে");
+    }
+
+    function toggleLaser() {
+      state.laser = !state.laser;
+      document.documentElement.setAttribute("data-laser", state.laser ? "on" : "off");
+      playClickSound("nav");
+
+      const dot = document.getElementById("laser-dot");
+      const label = document.getElementById("laser-label");
+      if (state.laser) {
+        dot.textContent = "🔴";
+        label.textContent = "লেজার: চালু";
+        showToast("লেজার অ্যানিমেশন চালু করা হয়েছে");
+      } else {
+        dot.textContent = "⚪";
+        label.textContent = "লেজার: বন্ধ";
+        showToast("লেজার অ্যানিমেশন বন্ধ করা হয়েছে");
+      }
+    }
+
+    function toggleSound() {
+      state.sound = !state.sound;
+      const icon = document.getElementById("sound-icon");
+      const label = document.getElementById("sound-label");
+      if (state.sound) {
+        icon.textContent = "🔊";
+        label.textContent = "সাউন্ড: চালু";
+        playClickSound("nav");
+        showToast("সাউন্ড ইফেক্ট চালু করা হয়েছে");
+      } else {
+        icon.textContent = "🔇";
+        label.textContent = "সাউন্ড: বন্ধ";
+        showToast("সাউন্ড ইফেক্ট বন্ধ করা হয়েছে");
+      }
+    }
+
+    function handlePrint() {
+      playClickSound("nav");
+      showToast("প্রিন্ট / PDF ডায়ালগ খোলা হচ্ছে...");
+      setTimeout(() => window.print(), 180);
+    }
+
+    /* =======================================================================
+       BENGALI DIGIT CONVERTER FOR CLEAN DISPLAY
+       ======================================================================= */
+    function toBanglaDigits(num) {
+      const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+      return String(num).replace(/\d/g, (d) => bnDigits[Number(d)]);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    /* =======================================================================
+       SECTION 01: RENDER & INTERACT WITH 18 RULES
+       ======================================================================= */
+    function cycleRuleStep(index) {
+      const current = state.ruleSteps[index];
+      const next = (current + 1) % 4;
+      state.ruleSteps[index] = next;
+      playClickSound(next === 0 ? "collapse" : "step");
+      renderRules();
+    }
+
+    function toggleAllRules() {
+      state.allRulesExpanded = !state.allRulesExpanded;
+      const targetStep = state.allRulesExpanded ? 3 : 0;
+      state.ruleSteps = new Array(RULES_DATA.length).fill(targetStep);
+      playClickSound(state.allRulesExpanded ? "step" : "collapse");
+
+      const btn = document.getElementById("toggle-all-rules-btn");
+      btn.innerHTML = state.allRulesExpanded
+        ? '<span>📁</span><span class="font-bn">সব নিয়ম সংকুচিত করুন</span>'
+        : '<span>📂</span><span class="font-bn">সব নিয়ম একসাথে খুলুন</span>';
+
+      renderRules();
+      showToast(state.allRulesExpanded ? "সব ১৮টি নিয়মের সব ধাপ খোলা হয়েছে" : "সব নিয়ম সংকুচিত করা হয়েছে");
+    }
+
+    function getRuleHintText(step) {
+      if (step === 0) return "👆 ১ম ক্লিক: গঠন (Structure) দেখুন";
+      if (step === 1) return "👆 ২য় ক্লিক: বাংলা ব্যাখ্যা দেখুন";
+      if (step === 2) return "👆 ৩য় ক্লিক: উদাহরণ ও অর্থ দেখুন";
+      return "🔄 ৪র্থ ক্লিক: সংকুচিত করুন";
+    }
+
+    function renderRules() {
+      const container = document.getElementById("rules-container");
+      const searchVal = (document.getElementById("rule-search-input")?.value || "").trim().toLowerCase();
+
+      const filtered = RULES_DATA.map((rule, idx) => ({ rule, idx })).filter(({ rule }) => {
+        if (!searchVal) return true;
+        return (
+          rule.num.toLowerCase().includes(searchVal) ||
+          rule.titleEn.toLowerCase().includes(searchVal) ||
+          rule.titleBn.toLowerCase().includes(searchVal) ||
+          rule.structure.toLowerCase().includes(searchVal) ||
+          rule.explanationBn.toLowerCase().includes(searchVal)
+        );
+      });
+
+      const openedCount = state.ruleSteps.filter((s) => s > 0).length;
+      const progressEl = document.getElementById("rules-progress-text");
+      if (progressEl) {
+        progressEl.textContent = `${toBanglaDigits(openedCount)} / ${toBanglaDigits(RULES_DATA.length)}`;
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="rounded-2xl p-8 text-center border font-bn" style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-muted);">
+            কোনো নিয়ম খুঁজে পাওয়া যায়নি। অন্য শব্দ দিয়ে চেষ্টা করুন।
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered
+        .map(({ rule, idx }) => {
+          const step = state.ruleSteps[idx];
+          const dotsHtml = [1, 2, 3]
+            .map((d) => `<span class="step-dot ${step >= d ? "active" : ""}"></span>`)
+            .join("");
+
+          let revealsHtml = "";
+
+          if (step >= 1) {
+            revealsHtml += `
+              <div class="reveal-box" style="border-left: 4px solid var(--accent-cyan);">
+                <div class="text-xs font-bn font-bold mb-1" style="color: var(--accent-cyan);">
+                  📐 গঠন (Structure):
+                </div>
+                <div class="font-mono-code text-xs sm:text-sm font-semibold break-words" style="color: var(--text-primary);">
+                  ${escapeHtml(rule.structure)}
+                </div>
+              </div>
+            `;
+          }
+
+          if (step >= 2) {
+            revealsHtml += `
+              <div class="reveal-box" style="border-left: 4px solid var(--accent-emerald);">
+                <div class="text-xs font-bn font-bold mb-1" style="color: var(--accent-emerald);">
+                  💡 বাংলা ব্যাখ্যা:
+                </div>
+                <p class="font-bn text-sm sm:text-base leading-relaxed m-0" style="color: var(--text-secondary);">
+                  ${escapeHtml(rule.explanationBn)}
+                </p>
+              </div>
+            `;
+          }
+
+          if (step >= 3) {
+            revealsHtml += `
+              <div class="reveal-box space-y-2.5" style="border-left: 4px solid var(--accent-amber);">
+                <div class="text-xs font-bn font-bold" style="color: var(--accent-amber);">
+                  ✍️ উদাহরণ ও বাংলা অর্থ:
+                </div>
+                <div class="p-3 rounded-lg" style="background: var(--bg-surface); border: 1px solid var(--border-subtle);">
+                  <div class="text-xs font-bn mb-0.5" style="color: var(--text-muted);">Assertive:</div>
+                  <div class="font-en font-semibold text-sm sm:text-base" style="color: var(--text-primary);">
+                    ${escapeHtml(rule.exampleAssertive)}
+                  </div>
+                  <div class="font-bn text-xs sm:text-sm mt-0.5" style="color: var(--text-secondary);">
+                    অর্থ: ${escapeHtml(rule.exampleAssertiveBn)}
+                  </div>
+                </div>
+                <div class="p-3 rounded-lg" style="background: var(--bg-surface); border: 1px solid rgba(52, 211, 153, 0.35);">
+                  <div class="text-xs font-bn mb-0.5" style="color: var(--accent-emerald);">Imperative:</div>
+                  <div class="font-en font-bold text-sm sm:text-base" style="color: var(--accent-emerald);">
+                    ${escapeHtml(rule.exampleImperative)}
+                  </div>
+                  <div class="font-bn text-xs sm:text-sm mt-0.5" style="color: var(--text-primary);">
+                    অর্থ: ${escapeHtml(rule.exampleImperativeBn)}
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+
+          return `
+            <article class="master-card p-4 sm:p-5" onclick="cycleRuleStep(${idx})">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-start sm:items-center gap-3.5 min-w-0">
+                  <div
+                    class="w-11 h-11 rounded-xl flex items-center justify-center font-mono-code font-bold text-sm shrink-0"
+                    style="background: var(--chip-bg); color: var(--accent-cyan); border: 1px solid var(--border-subtle);"
+                  >
+                    ${escapeHtml(rule.num)}
+                  </div>
+                  <div class="min-w-0">
+                    <h4 class="font-en font-bold text-base sm:text-lg leading-snug" style="color: var(--text-primary);">
+                      ${escapeHtml(rule.titleEn)}
+                    </h4>
+                    <p class="font-bn text-sm sm:text-base font-semibold leading-snug mt-0.5" style="color: var(--accent-emerald);">
+                      ${escapeHtml(rule.titleBn)}
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="self-start sm:self-center px-3 py-1.5 rounded-lg text-xs font-bn font-bold shrink-0"
+                  style="background: var(--bg-surface-alt); color: var(--accent-cyan); border: 1px solid var(--border-subtle);"
+                >
+                  ${getRuleHintText(step)}
+                </div>
+              </div>
+
+              ${revealsHtml}
+
+              <div class="mt-3.5 pt-2.5 flex items-center justify-between text-xs font-bn border-t" style="border-color: var(--border-subtle); color: var(--text-muted);">
+                <span>ধাপ: ${toBanglaDigits(step)} / ৩ উন্মুক্ত</span>
+                <div class="flex items-center gap-1.5" aria-hidden="true">
+                  ${dotsHtml}
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    /* =======================================================================
+       SECTION 02: RENDER & INTERACT WITH 50 PRACTICE QUESTIONS
+       ======================================================================= */
+    function cyclePracticeStep(index) {
+      const current = state.practiceSteps[index];
+      const next = (current + 1) % 4;
+      state.practiceSteps[index] = next;
+      playClickSound(next === 0 ? "collapse" : "step");
+      renderPractice();
+    }
+
+    function setPracticeFilter(filterKey) {
+      state.practiceFilter = filterKey;
+      playClickSound("nav");
+      document.querySelectorAll(".practice-filter-btn").forEach((btn) => {
+        btn.classList.toggle("is-selected", btn.getAttribute("data-filter") === filterKey);
+      });
+      renderPractice();
+    }
+
+    function resetAllPractice() {
+      state.practiceSteps = new Array(PRACTICE_DATA.length).fill(0);
+      playClickSound("collapse");
+      renderPractice();
+      showToast("সব ৫০টি প্রশ্ন সংকুচিত করা হয়েছে");
+    }
+
+    function getPracticeHintText(step) {
+      if (step === 0) return "👆 ১ম ক্লিক: বাংলা অর্থ";
+      if (step === 1) return "👆 ২য় ক্লিক: সঠিক উত্তর";
+      if (step === 2) return "👆 ৩য় ক্লিক: বিস্তারিত ব্যাখ্যা";
+      return "🔄 ৪র্থ ক্লিক: পুনরায় শুরু";
+    }
+
+    function renderPractice() {
+      const container = document.getElementById("practice-container");
+      const searchVal = (document.getElementById("practice-search-input")?.value || "").trim().toLowerCase();
+
+      const filtered = PRACTICE_DATA.map((item, idx) => ({ item, idx })).filter(({ item }) => {
+        const matchesGroup = state.practiceFilter === "all" || item.group === state.practiceFilter;
+        if (!matchesGroup) return false;
+        if (!searchVal) return true;
+        return (
+          String(item.id).includes(searchVal) ||
+          item.assertive.toLowerCase().includes(searchVal) ||
+          item.answer.toLowerCase().includes(searchVal) ||
+          item.banglaMeaning.toLowerCase().includes(searchVal) ||
+          item.ruleRef.toLowerCase().includes(searchVal) ||
+          item.level.toLowerCase().includes(searchVal)
+        );
+      });
+
+      const answeredCount = state.practiceSteps.filter((s) => s >= 2).length;
+      const progressEl = document.getElementById("practice-progress-text");
+      if (progressEl) {
+        progressEl.textContent = `${toBanglaDigits(answeredCount)} / ${toBanglaDigits(PRACTICE_DATA.length)}`;
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full rounded-2xl p-8 text-center border font-bn" style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-muted);">
+            কোনো প্রশ্ন খুঁজে পাওয়া যায়নি। ফিল্টার বা সার্চ শব্দ পরিবর্তন করুন।
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered
+        .map(({ item, idx }) => {
+          const step = state.practiceSteps[idx];
+          const dotsHtml = [1, 2, 3]
+            .map((d) => `<span class="step-dot ${step >= d ? "active" : ""}"></span>`)
+            .join("");
+
+          let revealsHtml = "";
+
+          if (step >= 1) {
+            revealsHtml += `
+              <div class="reveal-box" style="border-left: 4px solid var(--accent-cyan);">
+                <div class="text-xs font-bn font-bold mb-0.5" style="color: var(--accent-cyan);">
+                  🌐 বাংলা অর্থ:
+                </div>
+                <div class="font-bn text-sm sm:text-base" style="color: var(--text-primary);">
+                  ${escapeHtml(item.banglaMeaning)}
+                </div>
+              </div>
+            `;
+          }
+
+          if (step >= 2) {
+            revealsHtml += `
+              <div class="reveal-box" style="border-left: 4px solid var(--accent-emerald);">
+                <div class="text-xs font-bn font-bold mb-0.5" style="color: var(--accent-emerald);">
+                  ✅ সঠিক Imperative উত্তর:
+                </div>
+                <div class="font-en font-bold text-sm sm:text-base" style="color: var(--accent-emerald);">
+                  ${escapeHtml(item.answer)}
+                </div>
+                <div class="font-bn text-xs sm:text-sm mt-0.5" style="color: var(--text-secondary);">
+                  অর্থ: ${escapeHtml(item.answerBangla)}
+                </div>
+              </div>
+            `;
+          }
+
+          if (step >= 3) {
+            revealsHtml += `
+              <div class="reveal-box" style="border-left: 4px solid var(--accent-amber);">
+                <div class="text-xs font-bn font-bold mb-0.5" style="color: var(--accent-amber);">
+                  📖 বিস্তারিত ব্যাখ্যা:
+                </div>
+                <p class="font-bn text-xs sm:text-sm leading-relaxed m-0" style="color: var(--text-secondary);">
+                  ${escapeHtml(item.explanation)}
+                </p>
+              </div>
+            `;
+          }
+
+          return `
+            <article class="master-card p-4 sm:p-5 flex flex-col justify-between" onclick="cyclePracticeStep(${idx})">
+              <div>
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="font-mono-code font-bold text-xs px-2.5 py-1 rounded-lg"
+                      style="background: var(--chip-bg); color: var(--accent-pink); border: 1px solid var(--border-subtle);"
+                    >
+                      Q.${escapeHtml(toBanglaDigits(item.id))}
+                    </span>
+                    <span
+                      class="font-bn text-xs font-bold px-2.5 py-1 rounded-lg"
+                      style="background: rgba(34, 211, 238, 0.14); color: var(--accent-cyan);"
+                    >
+                      ${escapeHtml(item.ruleRef)}
+                    </span>
+                    <span
+                      class="font-en text-xs font-semibold px-2 py-0.5 rounded-md"
+                      style="background: var(--chip-bg); color: var(--text-muted);"
+                    >
+                      ${escapeHtml(item.level)}
+                    </span>
+                  </div>
+
+                  <span
+                    class="text-xs font-bn font-bold px-2.5 py-1 rounded-lg"
+                    style="background: var(--bg-surface-alt); color: var(--accent-emerald); border: 1px solid var(--border-subtle);"
+                  >
+                    ${getPracticeHintText(step)}
+                  </span>
+                </div>
+
+                <div class="font-en font-bold text-base sm:text-lg leading-snug" style="color: var(--text-primary);">
+                  ${escapeHtml(item.assertive)}
+                </div>
+
+                ${revealsHtml}
+              </div>
+
+              <div class="mt-3.5 pt-2.5 flex items-center justify-between text-xs font-bn border-t" style="border-color: var(--border-subtle); color: var(--text-muted);">
+                <span>ধাপ: ${toBanglaDigits(step)} / ৩</span>
+                <div class="flex items-center gap-1.5" aria-hidden="true">
+                  ${dotsHtml}
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    /* =======================================================================
+       INITIALIZE RENDER ON DOM LOAD
+       ======================================================================= */
+    document.addEventListener("DOMContentLoaded", () => {
+      renderRules();
+      renderPractice();
+    });
+  </script>
+</body>
+</html>
