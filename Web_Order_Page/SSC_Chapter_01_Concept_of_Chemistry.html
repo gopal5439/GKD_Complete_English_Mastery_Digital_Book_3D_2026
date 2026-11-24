@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="rgb">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>নবম শ্রেণি রসায়ন - অধ্যায় ০১ | পড়াশুনা বিডি ডটকম (PorashunaBD.com)</title>
+
+  <!-- Google Fonts: Tiro Bangla (Mandatory for entire software) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Three.js for 3D Interactive Molecular & Lab View -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --bg-card: rgba(15, 23, 42, 0.78);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --accent: #00f5d4;
+      --accent-2: #7b2cbf;
+      --accent-3: #ff006e;
+      --border-color: rgba(0, 245, 212, 0.25);
+      --laser-grad: linear-gradient(90deg, #ff006e, #ffbe0b, #00f5d4, #3a86ff, #8338ec);
+      --shadow-glow: 0 10px 35px -5px rgba(0, 245, 212, 0.22);
+    }
+
+    [data-theme="white"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.94);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --accent: #0d9488;
+      --accent-2: #0f3d56;
+      --accent-3: #d97706;
+      --border-color: rgba(15, 61, 86, 0.16);
+      --laser-grad: linear-gradient(90deg, #0f3d56, #0d9488, #0284c7);
+      --shadow-glow: 0 10px 28px -5px rgba(15, 61, 86, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-card: rgba(22, 27, 34, 0.9);
+      --text-primary: #e6edf3;
+      --text-secondary: #9da7b3;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --accent-3: #f43f5e;
+      --border-color: rgba(56, 189, 248, 0.22);
+      --laser-grad: linear-gradient(90deg, #38bdf8, #818cf8, #f43f5e);
+      --shadow-glow: 0 10px 30px -5px rgba(56, 189, 248, 0.15);
+    }
+
+    [data-theme="emerald"] {
+      --bg-primary: #041f1e;
+      --bg-secondary: #082f2d;
+      --bg-card: rgba(8, 47, 45, 0.85);
+      --text-primary: #ecfdf5;
+      --text-secondary: #a7f3d0;
+      --accent: #10b981;
+      --accent-2: #f59e0b;
+      --accent-3: #06b6d4;
+      --border-color: rgba(16, 185, 129, 0.28);
+      --laser-grad: linear-gradient(90deg, #10b981, #f59e0b, #06b6d4);
+      --shadow-glow: 0 10px 32px -5px rgba(16, 185, 129, 0.2);
+    }
+
+    * {
+      font-family: 'Tiro Bangla', serif !important;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+    }
+
+    /* Real RGB Animated Background Mesh */
+    [data-theme="rgb"] body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 0, 110, 0.14), transparent 42%),
+        radial-gradient(circle at 85% 25%, rgba(0, 245, 212, 0.14), transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(131, 56, 236, 0.16), transparent 50%);
+      animation: rgbShift 12s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes rgbShift {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(65deg); }
+    }
+
+    /* Smooth Scroll-Linked Laser Light Beam */
+    #laser-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+    }
+
+    #laser-beam {
+      height: 100%;
+      width: 0%;
+      background: var(--laser-grad);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px var(--accent-3);
+      position: relative;
+      transition: width 0.08s linear;
+    }
+
+    #laser-beam::after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      top: -3px;
+      width: 12px;
+      height: 10px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 0 14px 4px var(--accent), 0 0 28px 8px var(--accent-3);
+    }
+
+    /* Smart Auto-Hide Header */
+    #main-header {
+      position: fixed;
+      top: 4px;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-glow);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+    }
+
+    #main-header.header-hidden {
+      transform: translateY(-110%);
+    }
+
+    /* Glassmorphic 3D Tactile Cards */
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      box-shadow: var(--shadow-glow);
+      backdrop-filter: blur(12px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .glass-card:hover {
+      border-color: var(--accent);
+    }
+
+    /* Tactile Touch-Feel Buttons */
+    .tactile-btn {
+      position: relative;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      transition: transform 0.14s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tactile-btn:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(0, 245, 212, 0.22);
+    }
+
+    .tactile-btn:active {
+      transform: scale(0.95);
+    }
+
+    .tactile-btn.active-tab {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      border-color: transparent;
+      font-weight: 700;
+      box-shadow: 0 4px 18px rgba(0, 245, 212, 0.35);
+    }
+
+    /* Real RGB Border Glow */
+    [data-theme="rgb"] .rgb-ring {
+      position: relative;
+    }
+    [data-theme="rgb"] .rgb-ring::before {
+      content: "";
+      position: absolute;
+      inset: -1.5px;
+      border-radius: 19px;
+      padding: 1.5px;
+      background: linear-gradient(90deg, #ff006e, #ffbe0b, #00f5d4, #3a86ff, #8338ec, #ff006e);
+      background-size: 300% 300%;
+      animation: borderFlow 6s linear infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    @keyframes borderFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    /* Custom Scrollbar for horizontal nav */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Tables */
+    .chem-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .chem-table th {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      color: #ffffff;
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 1.05rem;
+    }
+    .chem-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+      vertical-align: top;
+    }
+    .chem-table tr:hover td {
+      background: rgba(0, 245, 212, 0.06);
+    }
+
+    /* Click-to-Reveal Answer Animation */
+    .answer-drawer {
+      display: none;
+      animation: fadeSlideDown 0.28s ease forwards;
+    }
+    .answer-drawer.open {
+      display: block;
+    }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile Drawer */
+    #mobile-drawer {
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #mobile-drawer.closed {
+      transform: translateX(100%);
+    }
+
+    /* Section visibility */
+    .chapter-view {
+      display: none;
+      animation: viewIn 0.35s ease;
+    }
+    .chapter-view.active-view {
+      display: block;
+    }
+    @keyframes viewIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Smooth Mouse Scroll Laser Light Bar -->
+  <div id="laser-track" aria-hidden="true">
+    <div id="laser-beam"></div>
+  </div>
+
+  <!-- Auto-Hide Responsive Header -->
+  <header id="main-header">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5">
+      <div class="flex items-center justify-between gap-2">
+        <!-- Brand Identity -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg" style="background: linear-gradient(135deg, var(--accent), var(--accent-2));">
+            <span>র</span>
+          </div>
+          <div>
+            <div class="text-base sm:text-lg font-bold leading-tight" style="color: var(--accent);">
+              পড়াশুনা বিডি ডটকম (PorashunaBD.com)
+            </div>
+            <div class="text-xs sm:text-sm opacity-85" style="color: var(--text-secondary);">
+              নবম শ্রেণি রসায়ন — অধ্যায় ০১ : রসায়নের ধারণা | হেল্পলাইন: 01774080384
+            </div>
+          </div>
+        </div>
+
+        <!-- Theme Switcher & 3-Line Hamburger Menu -->
+        <div class="flex items-center gap-2">
+          <!-- Theme Selector Pills -->
+          <div class="hidden md:flex items-center gap-1.5 p-1 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <button onclick="setTheme('rgb')" id="btn-theme-rgb" class="tactile-btn px-2.5 py-1 text-xs active-tab" title="Real RGB থিম">Real RGB</button>
+            <button onclick="setTheme('white')" id="btn-theme-white" class="tactile-btn px-2.5 py-1 text-xs" title="White থিম">White</button>
+            <button onclick="setTheme('dark')" id="btn-theme-dark" class="tactile-btn px-2.5 py-1 text-xs" title="Dark থিম">Dark</button>
+            <button onclick="setTheme('emerald')" id="btn-theme-emerald" class="tactile-btn px-2.5 py-1 text-xs" title="Emerald থিম">Emerald</button>
+          </div>
+
+          <!-- 3-Line Menu Button -->
+          <button onclick="toggleDrawer()" aria-label="মেনু খুলুন" class="tactile-btn p-2.5 flex flex-col justify-center items-center gap-1.5 w-11 h-11">
+            <span class="block w-6 h-0.5 rounded-full" style="background: var(--accent);"></span>
+            <span class="block w-6 h-0.5 rounded-full" style="background: var(--text-primary);"></span>
+            <span class="block w-6 h-0.5 rounded-full" style="background: var(--accent-3);"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Chapter-Section Horizontal Navigation Bar -->
+      <nav aria-label="অধ্যায়ভিত্তিক নেভিগেশন" class="mt-2.5 pt-2 border-t flex items-center gap-2 overflow-x-auto no-scrollbar" style="border-color: var(--border-color);">
+        <button onclick="switchChapter('sec-all')" data-nav="sec-all" class="nav-pill tactile-btn active-tab px-3.5 py-1.5 text-sm whitespace-nowrap">সবগুলো একসাথে</button>
+        <button onclick="switchChapter('sec-basics')" data-nav="sec-basics" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">১. বেসিক ও ৩D ল্যাব</button>
+        <button onclick="switchChapter('sec-formulas')" data-nav="sec-formulas" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">২. সূত্র ও বিক্রিয়া</button>
+        <button onclick="switchChapter('sec-shortcuts')" data-nav="sec-shortcuts" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">৩. সুপার শর্টকাট</button>
+        <button onclick="switchChapter('sec-symbols')" data-nav="sec-symbols" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">৪. সাংকেতিক চিহ্ন (GHS)</button>
+        <button onclick="switchChapter('sec-math')" data-nav="sec-math" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">৫. গাণিতিক সমস্যা</button>
+        <button onclick="switchChapter('sec-mcq')" data-nav="sec-mcq" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">৬. ৫০টি বোর্ড MCQ</button>
+        <button onclick="switchChapter('sec-cq')" data-nav="sec-cq" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">৭. ২০টি সৃজনশীল (CQ)</button>
+        <button onclick="switchChapter('sec-short')" data-nav="sec-short" class="nav-pill tactile-btn px-3.5 py-1.5 text-sm whitespace-nowrap">৮. ২০টি সংক্ষিপ্ত প্রশ্ন</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Slide-out 3-Line Drawer Menu -->
+  <div id="drawer-backdrop" onclick="toggleDrawer()" class="fixed inset-0 bg-black/60 z-[950] hidden backdrop-blur-sm"></div>
+  <aside id="mobile-drawer" class="closed fixed top-0 right-0 bottom-0 w-80 max-w-[88vw] z-[960] p-5 flex flex-col justify-between overflow-y-auto" style="background: var(--bg-secondary); border-left: 1px solid var(--border-color);">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b" style="border-color: var(--border-color);">
+        <div>
+          <h2 class="text-lg font-bold" style="color: var(--accent);">অধ্যায় ও থিম কন্ট্রোল</h2>
+          <p class="text-xs" style="color: var(--text-secondary);">পড়াশুনা বিডি ডটকম — 3D সফটওয়্যার</p>
+        </div>
+        <button onclick="toggleDrawer()" class="tactile-btn px-3 py-1.5 text-sm font-bold">✕ বন্ধ</button>
+      </div>
+
+      <!-- Theme Switcher in Drawer -->
+      <div class="mt-4">
+        <p class="text-sm font-bold mb-2" style="color: var(--text-secondary);">কালার থিম নির্বাচন করুন:</p>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="setTheme('rgb')" class="tactile-btn py-2 px-3 text-sm text-center">🌈 Real RGB</button>
+          <button onclick="setTheme('white')" class="tactile-btn py-2 px-3 text-sm text-center">☀️ White (লাইট)</button>
+          <button onclick="setTheme('dark')" class="tactile-btn py-2 px-3 text-sm text-center">🌙 Dark (ডার্ক)</button>
+          <button onclick="setTheme('emerald')" class="tactile-btn py-2 px-3 text-sm text-center">💎 Emerald</button>
+        </div>
+      </div>
+
+      <!-- All Chapters / Sections List -->
+      <div class="mt-5">
+        <p class="text-sm font-bold mb-2" style="color: var(--text-secondary);">অধ্যায় ০১-এর পরিচ্ছেদসমূহ:</p>
+        <div class="flex flex-col gap-2">
+          <button onclick="switchChapter('sec-all'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">📚 সম্পূর্ণ অধ্যায় (সবগুলো পরিচ্ছেদ)</button>
+          <button onclick="switchChapter('sec-basics'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">১. গোছানো বেসিক কনসেপ্ট ও 3D মডেল</button>
+          <button onclick="switchChapter('sec-formulas'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">২. প্রাণবন্ত সূত্র ও রাসায়নিক বিক্রিয়া</button>
+          <button onclick="switchChapter('sec-shortcuts'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">৩. সুপার শর্টকাট ও ছন্দে মুখস্থ</button>
+          <button onclick="switchChapter('sec-symbols'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">৪. আন্তর্জাতিক সাংকেতিক চিহ্ন ও প্রতীক</button>
+          <button onclick="switchChapter('sec-math'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">৫. গাণিতিক সমস্যা ও সমাধান (৬টি)</button>
+          <button onclick="switchChapter('sec-mcq'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">৬. ৫০টি বোর্ড স্ট্যান্ডার্ড MCQ (ক্লিক উত্তর)</button>
+          <button onclick="switchChapter('sec-cq'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">৭. ২০টি SSC বোর্ড সৃজনশীল (CQ)</button>
+          <button onclick="switchChapter('sec-short'); toggleDrawer();" class="tactile-btn p-2.5 text-left text-sm">৮. ২০টি গুরুত্বপূর্ণ সংক্ষিপ্ত প্রশ্ন</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t text-xs" style="border-color: var(--border-color); color: var(--text-secondary);">
+      <p class="font-bold" style="color: var(--accent);">পড়াশুনা বিডি ডটকম (PorashunaBD.com)</p>
+      <p>হেল্পলাইন ও যোগাযোগ: 01774080384</p>
+    </div>
+  </aside>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 pt-32 sm:pt-36 pb-16 space-y-8">
+
+    <!-- Hero Banner + Interactive 3D Molecular & Lab Simulator -->
+    <section class="glass-card rgb-ring p-5 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-7 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs sm:text-sm border" style="border-color: var(--accent); color: var(--accent); background: rgba(0,245,212,0.08);">
+            <span>✨ গ্লোবাল এডুকেশন স্ট্যান্ডার্ড | ৩D ইন্টারঅ্যাক্টিভ ল্যাব সফটওয়্যার</span>
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-bold leading-snug">
+            নবম শ্রেণি : রসায়ন — অধ্যায় ০১ : <span style="color: var(--accent);">রসায়নের ধারণা</span>
+          </h1>
+          <p class="text-base sm:text-lg leading-relaxed" style="color: var(--text-secondary);">
+            পড়াশুনা বিডি ডটকম-এর সম্পূর্ণ নির্ভুল তথ্য, প্রাণবন্ত চিত্র, অ্যানিমেটেড ডায়াগ্রাম, ৫০টি বোর্ড MCQ, ২০টি সৃজনশীল (CQ) ও ২০টি সংক্ষিপ্ত প্রশ্নোত্তর—প্রতিটি প্রশ্নে ক্লিক করলেই নিচে উত্তর দৃশ্যমান হবে।
+          </p>
+
+          <!-- Quick Stats Pills -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+            <button onclick="switchChapter('sec-mcq')" class="tactile-btn p-3 text-center">
+              <div class="text-xl font-bold" style="color: var(--accent);">৫০টি</div>
+              <div class="text-xs">বোর্ড MCQ</div>
+            </button>
+            <button onclick="switchChapter('sec-cq')" class="tactile-btn p-3 text-center">
+              <div class="text-xl font-bold" style="color: var(--accent-3);">২০টি</div>
+              <div class="text-xs">সৃজনশীল (CQ)</div>
+            </button>
+            <button onclick="switchChapter('sec-short')" class="tactile-btn p-3 text-center">
+              <div class="text-xl font-bold" style="color: var(--accent);">২০টি</div>
+              <div class="text-xs">সংক্ষিপ্ত প্রশ্ন</div>
+            </button>
+            <button onclick="switchChapter('sec-symbols')" class="tactile-btn p-3 text-center">
+              <div class="text-xl font-bold" style="color: var(--accent-3);">৯টি</div>
+              <div class="text-xs">GHS ঝুঁকি চিহ্ন</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive 3D Canvas Box -->
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl overflow-hidden border relative" style="border-color: var(--border-color); background: radial-gradient(circle at center, #111c33, #060911);">
+            <div id="three-container" class="w-full h-64 sm:h-72 cursor-grab active:cursor-grabbing"></div>
+            <div class="p-2.5 flex flex-wrap items-center justify-between gap-2 text-xs bg-black/50 backdrop-blur-md border-t border-white/10">
+              <span class="text-cyan-300 font-bold" id="model-label">৩D মডেল: মিথেন (CH₄) অণু</span>
+              <div class="flex gap-1.5">
+                <button onclick="set3DModel('ch4')" class="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-200 border border-cyan-400/40 hover:bg-cyan-500/40">CH₄ অণু</button>
+                <button onclick="set3DModel('h2o')" class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-200 border border-purple-400/40 hover:bg-purple-500/40">H₂O অণু</button>
+                <button onclick="set3DModel('atom')" class="px-2.5 py-1 rounded bg-pink-500/20 text-pink-200 border border-pink-400/40 hover:bg-pink-500/40">পরমাণু মডেল</button>
+              </div>
+            </div>
+          </div>
+          <p class="text-center text-xs mt-1.5" style="color: var(--text-secondary);">মাউস ড্র্যাগ বা আঙুল দিয়ে স্পর্শ করে 3D মডেলটি ঘুরিয়ে দেখুন</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 1: CORE BASICS & ANIMATED DIAGRAMS -->
+    <!-- ===================================================================== -->
+    <div id="sec-basics" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-5">
+        <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-color);">
+          <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">১. গোছানো বেসিক কনসেপ্ট (Core Foundations)</h2>
+          <span class="text-xs px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">পরিচ্ছেদ ০১</span>
+        </div>
+
+        <div class="space-y-3 text-base leading-relaxed">
+          <h3 class="text-lg font-bold" style="color: var(--accent-3);">১.১ রসায়ন পরিচিতি ও ঐতিহাসিক পটভূমি</h3>
+          <p>
+            বিজ্ঞানের যে শাখায় পদার্থের গঠন, পদার্থের ধর্ম এবং পদার্থের ভৌত ও রাসায়নিক পরিবর্তন নিয়ে আলোচনা ও গবেষণা করা হয়, তাকে <strong>রসায়ন (Chemistry)</strong> বলে। রসায়নকে সকল বিজ্ঞানের <strong>কেন্দ্রীয় বিজ্ঞান (Central Science)</strong> বলা হয়। প্রাচীন ও মধ্যযুগীয় রসায়ন চর্চাকে বলা হতো <strong>আল-কেমি (Al-Chemy)</strong>, যার মূল উৎপত্তি আরবি শব্দ <em>আল-কিমিয়া (Al-Kimia)</em> থেকে। এই আল-কেমি থেকেই আধুনিক <em>Chemistry</em> শব্দের জন্ম হয়েছে।
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <strong style="color: var(--accent);">প্রাচীন রসায়ন চর্চা:</strong> খ্রিস্টপূর্ব প্রায় ৩৫০০ অব্দে মিশরীয়রা তামা (Cu) ও টিন (Sn) গলিয়ে তরল করে মিশিয়ে <strong>ব্রোঞ্জ (Bronze)</strong> নামক সংকর ধাতু তৈরি করেছিল। ভারতবর্ষে প্রায় ৫০০০ বছর পূর্বে কাপড়কে আকর্ষণীয় করার জন্য প্রাকৃতিক রঙের ব্যবহার শুরু হয়।
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <strong style="color: var(--accent);">জাবির ইবনে হাইয়ান (৭২১–৮১৫ খ্রি.):</strong> সর্বপ্রথম গবেষণাগারে (ল্যাবরেটরিতে) বিজ্ঞানসম্মত উপায়ে রসায়ন চর্চা শুরু করেন। তাঁকে <strong>রসায়নের জনক</strong> বা <strong>আল-কেমির জনক</strong> বলা হয়।
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <strong style="color: var(--accent);">রবার্ট বয়েল (১৬২৭–১৬৯১ খ্রি.):</strong> আধুনিক রসায়নের তাত্ত্বিক ভিত্তি স্থাপন করেন এবং মৌলিক পদার্থের সঠিক ধারণা দেন।
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <strong style="color: var(--accent);">অ্যান্টনি ল্যাভয়সিয়ে (১৭৪৩–১৭৯৪ খ্রি.):</strong> ভরের নিত্যতা সূত্র আবিষ্কার ও দহনে অক্সিজেনের ভূমিকা ব্যাখ্যা করে রসায়নকে আধুনিক বিজ্ঞানে রূপ দেন। তাঁকে <strong>আধুনিক রসায়নের জনক</strong> বলা হয়।
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.2 Scope Table -->
+        <div class="space-y-3 pt-2">
+          <h3 class="text-lg font-bold" style="color: var(--accent-3);">১.২ রসায়নের পরিধি ও প্রাত্যহিক জীবনে প্রয়োগ</h3>
+          <div class="overflow-x-auto rounded-xl border" style="border-color: var(--border-color);">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>ক্ষেত্র / বস্তু</th>
+                  <th>জড়িত রাসায়নিক উপাদান</th>
+                  <th>রাসায়নিক ব্যাখ্যা ও ভূমিকা</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>কাঁচা আম ও পাকা আম</strong></td>
+                  <td>কাঁচা আম: সাক্সিনিক ও ম্যালেয়িক এসিড<br>পাকা আম: গ্লুকোজ ও ফ্রুক্টোজ</td>
+                  <td>কাঁচা আমে জৈব এসিড থাকায় তা টক হয়। আম পাকলে জৈব রাসায়নিক পরিবর্তনের মাধ্যমে এসিডগুলো শর্করায় (গ্লুকোজ ও ফ্রুক্টোজ) রূপান্তরিত হয়ে মিষ্টি ও হলুদ হয়।</td>
+                </tr>
+                <tr>
+                  <td><strong>জ্বালানি ও রান্না</strong></td>
+                  <td>প্রাকৃতিক গ্যাস (CH<sub>4</sub>), কেরোসিন, কাঠ, মোম</td>
+                  <td>এগুলো মূলত হাইড্রোকার্বন। অক্সিজেনের সাথে দহন বিক্রিয়ায় CO<sub>2</sub>, জলীয়বাষ্প ও প্রচুর তাপশক্তি উৎপন্ন করে।</td>
+                </tr>
+                <tr>
+                  <td><strong>পাকস্থলীর এসিডিটি</strong></td>
+                  <td>পাকস্থলীতে HCl; ঔষধ: অ্যান্টাসিড Al(OH)<sub>3</sub> ও Mg(OH)<sub>2</sub></td>
+                  <td>অতিরিক্ত হাইড্রোক্লোরিক এসিড (HCl) ক্ষারীয় অ্যান্টাসিডের সাথে প্রশমন বিক্রিয়া ঘটিয়ে লবণ ও পানি উৎপন্ন করে এবং এসিডিটি দূর করে।</td>
+                </tr>
+                <tr>
+                  <td><strong>কৃষিক্ষেত্র</strong></td>
+                  <td>ইউরিয়া সার, পটাশ, ফসফেট ও কীটনাশক</td>
+                  <td>উদ্ভিদের পুষ্টি (N, P, K) সরবরাহ করে ফলন বাড়ায় এবং পোকামাকড় দমন করে। তবে অতিরিক্ত ব্যবহার মাটি ও পানি দূষণ ঘটায়।</td>
+                </tr>
+                <tr>
+                  <td><strong>লোহায় মরিচা পড়া</strong></td>
+                  <td>লোহা (Fe), অক্সিজেন (O<sub>2</sub>), জলীয়বাষ্প (H<sub>2</sub>O)</td>
+                  <td>আর্দ্র বায়ুতে লোহা ধীরে ধীরে বিক্রিয়া করে লালচে-বাদামি আর্দ্র ফেরিক অক্সাইড (Fe<sub>2</sub>O<sub>3</sub>·nH<sub>2</sub>O) বা মরিচা তৈরি করে।</td>
+                </tr>
+                <tr>
+                  <td><strong>খাদ্য সংরক্ষণ</strong></td>
+                  <td>অনুমোদিত প্রিজারভেটিভস (ভিনেগার, সোডিয়াম বেনজয়েট)</td>
+                  <td>খাদ্যে ব্যাকটেরিয়া ও ছত্রাকের বংশবিস্তার রোধ করে। তবে ফরমালিন বা কার্বাইড ব্যবহার মানবস্বাস্থ্যের জন্য মারাত্মক ক্ষতিকর।</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 1.3 Animated Interrelationship Diagram -->
+        <div class="space-y-3 pt-2">
+          <h3 class="text-lg font-bold" style="color: var(--accent-3);">১.৩ অন্যান্য বিজ্ঞানের সাথে রসায়নের আন্তঃসম্পর্ক (অ্যানিমেটেড ডায়াগ্রাম)</h3>
+          <p class="text-sm sm:text-base" style="color: var(--text-secondary);">
+            রসায়ন জীববিজ্ঞান, পদার্থবিজ্ঞান, গণিত ও চিকিৎসাবিজ্ঞানের সাথে নিবিড়ভাবে সম্পর্কযুক্ত। পরমাণুর গঠন ও অণুর ধর্ম গাণিতিকভাবে ব্যাখ্যা করতে <strong>কোয়ান্টাম মেকানিক্স</strong> ও গণিত অপরিহার্য।
+          </p>
+          <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <svg viewBox="0 0 700 210" class="w-full max-h-60 mx-auto" role="img" aria-label="অন্যান্য বিজ্ঞানের সাথে রসায়নের আন্তঃসম্পর্ক">
+              <defs>
+                <marker id="arrNeon" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#0d9488"></path>
+                </marker>
+              </defs>
+              <line x1="258" y1="80" x2="222" y2="56" stroke="#0d9488" stroke-width="2.5" stroke-dasharray="6 4" marker-start="url(#arrNeon)" marker-end="url(#arrNeon)">
+                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1.5s" repeatCount="indefinite" />
+              </line>
+              <line x1="442" y1="80" x2="478" y2="56" stroke="#0d9488" stroke-width="2.5" stroke-dasharray="6 4" marker-start="url(#arrNeon)" marker-end="url(#arrNeon)">
+                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1.5s" repeatCount="indefinite" />
+              </line>
+              <line x1="258" y1="125" x2="222" y2="148" stroke="#0d9488" stroke-width="2.5" stroke-dasharray="6 4" marker-start="url(#arrNeon)" marker-end="url(#arrNeon)">
+                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1.5s" repeatCount="indefinite" />
+              </line>
+              <line x1="442" y1="125" x2="478" y2="148" stroke="#0d9488" stroke-width="2.5" stroke-dasharray="6 4" marker-start="url(#arrNeon)" marker-end="url(#arrNeon)">
+                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1.5s" repeatCount="indefinite" />
+              </line>
+
+              <rect x="255" y="68" width="190" height="68" rx="12" fill="#0f3d56" stroke="#00f5d4" stroke-width="2.5"></rect>
+              <text x="350" y="97" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">রসায়ন</text>
+              <text x="350" y="120" text-anchor="middle" fill="#99f6e4" font-size="13">(কেন্দ্রীয় বিজ্ঞান)</text>
+
+              <rect x="14" y="14" width="206" height="66" rx="8" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.8"></rect>
+              <text x="117" y="38" text-anchor="middle" fill="#0f3d56" font-size="15" font-weight="700">জীববিজ্ঞান</text>
+              <text x="117" y="60" text-anchor="middle" fill="#334155" font-size="13">সালোকসংশ্লেষণ, শ্বসন, বিপাক</text>
+
+              <rect x="480" y="14" width="206" height="66" rx="8" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.8"></rect>
+              <text x="583" y="38" text-anchor="middle" fill="#0f3d56" font-size="15" font-weight="700">পদার্থবিজ্ঞান</text>
+              <text x="583" y="60" text-anchor="middle" fill="#334155" font-size="13">ব্যাটারি, তাপগতি, পারমাণবিক গঠন</text>
+
+              <rect x="14" y="124" width="206" height="66" rx="8" fill="#f8fafc" stroke="#0f3d56" stroke-width="1.8"></rect>
+              <text x="117" y="148" text-anchor="middle" fill="#0f3d56" font-size="15" font-weight="700">গণিত</text>
+              <text x="117" y="170" text-anchor="middle" fill="#334155" font-size="13">কোয়ান্টাম মেকানিক্স ও সমীকরণ</text>
+
+              <rect x="480" y="124" width="206" height="66" rx="8" fill="#f8fafc" stroke="#0f3d56" stroke-width="1.8"></rect>
+              <text x="583" y="148" text-anchor="middle" fill="#0f3d56" font-size="15" font-weight="700">চিকিৎসা ও কৃষিবিজ্ঞান</text>
+              <text x="583" y="170" text-anchor="middle" fill="#334155" font-size="13">ঔষধ, ভ্যাকসিন, সার ও কীটনাশক</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 1.4 Research 6 Steps & Interactive Lab Experiment Simulator -->
+        <div class="space-y-3 pt-2">
+          <h3 class="text-lg font-bold" style="color: var(--accent-3);">১.৪ অনুসন্ধান ও গবেষণা প্রক্রিয়া (৬টি ধাপ) ও লাইভ পরীক্ষণ</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <span class="font-bold" style="color: var(--accent);">ধাপ ১: বিষয়বস্তু নির্ধারণ</span>
+              <p class="text-sm mt-1" style="color: var(--text-secondary);">সমস্যা বা গবেষণার লক্ষ্য চিহ্নিতকরণ।</p>
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <span class="font-bold" style="color: var(--accent);">ধাপ ২: সম্যক জ্ঞান অর্জন</span>
+              <p class="text-sm mt-1" style="color: var(--text-secondary);">বই ও পূর্বের গবেষণাপত্র পাঠ করে ধারণা নেওয়া।</p>
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <span class="font-bold" style="color: var(--accent);">ধাপ ৩: কাজের পরিকল্পনা</span>
+              <p class="text-sm mt-1" style="color: var(--text-secondary);">প্রয়োজনীয় উপকরণ ও পরীক্ষণ পদ্ধতি নির্ধারণ।</p>
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <span class="font-bold" style="color: var(--accent-3);">ধাপ ৪: পরীক্ষণ ও তথ্য সংগ্রহ</span>
+              <p class="text-sm mt-1" style="color: var(--text-secondary);">ল্যাবে পরীক্ষণ পরিচালনা ও উপাত্ত লিখন।</p>
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <span class="font-bold" style="color: var(--accent-3);">ধাপ ৫: তথ্য সংঘটন ও বিশ্লেষণ</span>
+              <p class="text-sm mt-1" style="color: var(--text-secondary);">উপাত্ত যাচাই ও বৈজ্ঞানিক ব্যাখ্যা প্রদান।</p>
+            </div>
+            <div class="p-3.5 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+              <span class="font-bold" style="color: var(--accent);">ধাপ ৬: ফলাফল ও আলোচনা</span>
+              <p class="text-sm mt-1" style="color: var(--text-secondary);">চূড়ান্ত সিদ্ধান্ত গ্রহণ ও প্রতিবেদন প্রকাশ।</p>
+            </div>
+          </div>
+
+          <!-- Interactive Beaker Experiment Simulator -->
+          <div class="p-4 sm:p-5 rounded-2xl border mt-3" style="border-color: var(--accent); background: var(--bg-secondary);">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <h4 class="text-base sm:text-lg font-bold" style="color: var(--accent);">🧪 ইন্টারঅ্যাক্টিভ ল্যাব পরীক্ষণ: তাপহারী বনাম তাপোৎপাদী দ্রবণ</h4>
+              <div class="flex gap-2">
+                <button onclick="runLabSim('nh4cl')" class="tactile-btn px-3 py-1.5 text-xs sm:text-sm font-bold text-sky-400">বিকার-১: NH₄Cl যোগ করুন</button>
+                <button onclick="runLabSim('cao')" class="tactile-btn px-3 py-1.5 text-xs sm:text-sm font-bold text-amber-400">বিকার-২: CaO যোগ করুন</button>
+                <button onclick="runLabSim('reset')" class="tactile-btn px-3 py-1.5 text-xs sm:text-sm">রিসেট (28°C)</button>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+              <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700 flex items-center justify-around">
+                <svg viewBox="0 0 220 190" class="w-44 h-44">
+                  <!-- Beaker -->
+                  <path d="M 55 35 L 55 160 Q 55 170 65 170 L 155 170 Q 165 170 165 160 L 165 35" fill="none" stroke="#94a3b8" stroke-width="3"></path>
+                  <!-- Liquid -->
+                  <path id="sim-liquid" d="M 57 75 L 57 159 Q 57 168 66 168 L 154 168 Q 163 168 163 159 L 163 75 Z" fill="#0284c7" opacity="0.45"></path>
+                  <!-- Thermometer -->
+                  <rect x="98" y="15" width="12" height="125" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"></rect>
+                  <circle id="sim-bulb" cx="104" cy="144" r="8" fill="#0284c7"></circle>
+                  <rect id="sim-mercury" x="102" y="75" width="4" height="65" fill="#0284c7"></rect>
+                  <!-- Stirring rod -->
+                  <line x1="145" y1="18" x2="122" y2="155" stroke="#cbd5e1" stroke-width="3.5" stroke-linecap="round"></line>
+                </svg>
+                <div class="text-center space-y-1">
+                  <div class="text-xs text-slate-400">থার্মোমিটার পাঠ</div>
+                  <div id="sim-temp" class="text-3xl font-bold text-cyan-300">28.0°C</div>
+                  <div id="sim-kelvin" class="text-xs text-slate-300">(301.0 K)</div>
+                </div>
+              </div>
+              <div id="sim-explanation" class="space-y-2 text-sm sm:text-base">
+                <p class="font-bold" style="color: var(--accent);">পর্যবেক্ষণ নির্দেশিকা:</p>
+                <p style="color: var(--text-secondary);">উপরের বাটনে ক্লিক করে পানিতে <strong>অ্যামোনিয়াম ক্লোরাইড (NH₄Cl)</strong> অথবা <strong>ক্যালসিয়াম অক্সাইড (CaO)</strong> যোগ করে তাপমাত্রার পরিবর্তন ও বিকারের অবস্থা পর্যবেক্ষণ করুন।</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.5 Lab Safety -->
+        <div class="p-4 rounded-xl border-l-4" style="border-color: var(--accent-3); background: rgba(244, 63, 94, 0.08);">
+          <h3 class="text-base sm:text-lg font-bold" style="color: var(--accent-3);">১.৫ রসায়ন পরীক্ষাগারে নিরাপত্তা ও আবশ্যিক সতর্কতা</h3>
+          <p class="text-sm sm:text-base mt-1 leading-relaxed">
+            পরীক্ষাগারে কাজ করার সময় ৪টি ব্যক্তিগত সুরক্ষা সরঞ্জাম (PPE) বাধ্যতামূলক: (১) হাঁটু পর্যন্ত লম্বা <strong>সুতির অ্যাপ্রন</strong>, (২) চোখের সুরক্ষায় <strong>সেফটি গগলস</strong>, (৩) হাতের সুরক্ষায় <strong>হ্যান্ড গ্লাভস</strong> এবং (৪) বিষাক্ত গ্যাস থেকে বাঁচতে <strong>মাস্ক</strong>। <strong style="color: var(--accent-3);">সতর্কতা:</strong> কখনোই এসিডের মধ্যে পানি ঢালা যাবে না; বরং সর্বদা পানির মধ্যে ধীরে ধীরে ফোঁটায় ফোঁটায় এসিড যোগ করে লঘু করতে হবে।
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 2: FORMULAS & EQUATIONS -->
+    <!-- ===================================================================== -->
+    <div id="sec-formulas" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-5">
+        <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-color);">
+          <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">২. প্রাণবন্ত সূত্র, সমীকরণ ও মূল রাসায়নিক বিক্রিয়া</h2>
+          <span class="text-xs px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">পরিচ্ছেদ ০২</span>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border" style="border-color: var(--border-color);">
+          <table class="chem-table">
+            <thead>
+              <tr>
+                <th>বিক্রিয়ার নাম / ঘটনা</th>
+                <th>প্রাণবন্ত রাসায়নিক সমীকরণ</th>
+                <th>তাৎপর্য ও মনে রাখার কথা</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>সালোকসংশ্লেষণ</strong></td>
+                <td class="font-bold" style="color: var(--accent);">6CO<sub>2</sub> + 6H<sub>2</sub>O → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub>↑<br><span class="text-xs font-normal">(প্রভাবক: সূর্যালোক ও ক্লোরোফিল)</span></td>
+                <td>উদ্ভিদ খাদ্য (গ্লুকোজ) তৈরি করে এবং প্রাণীর শ্বসনের জন্য O<sub>2</sub> ত্যাগ করে।</td>
+              </tr>
+              <tr>
+                <td><strong>প্রাকৃতিক গ্যাসের পূর্ণ দহন</strong></td>
+                <td class="font-bold" style="color: var(--accent);">CH<sub>4</sub> + 2O<sub>2</sub> → CO<sub>2</sub>↑ + 2H<sub>2</sub>O + তাপশক্তি</td>
+                <td>মিথেনের পূর্ণ দহনে রান্নার প্রয়োজনীয় তাপশক্তি উৎপন্ন হয়।</td>
+              </tr>
+              <tr>
+                <td><strong>জ্বালানির অপূর্ণ দহন</strong></td>
+                <td class="font-bold" style="color: var(--accent-3);">2CH<sub>4</sub> + 3O<sub>2</sub> → 2CO↑ + 4H<sub>2</sub>O + কম তাপ</td>
+                <td>পর্যাপ্ত অক্সিজেনের অভাবে মারাত্মক বিষাক্ত <strong>কার্বন মনোক্সাইড (CO)</strong> উৎপন্ন হয়।</td>
+              </tr>
+              <tr>
+                <td><strong>মোমের দহন</strong></td>
+                <td class="font-bold" style="color: var(--accent);">মোম (হাইড্রোকার্বন) + O<sub>2</sub> → CO<sub>2</sub> + H<sub>2</sub>O + তাপ + আলো</td>
+                <td>মোম গলে নিচে জমা হওয়া <strong>ভৌত পরিবর্তন</strong> এবং পুড়ে CO<sub>2</sub> হওয়া <strong>রাসায়নিক পরিবর্তন</strong>।</td>
+              </tr>
+              <tr>
+                <td><strong>অ্যান্টাসিড দ্বারা প্রশমন</strong></td>
+                <td class="font-bold" style="color: var(--accent);">Al(OH)<sub>3</sub> + 3HCl → AlCl<sub>3</sub> + 3H<sub>2</sub>O<br>Mg(OH)<sub>2</sub> + 2HCl → MgCl<sub>2</sub> + 2H<sub>2</sub>O</td>
+                <td>পাকস্থলীর অতিরিক্ত এসিড (HCl) দুর্বল ক্ষার অ্যান্টাসিড দ্বারা প্রশমিত হয়।</td>
+              </tr>
+              <tr>
+                <td><strong>লোহায় মরিচা পড়া</strong></td>
+                <td class="font-bold" style="color: var(--accent);">4Fe + 3O<sub>2</sub> + nH<sub>2</sub>O → 2Fe<sub>2</sub>O<sub>3</sub>·nH<sub>2</sub>O</td>
+                <td>বাতাসের O<sub>2</sub> ও জলীয়বাষ্পের উপস্থিতিতে লোহা ক্ষয়প্রাপ্ত হয়ে মরিচা ধরে।</td>
+              </tr>
+              <tr>
+                <td><strong>বেকিং সোডা ও ভিনেগার</strong></td>
+                <td class="font-bold" style="color: var(--accent);">NaHCO<sub>3</sub> + CH<sub>3</sub>COOH → CH<sub>3</sub>COONa + H<sub>2</sub>O + CO<sub>2</sub>↑</td>
+                <td>বিক্রিয়ায় বুদবুদ আকারে CO<sub>2</sub> গ্যাস বের হয় (ল্যাব পরীক্ষণের উদাহরণ)।</td>
+              </tr>
+              <tr>
+                <td><strong>তাপহারী দ্রবণ (নিশাদল)</strong></td>
+                <td class="font-bold" style="color: var(--accent);">NH<sub>4</sub>Cl(s) + H<sub>2</sub>O(l) + তাপ → NH<sub>4</sub>Cl(aq)</td>
+                <td>পরিবেশ থেকে তাপ শোষণ করে, তাই দ্রবণের তাপমাত্রা কমে যায় (ΔT ঋণাত্মক)।</td>
+              </tr>
+              <tr>
+                <td><strong>তাপোৎপাদী দ্রবণ (চুন)</strong></td>
+                <td class="font-bold" style="color: var(--accent-3);">CaO(s) + H<sub>2</sub>O(l) → Ca(OH)<sub>2</sub>(aq) + তাপ</td>
+                <td>বিক্রিয়ায় তাপ উৎপন্ন হয়, তাই দ্রবণের তাপমাত্রা বেড়ে যায় (ΔT ধনাত্মক)।</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-bold pt-2" style="color: var(--accent-3);">২.১ পরীক্ষাগার ও মৌলিক রসায়নে ব্যবহৃত গাণিতিক সূত্রাবলি</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="text-xs" style="color: var(--text-secondary);">তাপমাত্রার পরিবর্তন</div>
+            <div class="text-lg font-bold my-1" style="color: var(--accent);">ΔT = T<sub>2</sub> − T<sub>1</sub></div>
+            <div class="text-xs" style="color: var(--text-secondary);">T<sub>1</sub> = প্রাথমিক, T<sub>2</sub> = চূড়ান্ত তাপমাত্রা</div>
+          </div>
+          <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="text-xs" style="color: var(--text-secondary);">সেলসিয়াস–কেলভিন সম্পর্ক</div>
+            <div class="text-lg font-bold my-1" style="color: var(--accent);">T(K) = t(°C) + 273</div>
+            <div class="text-xs" style="color: var(--text-secondary);">SI একক কেলভিন (K); ΔT(°C) = ΔT(K)</div>
+          </div>
+          <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="text-xs" style="color: var(--text-secondary);">পদার্থের ঘনত্ব</div>
+            <div class="text-lg font-bold my-1" style="color: var(--accent);">ρ = m / V</div>
+            <div class="text-xs" style="color: var(--text-secondary);">ρ = ঘনত্ব (g/mL), m = ভর, V = আয়তন</div>
+          </div>
+          <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="text-xs" style="color: var(--text-secondary);">দ্রবে শতকরা ভর (%)</div>
+            <div class="text-base font-bold my-1" style="color: var(--accent);">w% = [m<sub>দ্রব</sub> / (m<sub>দ্রব</sub> + m<sub>দ্রাবক</sub>)] × 100%</div>
+            <div class="text-xs" style="color: var(--text-secondary);">শতকরা সংযুতি নির্ণয়ে ব্যবহৃত</div>
+          </div>
+          <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="text-xs" style="color: var(--text-secondary);">ভরের নিত্যতা সূত্র (ল্যাভয়সিয়ে)</div>
+            <div class="text-lg font-bold my-1" style="color: var(--accent);">∑ m<sub>বিক্রিয়ক</sub> = ∑ m<sub>উৎপাদ</sub></div>
+            <div class="text-xs" style="color: var(--text-secondary);">বিক্রিয়ায় মোট ভর অপরিবর্তিত থাকে</div>
+          </div>
+          <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="text-xs" style="color: var(--text-secondary);">পরীক্ষাগারের একক রূপান্তর</div>
+            <div class="text-base font-bold my-1" style="color: var(--accent);">1 L = 1000 mL = 1000 cm<sup>3</sup></div>
+            <div class="text-xs" style="color: var(--text-secondary);">1 kg = 1000 g = 10<sup>6</sup> mg</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 3: SHORTCUT METHODS -->
+    <!-- ===================================================================== -->
+    <div id="sec-shortcuts" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-5">
+        <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-color);">
+          <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">৩. সুপার শর্টকাট মেথড ও সহজবোধ্য মুখস্থের পার্ট</h2>
+          <span class="text-xs px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">পরিচ্ছেদ ০৩</span>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl border-l-4 space-y-2.5" style="border-color: var(--accent); background: rgba(0, 245, 212, 0.07);">
+          <h3 class="text-lg font-bold" style="color: var(--accent);">⚡ মাস্টার শর্টকাট ও ছন্দে ছন্দে মনে রাখার কৌশল (Mnemonics)</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-base">
+            <li><strong>গবেষণার ৬টি ধাপ মনে রাখার ছন্দ — “বি-জ্ঞা-প-প-বি-ফ”:</strong> <strong>বি</strong>ষয়বস্তু নির্ধারণ → <strong>জ্ঞা</strong>ন অর্জন → <strong>প</strong>রিকল্পনা প্রণয়ন → <strong>প</strong>রীক্ষণ ও তথ্য সংগ্রহ → <strong>বি</strong>শ্লেষণ → <strong>ফ</strong>লাফল ও আলোচনা।</li>
+            <li><strong>বিস্ফোরক পদার্থ (“টি-জৈ-না”):</strong> <strong>টি</strong>এনটি (TNT), <strong>জৈ</strong>ব পার-অক্সাইড, <strong>না</strong>ইট্রোগ্লিসারিন।</li>
+            <li><strong>দাহ্য পদার্থ (“অ্যা-ই-পে”):</strong> <strong>অ্যা</strong>লকোহল (এবং অ্যারোসল), <strong>ই</strong>থার, <strong>পে</strong>ট্রোলিয়াম।</li>
+            <li><strong>স্বাস্থ্য ঝুঁকিপূর্ণ (“বে-ট-জা”):</strong> <strong>বে</strong>নজিন, <strong>ট</strong>লুইন, <strong>জা</strong>ইলিন। (ত্বকে বা শ্বাসে ক্যান্সারের ঝুঁকি!)</li>
+            <li><strong>তেজস্ক্রিয় পদার্থ (“ইউ-রে”):</strong> <strong>ইউ</strong>রেনিয়াম (U), <strong>রে</strong>ডিয়াম (Ra)। চিহ্ন: ট্রিফয়েল (আমেরিকা, ১৯৪৬)।</li>
+            <li><strong>তাপহারী বনাম তাপোৎপাদী ট্রিক:</strong> <strong>“নিশাদলে ঠান্ডা লাগে, চুনে লাগে আগুন”</strong> → NH<sub>4</sub>Cl (নিশাদল) তাপ শোষণ করে ঠান্ডা হয়; CaO (চুন) পানিতে তাপ ছেড়ে গরম হয়।</li>
+            <li><strong>এসিড লঘুকরণ ট্রিক (“A → W”):</strong> সর্বদা <strong>A</strong>cid-কে <strong>W</strong>ater-এ (Acid into Water) ধীরে ধীরে ঢালতে হয়।</li>
+          </ul>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border" style="border-color: var(--border-color);">
+          <table class="chem-table">
+            <thead>
+              <tr>
+                <th>গুরুত্বপূর্ণ বিষয় / প্রশ্ন</th>
+                <th>নির্ভুল উত্তর (হাই-ইয়েল্ড তথ্যভাণ্ডার)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>রসায়নের জনক ও আধুনিক রসায়নের জনক</strong></td>
+                <td>রসায়ন/আল-কেমির জনক: <strong>জাবির ইবনে হাইয়ান</strong>; আধুনিক রসায়নের জনক: <strong>অ্যান্টনি ল্যাভয়সিয়ে</strong>।</td>
+              </tr>
+              <tr>
+                <td><strong>ব্রোঞ্জ আবিষ্কার ও ভারতবর্ষে রং</strong></td>
+                <td>খ্রিস্টপূর্ব <strong>৩৫০০ অব্দে</strong> মিশরে তামা ও টিন দিয়ে ব্রোঞ্জ তৈরি; <strong>৫০০০ বছর পূর্বে</strong> ভারতবর্ষে কাপড়ের রং।</td>
+              </tr>
+              <tr>
+                <td><strong>পরমাণুর গঠন ব্যাখ্যাকারী শাস্ত্র</strong></td>
+                <td>গাণিতিক হিসাব-নিকাশের মাধ্যমে পরমাণুর গঠন ব্যাখ্যা করে <strong>কোয়ান্টাম মেকানিক্স</strong>।</td>
+              </tr>
+              <tr>
+                <td><strong>কাঁচা আম ও পাকা আমের উপাদান</strong></td>
+                <td>কাঁচা আম: <strong>সাক্সিনিক এসিড ও ম্যালেয়িক এসিড</strong> (টক); পাকা আম: <strong>গ্লুকোজ ও ফ্রুক্টোজ</strong> (মিষ্টি)।</td>
+              </tr>
+              <tr>
+                <td><strong>ট্রিফয়েল চিহ্নের ইতিহাস</strong></td>
+                <td>তেজস্ক্রিয় রশ্মি বোঝাতে ব্যবহৃত <strong>ট্রিফয়েল</strong> চিহ্নটি প্রথম <strong>১৯৪৬ সালে আমেরিকায়</strong> ব্যবহৃত হয়।</td>
+              </tr>
+              <tr>
+                <td><strong>উত্তেজক বনাম ক্ষয়কারী পার্থক্য</strong></td>
+                <td><strong>উত্তেজক</strong> (সিমেন্ট ডাস্ট, লঘু এসিড/ক্ষার, নাইট্রাস অক্সাইড) চুলকানি বা জ্বালাপোড়া সৃষ্টি করে; <strong>ক্ষয়কারী</strong> (গাঢ় H<sub>2</sub>SO<sub>4</sub>, HCl, NaOH) ত্বক ও ধাতু পুড়িয়ে ক্ষত সৃষ্টি করে।</td>
+              </tr>
+              <tr>
+                <td><strong>ত্বকে ক্ষত সৃষ্টিকারী হ্যালোজেন</strong></td>
+                <td><strong>ব্রোমিন (Br<sub>2</sub>)</strong> ত্বকে লাগলে মারাত্মক ক্ষত সৃষ্টি করে; ক্লোরিন গ্যাস (Cl<sub>2</sub>) শ্বাসকষ্ট ঘটায়।</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 4: GHS HAZARD SYMBOLS & CHEMICAL FORMULAS -->
+    <!-- ===================================================================== -->
+    <div id="sec-symbols" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-5">
+        <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-color);">
+          <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">৪. আন্তর্জাতিক ঝুঁকিপূর্ণ সাংকেতিক চিহ্ন (GHS) ও প্রতীক</h2>
+          <span class="text-xs px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">পরিচ্ছেদ ০৪</span>
+        </div>
+
+        <p class="text-sm sm:text-base" style="color: var(--text-secondary);">
+          জাতিসংঘের উদ্যোগে <strong>Globally Harmonized System (GHS)</strong> অনুযায়ী নির্ধারিত ৯টি আন্তর্জাতিক ঝুঁকিপূর্ণ সাংকেতিক চিহ্ন নিচে চিত্রসহ উপস্থাপন করা হলো:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- 1. Explosive -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><circle cx="24" cy="34" r="6" fill="#1e293b"></circle><path d="M29,29 L38,20 M31,32 L42,28 M29,36 L40,40 M24,27 L26,17 M20,28 L14,22" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"></path><polygon points="35,23 39,18 39,25" fill="#1e293b"></polygon></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">১. বিস্ফোরক পদার্থ</h4>
+                <span class="text-xs opacity-80">Explosive</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> টিএনটি (TNT), জৈব পার-অক্সাইড, নাইট্রোগ্লিসারিন।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> আঘাত, ঘর্ষণ বা তাপে প্রচণ্ড বিস্ফোরণ ঘটে। আগুন ও তাপ থেকে দূরে নির্জন স্থানে রাখতে হবে।</p>
+          </div>
+
+          <!-- 2. Flammable -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><path d="M30,15 C34,23 41,26 40,35 C39,41 35,44 30,44 C24,44 20,40 20,34 C20,28 24,25 26,21 C26,25 28,27 29,27 C27,23 28,18 30,15 Z" fill="#1e293b"></path><line x1="18" y1="45" x2="42" y2="45" stroke="#1e293b" stroke-width="2.5"></line></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">২. দাহ্য পদার্থ</h4>
+                <span class="text-xs opacity-80">Flammable</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> অ্যালকোহল, ইথার, পেট্রোলিয়াম, অ্যারোসল।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> দ্রুত আগুন ধরে যায়। আগুন ও তাপের উৎস থেকে দূরে ঠান্ডা স্থানে সংরক্ষণ করতে হবে।</p>
+          </div>
+
+          <!-- 3. Toxic -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><circle cx="30" cy="24" r="7.5" fill="#1e293b"></circle><circle cx="27" cy="23.5" r="1.6" fill="#ffffff"></circle><circle cx="33" cy="23.5" r="1.6" fill="#ffffff"></circle><rect x="27" y="30" width="6" height="4" fill="#1e293b"></rect><line x1="20" y1="42" x2="40" y2="34" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"></line><line x1="20" y1="34" x2="40" y2="42" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"></line></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">৩. বিষাক্ত পদার্থ</h4>
+                <span class="text-xs opacity-80">Toxic</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> বেনজিন, ক্লোরোবেনজিন, মিথানল, সায়ানাইড।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> শরীরে প্রবেশ করলে বিষক্রিয়া বা মৃত্যু হতে পারে। অ্যাপ্রন, গ্লাভস, মাস্ক পরে তালাবদ্ধ ক্যাবিনেটে রাখতে হবে।</p>
+          </div>
+
+          <!-- 4. Irritant -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><rect x="27.5" y="16" width="5" height="19" rx="2.5" fill="#1e293b"></rect><circle cx="30" cy="41.5" r="3" fill="#1e293b"></circle></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">৪. উত্তেজক পদার্থ</h4>
+                <span class="text-xs opacity-80">Irritant</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> সিমেন্ট ডাস্ট, লঘু এসিড, লঘু ক্ষার, নাইট্রাস অক্সাইড।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> ত্বক, চোখ ও শ্বাসতন্ত্রে জ্বালাপোড়া ও চুলকানি সৃষ্টি করে। গ্লাভস, মাস্ক ও গগলস পরতে হবে।</p>
+          </div>
+
+          <!-- 5. Health Hazard -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><circle cx="30" cy="20" r="4.5" fill="#1e293b"></circle><path d="M21,42 C21,31 24,26 30,26 C36,26 39,31 39,42 Z" fill="#1e293b"></path><polygon points="30,28 31.8,33 36.5,33 32.6,35.8 34,40.5 30,37.5 26,40.5 27.4,35.8 23.5,33 28.2,33" fill="#ffffff"></polygon></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">৫. স্বাস্থ্য ঝুঁকিপূর্ণ</h4>
+                <span class="text-xs opacity-80">Health Hazard</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> বেনজিন, টলুইন, জাইলিন।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> দীর্ঘমেয়াদে ক্যান্সার ও শ্বাসতন্ত্রের মারাত্মক রোগ ঘটায়। নিরাপদ দূরত্ব ও ফিউম হুড ব্যবহার করতে হবে।</p>
+          </div>
+
+          <!-- 6. Radioactive -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><rect x="5" y="5" width="50" height="50" rx="6" fill="#facc15" stroke="#1e293b" stroke-width="2.5"></rect><circle cx="30" cy="30" r="4.5" fill="#1e293b"></circle><path d="M30,23 L22,12 A17,17 0 0,1 38,12 Z" fill="#1e293b"></path><path d="M36,33 L49,33 A17,17 0 0,1 40,46 Z" fill="#1e293b"></path><path d="M24,33 L20,46 A17,17 0 0,1 11,33 Z" fill="#1e293b"></path></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">৬. তেজস্ক্রিয় পদার্থ (ট্রিফয়েল)</h4>
+                <span class="text-xs opacity-80">Radioactive (১৯৪৬, আমেরিকা)</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> ইউরেনিয়াম (U), রেডিয়াম (Ra)।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> ক্ষতিকর রশ্মি ক্যান্সার ও বিকলাঙ্গতা ঘটায়। পুরু সিসার পাত্রে সংরক্ষণ ও বিশেষ পোশাক পরা বাধ্যতামূলক।</p>
+          </div>
+
+          <!-- 7. Environment -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><line x1="23" y1="38" x2="23" y2="22" stroke="#1e293b" stroke-width="2.2"></line><line x1="23" y1="29" x2="17" y2="24" stroke="#1e293b" stroke-width="1.8"></line><line x1="23" y1="27" x2="29" y2="22" stroke="#1e293b" stroke-width="1.8"></line><ellipse cx="36" cy="37" rx="7" ry="3.5" fill="#1e293b"></ellipse><polygon points="42,37 47,33 47,41" fill="#1e293b"></polygon><line x1="16" y1="42" x2="44" y2="42" stroke="#1e293b" stroke-width="1.8"></line></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">৭. পরিবেশের জন্য ক্ষতিকর</h4>
+                <span class="text-xs opacity-80">Environmental Hazard</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> লেড (Pb), মার্কারি (Hg), কীটনাশক।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> উদ্ভিদ ও জলজ প্রাণীর জন্য বিষাক্ত। নর্দমায় না ফেলে নির্দিষ্ট বর্জ্য পাত্রে জমা করে পরিশোধন করতে হবে।</p>
+          </div>
+
+          <!-- 8. Corrosive -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><rect x="17" y="19" width="11" height="4" transform="rotate(30 22 21)" fill="#1e293b"></rect><rect x="33" y="19" width="11" height="4" transform="rotate(-30 38 21)" fill="#1e293b"></rect><circle cx="24" cy="30" r="1.8" fill="#1e293b"></circle><circle cx="36" cy="30" r="1.8" fill="#1e293b"></circle><rect x="15" y="36" width="14" height="5" fill="#1e293b"></rect><rect x="32" y="36" width="14" height="5" rx="2" fill="#1e293b"></rect></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">৮. ক্ষয়কারী পদার্থ</h4>
+                <span class="text-xs opacity-80">Corrosive</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> গাঢ় H<sub>2</sub>SO<sub>4</sub>, গাঢ় HCl, গাঢ় NaOH।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> শরীরে মারাত্মক ক্ষত সৃষ্টি করে এবং ধাতু ক্ষয় করে। গ্লাভস, গগলস ও অ্যাপ্রন পরতে হবে।</p>
+          </div>
+
+          <!-- 9. Oxidizing -->
+          <div class="p-4 rounded-xl border flex flex-col gap-2" style="border-color: var(--border-color); background: var(--bg-secondary);">
+            <div class="flex items-center gap-3">
+              <svg class="w-12 h-12 shrink-0" viewBox="0 0 60 60"><polygon points="30,3 57,30 30,57 3,30" fill="#ffffff" stroke="#dc2626" stroke-width="3.5"></polygon><circle cx="30" cy="35" r="7.5" fill="none" stroke="#1e293b" stroke-width="2.5"></circle><path d="M30,13 C33,19 37,22 36,27 L24,27 C23,22 27,19 30,13 Z" fill="#1e293b"></path><line x1="18" y1="45" x2="42" y2="45" stroke="#1e293b" stroke-width="2"></line></svg>
+              <div>
+                <h4 class="font-bold text-base" style="color: var(--accent);">৯. জারক পদার্থ</h4>
+                <span class="text-xs opacity-80">Oxidizing</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm"><strong>উদাহরণ:</strong> পটাশিয়াম পারম্যাঙ্গানেট (KMnO<sub>4</sub>), H<sub>2</sub>O<sub>2</sub>, ক্লোরিন গ্যাস।</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);"><strong>ঝুঁকি ও সতর্কতা:</strong> অন্য দাহ্য পদার্থে দ্রুত আগুন ধরিয়ে দিতে পারে। দাহ্য পদার্থ থেকে আলাদা রাখতে হবে।</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 5: NUMERICAL PROBLEMS -->
+    <!-- ===================================================================== -->
+    <div id="sec-math" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-4">
+        <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-color);">
+          <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">৫. অনুশীলনের গাণিতিক সমস্যা ও সমাধান (৬টি আদর্শ সমস্যা)</h2>
+          <span class="text-xs px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">পরিচ্ছেদ ০৫</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl border-l-4 space-y-1.5" style="border-color: var(--accent); background: var(--bg-secondary);">
+            <p class="font-bold text-sm sm:text-base" style="color: var(--accent);">সমস্যা ০১ (তাপহারী পরীক্ষণ ও তাপমাত্রার পরিবর্তন):</p>
+            <p class="text-sm">কক্ষ তাপমাত্রা 28°C-এ 100 mL পানিতে 5 g NH<sub>4</sub>Cl দ্রবীভূত করলে তাপমাত্রা কমে 24.5°C হয়। সেলসিয়াস ও কেলভিন স্কেলে ΔT নির্ণয় করো।</p>
+            <p class="text-xs sm:text-sm pt-1 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">
+              <strong>সমাধান:</strong> T<sub>1</sub> = 28°C (301 K), T<sub>2</sub> = 24.5°C (297.5 K)।<br>
+              ΔT = 24.5°C − 28°C = <strong>−3.5°C</strong> এবং 297.5 K − 301 K = <strong>−3.5 K</strong> (তাপহারী)।
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border-l-4 space-y-1.5" style="border-color: var(--accent-3); background: var(--bg-secondary);">
+            <p class="font-bold text-sm sm:text-base" style="color: var(--accent-3);">সমস্যা ০২ (তাপোৎপাদী পরীক্ষণ — চুন ও পানি):</p>
+            <p class="text-sm">25°C তাপমাত্রার পানিতে ক্যালসিয়াম অক্সাইড (CaO) যোগ করলে দ্রবণের তাপমাত্রা 311 K-এ পৌঁছায়। তাপমাত্রা কত °C বৃদ্ধি পেল?</p>
+            <p class="text-xs sm:text-sm pt-1 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">
+              <strong>সমাধান:</strong> t<sub>1</sub> = 25°C; t<sub>2</sub> = (311 − 273)°C = 38°C।<br>
+              তাপমাত্রা বৃদ্ধি Δt = 38°C − 25°C = <strong>13°C</strong> (তাপোৎপাদী)।
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border-l-4 space-y-1.5" style="border-color: var(--accent); background: var(--bg-secondary);">
+            <p class="font-bold text-sm sm:text-base" style="color: var(--accent);">সমস্যা ০৩ (দ্রবণের অনুপাত ও শতকরা ভর):</p>
+            <p class="text-sm">50 mL পানিতে 5 g NH<sub>4</sub>Cl দ্রবীভূত করা হলো। একই ঘনমাত্রায় 250 mL পানিতে কত গ্রাম NH<sub>4</sub>Cl লাগবে এবং শতকরা ভর কত? (পানির ঘনত্ব = 1 g/mL)</p>
+            <p class="text-xs sm:text-sm pt-1 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">
+              <strong>সমাধান:</strong> 250 mL পানিতে প্রয়োজন = (5 × 250)/50 = <strong>25 g NH<sub>4</sub>Cl</strong>।<br>
+              মোট দ্রবণ = 5 + 50 = 55 g ⇒ w% = (5/55) × 100% = <strong>9.09%</strong>।
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border-l-4 space-y-1.5" style="border-color: var(--accent-3); background: var(--bg-secondary);">
+            <p class="font-bold text-sm sm:text-base" style="color: var(--accent-3);">সমস্যা ০৪ (ঘনত্ব পরিমাপ ও পদার্থ শনাক্তকরণ):</p>
+            <p class="text-sm">দাহ্য চিহ্নযুক্ত বোতল থেকে 150 mL তরল মেপে নেওয়া হলো, যার ভর 118.5 g। তরলটির ঘনত্ব নির্ণয় করো। (বিশুদ্ধ ইথানলের ঘনত্ব 0.79 g/mL)</p>
+            <p class="text-xs sm:text-sm pt-1 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">
+              <strong>সমাধান:</strong> ρ = m / V = 118.5 g / 150 mL = <strong>0.79 g/mL</strong>।<br>
+              অতএব তরলটি <strong>ইথানল (অ্যালকোহল)</strong>।
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border-l-4 space-y-1.5" style="border-color: var(--accent); background: var(--bg-secondary);">
+            <p class="font-bold text-sm sm:text-base" style="color: var(--accent);">সমস্যা ০৫ (ল্যাভয়সিয়ের ভরের নিত্যতা সূত্র):</p>
+            <p class="text-sm">50 g CaCO<sub>3</sub>-কে বদ্ধ পাত্রে উত্তপ্ত করলে 28 g CaO ও CO<sub>2</sub> গ্যাস উৎপন্ন হয়। উৎপন্ন CO<sub>2</sub>-এর ভর কত?</p>
+            <p class="text-xs sm:text-sm pt-1 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">
+              <strong>সমাধান:</strong> m(CaCO<sub>3</sub>) = m(CaO) + m(CO<sub>2</sub>) ⇒ m(CO<sub>2</sub>) = 50 − 28 = <strong>22 g</strong>।
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border-l-4 space-y-1.5" style="border-color: var(--accent-3); background: var(--bg-secondary);">
+            <p class="font-bold text-sm sm:text-base" style="color: var(--accent-3);">সমস্যা ০৬ (পরীক্ষাগারে একক রূপান্তর):</p>
+            <p class="text-sm">0.025 kg বেকিং সোডা ও 0.45 L ভিনেগারকে যথাক্রমে গ্রাম (g), মিলিগ্রাম (mg) এবং মিলিলিটার (mL), cm<sup>3</sup>-এ প্রকাশ করো।</p>
+            <p class="text-xs sm:text-sm pt-1 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">
+              <strong>সমাধান:</strong> 0.025 kg = <strong>25 g</strong> = <strong>25,000 mg</strong>;<br>
+              0.45 L = <strong>450 mL</strong> = <strong>450 cm<sup>3</sup></strong>।
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 6: 50 BOARD-STANDARD MCQs (CLICK TO REVEAL ANSWER) -->
+    <!-- ===================================================================== -->
+    <div id="sec-mcq" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3" style="border-color: var(--border-color);">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">৬. SSC বোর্ড স্ট্যান্ডার্ড ৫০টি বহুনির্বাচনি প্রশ্ন (MCQ)</h2>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);">যেকোনো প্রশ্নের উপর ক্লিক করলে ঠিক তার নিচেই সঠিক উত্তর ও ব্যাখ্যা দৃশ্যমান হবে</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="toggleAllAnswers('mcq-list', true)" class="tactile-btn px-3 py-1.5 text-xs">সব উত্তর দেখান</button>
+            <button onclick="toggleAllAnswers('mcq-list', false)" class="tactile-btn px-3 py-1.5 text-xs">সব উত্তর লুকান</button>
+          </div>
+        </div>
+
+        <div id="mcq-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 7: 20 SSC BOARD CREATIVE QUESTIONS (CQ) (CLICK TO REVEAL) -->
+    <!-- ===================================================================== -->
+    <div id="sec-cq" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3" style="border-color: var(--border-color);">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">৭. SSC বোর্ড স্ট্যান্ডার্ড ২০টি পূর্ণাঙ্গ সৃজনশীল প্রশ্ন (CQ)</h2>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);">প্রশ্নের কার্ডে ক্লিক করলে ক, খ, গ ও ঘ-এর পূর্ণাঙ্গ উত্তর নিচে খুলে যাবে</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="toggleAllAnswers('cq-list', true)" class="tactile-btn px-3 py-1.5 text-xs">সব সমাধান দেখান</button>
+            <button onclick="toggleAllAnswers('cq-list', false)" class="tactile-btn px-3 py-1.5 text-xs">সব সমাধান লুকান</button>
+          </div>
+        </div>
+
+        <div id="cq-list" class="space-y-4"></div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 8: 20 IMPORTANT SHORT QUESTIONS (CLICK TO REVEAL) -->
+    <!-- ===================================================================== -->
+    <div id="sec-short" class="chapter-view active-view space-y-6">
+      <section class="glass-card p-5 sm:p-7 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3" style="border-color: var(--border-color);">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold" style="color: var(--accent);">৮. ২০টি গুরুত্বপূর্ণ সংক্ষিপ্ত ও অনুধাবনমূলক প্রশ্নোত্তর</h2>
+            <p class="text-xs sm:text-sm" style="color: var(--text-secondary);">প্রশ্নে ক্লিক করলেই ঠিক তার নিচে নির্ভুল উত্তর দৃশ্যমান হবে</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="toggleAllAnswers('short-list', true)" class="tactile-btn px-3 py-1.5 text-xs">সব উত্তর দেখান</button>
+            <button onclick="toggleAllAnswers('short-list', false)" class="tactile-btn px-3 py-1.5 text-xs">সব উত্তর লুকান</button>
+          </div>
+        </div>
+
+        <div id="short-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="border-t py-6 px-4 text-center text-sm" style="border-color: var(--border-color); background: var(--bg-secondary); color: var(--text-secondary);">
+    <p class="font-bold text-base" style="color: var(--accent);">পড়াশুনা বিডি ডটকম (PorashunaBD.com) — বিশ্বমানের ডিজিটাল শিক্ষা প্ল্যাটফর্ম</p>
+    <p class="mt-1">নবম শ্রেণি : রসায়ন — অধ্যায় ০১ : রসায়নের ধারণা | হেল্পলাইন ও যোগাযোগ: 01774080384</p>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT ENGINE: 3D THREE.JS, DATA BANK (50 MCQ + 20 CQ + 20 SHORT), LASER SCROLL & AUTO-HIDE HEADER -->
+  <!-- ===================================================================== -->
+  <script>
+    // 1. Theme Switcher
+    function setTheme(themeName) {
+      document.documentElement.setAttribute('data-theme', themeName);
+      ['rgb', 'white', 'dark', 'emerald'].forEach(t => {
+        const btn = document.getElementById('btn-theme-' + t);
+        if (btn) {
+          btn.classList.toggle('active-tab', t === themeName);
+        }
+      });
+    }
+
+    // 2. Slide-out 3-Line Menu Drawer
+    function toggleDrawer() {
+      const drawer = document.getElementById('mobile-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const isClosed = drawer.classList.contains('closed');
+      if (isClosed) {
+        drawer.classList.remove('closed');
+        backdrop.classList.remove('hidden');
+      } else {
+        drawer.classList.add('closed');
+        backdrop.classList.add('hidden');
+      }
+    }
+
+    // 3. Chapter / Section Tab Switching
+    function switchChapter(targetId) {
+      const views = document.querySelectorAll('.chapter-view');
+      const pills = document.querySelectorAll('.nav-pill');
+
+      pills.forEach(p => {
+        p.classList.toggle('active-tab', p.getAttribute('data-nav') === targetId);
+      });
+
+      if (targetId === 'sec-all') {
+        views.forEach(v => v.classList.add('active-view'));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        views.forEach(v => {
+          if (v.id === targetId) {
+            v.classList.add('active-view');
+          } else {
+            v.classList.remove('active-view');
+          }
+        });
+        const el = document.getElementById(targetId);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 125;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      }
+    }
+
+    // 4. Smooth Scroll-Linked Laser Light & Smart Auto-Hide Header
+    let lastScrollY = window.scrollY;
+    const headerEl = document.getElementById('main-header');
+    const laserBeam = document.getElementById('laser-beam');
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? Math.min(100, Math.max(0, (currentScrollY / docHeight) * 100)) : 0;
+
+      // Update Laser Light width smoothly
+      if (laserBeam) {
+        laserBeam.style.width = scrollPercent + '%';
+      }
+
+      // Auto-hide header on scroll down, show on scroll up
+      if (currentScrollY > 110 && currentScrollY > lastScrollY) {
+        headerEl.classList.add('header-hidden');
+      } else {
+        headerEl.classList.remove('header-hidden');
+      }
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+
+    // 5. Interactive Beaker Experiment Simulator
+    function runLabSim(type) {
+      const liquid = document.getElementById('sim-liquid');
+      const bulb = document.getElementById('sim-bulb');
+      const mercury = document.getElementById('sim-mercury');
+      const tempText = document.getElementById('sim-temp');
+      const kelvinText = document.getElementById('sim-kelvin');
+      const expBox = document.getElementById('sim-explanation');
+
+      if (type === 'nh4cl') {
+        liquid.setAttribute('fill', '#38bdf8');
+        bulb.setAttribute('fill', '#0284c7');
+        mercury.setAttribute('fill', '#0284c7');
+        mercury.setAttribute('y', '95');
+        mercury.setAttribute('height', '45');
+        tempText.textContent = '24.0°C';
+        tempText.className = 'text-3xl font-bold text-sky-400';
+        kelvinText.textContent = '(297.0 K)';
+        expBox.innerHTML = `
+          <p class="font-bold text-sky-400">ফলাফল: তাপহারী প্রক্রিয়া (Endothermic)</p>
+          <p>পানিতে <strong>NH₄Cl (নিশাদল)</strong> দ্রবীভূত হওয়ার সময় পরিবেশ থেকে তাপ শোষণ করে। ফলে তাপমাত্রা 28°C থেকে কমে <strong>24°C</strong> হয়েছে (ΔT = −4°C) এবং বিকারের গা ঠান্ডা অনুভূত হচ্ছে।</p>
+        `;
+      } else if (type === 'cao') {
+        liquid.setAttribute('fill', '#f97316');
+        bulb.setAttribute('fill', '#dc2626');
+        mercury.setAttribute('fill', '#dc2626');
+        mercury.setAttribute('y', '42');
+        mercury.setAttribute('height', '98');
+        tempText.textContent = '38.0°C';
+        tempText.className = 'text-3xl font-bold text-rose-400';
+        kelvinText.textContent = '(311.0 K)';
+        expBox.innerHTML = `
+          <p class="font-bold text-rose-400">ফলাফল: তাপোৎপাদী বিক্রিয়া (Exothermic)</p>
+          <p>পানিতে <strong>CaO (চুন)</strong> যোগ করলে রাসায়নিক বিক্রিয়ায় Ca(OH)₂ ও প্রচুর তাপ উৎপন্ন হয়। ফলে তাপমাত্রা 28°C থেকে বেড়ে <strong>38°C</strong> হয়েছে (ΔT = +10°C) এবং বিকারের গা গরম অনুভূত হচ্ছে।</p>
+        `;
+      } else {
+        liquid.setAttribute('fill', '#0284c7');
+        bulb.setAttribute('fill', '#0284c7');
+        mercury.setAttribute('fill', '#0284c7');
+        mercury.setAttribute('y', '75');
+        mercury.setAttribute('height', '65');
+        tempText.textContent = '28.0°C';
+        tempText.className = 'text-3xl font-bold text-cyan-300';
+        kelvinText.textContent = '(301.0 K)';
+        expBox.innerHTML = `
+          <p class="font-bold" style="color: var(--accent);">পর্যবেক্ষণ নির্দেশিকা:</p>
+          <p style="color: var(--text-secondary);">বিকারটি কক্ষ তাপমাত্রায় (28°C) রিসেট করা হয়েছে। পরীক্ষা করতে উপরের বাটনে ক্লিক করুন।</p>
+        `;
+      }
+    }
+
+    // 6. Click-to-Reveal Toggle Helper
+    function toggleAnswer(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.toggle('open');
+      }
+    }
+
+    function toggleAllAnswers(containerId, show) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.querySelectorAll('.answer-drawer').forEach(drawer => {
+        if (show) drawer.classList.add('open');
+        else drawer.classList.remove('open');
+      });
+    }
+
+    // 7. Data Bank: 50 Board-Standard MCQs
+    const mcqData = [
+      { q: "০১. আধুনিক রসায়নের জনক বলা হয় কোন বিজ্ঞানীকে?", opts: "(ক) জন ডাল্টন  (খ) রবার্ট বয়েল  (গ) অ্যান্টনি ল্যাভয়সিয়ে  (ঘ) জাবির ইবনে হাইয়ান", ans: "(গ) অ্যান্টনি ল্যাভয়সিয়ে", exp: "ভরের নিত্যতা সূত্র ও দহনে অক্সিজেনের ভূমিকা ব্যাখ্যার জন্য ল্যাভয়সিয়েকে আধুনিক রসায়নের জনক বলা হয়।" },
+      { q: "০২. কাঁচা আমে কোন জৈব এসিড উপস্থিত থাকে?", opts: "(ক) সাইট্রিক ও ফরমিক এসিড  (খ) সাক্সিনিক ও ম্যালেয়িক এসিড  (গ) টারটারিক ও অক্সালিক এসিড  (ঘ) এসিটিক ও ল্যাকটিক এসিড", ans: "(খ) সাক্সিনিক ও ম্যালেয়িক এসিড", exp: "কাঁচা আমে সাক্সিনিক ও ম্যালেয়িক এসিড থাকায় তা টক স্বাদযুক্ত হয়।" },
+      { q: "০৩. খ্রিস্টপূর্ব ৩৫০০ অব্দে মিশরীয়রা কোন দুটি ধাতু গলিয়ে ব্রোঞ্জ তৈরি করেছিল?", opts: "(ক) তামা ও দস্তা  (খ) লোহা ও তামা  (গ) তামা ও টিন  (ঘ) সিসা ও টিন", ans: "(গ) তামা ও টিন", exp: "খ্রিস্টপূর্ব ৩৫০০ অব্দে মিশরীয়রা তামা (Cu) ও টিন (Sn) গলিয়ে ব্রোঞ্জ সংকর ধাতু তৈরি করে।" },
+      { q: "০৪. নিচের কোনটি বিস্ফোরক পদার্থের উদাহরণ?", opts: "(ক) জৈব পার-অক্সাইড  (খ) অ্যালকোহল  (গ) বেনজিন  (ঘ) ক্লোরিন গ্যাস", ans: "(ক) জৈব পার-অক্সাইড", exp: "টিএনটি (TNT), জৈব পার-অক্সাইড ও নাইট্রোগ্লিসারিন বিস্ফোরক পদার্থ।" },
+      { q: "০৫. তেজস্ক্রিয় রশ্মি নির্দেশক ‘ট্রিফয়েল’ চিহ্নটি প্রথম কোন দেশে ব্যবহৃত হয়?", opts: "(ক) ইংল্যান্ড  (খ) রাশিয়া  (গ) জার্মানি  (ঘ) আমেরিকা", ans: "(ঘ) আমেরিকা", exp: "১৯৪৬ সালে আমেরিকায় প্রথম তেজস্ক্রিয় রশ্মি বোঝাতে ট্রিফয়েল চিহ্ন ব্যবহৃত হয়।" },
+      { q: "০৬. গাণিতিক হিসাব-নিকাশের মাধ্যমে পরমাণুর গঠন ব্যাখ্যা করা যায় কোনটির সাহায্যে?", opts: "(ক) তাপগতিবিদ্যা  (খ) কোয়ান্টাম মেকানিক্স  (গ) জৈব রসায়ন  (ঘ) আলোকবিজ্ঞান", ans: "(খ) কোয়ান্টাম মেকানিক্স", exp: "কোয়ান্টাম মেকানিক্সের মাধ্যমে পরমাণুর গঠন ও ইলেকট্রনের আচরণ ব্যাখ্যা করা হয়।" },
+      { q: "০৭. রসায়নে অনুসন্ধান ও গবেষণা প্রক্রিয়ার প্রথম ধাপ কোনটি?", opts: "(ক) কাজের পরিকল্পনা প্রণয়ন  (খ) পরীক্ষণ ও তথ্য সংগ্রহ  (গ) বিষয়বস্তু নির্ধারণ  (ঘ) ফলাফল ও আলোচনা", ans: "(গ) বিষয়বস্তু নির্ধারণ", exp: "অনুসন্ধান ও গবেষণা প্রক্রিয়ার ৬টি ধাপের প্রথম ধাপ হলো বিষয়বস্তু নির্ধারণ।" },
+      { q: "০৮. অ্যান্টাসিড ঔষধ পাকস্থলীর এসিডিটি দূর করে কোন ধরনের বিক্রিয়ার মাধ্যমে?", opts: "(ক) দহন বিক্রিয়া  (খ) প্রশমন বিক্রিয়া  (গ) সংযোজন বিক্রিয়া  (ঘ) বিয়োজন বিক্রিয়া", ans: "(খ) প্রশমন বিক্রিয়া", exp: "ক্ষারধর্মী অ্যান্টাসিড পাকস্থলীর HCl-এর সাথে প্রশমন বিক্রিয়া করে লবণ ও পানি তৈরি করে।" },
+      { q: "০৯. জ্বালানির অপূর্ণ দহনে কোন বিষাক্ত গ্যাস উৎপন্ন হয়?", opts: "(ক) CO₂  (খ) SO₂  (গ) CO  (ঘ) NO₂", ans: "(গ) CO", exp: "অপর্যাপ্ত অক্সিজেনে জ্বালানির অপূর্ণ দহনে মারাত্মক বিষাক্ত কার্বন মনোক্সাইড (CO) উৎপন্ন হয়।" },
+      { q: "১০. কোন হ্যালোজেনটি ত্বকে লাগলে মারাত্মক ক্ষত সৃষ্টি হতে পারে?", opts: "(ক) ফ্লোরিন  (খ) ক্লোরিন  (গ) ব্রোমিন  (ঘ) আয়োডিন", ans: "(গ) ব্রোমিন", exp: "তরল হ্যালোজেন ব্রোমিন (Br₂) ত্বকে লাগলে মারাত্মক ক্ষত সৃষ্টি করে।" },
+      { q: "১১. পরীক্ষাগারে পানিতে অ্যামোনিয়াম ক্লোরাইড (NH₄Cl) যোগ করলে কী ঘটবে?", opts: "(ক) তাপমাত্রা বেড়ে যাবে  (খ) তাপমাত্রা কমে যাবে  (গ) কোনো পরিবর্তন হবে না  (ঘ) বিস্ফোরণ ঘটবে", ans: "(খ) তাপমাত্রা কমে যাবে", exp: "NH₄Cl পানিতে দ্রবীভূত হওয়ার সময় তাপ শোষণ করে (তাপহারী প্রক্রিয়া), তাই তাপমাত্রা কমে যায়।" },
+      { q: "১২. নিচের কোনটি স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থের (ক্যান্সার সৃষ্টিকারী) সঠিক জোড়া?", opts: "(ক) বেনজিন ও টলুইন  (খ) ইথার ও অ্যালকোহল  (গ) সিমেন্ট ও চুন  (ঘ) ইউরেনিয়াম ও রেডিয়াম", ans: "(ক) বেনজিন ও টলুইন", exp: "বেনজিন, টলুইন ও জাইলিন স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ যা ক্যান্সার সৃষ্টি করতে পারে।" },
+      { q: "১৩. নিচের কোনটি মোমের দহনের ক্ষেত্রে সঠিক?", opts: "(ক) কেবল ভৌত পরিবর্তন  (খ) কেবল রাসায়নিক পরিবর্তন  (গ) ভৌত ও রাসায়নিক উভয় পরিবর্তন  (ঘ) তাপহারী পরিবর্তন", ans: "(গ) ভৌত ও রাসায়নিক উভয় পরিবর্তন", exp: "মোম গলে নিচে জমা হওয়া ভৌত পরিবর্তন এবং সলতে পুড়ে CO₂ ও H₂O হওয়া রাসায়নিক পরিবর্তন।" },
+      { q: "১৪. আল-কেমি (Al-Chemy) শব্দটির মূল উৎপত্তি কোন ভাষার শব্দ থেকে?", opts: "(ক) গ্রিক  (খ) লাতিন  (গ) আরবি  (ঘ) ফারসি", ans: "(গ) আরবি", exp: "আরবি শব্দ ‘আল-কিমিয়া’ (Al-Kimia) থেকে আল-কেমি এবং পরবর্তীতে Chemistry শব্দের উৎপত্তি।" },
+      { q: "১৫. কে সর্বপ্রথম গবেষণাগারে বিজ্ঞানসম্মত উপায়ে রসায়ন চর্চা শুরু করেন?", opts: "(ক) রবার্ট বয়েল  (খ) জাবির ইবনে হাইয়ান  (গ) জন ডাল্টন  (ঘ) দিমিত্রি মেন্ডেলিফ", ans: "(খ) জাবির ইবনে হাইয়ান", exp: "জাবির ইবনে হাইয়ান সর্বপ্রথম গবেষণাগারে রসায়ন চর্চা শুরু করেন; তাঁকে রসায়নের জনক বলা হয়।" },
+      { q: "১৬. কত বছর পূর্বে ভারতবর্ষে কাপড়কে আকর্ষণীয় করার জন্য রঙের ব্যবহার শুরু হয়?", opts: "(ক) ৩৫০০ বছর  (খ) ৪০০০ বছর  (গ) ৫০০০ বছর  (ঘ) ৬০০০ বছর", ans: "(গ) ৫০০০ বছর", exp: "প্রায় ৫০০০ বছর পূর্বে ভারতবর্ষে কাপড়ে প্রাকৃতিক রঙের ব্যবহার শুরু হয়েছিল।" },
+      { q: "১৭. পাকা আমে মিষ্টি স্বাদের জন্য দায়ী শর্করা কোনগুলো?", opts: "(ক) সুক্রোজ ও মল্টোজ  (খ) গ্লুকোজ ও ফ্রুক্টোজ  (গ) গ্যালাক্টোজ ও ল্যাক্টোজ  (ঘ) স্টার্চ ও সেলুলোজ", ans: "(খ) গ্লুকোজ ও ফ্রুক্টোজ", exp: "আম পাকলে জৈব এসিডগুলো পরিবর্তিত হয়ে গ্লুকোজ ও ফ্রুক্টোজ নামক মিষ্টি শর্করা তৈরি করে।" },
+      { q: "১৮. অ্যান্টাসিড ঔষধে নিচের কোন যৌগগুলো থাকে?", opts: "(ক) NaOH ও KOH  (খ) Al(OH)₃ ও Mg(OH)₂  (গ) CaCO₃ ও NaCl  (ঘ) H₂SO₄ ও HCl", ans: "(খ) Al(OH)₃ ও Mg(OH)₂", exp: "অ্যালুমিনিয়াম হাইড্রোক্সাইড ও ম্যাগনেসিয়াম হাইড্রোক্সাইড অ্যান্টাসিডের মূল উপাদান।" },
+      { q: "১৯. লোহার মরিচার রাসায়নিক সংকেত কোনটি?", opts: "(ক) FeO  (খ) Fe₃O₄  (গ) Fe₂O₃·nH₂O  (ঘ) Fe(OH)₂", ans: "(গ) Fe₂O₃·nH₂O", exp: "আর্দ্র ফেরিক অক্সাইড (Fe₂O₃·nH₂O) হলো লোহার মরিচা।" },
+      { q: "২০. কোন বিজ্ঞানকে সকল বিজ্ঞানের কেন্দ্রীয় বিজ্ঞান (Central Science) বলা হয়?", opts: "(ক) পদার্থবিজ্ঞান  (খ) জীববিজ্ঞান  (গ) রসায়ন  (ঘ) গণিত", ans: "(গ) রসায়ন", exp: "পদার্থবিজ্ঞান, জীববিজ্ঞান, চিকিৎসা ও কৃষিবিজ্ঞানের সাথে সেতুবন্ধন তৈরির কারণে রসায়নকে কেন্দ্রীয় বিজ্ঞান বলা হয়।" },
+      { q: "২১. উদ্ভিদের সালোকসংশ্লেষণ প্রক্রিয়ায় কোন গ্যাসটি উৎপন্ন হয়?", opts: "(ক) CO₂  (খ) N₂  (গ) O₂  (ঘ) CH₄", ans: "(গ) O₂", exp: "সালোকসংশ্লেষণে CO₂ ও H₂O বিক্রিয়া করে গ্লুকোজ ও অক্সিজেন (O₂) উৎপন্ন করে।" },
+      { q: "২২. ক্যালসিয়াম অক্সাইড (CaO) পানিতে যোগ করলে কীরূপ পরিবর্তন ঘটে?", opts: "(ক) তাপ শোষিত হয়  (খ) তাপ উৎপন্ন হয়  (গ) তাপমাত্রা কমে যায়  (ঘ) কোনো বিক্রিয়া হয় না", ans: "(খ) তাপ উৎপন্ন হয়", exp: "CaO পানির সাথে বিক্রিয়া করে Ca(OH)₂ ও তাপ উৎপন্ন করে (তাপোৎপাদী বিক্রিয়া)।" },
+      { q: "২৩. ট্রিফয়েল চিহ্নটি কত সালে প্রথম ব্যবহৃত হয়?", opts: "(ক) ১৯৪০ সালে  (খ) ১৯৪৫ সালে  (গ) ১৯৪৬ সালে  (ঘ) ১৯৫০ সালে", ans: "(গ) ১৯৪৬ সালে", exp: "১৯৪৬ সালে আমেরিকায় প্রথম ট্রিফয়েল চিহ্ন ব্যবহৃত হয়।" },
+      { q: "২৪. নিচের কোনটি দাহ্য পদার্থ (Flammable)?", opts: "(ক) ইথার ও পেট্রোলিয়াম  (খ) ইউরেনিয়াম  (গ) সিমেন্ট ডাস্ট  (ঘ) লেড", ans: "(ক) ইথার ও পেট্রোলিয়াম", exp: "অ্যালকোহল, ইথার ও পেট্রোলিয়াম দ্রুত আগুন ধরে যায় বলে এগুলো দাহ্য পদার্থ।" },
+      { q: "২৫. সিমেন্ট ডাস্ট ও নাইট্রাস অক্সাইড কোন শ্রেণির ঝুঁকিপূর্ণ পদার্থ?", opts: "(ক) বিস্ফোরক  (খ) উত্তেজক (Irritant)  (গ) তেজস্ক্রিয়  (ঘ) জারক", ans: "(খ) উত্তেজক (Irritant)", exp: "সিমেন্ট ডাস্ট, লঘু এসিড/ক্ষার ও নাইট্রাস অক্সাইড উত্তেজক পদার্থ।" },
+      { q: "২৬. গাঢ় সালফিউরিক এসিড (H₂SO₄) ও গাঢ় NaOH কোন ধরনের পদার্থ?", opts: "(ক) দাহ্য  (খ) ক্ষয়কারী (Corrosive)  (গ) বিস্ফোরক  (ঘ) তেজস্ক্রিয়", ans: "(খ) ক্ষয়কারী (Corrosive)", exp: "গাঢ় এসিড ও ক্ষার ত্বক ও ধাতু ক্ষয় করে বলে এগুলো ক্ষয়কারী পদার্থ।" },
+      { q: "২৭. পটাশিয়াম পারম্যাঙ্গানেট (KMnO₄) ও হাইড্রোজেন পার-অক্সাইড (H₂O₂) কোন ধরনের পদার্থ?", opts: "(ক) জারক (Oxidizing)  (খ) বিজারক  (গ) তেজস্ক্রিয়  (ঘ) বিস্ফোরক", ans: "(ক) জারক (Oxidizing)", exp: "KMnO₄ ও H₂O₂ অন্য দাহ্য পদার্থে দ্রুত আগুন ধরাতে পারে বলে এগুলো জারক পদার্থ।" },
+      { q: "২৮. নিচের কোনটি পরিবেশের জন্য ক্ষতিকর ভারী ধাতু?", opts: "(ক) সোডিয়াম (Na)  (খ) ক্যালসিয়াম (Ca)  (গ) লেড (Pb) ও মার্কারি (Hg)  (ঘ) ম্যাগনেসিয়াম (Mg)", ans: "(গ) লেড (Pb) ও মার্কারি (Hg)", exp: "লেড (সিসা) ও মার্কারি (পারদ) জলজ প্রাণী ও বাস্তুতন্ত্রের জন্য মারাত্মক বিষাক্ত।" },
+      { q: "২৯. এসিড লঘু করার সঠিক পদ্ধতি কোনটি?", opts: "(ক) এসিডের মধ্যে পানি ঢালা  (খ) পানির মধ্যে ধীরে ধীরে এসিড ঢালা  (গ) একসাথে দ্রুত মেশানো  (ঘ) তাপ দিয়ে মেশানো", ans: "(খ) পানির মধ্যে ধীরে ধীরে এসিড ঢালা", exp: "সর্বদা বেশি পরিমাণ পানির মধ্যে ফোঁটায় ফোঁটায় এসিড যোগ করতে হয়।" },
+      { q: "৩০. কোন গ্যাসটি শ্বাস-প্রশ্বাসের মাধ্যমে প্রবেশ করলে তীব্র শ্বাসকষ্ট হয়?", opts: "(ক) অক্সিজেন  (খ) নাইট্রোজেন  (গ) ক্লোরিন (Cl₂)  (ঘ) হিলিয়াম", ans: "(গ) ক্লোরিন (Cl₂)", exp: "ক্লোরিন গ্যাস শ্বাসনালিতে তীব্র জ্বালাপোড়া ও শ্বাসকষ্ট সৃষ্টি করে।" },
+      { q: "৩১. বেকিং সোডার রাসায়নিক সংকেত কোনটি?", opts: "(ক) Na₂CO₃  (খ) NaHCO₃  (গ) NaOH  (ঘ) CaCO₃", ans: "(খ) NaHCO₃", exp: "সোডিয়াম বাইকার্বনেট (NaHCO₃)-কে বেকিং সোডা বলা হয়।" },
+      { q: "৩২. ভিনেগারে ইথানোয়িক এসিডের (CH₃COOH) জলীয় দ্রবণের মাত্রা কত?", opts: "(ক) ১–২%  (খ) ৪–১০%  (গ) ২০–৩০%  (ঘ) ৫০–৬০%", ans: "(খ) ৪–১০%", exp: "ইথানোয়িক এসিডের ৪–১০% জলীয় দ্রবণকে ভিনেগার বলে, যা খাদ্য সংরক্ষণে ব্যবহৃত হয়।" },
+      { q: "৩৩. বেকিং সোডা ও ভিনেগারের বিক্রিয়ায় কোন গ্যাসটি বুদবুদ আকারে বের হয়?", opts: "(ক) H₂  (খ) O₂  (গ) CO₂  (ঘ) NH₃", ans: "(গ) CO₂", exp: "NaHCO₃ + CH₃COOH → CH₃COONa + H₂O + CO₂↑।" },
+      { q: "৩৪. অনুসন্ধান ও গবেষণা প্রক্রিয়ার দ্বিতীয় ধাপ কোনটি?", opts: "(ক) কাজের পরিকল্পনা  (খ) বিষয়বস্তু সম্পর্কে সম্যক জ্ঞান অর্জন  (গ) তথ্য বিশ্লেষণ  (ঘ) ফলাফল প্রকাশ", ans: "(খ) বিষয়বস্তু সম্পর্কে সম্যক জ্ঞান অর্জন", exp: "১ম ধাপ বিষয়বস্তু নির্ধারণ এবং ২য় ধাপ হলো সম্যক জ্ঞান অর্জন।" },
+      { q: "৩৫. অনুসন্ধান ও গবেষণা প্রক্রিয়ার পঞ্চম ধাপ কোনটি?", opts: "(ক) পরীক্ষণ ও তথ্য সংগ্রহ  (খ) তথ্য-উপাত্তের সংঘটন ও বিশ্লেষণ  (গ) কাজের পরিকল্পনা  (ঘ) ফলাফল ও আলোচনা", ans: "(খ) তথ্য-উপাত্তের সংঘটন ও বিশ্লেষণ", exp: "সংগৃহীত উপাত্তগুলো সারণিবদ্ধ ও বিশ্লেষণ করা হলো ৫ম ধাপ।" },
+      { q: "৩৬. প্রাকৃতিক গ্যাসের প্রধান উপাদান কোনটি?", opts: "(ক) ইথেন  (খ) প্রোপেন  (গ) মিথেন (CH₄)  (ঘ) বিউটেন", ans: "(গ) মিথেন (CH₄)", exp: "প্রাকৃতিক গ্যাসের প্রধান উপাদান হলো মিথেন (CH₄)।" },
+      { q: "৩৭. রসায়ন পরীক্ষাগারে ব্যবহৃত অ্যাপ্রন কোন কাপড়ের তৈরি হওয়া উত্তম?", opts: "(ক) পলিয়েস্টার  (খ) নাইলন  (গ) সুতি (Cotton)  (ঘ) সিল্ক", ans: "(গ) সুতি (Cotton)", exp: "সুতির অ্যাপ্রন সহজে আগুন ধরে গলে শরীরে লেগে যায় না, তাই সুতির অ্যাপ্রন নিরাপদ।" },
+      { q: "৩৮. ইউরেনিয়াম ও রেডিয়াম কোন চিহ্নযুক্ত পাত্রে সংরক্ষণ করা হয়?", opts: "(ক) দাহ্য চিহ্ন  (খ) ট্রিফয়েল চিহ্ন  (গ) উত্তেজক চিহ্ন  (ঘ) ক্ষয়কারী চিহ্ন", ans: "(খ) ট্রিফয়েল চিহ্ন", exp: "ইউরেনিয়াম ও রেডিয়াম তেজস্ক্রিয় পদার্থ, তাই এদের পাত্রে ট্রিফয়েল চিহ্ন থাকে।" },
+      { q: "৩৯. ত্বকে ক্ষত ও শ্বাসকষ্ট উভয়ই ঘটাতে পারে এমন গ্যাস/বাষ্প কোনটি?", opts: "(ক) Cl₂ ও Br₂  (খ) O₂ ও N₂  (গ) He ও Ne  (ঘ) H₂O বাষ্প", ans: "(ক) Cl₂ ও Br₂", exp: "ক্লোরিন ও ব্রোমিন তীব্র ক্ষয়কারী ও উত্তেজক হ্যালোজেন।" },
+      { q: "৪০. 27°C তাপমাত্রা কেলভিন স্কেলে কত হবে?", opts: "(ক) 273 K  (খ) 290 K  (গ) 300 K  (ঘ) 310 K", ans: "(গ) 300 K", exp: "T(K) = 27 + 273 = 300 K।" },
+      { q: "৪১. বহুপদী: বিস্ফোরক পদার্থের বৈশিষ্ট্য— (i) নিজে নিজে বিক্রিয়া করতে পারে (ii) ঘর্ষণ বা তাপে বিস্ফোরণ ঘটে (iii) উদাহরণ TNT। কোনটি সঠিক?", opts: "(ক) i ও ii  (খ) ii ও iii  (গ) i ও iii  (ঘ) i, ii ও iii", ans: "(ঘ) i, ii ও iii", exp: "বিস্ফোরক পদার্থের তিনটি বৈশিষ্ট্যই সঠিক।" },
+      { q: "৪২. বহুপদী: উত্তেজক পদার্থের উদাহরণ— (i) সিমেন্ট ডাস্ট (ii) লঘু এসিড ও ক্ষার (iii) নাইট্রাস অক্সাইড। কোনটি সঠিক?", opts: "(ক) i ও ii  (খ) i ও iii  (গ) ii ও iii  (ঘ) i, ii ও iii", ans: "(ঘ) i, ii ও iii", exp: "তিনটিই উত্তেজক পদার্থের পাঠ্যবইয়ের উদাহরণ।" },
+      { q: "৪৩. বহুপদী: পরীক্ষাগারের আবশ্যিক সুরক্ষা সরঞ্জাম— (i) সুতির অ্যাপ্রন (ii) সেফটি গগলস (iii) হ্যান্ড গ্লাভস। কোনটি সঠিক?", opts: "(ক) i ও ii  (খ) ii ও iii  (গ) i ও iii  (ঘ) i, ii ও iii", ans: "(ঘ) i, ii ও iii", exp: "তিনটিই পরীক্ষাগারের ব্যক্তিগত সুরক্ষা উপকরণ (PPE)।" },
+      { q: "৪৪. বহুপদী: তাপহারী প্রক্রিয়ার ক্ষেত্রে প্রযোজ্য— (i) ΔT ঋণাত্মক হয় (ii) পরিবেশ থেকে তাপ শোষিত হয় (iii) উদাহরণ CaO + H₂O। কোনটি সঠিক?", opts: "(ক) i ও ii  (খ) ii ও iii  (গ) i ও iii  (ঘ) i, ii ও iii", ans: "(ক) i ও ii", exp: "CaO + H₂O একটি তাপোৎপাদী বিক্রিয়া, তাই (iii) সঠিক নয়।" },
+      { q: "৪৫. বহুপদী: ক্যান্সার সৃষ্টিকারী স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ— (i) বেনজিন (ii) টলুইন (iii) জাইলিন। কোনটি সঠিক?", opts: "(ক) i ও ii  (খ) ii ও iii  (গ) i ও iii  (ঘ) i, ii ও iii", ans: "(ঘ) i, ii ও iii", exp: "বেনজিন, টলুইন ও জাইলিন তিনটিই স্বাস্থ্য ঝুঁকিপূর্ণ।" },
+      { q: "৪৬. বহুপদী: রাসায়নিক পরিবর্তনের উদাহরণ— (i) লোহায় মরিচা পড়া (ii) কাঁচা আম পাকা (iii) মোম গলে যাওয়া। কোনটি সঠিক?", opts: "(ক) i ও ii  (খ) ii ও iii  (গ) i ও iii  (ঘ) i, ii ও iii", ans: "(ক) i ও ii", exp: "মোম গলে যাওয়া ভৌত পরিবর্তন; লোহায় মরিচা পড়া ও আম পাকা রাসায়নিক পরিবর্তন।" },
+      { q: "৪৭. উদ্দীপক: ল্যাবে ‘X’ বোতলের গায়ে আগুনের শিখা এবং ‘Y’ বোতলের গায়ে হাত ও ধাতু ক্ষয়ের চিহ্ন আছে। ‘X’ বোতলে কী থাকতে পারে?", opts: "(ক) অ্যালকোহল ও ইথার  (খ) গাঢ় H₂SO₄  (গ) ইউরেনিয়াম  (ঘ) টিএনটি", ans: "(ক) অ্যালকোহল ও ইথার", exp: "আগুনের শিখা দাহ্য পদার্থের চিহ্ন (অ্যালকোহল, ইথার, পেট্রোলিয়াম)।" },
+      { q: "৪৮. উপরের উদ্দীপকের ‘Y’ বোতলের পদার্থটির বৈশিষ্ট্য কোনটি?", opts: "(ক) এটি তেজস্ক্রিয় রশ্মি ছড়ায়  (খ) এটি ত্বকে লাগলে ক্ষত সৃষ্টি করে  (গ) এটি বিস্ফোরক  (ঘ) এটি ক্যান্সার সৃষ্টিকারী জৈব যৌগ", ans: "(খ) এটি ত্বকে লাগলে ক্ষত সৃষ্টি করে", exp: "হাত ও ধাতু ক্ষয়ের চিহ্ন ক্ষয়কারী (Corrosive) পদার্থ নির্দেশ করে।" },
+      { q: "৪৯. উদ্দীপক: রাফি 28°C তাপমাত্রার পানিতে চুন যোগ করায় তাপমাত্রা বেড়ে 36°C হলো। বিক্রিয়াটি কীরূপ?", opts: "(ক) তাপহারী  (খ) তাপোৎপাদী  (গ) প্রশমন  (ঘ) বিয়োজন", ans: "(খ) তাপোৎপাদী", exp: "তাপমাত্রা বৃদ্ধি পাওয়ায় বিক্রিয়াটি তাপোৎপাদী।" },
+      { q: "৫০. রাফির পরীক্ষণে তাপমাত্রার পরিবর্তন কেলভিন স্কেলে কত?", opts: "(ক) −8 K  (খ) +8 K  (গ) +281 K  (ঘ) +309 K", ans: "(খ) +8 K", exp: "সেলসিয়াস ও কেলভিন স্কেলে তাপমাত্রার পার্থক্য সমান: 36 − 28 = +8 K।" }
+    ];
+
+    const mcqContainer = document.getElementById('mcq-list');
+    mcqData.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'p-4 rounded-xl border cursor-pointer transition-all hover:shadow-md';
+      card.style.borderColor = 'var(--border-color)';
+      card.style.background = 'var(--bg-secondary)';
+      card.onclick = () => toggleAnswer('mcq-ans-' + idx);
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <p class="font-bold text-sm sm:text-base">${item.q}</p>
+          <span class="text-xs px-2 py-0.5 rounded shrink-0" style="background: rgba(0,245,212,0.12); color: var(--accent);">উত্তর দেখুন</span>
+        </div>
+        <p class="text-xs sm:text-sm mt-1.5" style="color: var(--text-secondary);">${item.opts}</p>
+        <div id="mcq-ans-${idx}" class="answer-drawer mt-3 pt-2.5 border-t text-xs sm:text-sm" style="border-color: var(--border-color);">
+          <p class="font-bold" style="color: var(--accent);">সঠিক উত্তর: ${item.ans}</p>
+          <p class="mt-0.5" style="color: var(--text-secondary);"><strong>ব্যাখ্যা:</strong> ${item.exp}</p>
+        </div>
+      `;
+      mcqContainer.appendChild(card);
+    });
+
+    // 8. Data Bank: 20 SSC Board Creative Questions (CQ)
+    const cqData = [
+      {
+        title: "সৃজনশীল প্রশ্ন ০১ : প্রাত্যহিক জীবনে রসায়ন, পরিবর্তন ও পরিবেশের প্রভাব",
+        stem: "রাকিবের বাসায় মা প্রাকৃতিক গ্যাসে রান্না করছেন। খাবার টেবিলে কিছু কাঁচা ও পাকা আম রাখা আছে। খাওয়ার পর বাবার পেটে এসিডিটি হওয়ায় তিনি অ্যান্টাসিড খেলেন। অন্যদিকে রাকিব দেখল, বৃষ্টিতে ভিজে তার বাইসাইকেলের লোহার চেইনে লালচে-বাদামি আস্তরণ পড়েছে।",
+        q: ["(ক) আল-কেমি কী?", "(খ) মোমের জ্বলনে ভৌত ও রাসায়নিক উভয় পরিবর্তন ঘটে—ব্যাখ্যা করো।", "(গ) উদ্দীপকের কাঁচা আম পেকে মিষ্টি হওয়া এবং বাবার এসিডিটি উপশমে রসায়নের ভূমিকা ব্যাখ্যা করো।", "(ঘ) উদ্দীপকের প্রাকৃতিক গ্যাসের দহন ও সাইকেলের চেইনের পরিবর্তন আমাদের দৈনন্দিন জীবন ও পরিবেশের ওপর কীরূপ প্রভাব ফেলে? যুক্তিসহ বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> প্রাচীন ও মধ্যযুগীয় রসায়ন চর্চাকে আল-কেমি (Al-Chemy) বলে। আরবি শব্দ ‘আল-কিমিয়া’ থেকে এর উৎপত্তি।",
+          "<strong>(খ) উত্তর:</strong> মোম গলে নিচে জমা হওয়া ভৌত পরিবর্তন (ধর্ম অপরিবর্তিত থাকে) এবং মোমের সলতে পুড়ে CO₂, H₂O, তাপ ও আলো উৎপন্ন করা রাসায়নিক পরিবর্তন। তাই উভয় পরিবর্তন ঘটে।",
+          "<strong>(গ) উত্তর:</strong> কাঁচা আমে সাক্সিনিক ও ম্যালেয়িক এসিড থাকায় টক লাগে; আম পাকলে জৈব রাসায়নিক পরিবর্তনে তা গ্লুকোজ ও ফ্রুক্টোজে পরিণত হয়ে মিষ্টি হয়। আবার পাকস্থলীর অতিরিক্ত HCl দুর্বল ক্ষার অ্যান্টাসিড [Al(OH)₃ ও Mg(OH)₂] দ্বারা প্রশমিত হয়ে লবণ ও পানি উৎপন্ন করে: Al(OH)₃ + 3HCl → AlCl₃ + 3H₂O।",
+          "<strong>(ঘ) উত্তর:</strong> প্রাকৃতিক গ্যাসের (CH₄) পূর্ণ দহনে রান্নার তাপশক্তি পাওয়া যায়, তবে অতিরিক্ত CO₂ গ্রিনহাউস প্রভাব বাড়ায় এবং অপূর্ণ দহনে বিষাক্ত CO তৈরি হয়। অন্যদিকে লোহার চেইনে আর্দ্র বায়ুতে মরিচা (Fe₂O₃·nH₂O) পড়ে লোহা ক্ষয়প্রাপ্ত হয়, যা অর্থনৈতিক ক্ষতি করে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০২ : রসায়নে অনুসন্ধান ও গবেষণা প্রক্রিয়া (তাপীয় পরীক্ষণ)",
+        stem: "নবম শ্রেণির শিক্ষার্থী তানিয়া পরীক্ষাগারে দুটি বিকারে 100 mL করে 28°C তাপমাত্রার পানি নিল। সে ১ম বিকারে 5 g অ্যামোনিয়াম ক্লোরাইড (NH₄Cl) এবং ২য় বিকারে 5 g ক্যালসিয়াম অক্সাইড (CaO) যোগ করে নেড়ে তাপমাত্রা মাপল। ১ম বিকারের তাপমাত্রা কমে 24°C এবং ২য় বিকারের তাপমাত্রা বেড়ে 37°C হলো।",
+        q: ["(ক) রসায়নে অনুসন্ধান ও গবেষণা প্রক্রিয়ার চতুর্থ ধাপ কোনটি?", "(খ) খাদ্য সংরক্ষণে প্রিজারভেটিভস কেন ব্যবহার করা হয়? এর ক্ষতিকর দিক লেখো।", "(গ) তানিয়ার পরীক্ষণটি বিজ্ঞানসম্মতভাবে সম্পন্ন করতে অনুসন্ধান ও গবেষণা প্রক্রিয়ার ধাপগুলো কীভাবে প্রয়োগ করতে হবে?", "(ঘ) তানিয়ার উভয় বিকারের তাপমাত্রার বিপরীতমুখী পরিবর্তনের কারণ গাণিতিক ও রাসায়নিকভাবে বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> অনুসন্ধান ও গবেষণা প্রক্রিয়ার চতুর্থ ধাপ হলো পরীক্ষণ ও তথ্য-উপাত্ত সংগ্রহ।",
+          "<strong>(খ) উত্তর:</strong> ব্যাকটেরিয়া ও ছত্রাকের আক্রমণ রোধ করে খাদ্য দীর্ঘদিন ভালো রাখতে প্রিজারভেটিভস ব্যবহৃত হয়। তবে ফরমালিন বা কার্বাইডের মতো ক্ষতিকর রাসায়নিক লিভার, কিডনি ও স্নায়ুতন্ত্রের ক্ষতিসহ ক্যান্সার ঘটায়।",
+          "<strong>(গ) উত্তর:</strong> ৬টি ধাপ যথাক্রমে: (১) বিষয়বস্তু নির্ধারণ, (২) সম্যক জ্ঞান অর্জন, (৩) কাজের পরিকল্পনা প্রণয়ন, (৪) পরীক্ষণ ও তথ্য সংগ্রহ, (৫) তথ্য-উপাত্তের সংঘটন ও বিশ্লেষণ এবং (৬) ফলাফল ও আলোচনা।",
+          "<strong>(ঘ) উত্তর:</strong> ১ম বিকারে ΔT₁ = 24°C − 28°C = −4°C (তাপ শোষিত হওয়ায় এটি তাপহারী প্রক্রিয়া: NH₄Cl + H₂O + তাপ → NH₄Cl(aq))। ২য় বিকারে ΔT₂ = 37°C − 28°C = +9°C (তাপ উৎপন্ন হওয়ায় এটি তাপোৎপাদী বিক্রিয়া: CaO + H₂O → Ca(OH)₂ + তাপ)।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০৩ : আন্তর্জাতিক ঝুঁকিপূর্ণ সাংকেতিক চিহ্ন (GHS) ও ল্যাব নিরাপত্তা",
+        stem: "রসায়ন পরীক্ষাগারে তিনটি বোতলের গায়ে তিনটি আন্তর্জাতিক চিহ্ন লাগানো আছে— বোতল-A: বিস্ফোরিত বোমা, বোতল-B: ট্রিফয়েল চিহ্ন এবং বোতল-C: হাত ও ধাতব পাত ক্ষয়ের চিহ্ন। শিক্ষক নির্দেশ দিলেন, ল্যাবে সুরক্ষা পোশাক পরতে হবে এবং রাসায়নিক বর্জ্য সাধারণ নর্দমায় ফেলা যাবে না।",
+        q: ["(ক) ট্রিফয়েল চিহ্নটি কত সালে ও প্রথম কোন দেশে ব্যবহৃত হয়?", "(খ) এসিড লঘু করার সময় কখনোই এসিডের মধ্যে পানি যোগ করা উচিত নয় কেন?", "(গ) উদ্দীপকের A, B ও C বোতলের চিহ্নগুলোর নাম, উদাহরণ ও সতর্কতা ব্যাখ্যা করো।", "(ঘ) পরীক্ষাগারে ব্যক্তিগত সুরক্ষা এবং রাসায়নিক বর্জ্যের সঠিক ব্যবস্থাপনা মানবস্বাস্থ্য ও পরিবেশ রক্ষায় কতটা অপরিহার্য?"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> ট্রিফয়েল চিহ্নটি প্রথম ১৯৪৬ সালে আমেরিকায় ব্যবহৃত হয়।",
+          "<strong>(খ) উত্তর:</strong> গাঢ় এসিডে পানি ঢাললে প্রচণ্ড তাপ উৎপন্ন হয়ে পানি মুহূর্তেই বাষ্পীভূত হয় এবং এসিড ছিটকে চোখে-মুখে মারাত্মক দুর্ঘটনা ঘটাতে পারে। তাই সর্বদা পানিতে ধীরে ধীরে এসিড ঢালতে হয়।",
+          "<strong>(গ) উত্তর:</strong> বোতল-A: বিস্ফোরক (TNT, জৈব পার-অক্সাইড—আগুন ও ঘর্ষণ থেকে দূরে রাখা); বোতল-B: তেজস্ক্রিয় (ইউরেনিয়াম, রেডিয়াম—পুরু সিসার পাত্রে রাখা); বোতল-C: ক্ষয়কারী (গাঢ় H₂SO₄, NaOH—গ্লাভস ও গগলস পরে ব্যবহার)।",
+          "<strong>(ঘ) উত্তর:</strong> সুতির অ্যাপ্রন, গগলস, গ্লাভস ও মাস্ক দুর্ঘটনা থেকে রক্ষা করে এবং লেড, মার্কারি ও এসিড বর্জ্য পরিশোধন করে নিষ্কাশন করলে জলজ প্রাণী ও বাস্তুতন্ত্র সুরক্ষিত থাকে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০৪ : রসায়নের ইতিহাস ও কেন্দ্রীয় বিজ্ঞান হিসেবে গুরুত্ব",
+        stem: "প্রাচীনকালে মানুষ তামা ও টিন গলিয়ে এক বিশেষ সংকর ধাতু তৈরি করেছিল। মধ্যযুগে আরব বিজ্ঞানীরা ল্যাবরেটরিতে বিজ্ঞানসম্মত রসায়ন চর্চার সূচনা করেন। বর্তমানে রসায়ন জীববিজ্ঞান, পদার্থবিজ্ঞান ও গণিতের সাথে মিলে মানবকল্যাণে কাজ করছে।",
+        q: ["(ক) রসায়ন কাকে বলে?", "(খ) রসায়নকে সকল বিজ্ঞানের কেন্দ্রীয় বিজ্ঞান বলা হয় কেন?", "(গ) উদ্দীপকে উল্লিখিত প্রাচীন সংকর ধাতু ও মধ্যযুগীয় রসায়ন চর্চার ঐতিহাসিক অবদান বর্ণনা করো।", "(ঘ) জীববিজ্ঞান, পদার্থবিজ্ঞান ও গণিতের সাথে রসায়নের আন্তঃসম্পর্ক বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> বিজ্ঞানের যে শাখায় পদার্থের গঠন, ধর্ম এবং ভৌত ও রাসায়নিক পরিবর্তন নিয়ে আলোচনা করা হয়, তাকে রসায়ন বলে।",
+          "<strong>(খ) উত্তর:</strong> জীববিজ্ঞান, পদার্থবিজ্ঞান, চিকিৎসা, কৃষি ও পরিবেশবিজ্ঞানের মূল ভিত্তি রাসায়নিক বিক্রিয়ার ওপর নির্ভরশীল বলে রসায়নকে কেন্দ্রীয় বিজ্ঞান বলা হয়।",
+          "<strong>(গ) উত্তর:</strong> খ্রিস্টপূর্ব ৩৫০০ অব্দে মিশরীয়রা তামা (Cu) ও টিন (Sn) গলিয়ে ব্রোঞ্জ তৈরি করে। মধ্যযুগে জাবির ইবনে হাইয়ান সর্বপ্রথম ল্যাবরেটরিতে বিজ্ঞানসম্মত রসায়ন চর্চা (আল-কেমি) শুরু করেন।",
+          "<strong>(ঘ) উত্তর:</strong> উদ্ভিদের সালোকসংশ্লেষণ ও শ্বসনে জীববিজ্ঞানের সাথে, ব্যাটারি ও তাপগতিবিদ্যায় পদার্থবিজ্ঞানের সাথে এবং কোয়ান্টাম মেকানিক্সের মাধ্যমে পরমাণুর গঠন ব্যাখ্যায় গণিতের সাথে রসায়নের নিবিড় সম্পর্ক রয়েছে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০৫ : জ্বালানির পূর্ণ ও অপূর্ণ দহন",
+        stem: "শীতকালে বন্ধ ঘরে কয়লা বা গ্যাসের চুলা জ্বালিয়ে রাখলে কিছুক্ষণ পর ঘরে থাকা ব্যক্তিদের মাথা ঘোরা ও শ্বাসকষ্ট শুরু হয়। অথচ খোলা জায়গায় পর্যাপ্ত বাতাসে একই জ্বালানি জ্বালালে নীল শিখায় জ্বলে এবং প্রচুর তাপ উৎপন্ন হয়।",
+        q: ["(ক) প্রাকৃতিক গ্যাসের প্রধান উপাদান কী?", "(খ) জ্বালানির অপূর্ণ দহন স্বাস্থ্যের জন্য মারাত্মক ঝুঁকিপূর্ণ কেন?", "(গ) উদ্দীপকের উভয় পরিবেশে সংঘটিত রাসায়নিক বিক্রিয়া দুটি সমীকরণসহ ব্যাখ্যা করো।", "(ঘ) গৃহস্থালি ও শিল্পক্ষেত্রে জ্বালানির নিরাপদ ব্যবহার এবং বায়ুদূষণ রোধে করণীয় বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> প্রাকৃতিক গ্যাসের প্রধান উপাদান মিথেন (CH₄)।",
+          "<strong>(খ) উত্তর:</strong> অপূর্ণ দহনে বিষাক্ত কার্বন মনোক্সাইড (CO) গ্যাস উৎপন্ন হয়, যা রক্তের হিমোগ্লোবিনের সাথে যুক্ত হয়ে অক্সিজেন পরিবহন বন্ধ করে মৃত্যু পর্যন্ত ঘটাতে পারে।",
+          "<strong>(গ) উত্তর:</strong> পর্যাপ্ত বাতাসে পূর্ণ দহন: CH₄ + 2O₂ → CO₂ + 2H₂O + তাপশক্তি। বন্ধ ঘরে অপর্যাপ্ত বাতাসে অপূর্ণ দহন: 2CH₄ + 3O₂ → 2CO + 4H₂O + কম তাপ।",
+          "<strong>(ঘ) উত্তর:</strong> রান্নাঘরে পর্যাপ্ত বায়ু চলাচলের ব্যবস্থা রাখা, চুলার বার্নার নিয়মিত পরিষ্কার করা এবং বন্ধ ঘরে আগুন না জ্বালানো নিরাপদ জীবনের জন্য অপরিহার্য।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০৬ : দাহ্য, বিষাক্ত ও স্বাস্থ্য ঝুঁকিপূর্ণ রাসায়নিক দ্রব্য",
+        stem: "একটি শিল্প কারখানার ল্যাবরেটরিতে তিনটি রাসায়নিক দ্রব্য ব্যবহৃত হয়: (১) ইথার, (২) ক্লোরোবেনজিন এবং (৩) টলুইন। শ্রমিকদের সুরক্ষার জন্য প্রতিটি পাত্রে আন্তর্জাতিক GHS সাংকেতিক চিহ্ন লাগানো বাধ্যতামূলক করা হয়েছে।",
+        q: ["(ক) GHS-এর পূর্ণরূপ কী?", "(খ) উত্তেজক ও ক্ষয়কারী পদার্থের মধ্যে দুটি পার্থক্য লেখো।", "(গ) উদ্দীপকের তিনটি রাসায়নিক দ্রব্যের পাত্রে কোন কোন সাংকেতিক চিহ্ন থাকবে এবং এদের ঝুঁকি কী?", "(ঘ) শিল্প কারখানায় উক্ত রাসায়নিকগুলোর নিরাপদ সংরক্ষণ ও ব্যবহারের কৌশল মূল্যায়ন করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> GHS-এর পূর্ণরূপ Globally Harmonized System।",
+          "<strong>(খ) উত্তর:</strong> উত্তেজক পদার্থ (সিমেন্ট ডাস্ট) ত্বক ও চোখে চুলকানি বা জ্বালাপোড়া ঘটায়; ক্ষয়কারী পদার্থ (গাঢ় H₂SO₄) ত্বক ও ধাতু পুড়িয়ে স্থায়ী ক্ষত সৃষ্টি করে।",
+          "<strong>(গ) উত্তর:</strong> ইথার: দাহ্য চিহ্ন (দ্রুত আগুন ধরে); ক্লোরোবেনজিন: বিষাক্ত চিহ্ন (শ্বাস বা ত্বকে প্রবেশে বিষক্রিয়া); টলুইন: স্বাস্থ্য ঝুঁকিপূর্ণ চিহ্ন (দীর্ঘমেয়াদে ক্যান্সার ও অঙ্গহানি ঘটায়)।",
+          "<strong>(ঘ) উত্তর:</strong> দাহ্য পদার্থ আগুন থেকে দূরে শীতল স্থানে, বিষাক্ত পদার্থ তালাবদ্ধ ক্যাবিনেটে এবং স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ ফিউম হুডে PPE পরে ব্যবহার করতে হবে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০৭ : কৃষিক্ষেত্রে রসায়ন ও পরিবেশের ভারসাম্য",
+        stem: "কৃষক করিম সাহেব অধিক ফসলের আশায় জমিতে প্রচুর পরিমাণে ইউরিয়া, পটাশ সার ও কীটনাশক প্রয়োগ করলেন। বর্ষাকালে বৃষ্টির পানির সাথে সেই রাসায়নিকগুলো পাশের পুকুরে মিশে যাওয়ায় পুকুরের মাছ মরে ভেসে উঠল।",
+        q: ["(ক) উদ্ভিদের তিনটি প্রধান পুষ্টি উপাদানের প্রতীক লেখো।", "(খ) পরিবেশের জন্য ক্ষতিকর চিহ্নযুক্ত পদার্থ বলতে কী বোঝায়?", "(গ) কৃষিক্ষেত্রে রসায়নের ইতিবাচক ভূমিকা ব্যাখ্যা করো।", "(ঘ) উদ্দীপকের পুকুরে মাছ মারা যাওয়ার কারণ রাসায়নিক ও পরিবেশগত দৃষ্টিকোণ থেকে বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> উদ্ভিদের তিনটি প্রধান পুষ্টি উপাদান হলো নাইট্রোজেন (N), ফসফরাস (P) ও পটাশিয়াম (K)।",
+          "<strong>(খ) উত্তর:</strong> যেসব রাসায়নিক পদার্থ (যেমন লেড, মার্কারি, কীটনাশক) উদ্ভিদ ও জলজ প্রাণীর জীবননাশ করে বাস্তুতন্ত্র ধ্বংস করে, তাদের পাত্রে পরিবেশের জন্য ক্ষতিকর চিহ্ন থাকে।",
+          "<strong>(গ) উত্তর:</strong> সার মাটির উর্বরতা বৃদ্ধি করে ও উদ্ভিদের পুষ্টি জোগায় এবং পরিমিত কীটনাশক ফসলকে পোকামাকড়ের আক্রমণ থেকে রক্ষা করে খাদ্য উৎপাদন বাড়ায়।",
+          "<strong>(ঘ) উত্তর:</strong> অতিরিক্ত সার ও বিষাক্ত কীটনাশক পানিতে মিশে পানির অক্সিজেন হ্রাস করে এবং বিষক্রিয়া সৃষ্টি করে, ফলে মাছ ও জলজ প্রাণী মারা যায়।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০৮ : ভরের নিত্যতা সূত্র ও রাসায়নিক পরিমাপ",
+        stem: "শিক্ষক ক্লাসে 50 g ক্যালসিয়াম কার্বনেট (CaCO₃)-কে একটি বদ্ধ ফ্লাস্কে তীব্রভাবে উত্তপ্ত করে দেখালেন যে, বিক্রিয়া শেষে ফ্লাস্কে 28 g ক্যালসিয়াম অক্সাইড (CaO) এবং 22 g কার্বন ডাই-অক্সাইড (CO₂) গ্যাস উৎপন্ন হয়েছে।",
+        q: ["(ক) ভরের নিত্যতা সূত্রটি কোন বিজ্ঞানী আবিষ্কার করেন?", "(খ) খোলা পাত্রে ক্যালসিয়াম কার্বনেটকে উত্তপ্ত করলে ভরের নিত্যতা সূত্র আপাতদৃষ্টিতে লঙ্ঘিত হয় মনে হয় কেন?", "(গ) উদ্দীপকের বিক্রিয়াটির মাধ্যমে ভরের নিত্যতা সূত্রের সত্যতা গাণিতিকভাবে যাচাই করো।", "(ঘ) আধুনিক রসায়নের বিকাশে উক্ত বিজ্ঞানীর অবদান মূল্যায়ন করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> ভরের নিত্যতা সূত্রটি বিজ্ঞানী অ্যান্টনি ল্যাভয়সিয়ে আবিষ্কার করেন।",
+          "<strong>(খ) উত্তর:</strong> খোলা পাত্রে উত্তপ্ত করলে উৎপন্ন CO₂ গ্যাস বাতাসে উড়ে যায়, ফলে অবশিষ্ট কঠিন পদার্থের ভর কম পাওয়া যায়। তবে গ্যাসের ভর যোগ করলে মোট ভর সমানই থাকে।",
+          "<strong>(গ) উত্তর:</strong> বিক্রিয়কের মোট ভর = 50 g; উৎপাদের মোট ভর = (28 + 22) g = 50 g। যেহেতু বিক্রিয়ক ও উৎপাদের ভর সমান, তাই ভরের নিত্যতা সূত্র প্রমাণিত।",
+          "<strong>(ঘ) উত্তর:</strong> ল্যাভয়সিয়ে ভরের নিত্যতা সূত্র আবিষ্কার, দহনে অক্সিজেনের ভূমিকা ব্যাখ্যা এবং মৌলের আধুনিক নামকরণের মাধ্যমে রসায়নকে সঠিক বিজ্ঞানে প্রতিষ্ঠিত করেন।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ০৯ : খাদ্য সংরক্ষণ ও জনস্বাস্থ্য",
+        stem: "বাজারে মৌসুমি ফল দীর্ঘদিন তাজা রাখতে কিছু অসাধু ব্যবসায়ী ফরমালিন ও কার্বাইড ব্যবহার করছেন। অপরদিকে খাদ্য প্রক্রিয়াজাতকরণ শিল্পে অনুমোদিত মাত্রায় ভিনেগার ও সোডিয়াম বেনজয়েট ব্যবহার করা হয়।",
+        q: ["(ক) ভিনেগার কী?", "(খ) কাঁচা আম ও পাকা আমের রাসায়নিক উপাদানের পার্থক্য লেখো।", "(গ) অনুমোদিত প্রিজারভেটিভস কীভাবে খাদ্য সংরক্ষণ করে তা ব্যাখ্যা করো।", "(ঘ) খাদ্যে অননুমোদিত রাসায়নিক ব্যবহারের ভয়াবহতা ও প্রতিরোধের উপায় বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> ইথানোয়িক এসিডের (CH₃COOH) ৪–১০% জলীয় দ্রবণকে ভিনেগার বলে।",
+          "<strong>(খ) উত্তর:</strong> কাঁচা আমে সাক্সিনিক ও ম্যালেয়িক এসিড থাকে, আর পাকা আমে গ্লুকোজ ও ফ্রুক্টোজ শর্করা থাকে।",
+          "<strong>(গ) উত্তর:</strong> অনুমোদিত প্রিজারভেটিভস (ভিনেগার, সোডিয়াম বেনজয়েট) খাদ্যে অম্লীয় পরিবেশ তৈরি করে ব্যাকটেরিয়া ও ছত্রাকের বংশবিস্তার রোধ করে খাদ্যকে পচন থেকে বাঁচায়।",
+          "<strong>(ঘ) উত্তর:</strong> ফরমালিন ও কার্বাইড মানবদেহে ক্যান্সার, লিভার ও কিডনি বিকল করে। জনসচেতনতা, কঠোর আইন প্রয়োগ ও প্রাকৃতিক সংরক্ষণ পদ্ধতি অনুসরণ করে এটি প্রতিরোধ করতে হবে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১০ : জারক ও তেজস্ক্রিয় পদার্থের ঝুঁকি",
+        stem: "গবেষণাগারে দুটি বিশেষ পাত্রে দুটি পদার্থ রাখা আছে। প্রথম পাত্রে KMnO₄ এবং দ্বিতীয় পাত্রে ইউরেনিয়াম (U) সংরক্ষিত আছে।",
+        q: ["(ক) তেজস্ক্রিয় পদার্থের দুটি উদাহরণ দাও।", "(খ) জারক পদার্থকে দাহ্য পদার্থ থেকে আলাদা রাখা হয় কেন?", "(গ) উদ্দীপকের পদার্থ দুটির সাংকেতিক চিহ্ন এঁকে এদের ঝুঁকি ব্যাখ্যা করো।", "(ঘ) দ্বিতীয় পাত্রের পদার্থটি মানবকল্যাণ ও ধ্বংস উভয় কাজেই ব্যবহৃত হতে পারে—বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> ইউরেনিয়াম (U) ও রেডিয়াম (Ra)।",
+          "<strong>(খ) উত্তর:</strong> জারক পদার্থ অক্সিজেন সরবরাহ করে দাহ্য পদার্থে দ্রুত আগুন ধরিয়ে ভয়াবহ অগ্নিকাণ্ড ঘটাতে পারে, তাই এদের আলাদা রাখা হয়।",
+          "<strong>(গ) উত্তর:</strong> KMnO₄-এর পাত্রে বৃত্তের ওপর আগুনের শিখা (জারক চিহ্ন) এবং ইউরেনিয়ামের পাত্রে ট্রিফয়েল চিহ্ন থাকে।",
+          "<strong>(ঘ) উত্তর:</strong> ইউরেনিয়াম পারমাণবিক বিদ্যুৎ উৎপাদন ও চিকিৎসায় (ক্যান্সার থেরাপি) কল্যাণকর ভূমিকা রাখে, আবার পারমাণবিক বোমা ও তেজস্ক্রিয় বিকিরণের মাধ্যমে ভয়াবহ ধ্বংস ডেকে আনে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১১ : ঘনত্ব ও শতকরা সংযুতি নির্ণয়ভিত্তিক পরীক্ষণ",
+        stem: "সুমাইয়া ল্যাবরেটরিতে 50 mL পানিতে 5 g অ্যামোনিয়াম ক্লোরাইড মিশিয়ে একটি দ্রবণ তৈরি করল। অপর একটি বোতল থেকে 150 mL অ্যালকোহল মেপে নিয়ে তার ভর পেল 118.5 g।",
+        q: ["(ক) ঘনত্বের সংজ্ঞা দাও।", "(খ) 1 mL এবং 1 cm³ এর মধ্যে সম্পর্ক কী?", "(গ) সুমাইয়ার তৈরি দ্রবণে অ্যামোনিয়াম ক্লোরাইডের শতকরা ভর নির্ণয় করো। (পানির ঘনত্ব = 1 g/mL)", "(ঘ) বোতল থেকে নেওয়া অ্যালকোহলটি বিশুদ্ধ ইথানল কি না গাণিতিকভাবে যাচাই করো এবং এর ঝুঁকি চিহ্ন ব্যাখ্যা করো। (বিশুদ্ধ ইথানলের ঘনত্ব = 0.79 g/mL)"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> কোনো বস্তুর একক আয়তনের ভরকে তার ঘনত্ব বলে (ρ = m/V)।",
+          "<strong>(খ) উত্তর:</strong> 1 mL এবং 1 cm³ পরস্পর সমান (1 mL = 1 cm³)।",
+          "<strong>(গ) উত্তর:</strong> পানির ভর = 50 g; মোট দ্রবণের ভর = 55 g। শতকরা ভর = (5/55) × 100% = 9.09%।",
+          "<strong>(ঘ) উত্তর:</strong> ঘনত্ব ρ = 118.5 / 150 = 0.79 g/mL, যা বিশুদ্ধ ইথানলের সমান। এটি দাহ্য পদার্থ, তাই এর গায়ে আগুনের শিখা চিহ্ন থাকে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১২ : শ্বসন ও সালোকসংশ্লেষণে রসায়ন",
+        stem: "উদ্ভিদ সূর্যালোক ও ক্লোরোফিলের সহায়তায় বায়ুমণ্ডলের একটি গ্যাস ও মাটির পানি গ্রহণ করে শর্করা জাতীয় খাদ্য তৈরি করে এবং প্রাণীর বেঁচে থাকার জন্য অপরিহার্য একটি গ্যাস ত্যাগ করে।",
+        q: ["(ক) সালোকসংশ্লেষণ প্রক্রিয়ার প্রভাবক কী কী?", "(খ) উদ্ভিদ ও প্রাণীর পারস্পরিক নির্ভরশীলতায় রসায়নের ভূমিকা লেখো।", "(গ) উদ্দীপকের জৈব রাসায়নিক বিক্রিয়াটি সমীকরণসহ ব্যাখ্যা করো।", "(ঘ) পরিবেশে উক্ত বিক্রিয়াটি ব্যাহত হলে জীবজগতের ওপর কীরূপ বিপর্যয় নেমে আসবে তা বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> সূর্যালোক ও ক্লোরোফিল।",
+          "<strong>(খ) উত্তর:</strong> উদ্ভিদ সালোকসংশ্লেষণে O₂ দেয় যা প্রাণী শ্বসনে গ্রহণ করে, আর প্রাণী CO₂ ত্যাগ করে যা উদ্ভিদ খাদ্য তৈরিতে ব্যবহার করে।",
+          "<strong>(গ) উত্তর:</strong> 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂↑ (সূর্যালোক ও ক্লোরোফিলের উপস্থিতিতে)।",
+          "<strong>(ঘ) উত্তর:</strong> সালোকসংশ্লেষণ বন্ধ হলে বায়ুমণ্ডলে O₂ ফুরিয়ে যাবে, CO₂ বেড়ে বৈশ্বিক উষ্ণায়ন ঘটবে এবং খাদ্যশৃঙ্খল ভেঙে পড়ে জীবজগৎ ধ্বংস হবে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১৩ : হ্যালোজেন মৌলসমূহের সতর্কতা (ক্লোরিন ও ব্রোমিন)",
+        stem: "পরীক্ষাগারে ক্লোরিন গ্যাস (Cl₂) ও তরল ব্রোমিন (Br₂) নিয়ে কাজ করার সময় শিক্ষক শিক্ষার্থীদের বিশেষভাবে সতর্ক করলেন যেন গ্যাস নাকে না যায় এবং তরলটি হাতে না লাগে।",
+        q: ["(ক) ব্রোমিনের প্রতীক কী?", "(খ) পরীক্ষাগারে মাস্ক ও হ্যান্ড গ্লাভস ব্যবহার করা জরুরি কেন?", "(গ) উদ্দীপকের মৌল দুটি মানবদেহে কী কী ক্ষতি করতে পারে তা ব্যাখ্যা করো।", "(ঘ) এ ধরনের ঝুঁকিপূর্ণ রাসায়নিক নিয়ে কাজ করার ক্ষেত্রে আদর্শ ল্যাবরেটরি প্রোটোকল বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> ব্রোমিনের প্রতীক Br।",
+          "<strong>(খ) উত্তর:</strong> মাস্ক বিষাক্ত গ্যাস ফুসফুসে প্রবেশে বাধা দেয় এবং হ্যান্ড গ্লাভস ক্ষয়কারী ও বিষাক্ত তরল থেকে হাতের ত্বক রক্ষা করে।",
+          "<strong>(গ) উত্তর:</strong> ক্লোরিন গ্যাস শ্বাসকষ্ট ও শ্বাসনালিতে প্রদাহ সৃষ্টি করে এবং তরল ব্রোমিন ত্বকে লাগলে মারাত্মক ক্ষত সৃষ্টি করে।",
+          "<strong>(ঘ) উত্তর:</strong> ফিউম হুডে কাজ করা, অ্যাপ্রন, গগলস, গ্লাভস ও মাস্ক পরা এবং দুর্ঘটনা ঘটলে প্রচুর পানি দিয়ে ধুয়ে প্রাথমিক চিকিৎসা নেওয়া আবশ্যক।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১৪ : বেনজিন, টলুইন ও জাইলিনের স্বাস্থ্য ঝুঁকি",
+        stem: "জৈব রসায়ন ল্যাবরেটরিতে বেনজিন, টলুইন ও জাইলিন দ্রাবক হিসেবে ব্যবহৃত হয়। এদের বোতলের গায়ে মানুষের বুক ও ফুসফুসে তারকাচিহ্নিত একটি বিশেষ সাংকেতিক চিহ্ন রয়েছে।",
+        q: ["(ক) বেনজিনের আণবিক সংকেত কী?", "(খ) বিষাক্ত ও স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থের মধ্যে পার্থক্য লেখো।", "(গ) উদ্দীপকের সাংকেতিক চিহ্নটির নাম ও এর দ্বারা নির্দেশিত ঝুঁকিসমূহ ব্যাখ্যা করো।", "(ঘ) গবেষণাগারে এসব জৈব দ্রাবক ব্যবহারে দীর্ঘমেয়াদি স্বাস্থ্যঝুঁকি এড়াতে করণীয় বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> বেনজিনের আণবিক সংকেত C₆H₆।",
+          "<strong>(খ) উত্তর:</strong> বিষাক্ত পদার্থ তাৎক্ষণিক বিষক্রিয়া বা মৃত্যু ঘটাতে পারে, আর স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ দীর্ঘমেয়াদি সংস্পর্শে ক্যান্সার বা জটিল রোগ সৃষ্টি করে।",
+          "<strong>(গ) উত্তর:</strong> চিহ্নটির নাম ‘স্বাস্থ্য ঝুঁকিপূর্ণ’ (Health Hazard)। এটি শ্বাস-প্রশ্বাস বা ত্বকের মাধ্যমে শরীরে প্রবেশ করলে ক্যান্সার, শ্বাসতন্ত্রের রোগ ও অঙ্গহানি ঘটাতে পারে।",
+          "<strong>(ঘ) উত্তর:</strong> বদ্ধ ঘরে ব্যবহার না করে ফিউম হুডে কাজ করা, উন্নত মানের মাস্ক ও গ্লাভস পরা এবং নিরাপদ দূরত্বে সংরক্ষণ করা জরুরি।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১৫ : বেকিং সোডা ও ভিনেগারের ল্যাব পরীক্ষণ",
+        stem: "নবম শ্রেণির শিক্ষার্থীরা একটি টেস্টটিউবে সামান্য বেকিং সোডা নিয়ে তাতে ভিনেগার যোগ করলে বুদবুদ আকারে একটি গ্যাস বের হতে দেখল এবং টেস্টটিউবটি সামান্য ঠান্ডা অনুভূত হলো।",
+        q: ["(ক) বেকিং সোডার রাসায়নিক নাম কী?", "(খ) নির্গত গ্যাসটি কীভাবে শনাক্ত করা যায়?", "(গ) উদ্দীপকের রাসায়নিক বিক্রিয়াটি সমীকরণসহ ব্যাখ্যা করো।", "(ঘ) এ ধরনের ছোট ছোট পরীক্ষণের মাধ্যমে শিক্ষার্থীদের বৈজ্ঞানিক অনুসন্ধিৎসা কীভাবে বৃদ্ধি পায় তা বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> বেকিং সোডার রাসায়নিক নাম সোডিয়াম বাইকার্বনেট (NaHCO₃)।",
+          "<strong>(খ) উত্তর:</strong> নির্গত CO₂ গ্যাস স্বচ্ছ চুনের পানিতে [Ca(OH)₂] চালনা করলে চুনের পানি ঘোলা হয়ে যায় এবং জ্বলন্ত কাঠি নিভিয়ে দেয়।",
+          "<strong>(গ) উত্তর:</strong> NaHCO₃ + CH₃COOH → CH₃COONa + H₂O + CO₂↑।",
+          "<strong>(ঘ) উত্তর:</strong> হাতে-কলমে পরীক্ষণের মাধ্যমে তাত্ত্বিক জ্ঞান বাস্তবে যাচাই করা যায়, পর্যবেক্ষণ ক্ষমতা বাড়ে এবং গবেষণার ৬টি ধাপ বাস্তবে প্রয়োগের দক্ষতা তৈরি হয়।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১৬ : কোয়ান্টাম মেকানিক্স ও আধুনিক রসায়ন",
+        stem: "পরমাণুর ভেতরে ইলেকট্রন, প্রোটন ও নিউট্রন কীভাবে সজ্জিত থাকে তা জানার জন্য রসায়নবিদগণ পদার্থবিজ্ঞান ও উচ্চতর গণিতের সাহায্য নেন।",
+        q: ["(ক) কোয়ান্টাম মেকানিক্স কী?", "(খ) রসায়ন ও পদার্থবিজ্ঞান একে অপরের পরিপূরক—ব্যাখ্যা করো।", "(গ) পরমাণুর গঠন ও অণুর ধর্ম ব্যাখ্যায় গণিত ও কোয়ান্টাম মেকানিক্সের ভূমিকা লেখো।", "(ঘ) আন্তঃশাস্ত্রীয় (Interdisciplinary) গবেষণা ছাড়া আধুনিক রসায়নের অগ্রগতি অসম্ভব—যুক্তিসহ বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> গাণিতিক হিসাব-নিকাশের মাধ্যমে পরমাণুর গঠন ও অতিপারমাণবিক কণার আচরণ ব্যাখ্যাকারী শাস্ত্রকে কোয়ান্টাম মেকানিক্স বলে।",
+          "<strong>(খ) উত্তর:</strong> পরমাণুর গঠন, তাপগতিবিদ্যা ও তড়িৎ রসায়নে পদার্থবিজ্ঞান ও রসায়নের সূত্রাবলি যৌথভাবে কাজ করে বলে এরা একে অপরের পরিপূরক।",
+          "<strong>(গ) উত্তর:</strong> কোয়ান্টাম মেকানিক্সের গাণিতিক সমীকরণের মাধ্যমে পরমাণুর শক্তিস্তর, ইলেকট্রন বিন্যাস ও রাসায়নিক বন্ধনের ধর্ম নির্ভুলভাবে ব্যাখ্যা করা যায়।",
+          "<strong>(ঘ) উত্তর:</strong> ঔষধ আবিষ্কারে জীববিজ্ঞান, ন্যানোটেকনোলজিতে পদার্থবিজ্ঞান এবং ডেটা বিশ্লেষণে গণিত ও কম্পিউটার বিজ্ঞানের সমন্বয় ছাড়া আধুনিক রসায়ন অচল।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১৭ : একক রূপান্তর ও পরীক্ষাগারের পরিমাপ দক্ষতা",
+        stem: "একজন শিক্ষার্থী পরীক্ষণের জন্য 0.025 kg বেকিং সোডা এবং 0.45 L ভিনেগার সংগ্রহ করল। শিক্ষক বললেন, ল্যাবরেটরি নোটবুকে ভরকে গ্রাম ও মিলিগ্রামে এবং আয়তনকে মিলিলিটার ও ঘনসেন্টিমিটারে লিখতে হবে।",
+        q: ["(ক) তাপমাত্রার আন্তর্জাতিক (SI) একক কী?", "(খ) পরীক্ষাগারে সূক্ষ্ম পরিমাপের গুরুত্ব ব্যাখ্যা করো।", "(গ) শিক্ষার্থীর সংগৃহীত বেকিং সোডা ও ভিনেগারের পরিমাণকে শিক্ষকের নির্দেশিত এককগুলোতে রূপান্তর করো।", "(ঘ) পরিমাপে সামান্য ত্রুটি হলে রাসায়নিক পরীক্ষণের ফলাফল কীভাবে প্রভাবিত হতে পারে তা বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> তাপমাত্রার আন্তর্জাতিক (SI) একক কেলভিন (K)।",
+          "<strong>(খ) উত্তর:</strong> সঠিক অনুপাতে বিক্রিয়ক না মেশালে কাঙ্ক্ষিত উৎপাদ পাওয়া যায় না এবং অতিরিক্ত বিক্রিয়কে দুর্ঘটনা ঘটতে পারে।",
+          "<strong>(গ) উত্তর:</strong> 0.025 kg = 25 g = 25,000 mg; 0.45 L = 450 mL = 450 cm³।",
+          "<strong>(ঘ) উত্তর:</strong> পরিমাপে ত্রুটি হলে ঘনমাত্রা পরিবর্তিত হয়, তাপমাত্রার পরিবর্তন ভুল আসে এবং গবেষণার সিদ্ধান্ত ভ্রান্ত হয়ে পড়ে।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১৮ : সিমেন্ট ডাস্ট ও নাইট্রাস অক্সাইডের সতর্কতা",
+        stem: "নির্মাণকাজে কর্মরত শ্রমিকদের সিমেন্ট ডাস্টের সংস্পর্শে এসে ত্বকে চুলকানি ও চোখে জ্বালাপোড়া শুরু হলো। ল্যাবরেটরিতে নাইট্রাস অক্সাইড ও লঘু এসিডের বোতলে একই ধরনের একটি সতর্কতা চিহ্ন দেখা যায়।",
+        q: ["(ক) উত্তেজক পদার্থের দুটি উদাহরণ দাও।", "(খ) ল্যাবরেটরিতে সেফটি গগলস পরা বাধ্যতামূলক কেন?", "(গ) উদ্দীপকে উল্লিখিত পদার্থগুলোর সাংকেতিক চিহ্ন এঁকে এদের ক্ষতিকর দিক বর্ণনা করো।", "(ঘ) নির্মাণশ্রমিক ও ল্যাবরেটরি শিক্ষার্থীদের এই ঝুঁকি থেকে সুরক্ষার উপায় বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> সিমেন্ট ডাস্ট ও নাইট্রাস অক্সাইড (বা লঘু এসিড/ক্ষার)।",
+          "<strong>(খ) উত্তর:</strong> রাসায়নিক দ্রব্যের ছিটা বা ক্ষতিকর বাষ্প থেকে সংবেদনশীল চোখকে স্থায়ী অন্ধত্ব বা ক্ষতি থেকে বাঁচাতে সেফটি গগলস পরা বাধ্যতামূলক।",
+          "<strong>(গ) উত্তর:</strong> লাল বর্ডারযুক্ত হীরক আকৃতির ভেতরে বিস্ময়সূচক চিহ্ন (!) হলো উত্তেজক চিহ্ন। এটি ত্বক, চোখ ও শ্বাসতন্ত্রে জ্বালাপোড়া ও অ্যালার্জি সৃষ্টি করে।",
+          "<strong>(ঘ) উত্তর:</strong> মাস্ক, সেফটি গগলস, হ্যান্ড গ্লাভস ও ফুলহাতা সুরক্ষা পোশাক ব্যবহারের মাধ্যমে এই ঝুঁকি সম্পূর্ণ এড়ানো সম্ভব।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ১৯ : বিস্ফোরক পদার্থ ও নিরাপত্তা ব্যবস্থাপনা",
+        stem: "খনি খনন ও বিশেষ শিল্পক্ষেত্রে টিএনটি (TNT) এবং নাইট্রোগ্লিসারিন ব্যবহৃত হয়। সামান্য অসাবধানতায় এগুলো ভয়াবহ প্রাণহানি ঘটাতে পারে।",
+        q: ["(ক) TNT-এর পূর্ণরূপ কী?", "(খ) জৈব পার-অক্সাইডকে অত্যন্ত সাবধানে নাড়াচাড়া করতে হয় কেন?", "(গ) উদ্দীপকের পদার্থগুলোর সাংকেতিক চিহ্ন ও বৈশিষ্ট্য ব্যাখ্যা করো।", "(ঘ) বিস্ফোরক পদার্থ পরিবহন ও সংরক্ষণে কী কী কঠোর নিরাপত্তা ব্যবস্থা গ্রহণ করা উচিত তা বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> TNT-এর পূর্ণরূপ ট্রাইনাইট্রোটলুইন (Trinitrotoluene)।",
+          "<strong>(খ) উত্তর:</strong> জৈব পার-অক্সাইড অত্যন্ত অস্থিতিশীল বিস্ফোরক পদার্থ যা সামান্য ঘর্ষণ, আঘাত বা তাপে নিজে নিজেই বিক্রিয়া করে বিস্ফোরিত হতে পারে।",
+          "<strong>(গ) উত্তর:</strong> চিহ্নটি হলো বিস্ফোরিত বোমা (Explosive)। এটি সামান্য আঘাত বা তাপে প্রচণ্ড শব্দ ও তাপসহ বিস্ফোরিত হয়।",
+          "<strong>(ঘ) উত্তর:</strong> জনবসতি ও তাপের উৎস থেকে দূরে শীতল ও নির্জন বাঙ্কারে সংরক্ষণ, ঝাঁকুনিমুক্ত পরিবহন এবং প্রশিক্ষিত কর্মী দ্বারা পরিচালনা করা অপরিহার্য।"
+        ]
+      },
+      {
+        title: "সৃজনশীল প্রশ্ন ২০ : প্রথম অধ্যায়ের সামগ্রিক মূল্যায়ন (রসায়ন ও মানবসভ্যতা)",
+        stem: "সকালের টুথপেস্ট থেকে শুরু করে রাতের মশার কয়েল, পোশাকের রং, জীবন রক্ষাকারী ঔষধ ও আধুনিক ইলেকট্রনিক্স—সবকিছুতেই রসায়নের ছোঁয়া রয়েছে। তবে রসায়নের অপব্যবহার পরিবেশ দূষণেরও কারণ হচ্ছে।",
+        q: ["(ক) ব্রোঞ্জ কোন দুটি ধাতুর সংকর?", "(খ) রসায়ন পাঠের প্রয়োজনীয়তা দুটি বাক্যে লেখো।", "(গ) আমাদের প্রাত্যহিক জীবনের চারটি ক্ষেত্রে রসায়নের অবদান ব্যাখ্যা করো।", "(ঘ) “রসায়ন মানবসভ্যতার আশীর্বাদ, তবে এর অপব্যবহার অভিশাপ”—উক্তিটির যথার্থতা বিশ্লেষণ করো।"],
+        ans: [
+          "<strong>(ক) উত্তর:</strong> তামা (Cu) ও টিন (Sn)।",
+          "<strong>(খ) উত্তর:</strong> প্রাত্যহিক জীবনের বস্তুসমূহের গঠন ও পরিবর্তন বুঝতে এবং নিরাপদ ও পরিবেশবান্ধব প্রযুক্তি উদ্ভাবনে রসায়ন পাঠ অপরিহার্য।",
+          "<strong>(গ) উত্তর:</strong> (১) খাদ্য ও পুষ্টিতে, (২) চিকিৎসায় ঔষধ তৈরিতে, (৩) কৃষিতে সার ও কীটনাশকে এবং (৪) বস্ত্র ও শিল্পকারখানায় রং ও প্লাস্টিক তৈরিতে।",
+          "<strong>(ঘ) উত্তর:</strong> ঔষধ, সার ও জ্বালানি দিয়ে রসায়ন সভ্যতাকে এগিয়ে নিয়েছে (আশীর্বাদ), কিন্তু রাসায়নিক অস্ত্র, খাদ্যে ভেজাল ও শিল্পবর্জ্য দ্বারা পরিবেশ দূষণ ঘটানো এর অপব্যবহার (অভিশাপ)। তাই রসায়নের জ্ঞান কেবল মানবকল্যাণেই ব্যবহার করা উচিত।"
+        ]
+      }
+    ];
+
+    const cqContainer = document.getElementById('cq-list');
+    cqData.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'p-4 sm:p-5 rounded-xl border cursor-pointer transition-all hover:shadow-md';
+      card.style.borderColor = 'var(--border-color)';
+      card.style.background = 'var(--bg-secondary)';
+      card.onclick = () => toggleAnswer('cq-ans-' + idx);
+      card.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b" style="border-color: var(--border-color);">
+          <h3 class="font-bold text-base sm:text-lg" style="color: var(--accent);">${item.title}</h3>
+          <span class="text-xs px-2.5 py-1 rounded-lg font-bold" style="background: rgba(0,245,212,0.12); color: var(--accent);">ক্লিক করে পূর্ণাঙ্গ উত্তর দেখুন</span>
+        </div>
+        <p class="text-sm sm:text-base mt-2.5 p-3 rounded-lg border-l-4" style="border-color: var(--accent-2); background: rgba(255,255,255,0.03);">
+          <strong>উদ্দীপক:</strong> ${item.stem}
+        </p>
+        <ul class="mt-2.5 space-y-1 text-sm sm:text-base">
+          ${item.q.map(line => `<li>${line}</li>`).join('')}
+        </ul>
+        <div id="cq-ans-${idx}" class="answer-drawer mt-3.5 pt-3 border-t space-y-2 text-sm sm:text-base" style="border-color: var(--border-color);">
+          <div class="font-bold underline" style="color: var(--accent-3);">পূর্ণাঙ্গ নমুনা সমাধান:</div>
+          ${item.ans.map(a => `<p class="leading-relaxed">${a}</p>`).join('')}
+        </div>
+      `;
+      cqContainer.appendChild(card);
+    });
+
+    // 9. Data Bank: 20 Important Short Questions (Click to Reveal)
+    const shortData = [
+      { q: "০১. রসায়ন (Chemistry) কাকে বলে?", a: "বিজ্ঞানের যে শাখায় পদার্থের গঠন, পদার্থের ধর্ম এবং পদার্থের ভৌত ও রাসায়নিক পরিবর্তন নিয়ে আলোচনা ও গবেষণা করা হয়, তাকে রসায়ন বলে।" },
+      { q: "০২. আল-কেমি (Al-Chemy) কী?", a: "প্রাচীন ও মধ্যযুগীয় রসায়ন চর্চাকে আল-কেমি বলা হয়। আরবি শব্দ ‘আল-কিমিয়া’ থেকে এর উৎপত্তি।" },
+      { q: "০৩. রসায়নের জনক এবং আধুনিক রসায়নের জনক কে কে?", a: "রসায়ন বা আল-কেমির জনক হলেন <strong>জাবির ইবনে হাইয়ান</strong> এবং আধুনিক রসায়নের জনক হলেন <strong>অ্যান্টনি ল্যাভয়সিয়ে</strong>।" },
+      { q: "০৪. রসায়নকে সকল বিজ্ঞানের কেন্দ্রীয় বিজ্ঞান বলা হয় কেন?", a: "জীববিজ্ঞান, পদার্থবিজ্ঞান, চিকিৎসাবিজ্ঞান, কৃষিবিজ্ঞান ও পরিবেশবিজ্ঞানের মূল ভিত্তি রাসায়নিক বিক্রিয়ার ওপর নির্ভরশীল হওয়ায় রসায়নকে কেন্দ্রীয় বিজ্ঞান বলা হয়।" },
+      { q: "০৫. কাঁচা আম টক হয় কিন্তু পাকলে মিষ্টি হয় কেন?", a: "কাঁচা আমে সাক্সিনিক ও ম্যালেয়িক এসিড থাকায় টক হয়। আম পাকলে জৈব রাসায়নিক পরিবর্তনে এসিডগুলো গ্লুকোজ ও ফ্রুক্টোজ শর্করায় রূপান্তরিত হয়ে মিষ্টি হয়।" },
+      { q: "০৬. অ্যান্টাসিড কীভাবে পাকস্থলীর এসিডিটি দূর করে?", a: "অ্যান্টাসিডে থাকা দুর্বল ক্ষার Al(OH)₃ ও Mg(OH)₂ পাকস্থলীর অতিরিক্ত হাইড্রোক্লোরিক এসিডের (HCl) সাথে প্রশমন বিক্রিয়া করে লবণ ও পানি উৎপন্ন করে এসিডিটি দূর করে।" },
+      { q: "০৭. মোমের জ্বলনে ভৌত ও রাসায়নিক উভয় পরিবর্তন ঘটে—ব্যাখ্যা করো।", a: "মোম গলে নিচে জমা হওয়া ভৌত পরিবর্তন (ধর্ম অপরিবর্তিত থাকে) এবং মোমের সলতে পুড়ে CO₂, H₂O, তাপ ও আলো উৎপন্ন করা রাসায়নিক পরিবর্তন।" },
+      { q: "০৮. জ্বালানির অপূর্ণ দহন ক্ষতিকর কেন?", a: "পর্যাপ্ত অক্সিজেনের অভাবে জ্বালানির অপূর্ণ দহনে মারাত্মক বিষাক্ত <strong>কার্বন মনোক্সাইড (CO)</strong> গ্যাস উৎপন্ন হয়, যা মানবস্বাস্থ্যের জন্য প্রাণঘাতী।" },
+      { q: "০৯. লোহায় মরিচা পড়া কী এবং এর সংকেত কী?", a: "আর্দ্র বায়ুতে লোহা অক্সিজেন ও জলীয়বাষ্পের সাথে বিক্রিয়া করে লালচে-বাদামি আর্দ্র ফেরিক অক্সাইড তৈরি করে, একে মরিচা বলে। সংকেত: <strong>Fe₂O₃·nH₂O</strong>।" },
+      { q: "১০. কোয়ান্টাম মেকানিক্স কী?", a: "গাণিতিক হিসাব-নিকাশের মাধ্যমে পরমাণুর গঠন ও অতিপারমাণবিক কণার আচরণ ব্যাখ্যাকারী শাস্ত্রকে কোয়ান্টাম মেকানিক্স বলে।" },
+      { q: "১১. রসায়নে অনুসন্ধান ও গবেষণা প্রক্রিয়ার ৬টি ধাপ কী কী?", a: "(১) বিষয়বস্তু নির্ধারণ, (২) সম্যক জ্ঞান অর্জন, (৩) কাজের পরিকল্পনা, (৪) পরীক্ষণ ও তথ্য সংগ্রহ, (৫) তথ্য সংঘটন ও বিশ্লেষণ এবং (৬) ফলাফল ও আলোচনা।" },
+      { q: "১২. পানিতে NH₄Cl যোগ করলে বিকার ঠান্ডা হয় কেন?", a: "অ্যামোনিয়াম ক্লোরাইড (NH₄Cl) পানিতে দ্রবীভূত হওয়ার সময় পরিবেশ থেকে তাপ শোষণ করে (তাপহারী প্রক্রিয়া), তাই তাপমাত্রা কমে বিকার ঠান্ডা হয়।" },
+      { q: "১৩. পানিতে CaO যোগ করলে বিকার গরম হয় কেন?", a: "ক্যালসিয়াম অক্সাইড (CaO) পানির সাথে বিক্রিয়া করে Ca(OH)₂ ও প্রচুর তাপশক্তি উৎপন্ন করে (তাপোৎপাদী বিক্রিয়া), তাই বিকার গরম হয়।" },
+      { q: "১৪. এসিড লঘু করার সময় এসিডে পানি যোগ করা উচিত নয় কেন?", a: "গাঢ় এসিডে পানি ঢাললে হঠাৎ বিপুল তাপ উৎপন্ন হয়ে পানি বাষ্পীভূত হয় এবং উত্তপ্ত এসিড ছিটকে চোখে-মুখে পড়ে মারাত্মক দুর্ঘটনা ঘটাতে পারে।" },
+      { q: "১৫. ট্রিফয়েল চিহ্ন কী এবং এটি প্রথম কোথায় ব্যবহৃত হয়?", a: "তেজস্ক্রিয় রশ্মি বোঝাতে ব্যবহৃত বিশেষ সতর্কতা চিহ্নকে ট্রিফয়েল বলে। এটি প্রথম <strong>১৯৪৬ সালে আমেরিকায়</strong> ব্যবহৃত হয়।" },
+      { q: "১৬. উত্তেজক ও ক্ষয়কারী পদার্থের পার্থক্য লেখো।", a: "উত্তেজক পদার্থ (সিমেন্ট ডাস্ট, লঘু এসিড) ত্বক ও চোখে জ্বালাপোড়া ঘটায়; ক্ষয়কারী পদার্থ (গাঢ় H₂SO₄, NaOH) ত্বক ও ধাতু পুড়িয়ে ক্ষত সৃষ্টি করে।" },
+      { q: "১৭. স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ বলতে কী বোঝায়? উদাহরণ দাও।", a: "যেসব পদার্থ শ্বাস-প্রশ্বাস বা ত্বকের মাধ্যমে শরীরে প্রবেশ করলে দীর্ঘমেয়াদে ক্যান্সার বা অঙ্গহানি ঘটাতে পারে, তাদের স্বাস্থ্য ঝুঁকিপূর্ণ পদার্থ বলে। যেমন: বেনজিন, টলুইন, জাইলিন।" },
+      { q: "১৮. ভরের নিত্যতা সূত্রটি বিবৃত করো।", a: "বিজ্ঞানী ল্যাভয়সিয়ের ভরের নিত্যতা সূত্রানুসারে, কোনো রাসায়নিক বিক্রিয়ায় বিক্রিয়ক পদার্থগুলোর মোট ভর এবং উৎপন্ন পদার্থগুলোর মোট ভর সর্বদা সমান থাকে।" },
+      { q: "১৯. ভিনেগার কী এবং খাদ্য সংরক্ষণে এর ভূমিকা কী?", a: "ইথানোয়িক এসিডের (CH₃COOH) ৪–১০% জলীয় দ্রবণকে ভিনেগার বলে। এটি খাদ্যে ব্যাকটেরিয়া ও ছত্রাকের বংশবিস্তার রোধ করে খাদ্য সংরক্ষণ করে।" },
+      { q: "২০. রসায়ন পরীক্ষাগারে ব্যবহৃত ৪টি ব্যক্তিগত সুরক্ষা সরঞ্জাম (PPE) কী কী?", a: "(১) সুতির অ্যাপ্রন, (২) সেফটি গগলস, (৩) হ্যান্ড গ্লাভস এবং (৪) মাস্ক।" }
+    ];
+
+    const shortContainer = document.getElementById('short-list');
+    shortData.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'p-4 rounded-xl border cursor-pointer transition-all hover:shadow-md';
+      card.style.borderColor = 'var(--border-color)';
+      card.style.background = 'var(--bg-secondary)';
+      card.onclick = () => toggleAnswer('short-ans-' + idx);
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <p class="font-bold text-sm sm:text-base">${item.q}</p>
+          <span class="text-xs px-2 py-0.5 rounded shrink-0" style="background: rgba(0,245,212,0.12); color: var(--accent);">উত্তর দেখুন</span>
+        </div>
+        <div id="short-ans-${idx}" class="answer-drawer mt-2.5 pt-2.5 border-t text-xs sm:text-sm leading-relaxed" style="border-color: var(--border-color); color: var(--text-secondary);">
+          <strong style="color: var(--accent);">উত্তর:</strong> ${item.a}
+        </div>
+      `;
+      shortContainer.appendChild(card);
+    });
+
+    // 10. Interactive 3D Molecular & Atom Simulator using Three.js
+    let scene, camera, renderer, activeGroup;
+    let isDragging = false, prevX = 0, prevY = 0;
+
+    function init3D() {
+      const container = document.getElementById('three-container');
+      if (!container || typeof THREE === 'undefined') return;
+
+      const width = container.clientWidth || 400;
+      const height = container.clientHeight || 270;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+      camera.position.z = 6.5;
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+      scene.add(ambientLight);
+
+      const pointLight1 = new THREE.PointLight(0x00f5d4, 1.5, 50);
+      pointLight1.position.set(6, 6, 8);
+      scene.add(pointLight1);
+
+      const pointLight2 = new THREE.PointLight(0xff006e, 1.2, 50);
+      pointLight2.position.set(-6, -5, 6);
+      scene.add(pointLight2);
+
+      set3DModel('ch4');
+
+      // Mouse & Touch Rotation Events
+      const dom = renderer.domElement;
+      dom.addEventListener('mousedown', e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      window.addEventListener('mousemove', e => {
+        if (!isDragging || !activeGroup) return;
+        activeGroup.rotation.y += (e.clientX - prevX) * 0.012;
+        activeGroup.rotation.x += (e.clientY - prevY) * 0.012;
+        prevX = e.clientX;
+        prevY = e.clientY;
+      });
+
+      dom.addEventListener('touchstart', e => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          prevX = e.touches[0].clientX;
+          prevY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+      dom.addEventListener('touchend', () => { isDragging = false; });
+      dom.addEventListener('touchmove', e => {
+        if (!isDragging || !activeGroup || e.touches.length !== 1) return;
+        activeGroup.rotation.y += (e.touches[0].clientX - prevX) * 0.014;
+        activeGroup.rotation.x += (e.touches[0].clientY - prevY) * 0.014;
+        prevX = e.touches[0].clientX;
+        prevY = e.touches[0].clientY;
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        if (!container || !renderer || !camera) return;
+        const w = container.clientWidth || 400;
+        const h = container.clientHeight || 270;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+
+      animate3D();
+    }
+
+    function createBond(p1, p2) {
+      const dir = new THREE.Vector3().subVectors(p2, p1);
+      const len = dir.length();
+      const geom = new THREE.CylinderGeometry(0.11, 0.11, len, 16);
+      const mat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.4, roughness: 0.3 });
+      const mesh = new THREE.Mesh(geom, mat);
+      mesh.position.copy(p1).add(p2).multiplyScalar(0.5);
+      mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
+      return mesh;
+    }
+
+    function set3DModel(type) {
+      if (!scene) return;
+      if (activeGroup) scene.remove(activeGroup);
+      activeGroup = new THREE.Group();
+      const label = document.getElementById('model-label');
+
+      if (type === 'ch4') {
+        if (label) label.textContent = '৩D মডেল: মিথেন (CH₄) অণু (প্রাকৃতিক গ্যাস)';
+        const cMesh = new THREE.Mesh(
+          new THREE.SphereGeometry(0.75, 32, 32),
+          new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.3, roughness: 0.2 })
+        );
+        activeGroup.add(cMesh);
+
+        const hPositions = [
+          new THREE.Vector3(1.5, 1.5, 1.5),
+          new THREE.Vector3(-1.5, -1.5, 1.5),
+          new THREE.Vector3(-1.5, 1.5, -1.5),
+          new THREE.Vector3(1.5, -1.5, -1.5)
+        ];
+        const hMat = new THREE.MeshStandardMaterial({ color: 0x00f5d4, emissive: 0x004d40, roughness: 0.2 });
+        hPositions.forEach(pos => {
+          const hMesh = new THREE.Mesh(new THREE.SphereGeometry(0.42, 24, 24), hMat);
+          hMesh.position.copy(pos);
+          activeGroup.add(hMesh);
+          activeGroup.add(createBond(new THREE.Vector3(0, 0, 0), pos));
+        });
+      } else if (type === 'h2o') {
+        if (label) label.textContent = '৩D মডেল: পানি (H₂O) অণু (সর্বজনীন দ্রাবক)';
+        const oMesh = new THREE.Mesh(
+          new THREE.SphereGeometry(0.8, 32, 32),
+          new THREE.MeshStandardMaterial({ color: 0xff006e, roughness: 0.25 })
+        );
+        activeGroup.add(oMesh);
+
+        const h1 = new THREE.Vector3(1.55, 1.1, 0);
+        const h2 = new THREE.Vector3(-1.55, 1.1, 0);
+        const hMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: 0.2 });
+        [h1, h2].forEach(pos => {
+          const hMesh = new THREE.Mesh(new THREE.SphereGeometry(0.45, 24, 24), hMat);
+          hMesh.position.copy(pos);
+          activeGroup.add(hMesh);
+          activeGroup.add(createBond(new THREE.Vector3(0, 0, 0), pos));
+        });
+      } else {
+        if (label) label.textContent = '৩D মডেল: পরমাণুর কক্ষপথ ও নিউক্লিয়াস';
+        const nucleus = new THREE.Mesh(
+          new THREE.SphereGeometry(0.65, 32, 32),
+          new THREE.MeshStandardMaterial({ color: 0xf59e0b, emissive: 0xb45309, roughness: 0.2 })
+        );
+        activeGroup.add(nucleus);
+
+        const ringColors = [0x00f5d4, 0xff006e, 0x38bdf8];
+        ringColors.forEach((col, i) => {
+          const torus = new THREE.Mesh(
+            new THREE.TorusGeometry(1.7 + i * 0.25, 0.04, 16, 64),
+            new THREE.MeshBasicMaterial({ color: col })
+          );
+          torus.rotation.x = Math.PI / 3 * (i + 1);
+          torus.rotation.y = Math.PI / 4 * i;
+          activeGroup.add(torus);
+
+          const electron = new THREE.Mesh(
+            new THREE.SphereGeometry(0.18, 16, 16),
+            new THREE.MeshBasicMaterial({ color: 0xffffff })
+          );
+          electron.position.set(1.7 + i * 0.25, 0, 0);
+          torus.add(electron);
+        });
+      }
+
+      scene.add(activeGroup);
+    }
+
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+      if (activeGroup && !isDragging) {
+        activeGroup.rotation.y += 0.008;
+        activeGroup.rotation.x += 0.003;
+      }
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
+    }
+
+    window.onload = function () {
+      init3D();
+    };
+  </script>
+</body>
+</html>
