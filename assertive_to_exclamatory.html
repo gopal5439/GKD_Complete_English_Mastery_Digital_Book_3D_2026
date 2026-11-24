@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="rgb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assertive to Exclamatory — Complete Master Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-bn: 'Tiro Bangla', serif;
+    --font-en: 'Poppins', sans-serif;
+    --transition-speed: 0.35s;
+  }
+
+  /* ================= THEME VARIABLES ================= */
+  /* 1. REAL RGB THEME */
+  [data-theme="rgb"] {
+    --bg-primary: #070913;
+    --bg-secondary: #0f1426;
+    --card-bg: rgba(18, 24, 46, 0.85);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-1: #00f2fe;
+    --accent-2: #ff007f;
+    --accent-3: #8a2be2;
+    --border-glow: linear-gradient(90deg, #ff0055, #00f2fe, #7000ff, #00ff88, #ff0055);
+    --btn-bg: linear-gradient(145deg, #161d38, #0c1021);
+    --btn-shadow: 0 8px 0 #04060d, 0 15px 25px rgba(0, 242, 254, 0.25);
+    --btn-hover-shadow: 0 12px 0 #04060d, 0 22px 35px rgba(255, 0, 127, 0.45);
+    --step-1-bg: rgba(0, 242, 254, 0.12);
+    --step-2-bg: rgba(0, 255, 136, 0.14);
+    --step-3-bg: rgba(138, 43, 226, 0.16);
+    --badge-bg: rgba(255, 0, 127, 0.2);
+    --badge-text: #ff66b2;
+  }
+
+  /* 2. DARK THEME */
+  [data-theme="dark"] {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --card-bg: #242424;
+    --text-main: #f1f5f9;
+    --text-muted: #a1a1aa;
+    --accent-1: #38bdf8;
+    --accent-2: #818cf8;
+    --accent-3: #34d399;
+    --border-glow: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+    --btn-bg: linear-gradient(145deg, #2c2c2c, #1f1f1f);
+    --btn-shadow: 0 6px 0 #0a0a0a, 0 12px 20px rgba(0,0,0,0.5);
+    --btn-hover-shadow: 0 10px 0 #0a0a0a, 0 18px 28px rgba(56, 189, 248, 0.2);
+    --step-1-bg: rgba(56, 189, 248, 0.12);
+    --step-2-bg: rgba(52, 211, 153, 0.12);
+    --step-3-bg: rgba(129, 140, 248, 0.14);
+    --badge-bg: rgba(56, 189, 248, 0.15);
+    --badge-text: #38bdf8;
+  }
+
+  /* 3. WHITE THEME */
+  [data-theme="white"] {
+    --bg-primary: #f1f5f9;
+    --bg-secondary: #ffffff;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --accent-1: #2563eb;
+    --accent-2: #7c3aed;
+    --accent-3: #059669;
+    --border-glow: linear-gradient(90deg, #2563eb, #7c3aed, #059669, #2563eb);
+    --btn-bg: linear-gradient(145deg, #ffffff, #e2e8f0);
+    --btn-shadow: 0 6px 0 #cbd5e1, 0 12px 20px rgba(15, 23, 42, 0.08);
+    --btn-hover-shadow: 0 10px 0 #cbd5e1, 0 18px 25px rgba(37, 99, 235, 0.18);
+    --step-1-bg: #eff6ff;
+    --step-2-bg: #ecfdf5;
+    --step-3-bg: #f5f3ff;
+    --badge-bg: #dbeafe;
+    --badge-text: #1d4ed8;
+  }
+
+  /* ================= GLOBAL RESET & BASE ================= */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-bn), var(--font-en), sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+    padding-bottom: 60px;
+  }
+
+  /* Background subtle grid */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(128, 128, 128, 0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ================= HEADER & LASER LINE ================= */
+  header {
+    text-align: center;
+    padding: 30px 20px 25px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+    margin-bottom: 28px;
+  }
+
+  /* Animated Laser Beam Border */
+  .laser-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 4px;
+    background: var(--border-glow);
+    background-size: 200% 100%;
+    animation: laserMove 3s linear infinite;
+  }
+
+  .laser-bar-top {
+    top: 0;
+    bottom: auto;
+  }
+
+  @keyframes laserMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  header h1 {
+    font-family: var(--font-en);
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: var(--border-glow);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: laserMove 5s linear infinite;
+    margin-bottom: 8px;
+  }
+
+  header p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 720px;
+    margin: 0 auto 20px;
+  }
+
+  /* ================= 3D TACTILE CONTROLS ================= */
+  .top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 15px;
+  }
+
+  .btn-3d {
+    font-family: var(--font-bn), var(--font-en);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background: var(--btn-bg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 11px 22px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--btn-shadow);
+    transform: translateY(0);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-3d::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+    transition: left 0.45s ease;
+  }
+
+  .btn-3d:hover, .btn-3d:focus-visible {
+    transform: translateY(-5px);
+    box-shadow: var(--btn-hover-shadow);
+    border-color: var(--accent-1);
+  }
+
+  .btn-3d:hover::after {
+    left: 100%;
+  }
+
+  .btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-3d.active {
+    border: 2px solid var(--accent-1);
+    color: var(--accent-1);
+  }
+
+  /* ================= NAVIGATION TABS ================= */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    font-size: 1.15rem;
+    padding: 14px 28px;
+  }
+
+  /* ================= STATS & GLOBAL ACTIONS BAR ================= */
+  .action-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: var(--card-bg);
+    padding: 16px 22px;
+    border-radius: 18px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(128, 128, 128, 0.18);
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 240px;
+    padding: 11px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    background: var(--bg-primary);
+    color: var(--text-main);
+    font-family: var(--font-bn), var(--font-en);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.25s;
+  }
+
+  .search-box:focus {
+    border-color: var(--accent-1);
+  }
+
+  .filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ================= GRID & 3D INTERACTIVE CARDS ================= */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 22px;
+  }
+
+  .master-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .master-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-1);
+    box-shadow: 0 16px 32px rgba(0, 242, 254, 0.15);
+  }
+
+  /* Laser sweep on card hover */
+  .master-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+  }
+
+  .master-card:hover::before {
+    left: 160%;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+
+  .card-badge {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    font-family: var(--font-en);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.4px;
+  }
+
+  .click-indicator {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .step-dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(128, 128, 128, 0.35);
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .dot.filled {
+    background: var(--accent-1);
+    transform: scale(1.25);
+    box-shadow: 0 0 8px var(--accent-1);
+  }
+
+  .main-statement {
+    font-family: var(--font-en), var(--font-bn);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    color: var(--text-main);
+  }
+
+  .rule-title-bn {
+    font-family: var(--font-bn);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-1);
+    margin-bottom: 12px;
+  }
+
+  /* ================= REVEAL STEPS ================= */
+  .reveal-box {
+    display: none;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    border-left: 4px solid var(--accent-1);
+    animation: slideReveal 0.32s ease forwards;
+  }
+
+  .reveal-box.visible {
+    display: block;
+  }
+
+  .step-1 {
+    background: var(--step-1-bg);
+    border-left-color: var(--accent-1);
+  }
+
+  .step-2 {
+    background: var(--step-2-bg);
+    border-left-color: var(--accent-3);
+  }
+
+  .step-3 {
+    background: var(--step-3-bg);
+    border-left-color: var(--accent-2);
+  }
+
+  .reveal-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-bn), var(--font-en);
+  }
+
+  .en-text {
+    font-family: var(--font-en);
+    font-weight: 600;
+  }
+
+  @keyframes slideReveal {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card-footer-hint {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(128, 128, 128, 0.25);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .section-hidden {
+    display: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+    }
+    .btn-3d {
+      padding: 10px 16px;
+      font-size: 0.95rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER -->
+  <header>
+    <div class="laser-bar laser-bar-top"></div>
+    <h1>Assertive → Exclamatory Master Guide</h1>
+    <p>সম্পূর্ণ ১৬টি নিয়ম (১২টি মূল + ৪টি অ্যাডভান্সড) এবং SSC, HSC ও প্রতিযোগিতামূলক পরীক্ষার বাছাইকৃত ৫০টি প্রশ্ন। প্রতিটি কার্ডে পরপর ক্লিক করে <strong>অর্থ → উত্তর → বিস্তারিত ব্যাখ্যা</strong> দেখুন।</p>
+    
+    <!-- THEME SELECTOR -->
+    <div class="top-controls" role="group" aria-label="Theme Switcher">
+      <button class="btn-3d active" onclick="setTheme('rgb', this)">🌈 Real RGB থিম</button>
+      <button class="btn-3d" onclick="setTheme('dark', this)">🌙 Dark থিম</button>
+      <button class="btn-3d" onclick="setTheme('white', this)">☀️ White থিম</button>
+    </div>
+    <div class="laser-bar"></div>
+  </header>
+
+  <!-- MAIN NAVIGATION TABS -->
+  <div class="nav-tabs">
+    <button class="btn-3d tab-btn active" id="tab-rules" onclick="switchTab('rules')">📘 সম্পূর্ণ ১৬টি নিয়ম (Rules)</button>
+    <button class="btn-3d tab-btn" id="tab-practice" onclick="switchTab('practice')">🎯 ৫০টি অনুশীলন প্রশ্ন (SSC / HSC / Adv.)</button>
+  </div>
+
+  <!-- ================= SECTION 1: 16 RULES ================= -->
+  <section id="section-rules">
+    <div class="action-toolbar">
+      <div class="filter-group">
+        <button class="btn-3d active" onclick="filterRules('all', this)">সব নিয়ম (১৬টি)</button>
+        <button class="btn-3d" onclick="filterRules('core', this)">মূল নিয়ম (১–১২)</button>
+        <button class="btn-3d" onclick="filterRules('adv', this)">অ্যাডভান্সড (১৩–১৬)</button>
+      </div>
+      <div class="filter-group">
+        <button class="btn-3d" onclick="revealAllRules()">👁️ সব ধাপ খুলুন</button>
+        <button class="btn-3d" onclick="resetAllRules()">🔄 রিসেট করুন</button>
+      </div>
+    </div>
+
+    <div class="grid-container" id="rules-grid"></div>
+  </section>
+
+  <!-- ================= SECTION 2: 50 PRACTICE QUESTIONS ================= -->
+  <section id="section-practice" class="section-hidden">
+    <div class="action-toolbar">
+      <input type="text" id="search-input" class="search-box" placeholder="বাক্য, অর্থ বা নিয়ম লিখে খুঁজুন..." oninput="renderPractice()">
+      <div class="filter-group">
+        <button class="btn-3d active" onclick="filterPractice('all', this)">সব (৫০টি)</button>
+        <button class="btn-3d" onclick="filterPractice('SSC', this)">SSC লেভেল</button>
+        <button class="btn-3d" onclick="filterPractice('HSC', this)">HSC লেভেল</button>
+        <button class="btn-3d" onclick="filterPractice('Advanced', this)">Advanced / BCS</button>
+      </div>
+      <div class="filter-group">
+        <button class="btn-3d" onclick="revealAllPractice()">👁️ সব উত্তর ও ব্যাখ্যা</button>
+        <button class="btn-3d" onclick="resetAllPractice()">🔄 রিসেট</button>
+      </div>
+    </div>
+
+    <div class="grid-container" id="practice-grid"></div>
+  </section>
+</div>
+
+<script>
+  /* ================= DATA: ALL 16 RULES ================= */
+  const rulesData = [
+    {
+      id: 1,
+      type: "core",
+      badge: "Rule 01 • Core",
+      title: "‘A / An’ যুক্ত Assertive Sentence (Very / Great থাকলে)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "What a / What an + adjective + noun + subject + verb + ! (বাক্যের very বা great উঠে যায়)।",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: It is a very nice bird.\nExclamatory: What a nice bird it is!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "বাক্যে article (a/an) থাকলে এবং তারপরে very বা great থাকলে অবশ্যই What a বা What an দিয়ে শুরু করতে হবে। Adjective-এর প্রথম অক্ষর vowel sound হলে What an বসবে।"
+    },
+    {
+      id: 2,
+      type: "core",
+      badge: "Rule 02 • Core",
+      title: "‘A / An’ ছাড়া Assertive Sentence (Very / Great / So থাকলে)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "How + adjective / adverb + subject + verb + ! (very, great বা so উঠে যায়)।",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: The girl is very clever.\nExclamatory: How clever the girl is!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "যদি adjective বা adverb-এর আগে কোনো article (a/an) না থাকে, তবে What-এর বদলে How দিয়ে বাক্য শুরু করতে হয় এবং Subject + Verb একেবারে শেষে বসে।"
+    },
+    {
+      id: 3,
+      type: "core",
+      badge: "Rule 03 • Core",
+      title: "ইচ্ছা বা আকাঙ্ক্ষা প্রকাশক বাক্য (I wish / I desire থাকলে)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "If / Had / Would that / O that + subject + বাকি অংশ + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: I wish I were a king.\nExclamatory: If I were a king! (অথবা: Were I a king!)",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "অবাস্তব কল্পনা বা তীব্র ইচ্ছা বোঝাতে I wish উঠে গিয়ে শুরুতে If, Had বা Would that বসে। মূল বাক্যে had থাকলে সরাসরি Had দিয়েও বাক্য শুরু করা যায় (যেমন: Had I the wings of a bird!)।"
+    },
+    {
+      id: 4,
+      type: "core",
+      badge: "Rule 04 • Core",
+      title: "আনন্দ বা উচ্ছ্বাস প্রকাশক বাক্য (Matter of joy / Rejoice)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "Hurrah! / Bravo! + that-এর পরের মূল বাক্য + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: It is a matter of joy that we have won the game.\nExclamatory: Hurrah! We have won the game!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "‘It is a matter of joy that’ বা ‘We rejoice that’ পুরো অংশটি বাদ দিয়ে শুরুতে আবেগসূচক শব্দ Hurrah! বসাতে হয় এবং শেষে বিস্ময়সূচক চিহ্ন (!) দিতে হয়।"
+    },
+    {
+      id: 5,
+      type: "core",
+      badge: "Rule 05 • Core",
+      title: "দুঃখ বা শোক প্রকাশক বাক্য (Matter of sorrow / It is sad)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "Alas! + that-এর পরের মূল বাক্য + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: It is a matter of sorrow that the man is dead.\nExclamatory: Alas! The man is dead!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "দুঃখজনক সংবাদ বোঝাতে ‘It is a matter of sorrow that’ বা ‘It is sad that’ উঠে গিয়ে শুরুতে Alas! বসে।"
+    },
+    {
+      id: 6,
+      type: "core",
+      badge: "Rule 06 • Core",
+      title: "তীব্র আকাঙ্ক্ষা বা প্রার্থনা (I long for / I wish থাকলে)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "Oh that / If only + subject + had/could + বাকি অংশ + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: I long for a cup of hot tea.\nExclamatory: Oh that I had a cup of hot tea!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "কোনো কিছু পাওয়ার তীব্র আকাঙ্ক্ষা বোঝাতে I long for-এর পরিবর্তে Oh that বা If only ব্যবহার করে কাল্পনিক past verb (had/were) যুক্ত করা হয়।"
+    },
+    {
+      id: 7,
+      type: "core",
+      badge: "Rule 07 • Core",
+      title: "Plural বা Uncountable Noun-এর আগে Many / Much থাকলে",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "How + many / much + noun + subject + verb + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: They have many books.\nExclamatory: How many books they have!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "Plural noun বা Uncountable noun-এর আগে a/an বসে না। তাই সংখ্যার বা পরিমাণের আধিক্য বোঝাতে How many বা How much দিয়ে শুরু করতে হয়।"
+    },
+    {
+      id: 8,
+      type: "core",
+      badge: "Rule 08 • Core",
+      title: "বাক্যে ‘Indeed’ বা ‘Really’ থাকলে",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "What a/an অথবা How + adjective + subject + verb + ! (indeed/really বাদ যাবে)।",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: You are really lucky.\nExclamatory: How lucky you are!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "Indeed বা Really বাক্যে জোর দেওয়ার জন্য বসে। Exclamatory করার সময় এগুলো তুলে দিয়ে article থাকলে What a/an এবং না থাকলে How বসাতে হয়।"
+    },
+    {
+      id: 9,
+      type: "core",
+      badge: "Rule 09 • Core",
+      title: "‘Never’ বা ‘No’ যুক্ত বিস্ময়সূচক বাক্য",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "How / What a + adjective + noun + subject + verb + ! (never/such উঠে যায়)।",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: I have never seen such a big snake.\nExclamatory: What a big snake I have seen!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "অভিজ্ঞতার বিরলতা বা বিস্ময় বোঝাতে ‘never seen such a...’ অংশটি পরিবর্তিত হয়ে সরাসরি What a + adjective + noun-এ রূপান্তরিত হয়।"
+    },
+    {
+      id: 10,
+      type: "core",
+      badge: "Rule 10 • Core",
+      title: "প্রশংসা বা অনুমোদন প্রকাশক বাক্য (Well done / Good)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "Bravo! / Well done! + মূল বাক্য + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: You have done very well.\nExclamatory: Bravo! You have done well! (অথবা: How well you have done!)",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "কারো সাফল্য বা ভালো কাজের প্রশংসা করতে Bravo! বা Well done! ব্যবহার করা হয়।"
+    },
+    {
+      id: 11,
+      type: "core",
+      badge: "Rule 11 • Core",
+      title: "অদ্ভুত বা লজ্জাজনক ঘটনা (Strange / Shameful থাকলে)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "How strange! অথবা Fie! + মূল বাক্য + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: It is shameful that he told a lie.\nExclamatory: Fie! He told a lie!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "অদ্ভুত বিষয় হলে How strange it is that... এবং লজ্জাজনক বা ঘৃণিত কাজ হলে শুরুতে Fie! (ধিক্!) ব্যবহৃত হয়।"
+    },
+    {
+      id: 12,
+      type: "core",
+      badge: "Rule 12 • Core",
+      title: "সংক্ষিপ্ত বা এক কথার Exclamatory রূপ (Elliptical)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "What a/an + adjective + noun! অথবা How + adjective! (Subject + verb উহ্য থাকে)।",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: It is a very hot day.\nExclamatory: What a hot day! (পূর্ণ রূপ: What a hot day it is!)",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "আধুনিক ও কথ্য ইংরেজিতে ‘it is’ অংশটি বাদ দিয়েও সংক্ষিপ্ত Exclamatory বাক্য গঠন করা যায়, তবে বোর্ড পরীক্ষায় পূর্ণ রূপ লেখা নিরাপদ।"
+    },
+    {
+      id: 13,
+      type: "adv",
+      badge: "Rule 13 • Advanced",
+      title: "‘Such’ যুক্ত Assertive Sentence",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "What a / What an + (adjective) + singular noun + subject + verb + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: He is such a liar.\nExclamatory: What a liar he is!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "বাক্যে very-এর বদলে ‘such a/an’ থাকলে such উঠে গিয়ে সরাসরি What a/an বসে। এখানে liar নিজেই noun হওয়ায় আলাদা adjective লাগেনি।"
+    },
+    {
+      id: 14,
+      type: "adv",
+      badge: "Rule 14 • Advanced",
+      title: "‘So ... that’ যুক্ত বাক্যের ভাবগত রূপান্তর",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "How + adjective/adverb + subject + verb + ! (that-এর পরের অংশ বাদ যায়)।",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: The box is so heavy that I cannot lift it.\nExclamatory: How heavy the box is!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "অ্যাডভান্সড গ্রামারে কোনো গুণের চরম মাত্রা বোঝাতে so...that-এর ফলাফল অংশ বাদ দিয়ে How + adjective দিয়ে বিস্ময় প্রকাশ করা হয়।"
+    },
+    {
+      id: 15,
+      type: "adv",
+      badge: "Rule 15 • Advanced",
+      title: "বিরক্তি, ঘৃণা বা অস্বস্তি প্রকাশক বাক্য (Disgusting / Foul)",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "Ugh! / Fie! + How + adjective + subject + verb + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: The smell is very disgusting.\nExclamatory: Ugh! How disgusting the smell is!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "বাজে গন্ধ বা বিরক্তিকর পরিস্থিতির তীব্রতা বোঝাতে আবেগসূচক শব্দ Ugh! বা Fie! যুক্ত করা হয়।"
+    },
+    {
+      id: 16,
+      type: "adv",
+      badge: "Rule 16 • Advanced",
+      title: "‘Very / Great’ ছাড়া সাধারণ Adjective-এর তীব্রতা",
+      step1_label: "১ম ক্লিক — বাক্যের গঠন (Structure)",
+      step1: "How + adjective + subject + verb + !",
+      step2_label: "২য় ক্লিক — উদাহরণ (Example)",
+      step2: "Assertive: The night is dark and lonely.\nExclamatory: How dark and lonely the night is!",
+      step3_label: "৩য় ক্লিক — বিস্তারিত ব্যাখ্যা ও টিপস",
+      step3: "সাহিত্যিক বা বর্ণনামূলক বাক্যে very শব্দটি উহ্য থাকলেও প্রকৃতির সৌন্দর্য বা ভয়াবহতা বোঝাতে How দিয়ে Exclamatory করা হয়।"
+    }
+  ];
+
+  /* ================= DATA: 50 PRACTICE QUESTIONS ================= */
+  const practiceData = [
+    // SSC Level (1-20)
+    { id: 1, level: "SSC", ruleRef: "Rule 01", q: "It is a very beautiful flower.", meaning: "এটি একটি খুব সুন্দর ফুল।", ans: "What a beautiful flower it is!", exp: "বাক্যে 'a' এবং 'very' আছে। তাই 'very' উঠে গিয়ে শুরুতে 'What a' বসেছে এবং শেষে 'it is!' বসেছে।" },
+    { id: 2, level: "SSC", ruleRef: "Rule 02", q: "The scenery of Cox's Bazar is very charming.", meaning: "কক্সবাজারের দৃশ্য খুবই মনোমুগ্ধকর।", ans: "How charming the scenery of Cox's Bazar is!", exp: "Adjective 'charming'-এর আগে কোনো article (a/an) নেই। তাই শুরুতে 'How' বসেছে।" },
+    { id: 3, level: "SSC", ruleRef: "Rule 01", q: "Cricket is a very exciting game.", meaning: "ক্রিকেট একটি খুবই উত্তেজনাপূর্ণ খেলা।", ans: "What an exciting game cricket is!", exp: "'exciting' শব্দটি vowel sound (e) দিয়ে শুরু হওয়ায় 'What a'-এর বদলে 'What an' বসেছে।" },
+    { id: 4, level: "SSC", ruleRef: "Rule 02", q: "Time flies very fast.", meaning: "সময় খুব দ্রুত বয়ে যায়।", ans: "How fast time flies!", exp: "এখানে 'fast' একটি adverb এবং এর আগে article নেই। তাই 'How fast' দিয়ে শুরু হয়েছে।" },
+    { id: 5, level: "SSC", ruleRef: "Rule 03", q: "I wish I were a child again.", meaning: "আমার ইচ্ছা হয় আমি যদি আবার শিশু হতাম!", ans: "If I were a child again!", exp: "'I wish' উঠে গিয়ে শুরুতে 'If' বসেছে। এছাড়া 'Were I a child again!' লিখলেও সঠিক হবে।" },
+    { id: 6, level: "SSC", ruleRef: "Rule 04", q: "It is a matter of joy that we have won the match.", meaning: "আনন্দের বিষয় যে আমরা খেলায় জিতেছি।", ans: "Hurrah! We have won the match!", exp: "'It is a matter of joy that' উঠে গিয়ে আনন্দসূচক শব্দ 'Hurrah!' বসেছে।" },
+    { id: 7, level: "SSC", ruleRef: "Rule 05", q: "It is a matter of sorrow that he has failed in the exam.", meaning: "দুঃখের বিষয় যে সে পরীক্ষায় অকৃতকার্য হয়েছে।", ans: "Alas! He has failed in the exam!", exp: "'It is a matter of sorrow that'-এর পরিবর্তে দুঃখসূচক শব্দ 'Alas!' বসেছে।" },
+    { id: 8, level: "SSC", ruleRef: "Rule 01", q: "He is a great fool.", meaning: "সে একজন মস্ত বড় বোকা।", ans: "What a fool he is!", exp: "Noun 'fool'-এর আগে 'a great' থাকলে 'great' উঠে গিয়ে 'What a' বসে।" },
+    { id: 9, level: "SSC", ruleRef: "Rule 02", q: "The Padma is a very big river.", meaning: "পদ্মা একটি খুব বড় নদী।", ans: "What a big river the Padma is!", exp: "Article 'a' এবং 'very' থাকায় 'What a big river' শুরুতে এসেছে এবং Subject 'the Padma' শেষে গেছে।" },
+    { id: 10, level: "SSC", ruleRef: "Rule 03", q: "I wish I had the wings of a bird.", meaning: "আমার ইচ্ছা হয় আমার যদি পাখির মতো ডানা থাকত!", ans: "Had I the wings of a bird!", exp: "'I wish I had' থাকলে 'I wish' বাদ দিয়ে 'Had' সামনে এনে এক্সক্লামেটরি করা যায় (অথবা If I had...)।" },
+    { id: 11, level: "SSC", ruleRef: "Rule 02", q: "The girl sings very sweetly.", meaning: "মেয়েটি খুব মিষ্টি সুরে গান গায়।", ans: "How sweetly the girl sings!", exp: "Adverb 'sweetly'-এর আগে article নেই, তাই 'How sweetly' বসেছে।" },
+    { id: 12, level: "SSC", ruleRef: "Rule 01", q: "It was a very dreadful night.", meaning: "এটি ছিল একটি অত্যন্ত ভয়ংকর রাত।", ans: "What a dreadful night it was!", exp: "Past tense-এর বাক্য হওয়ায় শেষে 'it was!' বসেছে এবং শুরুতে 'What a' এসেছে।" },
+    { id: 13, level: "SSC", ruleRef: "Rule 05", q: "It is sad that the poor man died of hunger.", meaning: "দুঃখজনক যে দরিদ্র লোকটি ক্ষুধায় মারা গেল।", ans: "Alas! The poor man died of hunger!", exp: "'It is sad that' উঠে গিয়ে শুরুতে 'Alas!' ব্যবহৃত হয়েছে।" },
+    { id: 14, level: "SSC", ruleRef: "Rule 02", q: "Bangladesh is very rich in natural beauty.", meaning: "বাংলাদেশ প্রাকৃতিক সৌন্দর্যে অত্যন্ত সমৃদ্ধ।", ans: "How rich in natural beauty Bangladesh is!", exp: "Article না থাকায় 'How rich in natural beauty' অংশটি সামনে এসেছে।" },
+    { id: 15, level: "SSC", ruleRef: "Rule 01", q: "She is a very intelligent girl.", meaning: "সে একজন অত্যন্ত বুদ্ধিমতী মেয়ে।", ans: "What an intelligent girl she is!", exp: "'intelligent'-এর শুরুতে vowel sound থাকায় 'What an' বসেছে।" },
+    { id: 16, level: "SSC", ruleRef: "Rule 04", q: "We rejoice that our team has won the trophy.", meaning: "আমরা আনন্দিত যে আমাদের দল ট্রফি জিতেছে।", ans: "Hurrah! Our team has won the trophy!", exp: "'We rejoice that'-এর বদলে 'Hurrah!' বসেছে।" },
+    { id: 17, level: "SSC", ruleRef: "Rule 02", q: "The weather is very fine today.", meaning: "আজ আবহাওয়া খুবই চমৎকার।", ans: "How fine the weather is today!", exp: "Article ছাড়া 'very fine' থাকায় 'How fine' বসেছে।" },
+    { id: 18, level: "SSC", ruleRef: "Rule 01", q: "He leads a very unhappy life.", meaning: "সে একটি অত্যন্ত অসুখী জীবনযাপন করে।", ans: "What an unhappy life he leads!", exp: "'unhappy' শব্দটি 'আ' (vowel) উচ্চারণে শুরু হওয়ায় 'What an' বসেছে।" },
+    { id: 19, level: "SSC", ruleRef: "Rule 03", q: "I wish I could be a millionaire.", meaning: "আমি যদি কোটিপতি হতে পারতাম!", ans: "Would that I could be a millionaire!", exp: "'I wish'-এর পরিবর্তে 'Would that' বা 'If' ব্যবহার করা হয়েছে।" },
+    { id: 20, level: "SSC", ruleRef: "Rule 02", q: "The rose smells very sweet.", meaning: "গোলাপ খুব মিষ্টি গন্ধ ছড়ায়।", ans: "How sweet the rose smells!", exp: "'very sweet'-এর আগে article না থাকায় 'How sweet' বসেছে।" },
+
+    // HSC Level (21-38)
+    { id: 21, level: "HSC", ruleRef: "Rule 01", q: "A little learning is a very dangerous thing.", meaning: "অল্প বিদ্যা ভয়ংকরী।", ans: "What a dangerous thing a little learning is!", exp: "এখানে 'A little learning' হলো পুরো Subject, তাই এটি বাক্যের শেষে verb-এর আগে বসেছে।" },
+    { id: 22, level: "HSC", ruleRef: "Rule 08", q: "It is indeed a very wonderful invention.", meaning: "এটি প্রকৃতপক্ষেই একটি অত্যন্ত বিস্ময়কর আবিষ্কার।", ans: "What a wonderful invention it is!", exp: "'indeed' এবং 'very' উভয়ই উঠে গিয়ে শুরুতে 'What a' বসেছে।" },
+    { id: 23, level: "HSC", ruleRef: "Rule 07", q: "They have made many mistakes in the essay.", meaning: "তারা রচনাটিতে অনেক ভুল করেছে।", ans: "How many mistakes they have made in the essay!", exp: "Plural noun 'mistakes'-এর আগে 'many' থাকায় 'How many mistakes' দিয়ে শুরু হয়েছে।" },
+    { id: 24, level: "HSC", ruleRef: "Rule 02", q: "The old man was very greedy.", meaning: "বৃদ্ধ লোকটি অত্যন্ত লোভী ছিল।", ans: "How greedy the old man was!", exp: "Article না থাকায় 'How greedy' শুরুতে এবং 'the old man was' শেষে বসেছে।" },
+    { id: 25, level: "HSC", ruleRef: "Rule 01", q: "Terrorism is a very serious problem for our country.", meaning: "সন্ত্রাসবাদ আমাদের দেশের জন্য একটি অত্যন্ত গুরুতর সমস্যা।", ans: "What a serious problem terrorism is for our country!", exp: "Adjective + Noun (serious problem) সামনে এসেছে এবং Subject 'terrorism' verb-এর আগে বসেছে।" },
+    { id: 26, level: "HSC", ruleRef: "Rule 03", q: "I wish I were young again.", meaning: "আমার ইচ্ছা হয় আমি যদি আবার তরুণ হতাম!", ans: "If I were young again!", exp: "অবাস্তব ইচ্ছা বোঝাতে 'I wish' উঠে 'If' বসেছে।" },
+    { id: 27, level: "HSC", ruleRef: "Rule 08", q: "He is really a great scholar.", meaning: "তিনি সত্যিই একজন মহান পণ্ডিত।", ans: "What a scholar he is!", exp: "'really' ও 'great' বাদ গিয়ে 'a' থাকার কারণে 'What a scholar' বসেছে।" },
+    { id: 28, level: "HSC", ruleRef: "Rule 02", q: "Corruption has spread very rapidly in our society.", meaning: "আমাদের সমাজে দুর্নীতি খুব দ্রুত ছড়িয়ে পড়েছে।", ans: "How rapidly corruption has spread in our society!", exp: "Adverb 'rapidly' সামনে এসেছে এবং Subject + Auxiliary verb (corruption has spread) পরে বসেছে।" },
+    { id: 29, level: "HSC", ruleRef: "Rule 11", q: "It is very strange that he has forgotten my name.", meaning: "এটা খুবই অদ্ভুত যে সে আমার নাম ভুলে গেছে।", ans: "How strange it is that he has forgotten my name!", exp: "'very strange'-এর আগে article না থাকায় 'How strange it is' দিয়ে বাক্য শুরু হয়েছে।" },
+    { id: 30, level: "HSC", ruleRef: "Rule 06", q: "I long for the peaceful days of my childhood.", meaning: "আমি আমার শৈশবের শান্তিময় দিনগুলোর জন্য তীব্র আকাঙ্ক্ষা করি।", ans: "Oh that I had the peaceful days of my childhood!", exp: "'I long for'-এর পরিবর্তে 'Oh that I had' ব্যবহার করে তীব্র আকাঙ্ক্ষা প্রকাশ করা হয়েছে।" },
+    { id: 31, level: "HSC", ruleRef: "Rule 01", q: "Book fair is a very joyful event for book lovers.", meaning: "বইমেলা বইপ্রেমীদের জন্য একটি অত্যন্ত আনন্দদায়ক আয়োজন।", ans: "What a joyful event book fair is for book lovers!", exp: "'a very joyful event' পরিবর্তিত হয়ে 'What a joyful event' হয়েছে।" },
+    { id: 32, level: "HSC", ruleRef: "Rule 10", q: "You have played exceptionally well today.", meaning: "তুমি আজ অসাধারণ ভালো খেলেছ।", ans: "Bravo! You have played well today!", exp: "খেলার প্রশংসা বোঝাতে শুরুতে 'Bravo!' যুক্ত করা হয়েছে (অথবা How exceptionally well you have played today!)।" },
+    { id: 33, level: "HSC", ruleRef: "Rule 01", q: "An honest man leads a very peaceful life.", meaning: "একজন সৎ মানুষ অত্যন্ত শান্তিপূর্ণ জীবনযাপন করেন।", ans: "What a peaceful life an honest man leads!", exp: "Object অংশের 'a very peaceful life' সামনে এসে 'What a peaceful life' হয়েছে।" },
+    { id: 34, level: "HSC", ruleRef: "Rule 07", q: "There is much suffering in the life of a farmer.", meaning: "একজন কৃষকের জীবনে অনেক কষ্ট রয়েছে।", ans: "How much suffering there is in the life of a farmer!", exp: "Uncountable noun 'suffering'-এর আগে 'much' থাকায় 'How much suffering' বসেছে।" },
+    { id: 35, level: "HSC", ruleRef: "Rule 02", q: "The river looks very calm in the morning.", meaning: "সকালে নদীটিকে খুব শান্ত দেখায়।", ans: "How calm the river looks in the morning!", exp: "Article-বিহীন adjective 'calm' থাকায় 'How calm' শুরুতে বসেছে।" },
+    { id: 36, level: "HSC", ruleRef: "Rule 11", q: "It is shameful that he betrayed his own friend.", meaning: "এটা লজ্জাজনক যে সে তার নিজের বন্ধুর সাথে বিশ্বাসঘাতকতা করেছে।", ans: "Fie! He betrayed his own friend!", exp: "ঘৃণা বা লজ্জা প্রকাশে 'It is shameful that' উঠে গিয়ে 'Fie!' বসেছে।" },
+    { id: 37, level: "HSC", ruleRef: "Rule 01", q: "Facebook is a very popular social network.", meaning: "ফেসবুক একটি অত্যন্ত জনপ্রিয় সামাজিক যোগাযোগ মাধ্যম।", ans: "What a popular social network Facebook is!", exp: "Article 'a' থাকায় 'What a popular social network' দিয়ে শুরু হয়েছে।" },
+    { id: 38, level: "HSC", ruleRef: "Rule 03", q: "I wish I could fly in the sky.", meaning: "আমার ইচ্ছা হয় আমি যদি আকাশে উড়তে পারতাম!", ans: "If only I could fly in the sky!", exp: "'I wish'-এর পরিবর্তে 'If only' (অথবা If / Would that) বসেছে।" },
+
+    // Advanced / BCS Level (39-50)
+    { id: 39, level: "Advanced", ruleRef: "Rule 13", q: "He is such a great hypocrite.", meaning: "সে এত বড় একজন ভণ্ড!", ans: "What a hypocrite he is!", exp: "'such a great' উঠে গিয়ে সরাসরি 'What a' বসেছে। কারণ 'such' নিজেই তীব্রতা বোঝায়।" },
+    { id: 40, level: "Advanced", ruleRef: "Rule 09", q: "I have never seen such a magnificent palace.", meaning: "আমি এমন চমৎকার প্রাসাদ কখনো দেখিনি।", ans: "What a magnificent palace I have seen!", exp: "'never seen such a' রূপান্তরিত হয়ে সরাসরি 'What a magnificent palace' হয়েছে।" },
+    { id: 41, level: "Advanced", ruleRef: "Rule 14", q: "The riddle is so difficult that nobody can solve it.", meaning: "ধাঁধাটি এতই কঠিন যে কেউ এটি সমাধান করতে পারে না।", ans: "How difficult the riddle is!", exp: "'so...that' যুক্ত বাক্যে গুণের তীব্রতা বোঝাতে ফলাফল অংশ বাদ দিয়ে 'How difficult' ব্যবহৃত হয়েছে।" },
+    { id: 42, level: "Advanced", ruleRef: "Rule 15", q: "The rotten food smells very disgusting.", meaning: "পচা খাবারটি থেকে অত্যন্ত বিশ্রী গন্ধ বেরোচ্ছে।", ans: "Ugh! How disgusting the rotten food smells!", exp: "বিরক্তি বা ঘৃণা বোঝাতে 'Ugh!' এবং 'very disgusting'-এর জন্য 'How disgusting' বসেছে।" },
+    { id: 43, level: "Advanced", ruleRef: "Rule 16", q: "The moonlight sleeps sweet upon this bank.", meaning: "এই তীরে চাঁদের আলো বড় মধুরভাবে ঘুমিয়ে আছে।", ans: "How sweet the moonlight sleeps upon this bank!", exp: "সাহিত্যিক বাক্যে 'very' উহ্য থাকলেও অনুভূতির তীব্রতা বোঝাতে 'How sweet' বসেছে।" },
+    { id: 44, level: "Advanced", ruleRef: "Rule 13", q: "It was such an embarrassing situation.", meaning: "এটি ছিল এমনই এক বিব্রতকর পরিস্থিতি!", ans: "What an embarrassing situation it was!", exp: "'such an' উঠে গিয়ে vowel sound-এর কারণে 'What an' বসেছে।" },
+    { id: 45, level: "Advanced", ruleRef: "Rule 01", q: "He is a very honest officer.", meaning: "তিনি একজন অত্যন্ত সৎ কর্মকর্তা।", ans: "What an honest officer he is!", exp: "'honest' শব্দে 'h' অনুচ্চারিত (silent) এবং vowel sound 'অ' দিয়ে শুরু হওয়ায় 'What an' বসেছে।" },
+    { id: 46, level: "Advanced", ruleRef: "Rule 01", q: "It is a very unique opportunity for us.", meaning: "এটি আমাদের জন্য একটি অত্যন্ত অনন্য সুযোগ।", ans: "What a unique opportunity it is for us!", exp: "'unique' শব্দটি 'u' দিয়ে শুরু হলেও এর উচ্চারণ 'ইউ' (consonant sound), তাই 'What an' না হয়ে 'What a' বসেছে।" },
+    { id: 47, level: "Advanced", ruleRef: "Rule 03", q: "I wish I had been present at the meeting.", meaning: "আমার ইচ্ছা হয় আমি যদি সভাটিতে উপস্থিত থাকতাম!", ans: "Had I been present at the meeting!", exp: "Past perfect tense-এ 'I wish' বাদ দিয়ে 'Had' দিয়ে বাক্য শুরু করলে সবচেয়ে সুন্দর Exclamatory হয়।" },
+    { id: 48, level: "Advanced", ruleRef: "Rule 12", q: "It is a very pleasant surprise.", meaning: "এটি একটি অত্যন্ত আনন্দদায়ক চমক।", ans: "What a pleasant surprise!", exp: "Elliptical বা সংক্ষিপ্ত Exclamatory রূপে 'it is' উহ্য রেখে সরাসরি 'What a pleasant surprise!' লেখা হয়েছে।" },
+    { id: 49, level: "Advanced", ruleRef: "Rule 08", q: "She speaks English very fluently indeed.", meaning: "সে প্রকৃতপক্ষেই অত্যন্ত সাবলীলভাবে ইংরেজি বলে।", ans: "How fluently she speaks English!", exp: "'very' ও 'indeed' বাদ দিয়ে adverb 'fluently'-এর আগে 'How' বসানো হয়েছে।" },
+    { id: 50, level: "Advanced", ruleRef: "Rule 02", q: "Man is very helpless before the fury of nature.", meaning: "প্রকৃতির রুদ্ররোষের সামনে মানুষ বড়ই অসহায়।", ans: "How helpless man is before the fury of nature!", exp: "'very helpless'-এর আগে article না থাকায় 'How helpless' দিয়ে শুরু হয়ে Subject 'man' verb 'is'-এর আগে বসেছে।" }
+  ];
+
+  /* ================= STATE TRACKERS ================= */
+  let currentRuleFilter = "all";
+  let currentPracticeFilter = "all";
+  const ruleClicks = {};     // stores 0, 1, 2, 3
+  const practiceClicks = {}; // stores 0, 1, 2, 3
+
+  /* ================= THEME & TAB FUNCTIONS ================= */
+  function setTheme(themeName, btnElement) {
+    document.documentElement.setAttribute('data-theme', themeName);
+    document.querySelectorAll('.top-controls .btn-3d').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+
+  function switchTab(tabName) {
+    const rulesSec = document.getElementById('section-rules');
+    const practiceSec = document.getElementById('section-practice');
+    const tabRulesBtn = document.getElementById('tab-rules');
+    const tabPracticeBtn = document.getElementById('tab-practice');
+
+    if (tabName === 'rules') {
+      rulesSec.classList.remove('section-hidden');
+      practiceSec.classList.add('section-hidden');
+      tabRulesBtn.classList.add('active');
+      tabPracticeBtn.classList.remove('active');
+    } else {
+      rulesSec.classList.add('section-hidden');
+      practiceSec.classList.remove('section-hidden');
+      tabRulesBtn.classList.remove('active');
+      tabPracticeBtn.classList.add('active');
+    }
+  }
+
+  /* ================= RULES RENDERING & MULTI-CLICK ================= */
+  function filterRules(type, btn) {
+    currentRuleFilter = type;
+    btn.parentElement.querySelectorAll('.btn-3d').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderRules();
+  }
+
+  function handleRuleClick(id) {
+    const current = ruleClicks[id] || 0;
+    ruleClicks[id] = (current + 1) % 4; // Cycles 0 -> 1 -> 2 -> 3 -> 0
+    renderRules();
+  }
+
+  function revealAllRules() {
+    rulesData.forEach(r => ruleClicks[r.id] = 3);
+    renderRules();
+  }
+
+  function resetAllRules() {
+    rulesData.forEach(r => ruleClicks[r.id] = 0);
+    renderRules();
+  }
+
+  function renderRules() {
+    const grid = document.getElementById('rules-grid');
+    grid.innerHTML = "";
+
+    const filtered = rulesData.filter(r => currentRuleFilter === "all" || r.type === currentRuleFilter);
+
+    filtered.forEach(rule => {
+      const step = ruleClicks[rule.id] || 0;
+      const hints = [
+        "👆 ১ম ক্লিক: গঠন (Structure) দেখুন",
+        "👆 ২য় ক্লিক: উদাহরণ (Example) দেখুন",
+        "👆 ৩য় ক্লিক: বিস্তারিত ব্যাখ্যা দেখুন",
+        "🔄 আবার ক্লিক করলে বন্ধ হবে"
+      ];
+
+      const card = document.createElement('div');
+      card.className = 'master-card';
+      card.onclick = () => handleRuleClick(rule.id);
+
+      card.innerHTML = `
+        <div>
+          <div class="card-header">
+            <span class="card-badge">${rule.badge}</span>
+            <div class="click-indicator">
+              <span>ধাপ ${step}/3</span>
+              <div class="step-dots">
+                <span class="dot ${step >= 1 ? 'filled' : ''}"></span>
+                <span class="dot ${step >= 2 ? 'filled' : ''}"></span>
+                <span class="dot ${step >= 3 ? 'filled' : ''}"></span>
+              </div>
+            </div>
+          </div>
+          <div class="rule-title-bn">${rule.id}. ${rule.title}</div>
+
+          <div class="reveal-box step-1 ${step >= 1 ? 'visible' : ''}">
+            <span class="reveal-label">${rule.step1_label}</span>
+            <div class="en-text">${rule.step1}</div>
+          </div>
+
+          <div class="reveal-box step-2 ${step >= 2 ? 'visible' : ''}">
+            <span class="reveal-label">${rule.step2_label}</span>
+            <div class="en-text" style="white-space: pre-line;">${rule.step2}</div>
+          </div>
+
+          <div class="reveal-box step-3 ${step >= 3 ? 'visible' : ''}">
+            <span class="reveal-label">${rule.step3_label}</span>
+            <div>${rule.step3}</div>
+          </div>
+        </div>
+
+        <div class="card-footer-hint">
+          <span>${hints[step]}</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  /* ================= PRACTICE RENDERING & MULTI-CLICK ================= */
+  function filterPractice(level, btn) {
+    currentPracticeFilter = level;
+    btn.parentElement.querySelectorAll('.btn-3d').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPractice();
+  }
+
+  function handlePracticeClick(id) {
+    const current = practiceClicks[id] || 0;
+    practiceClicks[id] = (current + 1) % 4; // Cycles 0 -> 1 -> 2 -> 3 -> 0
+    renderPractice();
+  }
+
+  function revealAllPractice() {
+    practiceData.forEach(p => practiceClicks[p.id] = 3);
+    renderPractice();
+  }
+
+  function resetAllPractice() {
+    practiceData.forEach(p => practiceClicks[p.id] = 0);
+    renderPractice();
+  }
+
+  function renderPractice() {
+    const grid = document.getElementById('practice-grid');
+    const searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+    grid.innerHTML = "";
+
+    const filtered = practiceData.filter(item => {
+      const matchLevel = currentPracticeFilter === "all" || item.level === currentPracticeFilter;
+      const matchText = !searchQuery || 
+        item.q.toLowerCase().includes(searchQuery) || 
+        item.meaning.includes(searchQuery) || 
+        item.ans.toLowerCase().includes(searchQuery) ||
+        item.ruleRef.toLowerCase().includes(searchQuery);
+      return matchLevel && matchText;
+    });
+
+    filtered.forEach(item => {
+      const step = practiceClicks[item.id] || 0;
+      const hints = [
+        "👆 ১ম ক্লিক: বাংলা অর্থ দেখুন",
+        "👆 ২য় ক্লিক: সঠিক উত্তর দেখুন",
+        "👆 ৩য় ক্লিক: বিস্তারিত ব্যাখ্যা দেখুন",
+        "🔄 আবার ক্লিক করলে রিসেট হবে"
+      ];
+
+      const card = document.createElement('div');
+      card.className = 'master-card';
+      card.onclick = () => handlePracticeClick(item.id);
+
+      card.innerHTML = `
+        <div>
+          <div class="card-header">
+            <span class="card-badge">#${item.id} • ${item.level} (${item.ruleRef})</span>
+            <div class="click-indicator">
+              <span>ধাপ ${step}/3</span>
+              <div class="step-dots">
+                <span class="dot ${step >= 1 ? 'filled' : ''}"></span>
+                <span class="dot ${step >= 2 ? 'filled' : ''}"></span>
+                <span class="dot ${step >= 3 ? 'filled' : ''}"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-statement">${item.q}</div>
+
+          <!-- STEP 1: BENGALI MEANING -->
+          <div class="reveal-box step-1 ${step >= 1 ? 'visible' : ''}">
+            <span class="reveal-label">১ম ক্লিক — বাংলা অর্থ (Meaning)</span>
+            <div>${item.meaning}</div>
+          </div>
+
+          <!-- STEP 2: CORRECT ANSWER -->
+          <div class="reveal-box step-2 ${step >= 2 ? 'visible' : ''}">
+            <span class="reveal-label">২য় ক্লিক — সঠিক উত্তর (Exclamatory)</span>
+            <div class="en-text" style="font-size: 1.1rem;">${item.ans}</div>
+          </div>
+
+          <!-- STEP 3: DETAILED EXPLANATION -->
+          <div class="reveal-box step-3 ${step >= 3 ? 'visible' : ''}">
+            <span class="reveal-label">৩য় ক্লিক — বিস্তারিত ব্যাখ্যা (Explanation)</span>
+            <div>${item.exp}</div>
+          </div>
+        </div>
+
+        <div class="card-footer-hint">
+          <span>${hints[step]}</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // Initial Render
+  renderRules();
+  renderPractice();
+</script>
+</body>
+</html>
