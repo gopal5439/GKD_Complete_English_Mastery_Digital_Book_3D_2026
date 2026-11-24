@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="rgb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degree Complete Master — বিশ্বমানের পূর্ণাঙ্গ ইংরেজি গ্রামার গাইড</title>
+    <!-- Google Fonts: Tiro Bangla & Poppins/Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Crisp Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           1. THEME VARIABLES & 3D TACTILE DESIGN SYSTEM
+           ========================================================= */
+        :root {
+            --font-bn: 'Tiro Bangla', serif;
+            --font-en: 'Poppins', 'Inter', sans-serif;
+            --transition-smooth: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Theme 1: Real RGB Neon Cyber Academy */
+        [data-theme="rgb"] {
+            --bg-main: #070913;
+            --bg-surface: #0f1426;
+            --bg-card: #141b33;
+            --bg-elevated: #1c2546;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: rgba(139, 92, 246, 0.35);
+            --accent-1: #ff007f;
+            --accent-2: #00f0ff;
+            --accent-3: #8b5cf6;
+            --shadow-3d: 0 8px 0 #05070f, 0 15px 30px rgba(0, 240, 255, 0.15);
+            --shadow-3d-hover: 0 12px 0 #05070f, 0 22px 40px rgba(255, 0, 127, 0.25);
+            --shadow-btn: 0 5px 0 #04060c, 0 10px 20px rgba(0,0,0,0.5);
+            --laser-color: rgba(0, 240, 255, 0.85);
+            --laser-glow: 0 0 20px #00f0ff, 0 0 40px #ff007f;
+        }
+
+        /* Theme 2: Pure White Academic Daylight */
+        [data-theme="white"] {
+            --bg-main: #f1f5f9;
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            --bg-elevated: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --accent-1: #2563eb;
+            --accent-2: #0d9488;
+            --accent-3: #4f46e5;
+            --shadow-3d: 0 7px 0 #cbd5e1, 0 14px 25px rgba(15, 23, 42, 0.08);
+            --shadow-3d-hover: 0 11px 0 #94a3b8, 0 20px 35px rgba(37, 99, 235, 0.14);
+            --shadow-btn: 0 4px 0 #94a3b8, 0 8px 15px rgba(15, 23, 42, 0.1);
+            --laser-color: rgba(37, 99, 235, 0.75);
+            --laser-glow: 0 0 18px #2563eb, 0 0 35px #0d9488;
+        }
+
+        /* Theme 3: Deep Dark Sleek Obsidian */
+        [data-theme="dark"] {
+            --bg-main: #0c0d10;
+            --bg-surface: #14161b;
+            --bg-card: #1a1d24;
+            --bg-elevated: #232730;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #2e3340;
+            --accent-1: #f59e0b;
+            --accent-2: #38bdf8;
+            --accent-3: #a855f7;
+            --shadow-3d: 0 7px 0 #050507, 0 14px 28px rgba(0, 0, 0, 0.6);
+            --shadow-3d-hover: 0 11px 0 #050507, 0 20px 36px rgba(245, 158, 11, 0.18);
+            --shadow-btn: 0 4px 0 #050507, 0 8px 16px rgba(0, 0, 0, 0.5);
+            --laser-color: rgba(245, 158, 11, 0.85);
+            --laser-glow: 0 0 18px #f59e0b, 0 0 36px #38bdf8;
+        }
+
+        /* Theme 4: Royal Emerald & Gold */
+        [data-theme="emerald"] {
+            --bg-main: #041f18;
+            --bg-surface: #072e24;
+            --bg-card: #0b3b2e;
+            --bg-elevated: #104d3d;
+            --text-primary: #ecfdf5;
+            --text-secondary: #a7f3d0;
+            --text-muted: #6ee7b7;
+            --border-color: rgba(251, 191, 36, 0.35);
+            --accent-1: #fbbf24;
+            --accent-2: #34d399;
+            --accent-3: #f59e0b;
+            --shadow-3d: 0 7px 0 #02120e, 0 14px 28px rgba(0, 0, 0, 0.5);
+            --shadow-3d-hover: 0 11px 0 #02120e, 0 20px 36px rgba(251, 191, 36, 0.22);
+            --shadow-btn: 0 4px 0 #02120e, 0 8px 16px rgba(0, 0, 0, 0.45);
+            --laser-color: rgba(251, 191, 36, 0.85);
+            --laser-glow: 0 0 18px #fbbf24, 0 0 36px #34d399;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-bn);
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            line-height: 1.75;
+        }
+
+        .font-en {
+            font-family: var(--font-en);
+        }
+
+        .font-bn {
+            font-family: var(--font-bn);
+        }
+
+        /* =========================================================
+           2. ANIMATED RGB BORDER & GLOW EFFECTS
+           ========================================================= */
+        @keyframes rgbFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        [data-theme="rgb"] .rgb-border-animated {
+            position: relative;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+
+        [data-theme="rgb"] .rgb-border-animated::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            z-index: -1;
+            border-radius: inherit;
+            background: linear-gradient(120deg, #ff007f, #7928ca, #00f0ff, #00ff88, #ff007f);
+            background-size: 300% 300%;
+            animation: rgbFlow 6s ease infinite;
+            opacity: 0.75;
+        }
+
+        .rgb-text-gradient {
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rgbFlow 5s linear infinite;
+        }
+
+        /* =========================================================
+           3. 3D TACTILE CARDS & BUTTONS (TOUCH-FEEL & ELEVATION)
+           ========================================================= */
+        .card-3d {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-3d);
+            transform: translateY(0) translateZ(0);
+            transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, background-color 0.3s ease;
+            position: relative;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-3d-hover);
+        }
+
+        .btn-3d {
+            background-color: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.85rem;
+            box-shadow: var(--shadow-btn);
+            transform: translateY(0);
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, filter 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .btn-3d:active {
+            transform: translateY(4px) scale(0.98);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+        }
+
+        .btn-3d-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            color: #ffffff;
+            border: none;
+            font-weight: 600;
+        }
+
+        .btn-3d-cyan {
+            background: linear-gradient(135deg, var(--accent-2), #0284c7);
+            color: #041019;
+            border: none;
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           4. SMOOTH LASER POINTER & TRAIL
+           ========================================================= */
+        #laser-dot {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--laser-color);
+            box-shadow: var(--laser-glow);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, opacity 0.3s ease;
+            mix-blend-mode: screen;
+        }
+
+        [data-theme="white"] #laser-dot {
+            mix-blend-mode: normal;
+        }
+
+        #laser-ring {
+            position: fixed;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-2);
+            box-shadow: 0 0 15px var(--accent-1);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            opacity: 0.65;
+        }
+
+        .laser-particle {
+            position: fixed;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-1);
+            box-shadow: 0 0 10px var(--accent-2);
+            pointer-events: none;
+            z-index: 9997;
+            transform: translate(-50%, -50%);
+            animation: particleFade 0.55s forwards ease-out;
+        }
+
+        @keyframes particleFade {
+            0% { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+        }
+
+        body.laser-disabled #laser-dot,
+        body.laser-disabled #laser-ring {
+            display: none !important;
+        }
+
+        /* =========================================================
+           5. SMART AUTO-HIDE TOP RIBBON & 3-LINE SIDEBAR DRAWER
+           ========================================================= */
+        #top-ribbon {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(14px);
+            transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        #top-ribbon.ribbon-hidden {
+            transform: translateY(-110%);
+        }
+
+        /* Hamburger 3-line animation */
+        .hamburger-line {
+            display: block;
+            width: 24px;
+            height: 3px;
+            border-radius: 99px;
+            background-color: var(--text-primary);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .menu-open .line-1 { transform: translateY(7px) rotate(45deg); }
+        .menu-open .line-2 { opacity: 0; }
+        .menu-open .line-3 { transform: translateY(-7px) rotate(-45deg); }
+
+        #nav-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 310px;
+            max-width: 85vw;
+            background-color: var(--bg-surface);
+            border-right: 1px solid var(--border-color);
+            z-index: 1100;
+            transform: translateX(-105%);
+            transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 15px 0 40px rgba(0,0,0,0.45);
+        }
+
+        #nav-drawer.drawer-open {
+            transform: translateX(0);
+        }
+
+        #drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1050;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #drawer-backdrop.backdrop-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* =========================================================
+           6. SMOOTH ACCORDION & DIAGRAM CONNECTORS
+           ========================================================= */
+        .reveal-panel {
+            display: none;
+            animation: slideDownFade 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .reveal-panel.active {
+            display: block;
+        }
+
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.99);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-elevated);
+            border-radius: 99px;
+            border: 2px solid var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-3);
+        }
+
+        /* Badge Pills */
+        .badge-pos { background: rgba(16, 185, 129, 0.16); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-comp { background: rgba(56, 189, 248, 0.16); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+        .badge-sup { background: rgba(244, 63, 94, 0.16); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.4); }
+        [data-theme="white"] .badge-pos { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+        [data-theme="white"] .badge-comp { background: #e0f2fe; color: #075985; border-color: #7dd3fc; }
+        [data-theme="white"] .badge-sup { background: #ffe4e6; color: #9f1239; border-color: #fda4af; }
+    </style>
+</head>
+<body class="antialiased selection:bg-pink-500 selection:text-white">
+
+    <!-- Smooth Laser Pointer Elements -->
+    <div id="laser-dot"></div>
+    <div id="laser-ring"></div>
+
+    <!-- Drawer Backdrop -->
+    <div id="drawer-backdrop" onclick="toggleDrawer(false)"></div>
+
+    <!-- 3-Line Navigation Drawer Sidebar -->
+    <aside id="nav-drawer" class="flex flex-col justify-between p-6 overflow-y-auto">
+        <div>
+            <div class="flex items-center justify-between pb-5 mb-6 border-b" style="border-color: var(--border-color);">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-en font-bold text-lg shadow-lg" style="background: linear-gradient(135deg, var(--accent-1), var(--accent-3));">
+                        D°
+                    </div>
+                    <div>
+                        <h2 class="font-en font-bold text-base leading-tight">Degree Master</h2>
+                        <span class="text-xs" style="color: var(--text-muted);">সূচিপত্র ও অধ্যায়সমূহ</span>
+                    </div>
+                </div>
+                <button onclick="toggleDrawer(false)" class="btn-3d p-2.5 rounded-xl" aria-label="Close Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <nav class="space-y-3">
+                <a href="#hero" onclick="toggleDrawer(false)" class="btn-3d w-full justify-start px-4 py-3 text-left">
+                    <i class="fa-solid fa-house text-cyan-400 w-5"></i>
+                    <span>হোম ও পরিচিতি</span>
+                </a>
+                <a href="#chapter-1" onclick="toggleDrawer(false)" class="btn-3d w-full justify-start px-4 py-3 text-left">
+                    <i class="fa-solid fa-diagram-project text-emerald-400 w-5"></i>
+                    <span>অধ্যায় ১: সংজ্ঞা ও ডায়াগ্রাম</span>
+                </a>
+                <a href="#chapter-2" onclick="toggleDrawer(false)" class="btn-3d w-full justify-start px-4 py-3 text-left">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i>
+                    <span>অধ্যায় ২: রূপ পরিবর্তনের নিয়ম</span>
+                </a>
+                <a href="#chapter-3" onclick="toggleDrawer(false)" class="btn-3d w-full justify-start px-4 py-3 text-left">
+                    <i class="fa-solid fa-table-columns text-pink-400 w-5"></i>
+                    <span>অধ্যায় ৩: Changing Degree (সব নিয়ম)</span>
+                </a>
+                <a href="#chapter-4" onclick="toggleDrawer(false)" class="btn-3d w-full justify-start px-4 py-3 text-left">
+                    <i class="fa-solid fa-triangle-exclamation text-rose-400 w-5"></i>
+                    <span>অধ্যায় ৪: সাধারণ ভুল ও সতর্কতা</span>
+                </a>
+                <a href="#chapter-5" onclick="toggleDrawer(false)" class="btn-3d w-full justify-start px-4 py-3 text-left">
+                    <i class="fa-solid fa-graduation-cap text-indigo-400 w-5"></i>
+                    <span>অধ্যায় ৫: ৫০টি বোর্ড প্রশ্ন ব্যাংক</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="pt-6 mt-6 border-t" style="border-color: var(--border-color);">
+            <p class="text-xs mb-3 font-semibold" style="color: var(--text-muted);">থিম পরিবর্তন করুন:</p>
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="setTheme('rgb')" class="btn-3d py-2 px-3 text-xs font-en">🌈 RGB</button>
+                <button onclick="setTheme('white')" class="btn-3d py-2 px-3 text-xs font-en">☀️ White</button>
+                <button onclick="setTheme('dark')" class="btn-3d py-2 px-3 text-xs font-en">🌑 Dark</button>
+                <button onclick="setTheme('emerald')" class="btn-3d py-2 px-3 text-xs font-en">👑 Royal</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- =========================================================
+         SMART AUTO-HIDE TOP RIBBON BAR
+         ========================================================= -->
+    <header id="top-ribbon" class="px-4 sm:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+            <!-- Left: 3-Line Hamburger Button & Brand Logo -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <button id="hamburger-btn" onclick="toggleDrawer()" class="btn-3d p-3 rounded-xl flex flex-col gap-1.5" aria-label="Menu">
+                    <span class="hamburger-line line-1"></span>
+                    <span class="hamburger-line line-2"></span>
+                    <span class="hamburger-line line-3"></span>
+                </button>
+                <a href="#hero" class="flex items-center gap-2.5 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-en font-extrabold text-xl shadow-md transition-transform group-hover:rotate-6" style="background: linear-gradient(135deg, var(--accent-1), var(--accent-3));">
+                        D°
+                    </div>
+                    <div>
+                        <span class="font-en font-extrabold text-base sm:text-xl tracking-tight block leading-none rgb-text-gradient">
+                            Degree Complete Master
+                        </span>
+                        <span class="text-[11px] sm:text-xs block mt-0.5" style="color: var(--text-muted);">
+                            পূর্ণাঙ্গ ইন্টারেক্টিভ গ্রামার একাডেমি
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Center Quick Jump Pills (Desktop) -->
+            <nav class="hidden xl:flex items-center gap-2">
+                <a href="#chapter-1" class="btn-3d px-3.5 py-2 text-sm">১. প্রকারভেদ</a>
+                <a href="#chapter-2" class="btn-3d px-3.5 py-2 text-sm">২. রূপান্তর</a>
+                <a href="#chapter-3" class="btn-3d px-3.5 py-2 text-sm">৩. সকল নিয়ম</a>
+                <a href="#chapter-4" class="btn-3d px-3.5 py-2 text-sm">৪. সতর্কতা</a>
+                <a href="#chapter-5" class="btn-3d px-3.5 py-2 text-sm">৫. ৫০টি বোর্ড প্রশ্ন</a>
+            </nav>
+
+            <!-- Right: Theme Switcher & Laser Toggle -->
+            <div class="flex items-center gap-2">
+                <div class="hidden sm:flex items-center gap-1.5 p-1 rounded-xl border" style="background: var(--bg-main); border-color: var(--border-color);">
+                    <button onclick="setTheme('rgb')" title="Real RGB Theme" class="btn-3d px-2.5 py-1.5 text-xs font-en rounded-lg">RGB</button>
+                    <button onclick="setTheme('white')" title="Pure White Theme" class="btn-3d px-2.5 py-1.5 text-xs font-en rounded-lg">White</button>
+                    <button onclick="setTheme('dark')" title="Deep Dark Theme" class="btn-3d px-2.5 py-1.5 text-xs font-en rounded-lg">Dark</button>
+                    <button onclick="setTheme('emerald')" title="Royal Emerald Theme" class="btn-3d px-2.5 py-1.5 text-xs font-en rounded-lg">Royal</button>
+                </div>
+
+                <button id="laser-toggle-btn" onclick="toggleLaser()" title="লেজার লাইট অন/অফ করুন" class="btn-3d px-3 py-2 text-xs sm:text-sm">
+                    <i class="fa-solid fa-wand-sparkles text-cyan-400"></i>
+                    <span class="hidden md:inline">লেজার</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 space-y-24">
+
+        <!-- =========================================================
+             HERO SECTION
+             ========================================================= -->
+        <section id="hero" class="card-3d rgb-border-animated p-6 sm:p-10 lg:p-14 text-center overflow-hidden">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-6 border" style="background: var(--bg-elevated); border-color: var(--border-color); color: var(--accent-2);">
+                <i class="fa-solid fa-globe"></i>
+                <span>Global Standard Interactive English Grammar Platform</span>
+            </div>
+
+            <h1 class="font-en text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+                <span class="rgb-text-gradient">Degree Complete Master</span>
+            </h1>
+            <p class="text-xl sm:text-2xl font-bold mb-4" style="color: var(--text-primary);">
+                ইংরেজি ব্যাকরণের <span class="font-en text-cyan-400">Degree of Comparison</span>-এর এ-টু-জেড পূর্ণাঙ্গ সমাধান
+            </p>
+            <p class="max-w-3xl mx-auto text-base sm:text-lg mb-8" style="color: var(--text-secondary);">
+                শিক্ষার্থী ও শিক্ষকদের জন্য বিশেষভাবে নির্মিত একটি ৩ডি ইন্টারেক্টিভ লার্নিং প্ল্যাটফর্ম। প্রতিটি নিয়মের পাশে বাংলা অর্থ, ক্লিক করলেই উদাহরণ এবং পুনরায় ক্লিক করলে অভিজ্ঞ শিক্ষকের মতো ধাপে ধাপে ব্যাখ্যা—সাথে থাকছে ৫০টি SSC ও HSC বোর্ড প্রশ্ন ব্যাংক!
+            </p>
+
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+                <a href="#chapter-3" class="btn-3d btn-3d-primary px-7 py-3.5 text-base sm:text-lg rounded-2xl">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>সব নিয়ম শিখুন (৩-কলাম টেবিল)</span>
+                </a>
+                <a href="#chapter-5" class="btn-3d btn-3d-cyan px-7 py-3.5 text-base sm:text-lg rounded-2xl">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>৫০টি বোর্ড প্রশ্ন অনুশীলন</span>
+                </a>
+            </div>
+
+            <!-- Stats 3D Mini Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="card-3d p-4 text-center" style="background: var(--bg-elevated);">
+                    <div class="font-en text-2xl sm:text-3xl font-extrabold" style="color: var(--accent-1);">৩ প্রকার</div>
+                    <div class="text-xs sm:text-sm mt-1" style="color: var(--text-muted);">তুলনামূলক ডায়াগ্রাম</div>
+                </div>
+                <div class="card-3d p-4 text-center" style="background: var(--bg-elevated);">
+                    <div class="font-en text-2xl sm:text-3xl font-extrabold" style="color: var(--accent-2);">১২টি নিয়ম</div>
+                    <div class="text-xs sm:text-sm mt-1" style="color: var(--text-muted);">Changing Degree-এর সব সূত্র</div>
+                </div>
+                <div class="card-3d p-4 text-center" style="background: var(--bg-elevated);">
+                    <div class="font-en text-2xl sm:text-3xl font-extrabold" style="color: var(--accent-3);">১০+ ট্র্যাপ</div>
+                    <div class="text-xs sm:text-sm mt-1" style="color: var(--text-muted);">সাধারণ ভুল ও সতর্কতা</div>
+                </div>
+                <div class="card-3d p-4 text-center" style="background: var(--bg-elevated);">
+                    <div class="font-en text-2xl sm:text-3xl font-extrabold text-emerald-400">৫০টি প্রশ্ন</div>
+                    <div class="text-xs sm:text-sm mt-1" style="color: var(--text-muted);">SSC ও HSC বোর্ড স্ট্যান্ডার্ড</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             CHAPTER 1: সংজ্ঞা ও প্রকারভেদ (SIDE-BY-SIDE 3-BOX DIAGRAM)
+             ========================================================= -->
+        <section id="chapter-1" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4" style="border-color: var(--border-color);">
+                <div>
+                    <span class="text-xs font-en uppercase tracking-widest font-bold px-3 py-1 rounded-full" style="background: var(--bg-elevated); color: var(--accent-2);">Chapter 01 • Foundation</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold mt-2">অধ্যায় ১: Degree কী ও এর প্রকারভেদ (তুলনামূলক ডায়াগ্রাম)</h2>
+                </div>
+                <p class="text-sm sm:text-base max-w-md" style="color: var(--text-muted);">
+                    তিনটি বক্স পাশাপাশি তুলনা করে সহজেই বুঝে নিন কখন কোন Degree ব্যবহৃত হয়।
+                </p>
+            </div>
+
+            <!-- Definition Box -->
+            <div class="card-3d p-6 sm:p-8">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl flex-shrink-0 flex items-center justify-center text-xl font-bold text-white" style="background: linear-gradient(135deg, var(--accent-1), var(--accent-3));">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold mb-2">Degree (ডিগ্রি) কী?</h3>
+                        <p class="text-base sm:text-lg" style="color: var(--text-secondary);">
+                            ইংরেজি ব্যাকরণে <span class="font-en font-semibold text-cyan-400">Adjective</span> (বিশেষণ) বা <span class="font-en font-semibold text-cyan-400">Adverb</span> (ক্রিয়াবিশেষণ)-এর গুণ, দোষ, অবস্থা বা মাত্রার তুলনা প্রকাশ করার রূপকে <strong>Degree of Comparison</strong> বা সংক্ষেপে <strong>Degree</strong> বলে। যেমন: <span class="font-en font-semibold">Good</span> (ভালো), <span class="font-en font-semibold">Better</span> (অধিকতর ভালো), <span class="font-en font-semibold">Best</span> (সবচেয়ে ভালো)।
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side-by-Side 3-Box Visual Diagram -->
+            <div class="relative">
+                <!-- Diagram Header Node -->
+                <div class="flex justify-center mb-6">
+                    <div class="card-3d px-8 py-4 text-center border-2" style="border-color: var(--accent-2); background: var(--bg-elevated);">
+                        <span class="font-en font-extrabold text-lg sm:text-xl tracking-wide">DEGREE OF COMPARISON (৩ প্রকার)</span>
+                        <div class="text-xs mt-1" style="color: var(--text-muted);">তুলনার পরিধি ও মাত্রা অনুযায়ী শ্রেণিবিভাগ</div>
+                    </div>
+                </div>
+
+                <!-- 3 Side-by-Side Comparison Boxes -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Box 1: Positive Degree -->
+                    <div class="card-3d p-6 flex flex-col justify-between border-t-4 border-emerald-400">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge-pos px-3 py-1 rounded-full font-en text-xs font-bold">১ম প্রকার • LEVEL 1</span>
+                                <i class="fa-solid fa-equals text-emerald-400 text-xl"></i>
+                            </div>
+                            <h3 class="font-en text-2xl font-extrabold text-emerald-400 mb-1">Positive Degree</h3>
+                            <p class="text-sm font-semibold mb-4" style="color: var(--text-muted);">সাধারণ অবস্থা বা সমান তুলনা</p>
+
+                            <div class="p-4 rounded-xl mb-4 space-y-2 text-sm" style="background: var(--bg-elevated);">
+                                <p><strong>মূল কাজ:</strong> কারও সাথে শ্রেষ্ঠত্বের তুলনা না করে সাধারণ গুণ বোঝায় অথবা দুজনের সমান গুণ বোঝায়।</p>
+                                <p><strong>চেনার উপায় (Markers):</strong> <span class="font-en font-bold text-emerald-400">as ... as</span>, <span class="font-en font-bold text-emerald-400">so ... as</span>, <span class="font-en font-bold text-emerald-400">No other</span>, <span class="font-en font-bold text-emerald-400">Very few</span></p>
+                                <p><strong>তুলনার সংখ্যা:</strong> ১ জন (সাধারণ) অথবা ২ জনের সমতা।</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-main);">
+                            <span class="text-xs font-en uppercase font-bold text-emerald-400 block mb-1">Example & বাংলা অর্থ:</span>
+                            <p class="font-en font-semibold text-base">Rahim is as <span class="underline decoration-emerald-400">tall</span> as Karim.</p>
+                            <p class="text-sm mt-1" style="color: var(--text-secondary);">বাংলা: রহিম করিমের মতোই লম্বা।</p>
+                        </div>
+                    </div>
+
+                    <!-- Box 2: Comparative Degree -->
+                    <div class="card-3d p-6 flex flex-col justify-between border-t-4 border-sky-400">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge-comp px-3 py-1 rounded-full font-en text-xs font-bold">২য় প্রকার • LEVEL 2</span>
+                                <i class="fa-solid fa-code-compare text-sky-400 text-xl"></i>
+                            </div>
+                            <h3 class="font-en text-2xl font-extrabold text-sky-400 mb-1">Comparative Degree</h3>
+                            <p class="text-sm font-semibold mb-4" style="color: var(--text-muted);">দুইয়ের মধ্যে তুলনা (অধিকতর বা কম)</p>
+
+                            <div class="p-4 rounded-xl mb-4 space-y-2 text-sm" style="background: var(--bg-elevated);">
+                                <p><strong>মূল কাজ:</strong> দুজন ব্যক্তি, দুটি বস্তু বা দুটি শ্রেণির মধ্যে গুণ বা অবস্থার তুলনা করে।</p>
+                                <p><strong>চেনার উপায় (Markers):</strong> <span class="font-en font-bold text-sky-400">Adj+er / more+Adj</span> এর পর <span class="font-en font-bold text-sky-400">than</span>, <span class="font-en font-bold text-sky-400">than any other</span>, <span class="font-en font-bold text-sky-400">than most other</span></p>
+                                <p><strong>তুলনার সংখ্যা:</strong> ২টি পক্ষ বা দল।</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-main);">
+                            <span class="text-xs font-en uppercase font-bold text-sky-400 block mb-1">Example & বাংলা অর্থ:</span>
+                            <p class="font-en font-semibold text-base">Rahim is <span class="underline decoration-sky-400">taller than</span> Karim.</p>
+                            <p class="text-sm mt-1" style="color: var(--text-secondary);">বাংলা: রহিম করিমের চেয়ে বেশি লম্বা।</p>
+                        </div>
+                    </div>
+
+                    <!-- Box 3: Superlative Degree -->
+                    <div class="card-3d p-6 flex flex-col justify-between border-t-4 border-rose-400">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge-sup px-3 py-1 rounded-full font-en text-xs font-bold">৩য় প্রকার • LEVEL 3</span>
+                                <i class="fa-solid fa-crown text-rose-400 text-xl"></i>
+                            </div>
+                            <h3 class="font-en text-2xl font-extrabold text-rose-400 mb-1">Superlative Degree</h3>
+                            <p class="text-sm font-semibold mb-4" style="color: var(--text-muted);">সবার মধ্যে সেরা বা সর্বনিম্ন তুলনা</p>
+
+                            <div class="p-4 rounded-xl mb-4 space-y-2 text-sm" style="background: var(--bg-elevated);">
+                                <p><strong>মূল কাজ:</strong> দুয়ের অধিক (অনেক বা সবার) মধ্যে একজনকে সর্বোত্তম বা অধম বোঝাতে ব্যবহৃত হয়।</p>
+                                <p><strong>চেনার উপায় (Markers):</strong> <span class="font-en font-bold text-rose-400">the + Adj+est / most+Adj</span>, অথবা <span class="font-en font-bold text-rose-400">one of the</span></p>
+                                <p><strong>তুলনার সংখ্যা:</strong> ৩ বা ততোধিক (সকলের মধ্যে)।</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border" style="border-color: var(--border-color); background: var(--bg-main);">
+                            <span class="text-xs font-en uppercase font-bold text-rose-400 block mb-1">Example & বাংলা অর্থ:</span>
+                            <p class="font-en font-semibold text-base">Rahim is <span class="underline decoration-rose-400">the tallest</span> boy in the class.</p>
+                            <p class="text-sm mt-1" style="color: var(--text-secondary);">বাংলা: রহিম ক্লাসের সবচেয়ে লম্বা ছেলে।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             CHAPTER 2: ADJECTIVE & ADVERB FORM TRANSFORMATION
+             ========================================================= -->
+        <section id="chapter-2" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4" style="border-color: var(--border-color);">
+                <div>
+                    <span class="text-xs font-en uppercase tracking-widest font-bold px-3 py-1 rounded-full" style="background: var(--bg-elevated); color: var(--accent-1);">Chapter 02 • Word Formation</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold mt-2">অধ্যায় ২: Adjective ও Adverb-এর রূপ পরিবর্তনের নিয়ম</h2>
+                </div>
+                <p class="text-sm sm:text-base max-w-md" style="color: var(--text-muted);">
+                    বাক্য পরিবর্তনের আগে শব্দের Positive, Comparative ও Superlative রূপ সঠিকভাবে জানা অপরিহার্য।
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rule Card 1 -->
+                <div class="card-3d p-6">
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-400">নিয়ম ১: এক Syllable-এর শব্দ</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2">শেষে <span class="font-en text-cyan-400">-er</span> এবং <span class="font-en text-cyan-400">-est</span> যুক্ত হয়</h3>
+                    <p class="text-sm mb-4" style="color: var(--text-secondary);">যেসব Adjective একবারে উচ্চারিত হয় (Monosyllabic), তাদের শেষে er এবং est যোগ করতে হয়।</p>
+                    <div class="space-y-2 font-en text-sm p-3 rounded-xl" style="background: var(--bg-elevated);">
+                        <div class="flex justify-between"><span>Tall (লম্বা)</span><span class="text-sky-400">Taller</span><span class="text-rose-400">Tallest</span></div>
+                        <div class="flex justify-between"><span>Small (ছোট)</span><span class="text-sky-400">Smaller</span><span class="text-rose-400">Smallest</span></div>
+                        <div class="flex justify-between"><span>Rich (ধনী)</span><span class="text-sky-400">Richer</span><span class="text-rose-400">Richest</span></div>
+                        <div class="flex justify-between"><span>Young (তরুণ)</span><span class="text-sky-400">Younger</span><span class="text-rose-400">Youngest</span></div>
+                    </div>
+                </div>
+
+                <!-- Rule Card 2 -->
+                <div class="card-3d p-6">
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400">নিয়ম ২: শেষে 'e' থাকলে</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2">শুধু <span class="font-en text-emerald-400">-r</span> এবং <span class="font-en text-emerald-400">-st</span> যুক্ত হয়</h3>
+                    <p class="text-sm mb-4" style="color: var(--text-secondary);">Positive শব্দের শেষে আগে থেকেই 'e' থাকলে নতুন করে 'e' না বসিয়ে শুধু r ও st যোগ হয়।</p>
+                    <div class="space-y-2 font-en text-sm p-3 rounded-xl" style="background: var(--bg-elevated);">
+                        <div class="flex justify-between"><span>Brave (সাহসী)</span><span class="text-sky-400">Braver</span><span class="text-rose-400">Bravest</span></div>
+                        <div class="flex justify-between"><span>Large (বৃহৎ)</span><span class="text-sky-400">Larger</span><span class="text-rose-400">Largest</span></div>
+                        <div class="flex justify-between"><span>Wise (জ্ঞানী)</span><span class="text-sky-400">Wiser</span><span class="text-rose-400">Wisest</span></div>
+                        <div class="flex justify-between"><span>Fine (চমৎকার)</span><span class="text-sky-400">Finer</span><span class="text-rose-400">Finest</span></div>
+                    </div>
+                </div>
+
+                <!-- Rule Card 3 -->
+                <div class="card-3d p-6">
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400">নিয়ম ৩: Consonant + y</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2"><span class="font-en text-amber-400">y</span> উঠে <span class="font-en text-amber-400">-ier</span> ও <span class="font-en text-amber-400">-iest</span> হয়</h3>
+                    <p class="text-sm mb-4" style="color: var(--text-secondary);">শেষে y এবং তার ঠিক আগে Consonant থাকলে y বাদ দিয়ে ier ও iest বসে। (তবে Vowel+y হলে শুধু er/est হয়, যেমন: Gay → Gayer)।</p>
+                    <div class="space-y-2 font-en text-sm p-3 rounded-xl" style="background: var(--bg-elevated);">
+                        <div class="flex justify-between"><span>Happy (সুখী)</span><span class="text-sky-400">Happier</span><span class="text-rose-400">Happiest</span></div>
+                        <div class="flex justify-between"><span>Heavy (ভারী)</span><span class="text-sky-400">Heavier</span><span class="text-rose-400">Heaviest</span></div>
+                        <div class="flex justify-between"><span>Easy (সহজ)</span><span class="text-sky-400">Easier</span><span class="text-rose-400">Easiest</span></div>
+                        <div class="flex justify-between"><span>Busy (ব্যস্ত)</span><span class="text-sky-400">Busier</span><span class="text-rose-400">Busiest</span></div>
+                    </div>
+                </div>
+
+                <!-- Rule Card 4 -->
+                <div class="card-3d p-6">
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-400">নিয়ম ৪: CVC (Vowel + Consonant)</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2">শেষের বর্ণ <span class="font-en text-purple-400">Double</span> হয়ে er/est</h3>
+                    <p class="text-sm mb-4" style="color: var(--text-secondary);">এক syllable শব্দের শেষে একটি Consonant এবং তার আগে একটি মাত্র Vowel থাকলে শেষের Consonant-টি দ্বিগুণ হয়।</p>
+                    <div class="space-y-2 font-en text-sm p-3 rounded-xl" style="background: var(--bg-elevated);">
+                        <div class="flex justify-between"><span>Big (বড়)</span><span class="text-sky-400">Bigger</span><span class="text-rose-400">Biggest</span></div>
+                        <div class="flex justify-between"><span>Hot (গরম)</span><span class="text-sky-400">Hotter</span><span class="text-rose-400">Hottest</span></div>
+                        <div class="flex justify-between"><span>Thin (পাতলা)</span><span class="text-sky-400">Thinner</span><span class="text-rose-400">Thinnest</span></div>
+                        <div class="flex justify-between"><span>Sad (দুঃখিত)</span><span class="text-sky-400">Sadder</span><span class="text-rose-400">Saddest</span></div>
+                    </div>
+                </div>
+
+                <!-- Rule Card 5 -->
+                <div class="card-3d p-6">
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-pink-500/20 text-pink-400">নিয়ম ৫: একাধিক Syllable</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2">পূর্বে <span class="font-en text-pink-400">More/Less</span> ও <span class="font-en text-pink-400">Most/Least</span></h3>
+                    <p class="text-sm mb-4" style="color: var(--text-secondary);">দুই বা ততোধিক Syllable-যুক্ত দীর্ঘ Adjective এবং -ly যুক্ত Adverb-এর পূর্বে more/most (বা কম বোঝাতে less/least) বসে।</p>
+                    <div class="space-y-2 font-en text-sm p-3 rounded-xl" style="background: var(--bg-elevated);">
+                        <div class="flex justify-between"><span>Beautiful (সুন্দর)</span><span class="text-sky-400">More beautiful</span><span class="text-rose-400">Most beautiful</span></div>
+                        <div class="flex justify-between"><span>Useful (উপকারী)</span><span class="text-sky-400">More useful</span><span class="text-rose-400">Most useful</span></div>
+                        <div class="flex justify-between"><span>Famous (বিখ্যাত)</span><span class="text-sky-400">More famous</span><span class="text-rose-400">Most famous</span></div>
+                        <div class="flex justify-between"><span>Quickly (দ্রুত)</span><span class="text-sky-400">More quickly</span><span class="text-rose-400">Most quickly</span></div>
+                    </div>
+                </div>
+
+                <!-- Rule Card 6 -->
+                <div class="card-3d p-6 border-2" style="border-color: var(--accent-1);">
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-400">নিয়ম ৬: Irregular (অনিয়মিত রূপ)</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2">সম্পূর্ণ ভিন্ন রূপ (মুখস্থ রাখা জরুরি)</h3>
+                    <p class="text-sm mb-4" style="color: var(--text-secondary);">নিচের শব্দগুলো কোনো নির্দিষ্ট নিয়ম মানে না—পরীক্ষায় সবচেয়ে বেশি এগুলোই আসে:</p>
+                    <div class="space-y-1.5 font-en text-xs sm:text-sm p-3 rounded-xl" style="background: var(--bg-elevated);">
+                        <div class="flex justify-between"><span>Good / Well (ভালো)</span><span class="text-sky-400">Better</span><span class="text-rose-400">Best</span></div>
+                        <div class="flex justify-between"><span>Bad / Ill / Evil (খারাপ)</span><span class="text-sky-400">Worse</span><span class="text-rose-400">Worst</span></div>
+                        <div class="flex justify-between"><span>Much / Many (অনেক)</span><span class="text-sky-400">More</span><span class="text-rose-400">Most</span></div>
+                        <div class="flex justify-between"><span>Little (অল্প)</span><span class="text-sky-400">Less</span><span class="text-rose-400">Least</span></div>
+                        <div class="flex justify-between"><span>Far (দূরে)</span><span class="text-sky-400">Farther / Further</span><span class="text-rose-400">Farthest / Furthest</span></div>
+                        <div class="flex justify-between"><span>Old (বয়স্ক/পুরনো)</span><span class="text-sky-400">Older / Elder</span><span class="text-rose-400">Oldest / Eldest</span></div>
+                        <div class="flex justify-between"><span>Late (দেরি/পরবর্তী)</span><span class="text-sky-400">Later / Latter</span><span class="text-rose-400">Latest / Last</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             CHAPTER 3: MASTER 3-COLUMN CHANGING DEGREE TABLE
+             ========================================================= -->
+        <section id="chapter-3" class="space-y-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b pb-4" style="border-color: var(--border-color);">
+                <div>
+                    <span class="text-xs font-en uppercase tracking-widest font-bold px-3 py-1 rounded-full" style="background: var(--bg-elevated); color: var(--accent-2);">Chapter 03 • Complete Transformation Rules</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold mt-2">অধ্যায় ৩: Changing Degree-এর সকল নিয়ম (৩-কলাম মাস্টার টেবিল)</h2>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="expandAllRules(1)" class="btn-3d px-4 py-2 text-xs sm:text-sm">
+                        <i class="fa-solid fa-eye text-cyan-400"></i> সব উদাহরণ খুলুন
+                    </button>
+                    <button onclick="expandAllRules(2)" class="btn-3d px-4 py-2 text-xs sm:text-sm">
+                        <i class="fa-solid fa-chalkboard-user text-pink-400"></i> সব টিচার ব্যাখ্যা খুলুন
+                    </button>
+                    <button onclick="expandAllRules(0)" class="btn-3d px-4 py-2 text-xs sm:text-sm">
+                        <i class="fa-solid fa-compress"></i> সব গুটিয়ে রাখুন
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Guide Banner -->
+            <div class="card-3d p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4" style="background: var(--bg-elevated);">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-hand-pointer text-2xl text-amber-400 animate-bounce"></i>
+                    <p class="text-sm sm:text-base">
+                        <strong>ব্যবহারবিধি:</strong> প্রতিটি নিয়মের নিচে <strong>১ম বার ক্লিক</strong> করলে ৩টি ডিগ্রির <strong>ইংরেজি উদাহরণ ও বাংলা অর্থ</strong> দেখাবে, এবং <strong>২য় বার ক্লিক</strong> করলে <strong>শিক্ষকের মতো ধাপে ধাপে বিস্তারিত ব্যাখ্যা</strong> দেখাবে।
+                    </p>
+                </div>
+            </div>
+
+            <!-- 3-Column Header (Visible on Desktop) -->
+            <div class="hidden lg:grid grid-cols-3 gap-4 px-6 py-4 rounded-2xl font-en font-extrabold text-center text-base tracking-wide shadow-md" style="background: var(--bg-elevated); border: 1px solid var(--border-color);">
+                <div class="text-emerald-400"><i class="fa-solid fa-1 mr-2"></i>POSITIVE DEGREE</div>
+                <div class="text-sky-400"><i class="fa-solid fa-2 mr-2"></i>COMPARATIVE DEGREE</div>
+                <div class="text-rose-400"><i class="fa-solid fa-3 mr-2"></i>SUPERLATIVE DEGREE</div>
+            </div>
+
+            <!-- Rules Container Rendered by JS -->
+            <div id="master-rules-container" class="space-y-8"></div>
+        </section>
+
+        <!-- =========================================================
+             CHAPTER 4: COMMON MISTAKES & GRAMMAR TRAPS
+             ========================================================= -->
+        <section id="chapter-4" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-4" style="border-color: var(--border-color);">
+                <div>
+                    <span class="text-xs font-en uppercase tracking-widest font-bold px-3 py-1 rounded-full" style="background: var(--bg-elevated); color: #fb7185;">Chapter 04 • Exam Traps & Precautions</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold mt-2">অধ্যায় ৪: সাধারণ ভুল ও সতর্কতা (যেসব জায়গায় সবাই ভুল করে)</h2>
+                </div>
+                <p class="text-sm sm:text-base max-w-md" style="color: var(--text-muted);">
+                    বোর্ড পরীক্ষা এবং ভর্তি পরীক্ষায় নম্বর কাটা যাওয়ার ১০টি প্রধান কারণ ও সমাধান।
+                </p>
+            </div>
+
+            <div id="mistakes-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+
+        <!-- =========================================================
+             CHAPTER 5: 50 SSC & HSC BOARD QUESTIONS BANK
+             ========================================================= -->
+        <section id="chapter-5" class="space-y-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b pb-4" style="border-color: var(--border-color);">
+                <div>
+                    <span class="text-xs font-en uppercase tracking-widest font-bold px-3 py-1 rounded-full" style="background: var(--bg-elevated); color: var(--accent-2);">Chapter 05 • SSC & HSC Board Archive</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold mt-2">অধ্যায় ৫: ৫০টি SSC ও HSC বোর্ড প্রশ্ন ব্যাংক (সমাধান ও টেকনিকসহ)</h2>
+                </div>
+                <div class="text-sm font-semibold px-4 py-2 rounded-xl border" style="background: var(--bg-elevated); border-color: var(--border-color);">
+                    <i class="fa-solid fa-circle-info text-cyan-400 mr-1.5"></i>
+                    ১ম ক্লিক: <strong>উত্তর ও বাংলা অর্থ</strong> | ২য় ক্লিক: <strong>টেকনিক ও ব্যাখ্যা</strong>
+                </div>
+            </div>
+
+            <!-- Filter & Search Controls -->
+            <div class="card-3d p-5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2" id="quiz-filters">
+                    <button onclick="filterQuestions('all')" data-filter="all" class="filter-btn btn-3d btn-3d-primary px-4 py-2 text-xs sm:text-sm">সবগুলো (৫০)</button>
+                    <button onclick="filterQuestions('Positive')" data-filter="Positive" class="filter-btn btn-3d px-4 py-2 text-xs sm:text-sm">Make Positive</button>
+                    <button onclick="filterQuestions('Comparative')" data-filter="Comparative" class="filter-btn btn-3d px-4 py-2 text-xs sm:text-sm">Make Comparative</button>
+                    <button onclick="filterQuestions('Superlative')" data-filter="Superlative" class="filter-btn btn-3d px-4 py-2 text-xs sm:text-sm">Make Superlative</button>
+                </div>
+
+                <div class="relative flex-1 max-w-md">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-sm" style="color: var(--text-muted);"></i>
+                    <input type="text" id="question-search" oninput="searchQuestions(this.value)" placeholder="প্রশ্ন বা শব্দ লিখে খুঁজুন (যেমন: Dhaka, Padma, very few)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border text-sm focus:outline-none" style="background: var(--bg-main); border-color: var(--border-color); color: var(--text-primary);">
+                </div>
+            </div>
+
+            <!-- 50 Questions Grid -->
+            <div id="questions-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t py-12 px-4 sm:px-8" style="background: var(--bg-surface); border-color: var(--border-color);">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <h3 class="font-en text-xl font-extrabold rgb-text-gradient">Degree Complete Master</h3>
+                <p class="text-sm mt-1" style="color: var(--text-muted);">
+                    সারা বিশ্বের বাংলাভাষী শিক্ষার্থী ও শিক্ষকদের জন্য নির্মিত একটি পূর্ণাঙ্গ ডিজিটাল গ্রামার রেফারেন্স।
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="#hero" class="btn-3d px-4 py-2 text-sm"><i class="fa-solid fa-arrow-up"></i> উপরে যান</a>
+                <button onclick="setTheme('rgb')" class="btn-3d px-4 py-2 text-sm font-en">🌈 RGB Mode</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         JAVASCRIPT DATA & INTERACTIVE ENGINE
+         ========================================================= -->
+    <script>
+        /* =========================================================
+           1. MASTER DATA: 12 COMPLETE CHANGING DEGREE RULES
+           ========================================================= */
+        const masterRules = [
+            {
+                id: 1,
+                title: "নিয়ম ১: একক শ্রেষ্ঠত্ব (Universal Singular Comparison)",
+                badge: "সবচেয়ে গুরুত্বপূর্ণ • Board Top Rule",
+                posFormula: "No other + Noun (Singular) + বাকি অংশ + Verb (Singular) + so/as + Positive + as + মূল Subject",
+                compFormula: "Subject + Verb + Comparative + than any other + Noun (Singular) + বাকি অংশ",
+                supFormula: "Subject + Verb + the + Superlative + Noun (Singular) + বাকি অংশ",
+                posExEn: "No other city in Bangladesh is as big as Dhaka.",
+                posExBn: "বাংলাদেশে ঢাকার মতো এত বড় শহর আর কোনোটি নেই।",
+                compExEn: "Dhaka is bigger than any other city in Bangladesh.",
+                compExBn: "ঢাকা বাংলাদেশের অন্য যেকোনো শহরের চেয়ে বড়।",
+                supExEn: "Dhaka is the biggest city in Bangladesh.",
+                supExBn: "ঢাকা বাংলাদেশের সবচেয়ে বড় শহর।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>মূল ধারণা:</strong> এখানে একজনের সাথে বাকি সবার তুলনা করা হচ্ছে। তাই মূল Noun-টি সবসময় <strong>Singular (একবচন)</strong> হয় (যেমন: <code>city</code>, <code>cities</code> নয়)।</li>
+                        <li><strong>Superlative → Comparative:</strong> <code>the biggest</code>-এর স্থলে Comparative রূপ <code>bigger</code> বসবে এবং ঠিক তার পরেই <strong>than any other</strong> যুক্ত হবে।</li>
+                        <li><strong>Comparative → Positive:</strong> বাক্যের শুরুতে <strong>No other</strong> বসবে + <code>any other</code>-এর পরের অংশ (<code>city in Bangladesh</code>) + Singular Verb (<code>is</code>) + <code>as big as</code> + মূল Subject (<code>Dhaka</code>)।</li>
+                        <li><strong>শিক্ষকের টিপস:</strong> <code>No other</code>-এর পর কখনোই Plural Noun বা Plural Verb (are/were) বসাবেন না।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 2,
+                title: "নিয়ম ২: বহুর মধ্যে একজন (Plural / One of the Comparison)",
+                badge: "অতি গুরুত্বপূর্ণ • SSC/HSC Favourite",
+                posFormula: "Very few + Noun (Plural) + বাকি অংশ + Verb (Plural) + as/so + Positive + as + মূল Subject",
+                compFormula: "Subject + Verb + Comparative + than most other (বা than many other) + Noun (Plural) + বাকি অংশ",
+                supFormula: "Subject + Verb + one of the + Superlative + Noun (Plural) + বাকি অংশ",
+                posExEn: "Very few poets in Bengal are as great as Kazi Nazrul Islam.",
+                posExBn: "বাংলায় কাজী নজরুল ইসলামের মতো এত মহান কবি খুব কমই আছেন।",
+                compExEn: "Kazi Nazrul Islam is greater than most other poets in Bengal.",
+                compExBn: "কাজী নজরুল ইসলাম বাংলার অধিকাংশ কবির চেয়ে মহান।",
+                supExEn: "Kazi Nazrul Islam is one of the greatest poets in Bengal.",
+                supExBn: "কাজী নজরুল ইসলাম বাংলার অন্যতম শ্রেষ্ঠ কবি।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>মূল ধারণা:</strong> এখানে "সবার সেরা" না বুঝিয়ে "অনেক সেরার মধ্যে একজন" বোঝানো হচ্ছে। তাই ৩টি ডিগ্রিতেই Noun-টি <strong>Plural (বহুবচন)</strong> হবে (যেমন: <code>poets</code>)।</li>
+                        <li><strong>Superlative → Comparative:</strong> <code>one of the greatest</code> উঠে গিয়ে <code>greater</code> + <strong>than most other</strong> (অথবা <code>than many other</code>) বসবে।</li>
+                        <li><strong>Comparative → Positive:</strong> শুরুতে <strong>Very few</strong> বসবে + Plural Noun (<code>poets in Bengal</code>) + <strong>Plural Verb</strong> (<code>are</code>) + <code>as great as</code> + মূল Subject।</li>
+                        <li><strong>শিক্ষকের টিপস:</strong> মূল বাক্যে <code>is</code> থাকলেও Positive-এ <code>Very few</code>-এর কারণে Verb-টি <code>are</code> (এবং <code>was</code> থাকলে <code>were</code>) হয়ে যাবে!</li>
+                    </ul>
+                `
+            },
+            {
+                id: 3,
+                title: "নিয়ম ৩: 'than all other' এবং 'of all' যুক্ত বিশেষ নিয়ম",
+                badge: "Advanced Variation",
+                posFormula: "No other + Noun (Singular) + বাকি অংশ + Verb (Singular) + as + Positive + as + Subject",
+                compFormula: "Subject + Verb + Comparative + than all other + Noun (Plural) + বাকি অংশ",
+                supFormula: "Subject + Verb + the + Superlative + of all + Noun (Plural) + বাকি অংশ",
+                posExEn: "No other metal is as useful as iron.",
+                posExBn: "লোহার মতো এত উপকারী ধাতু আর কোনোটি নেই।",
+                compExEn: "Iron is more useful than all other metals.",
+                compExBn: "লোহা অন্য সব ধাতুর চেয়ে বেশি উপকারী।",
+                supExEn: "Iron is the most useful of all metals.",
+                supExBn: "লোহা সব ধাতুর মধ্যে সবচেয়ে উপকারী।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>সূক্ষ্ম পার্থক্য:</strong> <code>than any other</code>-এর পর Singular Noun বসে, কিন্তু <strong>than all other</strong> এবং <strong>of all</strong>-এর পর সর্বদা <strong>Plural Noun</strong> বসে (যেমন: <code>metals</code>)।</li>
+                        <li><strong>Positive-এ রূপান্তর:</strong> তবে Positive করার সময় যখন <code>No other</code> শুরুতে আনবেন, তখন <code>metals</code> শব্দটিকে অবশ্যই Singular করে <code>metal</code> লিখতে হবে এবং Verb-ও Singular (<code>is</code>) হবে।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 4,
+                title: "নিয়ম ৪: দুজন ব্যক্তি বা দুটি বস্তুর মধ্যে তুলনা (Affirmative ↔ Negative)",
+                badge: "No Superlative Possible",
+                posFormula: "শেষের Object (নতুন Sub) + Verb + not + so/as + Positive + as + শুরুর Subject",
+                compFormula: "Subject + Verb + Comparative + than + Object",
+                supFormula: "❌ দুটির মধ্যে তুলনা হলে Superlative Degree হয় না।",
+                posExEn: "Mina is not so tall as Rina.",
+                posExBn: "মিনা রিনার মতো এত লম্বা নয়।",
+                compExEn: "Rina is taller than Mina.",
+                compExBn: "রিনা মিনার চেয়ে বেশি লম্বা।",
+                supExEn: "Not Applicable (কারণ এখানে মাত্র ২ জন: Rina ও Mina)",
+                supExBn: "দুইয়ের মধ্যে তুলনায় Superlative হয় না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>জায়গা বদল ও অর্থ ঠিক রাখা:</strong> দুজনের তুলনায় শুরু ও শেষের ব্যক্তি/বস্তু জায়গা বদল করে।</li>
+                        <li><strong>হ্যাঁ-বোধক ↔ না-বোধক:</strong> "রিনা মিনার চেয়ে লম্বা" এর অর্থ ঠিক রাখতে হলে Positive-এ বলতে হবে "মিনা রিনার মতো লম্বা <strong>নয়</strong>"। তাই মূল বাক্য Affirmative হলে পরিবর্তিত বাক্যে <code>not</code> যোগ করতে হয়।</li>
+                        <li><strong>নোট:</strong> না-বোধক Positive বাক্যে <code>so ... as</code> অথবা <code>as ... as</code> দুটোই শুদ্ধ।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 5,
+                title: "নিয়ম ৫: না-বোধক Comparative থেকে হ্যাঁ-বোধক Positive",
+                badge: "Reverse Negation",
+                posFormula: "শেষের Object (নতুন Sub) + Verb (Affirmative) + as + Positive + as + শুরুর Subject",
+                compFormula: "Subject + Verb + not + Comparative + than + Object",
+                supFormula: "❌ দুটির মধ্যে তুলনা হলে Superlative Degree হয় না।",
+                posExEn: "You are as wise as he (is).",
+                posExBn: "তুমি তার মতোই জ্ঞানী।",
+                compExEn: "He is not wiser than you.",
+                compExBn: "সে তোমার চেয়ে বেশি জ্ঞানী নয়।",
+                supExEn: "Not Applicable",
+                supExBn: "দুইয়ের মধ্যে তুলনায় Superlative হয় না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>লজিক বুঝুন:</strong> "সে তোমার চেয়ে বেশি জ্ঞানী নয়" — এর মানে দাঁড়ায় তুমি অন্তত তার সমান জ্ঞানী!</li>
+                        <li><strong>পরিবর্তন কৌশল:</strong> মূল Comparative বাক্যে <code>not</code> থাকায় Positive করার সময় <code>not</code> তুলে দিতে হবে এবং <code>you</code>-কে সামনে এনে <code>as wise as he</code> লিখতে হবে।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 6,
+                title: "নিয়ম ৬: সমান গুণ তুলনা (Equal Comparison: as ... as)",
+                badge: "Equality Rule",
+                posFormula: "Subject + Verb + as + Positive + as + Object",
+                compFormula: "শেষের Object (নতুন Sub) + Verb + not + Comparative (বা less + Pos) + than + শুরুর Subject",
+                supFormula: "❌ সমান তুলনায় Superlative Degree হয় না।",
+                posExEn: "Karim is as strong as Rahim.",
+                posExBn: "করিম রহিমের মতোই শক্তিশালী।",
+                compExEn: "Rahim is not stronger than Karim. (অথবা: Rahim is not less strong than Karim.)",
+                compExBn: "রহিম করিমের চেয়ে বেশি শক্তিশালী নয় (অর্থাৎ সমান)।",
+                supExEn: "Not Applicable",
+                supExBn: "সমান তুলনায় Superlative হয় না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>সূত্র:</strong> যদি দুটি জিনিস সমান হয় (A = B), তবে B কখনোই A-এর চেয়ে বেশি (stronger) হতে পারে না।</li>
+                        <li><strong>ধাপসমূহ:</strong> ১) শেষের Rahim-কে সামনে আনুন → ২) Verb-এর পর <code>not</code> বসান → ৩) <code>as strong as</code>-এর বদলে <code>stronger than</code> বসান → ৪) শুরুর Karim-কে শেষে দিন।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 7,
+                title: "নিয়ম ৭: 'No less ... than' / 'Not less ... than' যুক্ত বাক্য",
+                badge: "Board Special Structure",
+                posFormula: "Subject + Verb + as + Positive + as + Object",
+                compFormula: "Subject + Verb + no less / not less + Positive + than + Object",
+                supFormula: "❌ দুটির মধ্যে তুলনায় Superlative হয় না।",
+                posExEn: "She is as intelligent as her sister.",
+                posExBn: "সে তার বোনের মতোই বুদ্ধিমতী।",
+                compExEn: "She is no less intelligent than her sister.",
+                compExBn: "সে তার বোনের চেয়ে কোনো অংশে কম বুদ্ধিমতী নয়।",
+                supExEn: "Not Applicable",
+                supExBn: "Superlative হয় না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>খুবই সহজ টেকনিক:</strong> এখানে Subject ও Object-এর স্থান পরিবর্তন করতে হয় না!</li>
+                        <li>শুধুমাত্র <code>no less</code> বা <code>not less</code>-এর জায়গায় প্রথম <strong>as</strong> এবং <code>than</code>-এর জায়গায় দ্বিতীয় <strong>as</strong> বসিয়ে দিলেই Positive হয়ে যায়।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 8,
+                title: "নিয়ম ৮: 'Less ... than' যুক্ত বাক্য পরিবর্তন",
+                badge: "Inferiority Comparison",
+                posFormula: "Subject + Verb + not + so/as + Positive + as + Object",
+                compFormula: "Subject + Verb + less + Positive + than + Object",
+                supFormula: "❌ দুটির মধ্যে তুলনায় Superlative হয় না।",
+                posExEn: "He is not so rich as his brother.",
+                posExBn: "সে তার ভাইয়ের মতো এত ধনী নয়।",
+                compExEn: "He is less rich than his brother.",
+                compExBn: "সে তার ভাইয়ের চেয়ে কম ধনী।",
+                supExEn: "Not Applicable",
+                supExBn: "Superlative হয় না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>অর্থ বিশ্লেষণ:</strong> "সে তার ভাইয়ের চেয়ে কম ধনী" এবং "সে তার ভাইয়ের মতো এত ধনী নয়"—উভয়ের অর্থ হুবহু এক।</li>
+                        <li><strong>পরিবর্তন:</strong> Subject ঠিক রেখে <code>less</code>-এর স্থলে <strong>not so / not as</strong> এবং <code>than</code>-এর স্থলে <strong>as</strong> বসান।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 9,
+                title: "নিয়ম ৯: সমানুপাতিক বৃদ্ধি বা হ্রাস (Double Comparative: The more..., the more...)",
+                badge: "Proportional Degree",
+                posFormula: "In proportion as / As + Sub + Verb + Positive..., Sub + Verb + Positive...",
+                compFormula: "The + Comparative + Sub + Verb, the + Comparative + Sub + Verb",
+                supFormula: "❌ সমানুপাতিক পরিবর্তনে Superlative হয় না।",
+                posExEn: "As you read more, you learn more.",
+                posExBn: "তুমি যত বেশি পড়বে, তত বেশি শিখবে।",
+                compExEn: "The more you read, the more you learn.",
+                compExBn: "যতই পড়বে, ততই শিখবে।",
+                supExEn: "Not Applicable",
+                supExBn: "Superlative হয় না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>গুরুত্বপূর্ণ ব্যতিক্রম:</strong> সাধারণত Comparative-এর আগে <code>the</code> বসে না, কিন্তু "যত... তত..." অর্থে দুটি Comparative-এর পূর্বেই <strong>The</strong> বসে!</li>
+                        <li><strong>আরও উদাহরণ:</strong> <em>The higher you go, the cooler it is.</em> (যত উপরে উঠবে, তত ঠান্ডা লাগবে।)</li>
+                    </ul>
+                `
+            },
+            {
+                id: 10,
+                title: "নিয়ম ১০: ক্রমাগত বৃদ্ধি বা হ্রাস (Gradual Change: Comparative + and + Comparative)",
+                badge: "Continuous Progression",
+                posFormula: "Subject + Verb + becoming/getting + Positive + gradually",
+                compFormula: "Subject + Verb + Comparative + and + Comparative",
+                supFormula: "❌ ক্রমাগত পরিবর্তনে Superlative হয় না।",
+                posExEn: "The patient is becoming weak gradually.",
+                posExBn: "রোগীটি ক্রমান্বয়ে দুর্বল হয়ে পড়ছে।",
+                compExEn: "The patient is becoming weaker and weaker.",
+                compExBn: "রোগীটি দিনে দিনে আরও দুর্বল হয়ে পড়ছে।",
+                supExEn: "Not Applicable",
+                supExBn: "Superlative হয় না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>গঠন:</strong> কোনো কিছু ধীরে ধীরে বাড়ছে বা কমছে বোঝাতে একই Comparative রূপ <code>and</code> দ্বারা দুবার যুক্ত হয় (যেমন: <code>better and better</code>, <code>more and more expensive</code>)।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 11,
+                title: "নিয়ম ১১: Latin Comparatives (Senior, Junior, Superior, Inferior, Prefer)",
+                badge: "University & BCS Trap Rule",
+                posFormula: "Subject + Verb + Positive (with 'to' / 'respect to') + Object",
+                compFormula: "Subject + Verb + Senior/Junior/Superior/Inferior/Prior + to + Object (than নয়!)",
+                supFormula: "❌ এগুলোর কোনো Superlative রূপ নেই।",
+                posExEn: "He is old compared to me. / I like tea more than coffee.",
+                posExBn: "সে আমার তুলনায় বয়সে বড়। / আমি কফির চেয়ে চা বেশি পছন্দ করি।",
+                compExEn: "He is senior to me. / I prefer tea to coffee.",
+                compExBn: "সে আমার চেয়ে বয়সে/পদে বড়। / আমি কফির চেয়ে চা বেশি পছন্দ করি।",
+                supExEn: "Not Applicable",
+                supExBn: "এদের আগে more বা পরে than বসে না।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>সতর্কতা:</strong> ল্যাটিন ভাষা থেকে আসা <code>Senior, Junior, Superior, Inferior, Prior, Anterior, Posterior</code> শব্দগুলো নিজেরাই Comparative।</li>
+                        <li>এদের পরে কখনোই <code>than</code> বসে না, সর্বদা <strong>to</strong> বসে। এবং এদের আগে কখনো <code>more</code> বসে না।</li>
+                        <li><strong>Prefer-এর নিয়ম:</strong> <code>Prefer + Noun + to + Noun</code> (যেমন: <em>Death is preferable to dishonour</em>)।</li>
+                    </ul>
+                `
+            },
+            {
+                id: 12,
+                title: "নিয়ম ১২: স্থান বা গোষ্ঠী নির্দেশক 'in' বনাম 'of' এবং Possessive তুলনা",
+                badge: "Precision Rule",
+                posFormula: "No other + Noun + in/of + Place/Group + Verb + as + Positive + as + Subject",
+                compFormula: "Subject + Verb + Comparative + than any other + Noun + in/of + Place/Group",
+                supFormula: "Subject + Verb + the + Superlative + Noun + in (স্থান) / of (সমজাতীয় গোষ্ঠী)",
+                posExEn: "No other river in Bangladesh is as long as the Meghna.",
+                posExBn: "বাংলাদেশে মেঘনার মতো এত দীর্ঘ নদী আর কোনোটি নেই।",
+                compExEn: "The climate of Sylhet is better than that of Dhaka.",
+                compExBn: "সিলেটের জলবায়ু ঢাকার জলবায়ুর চেয়ে ভালো।",
+                supExEn: "He is the tallest of all boys. (গোষ্ঠী: of) / Dhaka is the largest city in Bangladesh. (স্থান: in)",
+                supExBn: "সে সব ছেলেদের মধ্যে সবচেয়ে লম্বা। / ঢাকা বাংলাদেশের সবচেয়ে বড় শহর।",
+                teacherExplanation: `
+                    <ul class="space-y-2 list-disc pl-5">
+                        <li><strong>in বনাম of:</strong> নির্দিষ্ট জায়গা বা প্রতিষ্ঠানের নাম থাকলে <strong>in</strong> বসে (<code>in Bangladesh, in the class</code>), কিন্তু বহুবচন বা সমজাতীয় গোষ্ঠী বোঝালে <strong>of</strong> বসে (<code>of all boys, of the three</code>)।</li>
+                        <li><strong>Possessive তুলনা (that of / those of):</strong> সিলেটের জলবায়ুর সাথে ঢাকার তুলনা হয় না, ঢাকার <em>জলবায়ুর</em> তুলনা হয়! তাই Singular-এর ক্ষেত্রে <strong>than that of</strong> এবং Plural-এর ক্ষেত্রে <strong>than those of</strong> বসে।</li>
+                    </ul>
+                `
+            }
+        ];
+
+        /* =========================================================
+           2. COMMON MISTAKES & TRAPS DATA
+           ========================================================= */
+        const commonMistakes = [
+            {
+                title: "ভুল ১: Double Comparative বা Double Superlative ব্যবহার",
+                wrong: "He is more better than his brother. / She is the most prettiest girl.",
+                right: "He is better than his brother. / She is the prettiest girl.",
+                reason: "যেসব শব্দের সাথে ইতিমধ্যে -er বা -est যুক্ত হয়, তাদের পূর্বে কখনোই more বা most বসানো যায় না।"
+            },
+            {
+                title: "ভুল ২: তুলনায় 'other' শব্দটি বাদ দেওয়া (সবচেয়ে কমন ভুল!)",
+                wrong: "Dhaka is bigger than any city in Bangladesh.",
+                right: "Dhaka is bigger than any other city in Bangladesh.",
+                reason: "ঢাকা নিজেও বাংলাদেশের একটি শহর। 'other' না দিলে অর্থ দাঁড়ায় 'ঢাকা নিজের চেয়েও বড়'—যা অবাস্তব! তাই নিজ গোষ্ঠীর সাথে তুলনায় অবশ্যই 'other' বসাতে হবে।"
+            },
+            {
+                title: "ভুল ৩: 'Very few'-এর পর Singular Verb বসানো",
+                wrong: "Very few cricketers in the world is as famous as Shakib.",
+                right: "Very few cricketers in the world are as famous as Shakib.",
+                reason: "Very few অর্থ 'খুব কম সংখ্যক' যা সর্বদা Plural। তাই এর পরের Noun (cricketers) এবং Verb (are/were) দুটোই Plural হবে।"
+            },
+            {
+                title: "ভুল ৪: 'No other'-এর পর Plural Noun বা Plural Verb বসানো",
+                wrong: "No other boys in the class are as smart as Rafi.",
+                right: "No other boy in the class is as smart as Rafi.",
+                reason: "No other সর্বদা Singular অর্থ দেয়। তাই এর পরের Noun (boy) এবং Verb (is/was) দুটোই Singular হবে।"
+            },
+            {
+                title: "ভুল ৫: অসম বস্তুর মধ্যে তুলনা (Illogical Comparison)",
+                wrong: "The rice of Dinajpur is better than Rajshahi.",
+                right: "The rice of Dinajpur is better than that of Rajshahi.",
+                reason: "দিনাজপুরের চালের সাথে পুরো রাজশাহী শহরের তুলনা করা ভুল; তুলনা হবে রাজশাহীর চালের সাথে। তাই Singular হলে 'that of' এবং Plural হলে 'those of' বসাতে হবে।"
+            },
+            {
+                title: "ভুল ৬: Latin Adjective-এর পর 'than' বসানো",
+                wrong: "Mr. Karim is senior than Mr. Rahim.",
+                right: "Mr. Karim is senior to Mr. Rahim.",
+                reason: "Senior, Junior, Superior, Inferior, Prior, Prefer—এগুলোর পর কখনোই than বসে না, সর্বদা 'to' বসে।"
+            },
+            {
+                title: "ভুল ৭: Comparative-এর পূর্বে অকারণে 'The' বসানো",
+                wrong: "He is the wiser than you.",
+                right: "He is wiser than you. (ব্যতিক্রম: He is the wiser of the two.)",
+                reason: "সাধারণ Comparative-এর আগে 'the' বসে না। তবে 'of the two' থাকলে অথবা 'The more..., the more...' গঠনে 'the' বসে।"
+            },
+            {
+                title: "ভুল ৮: Subject ও Object Pronoun-এর Case ভুল করা",
+                wrong: "She is taller than me. (Formal Grammar-এ ভুল)",
+                right: "She is taller than I (am).",
+                reason: "Than-এর পরে মূলত একটি Clause উহ্য থাকে (than I am)। তাই আনুষ্ঠানিক ও বোর্ড পরীক্ষায় Subject Pronoun (I, he, she, we, they) ব্যবহার করাই শুদ্ধ।"
+            }
+        ];
+
+        /* =========================================================
+           3. 50 SSC & HSC BOARD QUESTIONS BANK
+           ========================================================= */
+        const boardQuestions = [
+            { id: 1, board: "Dhaka Board", target: "Positive", q: "Dhaka is the largest city in Bangladesh.", ans: "No other city in Bangladesh is as large as Dhaka.", bn: "বাংলাদেশে ঢাকার মতো এত বড় শহর আর কোনোটি নেই।", tech: "সূত্র ১: the + Superlative থাকলে শুরুতে No other + singular noun (city) + is + as + positive (large) + as + Subject বসে।" },
+            { id: 2, board: "Rajshahi Board", target: "Comparative", q: "Cox's Bazar is the longest sea beach in the world.", ans: "Cox's Bazar is longer than any other sea beach in the world.", bn: "কক্সবাজার বিশ্বের অন্য যেকোনো সমুদ্র সৈকতের চেয়ে দীর্ঘ।", tech: "সূত্র ১: the longest উঠে গিয়ে longer + than any other + singular noun (sea beach) বসেছে।" },
+            { id: 3, board: "Cumilla Board", target: "Positive", q: "Shakespeare is one of the greatest dramatists in the world.", ans: "Very few dramatists in the world are as great as Shakespeare.", bn: "বিশ্বে শেক্সপিয়রের মতো এত মহান নাট্যকার খুব কমই আছেন।", tech: "সূত্র ২: one of the থাকলে শুরুতে Very few + plural noun (dramatists) + plural verb (are) + as great as + Subject বসে।" },
+            { id: 4, board: "Jashore Board", target: "Superlative", q: "Very few metals are as precious as gold.", ans: "Gold is one of the most precious metals.", bn: "সোনা অন্যতম মূল্যবান ধাতু।", tech: "সূত্র ২ (বিপরীত): Very few থাকলে শেষের Subject (Gold) শুরুতে আসে + is + one of the + most precious + plural noun (metals)।" },
+            { id: 5, board: "Chattogram Board", target: "Comparative", q: "No other virtue is as great as truthfulness.", ans: "Truthfulness is greater than any other virtue.", bn: "সত্যবাদিতা অন্য যেকোনো গুণের চেয়ে মহৎ।", tech: "সূত্র ১: No other উঠে শেষের Truthfulness শুরুতে বসেছে + is + greater + than any other + virtue।" },
+            { id: 6, board: "Sylhet Board", target: "Positive", q: "Health is better than wealth.", ans: "Wealth is not so/as good as health.", bn: "সম্পদ স্বাস্থ্যের মতো এত ভালো নয়।", tech: "সূত্র ৪: দুটির মধ্যে তুলনা। শেষের Wealth শুরুতে + is + not + so good as + Health।" },
+            { id: 7, board: "Barishal Board", target: "Comparative", q: "A bird cannot fly as fast as an aeroplane.", ans: "An aeroplane can fly faster than a bird.", bn: "একটি উড়োজাহাজ একটি পাখির চেয়ে দ্রুত উড়তে পারে।", tech: "সূত্র ৫: না-বোধক Positive-কে হ্যাঁ-বোধক Comparative করতে শেষের An aeroplane সামনে এনে cannot-কে can করে faster than বসাতে হবে।" },
+            { id: 8, board: "Dinajpur Board", target: "Superlative", q: "The Padma is larger than any other river in Bangladesh.", ans: "The Padma is the largest river in Bangladesh.", bn: "পদ্মা বাংলাদেশের সবচেয়ে বড় নদী।", tech: "সূত্র ১: larger than any other উঠে গিয়ে the largest বসেছে।" },
+            { id: 9, board: "Mymensingh Board", target: "Positive", q: "Iron is more useful than most other metals.", ans: "Very few metals are as useful as iron.", bn: "লোহার মতো এত উপকারী ধাতু খুব কমই আছে।", tech: "সূত্র ২: than most other থাকলে শুরুতে Very few + plural noun (metals) + are + as useful as + iron।" },
+            { id: 10, board: "HSC Dhaka Board", target: "Comparative", q: "Corruption is one of the worst evils.", ans: "Corruption is worse than most other evils.", bn: "দুর্নীতি অধিকাংশ মন্দের চেয়েও খারাপ।", tech: "সূত্র ২: one of the worst এর বদলে worse + than most other + evils বসেছে।" },
+            { id: 11, board: "HSC Rajshahi Board", target: "Superlative", q: "No other gift is as fine as a book.", ans: "A book is the finest gift.", bn: "বই সবচেয়ে চমৎকার উপহার।", tech: "সূত্র ১: No other উঠে শেষের A book শুরুতে + is + the finest + gift।" },
+            { id: 12, board: "HSC Cumilla Board", target: "Positive", q: "He is not less strong than you.", ans: "He is as strong as you.", bn: "সে তোমার মতোই শক্তিশালী।", tech: "সূত্র ৭: not less...than থাকলে সাবজেক্ট না বদলিয়ে শুধু as...as বসালেই Positive হয়।" },
+            { id: 13, board: "HSC Jashore Board", target: "Comparative", q: "Very few countries in the world are as small as Vatican City.", ans: "Vatican City is smaller than most other countries in the world.", bn: "ভ্যাটিকান সিটি বিশ্বের অধিকাংশ দেশের চেয়ে ছোট।", tech: "সূত্র ২: Very few উঠে শেষের Vatican City সামনে + is + smaller than most other + countries in the world।" },
+            { id: 14, board: "SSC Board Exam", target: "Positive", q: "Akbar was one of the greatest kings of India.", ans: "Very few kings of India were as great as Akbar.", bn: "ভারতের খুব কম রাজাই আকবরের মতো এত মহান ছিলেন।", tech: "সূত্র ২ (Past Tense): বাক্যে was থাকায় Very few kings-এর পর Plural Past Verb 'were' বসেছে।" },
+            { id: 15, board: "SSC Board Exam", target: "Superlative", q: "Courage is greater than all other virtues.", ans: "Courage is the greatest of all virtues.", bn: "সাহস সব গুণের মধ্যে শ্রেষ্ঠ।", tech: "সূত্র ৩: than all other থাকলে Superlative-এ the greatest + of all + plural noun (virtues) বসে।" },
+            { id: 16, board: "HSC Board Exam", target: "Comparative", q: "No other problem in Bangladesh is as serious as illiteracy.", ans: "Illiteracy is more serious than any other problem in Bangladesh.", bn: "নিরক্ষরতা বাংলাদেশের অন্য যেকোনো সমস্যার চেয়ে গুরুতর।", tech: "সূত্র ১: serious বহু-syllable শব্দ হওয়ায় Comparative-এ more serious + than any other বসেছে।" },
+            { id: 17, board: "SSC Board Exam", target: "Positive", q: "Gold is more precious than any other metal.", ans: "No other metal is as precious as gold.", bn: "সোনার মতো এত মূল্যবান ধাতু আর কোনোটি নেই।", tech: "সূত্র ১: than any other থাকায় শুরুতে No other + metal + is + as precious as + gold।" },
+            { id: 18, board: "HSC Board Exam", target: "Comparative", q: "Prevention is better than cure.", ans: "Cure is not so/as good as prevention. (Note: Question is already Comparative; Positive form shown)", bn: "প্রতিকার প্রতিরোধের মতো এত ভালো নয়।", tech: "সূত্র ৪: দুটি বিষয়ের তুলনায় শেষের Cure সামনে এনে not so good as + prevention বসাতে হবে।" },
+            { id: 19, board: "SSC Board Exam", target: "Positive", q: "Mount Everest is the highest peak in the world.", ans: "No other peak in the world is as high as Mount Everest.", bn: "বিশ্বে মাউন্ট এভারেস্টের মতো এত উঁচু শৃঙ্গ আর কোনোটি নেই।", tech: "সূত্র ১: the highest উঠে গিয়ে শুরুতে No other peak in the world + is + as high as + Mount Everest।" },
+            { id: 20, board: "HSC Board Exam", target: "Superlative", q: "Very few insects are as busy as the bee.", ans: "The bee is one of the busiest insects.", bn: "মৌমাছি অন্যতম ব্যস্ত পতঙ্গ।", tech: "সূত্র ২: Very few উঠে The bee শুরুতে + is + one of the + busiest (busy থেকে y উঠে iest) + insects।" },
+            { id: 21, board: "SSC Board Exam", target: "Comparative", q: "Rose is the finest of all flowers.", ans: "Rose is finer than all other flowers. (or: finer than any other flower)", bn: "গোলাপ সব ফুলের চেয়ে চমৎকার।", tech: "সূত্র ৩: the finest of all থাকলে Comparative-এ finer than all other + plural noun (flowers) বসে।" },
+            { id: 22, board: "HSC Board Exam", target: "Positive", q: "Terrorism is more corrosive than most other problems.", ans: "Very few problems are as corrosive as terrorism.", bn: "সন্ত্রাসবাদের মতো এত ক্ষতিকর সমস্যা খুব কমই আছে।", tech: "সূত্র ২: than most other থাকায় Very few + problems + are + as corrosive as + terrorism।" },
+            { id: 23, board: "SSC Board Exam", target: "Comparative", q: "A bee is as busy as an ant.", ans: "An ant is not busier than a bee.", bn: "একটি পিঁপড়া একটি মৌমাছির চেয়ে বেশি ব্যস্ত নয়।", tech: "সূত্র ৬: সমান গুণ (as...as) থাকলে শেষের An ant সামনে এনে not + busier + than + a bee বসাতে হয়।" },
+            { id: 24, board: "HSC Board Exam", target: "Superlative", q: "No other man in the village was as wise as he.", ans: "He was the wisest man in the village.", bn: "তিনি গ্রামের সবচেয়ে জ্ঞানী ব্যক্তি ছিলেন।", tech: "সূত্র ১ (Past Tense): No other উঠে শেষের He শুরুতে + was + the wisest + man in the village।" },
+            { id: 25, board: "SSC Board Exam", target: "Positive", q: "This knife is sharper than that one.", ans: "That knife/one is not so/as sharp as this one.", bn: "ওই ছুরিটি এটির মতো এত ধারালো নয়।", tech: "সূত্র ৪: দুটি ছুরির তুলনা। শেষের That knife সামনে এনে is not so sharp as + this one।" },
+            { id: 26, board: "HSC Board Exam", target: "Comparative", q: "Haji Mohammad Mohsin was one of the kindest men in the world.", ans: "Haji Mohammad Mohsin was kinder than most other men in the world.", bn: "হাজী মুহাম্মদ মহসীন বিশ্বের অধিকাংশ মানুষের চেয়ে দয়ালু ছিলেন।", tech: "সূত্র ২: one of the kindest এর বদলে kinder + than most other + men বসেছে।" },
+            { id: 27, board: "SSC Board Exam", target: "Positive", q: "Computer is one of the greatest inventions of modern science.", ans: "Very few inventions of modern science are as great as computer.", bn: "আধুনিক বিজ্ঞানের খুব কম আবিষ্কারই কম্পিউটারের মতো এত মহান।", tech: "সূত্র ২: one of the থাকায় Very few + inventions of modern science + are + as great as + computer।" },
+            { id: 28, board: "HSC Board Exam", target: "Superlative", q: "Anger is worse than any other vice.", ans: "Anger is the worst vice.", bn: "রাগ সবচেয়ে খারাপ বদগুণ।", tech: "সূত্র ১: worse than any other উঠে গিয়ে the worst বসেছে (bad-এর Superlative রূপ worst)।" },
+            { id: 29, board: "SSC Board Exam", target: "Comparative", q: "No other student in the class is as brilliant as Rashed.", ans: "Rashed is more brilliant than any other student in the class.", bn: "রাশেদ ক্লাসের অন্য যেকোনো ছাত্রের চেয়ে বেশি মেধাবী।", tech: "সূত্র ১: শেষের Rashed সামনে + is + more brilliant + than any other + student in the class।" },
+            { id: 30, board: "HSC Board Exam", target: "Positive", q: "Bangladesh is greener than many other countries.", ans: "Very few countries are as green as Bangladesh.", bn: "বাংলাদেশের মতো এত সবুজ দেশ খুব কমই আছে।", tech: "সূত্র ২: than many other এবং than most other একই নিয়ম। তাই Very few countries are as green as Bangladesh।" },
+            { id: 31, board: "SSC Board Exam", target: "Comparative", q: "He is as ferocious as a tiger.", ans: "A tiger is not more ferocious than he (is).", bn: "একটি বাঘ তার চেয়ে বেশি হিংস্র নয়।", tech: "সূত্র ৬: শেষের A tiger সামনে + is not + more ferocious + than + he।" },
+            { id: 32, board: "HSC Board Exam", target: "Superlative", q: "Very few poets in Bangladesh are as famous as Jasimuddin.", ans: "Jasimuddin is one of the most famous poets in Bangladesh.", bn: "জসীমউদ্দীন বাংলাদেশের অন্যতম বিখ্যাত কবি।", tech: "সূত্র ২: Very few উঠে শেষের Jasimuddin শুরুতে + is + one of the + most famous + poets in Bangladesh।" },
+            { id: 33, board: "SSC Board Exam", target: "Positive", q: "The cow is more useful than most other domestic animals.", ans: "Very few domestic animals are as useful as the cow.", bn: "গরুর মতো এত উপকারী গৃহপালিত পশু খুব কমই আছে।", tech: "সূত্র ২: than most other থাকায় Very few + domestic animals + are + as useful as + the cow।" },
+            { id: 34, board: "HSC Board Exam", target: "Comparative", q: "Sher-e-Bangla was one of the greatest leaders of our country.", ans: "Sher-e-Bangla was greater than most other leaders of our country.", bn: "শেরে বাংলা আমাদের দেশের অধিকাংশ নেতার চেয়ে মহান ছিলেন।", tech: "সূত্র ২: one of the greatest উঠে গিয়ে greater + than most other + leaders বসেছে।" },
+            { id: 35, board: "SSC Board Exam", target: "Positive", q: "Day-to-day life in Dhaka is more expensive than in most other cities.", ans: "Very few cities have as expensive a day-to-day life as Dhaka. (or: In very few cities is day-to-day life as expensive as in Dhaka.)", bn: "খুব কম শহরেই ঢাকার মতো এত ব্যয়বহুল দৈনন্দিন জীবন রয়েছে।", tech: "সূত্র ২ (Prepositional Phrase): in most other cities থাকায় শুরুতে In very few cities এনে গঠন ঠিক রাখা হয়েছে।" },
+            { id: 36, board: "HSC Board Exam", target: "Superlative", q: "No other virtue in a man is as great as truthfulness.", ans: "Truthfulness is the greatest virtue in a man.", bn: "মানুষের মধ্যে সত্যবাদিতা সবচেয়ে বড় গুণ।", tech: "সূত্র ১: No other উঠে Truthfulness শুরুতে + is + the greatest + virtue in a man।" },
+            { id: 37, board: "SSC Board Exam", target: "Comparative", q: "I am not as tall as he.", ans: "He is taller than I (am).", bn: "সে আমার চেয়ে বেশি লম্বা।", tech: "সূত্র ৫: না-বোধক Positive-কে হ্যাঁ-বোধক Comparative করতে শেষের He সামনে এনে is + taller + than + I বসাতে হবে।" },
+            { id: 38, board: "HSC Board Exam", target: "Positive", q: "Internet is the latest invention in communication.", ans: "No other invention in communication is as late as internet.", bn: "যোগাযোগ ক্ষেত্রে ইন্টারনেটের মতো এত সাম্প্রতিক আবিষ্কার আর কোনোটি নেই।", tech: "সূত্র ১: latest-এর Positive রূপ late। শুরুতে No other invention in communication + is + as late as + internet।" },
+            { id: 39, board: "SSC Board Exam", target: "Comparative", q: "Very few boys in the orphanage are as small as Jerry.", ans: "Jerry is smaller than most other boys in the orphanage.", bn: "জেরি এতিমখানার অধিকাংশ ছেলের চেয়ে ছোট।", tech: "সূত্র ২: Very few উঠে Jerry শুরুতে + is + smaller + than most other + boys in the orphanage।" },
+            { id: 40, board: "HSC Board Exam", target: "Superlative", q: "Pahela Baishakh is celebrated more gorgeously than any other festival.", ans: "Pahela Baishakh is celebrated the most gorgeously of all festivals.", bn: "পহেলা বৈশাখ সব উৎসবের মধ্যে সবচেয়ে জাঁকজমকপূর্ণভাবে উদযাপিত হয়।", tech: "Adverb Superlative: gorgeously একটি Adverb; এর Superlative রূপ the most gorgeously + of all festivals।" },
+            { id: 41, board: "SSC Board Exam", target: "Positive", q: "Milk is more nutritious than any other food.", ans: "No other food is as nutritious as milk.", bn: "দুধের মতো এত পুষ্টিকর খাবার আর কোনোটি নেই।", tech: "সূত্র ১: than any other থাকায় No other + food + is + as nutritious as + milk।" },
+            { id: 42, board: "HSC Board Exam", target: "Comparative", q: "No other person is as hated as a corrupted man.", ans: "A corrupted man is more hated than any other person.", bn: "একজন দুর্নীতিগ্রস্ত ব্যক্তি অন্য যেকোনো ব্যক্তির চেয়ে বেশি ঘৃণিত।", tech: "সূত্র ১: শেষের A corrupted man সামনে + is + more hated + than any other + person।" },
+            { id: 43, board: "SSC Board Exam", target: "Positive", q: "He is the noblest person I have ever seen.", ans: "No other person I have ever seen is as noble as he.", bn: "আমি যত মানুষ দেখেছি তাদের মধ্যে তার মতো এত মহৎ কেউ নেই।", tech: "সূত্র ১ (Relative Clause): the noblest উঠে গিয়ে No other person I have ever seen + is + as noble as + he।" },
+            { id: 44, board: "HSC Board Exam", target: "Comparative", q: "Bangladesh is one of the smallest countries in the world.", ans: "Bangladesh is smaller than most other countries in the world.", bn: "বাংলাদেশ বিশ্বের অধিকাংশ দেশের চেয়ে ছোট।", tech: "সূত্র ২: one of the smallest উঠে গিয়ে smaller + than most other + countries in the world।" },
+            { id: 45, board: "SSC Board Exam", target: "Superlative", q: "Very few rivers in Bangladesh are as mighty as the Jamuna.", ans: "The Jamuna is one of the mightiest rivers in Bangladesh.", bn: "যমুনা বাংলাদেশের অন্যতম প্রমত্তা নদী।", tech: "সূত্র ২: mighty-এর Superlative রূপ mightiest। শুরুতে The Jamuna + is + one of the mightiest + rivers in Bangladesh।" },
+            { id: 46, board: "HSC Board Exam", target: "Positive", q: "A tiger is stronger than a lion.", ans: "A lion is not so/as strong as a tiger.", bn: "একটি সিংহ একটি বাঘের মতো এত শক্তিশালী নয়।", tech: "সূত্র ৪: দুটির তুলনায় শেষের A lion সামনে এনে is not so strong as + a tiger।" },
+            { id: 47, board: "SSC Board Exam", target: "Comparative", q: "The Taj Mahal is one of the most wonderful buildings in the world.", ans: "The Taj Mahal is more wonderful than most other buildings in the world.", bn: "তাজমহল বিশ্বের অধিকাংশ ভবনের চেয়ে বেশি আশ্চর্যজনক।", tech: "সূত্র ২: one of the most wonderful উঠে গিয়ে more wonderful + than most other + buildings।" },
+            { id: 48, board: "HSC Board Exam", target: "Positive", q: "Nothing is as bad as smoking.", ans: "Smoking is the worst thing. (Question is Positive; Superlative shown) / Comparative: Smoking is worse than anything else.", bn: "ধূমপান সবচেয়ে খারাপ জিনিস / অন্য যেকোনো কিছুর চেয়ে খারাপ।", tech: "ব্যতিক্রম: Nothing থাকলে Comparative-এ 'than anything else' এবং Superlative-এ 'the worst thing' হয়।" },
+            { id: 49, board: "SSC Board Exam", target: "Superlative", q: "Chattogram is bigger than any other seaport in Bangladesh.", ans: "Chattogram is the biggest seaport in Bangladesh.", bn: "চট্টগ্রাম বাংলাদেশের সবচেয়ে বড় সমুদ্রবন্দর।", tech: "সূত্র ১: bigger than any other উঠে গিয়ে the biggest + seaport in Bangladesh বসেছে।" },
+            { id: 50, board: "HSC Board Exam", target: "Positive", q: "Education is the most potent weapon to change the world.", ans: "No other weapon to change the world is as potent as education.", bn: "বিশ্বকে পরিবর্তন করার জন্য শিক্ষার মতো এত শক্তিশালী অস্ত্র আর কোনোটি নেই।", tech: "সূত্র ১: the most potent উঠে গিয়ে No other weapon to change the world + is + as potent as + education।" }
+        ];
+
+        /* =========================================================
+           4. RENDER MASTER 3-COLUMN RULES TABLE
+           ========================================================= */
+        const ruleStates = {}; // 0: closed, 1: example shown, 2: teacher explanation shown
+
+        function renderMasterRules() {
+            const container = document.getElementById('master-rules-container');
+            container.innerHTML = masterRules.map(rule => {
+                ruleStates[rule.id] = 0;
+                return `
+                <div class="card-3d p-5 sm:p-7 overflow-hidden" id="rule-card-${rule.id}">
+                    <!-- Rule Header -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b" style="border-color: var(--border-color);">
+                        <h3 class="text-lg sm:text-2xl font-bold" style="color: var(--text-primary);">${rule.title}</h3>
+                        <span class="text-xs font-en font-bold px-3 py-1 rounded-full" style="background: var(--bg-elevated); color: var(--accent-2); border: 1px solid var(--border-color);">
+                            ${rule.badge}
+                        </span>
+                    </div>
+
+                    <!-- 3-Column Formula Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+                        <!-- Column 1: Positive Formula -->
+                        <div class="p-4 rounded-2xl border-l-4 border-emerald-400" style="background: var(--bg-elevated);">
+                            <span class="badge-pos px-2.5 py-0.5 rounded-md font-en text-xs font-bold inline-block mb-2">POSITIVE FORMULA</span>
+                            <p class="font-en text-sm sm:text-base font-semibold leading-relaxed">${rule.posFormula}</p>
+                        </div>
+
+                        <!-- Column 2: Comparative Formula -->
+                        <div class="p-4 rounded-2xl border-l-4 border-sky-400" style="background: var(--bg-elevated);">
+                            <span class="badge-comp px-2.5 py-0.5 rounded-md font-en text-xs font-bold inline-block mb-2">COMPARATIVE FORMULA</span>
+                            <p class="font-en text-sm sm:text-base font-semibold leading-relaxed">${rule.compFormula}</p>
+                        </div>
+
+                        <!-- Column 3: Superlative Formula -->
+                        <div class="p-4 rounded-2xl border-l-4 border-rose-400" style="background: var(--bg-elevated);">
+                            <span class="badge-sup px-2.5 py-0.5 rounded-md font-en text-xs font-bold inline-block mb-2">SUPERLATIVE FORMULA</span>
+                            <p class="font-en text-sm sm:text-base font-semibold leading-relaxed">${rule.supFormula}</p>
+                        </div>
+                    </div>
+
+                    <!-- Interactive 2-Stage Click Trigger Button -->
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <button onclick="cycleRuleStage(${rule.id})" id="rule-btn-${rule.id}" class="btn-3d btn-3d-primary px-5 py-2.5 text-sm sm:text-base">
+                            <i class="fa-solid fa-hand-pointer"></i>
+                            <span>১ম ক্লিক: বাংলাসহ উদাহরণ দেখুন</span>
+                        </button>
+                        <span id="rule-stage-indicator-${rule.id}" class="text-xs font-semibold" style="color: var(--text-muted);">
+                            ধাপ ০/২ (সূত্র প্রদর্শিত)
+                        </span>
+                    </div>
+
+                    <!-- Stage 1 Panel: Bilingual Examples -->
+                    <div id="rule-ex-${rule.id}" class="reveal-panel mt-5 pt-5 border-t" style="border-color: var(--border-color);">
+                        <h4 class="text-sm font-bold uppercase tracking-wider mb-3 text-cyan-400">
+                            <i class="fa-solid fa-language mr-1.5"></i> উদাহরণ ও বাংলা অনুবাদ (৩টি রূপ একসাথে):
+                        </h4>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <div class="p-4 rounded-xl border" style="background: var(--bg-main); border-color: rgba(16, 185, 129, 0.35);">
+                                <span class="text-xs font-en font-bold text-emerald-400 block mb-1">POSITIVE:</span>
+                                <p class="font-en font-semibold text-sm sm:text-base">${rule.posExEn}</p>
+                                <p class="text-sm mt-1.5 pt-1.5 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">বাংলা: ${rule.posExBn}</p>
+                            </div>
+                            <div class="p-4 rounded-xl border" style="background: var(--bg-main); border-color: rgba(56, 189, 248, 0.35);">
+                                <span class="text-xs font-en font-bold text-sky-400 block mb-1">COMPARATIVE:</span>
+                                <p class="font-en font-semibold text-sm sm:text-base">${rule.compExEn}</p>
+                                <p class="text-sm mt-1.5 pt-1.5 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">বাংলা: ${rule.compExBn}</p>
+                            </div>
+                            <div class="p-4 rounded-xl border" style="background: var(--bg-main); border-color: rgba(244, 63, 94, 0.35);">
+                                <span class="text-xs font-en font-bold text-rose-400 block mb-1">SUPERLATIVE:</span>
+                                <p class="font-en font-semibold text-sm sm:text-base">${rule.supExEn}</p>
+                                <p class="text-sm mt-1.5 pt-1.5 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">বাংলা: ${rule.supExBn}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2 Panel: Teacher's Detailed Explanation -->
+                    <div id="rule-tech-${rule.id}" class="reveal-panel mt-4 p-5 rounded-2xl border-2" style="background: var(--bg-elevated); border-color: var(--accent-1);">
+                        <div class="flex items-center gap-2.5 mb-3">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background: var(--accent-1);">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <h4 class="font-bold text-base sm:text-lg" style="color: var(--accent-2);">
+                                টিচারের বিস্তারিত ক্লাস নোট (কীভাবে কোথায় কী পরিবর্তন হলো):
+                            </h4>
+                        </div>
+                        <div class="text-sm sm:text-base leading-relaxed" style="color: var(--text-primary);">
+                            ${rule.teacherExplanation}
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function cycleRuleStage(id) {
+            const current = ruleStates[id] || 0;
+            const next = (current + 1) % 3;
+            setRuleStage(id, next);
+        }
+
+        function setRuleStage(id, stage) {
+            ruleStates[id] = stage;
+            const exPanel = document.getElementById(`rule-ex-${id}`);
+            const techPanel = document.getElementById(`rule-tech-${id}`);
+            const btn = document.getElementById(`rule-btn-${id}`);
+            const indicator = document.getElementById(`rule-stage-indicator-${id}`);
+
+            if (stage === 0) {
+                exPanel.classList.remove('active');
+                techPanel.classList.remove('active');
+                btn.innerHTML = `<i class="fa-solid fa-hand-pointer"></i><span>১ম ক্লিক: বাংলাসহ উদাহরণ দেখুন</span>`;
+                btn.className = "btn-3d btn-3d-primary px-5 py-2.5 text-sm sm:text-base";
+                indicator.textContent = "ধাপ ০/২ (সূত্র প্রদর্শিত)";
+            } else if (stage === 1) {
+                exPanel.classList.add('active');
+                techPanel.classList.remove('active');
+                btn.innerHTML = `<i class="fa-solid fa-chalkboard-user"></i><span>২য় ক্লিক: টিচারের মতো বিস্তারিত ব্যাখ্যা দেখুন</span>`;
+                btn.className = "btn-3d btn-3d-cyan px-5 py-2.5 text-sm sm:text-base";
+                indicator.textContent = "ধাপ ১/২ (উদাহরণ ও বাংলা অর্থ)";
+            } else if (stage === 2) {
+                exPanel.classList.add('active');
+                techPanel.classList.add('active');
+                btn.innerHTML = `<i class="fa-solid fa-rotate-left"></i><span>আবার ক্লিক করে গুটিয়ে রাখুন</span>`;
+                btn.className = "btn-3d px-5 py-2.5 text-sm sm:text-base";
+                indicator.textContent = "ধাপ ২/২ (সম্পূর্ণ ব্যাখ্যা উন্মুক্ত)";
+            }
+        }
+
+        function expandAllRules(targetStage) {
+            masterRules.forEach(r => setRuleStage(r.id, targetStage));
+        }
+
+        /* =========================================================
+           5. RENDER COMMON MISTAKES
+           ========================================================= */
+        function renderMistakes() {
+            const container = document.getElementById('mistakes-container');
+            container.innerHTML = commonMistakes.map(item => `
+                <div class="card-3d p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 text-rose-400">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <span>${item.title}</span>
+                        </h3>
+                        <div class="space-y-3 mb-4 font-en text-sm">
+                            <div class="p-3 rounded-xl border border-rose-500/40 bg-rose-500/10">
+                                <span class="font-bold text-rose-400 block text-xs mb-0.5">❌ INCORRECT (ভুল):</span>
+                                <p class="line-through opacity-90">${item.wrong}</p>
+                            </div>
+                            <div class="p-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10">
+                                <span class="font-bold text-emerald-400 block text-xs mb-0.5">✅ CORRECT (সঠিক):</span>
+                                <p class="font-semibold">${item.right}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm pt-3 border-t" style="border-color: var(--border-color); color: var(--text-secondary);">
+                        <strong>কেন ভুল?</strong> ${item.reason}
+                    </p>
+                </div>
+            `).join('');
+        }
+
+        /* =========================================================
+           6. RENDER 50 SSC & HSC BOARD QUESTIONS
+           ========================================================= */
+        const questionStates = {};
+        let activeFilter = 'all';
+        let activeSearch = '';
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            const filtered = boardQuestions.filter(item => {
+                const matchesFilter = activeFilter === 'all' || item.target === activeFilter;
+                const query = activeSearch.toLowerCase();
+                const matchesSearch = !query ||
+                    item.q.toLowerCase().includes(query) ||
+                    item.ans.toLowerCase().includes(query) ||
+                    item.bn.includes(query) ||
+                    item.board.toLowerCase().includes(query);
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full card-3d p-10 text-center">
+                        <i class="fa-solid fa-magnifying-glass text-3xl mb-3 text-cyan-400"></i>
+                        <p class="text-lg font-bold">কোনো প্রশ্ন খুঁজে পাওয়া যায়নি!</p>
+                        <p class="text-sm mt-1" style="color: var(--text-muted);">অন্য কোনো শব্দ দিয়ে চেষ্টা করুন অথবা ফিল্টার পরিবর্তন করুন।</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => {
+                const state = questionStates[item.id] || 0;
+                const badgeClass = item.target === 'Positive' ? 'badge-pos' : (item.target === 'Comparative' ? 'badge-comp' : 'badge-sup');
+
+                return `
+                <div class="card-3d p-5 sm:p-6 flex flex-col justify-between" id="q-card-${item.id}">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="font-en text-xs font-extrabold px-2.5 py-1 rounded-lg" style="background: var(--bg-elevated); color: var(--text-muted);">
+                                #${String(item.id).padStart(2, '0')} • ${item.board}
+                            </span>
+                            <span class="${badgeClass} font-en text-xs font-bold px-3 py-1 rounded-full">
+                                Make ${item.target}
+                            </span>
+                        </div>
+
+                        <p class="font-en text-base sm:text-lg font-bold mb-4 leading-snug">
+                            "${item.q}"
+                        </p>
+                    </div>
+
+                    <div>
+                        <!-- Stage 1: Answer + Bengali Meaning -->
+                        <div id="q-ans-${item.id}" class="reveal-panel ${state >= 1 ? 'active' : ''} mb-3 p-4 rounded-xl border border-emerald-500/40" style="background: var(--bg-elevated);">
+                            <span class="text-xs font-en font-bold text-emerald-400 block mb-1">✅ ANSWER & বাংলা অর্থ:</span>
+                            <p class="font-en font-bold text-sm sm:text-base text-emerald-300">${item.ans}</p>
+                            <p class="text-sm mt-1.5" style="color: var(--text-secondary);"><strong>বাংলা অর্থ:</strong> ${item.bn}</p>
+                        </div>
+
+                        <!-- Stage 2: Technique & Step-by-Step Explanation -->
+                        <div id="q-tech-${item.id}" class="reveal-panel ${state >= 2 ? 'active' : ''} mb-4 p-4 rounded-xl border" style="background: var(--bg-main); border-color: var(--accent-2);">
+                            <span class="text-xs font-bold text-cyan-400 block mb-1">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> কীভাবে কী হলো (টেকনিক ও ব্যাখ্যা):
+                            </span>
+                            <p class="text-sm leading-relaxed" style="color: var(--text-primary);">${item.tech}</p>
+                        </div>
+
+                        <!-- Interactive Button -->
+                        <button onclick="cycleQuestionStage(${item.id})" id="q-btn-${item.id}" class="btn-3d ${state === 0 ? 'btn-3d-primary' : (state === 1 ? 'btn-3d-cyan' : '')} w-full py-2.5 px-4 text-sm">
+                            ${state === 0
+                                ? '<i class="fa-solid fa-eye"></i><span>১ম ক্লিক: উত্তর ও বাংলা অর্থ দেখুন</span>'
+                                : (state === 1
+                                    ? '<i class="fa-solid fa-lightbulb"></i><span>২য় ক্লিক: টেকনিক ও ব্যাখ্যা দেখুন</span>'
+                                    : '<i class="fa-solid fa-rotate-left"></i><span>উত্তর লুকান</span>')
+                            }
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function cycleQuestionStage(id) {
+            const current = questionStates[id] || 0;
+            questionStates[id] = (current + 1) % 3;
+            renderQuestions();
+        }
+
+        function filterQuestions(target) {
+            activeFilter = target;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === target) {
+                    btn.classList.add('btn-3d-primary');
+                } else {
+                    btn.classList.remove('btn-3d-primary');
+                }
+            });
+            renderQuestions();
+        }
+
+        function searchQuestions(val) {
+            activeSearch = val.trim();
+            renderQuestions();
+        }
+
+        /* =========================================================
+           7. THEME SWITCHER & DRAWER LOGIC
+           ========================================================= */
+        function setTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            try {
+                localStorage.setItem('dcm-theme', themeName);
+            } catch (e) {}
+        }
+
+        function toggleDrawer(forceState) {
+            const drawer = document.getElementById('nav-drawer');
+            const backdrop = document.getElementById('drawer-backdrop');
+            const btn = document.getElementById('hamburger-btn');
+            const isOpen = typeof forceState === 'boolean' ? forceState : !drawer.classList.contains('drawer-open');
+
+            if (isOpen) {
+                drawer.classList.add('drawer-open');
+                backdrop.classList.add('backdrop-open');
+                btn.classList.add('menu-open');
+            } else {
+                drawer.classList.remove('drawer-open');
+                backdrop.classList.remove('backdrop-open');
+                btn.classList.remove('menu-open');
+            }
+        }
+
+        /* =========================================================
+           8. SMART AUTO-HIDE TOP RIBBON ON SCROLL
+           ========================================================= */
+        let lastScrollY = window.scrollY;
+        const topRibbon = document.getElementById('top-ribbon');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY <= 60) {
+                topRibbon.classList.remove('ribbon-hidden');
+            } else if (currentScrollY > lastScrollY + 8) {
+                // Scrolling down -> hide smoothly
+                topRibbon.classList.add('ribbon-hidden');
+            } else if (currentScrollY < lastScrollY - 5) {
+                // Scrolling up slightly -> reveal immediately
+                topRibbon.classList.remove('ribbon-hidden');
+            }
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+
+        /* =========================================================
+           9. SMOOTH LASER POINTER FOLLOWER
+           ========================================================= */
+        const laserDot = document.getElementById('laser-dot');
+        const laserRing = document.getElementById('laser-ring');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+        let laserEnabled = true;
+        let lastParticleTime = 0;
+
+        function updatePointerCoords(x, y) {
+            mouseX = x;
+            mouseY = y;
+            if (!laserEnabled) return;
+
+            laserDot.style.left = `${x}px`;
+            laserDot.style.top = `${y}px`;
+
+            const now = Date.now();
+            if (now - lastParticleTime > 38) {
+                lastParticleTime = now;
+                const p = document.createElement('div');
+                p.className = 'laser-particle';
+                p.style.left = `${x}px`;
+                p.style.top = `${y}px`;
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 550);
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => updatePointerCoords(e.clientX, e.clientY), { passive: true });
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) {
+                updatePointerCoords(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        function animateLaserRing() {
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
+            laserRing.style.left = `${ringX}px`;
+            laserRing.style.top = `${ringY}px`;
+            requestAnimationFrame(animateLaserRing);
+        }
+
+        function toggleLaser() {
+            laserEnabled = !laserEnabled;
+            document.body.classList.toggle('laser-disabled', !laserEnabled);
+            const btn = document.getElementById('laser-toggle-btn');
+            btn.style.opacity = laserEnabled ? '1' : '0.6';
+        }
+
+        /* =========================================================
+           10. INITIALIZE APP ON LOAD
+           ========================================================= */
+        window.onload = function () {
+            try {
+                const savedTheme = localStorage.getItem('dcm-theme');
+                if (savedTheme) setTheme(savedTheme);
+            } catch (e) {}
+
+            renderMasterRules();
+            renderMistakes();
+            renderQuestions();
+            animateLaserRing();
+        };
+    </script>
+</body>
+</html>
