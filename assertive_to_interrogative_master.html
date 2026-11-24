@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assertive to Interrogative — সম্পূর্ণ ৩০টি নিয়ম ও ৫০টি বোর্ড অনুশীলনী</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #060913;
+      --bg-surface: rgba(15, 23, 42, 0.86);
+      --bg-card: linear-gradient(145deg, rgba(17, 25, 45, 0.94), rgba(10, 15, 29, 0.96));
+      --bg-subpanel: rgba(8, 13, 26, 0.72);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(148, 163, 184, 0.18);
+      --accent-cyan: #22d3ee;
+      --accent-emerald: #10b981;
+      --accent-purple: #a855f7;
+      --card-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.65);
+    }
+
+    body.theme-dark {
+      --bg-main: #0b0f19;
+      --bg-surface: rgba(20, 27, 45, 0.92);
+      --bg-card: linear-gradient(145deg, #131b2e, #0f1626);
+      --bg-subpanel: rgba(9, 13, 24, 0.8);
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(148, 163, 184, 0.2);
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    body.theme-white {
+      --bg-main: #f1f5f9;
+      --bg-surface: rgba(255, 255, 255, 0.95);
+      --bg-card: linear-gradient(145deg, #ffffff, #f8fafc);
+      --bg-subpanel: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-subtle: rgba(15, 23, 42, 0.12);
+      --card-shadow: 0 10px 28px -6px rgba(15, 23, 42, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Tiro Bangla', 'Inter', sans-serif;
+      line-height: 1.65;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      overflow-x: hidden;
+    }
+
+    .font-en {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    .font-bn {
+      font-family: 'Tiro Bangla', serif;
+    }
+
+    /* Ambient Background Glow for Real RGB */
+    body.theme-rgb::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.11), transparent 42%),
+        radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.11), transparent 42%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.09), transparent 45%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Animated RGB & Laser Border Utilities */
+    @keyframes rgbShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes laserSweep {
+      0% { transform: translateX(-120%) skewX(-20deg); }
+      100% { transform: translateX(260%) skewX(-20deg); }
+    }
+
+    .rgb-ring-card {
+      position: relative;
+      border-radius: 1.15rem;
+      background: var(--bg-card);
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+      overflow: hidden;
+    }
+
+    body.theme-rgb .rgb-ring-card {
+      border: 1px solid transparent;
+      background-image: var(--bg-card), linear-gradient(125deg, #f43f5e, #a855f7, #06b6d4, #10b981, #f59e0b, #f43f5e);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      background-size: 100% 100%, 300% 300%;
+      animation: rgbShift 9s ease infinite;
+    }
+
+    body.theme-dark .rgb-ring-card {
+      border: 1px solid rgba(56, 189, 248, 0.26);
+    }
+
+    body.theme-white .rgb-ring-card {
+      border: 1px solid rgba(14, 165, 233, 0.25);
+    }
+
+    .rgb-ring-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Laser Beam Effect when Laser Mode is ON */
+    body.laser-on .laser-target {
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.laser-on .laser-target::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 38%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(34, 211, 238, 0.14),
+        rgba(244, 63, 94, 0.12),
+        transparent
+      );
+      animation: laserSweep 4.2s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    /* 3D Tactile Elevating Buttons */
+    .btn-3d {
+      position: relative;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.18s ease, filter 0.18s ease;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35), 0 8px 18px rgba(0, 0, 0, 0.25);
+      user-select: none;
+    }
+
+    body.theme-white .btn-3d {
+      box-shadow: 0 3px 0 rgba(15, 23, 42, 0.15), 0 6px 14px rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-3d:hover {
+      transform: translateY(-2.5px);
+      filter: brightness(1.07);
+      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.38), 0 12px 24px rgba(6, 182, 212, 0.24);
+    }
+
+    .btn-3d:active {
+      transform: translateY(1.5px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Active RGB pill button */
+    .btn-rgb-pill {
+      background: linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4, #10b981);
+      background-size: 250% 250%;
+      animation: rgbShift 5s ease infinite;
+      color: #ffffff;
+    }
+
+    /* Hero Gradient Subtitle */
+    .hero-gradient-text {
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #e879f9, #2dd4bf);
+      background-size: 220% 220%;
+      animation: rgbShift 7s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Reveal Animation for Step Panels */
+    @keyframes stepFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-reveal {
+      animation: stepFadeIn 0.26s ease-out forwards;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.2);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.35);
+      border-radius: 9999px;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      header, .no-print {
+        display: none !important;
+      }
+      .rgb-ring-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+        margin-bottom: 12px !important;
+      }
+      .step-panel-content {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body class="theme-rgb laser-on min-h-screen flex flex-col">
+
+  <!-- Sticky Top Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl border-b transition-colors duration-300"
+          style="background: var(--bg-surface); border-color: var(--border-subtle);">
+    <div class="max-w-5xl mx-auto px-3 sm:px-6 py-2.5">
+      <!-- Top Brand Row -->
+      <div class="flex items-center justify-between gap-2 mb-2.5">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center font-en font-extrabold text-white text-sm tracking-tight shadow-lg shrink-0"
+               style="background: linear-gradient(135deg, #06b6d4, #6366f1, #ec4899);">
+            A→I
+          </div>
+          <div>
+            <h1 class="font-en font-extrabold text-base sm:text-lg leading-tight tracking-tight" style="color: var(--text-primary);">
+              Assertive <span class="text-cyan-400">to</span> Interrogative
+            </h1>
+            <p class="text-xs sm:text-[13px] leading-snug" style="color: var(--text-muted);">
+              সম্পূর্ণ ৩০টি নিয়ম ও ৫০টি বোর্ড অনুশীলনী মাস্টার সফটওয়্যার
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick Stats Badge (Desktop/Tablet) -->
+        <div class="hidden sm:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border"
+             style="border-color: var(--border-subtle); background: var(--bg-subpanel); color: var(--text-secondary);">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>৩০টি নিয়ম • ৫০টি বোর্ড প্রশ্ন</span>
+        </div>
+      </div>
+
+      <!-- Control Bar Buttons -->
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 no-print">
+        <!-- Theme Switchers -->
+        <button id="btn-theme-rgb" onclick="setTheme('rgb')"
+                class="btn-3d btn-rgb-pill px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+          <span>🌈</span><span>Real RGB</span>
+        </button>
+
+        <button id="btn-theme-white" onclick="setTheme('white')"
+                class="btn-3d bg-white text-slate-900 border border-slate-200 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+          <span>☀️</span><span>White</span>
+        </button>
+
+        <button id="btn-theme-dark" onclick="setTheme('dark')"
+                class="btn-3d bg-slate-800 text-amber-300 border border-slate-700 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+          <span>🌙</span><span>Dark</span>
+        </button>
+
+        <!-- Laser Toggle -->
+        <button id="btn-laser" onclick="toggleLaser()"
+                class="btn-3d bg-rose-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+          <span id="laser-dot" class="w-2.5 h-2.5 rounded-full bg-rose-200 animate-ping"></span>
+          <span id="laser-label">লেজার: চালু</span>
+        </button>
+
+        <!-- Sound Toggle -->
+        <button id="btn-sound" onclick="toggleSound()"
+                class="btn-3d bg-emerald-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+          <span id="sound-icon">🔊</span>
+          <span id="sound-label">সাউন্ড: চালু</span>
+        </button>
+
+        <!-- Print / PDF -->
+        <button onclick="handlePrint()"
+                class="btn-3d bg-amber-500 text-slate-950 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
+          <span>🖨️</span><span>প্রিন্ট / PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8 space-y-12">
+
+    <!-- HERO SECTION -->
+    <section class="rgb-ring-card laser-target p-6 sm:p-10 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-en font-semibold mb-5 border"
+           style="background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.35); color: #34d399;">
+        <span>✨ Complete English Grammar Master Suite (All Classes • SSC • HSC)</span>
+      </div>
+
+      <h2 class="font-en font-extrabold text-2xl sm:text-4xl md:text-[42px] tracking-tight mb-3" style="color: var(--text-primary);">
+        Assertive to Interrogative Sentence
+      </h2>
+
+      <p class="font-bn font-bold text-2xl sm:text-4xl leading-snug hero-gradient-text mb-5">
+        সকল নিয়ম, উদাহরণ ও ৫০টি ইন্টারেক্টিভ অনুশীলনী
+      </p>
+
+      <p class="max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-7" style="color: var(--text-secondary);">
+        মূল বাক্যের অর্থ অপরিবর্তিত রেখে <span class="font-en font-semibold text-cyan-400">Assertive</span> থেকে
+        <span class="font-en font-semibold text-fuchsia-400">Interrogative</span> করার পূর্ণাঙ্গ
+        <strong class="text-amber-400">৩০টি নিয়ম</strong> বাংলা অর্থ ও বিস্তারিত ব্যাখ্যাসহ শিখুন।
+        প্রতিটি নিয়মে ও অনুশীলনী প্রশ্নে <strong>বারবার ক্লিক করে</strong> ধাপে ধাপে বাংলা অর্থ, উত্তর ও বিস্তারিত ব্যাখ্যা দেখুন।
+      </p>
+
+      <!-- Hero CTA Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 no-print">
+        <a href="#part-01" onclick="playClickSound(520)"
+           class="btn-3d px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white flex items-center gap-2"
+           style="background: linear-gradient(135deg, #2563eb, #0284c7);">
+          <span>📘</span><span>৩০টি নিয়ম পড়ুন</span>
+        </a>
+
+        <a href="#part-02" onclick="playClickSound(640)"
+           class="btn-3d px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white flex items-center gap-2"
+           style="background: linear-gradient(135deg, #9333ea, #c026d3);">
+          <span>🎯</span><span>৫০টি প্রশ্ন অনুশীলন করুন</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PART 01: 30 COMPLETE RULES                                -->
+    <!-- ========================================================= -->
+    <section id="part-01" class="space-y-5 scroll-mt-28">
+      <!-- Section Heading -->
+      <div class="space-y-2">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="font-en font-extrabold text-xs px-3 py-1 rounded-full tracking-wider uppercase"
+                style="background: rgba(6, 182, 212, 0.16); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.35);">
+            PART 01
+          </span>
+          <h3 class="text-xl sm:text-3xl font-bold" style="color: var(--text-primary);">
+            Assertive to Interrogative-এর ৩০টি পূর্ণাঙ্গ নিয়ম
+          </h3>
+        </div>
+
+        <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-secondary);">
+          যেকোনো নিয়ম কার্ডে ক্লিক করুন:
+          <span class="text-cyan-400 font-semibold">১ম ক্লিক</span> = গঠন (Structure) →
+          <span class="text-emerald-400 font-semibold">২য় ক্লিক</span> = বাংলা ব্যাখ্যা →
+          <span class="text-amber-400 font-semibold">৩য় ক্লিক</span> = উদাহরণ ও বাংলা অর্থ →
+          <span class="text-rose-400 font-semibold">৪র্থ ক্লিক</span> = সংকুচিত।
+        </p>
+      </div>
+
+      <!-- Search & Expand All Controls -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 no-print">
+        <div class="relative flex-1">
+          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm opacity-75">🔍</span>
+          <input id="rule-search" type="text" oninput="filterRules()"
+                 placeholder="নিয়ম খুঁজুন (যেমন: Auxiliary, Never, Nobody, Everybody, Used to, Must...)"
+                 class="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm border outline-none transition-all focus:ring-2 focus:ring-cyan-400"
+                 style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-primary);" />
+        </div>
+
+        <button id="btn-toggle-all-rules" onclick="toggleAllRules()"
+                class="btn-3d px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white flex items-center justify-center gap-2 shrink-0"
+                style="background: linear-gradient(135deg, #0284c7, #0d9488);">
+          <span>📂</span><span id="toggle-all-rules-text">সব নিয়ম একসাথে খুলুন</span>
+        </button>
+      </div>
+
+      <!-- Rules Container -->
+      <div id="rules-container" class="space-y-4"></div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PART 02: 50 INTERACTIVE BOARD & CLASS EXERCISES           -->
+    <!-- ========================================================= -->
+    <section id="part-02" class="space-y-5 pt-4 scroll-mt-28">
+      <!-- Section Heading -->
+      <div class="space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="font-en font-extrabold text-xs px-3 py-1 rounded-full tracking-wider uppercase"
+                  style="background: rgba(168, 85, 247, 0.18); color: #e879f9; border: 1px solid rgba(168, 85, 247, 0.4);">
+              PART 02
+            </span>
+            <h3 class="text-xl sm:text-3xl font-bold" style="color: var(--text-primary);">
+              ৫০টি বোর্ড ও ক্লাস অনুশীলনী (All Classes • SSC • HSC)
+            </h3>
+          </div>
+
+          <span id="exercise-progress-badge"
+                class="text-xs font-bold px-3 py-1 rounded-full border"
+                style="background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.35); color: #34d399;">
+            অনুশীলন খোলা হয়েছে: 0 / 50
+          </span>
+        </div>
+
+        <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-secondary);">
+          যেকোনো অনুশীলনী প্রশ্নে ক্লিক করুন:
+          <span class="text-cyan-400 font-semibold">১ম ক্লিক</span> = বাক্যের বাংলা অর্থ →
+          <span class="text-emerald-400 font-semibold">২য় ক্লিক</span> = সঠিক উত্তর (Interrogative) →
+          <span class="text-amber-400 font-semibold">৩য় ক্লিক</span> = বিস্তারিত ব্যাখ্যা ও নিয়ম →
+          <span class="text-rose-400 font-semibold">৪র্থ ক্লিক</span> = সংকুচিত।
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 no-print" id="category-filters">
+        <button onclick="setExerciseCategory('ALL')" data-cat="ALL"
+                class="cat-pill btn-3d px-3.5 py-1.5 rounded-full text-xs font-bold bg-cyan-500 text-slate-950">
+          সবগুলো (৫০)
+        </button>
+        <button onclick="setExerciseCategory('Class 6-8')" data-cat="Class 6-8"
+                class="cat-pill btn-3d px-3.5 py-1.5 rounded-full text-xs font-semibold border"
+                style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-secondary);">
+          Class 6–8
+        </button>
+        <button onclick="setExerciseCategory('SSC Board')" data-cat="SSC Board"
+                class="cat-pill btn-3d px-3.5 py-1.5 rounded-full text-xs font-semibold border"
+                style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-secondary);">
+          SSC Board
+        </button>
+        <button onclick="setExerciseCategory('HSC Board')" data-cat="HSC Board"
+                class="cat-pill btn-3d px-3.5 py-1.5 rounded-full text-xs font-semibold border"
+                style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-secondary);">
+          HSC Board
+        </button>
+        <button onclick="setExerciseCategory('Special Rules')" data-cat="Special Rules"
+                class="cat-pill btn-3d px-3.5 py-1.5 rounded-full text-xs font-semibold border"
+                style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-secondary);">
+          Special Rules (Rule 15–30)
+        </button>
+      </div>
+
+      <!-- Search & Expand All Exercises Controls -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 no-print">
+        <div class="relative flex-1">
+          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm opacity-75">🔍</span>
+          <input id="exercise-search" type="text" oninput="filterExercises()"
+                 placeholder="প্রশ্ন বা বোর্ড খুঁজুন (যেমন: Dhaka Board, Everybody, Never, Used to, HSC...)"
+                 class="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm border outline-none transition-all focus:ring-2 focus:ring-purple-400"
+                 style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-primary);" />
+        </div>
+
+        <button id="btn-toggle-all-ex" onclick="toggleAllExercises()"
+                class="btn-3d px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white flex items-center justify-center gap-2 shrink-0"
+                style="background: linear-gradient(135deg, #7e22ce, #db2777);">
+          <span>📂</span><span id="toggle-all-ex-text">সব উত্তর একসাথে খুলুন</span>
+        </button>
+      </div>
+
+      <!-- Exercises Container -->
+      <div id="exercises-container" class="space-y-4"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-12 border-t py-6 px-4 text-center text-xs sm:text-sm no-print"
+          style="background: var(--bg-surface); border-color: var(--border-subtle); color: var(--text-muted);">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>
+        <strong style="color: var(--text-primary);">Assertive to Interrogative Master Suite</strong> — সম্পূর্ণ ৩০টি নিয়ম ও ৫০টি বোর্ড অনুশীলনী
+      </p>
+      <button onclick="window.scrollTo({top:0, behavior:'smooth'}); playClickSound(700);"
+              class="btn-3d px-4 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">
+        ⬆️ উপরে ফিরে যান
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // AUDIO ENGINE (Web Audio API - No external URLs needed)
+    // =========================================================================
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function playClickSound(freq = 560) {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.35, audioCtx.currentTime + 0.065);
+
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.075);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.08);
+      } catch (e) {
+        // Ignore if browser blocks audio before interaction
+      }
+    }
+
+    // =========================================================================
+    // THEME, LASER & SOUND CONTROLS
+    // =========================================================================
+    function setTheme(mode) {
+      document.body.classList.remove('theme-rgb', 'theme-white', 'theme-dark');
+      document.body.classList.add('theme-' + mode);
+      playClickSound(600);
+    }
+
+    let laserEnabled = true;
+    function toggleLaser() {
+      laserEnabled = !laserEnabled;
+      document.body.classList.toggle('laser-on', laserEnabled);
+      const btn = document.getElementById('btn-laser');
+      const label = document.getElementById('laser-label');
+      const dot = document.getElementById('laser-dot');
+      if (laserEnabled) {
+        btn.className = 'btn-3d bg-rose-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5';
+        label.textContent = 'লেজার: চালু';
+        dot.classList.remove('hidden');
+      } else {
+        btn.className = 'btn-3d bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5';
+        label.textContent = 'লেজার: বন্ধ';
+        dot.classList.add('hidden');
+      }
+      playClickSound(480);
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById('btn-sound');
+      const icon = document.getElementById('sound-icon');
+      const label = document.getElementById('sound-label');
+      if (soundEnabled) {
+        btn.className = 'btn-3d bg-emerald-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5';
+        icon.textContent = '🔊';
+        label.textContent = 'সাউন্ড: চালু';
+        playClickSound(680);
+      } else {
+        btn.className = 'btn-3d bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5';
+        icon.textContent = '🔇';
+        label.textContent = 'সাউন্ড: বন্ধ';
+      }
+    }
+
+    function handlePrint() {
+      playClickSound(520);
+      // Expand all rules & exercises temporarily before printing if user wants full sheet
+      window.print();
+    }
+
+    // =========================================================================
+    // DATA: ALL 30 RULES OF ASSERTIVE TO INTERROGATIVE
+    // =========================================================================
+    const RULES_DATA = [
+      {
+        num: "01",
+        title: "Auxiliary Verb থাকলে (Affirmative & Negative)",
+        subtitle: "সাহায্যকারী ক্রিয়া (am, is, are, was, were, have, has, had, can, could, will, would, shall, should, may, might) থাকলে",
+        structure: "হ্যাঁ-বোধক হলে: Auxiliary + n't + Subject + বাকি অংশ + ?\nনা-বোধক হলে: Auxiliary (not বাদে) + Subject + বাকি অংশ + ?\nবিশেষ নোট: 'am not' এর সংক্ষিপ্ত রূপ হিসেবে শুরুতে 'Aren't' বসে।",
+        explanation: "Assertive বাক্যটি হ্যাঁ-বোধক (Affirmative) হলে বাক্যের Auxiliary Verb-টিকে সামনে এনে তার সাথে সংক্ষিপ্ত n't যুক্ত করতে হয়। আর বাক্যটি না-বোধক (Negative) হলে শুধু Auxiliary Verb-টি সামনে আনতে হয় এবং মূল বাক্যের 'not' বাদ দিতে হয়।",
+        examples: [
+          { assert: "He is a very honest man.", inter: "Isn't he a very honest man?", bn: "সে কি একজন অত্যন্ত সৎ মানুষ নয়?" },
+          { assert: "They are not playing cricket now.", inter: "Are they playing cricket now?", bn: "তারা কি এখন ক্রিকেট খেলছে?" },
+          { assert: "I am responsible for this.", inter: "Aren't I responsible for this?", bn: "আমি কি এর জন্য দায়ী নই?" }
+        ]
+      },
+      {
+        num: "02",
+        title: "Auxiliary Verb না থাকলে (Main Verb থাকলে)",
+        subtitle: "বাক্যে কোনো সাহায্যকারী ক্রিয়া না থাকলে Tense ও Subject অনুযায়ী Do / Does / Did-এর ব্যবহার",
+        structure: "Present Indefinite (s/es ছাড়া): Don't + Subject + V1 + বাকি অংশ + ?\nPresent Indefinite (s/es যুক্ত): Doesn't + Subject + V1 + বাকি অংশ + ?\nPast Indefinite (V2 থাকলে): Didn't + Subject + V1 + বাকি অংশ + ?",
+        explanation: "বাক্যে কোনো সাহায্যকারী ক্রিয়া না থাকলে Tense ও Subject-এর Person/Number অনুযায়ী শুরুতে Don't, Doesn't অথবা Didn't বসাতে হয়। মনে রাখতে হবে, Doesn't বা Didn't বসলে মূল Verb-টি সর্বদা Present Base Form (V1)-এ ফিরে আসে।",
+        examples: [
+          { assert: "I love my motherland.", inter: "Don't I love my motherland?", bn: "আমি কি আমার মাতৃভূমিকে ভালোবাসি না?" },
+          { assert: "She sings sweet songs.", inter: "Doesn't she sing sweet songs?", bn: "সে কি মিষ্টি গান গায় না?" },
+          { assert: "He went to Dhaka yesterday.", inter: "Didn't he go to Dhaka yesterday?", bn: "সে কি গতকাল ঢাকায় যায়নি?" }
+        ]
+      },
+      {
+        num: "03",
+        title: "Never থাকলে (Never → Ever)",
+        subtitle: "বাক্যে নেতিবাচক শব্দ 'Never' থাকলে প্রশ্নবোধক করার নিয়ম",
+        structure: "Auxiliary / Do / Does / Did + Subject + ever + V1 + বাকি অংশ + ?",
+        explanation: "Assertive বাক্যে 'never' থাকলে তা ইতিমধ্যেই না-বোধক অর্থ প্রকাশ করে। তাই Interrogative করার সময় 'never'-এর পরিবর্তে 'ever' বসে এবং শুরুতে হ্যাঁ-বোধক Auxiliary বা Do/Does/Did বসে।",
+        examples: [
+          { assert: "I never tell a lie.", inter: "Do I ever tell a lie?", bn: "আমি কি কখনো মিথ্যা বলি?" },
+          { assert: "He has never visited Cox's Bazar.", inter: "Has he ever visited Cox's Bazar?", bn: "সে কি কখনো কক্সবাজার ভ্রমণ করেছে?" }
+        ]
+      },
+      {
+        num: "04",
+        title: "Nothing থাকলে (Nothing → Anything)",
+        subtitle: "বাক্যে 'Nothing' থাকলে প্রশ্নবোধক করার নিয়ম",
+        structure: "Auxiliary / Do / Does / Did + Subject + ... + anything + বাকি অংশ + ?",
+        explanation: "Assertive বাক্যে 'nothing' থাকলে তা না-বোধক অর্থ দেয়। Interrogative করার সময় 'nothing'-এর পরিবর্তে 'anything' বসে এবং বাক্যের শুরুতে হ্যাঁ-বোধক Auxiliary বা Do/Does/Did বসে।",
+        examples: [
+          { assert: "There is nothing to do here.", inter: "Is there anything to do here?", bn: "এখানে কি করার মতো কিছু আছে?" },
+          { assert: "I had nothing to say.", inter: "Did I have anything to say?", bn: "আমার কি বলার মতো কিছু ছিল?" }
+        ]
+      },
+      {
+        num: "05",
+        title: "Nobody / None / No one থাকলে",
+        subtitle: "Subject হিসেবে Nobody, None বা No one থাকলে",
+        structure: "Who + মূল বাক্যের হ্যাঁ-বোধক Verb + বাকি অংশ + ?",
+        explanation: "Assertive বাক্যের শুরুতে Subject হিসেবে Nobody, None বা No one থাকলে এদের পরিবর্তে শুধু 'Who' বসালেই বাক্যটি Interrogative হয়ে যায়। যেহেতু এরা নেতিবাচক, তাই পরের Verb-এ আর not বসে না।",
+        examples: [
+          { assert: "Nobody believes a liar.", inter: "Who believes a liar?", bn: "মিথ্যাবাদীকে কে বিশ্বাস করে?" },
+          { assert: "None can avoid death.", inter: "Who can avoid death?", bn: "মৃত্যুকে কে এড়াতে পারে?" }
+        ]
+      },
+      {
+        num: "06",
+        title: "Everybody / Everyone / All থাকলে",
+        subtitle: "Subject হিসেবে Everybody, Everyone বা All (ব্যক্তিবাচক) থাকলে",
+        structure: "Who + don't / doesn't / didn't (বা Auxiliary + n't) + V1 + বাকি অংশ + ?",
+        explanation: "বাক্যের Subject হিসেবে Everybody, Everyone বা All (সবাই অর্থে) থাকলে শুরুতে 'Who' বসে এবং Tense ও অর্থ অনুযায়ী তারপরে don't, doesn't, didn't বা না-বোধক Auxiliary Verb বসে।",
+        examples: [
+          { assert: "Everybody wants to be happy.", inter: "Who doesn't want to be happy?", bn: "কে সুখী হতে চায় না?" },
+          { assert: "All love flowers.", inter: "Who doesn't love flowers?", bn: "কে ফুল ভালোবাসে না?" }
+        ]
+      },
+      {
+        num: "07",
+        title: "Every + Noun থাকলে",
+        subtitle: "বাক্যের শুরুতে Every-এর পরে কোনো Noun (যেমন: Every mother, Every man) থাকলে",
+        structure: "Is there any + Noun + who + don't / doesn't / didn't + V1 + বাকি অংশ + ?",
+        explanation: "Subject যদি 'Every + Noun' হয়, তবে শুরুতে 'Is there any + ওই Noun + who' বসিয়ে তারপরে না-বোধক Verb (doesn't / didn't / Auxiliary + n't) বসাতে হয়।",
+        examples: [
+          { assert: "Every mother loves her child.", inter: "Is there any mother who doesn't love her child?", bn: "এমন কোনো মা কি আছেন যিনি তাঁর সন্তানকে ভালোবাসেন না?" },
+          { assert: "Every patriot loves his country.", inter: "Is there any patriot who doesn't love his country?", bn: "এমন কোনো দেশপ্রেমিক কি আছেন যিনি তাঁর দেশকে ভালোবাসেন না?" }
+        ]
+      },
+      {
+        num: "08",
+        title: "It is no use / It doesn't matter থাকলে",
+        subtitle: "বাক্যের শুরুতে 'It is no use' বা 'It doesn't matter' থাকলে",
+        structure: "It is no use থাকলে: Why + Verb-ing... + ? (অথবা Is it any use + Verb-ing... + ?)\nIt doesn't matter থাকলে: What though + বাকি অংশ + ? (অথবা Does it matter... + ?)",
+        explanation: "'It is no use' দ্বারা কোনো কাজ করার অসারতা বোঝায়, তাই প্রশ্নবোধক করতে 'Why' বসিয়ে সরাসরি Verb+ing অংশটি যুক্ত করা যায়। আর 'It doesn't matter' থাকলে 'What though' বসিয়ে বাকি অংশ অপরিবর্তিত রাখা হয়।",
+        examples: [
+          { assert: "It is no use crying over spilt milk.", inter: "Why cry over spilt milk?", bn: "অতীতের ক্ষতির জন্য কেঁদে লাভ কী?" },
+          { assert: "It does not matter if we lose the match.", inter: "What though we lose the match?", bn: "আমরা ম্যাচটি হারলে কী-ই বা আসে যায়?" }
+        ]
+      },
+      {
+        num: "09",
+        title: "No (Noun-এর পূর্বে Determiner হিসেবে) থাকলে",
+        subtitle: "কোনো Noun-এর আগে 'no' থাকলে (No → Any)",
+        structure: "Auxiliary / Do / Does / Did + Subject + ... + any + Noun + বাকি অংশ + ?",
+        explanation: "বাক্যে কোনো Noun-এর পূর্বে 'no' থাকলে তা নেতিবাচক অর্থ দেয়। Interrogative করার সময় 'no'-এর জায়গায় 'any' বসাতে হয় এবং শুরুতে হ্যাঁ-বোধক Auxiliary বা Do/Does/Did আনতে হয়।",
+        examples: [
+          { assert: "He has no friends in this city.", inter: "Does he have any friends in this city?", bn: "এই শহরে কি তার কোনো বন্ধু আছে?" },
+          { assert: "I have no money in my pocket.", inter: "Do I have any money in my pocket?", bn: "আমার পকেটে কি কোনো টাকা আছে?" }
+        ]
+      },
+      {
+        num: "10",
+        title: "No one else / Nobody else থাকলে",
+        subtitle: "Subject হিসেবে 'No one else' বা 'Nobody else' থাকলে",
+        structure: "Who else + মূল বাক্যের হ্যাঁ-বোধক Verb + বাকি অংশ + ?",
+        explanation: "'No one else' বা 'Nobody else' দ্বারা 'আর কেউ নয়' বোঝায়। Interrogative করার সময় এদের পরিবর্তে শুরুতে 'Who else' বসে এবং পরের Verb-টি হ্যাঁ-বোধক থাকে।",
+        examples: [
+          { assert: "Nobody else knows the secret.", inter: "Who else knows the secret?", bn: "আর কে এই গোপন কথা জানে?" },
+          { assert: "No one else can solve this puzzle.", inter: "Who else can solve this puzzle?", bn: "আর কে এই ধাঁধাটি সমাধান করতে পারে?" }
+        ]
+      },
+      {
+        num: "11",
+        title: "Everyone else / Everybody else থাকলে",
+        subtitle: "Subject হিসেবে 'Everyone else' বা 'Everybody else' থাকলে",
+        structure: "Who else + don't / doesn't / didn't (বা Auxiliary + n't) + V1 + বাকি অংশ + ?",
+        explanation: "'Everyone else' বা 'Everybody else' দ্বারা 'বাকি সবাই' বোঝায়। তাই শুরুতে 'Who else' বসিয়ে পরের Verb-টিকে না-বোধক করতে হয় যাতে মূল অর্থ ঠিক থাকে।",
+        examples: [
+          { assert: "Everyone else agreed with the plan.", inter: "Who else didn't agree with the plan?", bn: "আর কে এই পরিকল্পনার সাথে একমত হয়নি?" }
+        ]
+      },
+      {
+        num: "12",
+        title: "All (নির্দিষ্ট বস্তু বা সামগ্রিক বিষয় বোঝালে)",
+        subtitle: "'All' যখন ব্যক্তি না বুঝিয়ে কোনো বিষয় বা অবস্থাকে বোঝায়",
+        structure: "Auxiliary + n't + all + বাকি অংশ + ?",
+        explanation: "'All' যদি মানুষ না বুঝিয়ে কোনো অবস্থা বা বস্তুকে বোঝায় (যেমন: All is well), তবে 'Who doesn't' না বসিয়ে ওই বাক্যের Auxiliary Verb-টিকে না-বোধক করে সামনে আনতে হয়।",
+        examples: [
+          { assert: "All is well that ends well.", inter: "Isn't all well that ends well?", bn: "সব ভালো যার শেষ ভালো, তা কি নয়?" }
+        ]
+      },
+      {
+        num: "13",
+        title: "It is a good thing that / It is a matter of sorrow that",
+        subtitle: "বাক্যের শুরুতে 'It is a good thing/matter...' থাকলে",
+        structure: "Isn't it a good thing / matter of sorrow that + বাকি অংশ + ?",
+        explanation: "এ ধরনের বাক্যে মূল বক্তব্যটি 'that'-এর পরে থাকে। তাই শুরুতে শুধু 'It is'-কে 'Isn't it' করে প্রশ্নবোধক চিহ্ন দিলেই সুন্দর Interrogative বাক্য তৈরি হয়।",
+        examples: [
+          { assert: "It is a good thing that you stood first.", inter: "Isn't it a good thing that you stood first?", bn: "এটা কি ভালো কথা নয় যে তুমি প্রথম হয়েছ?" }
+        ]
+      },
+      {
+        num: "14",
+        title: "There is no... / There are no... থাকলে",
+        subtitle: "Introductory 'There'-এর পরে 'no' থাকলে",
+        structure: "Is there any... / Are there any... + বাকি অংশ + ?",
+        explanation: "'There is no' বা 'There are no' যুক্ত বাক্যকে প্রশ্নবোধক করতে 'is/are'-কে সামনে এনে 'no'-এর পরিবর্তে 'any' বসাতে হয়।",
+        examples: [
+          { assert: "There is no cloud in the sky.", inter: "Is there any cloud in the sky?", bn: "আকাশে কি কোনো মেঘ আছে?" },
+          { assert: "There are no mistakes in this essay.", inter: "Are there any mistakes in this essay?", bn: "এই রচনায় কি কোনো ভুল আছে?" }
+        ]
+      },
+      {
+        num: "15",
+        title: "Had better / Would rather থাকলে",
+        subtitle: "Modal phrase 'had better' বা 'would rather' থাকলে",
+        structure: "Hadn't + Subject + better + V1 + ... + ?\nWouldn't + Subject + rather + V1 + ... + ?",
+        explanation: "'Had better' এবং 'Would rather' বাক্যে Auxiliary-এর মতো আচরণ করে। তাই প্রশ্নবোধক করার সময় শুধু 'Hadn't' বা 'Wouldn't'-কে Subject-এর সামনে আনতে হয়।",
+        examples: [
+          { assert: "You had better consult a doctor.", inter: "Hadn't you better consult a doctor?", bn: "তোমার বরং একজন ডাক্তারের পরামর্শ নেওয়াই কি ভালো নয়?" },
+          { assert: "I would rather starve than beg.", inter: "Wouldn't I rather starve than beg?", bn: "আমি ভিক্ষা করার চেয়ে বরং না খেয়ে থাকব না কি?" }
+        ]
+      },
+      {
+        num: "16",
+        title: "Used to থাকলে (অতীতের অভ্যাস)",
+        subtitle: "বাক্যে অতীত অভ্যাস বোঝাতে 'used to' থাকলে",
+        structure: "Didn't + Subject + use to + V1 + বাকি অংশ + ?",
+        explanation: "'Used to' দ্বারা অতীতের নিয়মিত অভ্যাস বোঝায়। একে Interrogative করতে শুরুতে 'Didn't' বসে এবং 'used to' পরিবর্তিত হয়ে 'use to' হয়।",
+        examples: [
+          { assert: "He used to walk by the river every morning.", inter: "Didn't he use to walk by the river every morning?", bn: "সে কি প্রতিদিন সকালে নদীর ধারে হাঁটত না?" }
+        ]
+      },
+      {
+        num: "17",
+        title: "Need not / Dare not বনাম Need / Dare",
+        subtitle: "Semi-modal 'need not / dare not' বনাম সাধারণ Main Verb 'need / dare'",
+        structure: "Need not / Dare not থাকলে: Need / Dare + Subject + V1 + ... + ?\nMain Verb হিসেবে Need / Dare থাকলে: Don't / Doesn't / Didn't + Subject + need/dare + ... + ?",
+        explanation: "'Need not' বা 'Dare not' থাকলে এরা নিজেরাই Auxiliary হিসেবে কাজ করে, তাই শুধু 'not' বাদ দিয়ে Need বা Dare-কে সামনে আনতে হয়। কিন্তু হ্যাঁ-বোধক Main Verb হলে Do/Does/Did আনতে হয়।",
+        examples: [
+          { assert: "You need not go there today.", inter: "Need you go there today?", bn: "তোমার কি আজ সেখানে যাওয়ার প্রয়োজন আছে?" },
+          { assert: "She needs some financial help.", inter: "Doesn't she need some financial help?", bn: "তার কি কিছু আর্থিক সাহায্যের প্রয়োজন নেই?" }
+        ]
+      },
+      {
+        num: "18",
+        title: "Too ... to থাকলে",
+        subtitle: "বাক্যে 'too + adjective + to + V1' কাঠামো থাকলে",
+        structure: "Auxiliary + n't + Subject + too + Adjective + to + V1 + ... + ? (অথবা so ... that কাঠামোয়)",
+        explanation: "'Too ... to' যুক্ত বাক্যকে অর্থ ঠিক রেখে প্রশ্নবোধক করতে বাক্যের মূল Auxiliary Verb-টিকে না-বোধক করে সামনে আনা সবচেয়ে সহজ ও নির্ভুল পদ্ধতি।",
+        examples: [
+          { assert: "The old man is too weak to walk.", inter: "Isn't the old man too weak to walk?", bn: "বৃদ্ধ লোকটি কি হাঁটার পক্ষে বড্ড বেশি দুর্বল নন?" }
+        ]
+      },
+      {
+        num: "19",
+        title: "Both ... and থাকলে",
+        subtitle: "বাক্যে 'both ... and' যুক্ত থাকলে",
+        structure: "Auxiliary + n't + Subject + not only ... but also + ... + ? (অথবা both...and রেখে Auxiliary সামনে)",
+        explanation: "'Both ... and' যুক্ত বাক্যকে Interrogative করতে মূল Auxiliary-টিকে না-বোধক করে সামনে আনতে হয়; চাইলে 'both...and'-এর জায়গায় 'not only...but also' ব্যবহার করা যায়।",
+        examples: [
+          { assert: "She is both meritorious and polite.", inter: "Isn't she not only meritorious but also polite?", bn: "সে কি শুধু মেধাবীই নয়, বরং ভদ্রও?" }
+        ]
+      },
+      {
+        num: "20",
+        title: "As soon as থাকলে",
+        subtitle: "বাক্যের শুরুতে বা মাঝে 'As soon as' থাকলে",
+        structure: "Didn't / Doesn't + Principal Clause-এর Subject + V1 + ... + as soon as + বাকি অংশ + ?",
+        explanation: "'As soon as' যুক্ত Complex Sentence-এ Principal Clause-এর Verb অনুযায়ী শুরুতে Didn't বা Doesn't এনে প্রশ্নবোধক করা হয়।",
+        examples: [
+          { assert: "As soon as the teacher entered, the students stood up.", inter: "Didn't the students stand up as soon as the teacher entered?", bn: "শিক্ষক প্রবেশ করা মাত্রই কি ছাত্রছাত্রীরা দাঁড়িয়ে যায়নি?" }
+        ]
+      },
+      {
+        num: "21",
+        title: "No sooner had ... than থাকলে",
+        subtitle: "বাক্যে 'No sooner had + Sub + V3 ... than' থাকলে",
+        structure: "Had + Subject + no sooner + V3 + ... + than + বাকি অংশ + ?",
+        explanation: "এ ধরনের বাক্যে Auxiliary Verb 'Had'-কে Subject-এর পূর্বে এনে প্রশ্নবোধক চিহ্ন বসানো হয়।",
+        examples: [
+          { assert: "No sooner had he seen the police than he fled.", inter: "Had he no sooner seen the police than he fled?", bn: "সে পুলিশ দেখা মাত্রই কি পালিয়ে যায়নি?" }
+        ]
+      },
+      {
+        num: "22",
+        title: "Hardly had ... when / Scarcely had ... when",
+        subtitle: "বাক্যে 'Hardly had' বা 'Scarcely had' থাকলে",
+        structure: "Had + Subject + hardly / scarcely + V3 + ... + when + বাকি অংশ + ?",
+        explanation: "'No sooner had'-এর মতোই এখানে Auxiliary Verb 'Had'-কে বাক্যের শুরুতে এনে Interrogative করা হয়।",
+        examples: [
+          { assert: "Hardly had we reached the station when the train left.", inter: "Had we hardly reached the station when the train left?", bn: "আমরা স্টেশনে পৌঁছাতে না পৌঁছাতেই কি ট্রেনটি ছেড়ে দেয়নি?" }
+        ]
+      },
+      {
+        num: "23",
+        title: "It is time / It is high time থাকলে",
+        subtitle: "উপযুক্ত সময় বোঝাতে 'It is time' বা 'It is high time' থাকলে",
+        structure: "Isn't it time / Isn't it high time + বাকি অংশ + ?",
+        explanation: "'It is time' বা 'It is high time'-এর শুরুতে 'It is'-কে শুধু 'Isn't it' করে প্রশ্নবোধক চিহ্ন দিলে অর্থ পুরোপুরি ঠিক থাকে।",
+        examples: [
+          { assert: "It is high time we changed our bad habits.", inter: "Isn't it high time we changed our bad habits?", bn: "এখনই কি আমাদের বদঅভ্যাসগুলো পরিবর্তনের উপযুক্ত সময় নয়?" }
+        ]
+      },
+      {
+        num: "24",
+        title: "It seems / It appears থাকলে",
+        subtitle: "বাক্যের শুরুতে 'It seems that' বা 'It appears that' থাকলে",
+        structure: "Doesn't it seem / Didn't it appear + that + বাকি অংশ + ?",
+        explanation: "'It seems' (Present) থাকলে শুরুতে 'Doesn't it seem' এবং 'It appeared' (Past) থাকলে শুরুতে 'Didn't it appear' বসিয়ে Interrogative করা হয়।",
+        examples: [
+          { assert: "It seems that he is very tired.", inter: "Doesn't it seem that he is very tired?", bn: "মনে হচ্ছে না কি যে সে খুব ক্লান্ত?" }
+        ]
+      },
+      {
+        num: "25",
+        title: "Must থাকলে (বাধ্যবাধকতা বোঝালে)",
+        subtitle: "বাক্যে Modal Auxiliary 'must' থাকলে",
+        structure: "Mustn't + Subject + V1 + বাকি অংশ + ? (অথবা Don't / Doesn't / Didn't + Subject + have to... + ?)",
+        explanation: "বাক্যে 'must' থাকলে সাধারণত শুরুতে 'Mustn't' বসিয়ে প্রশ্নবোধক করা হয়। এছাড়াও 'Don't/Doesn't + Sub + have to' ব্যবহার করা যায়।",
+        examples: [
+          { assert: "We must respect our elders.", inter: "Mustn't we respect our elders?", bn: "আমাদের কি বড়দের সম্মান করা উচিত নয়?" }
+        ]
+      },
+      {
+        num: "26",
+        title: "Have to / Has to / Had to থাকলে",
+        subtitle: "বাধ্যবাধকতা বোঝাতে 'have to', 'has to' বা 'had to' থাকলে",
+        structure: "Don't / Doesn't / Didn't + Subject + have to + V1 + বাকি অংশ + ?",
+        explanation: "'Have to / Has to / Had to' থাকলে শুরুতে Tense অনুযায়ী Don't, Doesn't বা Didn't বসে এবং মূল Verb-এর জায়গায় সর্বদা 'have to' ব্যবহৃত হয়।",
+        examples: [
+          { assert: "He has to support his family.", inter: "Doesn't he have to support his family?", bn: "তাকে কি তার পরিবারের ভরণপোষণ করতে হয় না?" },
+          { assert: "They had to work hard for success.", inter: "Didn't they have to work hard for success?", bn: "সাফল্যের জন্য তাদের কি কঠোর পরিশ্রম করতে হয়নি?" }
+        ]
+      },
+      {
+        num: "27",
+        title: "Few / Little বনাম A few / A little",
+        subtitle: "নেতিবাচক অর্থের 'few/little' বনাম ইতিবাচক অর্থের 'a few/a little'",
+        structure: "Few / Little থাকলে: Auxiliary + Subject + any / much / many + ... + ?\nA few / A little থাকলে: Auxiliary + n't + Subject + a few / a little + ... + ?",
+        explanation: "'Few' এবং 'Little' নেতিবাচক অর্থ দেয় (প্রায় নেই বললেই চলে), তাই এদের প্রশ্নবোধক রূপ হ্যাঁ-বোধক হয় এবং 'any' ব্যবহৃত হয়। কিন্তু 'A few' এবং 'A little' ইতিবাচক অর্থ দেয়, তাই এদের প্রশ্নবোধক রূপ না-বোধক হয়।",
+        examples: [
+          { assert: "There is little water in the jug.", inter: "Is there any water in the jug?", bn: "জগে কি আদৌ কোনো পানি আছে?" },
+          { assert: "He has a few good friends.", inter: "Doesn't he have a few good friends?", bn: "তার কি অল্প কয়েকজন ভালো বন্ধু নেই?" }
+        ]
+      },
+      {
+        num: "28",
+        title: "So ... that থাকলে",
+        subtitle: "বাক্যে 'so + adjective + that + clause' থাকলে",
+        structure: "Auxiliary + n't + Subject + so + Adjective + that + বাকি অংশ + ?",
+        explanation: "'So ... that' যুক্ত বাক্যকে অর্থ অক্ষুণ্ণ রেখে Interrogative করতে প্রধান বাক্যের Auxiliary Verb-টিকে না-বোধক করে শুরুতে বসাতে হয়।",
+        examples: [
+          { assert: "The sum is so hard that I cannot solve it.", inter: "Isn't the sum so hard that I cannot solve it?", bn: "অঙ্কটি কি এতই কঠিন নয় যে আমি এটি সমাধান করতে পারি না?" }
+        ]
+      },
+      {
+        num: "29",
+        title: "Either ... or / Neither ... nor থাকলে",
+        subtitle: "Correlative Conjunction 'Either...or' বা 'Neither...nor' থাকলে",
+        structure: "Either...or থাকলে: Auxiliary + n't + either ... or ... + ?\nNeither...nor থাকলে: Auxiliary + either ... or ... + ?",
+        explanation: "'Either ... or' হ্যাঁ-বোধক অর্থ দেয় তাই প্রশ্নবোধক বাক্যে না-বোধক Auxiliary বসে। অপরদিকে 'Neither ... nor' না-বোধক হওয়ায় প্রশ্নবোধক বাক্যে তা হ্যাঁ-বোধক 'either ... or'-এ রূপান্তরিত হয়।",
+        examples: [
+          { assert: "Either Rahim or Karim has done this.", inter: "Hasn't either Rahim or Karim done this?", bn: "রহিম অথবা করিমের কেউ কি এটি করেনি?" },
+          { assert: "Neither he nor his brother was present.", inter: "Was either he or his brother present?", bn: "সে কিংবা তার ভাই—কেউ কি উপস্থিত ছিল?" }
+        ]
+      },
+      {
+        num: "30",
+        title: "চিরন্তন সত্য ও জোরালো বক্তব্য (WH-Question বিকল্প)",
+        subtitle: "Universal Truth বা সর্বজনস্বীকৃত বাক্যকে জোরালো প্রশ্নবোধক করার নিয়ম",
+        structure: "Auxiliary + n't + Subject + ... + ? (অথবা Who doesn't know that + মূল বাক্য + ?)",
+        explanation: "চিরন্তন সত্য (Universal Truth) বা জোরালো বক্তব্যকে সাধারণভাবে না-বোধক প্রশ্নবোধক করা যায়, অথবা 'Who doesn't know that...' ব্যবহার করেও রূপান্তর করা যায়।",
+        examples: [
+          { assert: "Man is mortal.", inter: "Isn't man mortal?", bn: "মানুষ কি মরণশীল নয়?" },
+          { assert: "Honesty is the best policy.", inter: "Isn't honesty the best policy?", bn: "সততাই কি সর্বোৎকৃষ্ট পন্থা নয়?" }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // DATA: 50 BOARD & CLASS PRACTICE EXERCISES
+    // =========================================================================
+    const EXERCISES_DATA = [
+      {
+        id: 1,
+        level: "Class 6-8",
+        tag: "Class 7 • Basic Auxiliary",
+        assertive: "He is a very brilliant student.",
+        bnMeaning: "সে একজন অত্যন্ত মেধাবী ছাত্র।",
+        answer: "Isn't he a very brilliant student?",
+        answerBn: "সে কি একজন অত্যন্ত মেধাবী ছাত্র নয়?",
+        explanation: "নিয়ম ০১ অনুযায়ী: বাক্যটি হ্যাঁ-বোধক এবং এতে Auxiliary Verb 'is' রয়েছে। তাই 'is'-এর সাথে সংক্ষিপ্ত n't যুক্ত করে 'Isn't'-কে Subject 'he'-এর পূর্বে বসানো হয়েছে।"
+      },
+      {
+        id: 2,
+        level: "Class 6-8",
+        tag: "Class 8 • Negative Auxiliary",
+        assertive: "They were not making a noise in the class.",
+        bnMeaning: "তারা শ্রেণিকক্ষে গোলমাল করছিল না।",
+        answer: "Were they making a noise in the class?",
+        answerBn: "তারা কি শ্রেণিকক্ষে গোলমাল করছিল?",
+        explanation: "নিয়ম ০১ অনুযায়ী: বাক্যটি না-বোধক (not আছে)। তাই 'not' বাদ দিয়ে শুধু Auxiliary Verb 'Were'-কে Subject-এর সামনে আনা হয়েছে।"
+      },
+      {
+        id: 3,
+        level: "SSC Board",
+        tag: "Dhaka Board • Present Indefinite",
+        assertive: "Cricket is a very exciting game.",
+        bnMeaning: "ক্রিকেট একটি অত্যন্ত রোমাঞ্চকর খেলা।",
+        answer: "Isn't cricket a very exciting game?",
+        answerBn: "ক্রিকেট কি একটি অত্যন্ত রোমাঞ্চকর খেলা নয়?",
+        explanation: "নিয়ম ০১ অনুযায়ী: মূল বাক্যটি Affirmative এবং 'is' Auxiliary Verb হিসেবে আছে। তাই শুরুতে 'Isn't' বসিয়ে Interrogative করা হয়েছে।"
+      },
+      {
+        id: 4,
+        level: "SSC Board",
+        tag: "Rajshahi Board • Main Verb (s/es)",
+        assertive: "A patriot loves his country more than his life.",
+        bnMeaning: "একজন দেশপ্রেমিক তাঁর জীবনের চেয়েও দেশকে বেশি ভালোবাসেন।",
+        answer: "Doesn't a patriot love his country more than his life?",
+        answerBn: "একজন দেশপ্রেমিক কি তাঁর জীবনের চেয়েও দেশকে বেশি ভালোবাসেন না?",
+        explanation: "নিয়ম ০২ অনুযায়ী: বাক্যে কোনো Auxiliary Verb নেই এবং Present Indefinite Tense-এ মূল Verb 'loves'-এর সাথে 's' যুক্ত আছে। তাই শুরুতে 'Doesn't' বসেছে এবং 'loves' পরিবর্তিত হয়ে 'love' হয়েছে।"
+      },
+      {
+        id: 5,
+        level: "SSC Board",
+        tag: "Cumilla Board • Past Indefinite",
+        assertive: "He inherited a vast property from his father.",
+        bnMeaning: "সে তার বাবার কাছ থেকে বিশাল সম্পত্তি উত্তরাধিকারসূত্রে পেয়েছিল।",
+        answer: "Didn't he inherit a vast property from his father?",
+        answerBn: "সে কি তার বাবার কাছ থেকে বিশাল সম্পত্তি উত্তরাধিকারসূত্রে পায়নি?",
+        explanation: "নিয়ম ০২ অনুযায়ী: বাক্যটি Past Indefinite Tense ('inherited' হলো V2)। তাই শুরুতে 'Didn't' বসেছে এবং মূল Verb-টি Base Form 'inherit'-এ রূপান্তরিত হয়েছে।"
+      },
+      {
+        id: 6,
+        level: "SSC Board",
+        tag: "Jashore Board • Never Rule",
+        assertive: "A true friend never leaves his friend in danger.",
+        bnMeaning: "একজন প্রকৃত বন্ধু বিপদে কখনো তার বন্ধুকে ছেড়ে যায় না।",
+        answer: "Does a true friend ever leave his friend in danger?",
+        answerBn: "একজন প্রকৃত বন্ধু কি বিপদে কখনো তার বন্ধুকে ছেড়ে যায়?",
+        explanation: "নিয়ম ০৩ অনুযায়ী: বাক্যে 'never' আছে। তাই 'never'-এর পরিবর্তে 'ever' বসেছে এবং Present Indefinite (3rd person singular) হওয়ায় শুরুতে হ্যাঁ-বোধক 'Does' বসেছে।"
+      },
+      {
+        id: 7,
+        level: "HSC Board",
+        tag: "Dhaka Board • Nothing Rule",
+        assertive: "There is nothing nobler than forgiveness.",
+        bnMeaning: "ক্ষমার চেয়ে মহৎ আর কিছুই নেই।",
+        answer: "Is there anything nobler than forgiveness?",
+        answerBn: "ক্ষমার চেয়ে মহৎ কি আর কিছু আছে?",
+        explanation: "নিয়ম ০৪ অনুযায়ী: বাক্যে 'nothing' থাকায় এর পরিবর্তে 'anything' বসেছে এবং Auxiliary Verb 'Is'-কে 'there'-এর পূর্বে এনে প্রশ্নবোধক করা হয়েছে।"
+      },
+      {
+        id: 8,
+        level: "SSC Board",
+        tag: "Chattogram Board • Nobody Rule",
+        assertive: "Nobody wishes to be unhappy.",
+        bnMeaning: "কেউই অসুখী হতে চায় না।",
+        answer: "Who wishes to be unhappy?",
+        answerBn: "কে অসুখী হতে চায়?",
+        explanation: "নিয়ম ০৫ অনুযায়ী: বাক্যের Subject হিসেবে 'Nobody' আছে। তাই 'Nobody'-এর পরিবর্তে শুরুতে 'Who' বসিয়ে বাকি অংশ অপরিবর্তিত রাখা হয়েছে।"
+      },
+      {
+        id: 9,
+        level: "HSC Board",
+        tag: "Sylhet Board • None Rule",
+        assertive: "None can prosper in life without industry.",
+        bnMeaning: "পরিশ্রম ছাড়া কেউ জীবনে উন্নতি করতে পারে না।",
+        answer: "Who can prosper in life without industry?",
+        answerBn: "পরিশ্রম ছাড়া কে জীবনে উন্নতি করতে পারে?",
+        explanation: "নিয়ম ০৫ অনুযায়ী: Subject হিসেবে 'None' থাকায় এর পরিবর্তে সরাসরি 'Who' বসানো হয়েছে।"
+      },
+      {
+        id: 10,
+        level: "SSC Board",
+        tag: "Dinajpur Board • Everybody Rule",
+        assertive: "Everybody respects a man of letters.",
+        bnMeaning: "প্রত্যেকেই একজন বিদ্বান ব্যক্তিকে সম্মান করেন।",
+        answer: "Who doesn't respect a man of letters?",
+        answerBn: "কে একজন বিদ্বান ব্যক্তিকে সম্মান করেন না?",
+        explanation: "নিয়ম ০৬ অনুযায়ী: Subject 'Everybody' থাকায় শুরুতে 'Who' বসেছে এবং Present Indefinite Tense হওয়ায় 'doesn't + V1 (respect)' ব্যবহৃত হয়েছে।"
+      },
+      {
+        id: 11,
+        level: "HSC Board",
+        tag: "Rajshahi Board • Everyone (Past)",
+        assertive: "Everyone praised the bravery of the young boy.",
+        bnMeaning: "প্রত্যেকেই তরুণ ছেলেটির সাহসিকতার প্রশংসা করেছিল।",
+        answer: "Who didn't praise the bravery of the young boy?",
+        answerBn: "কে তরুণ ছেলেটির সাহসিকতার প্রশংসা করেনি?",
+        explanation: "নিয়ম ০৬ অনুযায়ী: 'Everyone' এবং Past Tense ('praised') থাকায় 'Who didn't + praise' গঠন অনুসরণ করা হয়েছে।"
+      },
+      {
+        id: 12,
+        level: "HSC Board",
+        tag: "Cumilla Board • Every + Noun",
+        assertive: "Every mother loves her child.",
+        bnMeaning: "প্রত্যেক মা তাঁর সন্তানকে ভালোবাসেন।",
+        answer: "Is there any mother who doesn't love her child?",
+        answerBn: "এমন কোনো মা কি আছেন যিনি তাঁর সন্তানকে ভালোবাসেন না?",
+        explanation: "নিয়ম ০৭ অনুযায়ী: 'Every + Noun (mother)' থাকায় 'Is there any mother who doesn't + V1' কাঠামোয় রূপান্তর করা হয়েছে।"
+      },
+      {
+        id: 13,
+        level: "HSC Board",
+        tag: "Barishal Board • It is no use",
+        assertive: "It is no use repenting of past mistakes.",
+        bnMeaning: "অতীতের ভুলের জন্য অনুশোচনা করে কোনো লাভ নেই।",
+        answer: "Why repent of past mistakes?",
+        answerBn: "অতীতের ভুলের জন্য অনুশোচনা করে লাভ কী?",
+        explanation: "নিয়ম ০৮ অনুযায়ী: বাক্যের শুরুতে 'It is no use' থাকায় এর পরিবর্তে 'Why' বসিয়ে মূল Verb-এর Base Form ('repent') ব্যবহার করা হয়েছে। (বিকল্প: Is there any use repenting of past mistakes?)"
+      },
+      {
+        id: 14,
+        level: "HSC Board",
+        tag: "Jashore Board • It doesn't matter",
+        assertive: "It does not matter if we fail once.",
+        bnMeaning: "আমরা একবার ব্যর্থ হলে তাতে কিছু যায় আসে না।",
+        answer: "What though we fail once?",
+        answerBn: "আমরা একবার ব্যর্থ হলে কী-ই বা আসে যায়?",
+        explanation: "নিয়ম ০৮ অনুযায়ী: 'It does not matter'-এর পরিবর্তে 'What though' বসিয়ে বাকি অংশ অপরিবর্তিত রাখা হয়েছে।"
+      },
+      {
+        id: 15,
+        level: "Class 6-8",
+        tag: "Class 8 • 'am not' Exception",
+        assertive: "I am proud of my country.",
+        bnMeaning: "আমি আমার দেশকে নিয়ে গর্বিত।",
+        answer: "Aren't I proud of my country?",
+        answerBn: "আমি কি আমার দেশকে নিয়ে গর্বিত নই?",
+        explanation: "নিয়ম ০১-এর বিশেষ নোট অনুযায়ী: ইংরেজি গ্রামারে 'amn't' ব্যবহৃত হয় না; তাই 'am'-কে না-বোধক প্রশ্নবোধক করতে 'Aren't I' ব্যবহৃত হয়।"
+      },
+      {
+        id: 16,
+        level: "SSC Board",
+        tag: "Mymensingh Board • No → Any",
+        assertive: "He has no sympathy for the poor.",
+        bnMeaning: "দরিদ্রদের প্রতি তার কোনো সহানুভূতি নেই।",
+        answer: "Does he have any sympathy for the poor?",
+        answerBn: "দরিদ্রদের প্রতি কি তার কোনো সহানুভূতি আছে?",
+        explanation: "নিয়ম ০৯ অনুযায়ী: Noun ('sympathy')-এর পূর্বে 'no' থাকায় তা পরিবর্তিত হয়ে 'any' হয়েছে এবং 'has'-এর পরিবর্তে শুরুতে 'Does + Subject + have' বসেছে।"
+      },
+      {
+        id: 17,
+        level: "Special Rules",
+        tag: "Rule 10 • Nobody else",
+        assertive: "Nobody else can help you in this crisis.",
+        bnMeaning: "এই সংকটে আর কেউ তোমাকে সাহায্য করতে পারবে না।",
+        answer: "Who else can help you in this crisis?",
+        answerBn: "এই সংকটে আর কে তোমাকে সাহায্য করতে পারবে?",
+        explanation: "নিয়ম ১০ অনুযায়ী: 'Nobody else'-এর পরিবর্তে শুরুতে 'Who else' বসিয়ে বাকি অংশ হ্যাঁ-বোধক রাখা হয়েছে।"
+      },
+      {
+        id: 18,
+        level: "Special Rules",
+        tag: "Rule 11 • Everyone else",
+        assertive: "Everyone else supported the decision.",
+        bnMeaning: "বাকি সবাই সিদ্ধান্তটিকে সমর্থন করেছিল।",
+        answer: "Who else didn't support the decision?",
+        answerBn: "আর কে সিদ্ধান্তটিকে সমর্থন করেনি?",
+        explanation: "নিয়ম ১১ অনুযায়ী: 'Everyone else' থাকায় শুরুতে 'Who else' এবং Past Tense হওয়ায় 'didn't support' বসেছে।"
+      },
+      {
+        id: 19,
+        level: "Special Rules",
+        tag: "Rule 12 • All (Concept)",
+        assertive: "All is fair in love and war.",
+        bnMeaning: "প্রেম ও যুদ্ধে সবই বৈধ।",
+        answer: "Isn't all fair in love and war?",
+        answerBn: "প্রেম ও যুদ্ধে কি সবই বৈধ নয়?",
+        explanation: "নিয়ম ১২ অনুযায়ী: এখানে 'All' কোনো ব্যক্তিকে না বুঝিয়ে সামগ্রিক বিষয়কে বুঝিয়েছে। তাই Auxiliary Verb 'is'-কে 'Isn't' করে সামনে আনা হয়েছে।"
+      },
+      {
+        id: 20,
+        level: "Special Rules",
+        tag: "Rule 13 • It is a good thing",
+        assertive: "It is a matter of joy that Bangladesh has won the match.",
+        bnMeaning: "এটা আনন্দের বিষয় যে বাংলাদেশ ম্যাচটি জিতেছে।",
+        answer: "Isn't it a matter of joy that Bangladesh has won the match?",
+        answerBn: "এটা কি আনন্দের বিষয় নয় যে বাংলাদেশ ম্যাচটি জিতেছে?",
+        explanation: "নিয়ম ১৩ অনুযায়ী: বাক্যের শুরুতে 'It is'-কে 'Isn't it' করে প্রশ্নবোধক চিহ্ন বসানো হয়েছে।"
+      },
+      {
+        id: 21,
+        level: "SSC Board",
+        tag: "Dhaka Board • There is no",
+        assertive: "There is no alternative to hard work.",
+        bnMeaning: "কঠোর পরিশ্রমের কোনো বিকল্প নেই।",
+        answer: "Is there any alternative to hard work?",
+        answerBn: "কঠোর পরিশ্রমের কি কোনো বিকল্প আছে?",
+        explanation: "নিয়ম ১৪ অনুযায়ী: 'There is no' থাকায় 'Is'-কে সামনে এনে 'no'-এর পরিবর্তে 'any' বসানো হয়েছে।"
+      },
+      {
+        id: 22,
+        level: "HSC Board",
+        tag: "Special Rules • Had better",
+        assertive: "You had better start early to avoid traffic jam.",
+        bnMeaning: "যানজট এড়াতে তোমার বরং তাড়াতাড়ি রওনা হওয়াই ভালো।",
+        answer: "Hadn't you better start early to avoid traffic jam?",
+        answerBn: "যানজট এড়াতে তোমার বরং তাড়াতাড়ি রওনা হওয়াই কি ভালো নয়?",
+        explanation: "নিয়ম ১৫ অনুযায়ী: 'had better' যুক্ত বাক্যে Auxiliary 'Hadn't'-কে Subject-এর পূর্বে এনে প্রশ্নবোধক করা হয়েছে।"
+      },
+      {
+        id: 23,
+        level: "HSC Board",
+        tag: "Special Rules • Would rather",
+        assertive: "He would rather die than surrender.",
+        bnMeaning: "সে আত্মসমর্পণ করার চেয়ে বরং মৃত্যুবরণ করবে।",
+        answer: "Wouldn't he rather die than surrender?",
+        answerBn: "সে আত্মসমর্পণ করার চেয়ে বরং মৃত্যুবরণ করবে না কি?",
+        explanation: "নিয়ম ১৫ অনুযায়ী: 'would rather' থাকায় শুরুতে 'Wouldn't' এনে Subject 'he'-এর পূর্বে বসানো হয়েছে।"
+      },
+      {
+        id: 24,
+        level: "HSC Board",
+        tag: "Cumilla Board • Used to",
+        assertive: "She used to recite poems in her childhood.",
+        bnMeaning: "সে তার শৈশবে কবিতা আবৃত্তি করত।",
+        answer: "Didn't she use to recite poems in her childhood?",
+        answerBn: "সে কি তার শৈশবে কবিতা আবৃত্তি করত না?",
+        explanation: "নিয়ম ১৬ অনুযায়ী: অতীত অভ্যাস বোঝাতে 'used to' থাকায় শুরুতে 'Didn't' বসেছে এবং 'used to' পরিবর্তিত হয়ে 'use to' হয়েছে।"
+      },
+      {
+        id: 25,
+        level: "HSC Board",
+        tag: "Special Rules • Need not",
+        assertive: "You need not worry about the exam result.",
+        bnMeaning: "পরীক্ষার ফলাফল নিয়ে তোমার দুশ্চিন্তা করার প্রয়োজন নেই।",
+        answer: "Need you worry about the exam result?",
+        answerBn: "পরীক্ষার ফলাফল নিয়ে তোমার কি দুশ্চিন্তা করার প্রয়োজন আছে?",
+        explanation: "নিয়ম ১৭ অনুযায়ী: 'need not' এখানে Semi-modal হিসেবে ব্যবহৃত হয়েছে, তাই শুধু 'not' বাদ দিয়ে 'Need'-কে শুরুতে আনা হয়েছে।"
+      },
+      {
+        id: 26,
+        level: "Special Rules",
+        tag: "Rule 17 • Need (Main Verb)",
+        assertive: "Every student needs proper guidance.",
+        bnMeaning: "প্রত্যেক শিক্ষার্থীর সঠিক দিকনির্দেশনা প্রয়োজন।",
+        answer: "Doesn't every student need proper guidance?",
+        answerBn: "প্রত্যেক শিক্ষার্থীর কি সঠিক দিকনির্দেশনা প্রয়োজন নেই?",
+        explanation: "নিয়ম ১৭ অনুযায়ী: এখানে 'needs' একটি হ্যাঁ-বোধক Main Verb। তাই শুরুতে 'Doesn't' বসেছে এবং 'needs' হয়েছে 'need'।"
+      },
+      {
+        id: 27,
+        level: "HSC Board",
+        tag: "Chattogram Board • Too ... to",
+        assertive: "The load is too heavy for the porter to carry.",
+        bnMeaning: "বোঝাটি কুলির বহন করার পক্ষে বড্ড বেশি ভারী।",
+        answer: "Isn't the load too heavy for the porter to carry?",
+        answerBn: "বোঝাটি কি কুলির বহন করার পক্ষে বড্ড বেশি ভারী নয়?",
+        explanation: "নিয়ম ১৮ অনুযায়ী: মূল বাক্যের অর্থ ঠিক রেখে Auxiliary Verb 'is'-কে 'Isn't' করে বাক্যের শুরুতে বসানো হয়েছে।"
+      },
+      {
+        id: 28,
+        level: "Special Rules",
+        tag: "Rule 19 • Both ... and",
+        assertive: "Kazi Nazrul Islam was both a poet and a musician.",
+        bnMeaning: "কাজী নজরুল ইসলাম একাধারে কবি এবং সংগীতজ্ঞ ছিলেন।",
+        answer: "Wasn't Kazi Nazrul Islam not only a poet but also a musician?",
+        answerBn: "কাজী নজরুল ইসলাম কি শুধু কবিই ছিলেন না, বরং সংগীতজ্ঞও ছিলেন?",
+        explanation: "নিয়ম ১৯ অনুযায়ী: 'was'-কে 'Wasn't' করে সামনে আনা হয়েছে এবং 'both...and'-এর পরিবর্তে 'not only...but also' ব্যবহৃত হয়েছে।"
+      },
+      {
+        id: 29,
+        level: "HSC Board",
+        tag: "Dinajpur Board • As soon as",
+        assertive: "As soon as the rain stopped, we started our journey.",
+        bnMeaning: "বৃষ্টি থামা মাত্রই আমরা আমাদের যাত্রা শুরু করলাম।",
+        answer: "Didn't we start our journey as soon as the rain stopped?",
+        answerBn: "বৃষ্টি থামা মাত্রই কি আমরা আমাদের যাত্রা শুরু করিনি?",
+        explanation: "নিয়ম ২০ অনুযায়ী: Principal Clause ('we started our journey')-এর Past Tense অনুযায়ী শুরুতে 'Didn't we start...' বসিয়ে প্রশ্নবোধক করা হয়েছে।"
+      },
+      {
+        id: 30,
+        level: "HSC Board",
+        tag: "Special Rules • No sooner had",
+        assertive: "No sooner had the thief seen the police than he ran away.",
+        bnMeaning: "চোরটি পুলিশ দেখা মাত্রই পালিয়ে গেল।",
+        answer: "Had the thief no sooner seen the police than he ran away?",
+        answerBn: "চোরটি পুলিশ দেখা মাত্রই কি পালিয়ে যায়নি?",
+        explanation: "নিয়ম ২১ অনুযায়ী: 'No sooner had' যুক্ত বাক্যে Auxiliary Verb 'Had'-কে Subject ('the thief')-এর পূর্বে এনে প্রশ্নবোধক করা হয়েছে।"
+      },
+      {
+        id: 31,
+        level: "HSC Board",
+        tag: "Special Rules • Hardly had",
+        assertive: "Hardly had I closed my eyes when the phone rang.",
+        bnMeaning: "আমি চোখ বন্ধ করতে না করতেই ফোনটি বেজে উঠল।",
+        answer: "Had I hardly closed my eyes when the phone rang?",
+        answerBn: "আমি চোখ বন্ধ করতে না করতেই কি ফোনটি বেজে ওঠেনি?",
+        explanation: "নিয়ম ২২ অনুযায়ী: Auxiliary Verb 'Had'-কে Subject 'I'-এর পূর্বে এনে Interrogative কাঠামো গঠন করা হয়েছে।"
+      },
+      {
+        id: 32,
+        level: "HSC Board",
+        tag: "Sylhet Board • It is high time",
+        assertive: "It is high time we stood against corruption.",
+        bnMeaning: "এখনই দুর্নীতির বিরুদ্ধে আমাদের রুখে দাঁড়ানোর উপযুক্ত সময়।",
+        answer: "Isn't it high time we stood against corruption?",
+        answerBn: "এখনই কি দুর্নীতির বিরুদ্ধে আমাদের রুখে দাঁড়ানোর উপযুক্ত সময় নয়?",
+        explanation: "নিয়ম ২৩ অনুযায়ী: 'It is high time' থাকায় শুরুতে 'Isn't it high time' বসিয়ে বাকি অংশ অপরিবর্তিত রাখা হয়েছে।"
+      },
+      {
+        id: 33,
+        level: "Special Rules",
+        tag: "Rule 24 • It seems",
+        assertive: "It seems that honesty is disappearing from society.",
+        bnMeaning: "মনে হচ্ছে সমাজ থেকে সততা হারিয়ে যাচ্ছে।",
+        answer: "Doesn't it seem that honesty is disappearing from society?",
+        answerBn: "মনে হচ্ছে না কি সমাজ থেকে সততা হারিয়ে যাচ্ছে?",
+        explanation: "নিয়ম ২৪ অনুযায়ী: 'It seems' (Present Indefinite) থাকায় শুরুতে 'Doesn't it seem' বসেছে।"
+      },
+      {
+        id: 34,
+        level: "SSC Board",
+        tag: "Barishal Board • Must Rule",
+        assertive: "We must love our motherland.",
+        bnMeaning: "আমাদের অবশ্যই আমাদের মাতৃভূমিকে ভালোবাসতে হবে।",
+        answer: "Mustn't we love our motherland?",
+        answerBn: "আমাদের কি আমাদের মাতৃভূমিকে ভালোবাসতে হবে না?",
+        explanation: "নিয়ম ২৫ অনুযায়ী: Modal Auxiliary 'must' থাকায় শুরুতে 'Mustn't' বসিয়ে প্রশ্নবোধক করা হয়েছে।"
+      },
+      {
+        id: 35,
+        level: "HSC Board",
+        tag: "Rajshahi Board • Has to Rule",
+        assertive: "A farmer has to work hard in the sun and rain.",
+        bnMeaning: "একজন কৃষককে রোদ-বৃষ্টিতে কঠোর পরিশ্রম করতে হয়।",
+        answer: "Doesn't a farmer have to work hard in the sun and rain?",
+        answerBn: "একজন কৃষককে কি রোদ-বৃষ্টিতে কঠোর পরিশ্রম করতে হয় না?",
+        explanation: "নিয়ম ২৬ অনুযায়ী: 'has to' থাকায় শুরুতে 'Doesn't + Subject' বসেছে এবং 'has to' পরিবর্তিত হয়ে Base Form 'have to' হয়েছে।"
+      },
+      {
+        id: 36,
+        level: "HSC Board",
+        tag: "Special Rules • Little (Negative sense)",
+        assertive: "There is little hope of his recovery.",
+        bnMeaning: "তার সুস্থ হওয়ার আশা নেই বললেই চলে।",
+        answer: "Is there any hope of his recovery?",
+        answerBn: "তার সুস্থ হওয়ার কি আদৌ কোনো আশা আছে?",
+        explanation: "নিয়ম ২৭ অনুযায়ী: 'little' নেতিবাচক অর্থ প্রকাশ করে (প্রায় নেই)। তাই প্রশ্নবোধক বাক্যে হ্যাঁ-বোধক 'Is there' এবং 'little'-এর পরিবর্তে 'any' ব্যবহৃত হয়েছে।"
+      },
+      {
+        id: 37,
+        level: "HSC Board",
+        tag: "Special Rules • A few (Positive sense)",
+        assertive: "She has a few sincere friends.",
+        bnMeaning: "তার অল্প কয়েকজন আন্তরিক বন্ধু আছে।",
+        answer: "Doesn't she have a few sincere friends?",
+        answerBn: "তার কি অল্প কয়েকজন আন্তরিক বন্ধু নেই?",
+        explanation: "নিয়ম ২৭ অনুযায়ী: 'a few' ইতিবাচক অর্থ দেয় (অল্প কিছু আছে)। তাই প্রশ্নবোধক করতে শুরুতে না-বোধক 'Doesn't she have' ব্যবহৃত হয়েছে।"
+      },
+      {
+        id: 38,
+        level: "HSC Board",
+        tag: "Jashore Board • So ... that",
+        assertive: "He was so weak that he could not speak a single word.",
+        bnMeaning: "সে এতই দুর্বল ছিল যে একটি কথাও বলতে পারছিল না।",
+        answer: "Wasn't he so weak that he could not speak a single word?",
+        answerBn: "সে কি এতই দুর্বল ছিল না যে একটি কথাও বলতে পারছিল না?",
+        explanation: "নিয়ম ২৮ অনুযায়ী: মূল বাক্যের অর্থ ঠিক রাখতে Principal Clause-এর 'was'-কে 'Wasn't' করে শুরুতে বসানো হয়েছে।"
+      },
+      {
+        id: 39,
+        level: "Special Rules",
+        tag: "Rule 29 • Neither ... nor",
+        assertive: "Neither Rina nor Bina attended the meeting.",
+        bnMeaning: "রিনা কিংবা বিনা কেউই সভায় উপস্থিত হয়নি।",
+        answer: "Did either Rina or Bina attend the meeting?",
+        answerBn: "রিনা কিংবা বিনা—কেউ কি সভায় উপস্থিত হয়েছিল?",
+        explanation: "নিয়ম ২৯ অনুযায়ী: 'Neither ... nor' না-বোধক অর্থ দেয়, তাই Interrogative করার সময় হ্যাঁ-বোধক 'Did' সামনে এসেছে এবং 'neither...nor' পরিবর্তিত হয়ে 'either...or' হয়েছে।"
+      },
+      {
+        id: 40,
+        level: "SSC Board",
+        tag: "All Boards • Universal Truth",
+        assertive: "Knowledge is power.",
+        bnMeaning: "জ্ঞানই শক্তি।",
+        answer: "Isn't knowledge power?",
+        answerBn: "জ্ঞানই কি শক্তি নয়?",
+        explanation: "নিয়ম ৩০ অনুযায়ী: এটি একটি সর্বজনস্বীকৃত চিরন্তন সত্য। তাই 'is'-কে 'Isn't' করে সামনে এনে প্রশ্নবোধক করা হয়েছে।"
+      },
+      {
+        id: 41,
+        level: "Class 6-8",
+        tag: "Class 6 • Simple Present",
+        assertive: "Birds fly in the sky.",
+        bnMeaning: "পাখিরা আকাশে ওড়ে।",
+        answer: "Don't birds fly in the sky?",
+        answerBn: "পাখিরা কি আকাশে ওড়ে না?",
+        explanation: "নিয়ম ০২ অনুযায়ী: Subject 'Birds' Plural এবং Present Indefinite Tense হওয়ায় শুরুতে 'Don't' বসেছে।"
+      },
+      {
+        id: 42,
+        level: "Class 6-8",
+        tag: "Class 7 • Modal 'Can'",
+        assertive: "We can achieve success through hard work.",
+        bnMeaning: "আমরা কঠোর পরিশ্রমের মাধ্যমে সাফল্য অর্জন করতে পারি।",
+        answer: "Can't we achieve success through hard work?",
+        answerBn: "আমরা কি কঠোর পরিশ্রমের মাধ্যমে সাফল্য অর্জন করতে পারি না?",
+        explanation: "নিয়ম ০১ অনুযায়ী: Modal Auxiliary 'can' থাকায় এর সাথে n't যুক্ত করে 'Can't'-কে শুরুতে বসানো হয়েছে।"
+      },
+      {
+        id: 43,
+        level: "SSC Board",
+        tag: "Dhaka Board • Present Perfect",
+        assertive: "Science has brought a revolutionary change in our life.",
+        bnMeaning: "বিজ্ঞান আমাদের জীবনে এক বৈপ্লবিক পরিবর্তন এনেছে।",
+        answer: "Hasn't science brought a revolutionary change in our life?",
+        answerBn: "বিজ্ঞান কি আমাদের জীবনে এক বৈপ্লবিক পরিবর্তন আনেনি?",
+        explanation: "নিয়ম ০১ অনুযায়ী: Present Perfect Tense-এর Auxiliary Verb 'has'-কে 'Hasn't' করে Subject-এর পূর্বে বসানো হয়েছে।"
+      },
+      {
+        id: 44,
+        level: "SSC Board",
+        tag: "Cumilla Board • Passive Voice Sentence",
+        assertive: "Corruption is hated by all.",
+        bnMeaning: "দুর্নীতি সকলের দ্বারা ঘৃণিত হয়।",
+        answer: "Isn't corruption hated by all?",
+        answerBn: "দুর্নীতি কি সকলের দ্বারা ঘৃণিত হয় না?",
+        explanation: "নিয়ম ০১ অনুযায়ী: Passive বাক্য হলেও এখানে Auxiliary Verb 'is' আছে। তাই শুরুতে 'Isn't' বসিয়ে Interrogative করা হয়েছে।"
+      },
+      {
+        id: 45,
+        level: "SSC Board",
+        tag: "Rajshahi Board • Never + Auxiliary",
+        assertive: "I shall never forget your kindness.",
+        bnMeaning: "আমি তোমার দয়ার কথা কখনো ভুলব না।",
+        answer: "Shall I ever forget your kindness?",
+        answerBn: "আমি কি তোমার দয়ার কথা কখনো ভুলব?",
+        explanation: "নিয়ম ০৩ অনুযায়ী: 'never'-এর পরিবর্তে 'ever' বসেছে এবং Auxiliary Verb 'Shall'-কে Subject 'I'-এর সামনে আনা হয়েছে।"
+      },
+      {
+        id: 46,
+        level: "HSC Board",
+        tag: "Dhaka Board • Nobody + Modal",
+        assertive: "Nobody can deny the contribution of teachers.",
+        bnMeaning: "শিক্ষকদের অবদান কেউ অস্বীকার করতে পারে না।",
+        answer: "Who can deny the contribution of teachers?",
+        answerBn: "শিক্ষকদের অবদান কে অস্বীকার করতে পারে?",
+        explanation: "নিয়ম ০৫ অনুযায়ী: 'Nobody'-এর পরিবর্তে শুরুতে 'Who' বসিয়ে বাকি অংশ অপরিবর্তিত রাখা হয়েছে।"
+      },
+      {
+        id: 47,
+        level: "HSC Board",
+        tag: "Mymensingh Board • Everybody + Modal",
+        assertive: "Everybody should love his neighbours.",
+        bnMeaning: "প্রত্যেকেরই তার প্রতিবেশীদের ভালোবাসা উচিত।",
+        answer: "Who shouldn't love his neighbours?",
+        answerBn: "কার তার প্রতিবেশীদের ভালোবাসা উচিত নয়?",
+        explanation: "নিয়ম ০৬ অনুযায়ী: Subject 'Everybody' থাকায় শুরুতে 'Who' বসেছে এবং Modal 'should'-এর সাথে n't যুক্ত হয়ে 'shouldn't' হয়েছে।"
+      },
+      {
+        id: 48,
+        level: "HSC Board",
+        tag: "Chattogram Board • Every + Noun (Past)",
+        assertive: "Every student attended the seminar.",
+        bnMeaning: "প্রত্যেক শিক্ষার্থী সেমিনারে উপস্থিত হয়েছিল।",
+        answer: "Was there any student who didn't attend the seminar?",
+        answerBn: "এমন কোনো শিক্ষার্থী কি ছিল যে সেমিনারে উপস্থিত হয়নি?",
+        explanation: "নিয়ম ০৭ অনুযায়ী: বাক্যটি Past Tense ('attended') হওয়ায় 'Was there any student who didn't attend...' ব্যবহার করা হয়েছে।"
+      },
+      {
+        id: 49,
+        level: "HSC Board",
+        tag: "Sylhet Board • Had to Rule",
+        assertive: "They had to leave the village during the flood.",
+        bnMeaning: "বন্যার সময় তাদের গ্রাম ছেড়ে চলে যেতে হয়েছিল।",
+        answer: "Didn't they have to leave the village during the flood?",
+        answerBn: "বন্যার সময় তাদের কি গ্রাম ছেড়ে চলে যেতে হয়নি?",
+        explanation: "নিয়ম ২৬ অনুযায়ী: 'had to' থাকায় শুরুতে 'Didn't they' বসেছে এবং 'had to' পরিবর্তিত হয়ে 'have to' হয়েছে।"
+      },
+      {
+        id: 50,
+        level: "HSC Board",
+        tag: "All Boards • Universal Truth",
+        assertive: "Time and tide wait for none.",
+        bnMeaning: "সময় ও নদীর স্রোত কারো জন্য অপেক্ষা করে না।",
+        answer: "Do time and tide wait for anyone?",
+        answerBn: "সময় ও নদীর স্রোত কি কারো জন্য অপেক্ষা করে?",
+        explanation: "নিয়ম ০২ ও ০৫ অনুযায়ী: এখানে object হিসেবে 'none' (নেতিবাচক) থাকায় এর পরিবর্তে 'anyone' বসেছে এবং 'time and tide' Plural হওয়ায় শুরুতে হ্যাঁ-বোধক 'Do' বসেছে।"
+      }
+    ];
+
+    // =========================================================================
+    // STATE MANAGEMENT FOR MULTI-STEP CARDS
+    // =========================================================================
+    const ruleSteps = {}; // ruleIndex -> 0..3
+    const exerciseSteps = {}; // exerciseId -> 0..3
+    let currentExerciseCategory = 'ALL';
+    let allRulesExpanded = false;
+    let allExercisesExpanded = false;
+
+    // =========================================================================
+    // RENDER RULES (PART 01)
+    // =========================================================================
+    function getRuleButtonMeta(step) {
+      if (step === 0) {
+        return {
+          text: "👆 ১ম ক্লিক: গঠন (Structure) দেখুন",
+          cls: "bg-sky-500/20 text-sky-300 border-sky-400/40"
+        };
+      } else if (step === 1) {
+        return {
+          text: "👆 ২য় ক্লিক: বাংলা ব্যাখ্যা দেখুন",
+          cls: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40"
+        };
+      } else if (step === 2) {
+        return {
+          text: "👆 ৩য় ক্লিক: উদাহরণ ও অর্থ দেখুন",
+          cls: "bg-amber-500/20 text-amber-300 border-amber-400/40"
+        };
+      } else {
+        return {
+          text: "🔄 ৪র্থ ক্লিক: সংকুচিত করুন",
+          cls: "bg-rose-500/20 text-rose-300 border-rose-400/40"
+        };
+      }
+    }
+
+    function renderRules() {
+      const container = document.getElementById('rules-container');
+      const query = document.getElementById('rule-search').value.trim().toLowerCase();
+
+      const filtered = RULES_DATA.filter(r => {
+        if (!query) return true;
+        return (
+          r.num.includes(query) ||
+          r.title.toLowerCase().includes(query) ||
+          r.subtitle.toLowerCase().includes(query) ||
+          r.structure.toLowerCase().includes(query) ||
+          r.explanation.toLowerCase().includes(query)
+        );
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="rgb-ring-card p-8 text-center" style="color: var(--text-muted);">
+            কোনো নিয়ম খুঁজে পাওয়া যায়নি। অন্য শব্দ দিয়ে চেষ্টা করুন।
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(rule => {
+        const idx = parseInt(rule.num, 10);
+        const step = ruleSteps[idx] || 0;
+        const btnMeta = getRuleButtonMeta(step);
+
+        return `
+          <article onclick="cycleRuleStep(${idx})"
+                   class="rgb-ring-card laser-target p-4 sm:p-6 cursor-pointer select-none">
+            <!-- Header Row -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center font-en font-extrabold text-sm shrink-0 border"
+                     style="background: rgba(6, 182, 212, 0.14); border-color: rgba(6, 182, 212, 0.35); color: #22d3ee;">
+                  ${rule.num}
+                </div>
+                <div>
+                  <h4 class="font-en font-bold text-base sm:text-lg leading-snug" style="color: var(--text-primary);">
+                    ${rule.title}
+                  </h4>
+                  <p class="text-xs sm:text-sm mt-0.5 font-medium text-cyan-400">
+                    ${rule.subtitle}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Action Pill -->
+              <div class="self-start sm:self-center shrink-0">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border transition-all ${btnMeta.cls}">
+                  ${btnMeta.text}
+                </span>
+              </div>
+            </div>
+
+            <!-- Progressive Panels -->
+            <div class="space-y-3 ${step > 0 ? 'mt-4' : ''}">
+              ${step >= 1 ? `
+                <div class="step-reveal step-panel-content p-3.5 rounded-xl border"
+                     style="background: var(--bg-subpanel); border-color: rgba(56, 189, 248, 0.3);">
+                  <div class="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-1">
+                    📐 গঠন (Structure):
+                  </div>
+                  <pre class="whitespace-pre-wrap font-en text-xs sm:text-sm font-semibold leading-relaxed" style="color: var(--text-primary);">${rule.structure}</pre>
+                </div>
+              ` : ''}
+
+              ${step >= 2 ? `
+                <div class="step-reveal step-panel-content p-3.5 rounded-xl border"
+                     style="background: var(--bg-subpanel); border-color: rgba(16, 185, 129, 0.32);">
+                  <div class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
+                    💡 বিস্তারিত বাংলা ব্যাখ্যা:
+                  </div>
+                  <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                    ${rule.explanation}
+                  </p>
+                </div>
+              ` : ''}
+
+              ${step >= 3 ? `
+                <div class="step-reveal step-panel-content p-3.5 rounded-xl border space-y-2.5"
+                     style="background: var(--bg-subpanel); border-color: rgba(245, 158, 11, 0.35);">
+                  <div class="text-xs font-bold uppercase tracking-wider text-amber-400">
+                    📝 উদাহরণ ও বাংলা অর্থ:
+                  </div>
+                  ${rule.examples.map(ex => `
+                    <div class="p-2.5 rounded-lg border text-xs sm:text-sm space-y-1"
+                         style="border-color: var(--border-subtle); background: rgba(15, 23, 42, 0.25);">
+                      <div><span class="font-en font-bold text-slate-400">Assertive:</span> <span class="font-en font-semibold" style="color: var(--text-primary);">${ex.assert}</span></div>
+                      <div><span class="font-en font-bold text-emerald-400">Interrogative:</span> <span class="font-en font-bold text-cyan-300">${ex.inter}</span></div>
+                      <div class="text-amber-300/90 text-xs">বাংলা অর্থ: ${ex.bn}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Card Footer Progress Dots -->
+            <div class="mt-4 pt-2.5 border-t flex items-center justify-between text-xs"
+                 style="border-color: var(--border-subtle); color: var(--text-muted);">
+              <span>ধাপ: <strong style="color: var(--text-primary);">${step} / 3</strong> উন্মুক্ত</span>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full transition-all ${step >= 1 ? 'bg-cyan-400 scale-110' : 'bg-slate-600'}"></span>
+                <span class="w-2.5 h-2.5 rounded-full transition-all ${step >= 2 ? 'bg-emerald-400 scale-110' : 'bg-slate-600'}"></span>
+                <span class="w-2.5 h-2.5 rounded-full transition-all ${step >= 3 ? 'bg-amber-400 scale-110' : 'bg-slate-600'}"></span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function cycleRuleStep(idx) {
+      const current = ruleSteps[idx] || 0;
+      const next = (current + 1) % 4;
+      ruleSteps[idx] = next;
+      playClickSound(next === 0 ? 400 : 500 + next * 90);
+      renderRules();
+    }
+
+    function filterRules() {
+      renderRules();
+    }
+
+    function toggleAllRules() {
+      allRulesExpanded = !allRulesExpanded;
+      RULES_DATA.forEach(r => {
+        ruleSteps[parseInt(r.num, 10)] = allRulesExpanded ? 3 : 0;
+      });
+      document.getElementById('toggle-all-rules-text').textContent = allRulesExpanded
+        ? 'সব নিয়ম সংকুচিত করুন'
+        : 'সব নিয়ম একসাথে খুলুন';
+      playClickSound(allRulesExpanded ? 680 : 440);
+      renderRules();
+    }
+
+    // =========================================================================
+    // RENDER 50 EXERCISES (PART 02)
+    // Exact Sequence Requested by User:
+    // 1st Click = বাংলা অর্থ (Bengali Meaning)
+    // 2nd Click = সঠিক উত্তর (Correct Interrogative Answer)
+    // 3rd Click = বিস্তারিত ব্যাখ্যা (Detailed Explanation)
+    // 4th Click = সংকুচিত (Collapse)
+    // =========================================================================
+    function getExerciseButtonMeta(step) {
+      if (step === 0) {
+        return {
+          text: "👆 ১ম ক্লিক: বাংলা অর্থ দেখুন",
+          cls: "bg-cyan-500/20 text-cyan-300 border-cyan-400/40"
+        };
+      } else if (step === 1) {
+        return {
+          text: "👆 ২য় ক্লিক: সঠিক উত্তর দেখুন",
+          cls: "bg-emerald-500/20 text-emerald-300 border-emerald-400/40"
+        };
+      } else if (step === 2) {
+        return {
+          text: "👆 ৩য় ক্লিক: বিস্তারিত ব্যাখ্যা দেখুন",
+          cls: "bg-amber-500/20 text-amber-300 border-amber-400/40"
+        };
+      } else {
+        return {
+          text: "🔄 ৪র্থ ক্লিক: সংকুচিত করুন",
+          cls: "bg-rose-500/20 text-rose-300 border-rose-400/40"
+        };
+      }
+    }
+
+    function updateExerciseProgress() {
+      const openedCount = EXERCISES_DATA.filter(ex => (exerciseSteps[ex.id] || 0) > 0).length;
+      document.getElementById('exercise-progress-badge').textContent = `অনুশীলন খোলা হয়েছে: ${openedCount} / 50`;
+    }
+
+    function setExerciseCategory(cat) {
+      currentExerciseCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-pill btn-3d px-3.5 py-1.5 rounded-full text-xs font-bold bg-cyan-500 text-slate-950';
+          btn.style.background = '';
+          btn.style.color = '';
+        } else {
+          btn.className = 'cat-pill btn-3d px-3.5 py-1.5 rounded-full text-xs font-semibold border';
+          btn.style.background = 'var(--bg-surface)';
+          btn.style.borderColor = 'var(--border-subtle)';
+          btn.style.color = 'var(--text-secondary)';
+        }
+      });
+      playClickSound(580);
+      renderExercises();
+    }
+
+    function renderExercises() {
+      const container = document.getElementById('exercises-container');
+      const query = document.getElementById('exercise-search').value.trim().toLowerCase();
+
+      const filtered = EXERCISES_DATA.filter(ex => {
+        const matchesCat = currentExerciseCategory === 'ALL' || ex.level === currentExerciseCategory;
+        if (!matchesCat) return false;
+        if (!query) return true;
+        return (
+          String(ex.id).includes(query) ||
+          ex.level.toLowerCase().includes(query) ||
+          ex.tag.toLowerCase().includes(query) ||
+          ex.assertive.toLowerCase().includes(query) ||
+          ex.bnMeaning.toLowerCase().includes(query) ||
+          ex.answer.toLowerCase().includes(query) ||
+          ex.explanation.toLowerCase().includes(query)
+        );
+      });
+
+      updateExerciseProgress();
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="rgb-ring-card p-8 text-center" style="color: var(--text-muted);">
+            এই ফিল্টারে কোনো প্রশ্ন পাওয়া যায়নি।
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(ex => {
+        const step = exerciseSteps[ex.id] || 0;
+        const btnMeta = getExerciseButtonMeta(step);
+        const numFormatted = String(ex.id).padStart(2, '0');
+
+        let badgeColor = "bg-sky-500/15 text-sky-300 border-sky-400/30";
+        if (ex.level === "SSC Board") badgeColor = "bg-emerald-500/15 text-emerald-300 border-emerald-400/30";
+        if (ex.level === "HSC Board") badgeColor = "bg-purple-500/15 text-purple-300 border-purple-400/30";
+        if (ex.level === "Special Rules") badgeColor = "bg-amber-500/15 text-amber-300 border-amber-400/30";
+
+        return `
+          <article onclick="cycleExerciseStep(${ex.id})"
+                   class="rgb-ring-card laser-target p-4 sm:p-6 cursor-pointer select-none">
+            <!-- Top Metadata & Action Button -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center font-en font-extrabold text-sm shrink-0 border"
+                     style="background: rgba(168, 85, 247, 0.16); border-color: rgba(168, 85, 247, 0.38); color: #e879f9;">
+                  ${numFormatted}
+                </div>
+                <div class="space-y-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="font-en text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor}">
+                      ${ex.level}
+                    </span>
+                    <span class="font-en text-xs" style="color: var(--text-muted);">
+                      ${ex.tag}
+                    </span>
+                  </div>
+                  <p class="font-en font-bold text-base sm:text-lg leading-snug" style="color: var(--text-primary);">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 mr-1.5">Assertive:</span>
+                    "${ex.assertive}"
+                  </p>
+                </div>
+              </div>
+
+              <div class="self-start sm:self-center shrink-0">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border transition-all ${btnMeta.cls}">
+                  ${btnMeta.text}
+                </span>
+              </div>
+            </div>
+
+            <!-- Progressive Reveal Steps -->
+            <div class="space-y-3 ${step > 0 ? 'mt-4' : ''}">
+              <!-- STEP 1: BENGALI MEANING -->
+              ${step >= 1 ? `
+                <div class="step-reveal step-panel-content p-3.5 rounded-xl border"
+                     style="background: var(--bg-subpanel); border-color: rgba(34, 211, 238, 0.35);">
+                  <div class="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-1">
+                    🇧🇩 ১ম ধাপ — বাক্যের বাংলা অর্থ:
+                  </div>
+                  <p class="text-sm sm:text-base font-medium" style="color: var(--text-primary);">
+                    ${ex.bnMeaning}
+                  </p>
+                </div>
+              ` : ''}
+
+              <!-- STEP 2: CORRECT INTERROGATIVE ANSWER -->
+              ${step >= 2 ? `
+                <div class="step-reveal step-panel-content p-3.5 rounded-xl border"
+                     style="background: var(--bg-subpanel); border-color: rgba(16, 185, 129, 0.42);">
+                  <div class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
+                    ✅ ২য় ধাপ — সঠিক উত্তর (Interrogative):
+                  </div>
+                  <p class="font-en font-extrabold text-base sm:text-lg text-emerald-300">
+                    ${ex.answer}
+                  </p>
+                  <p class="text-xs sm:text-sm mt-1 text-emerald-200/85">
+                    প্রশ্নবোধক বাংলা অর্থ: ${ex.answerBn}
+                  </p>
+                </div>
+              ` : ''}
+
+              <!-- STEP 3: DETAILED EXPLANATION -->
+              ${step >= 3 ? `
+                <div class="step-reveal step-panel-content p-3.5 rounded-xl border"
+                     style="background: var(--bg-subpanel); border-color: rgba(245, 158, 11, 0.38);">
+                  <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">
+                    📘 ৩য় ধাপ — বিস্তারিত ব্যাখ্যা ও ব্যবহৃত নিয়ম:
+                  </div>
+                  <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                    ${ex.explanation}
+                  </p>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Footer Progress Dots -->
+            <div class="mt-4 pt-2.5 border-t flex items-center justify-between text-xs"
+                 style="border-color: var(--border-subtle); color: var(--text-muted);">
+              <span>ধাপ: <strong style="color: var(--text-primary);">${step} / 3</strong> উন্মুক্ত</span>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full transition-all ${step >= 1 ? 'bg-cyan-400 scale-110' : 'bg-slate-600'}"></span>
+                <span class="w-2.5 h-2.5 rounded-full transition-all ${step >= 2 ? 'bg-emerald-400 scale-110' : 'bg-slate-600'}"></span>
+                <span class="w-2.5 h-2.5 rounded-full transition-all ${step >= 3 ? 'bg-amber-400 scale-110' : 'bg-slate-600'}"></span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function cycleExerciseStep(id) {
+      const current = exerciseSteps[id] || 0;
+      const next = (current + 1) % 4;
+      exerciseSteps[id] = next;
+      playClickSound(next === 0 ? 410 : 520 + next * 95);
+      renderExercises();
+    }
+
+    function filterExercises() {
+      renderExercises();
+    }
+
+    function toggleAllExercises() {
+      allExercisesExpanded = !allExercisesExpanded;
+      EXERCISES_DATA.forEach(ex => {
+        exerciseSteps[ex.id] = allExercisesExpanded ? 3 : 0;
+      });
+      document.getElementById('toggle-all-ex-text').textContent = allExercisesExpanded
+        ? 'সব উত্তর সংকুচিত করুন'
+        : 'সব উত্তর একসাথে খুলুন';
+      playClickSound(allExercisesExpanded ? 700 : 430);
+      renderExercises();
+    }
+
+    // =========================================================================
+    // INITIALIZE ON LOAD
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRules();
+      renderExercises();
+    });
+  </script>
+</body>
+</html>
