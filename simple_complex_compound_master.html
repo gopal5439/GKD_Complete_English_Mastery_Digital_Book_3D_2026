@@ -1305,6 +1305,100 @@ html[data-theme="rgb"] .card-3d::before {
         display: block !important;
       }
     }
+
+    /* ===== DEEP SIGNATURE PALETTES + UNIVERSAL TEXT HIGHLIGHT ===== */
+    html[data-theme="white"] {
+      --accent-primary:#1746a2; --accent-secondary:#087eaa; --accent-tertiary:#5424a8;
+      --accent-success:#087a58; --border-strong:rgba(23,70,162,.34);
+      --surface-subtle:#eaf0fb;
+    }
+    html[data-theme="dark"] {
+      --bg-canvas:#070b14; --surface-card:rgba(13,22,39,.96);
+      --surface-elevated:#111f35; --surface-subtle:#192b46;
+      --accent-primary:#55b8ff; --accent-secondary:#42dfc2; --accent-tertiary:#bd8cff;
+      --text-primary:#f5f8ff; --text-secondary:#d5e2f3; --border-strong:rgba(85,184,255,.48);
+    }
+    html[data-theme="rgb"] {
+      --bg-canvas:#080914; --surface-card:rgba(14,17,38,.97);
+      --surface-elevated:#171b3c; --surface-subtle:#22264c;
+      --accent-primary:#ff4fa3; --accent-secondary:#21d4e8; --accent-tertiary:#b36bff;
+      --text-primary:#fff8ff; --text-secondary:#e9e6ff; --border-strong:rgba(255,79,163,.5);
+    }
+    html[data-theme="emerald"] {
+      --bg-canvas:#e8f5f0; --surface-card:rgba(247,255,251,.97);
+      --surface-elevated:#ffffff; --surface-subtle:#dcefe7;
+      --accent-primary:#075c49; --accent-secondary:#087e83; --accent-tertiary:#174f91;
+      --text-primary:#082d26; --text-secondary:#234b42; --border-strong:rgba(7,92,73,.36);
+    }
+    html[data-theme="parchment"] {
+      --bg-canvas:#f5ead8; --surface-card:rgba(255,250,239,.98);
+      --surface-elevated:#fffdf7; --surface-subtle:#efe0c7;
+      --accent-primary:#713b13; --accent-secondary:#a04418; --accent-tertiary:#63316f;
+      --text-primary:#2c1c10; --text-secondary:#513923; --border-strong:rgba(113,59,19,.36);
+    }
+
+    /* Consistent emphasis: important formulas, connectors and examples stay highlighted
+       in every theme while retaining accessible contrast. */
+    .formula-box, .marker-highlight, .en-sentence, .bn-meaning,
+    .quick-rule-table .formula-line, .quick-rule-table .example-line,
+    .quick-rule-table .rule-name {
+      overflow-wrap:anywhere;
+      word-break:normal;
+    }
+    .quick-rule-table .formula-line {
+      display:block; margin:5px 0 7px; padding:7px 9px;
+      border-left:4px solid var(--accent-primary);
+      border-radius:7px; background:color-mix(in srgb, var(--accent-primary) 11%, var(--surface-elevated));
+      color:var(--text-primary); font-weight:700;
+    }
+    .quick-rule-table .example-line {
+      display:block; margin:5px 0; padding:5px 8px;
+      border-radius:7px; background:color-mix(in srgb, var(--accent-secondary) 10%, var(--surface-elevated));
+      color:var(--accent-secondary); font-weight:600;
+    }
+    .quick-rule-table .bn-line {
+      display:block; margin-top:4px; color:var(--text-secondary);
+      background:color-mix(in srgb, var(--accent-tertiary) 7%, var(--surface-elevated));
+      border-radius:6px; padding:4px 7px;
+    }
+    .quick-rule-table .rule-name {
+      display:inline-block; padding:5px 9px; border-radius:8px;
+      color:var(--accent-primary); font-weight:700;
+      background:color-mix(in srgb, var(--accent-primary) 12%, var(--surface-elevated));
+    }
+    .quick-rule-table table.master-table { min-width:1080px; table-layout:fixed; }
+    .quick-rule-table table.master-table th { text-align:center; vertical-align:middle; }
+    .quick-rule-table table.master-table td { line-height:1.58; }
+    .quick-rule-table table.master-table tbody tr:nth-child(even) td {
+      background:color-mix(in srgb, var(--accent-primary) 4%, var(--surface-elevated));
+    }
+    .quick-rule-table .rule-col { width:15%; }
+    .quick-rule-table .simple-col,
+    .quick-rule-table .complex-col,
+    .quick-rule-table .compound-col { width:28.333%; }
+    .quick-rule-note {
+      padding:14px 16px; border-radius:14px; margin-top:14px;
+      border:1px solid var(--accent-warning);
+      background:color-mix(in srgb, var(--accent-warning) 10%, var(--surface-elevated));
+      color:var(--text-primary); line-height:1.75;
+    }
+    .quick-rule-note strong { color:var(--accent-danger); }
+    @media (max-width:700px) {
+      .quick-rule-table table.master-table { min-width:1040px; }
+      .quick-rule-table .chapter-header-card { padding:18px; }
+    }
+    @media print {
+      .quick-rule-table table.master-table { min-width:0 !important; width:100% !important; }
+      .quick-rule-table table.master-table th, .quick-rule-table table.master-table td {
+        color:#111 !important; background:#fff !important; font-size:8.5pt !important;
+        padding:6px !important;
+      }
+      .quick-rule-table .formula-line, .quick-rule-table .example-line,
+      .quick-rule-table .bn-line, .quick-rule-table .rule-name {
+        color:#111 !important; background:#f1f3f5 !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1337,6 +1431,7 @@ html[data-theme="rgb"] .card-3d::before {
       <a href="#ch5" class="drawer-link"><span>৫. Simple ↔ Compound রূপান্তর</span><span>অধ্যায় ৫</span></a>
       <a href="#ch6" class="drawer-link"><span>৬. বিশেষ নিয়ম ও ভুল সংশোধন</span><span>অধ্যায় ৬</span></a>
       <a href="#ch7" class="drawer-link"><span>৭. ল্যাব, ৫০ প্রশ্ন ও কুইজ</span><span>অধ্যায় ৭</span></a>
+      <a href="#quickRules" class="drawer-link"><span>৮. একনজরে নিয়ম</span><span>অধ্যায় ৮</span></a>
     </div>
 
     <div class="drawer-section-title">ফন্ট সাইজ নিয়ন্ত্রণ</div>
@@ -1418,6 +1513,7 @@ html[data-theme="rgb"] .card-3d::before {
       <a href="#ch6" class="jump-chip">অধ্যায় ৬: বিশেষ নিয়ম ও ভুল</a>
       <a href="#practice50Section" class="jump-chip">অনুশীলন: ৫০টি SSC/HSC প্রশ্ন</a>
       <a href="#ch7" class="jump-chip">অধ্যায় ৭: ল্যাব ও কুইজ</a>
+      <a href="#quickRules" class="jump-chip">অধ্যায় ৮: একনজরে নিয়ম</a>
     </nav>
   </header>
 
@@ -1917,6 +2013,51 @@ html[data-theme="rgb"] .card-3d::before {
       </div>
 
       <div id="quizContainer"></div>
+    </section>
+
+    <!-- Chapter 8: At-a-glance complete transformation table -->
+    <section id="quickRules" class="chapter-section quick-rule-table">
+      <div class="card-3d chapter-header-card">
+        <div class="chapter-tag-row">
+          <span class="chapter-pill">অধ্যায় ০৮</span>
+          <span class="badge-chip">১৩টি নিয়ম • Simple / Complex / Compound</span>
+        </div>
+        <h2 class="chapter-title">একনজরে নিয়ম</h2>
+        <p class="chapter-sub">একই নিয়মের Simple, Complex ও Compound গঠন, উদাহরণ এবং বাংলা অর্থ পাশাপাশি তুলনা করে দেখুন।</p>
+      </div>
+      <div class="table-wrap">
+        <table class="master-table">
+          <thead>
+            <tr>
+              <th class="rule-col">নিয়মের ধরন (Rule)</th>
+              <th class="simple-col">SIMPLE SENTENCE (১টি Finite Verb / Phrase)</th>
+              <th class="complex-col">COMPLEX SENTENCE (Subordinating / Relative)</th>
+              <th class="compound-col">COMPOUND SENTENCE (FANBOYS / Semicolon)</th>
+            </tr>
+          </thead>
+          <tbody><tr><td><span class='rule-name'>১. কারণ<br>(Cause/Reason)</span></td><td><span class='formula-line'>Because of / Due to / Owing to + Noun/V-ing + Main Cl.<br><span class='example-line'>Ex: Because of his illness, he missed class.</span><span class='bn-line'>(অসুস্থতার কারণে সে ক্লাস মিস করেছিল।)</span></span></td><td><span class='formula-line'>Because / Since / As + Sub + Finite Verb + Main Cl.<br><span class='example-line'>Ex: Since he was ill, he missed class.</span><span class='bn-line'>(যেহেতু সে অসুস্থ ছিল, সে ক্লাস মিস করেছিল।)</span></span></td><td><span class='formula-line'>[Cause Clause] + , so + [Result Clause]<br><span class='example-line'>Ex: He was ill, so he missed class.</span><span class='bn-line'>(সে অসুস্থ ছিল, তাই ক্লাস মিস করেছিল।)</span></span></td></tr>
+<tr><td><span class='rule-name'>২. বৈপরীত্য<br>(Contrast)</span></td><td><span class='formula-line'>In spite of / Despite + Noun/V-ing/Being + Main Cl. (Despite-এর পরে of বসে না)<br><span class='example-line'>Ex: In spite of poverty, he is honest.</span><span class='bn-line'>(দারিদ্র্য সত্ত্বেও সে সৎ।)</span></span></td><td><span class='formula-line'>Although / Though / Even though + Sub + V + Main Cl. (but বসে না)<br><span class='example-line'>Ex: Although he is poor, he is honest.</span><span class='bn-line'>(যদিও সে গরিব, তবুও সে সৎ।)</span></span></td><td><span class='formula-line'>[Clause 1] + , but / yet + [Clause 2]<br><span class='example-line'>Ex: He is poor, yet he is honest.</span><span class='bn-line'>(সে গরিব, তবুও সে সৎ।)</span></span></td></tr>
+<tr><td><span class='rule-name'>৩. ইতিবাচক শর্ত<br>(+ Condition)</span></td><td><span class='formula-line'>By + Verb-ing + ... + Main Clause<br><span class='example-line'>Ex: By reading books, you can learn.</span><span class='bn-line'>(বই পড়ে তুমি শিখতে পারো।)</span></span></td><td><span class='formula-line'>If + Sub + Affirmative Verb + ... + Main Clause<br><span class='example-line'>Ex: If you read books, you can learn.</span><span class='bn-line'>(যদি তুমি বই পড়ো, তবে শিখতে পারো।)</span></span></td><td><span class='formula-line'>Imperative Verb + ... + , and + Main Clause<br><span class='example-line'>Ex: Read books, and you can learn.</span><span class='bn-line'>(বই পড়ো, এবং তুমি শিখতে পারো।)</span></span></td></tr>
+<tr><td><span class='rule-name'>৪. নেতিবাচক শর্ত<br>(- Condition)</span></td><td><span class='formula-line'>Without + Verb-ing + ... + Main Clause<br><span class='example-line'>Ex: Without working hard, you will fail.</span><span class='bn-line'>(কঠোর পরিশ্রম না করলে তুমি ব্যর্থ হবে।)</span></span></td><td><span class='formula-line'>Unless + Sub + Aff. V / If + Sub + Neg. V + Main Cl.<br><span class='example-line'>Ex: Unless you work hard, you will fail.</span><span class='bn-line'>(কঠোর পরিশ্রম না করলে তুমি ব্যর্থ হবে।)</span></span></td><td><span class='formula-line'>Imperative Verb + ... + , or / otherwise + Main Cl.<br><span class='example-line'>Ex: Work hard, or you will fail.</span><span class='bn-line'>(কঠোর পরিশ্রম করো, নতুবা ব্যর্থ হবে।)</span></span></td></tr>
+<tr><td><span class='rule-name'>৫. উদ্দেশ্য<br>(Purpose)</span></td><td><span class='formula-line'>Sub + V + ... + to / in order to + V1<br><span class='example-line'>Ex: We eat to live.</span><span class='bn-line'>(আমরা বাঁচার জন্য খাই।)</span></span></td><td><span class='formula-line'>Sub + V + ... + so that / in order that + Sub + can/could/may/might + V1<br><span class='example-line'>Ex: We eat so that we may live.</span><span class='bn-line'>(আমরা খাই যাতে বাঁচতে পারি।)</span></span></td><td><span class='formula-line'>Sub + want/wish to + V1 + ... + , so / and + Main Cl.<br><span class='example-line'>Ex: We want to live, so we eat.</span><span class='bn-line'>(আমরা বাঁচতে চাই, তাই খাই।)</span></span></td></tr>
+<tr><td><span class='rule-name'>৬. অতিশয়তা / ফল<br>(Too...to / So...that)</span></td><td><span class='formula-line'>Sub + V + too + Adj/Adv + (for + Obj) + to + V1<br><span class='example-line'>Ex: He is too weak to walk.</span><span class='bn-line'>(সে এতই দুর্বল যে হাঁটতে পারে না।)</span></span></td><td><span class='formula-line'>Sub + V + so + Adj/Adv + that + Sub + cannot/could not/will not + V1<br><span class='example-line'>Ex: He is so weak that he cannot walk.</span><span class='bn-line'>(সে এতই দুর্বল যে হাঁটতে পারে না।)</span></span></td><td><span class='formula-line'>Sub + V + very + Adj/Adv + , and / so + Negative Cl.<br><span class='example-line'>Ex: He is very weak, and he cannot walk.</span><span class='bn-line'>(সে খুব দুর্বল, এবং হাঁটতে পারে না।)</span></span></td></tr>
+<tr><td><span class='rule-name'>৭. তাৎক্ষণিক কাজ<br>(Immediate Action)</span></td><td><span class='formula-line'>On + V-ing / Just after + Possessive + V-ing + Main Cl.<br><span class='example-line'>Ex: On hearing the alarm, they ran out.</span><span class='bn-line'>(অ্যালার্ম শুনেই তারা বাইরে ছুটে গেল।)</span></span></td><td><span class='formula-line'>As soon as + Cl1, Cl2 / No sooner had...than / Hardly had...when<br><span class='example-line'>Ex: As soon as they heard the alarm, they ran out.</span><span class='bn-line'>(অ্যালার্ম শোনামাত্রই তারা বাইরে ছুটে গেল।)</span></span></td><td><span class='formula-line'>Clause 1 + , and + Clause 2 + (at once / immediately)<br><span class='example-line'>Ex: They heard the alarm, and ran out at once.</span><span class='bn-line'>(তারা অ্যালার্ম শুনল, এবং সাথে সাথে ছুটে গেল।)</span></span></td></tr>
+<tr><td><span class='rule-name'>৮. চলমান সময়<br>(Ongoing Time)</span></td><td><span class='formula-line'>While + V-ing / At the time of + V-ing + Main Cl. (একই Sub)<br><span class='example-line'>Ex: While walking, he saw a snake.</span><span class='bn-line'>(হাঁটার সময় সে একটি সাপ দেখল।)</span></span></td><td><span class='formula-line'>While / When + Sub + be + V-ing + Main Cl.<br><span class='example-line'>Ex: While he was walking, he saw a snake.</span><span class='bn-line'>(যখন সে হাঁটছিল, তখন সে একটি সাপ দেখল।)</span></span></td><td><span class='formula-line'>Clause 1 (Past Cont.) + , and + Clause 2<br><span class='example-line'>Ex: He was walking, and he saw a snake.</span><span class='bn-line'>(সে হাঁটছিল, এবং সে একটি সাপ দেখল।)</span></span></td></tr>
+<tr><td><span class='rule-name'>৯. ভিন্ন Subject<br>(Nominative Abs.)</span></td><td><span class='formula-line'>It being + Noun/Adj / Sub + having + V3 + Main Cl.<br><span class='example-line'>Ex: The sun having set, we returned.</span><span class='bn-line'>(সূর্য অস্ত গেলে আমরা ফিরলাম।)</span></span></td><td><span class='formula-line'>When / As / Since + Sub1 + V1, Sub2 + V2<br><span class='example-line'>Ex: When the sun had set, we returned.</span><span class='bn-line'>(যখন সূর্য অস্ত গিয়েছিল, আমরা ফিরলাম।)</span></span></td><td><span class='formula-line'>Clause 1 (Sub1) + , and / so + Clause 2 (Sub2)<br><span class='example-line'>Ex: The sun set, and we returned.</span><span class='bn-line'>(সূর্য অস্ত গেল, এবং আমরা ফিরলাম।)</span></span></td></tr>
+<tr><td><span class='rule-name'>১০. অতিরিক্ত তথ্য<br>(Addition)</span></td><td><span class='formula-line'>Besides + V-ing / Noun Phrase + Main Clause<br><span class='example-line'>Ex: Besides being a doctor, she writes.</span><span class='bn-line'>(ডাক্তার হওয়ার পাশাপাশি তিনি লেখেন।)</span></span></td><td><span class='formula-line'>While / Though + Sub + V, Sub + also + V (বা Relative Cl.)<br><span class='example-line'>Ex: She who is a doctor also writes.</span><span class='bn-line'>(তিনি যিনি একজন ডাক্তার, তিনি লেখেনও।)</span></span></td><td><span class='formula-line'>Not only + Cl.1/Part 1, but also + Cl.2/Part 2 / Cl.1 + and + Cl.2<br><span class='example-line'>Ex: She is not only a doctor, but also a writer.</span><span class='bn-line'>(তিনি শুধু ডাক্তারই নন, একজন লেখিকাও।)</span></span></td></tr>
+<tr><td><span class='rule-name'>১১. ব্যক্তিগত গুণ<br>(Relative / Adj.)</span></td><td><span class='formula-line'>Adjective + Noun / Noun + Present/Past Participle Phrase<br><span class='example-line'>Ex: Industrious people succeed in life.</span><span class='bn-line'>(পরিশ্রমী মানুষ জীবনে সফল হয়।)</span></span></td><td><span class='formula-line'>Noun + who / which / that + Verb + ...<br><span class='example-line'>Ex: People who are industrious succeed in life.</span><span class='bn-line'>(যেসব মানুষ পরিশ্রমী তারা জীবনে সফল হয়।)</span></span></td><td><span class='formula-line'>Clause 1 + , and + Clause 2 (Pronoun সহ)<br><span class='example-line'>Ex: People are industrious, and they succeed.</span><span class='bn-line'>(মানুষেরা পরিশ্রমী, এবং তারা সফল হয়।)</span></span></td></tr>
+<tr><td><span class='rule-name'>১২. স্থান/সময়/তথ্য<br>(Noun Clause/Phrase)</span></td><td><span class='formula-line'>Sub + V + Noun / Possessive + Noun Phrase / Prepositional Ph.<br><span class='example-line'>Ex: I know his birthplace.</span><span class='bn-line'>(আমি তার জন্মস্থান জানি।)</span></span></td><td><span class='formula-line'>Sub + V + that / where / when / why / how / what + Sub + V<br><span class='example-line'>Ex: I know where he was born.</span><span class='bn-line'>(আমি জানি সে কোথায় জন্মগ্রহণ করেছিল।)</span></span></td><td><span class='formula-line'>Clause 1 + , and + Clause 2<br><span class='example-line'>Ex: He was born somewhere, and I know it.</span><span class='bn-line'>(সে কোথাও জন্মেছিল, এবং আমি তা জানি।)</span></span></td></tr>
+<tr><td><span class='rule-name'>১৩. সাধারণ তথ্য<br>(Cleft / Universal)</span></td><td><span class='formula-line'>Subject + Verb + Complement (টি পূর্ণ সরল বাক্য)<br><span class='example-line'>Ex: Health is wealth.</span><span class='bn-line'>(স্বাস্থ্যই সম্পদ।)</span></span></td><td><span class='formula-line'>It is + Subject + who / which / that + Verb + Complement<br><span class='example-line'>Ex: It is health which is wealth.</span><span class='bn-line'>(এই স্বাস্থ্যই হলো সম্পদ।)</span></span></td><td><span class='formula-line'>Clause 1 + ; / , and + Clause 2<br><span class='example-line'>Ex: Health is vital, and it is real wealth.</span><span class='bn-line'>(স্বাস্থ্য অপরিহার্য, এবং এটাই আসল সম্পদ।)</span></span></td></tr></tbody>
+        </table>
+      </div>
+      <div class="quick-rule-note">
+        <strong>⚠ SSC বোর্ড পরীক্ষার সতর্কতা:</strong><br>
+        ১) Double Conjunction বর্জন: একই বাক্যে Although/Though ও but একসাথে বসবে না।<br>
+        ২) Comma Splice এড়িয়ে চলুন: দুটি স্বাধীন বাক্য শুধু কমা (,) দিয়ে জোড়া দেওয়া যাবে না; কমা + FANBOYS ব্যবহার করুন।<br>
+        ৩) For + Noun / V-ing / Phrase-এর ক্ষেত্রে: Because/Though যুক্ত Clause-এর জন্য উপযুক্ত Subject ও Finite Verb থাকতে হবে; Main Clause যোগ করতে হবে।<br>
+        ৪) Despite-এর পরে of বসে না; কিন্তু In spite of-এর পরে of বসে।<br>
+        ৫) No sooner had...than এবং Hardly/Scarcely had...when বসে।
+      </div>
     </section>
   </main>
 
