@@ -2,950 +2,1321 @@
 <html lang="bn" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clause Mastery - মাস্টার অফ ইংলিশ গ্রামার</title>
-    <!-- Tailwind CSS CDN -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Clause Mastery 3D — ইংরেজি ব্যাকরণের উপবাক্য</title>
+    
+    <!-- Google Fonts: Tiro Bangla & Hind Siliguri + Inter/JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind Custom Configuration -->
+    
+    <!-- Three.js, GSAP & Canvas Confetti -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f3ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            900: '#312e81',
-                        },
-                        accent: {
-                            cyan: '#06b6d4',
-                            emerald: '#10b981',
-                            amber: '#f59e0b',
-                            rose: '#f43f5e',
-                            violet: '#8b5cf6'
-                        }
-                    },
                     fontFamily: {
-                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-glow': 'pulseGlow 2s infinite',
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        pulseGlow: {
-                            '0%, 100%': { opacity: 0.8, filter: 'drop-shadow(0 0 15px rgba(99, 102, 241, 0.6))' },
-                            '50%': { opacity: 1, filter: 'drop-shadow(0 0 25px rgba(6, 182, 212, 0.8))' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-6px)' },
-                        }
+                        tiro: ['"Tiro Bangla"', 'serif'],
+                        hind: ['"Hind Siliguri"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts: Inter & Hind Siliguri for Bengali typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Canvas Confetti Library for completion animations -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
+
     <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+        /* ==================== DYNAMIC THEME VARIABLES ==================== */
+        :root, [data-theme="dark"] {
+            --bg-primary: #070b14;
+            --bg-secondary: #0f172a;
+            --surface-glass: rgba(15, 23, 42, 0.72);
+            --surface-elevated: rgba(30, 41, 59, 0.85);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-1: #6366f1;
+            --accent-2: #06b6d4;
+            --accent-3: #10b981;
+            --accent-warn: #f59e0b;
+            --border-color: rgba(148, 163, 184, 0.16);
+            --shadow-3d: 0 20px 40px -15px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            --btn-shadow: 0 6px 0 #312e81, 0 12px 20px rgba(0, 0, 0, 0.5);
+            --btn-shadow-active: 0 2px 0 #312e81, 0 4px 10px rgba(0, 0, 0, 0.4);
+            --particle-color: 0x6366f1;
         }
+
+        [data-theme="light"] {
+            --bg-primary: #f1f5f9;
+            --bg-secondary: #ffffff;
+            --surface-glass: rgba(255, 255, 255, 0.88);
+            --surface-elevated: rgba(248, 250, 252, 0.96);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent-1: #4f46e5;
+            --accent-2: #0284c7;
+            --accent-3: #059669;
+            --accent-warn: #d97706;
+            --border-color: rgba(15, 23, 42, 0.12);
+            --shadow-3d: 10px 10px 24px rgba(148, 163, 184, 0.25), -8px -8px 20px rgba(255, 255, 255, 0.9), inset 0 1px 0 rgba(255, 255, 255, 1);
+            --btn-shadow: 0 5px 0 #c7d2fe, 0 10px 18px rgba(79, 70, 229, 0.18);
+            --btn-shadow-active: 0 2px 0 #c7d2fe, 0 4px 8px rgba(79, 70, 229, 0.15);
+            --particle-color: 0x4f46e5;
+        }
+
+        [data-theme="rgb"] {
+            --bg-primary: #030308;
+            --bg-secondary: #090914;
+            --surface-glass: rgba(10, 10, 24, 0.82);
+            --surface-elevated: rgba(18, 18, 38, 0.92);
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-1: #ff007f;
+            --accent-2: #00f0ff;
+            --accent-3: #00ff88;
+            --accent-warn: #ffbe0b;
+            --border-color: rgba(0, 240, 255, 0.35);
+            --shadow-3d: 0 0 25px rgba(0, 240, 255, 0.18), 0 18px 36px rgba(0, 0, 0, 0.85);
+            --btn-shadow: 0 5px 0 #7000ff, 0 0 20px rgba(0, 240, 255, 0.45);
+            --btn-shadow-active: 0 2px 0 #7000ff, 0 0 10px rgba(255, 0, 127, 0.6);
+            --particle-color: 0x00f0ff;
+        }
+
+        [data-theme="royal"] {
+            --bg-primary: #140826;
+            --bg-secondary: #1e0d38;
+            --surface-glass: rgba(34, 15, 64, 0.78);
+            --surface-elevated: rgba(48, 22, 88, 0.88);
+            --text-primary: #fef9c3;
+            --text-secondary: #e9d5ff;
+            --text-muted: #c084fc;
+            --accent-1: #f59e0b;
+            --accent-2: #ec4899;
+            --accent-3: #34d399;
+            --accent-warn: #fbbf24;
+            --border-color: rgba(245, 158, 11, 0.3);
+            --shadow-3d: 0 20px 45px -12px rgba(9, 2, 20, 0.85), inset 0 1px 1px rgba(253, 224, 71, 0.25);
+            --btn-shadow: 0 5px 0 #92400e, 0 12px 24px rgba(245, 158, 11, 0.28);
+            --btn-shadow-active: 0 2px 0 #92400e, 0 5px 12px rgba(245, 158, 11, 0.2);
+            --particle-color: 0xf59e0b;
+        }
+
+        /* ==================== BASE & TYPOGRAPHY ==================== */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            perspective: 1400px;
+        }
+
+        .font-royal {
+            font-family: 'Tiro Bangla', serif;
+        }
+
+        /* ==================== 3D SURFACES, GLASSMORPHISM & RGB LASER ==================== */
+        .card-3d {
+            background: var(--surface-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-3d);
+            transform-style: preserve-3d;
+            transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+
+        /* RGB Animated Neon Border */
+        @keyframes rgbLaserFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        [data-theme="rgb"] .card-3d::before,
+        [data-theme="rgb"] .rgb-border::before {
+            content: "";
+            position: absolute;
+            inset: -1.5px;
+            border-radius: inherit;
+            padding: 1.5px;
+            background: linear-gradient(90deg, #ff0055, #ffbe0b, #00ff88, #00f0ff, #7000ff, #ff0055);
+            background-size: 300% 300%;
+            animation: rgbLaserFlow 4s linear infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Tactile 3D Elevated Buttons */
+        .btn-3d {
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            box-shadow: var(--btn-shadow);
+            transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, filter 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-3px) scale(1.015);
+            filter: brightness(1.08);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px) scale(0.98);
+            box-shadow: var(--btn-shadow-active);
+        }
+
+        /* Ripple Effect */
+        .ripple-span {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleAnim 0.6s linear;
+            background: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+
+        @keyframes rippleAnim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Interactive Clause Sentence Chips */
+        .clause-example-chip {
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px dashed var(--border-color);
+            background: var(--surface-elevated);
+        }
+
+        .clause-example-chip:hover {
+            transform: translateY(-3px) translateZ(12px);
+            border-style: solid;
+            border-color: var(--accent-2);
+            box-shadow: 0 10px 24px -6px rgba(6, 182, 212, 0.35);
+        }
+
+        /* 3D Puzzle Block Animation */
+        .puzzle-block {
+            transition: all 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* Sidebar Navigation Active State */
+        .nav-item {
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover {
+            transform: translateX(4px) translateY(-1px);
+            background: var(--surface-elevated);
+            border-color: var(--border-color);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: #ffffff !important;
+            box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.5);
+            transform: translateX(6px);
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
         }
         ::-webkit-scrollbar-track {
-            background: #1e293b;
+            background: var(--bg-primary);
         }
         ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
+            background: var(--accent-1);
+            border-radius: 99px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6366f1;
+
+        /* Floating 3D Badge */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotateX(0deg); }
+            50% { transform: translateY(-7px) rotateX(4deg); }
         }
-        /* Glassmorphism Styles */
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.25);
-        }
-        /* Active Tab Styling */
-        .tab-btn.active {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            color: #ffffff;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        .animate-float-3d {
+            animation: floatSlow 4s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+<body data-theme="dark" class="min-h-screen flex flex-col">
 
-    <!-- Sticky Top Header & Progress Bar -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo & Title -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-500 to-accent-cyan flex items-center justify-center shadow-lg shadow-brand-500/30 text-white font-bold text-xl">
-                        <i class="fa-solid fa-graduation-cap"></i>
+    <!-- Background Interactive Three.js Canvas -->
+    <canvas id="bg-three-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-75"></canvas>
+
+    <!-- ==================== TOP SMART HEADER & THEME CONTROL PANEL ==================== -->
+    <header class="sticky top-0 z-40 card-3d border-b" style="border-radius: 0;">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                
+                <!-- Brand Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-white text-xl font-bold shadow-lg animate-float-3d"
+                         style="background: linear-gradient(135deg, var(--accent-1), var(--accent-2));">
+                        <i class="fa-solid fa-cubes"></i>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-accent-cyan">
-                            Clause Mastery
-                        </h1>
-                        <p class="text-xs text-slate-400">সম্পূর্ণ গ্রামার লার্নিং ড্যাশবোর্ড</p>
+                        <div class="flex items-center gap-2">
+                            <h1 class="font-royal text-xl sm:text-2xl font-bold tracking-tight">
+                                Clause Mastery <span class="text-xs px-2 py-0.5 rounded-full font-mono text-white" style="background: var(--accent-1);">3D</span>
+                            </h1>
+                        </div>
+                        <p class="text-xs" style="color: var(--text-secondary);">ইংরেজি ব্যাকরণের উপবাক্য • ইন্টারেক্টিভ ৩ডি ল্যাব</p>
                     </div>
                 </div>
 
-                <!-- Global Quick Stats & Search/Theme Mock -->
-                <div class="flex items-center space-x-4">
-                    <div class="hidden md:flex items-center bg-slate-800/80 rounded-full px-3 py-1.5 border border-slate-700/60 text-xs">
-                        <i class="fa-solid fa-fire text-amber-500 mr-2 animate-bounce"></i>
-                        <span class="text-slate-300 mr-1">স্কোর:</span>
-                        <span id="global-score" class="font-bold text-accent-cyan">0</span>
-                        <span class="text-slate-500 mx-1.5">|</span>
-                        <span class="text-slate-300 mr-1">সম্পূর্ণ:</span>
-                        <span id="global-progress-text" class="font-bold text-brand-500">0%</span>
-                    </div>
-
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-xl"></i>
+                <!-- Dynamic 4-Theme Control Panel -->
+                <div class="flex items-center flex-wrap gap-1.5 sm:gap-2 p-1.5 rounded-2xl border" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                    <span class="hidden lg:inline-block text-xs font-semibold px-2" style="color: var(--text-secondary);">
+                        <i class="fa-solid fa-palette mr-1"></i> থিম:
+                    </span>
+                    <button onclick="setTheme('dark')" data-theme-btn="dark" class="theme-btn ripple-target px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all bg-indigo-600 text-white shadow">
+                        <i class="fa-solid fa-moon"></i> <span>ডার্ক</span>
                     </button>
+                    <button onclick="setTheme('light')" data-theme-btn="light" class="theme-btn ripple-target px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-sun text-amber-500"></i> <span>হোয়াইট</span>
+                    </button>
+                    <button onclick="setTheme('rgb')" data-theme-btn="rgb" class="theme-btn ripple-target px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-bolt text-cyan-400"></i> <span>RGB নিয়ন</span>
+                    </button>
+                    <button onclick="setTheme('royal')" data-theme-btn="royal" class="theme-btn ripple-target px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-crown text-amber-400"></i> <span>রয়্যাল 3D</span>
+                    </button>
+                </div>
+
+                <!-- Live Score & Progress Pill -->
+                <div class="hidden sm:flex items-center gap-3 px-3.5 py-1.5 rounded-2xl border text-xs font-semibold" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-trophy text-amber-400"></i>
+                        <span style="color: var(--text-secondary);">পয়েন্ট:</span>
+                        <span id="header-score" class="font-mono text-sm font-bold" style="color: var(--accent-2);">0</span>
+                    </div>
+                    <span style="color: var(--text-muted);">|</span>
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-pie text-emerald-400"></i>
+                        <span id="header-progress" class="font-mono text-sm font-bold" style="color: var(--accent-3);">0%</span>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Overall Learning Progress Indicator -->
-        <div class="w-full bg-slate-800 h-1">
-            <div id="overall-progress-bar" class="bg-gradient-to-r from-brand-500 via-accent-cyan to-accent-emerald h-1 w-0 transition-all duration-500"></div>
+        <!-- Animated Progress Strip -->
+        <div class="w-full h-1.5" style="background: rgba(148,163,184,0.15);">
+            <div id="top-progress-bar" class="h-full w-0 transition-all duration-500" style="background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));"></div>
         </div>
     </header>
 
-    <!-- Main App Container -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
-        
-        <!-- Navigation Tabs (Desktop & Mobile Scrollable) -->
-        <div class="mb-8 overflow-x-auto pb-2 scrollbar-none">
-            <nav class="flex space-x-2 md:space-x-3 min-w-max p-1.5 bg-slate-900/80 border border-slate-800 rounded-2xl" id="navigation-tabs">
-                <button onclick="switchTab('page1')" id="tab-page1" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-slate-300 hover:text-white">
-                    <i class="fa-solid fa-book-open text-brand-400"></i>
-                    <span>১. পরিচিতি ও পার্থক্য</span>
-                </button>
-                <button onclick="switchTab('page2')" id="tab-page2" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-slate-300 hover:text-white">
-                    <i class="fa-solid fa-sitemap text-indigo-400"></i>
-                    <span>২. Clause-এর প্রকারভেদ</span>
-                </button>
-                <button onclick="switchTab('page3')" id="tab-page3" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-slate-300 hover:text-white">
-                    <i class="fa-solid fa-layer-group text-accent-cyan"></i>
-                    <span>৩. Subordinate এর গভীরে</span>
-                </button>
-                <button onclick="switchTab('page4')" id="tab-page4" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-slate-300 hover:text-white">
-                    <i class="fa-solid fa-bolt text-amber-400"></i>
-                    <span>৪. শর্টকাট ট্রিকস ও টেবিল</span>
-                </button>
-                <button onclick="switchTab('page5')" id="tab-page5" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center space-x-2 text-slate-300 hover:text-white">
-                    <i class="fa-solid fa-pen-ruler text-accent-emerald"></i>
-                    <span>৫. ইন্টারেক্টিভ অনুশীলনী</span>
-                </button>
-            </nav>
-        </div>
-
-        <!-- ================= PAGE 1: INTRODUCTION ================= -->
-        <section id="page1" class="tab-content block space-y-8 animate-fadeIn">
-            <!-- Hero Banner -->
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-brand-900/50 to-slate-900 border border-brand-500/30 p-8 md:p-10 shadow-2xl">
-                <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="relative z-10 max-w-3xl space-y-4">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brand-500/20 text-brand-300 border border-brand-500/40">
-                        <i class="fa-solid fa-star mr-1 text-amber-400"></i> মূল ভিত্তি (Foundation)
+    <!-- ==================== MAIN WORKSPACE (3D SIDEBAR + CONTENT STAGE) ==================== -->
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-3 sm:px-6 py-6 flex-grow">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- Left 3D Navigation Sidebar -->
+            <aside class="lg:col-span-3 lg:sticky lg:top-24 card-3d rounded-3xl p-4 space-y-2">
+                <div class="px-2 pb-2 mb-2 border-b flex items-center justify-between" style="border-color: var(--border-color);">
+                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-secondary);">
+                        <i class="fa-solid fa-compass mr-1.5" style="color: var(--accent-2);"></i> পাঠ্যসূচি নেভিগেশন
                     </span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-                        Clause (বাক্যাংশ / খণ্ডবাক্য) কী এবং কেন এটি গুরুত্বপূর্ণ?
-                    </h2>
-                    <p class="text-slate-300 text-base leading-relaxed">
-                        ইংরেজি ব্যাকরণে সঠিক বাক্য গঠন, বাক্য পরিবর্তন (Transformation of Sentences) এবং অর্থপূর্ণ লেখার জন্য <strong class="text-accent-cyan">Clause</strong> সম্পর্কে স্পষ্ট ধারণা অত্যন্ত জরুরি। এটি বাক্যের মূল ইটের মতো কাজ করে।
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded-md" style="background: var(--surface-elevated); color: var(--accent-1);">৬টি অধ্যায়</span>
+                </div>
+
+                <nav id="topic-nav" class="flex lg:flex-col overflow-x-auto lg:overflow-visible gap-2 pb-1 lg:pb-0">
+                    <button onclick="switchTopic('topic1')" id="nav-topic1" class="nav-item active ripple-target shrink-0 lg:w-full text-left px-3.5 py-3 rounded-2xl text-sm font-semibold flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-xl bg-white/15 flex items-center justify-center text-xs font-mono font-bold">০১</span>
+                        <span>Clause ও মূল উপাদান</span>
+                    </button>
+
+                    <button onclick="switchTopic('topic2')" id="nav-topic2" class="nav-item ripple-target shrink-0 lg:w-full text-left px-3.5 py-3 rounded-2xl text-sm font-semibold flex items-center gap-3" style="color: var(--text-primary);">
+                        <span class="w-7 h-7 rounded-xl flex items-center justify-center text-xs font-mono font-bold" style="background: var(--surface-elevated); color: var(--accent-1);">০২</span>
+                        <span>Principal Clause</span>
+                    </button>
+
+                    <button onclick="switchTopic('topic3')" id="nav-topic3" class="nav-item ripple-target shrink-0 lg:w-full text-left px-3.5 py-3 rounded-2xl text-sm font-semibold flex items-center gap-3" style="color: var(--text-primary);">
+                        <span class="w-7 h-7 rounded-xl flex items-center justify-center text-xs font-mono font-bold" style="background: var(--surface-elevated); color: var(--accent-2);">০৩</span>
+                        <span>Subordinate Clause</span>
+                    </button>
+
+                    <button onclick="switchTopic('topic4')" id="nav-topic4" class="nav-item ripple-target shrink-0 lg:w-full text-left px-3.5 py-3 rounded-2xl text-sm font-semibold flex items-center gap-3" style="color: var(--text-primary);">
+                        <span class="w-7 h-7 rounded-xl flex items-center justify-center text-xs font-mono font-bold" style="background: var(--surface-elevated); color: var(--accent-warn);">০৪</span>
+                        <span>Coordinate Clause</span>
+                    </button>
+
+                    <button onclick="switchTopic('topic5')" id="nav-topic5" class="nav-item ripple-target shrink-0 lg:w-full text-left px-3.5 py-3 rounded-2xl text-sm font-semibold flex items-center gap-3" style="color: var(--text-primary);">
+                        <span class="w-7 h-7 rounded-xl flex items-center justify-center text-xs font-mono font-bold" style="background: var(--surface-elevated); color: var(--accent-3);">০৫</span>
+                        <span>Phrase বনাম Clause</span>
+                    </button>
+
+                    <button onclick="switchTopic('topic6')" id="nav-topic6" class="nav-item ripple-target shrink-0 lg:w-full text-left px-3.5 py-3 rounded-2xl text-sm font-semibold flex items-center gap-3" style="color: var(--text-primary);">
+                        <span class="w-7 h-7 rounded-xl flex items-center justify-center text-xs font-mono font-bold" style="background: var(--surface-elevated); color: #f43f5e;">০৬</span>
+                        <span>লাইভ ৩ডি কুইজ ল্যাব</span>
+                    </button>
+                </nav>
+
+                <!-- Quick Tip Box inside Sidebar -->
+                <div class="hidden lg:block mt-4 p-3.5 rounded-2xl border text-xs space-y-1.5" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                    <p class="font-bold flex items-center gap-1.5" style="color: var(--accent-warn);">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> স্মার্ট টিপস:
+                    </p>
+                    <p style="color: var(--text-secondary); line-height: 1.55;">
+                        যেকোনো ইংরেজি উদাহরণ বক্সে <strong style="color: var(--text-primary);">ক্লিক</strong> করলে ৩ডি পপ-আপে Subject, Finite Verb এবং Clause-এর বিশ্লেষণ দেখতে পাবেন!
                     </p>
                 </div>
-            </div>
+            </aside>
 
-            <!-- Definition Card -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-brand-500 space-y-4">
-                    <div class="flex items-center space-x-3 text-brand-400">
-                        <i class="fa-solid fa-circle-info text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white">Clause-এর সংজ্ঞা (Definition)</h3>
-                    </div>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        শব্দসমষ্টি বা Group of words যার মধ্যে অন্তত একটি <strong class="text-emerald-400">Subject (কর্তা)</strong> এবং একটি <strong class="text-amber-400">Finite Verb (সমাপিকা ক্রিয়া)</strong> থাকে এবং যা একটি বৃহত্তর বাক্যের অংশ হিসেবে কাজ করে, তাকে <strong>Clause</strong> বলে।
-                    </p>
-                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 text-sm font-mono space-y-1">
-                        <p class="text-slate-400">// মূল শর্ত:</p>
-                        <p class="text-indigo-300"><span class="text-emerald-400">1 Subject</span> + <span class="text-amber-400">1 Finite Verb</span> = 1 Clause</p>
-                    </div>
-                </div>
+            <!-- Right Dynamic Content Stage -->
+            <main class="lg:col-span-9 space-y-6">
 
-                <!-- Interactive Key Elements Diagram -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between space-y-4">
-                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-cube text-accent-cyan"></i> Clause-এর অপরিহার্য উপাদান
-                    </h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-slate-900/60 p-4 rounded-xl text-center border border-emerald-500/30 hover:border-emerald-500/60 transition-all">
-                            <i class="fa-solid fa-user-check text-2xl text-emerald-400 mb-2"></i>
-                            <h4 class="font-bold text-slate-200 text-sm">Subject (কর্তা)</h4>
-                            <p class="text-xs text-slate-400 mt-1">যে ক্রিয়া সম্পন্ন করে বা যার সম্পর্কে বলা হয়।</p>
-                        </div>
-                        <div class="bg-slate-900/60 p-4 rounded-xl text-center border border-amber-500/30 hover:border-amber-500/60 transition-all">
-                            <i class="fa-solid fa-bolt text-2xl text-amber-400 mb-2"></i>
-                            <h4 class="font-bold text-slate-200 text-sm">Finite Verb (সমাপিকা ক্রিয়া)</h4>
-                            <p class="text-xs text-slate-400 mt-1">যে ক্রিয়া দ্বারা বাক্য সম্পূর্ণ হয় ও tense বোঝায়।</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Phrase vs Clause Comparison Table Section -->
-            <div class="glass-panel p-6 sm:p-8 rounded-3xl space-y-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-code-compare text-indigo-400"></i> Phrase এবং Clause-এর মধ্যকার পার্থক্য
-                        </h3>
-                        <p class="text-slate-400 text-sm mt-1">অনেক শিক্ষার্থী Phrase ও Clause গুলিয়ে ফেলেন। নিচের তুলনাটি দেখুন:</p>
-                    </div>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="border-b border-slate-700 bg-slate-900/50 text-slate-300 text-sm">
-                                <th class="p-4 rounded-tl-xl">বৈশিষ্ট্য</th>
-                                <th class="p-4 text-emerald-400">Phrase (শব্দগুচ্ছ)</th>
-                                <th class="p-4 text-accent-cyan rounded-tr-xl">Clause (খণ্ডবাক্য)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800/80 text-sm text-slate-300">
-                            <tr class="hover:bg-slate-800/30">
-                                <td class="p-4 font-semibold text-white">Subject ও Verb</td>
-                                <td class="p-4 text-rose-300"><i class="fa-solid fa-xmark text-rose-500 mr-1"></i> Subject & Finite Verb থাকে না।</td>
-                                <td class="p-4 text-emerald-300"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Subject & Finite Verb অবশ্যই থাকে।</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30">
-                                <td class="p-4 font-semibold text-white">অর্থ প্রকাশ</td>
-                                <td class="p-4">আংশিক অর্থ দেয় কিন্তু একা একা পূর্ণ বাক্য হয় না।</td>
-                                <td class="p-4">পূর্ণাঙ্গ বা আংশিক অর্থ দিতে পারে।</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30">
-                                <td class="p-4 font-semibold text-white">উদাহরণ</td>
-                                <td class="p-4 font-mono text-slate-200">a man of letters, in the morning</td>
-                                <td class="p-4 font-mono text-slate-200">when he arrived, who is honest</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Interactive Comparison Tool -->
-                <div class="mt-6 bg-slate-900/80 p-5 rounded-2xl border border-indigo-500/20">
-                    <h4 class="text-base font-bold text-white mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-vial text-brand-400"></i> লাইভ উদাহরণ পরীক্ষা (Interactive Test):
-                    </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div onclick="testPhraseClause('in the morning', 'Phrase', 'এখানে কোনো Subject নেই এবং কোনো Finite Verb নেই। তাই এটি একটি Phrase।')" class="cursor-pointer bg-slate-800/60 p-4 rounded-xl border border-slate-700 hover:border-brand-500 transition-all flex items-center justify-between group">
-                            <div>
-                                <span class="text-xs text-slate-400">উদাহরণ ১:</span>
-                                <p class="text-base font-medium text-white group-hover:text-brand-300">"in the morning"</p>
-                            </div>
-                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300 group-hover:bg-brand-600 group-hover:text-white">ক্লিক করুন</span>
-                        </div>
-                        <div onclick="testPhraseClause('When he came here', 'Clause', 'এখানে Subject (he) এবং Finite Verb (came) রয়েছে। তাই এটি একটি Clause।')" class="cursor-pointer bg-slate-800/60 p-4 rounded-xl border border-slate-700 hover:border-brand-500 transition-all flex items-center justify-between group">
-                            <div>
-                                <span class="text-xs text-slate-400">উদাহরণ ২:</span>
-                                <p class="text-base font-medium text-white group-hover:text-brand-300">"When he came here"</p>
-                            </div>
-                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300 group-hover:bg-brand-600 group-hover:text-white">ক্লিক করুন</span>
-                        </div>
-                    </div>
-                    <div id="p-c-result" class="hidden mt-4 p-4 rounded-xl bg-brand-950/60 border border-brand-500/40 text-sm text-slate-200 animate-fadeIn">
-                        <!-- Dynamic Result Content -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= PAGE 2: TYPES OF CLAUSES ================= -->
-        <section id="page2" class="tab-content hidden space-y-8 animate-fadeIn">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h2 class="text-3xl font-extrabold text-white">Clause-এর প্রধান ৩টি প্রকারভেদ</h2>
-                <p class="text-slate-400 text-sm">গঠন ও কাজের ওপর ভিত্তি করে Clause প্রধানত ৩ প্রকার।</p>
-            </div>
-
-            <!-- 3 Main Types Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Principal Clause Card -->
-                <div class="glass-panel p-6 rounded-3xl flex flex-col justify-between border-t-4 border-t-brand-500 hover:translate-y-1 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-300 border border-brand-500/30">১ম প্রকার</span>
-                            <i class="fa-solid fa-crown text-2xl text-brand-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Principal Clause</h3>
-                        <p class="text-xs text-slate-400 mb-4">(স্বাধীন বা Independent Clause)</p>
-                        <p class="text-sm text-slate-300 leading-relaxed">
-                            যে Clause অন্য কোনো Clause-এর ওপর নির্ভর না করে স্বাধীনভাবে নিজস্ব অর্থ সম্পূর্ণ প্রকাশ করতে পারে, তাকে <strong>Principal Clause</strong> বলে।
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-900/60 p-3 rounded-xl">
-                        <span class="text-xs text-slate-400 block font-semibold mb-1">উদাহরণ:</span>
-                        <p class="text-sm font-medium text-emerald-300">"<u>I know the boy</u> who came here."</p>
-                        <span class="text-xs text-slate-400 mt-1 block">("I know the boy" একা একা সম্পূর্ণ বাক্য হতে পারে)</span>
-                    </div>
-                </div>
-
-                <!-- Subordinate Clause Card -->
-                <div class="glass-panel p-6 rounded-3xl flex flex-col justify-between border-t-4 border-t-accent-cyan hover:translate-y-1 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">২য় প্রকার</span>
-                            <i class="fa-solid fa-link text-2xl text-accent-cyan"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Subordinate Clause</h3>
-                        <p class="text-xs text-slate-400 mb-4">(পরাধীন বা Dependent Clause)</p>
-                        <p class="text-sm text-slate-300 leading-relaxed">
-                            যে Clause একা পূর্ণাঙ্গ অর্থ প্রকাশ করতে পারে না এবং অর্থের জন্য Principal Clause-এর ওপর নির্ভরশীল, তাকে <strong>Subordinate Clause</strong> বলে।
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-900/60 p-3 rounded-xl">
-                        <span class="text-xs text-slate-400 block font-semibold mb-1">উদাহরণ:</span>
-                        <p class="text-sm font-medium text-amber-300">"I know the boy <u>who came here</u>."</p>
-                        <span class="text-xs text-slate-400 mt-1 block">("who came here" একা কোনো পূর্ণ অর্থ প্রকাশ করে না)</span>
-                    </div>
-                </div>
-
-                <!-- Co-ordinate Clause Card -->
-                <div class="glass-panel p-6 rounded-3xl flex flex-col justify-between border-t-4 border-t-accent-violet hover:translate-y-1 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-300 border border-violet-500/30">৩য় প্রকার</span>
-                            <i class="fa-solid fa-scale-balanced text-2xl text-accent-violet"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Co-ordinate Clause</h3>
-                        <p class="text-xs text-slate-400 mb-4">(সমসংযোজক খণ্ডবাক্য)</p>
-                        <p class="text-sm text-slate-300 leading-relaxed">
-                            যখন দুটি সমমর্যাদার Independent Clause কোনো <strong>Co-ordinating Conjunction</strong> (and, but, or, so, yet) দ্বারা যুক্ত হয়।
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-900/60 p-3 rounded-xl">
-                        <span class="text-xs text-slate-400 block font-semibold mb-1">উদাহরণ:</span>
-                        <p class="text-sm font-medium text-violet-300">"He is poor, <u>but he is honest</u>."</p>
-                        <span class="text-xs text-slate-400 mt-1 block">('but' কানেক্টর দিয়ে ২টি স্বাধীন বাক্য যুক্ত হয়েছে)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Co-ordinating Conjunctions Cheat Box -->
-            <div class="glass-panel p-6 rounded-3xl border border-violet-500/30 bg-gradient-to-r from-slate-900 via-slate-900/90 to-violet-950/40">
-                <h3 class="text-lg font-bold text-white flex items-center gap-2 mb-3">
-                    <i class="fa-solid fa-key text-amber-400"></i> Co-ordinating Conjunctions মনে রাখার শর্টকাট: FANBOYS
-                </h3>
-                <p class="text-sm text-slate-300 mb-4">Co-ordinate Clause তৈরির প্রধান কানেক্টরগুলো মনে রাখুন সহজে:</p>
-                <div class="grid grid-cols-2 sm:grid-cols-7 gap-2 text-center font-mono text-sm">
-                    <div class="bg-slate-800 p-2 rounded-xl border border-slate-700"><span class="text-amber-400 font-bold block">F</span> For</div>
-                    <div class="bg-slate-800 p-2 rounded-xl border border-slate-700"><span class="text-amber-400 font-bold block">A</span> And</div>
-                    <div class="bg-slate-800 p-2 rounded-xl border border-slate-700"><span class="text-amber-400 font-bold block">N</span> Nor</div>
-                    <div class="bg-slate-800 p-2 rounded-xl border border-slate-700"><span class="text-amber-400 font-bold block">B</span> But</div>
-                    <div class="bg-slate-800 p-2 rounded-xl border border-slate-700"><span class="text-amber-400 font-bold block">O</span> Or</div>
-                    <div class="bg-slate-800 p-2 rounded-xl border border-slate-700"><span class="text-amber-400 font-bold block">Y</span> Yet</div>
-                    <div class="bg-slate-800 p-2 rounded-xl border border-slate-700"><span class="text-amber-400 font-bold block">S</span> So</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= PAGE 3: SUBORDINATE CLAUSE DEEP DIVE ================= -->
-        <section id="page3" class="tab-content hidden space-y-8 animate-fadeIn">
-            <div class="border-b border-slate-800 pb-4">
-                <h2 class="text-3xl font-extrabold text-white">Subordinate Clause-এর ৩টি বিভাগ</h2>
-                <p class="text-slate-400 text-sm mt-1">পরীক্ষায় সবচেয়ে বেশি প্রশ্ন আসা Subordinate Clause-এর গভীর আলোচনা:</p>
-            </div>
-
-            <!-- Tabbed Sub-navigation for Subordinate Clauses -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                <!-- Noun Clause Section -->
-                <div class="glass-panel p-6 rounded-3xl space-y-4 border-l-4 border-l-brand-500">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-sm">১</span>
-                            Noun Clause
-                        </h3>
-                        <span class="text-xs bg-brand-500/20 text-brand-300 px-2 py-1 rounded">Noun-এর কাজ করে</span>
-                    </div>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        যে Subordinate Clause বাক্যে <strong>Noun</strong>-এর মতো কাজ করে, তাকে Noun Clause বলে।
-                    </p>
-                    
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-brand-500/20 space-y-2 text-xs">
-                        <p class="font-bold text-brand-300">পাঁচটি প্রধান অবস্থান (Functions):</p>
-                        <ul class="list-disc list-inside space-y-1 text-slate-300">
-                            <li><strong>Subject:</strong> <u>What he said</u> was true.</li>
-                            <li><strong>Object:</strong> I know <u>that he is honest</u>.</li>
-                            <li><strong>Preposition Object:</strong> Listen to <u>what I say</u>.</li>
-                            <li><strong>Complement:</strong> Life is <u>what we make it</u>.</li>
-                            <li><strong>Apposition:</strong> The news <u>that he died</u> is false.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Interactive IT TEST Simulator -->
-                    <div class="bg-brand-950/50 p-4 rounded-xl border border-brand-500/30 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-accent-cyan flex items-center gap-1">
-                                <i class="fa-solid fa-magic"></i> "IT" Test পরীক্ষা সিমিউলেটর
+                <!-- ==================== TOPIC 1: CLAUSE & CORE ELEMENTS ==================== -->
+                <section id="topic1" class="topic-panel space-y-6">
+                    <!-- Hero Card with Interactive 3D Equation Builder -->
+                    <div class="card-3d tilt-card rounded-3xl p-6 sm:p-8 space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold text-white" style="background: linear-gradient(90deg, var(--accent-1), var(--accent-2));">
+                                অধ্যায় ০১ • মৌলিক ধারণা
                             </span>
+                            <span class="text-xs font-mono" style="color: var(--text-secondary);">Formula: Subject + Finite Verb</span>
                         </div>
-                        <p class="text-xs text-slate-300">Subordinate Clause-কে <strong>"It"</strong> দিয়ে প্রতিস্থাপন করে দেখুন বাক্যটির অর্থ টিকে থাকে কিনা:</p>
-                        <div class="p-3 bg-slate-900 rounded-lg text-sm font-mono text-center" id="it-test-display">
-                            "I know <span class="text-brand-400 font-bold underline">that he is honest</span>"
-                        </div>
-                        <button onclick="runItTest()" class="w-full py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-bold transition-all shadow-md">
-                            'It' বসিয়ে পরীক্ষা করুন!
-                        </button>
-                    </div>
-                </div>
 
-                <!-- Adjective Clause Section -->
-                <div class="glass-panel p-6 rounded-3xl space-y-4 border-l-4 border-l-accent-cyan">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span class="w-8 h-8 rounded-lg bg-cyan-500/20 text-accent-cyan flex items-center justify-center font-bold text-sm">২</span>
-                            Adjective Clause
+                        <div class="space-y-3">
+                            <h2 class="font-royal text-2xl sm:text-4xl font-bold leading-snug">
+                                Clause (উপবাক্য বা খণ্ডবাক্য) কী?
+                            </h2>
+                            <p class="text-base sm:text-lg leading-relaxed" style="color: var(--text-secondary);">
+                                যে শব্দসমষ্টির (Group of Words) নিজস্ব একটি <strong style="color: var(--accent-3);">Subject (কর্তা)</strong> এবং একটি <strong style="color: var(--accent-warn);">Finite Verb (সমাপিকা ক্রিয়া)</strong> থাকে এবং যা একটি বৃহত্তর বাক্যের অংশ হিসেবে কাজ করে, তাকে <strong style="color: var(--accent-2);">Clause</strong> বলে।
+                            </p>
+                        </div>
+
+                        <!-- 3D Interactive Formula Diagram (Live Puzzle Fusion) -->
+                        <div class="p-5 sm:p-6 rounded-2xl border space-y-4" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <h3 class="font-bold text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-atom" style="color: var(--accent-2);"></i> ৩ডি Clause গঠন ডায়াগ্রাম (ব্লক জোড়া লাগান)
+                                </h3>
+                                <button onclick="animateClauseFusion()" class="btn-3d ripple-target px-4 py-2 rounded-xl text-xs font-bold text-white flex items-center gap-2" style="background: linear-gradient(135deg, var(--accent-1), var(--accent-2));">
+                                    <i class="fa-solid fa-play"></i> অ্যানিমেশন চালান
+                                </button>
+                            </div>
+
+                            <!-- 3D Puzzle Blocks Stage -->
+                            <div id="fusion-stage" class="grid grid-cols-1 md:grid-cols-11 gap-3 items-center py-4">
+                                <!-- Subject Block -->
+                                <div id="block-sub" class="puzzle-block md:col-span-4 p-4 rounded-2xl border-2 text-center shadow-lg" style="background: rgba(16, 185, 129, 0.14); border-color: #10b981;">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 block">উপাদান ১</span>
+                                    <h4 class="text-lg font-bold text-emerald-400 mt-0.5">Subject (কর্তা)</h4>
+                                    <p class="font-mono text-sm mt-1 font-bold">"The boy"</p>
+                                    <p class="text-xs mt-1" style="color: var(--text-secondary);">যে কাজটি করে</p>
+                                </div>
+
+                                <!-- Plus Operator -->
+                                <div class="md:col-span-1 text-center text-2xl font-extrabold" style="color: var(--accent-2);">
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+
+                                <!-- Finite Verb Block -->
+                                <div id="block-verb" class="puzzle-block md:col-span-4 p-4 rounded-2xl border-2 text-center shadow-lg" style="background: rgba(245, 158, 11, 0.14); border-color: #f59e0b;">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-amber-400 block">উপাদান ২</span>
+                                    <h4 class="text-lg font-bold text-amber-400 mt-0.5">Finite Verb</h4>
+                                    <p class="font-mono text-sm mt-1 font-bold">"plays football"</p>
+                                    <p class="text-xs mt-1" style="color: var(--text-secondary);">Tense ও অর্থ সম্পূর্ণ করে</p>
+                                </div>
+
+                                <!-- Equals Operator -->
+                                <div class="md:col-span-2 text-center">
+                                    <div id="block-result" class="puzzle-block p-3 rounded-2xl text-white font-bold text-sm shadow-xl" style="background: linear-gradient(135deg, var(--accent-1), var(--accent-2));">
+                                        = ১টি Clause!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="fusion-caption" class="text-center text-xs sm:text-sm font-medium p-3 rounded-xl border" style="background: var(--surface-glass); border-color: var(--border-color); color: var(--text-secondary);">
+                                উপরের <strong style="color: var(--text-primary);">"অ্যানিমেশন চালান"</strong> বাটনে ক্লিক করে দেখুন কীভাবে Subject ও Finite Verb মিলে পূর্ণাঙ্গ Clause তৈরি করে।
+                            </div>
+                        </div>
+
+                        <!-- Interactive Examples (Click for 3D Inspector Modal) -->
+                        <div class="space-y-3">
+                            <h3 class="font-bold text-base flex items-center gap-2">
+                                <i class="fa-solid fa-hand-pointer" style="color: var(--accent-warn);"></i> বাস্তব উদাহরণ (বাক্যে ক্লিক করে ৩ডি বিশ্লেষণ দেখুন):
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div onclick="inspectSentence('I know the boy who came here.', 'I / who', 'know / came', 'Complex Sentence (১টি Principal + ১টি Subordinate Clause)', 'এখানে দুটি Subject (I, who) এবং দুটি Finite Verb (know, came) থাকায় মোট ২টি Clause রয়েছে।')"
+                                     class="clause-example-chip p-4 rounded-2xl flex items-center justify-between gap-3">
+                                    <div>
+                                        <span class="text-xs font-bold text-emerald-400 block mb-1">উদাহরণ ১ (দুই Clause বিশিষ্ট বাক্য):</span>
+                                        <p class="font-mono text-sm sm:text-base font-semibold">"I know the boy who came here."</p>
+                                    </div>
+                                    <span class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white" style="background: var(--accent-1);">
+                                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                    </span>
+                                </div>
+
+                                <div onclick="inspectSentence('When the sun set, we returned home.', 'the sun / we', 'set / returned', 'Subordinate + Principal Clause', 'When the sun set অংশটি Dependent এবং we returned home অংশটি Independent Clause।')"
+                                     class="clause-example-chip p-4 rounded-2xl flex items-center justify-between gap-3">
+                                    <div>
+                                        <span class="text-xs font-bold text-cyan-400 block mb-1">উদাহরণ ২ (সময় নির্দেশক বাক্য):</span>
+                                        <p class="font-mono text-sm sm:text-base font-semibold">"When the sun set, we returned home."</p>
+                                    </div>
+                                    <span class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white" style="background: var(--accent-2);">
+                                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3D Overview Flowchart of Clause Types -->
+                    <div class="card-3d tilt-card rounded-3xl p-6 sm:p-8 space-y-5">
+                        <h3 class="font-royal text-xl sm:text-2xl font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-sitemap" style="color: var(--accent-1);"></i> Clause-এর ৩টি প্রধান শ্রেণিবিভাগ (৩ডি ফ্লো-চার্ট)
                         </h3>
-                        <span class="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-1 rounded">Noun-কে Modify করে</span>
-                    </div>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        যে Clause তার ঠিক পূর্ববর্তী কোনো Noun বা Pronoun (যাকে <strong class="text-amber-400">Antecedent</strong> বলা হয়)-কে Modify বা বর্ণনা করে।
-                    </p>
-
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-cyan-500/20 space-y-3 text-xs">
-                        <p class="font-bold text-accent-cyan">Antecedent চিহ্নিতকরণ উদাহরণ:</p>
-                        <div class="p-2 bg-slate-950 rounded border border-slate-800">
-                            <p class="text-slate-200">"This is the <span class="text-amber-400 font-bold">book</span> <span class="text-accent-cyan font-bold underline">which I bought yesterday</span>."</p>
-                            <p class="text-slate-400 text-[11px] mt-1">→ এখানে 'book' হলো Antecedent, যাকে 'which I bought yesterday' বর্ণনা করছে।</p>
-                        </div>
-                        <div class="p-2 bg-slate-950 rounded border border-slate-800">
-                            <p class="text-slate-200">"The <span class="text-amber-400 font-bold">man</span> <span class="text-accent-cyan font-bold underline">who came here</span> is my uncle."</p>
-                            <p class="text-slate-400 text-[11px] mt-1">→ 'man' Noun-কে স্পষ্ট করছে।</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Adverbial Clause Section -->
-                <div class="glass-panel p-6 rounded-3xl space-y-4 border-l-4 border-l-accent-emerald">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">৩</span>
-                            Adverbial Clause
-                        </h3>
-                        <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded">Verb-কে Modify করে</span>
-                    </div>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        যে Clause বাক্যের Verb, Adjective বা Adverb-কে Modify করে এবং সময়, স্থান, কারণ, শর্ত ইত্যাদি প্রকাশ করে।
-                    </p>
-
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-emerald-500/20 space-y-2 text-xs">
-                        <p class="font-bold text-emerald-300">৮টি প্রধান প্রকারভেদ:</p>
-                        <ul class="grid grid-cols-2 gap-1 text-slate-300">
-                            <li>• Time (সময়)</li>
-                            <li>• Place (স্থান)</li>
-                            <li>• Reason (কারণ)</li>
-                            <li>• Condition (শর্ত)</li>
-                            <li>• Purpose (উদ্দেশ্য)</li>
-                            <li>• Result (ফলাফল)</li>
-                            <li>• Contrast (বৈপরীত্য)</li>
-                            <li>• Comparison (তুলনা)</li>
-                        </ul>
-                    </div>
-
-                    <div class="p-3 bg-emerald-950/40 rounded-xl border border-emerald-500/30 text-xs">
-                        <p class="text-emerald-200 font-medium">💡 প্রশ্ন করার নিয়ম:</p>
-                        <p class="text-slate-300 mt-1">Verb-কে <em>কখন, কোথায়, কেন, কীভাবে, কী শর্তে</em> প্রশ্ন করলে Adverbial Clause পাওয়া যায়।</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ================= PAGE 4: SHORTCUT TRICKS & CHEATSHEET ================= -->
-        <section id="page4" class="tab-content hidden space-y-8 animate-fadeIn">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h2 class="text-3xl font-extrabold text-white">মাস্টার শর্টকাট ট্রিকস ও তুলনা</h2>
-                <p class="text-slate-400 text-sm">পরীক্ষার হলে মাত্র ৫ সেকেন্ডে Clause চেনার ম্যাজিক ট্রিকস!</p>
-            </div>
-
-            <!-- Decision Tree / Step-by-Step Flowchart -->
-            <div class="glass-panel p-6 sm:p-8 rounded-3xl space-y-6">
-                <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-diagram-project text-amber-400"></i> Decision Flowchart (সিদ্ধান্ত গ্রহণের ফ্লোচার্ট)
-                </h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-xs sm:text-sm">
-                    <!-- Step 1 -->
-                    <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 flex flex-col justify-between space-y-3">
-                        <span class="w-8 h-8 rounded-full bg-amber-500 text-slate-950 font-bold mx-auto flex items-center justify-center">১</span>
-                        <h4 class="font-bold text-white text-base">১ম পদক্ষেপ</h4>
-                        <p class="text-slate-300">Clause-টির ঠিক পূর্বে কোনো <strong class="text-amber-400">Noun বা Pronoun (Antecedent)</strong> আছে কি?</p>
-                        <div class="bg-emerald-950/80 text-emerald-300 p-2 rounded border border-emerald-500/30">
-                            হ্যাঁ থাকলে $\rightarrow$ <strong>Adjective Clause</strong>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 flex flex-col justify-between space-y-3">
-                        <span class="w-8 h-8 rounded-full bg-brand-500 text-white font-bold mx-auto flex items-center justify-center">২</span>
-                        <h4 class="font-bold text-white text-base">২য় পদক্ষেপ</h4>
-                        <p class="text-slate-300">না থাকলে, পুরো Clause-টির জায়গায় <strong class="text-brand-400">"IT"</strong> বসিয়ে দেখুন। বাক্য সঠিক থাকে?</p>
-                        <div class="bg-brand-950/80 text-brand-300 p-2 rounded border border-brand-500/30">
-                            হ্যাঁ থাকলে $\rightarrow$ <strong>Noun Clause</strong>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 flex flex-col justify-between space-y-3">
-                        <span class="w-8 h-8 rounded-full bg-accent-cyan text-slate-950 font-bold mx-auto flex items-center justify-center">৩</span>
-                        <h4 class="font-bold text-white text-base">৩য় পদক্ষেপ</h4>
-                        <p class="text-slate-300">যদি "IT" না বসে এবং Verb-কে <strong>কখন, কোথায়, কেন, কীভাবে</strong> দ্বারা প্রশ্ন করে মেলে?</p>
-                        <div class="bg-cyan-950/80 text-cyan-300 p-2 rounded border border-cyan-500/30">
-                            মিললে $\rightarrow$ <strong>Adverbial Clause</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Confusion Clarifier: Same Conjunction, Different Clauses -->
-            <div class="glass-panel p-6 sm:p-8 rounded-3xl space-y-6">
-                <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> কনফিউশন ক্লিয়ারার: একই শব্দ, ভিন্ন Clause!
-                </h3>
-                <p class="text-slate-400 text-sm">একই কানেক্টর (যেমন 'Where' বা 'When') কীভাবে আলাদা আলাদা Clause তৈরি করে দেখুন:</p>
-
-                <div class="space-y-4">
-                    <!-- Where comparison -->
-                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-accent-cyan">উদাহরণ ১: "Where" দিয়ে ৩টি রূপ</span>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                            <div class="p-3 bg-slate-950 rounded-xl border border-brand-500/30">
-                                <span class="text-xs text-brand-400 font-bold block mb-1">Noun Clause:</span>
-                                <p class="text-slate-200">I know <u>where he lives</u>.</p>
-                                <p class="text-[11px] text-slate-400 mt-1">(I know <em>it</em>)</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div onclick="switchTopic('topic2')" class="cursor-pointer p-5 rounded-2xl border-t-4 border-emerald-500 transition-transform hover:-translate-y-1.5" style="background: var(--surface-elevated);">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">১. স্বাধীন</span>
+                                    <i class="fa-solid fa-crown text-emerald-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">Principal Clause</h4>
+                                <p class="text-xs mt-1.5 leading-relaxed" style="color: var(--text-secondary);">অন্য কারো সাহায্য ছাড়াই একা সম্পূর্ণ অর্থ প্রকাশ করতে পারে।</p>
                             </div>
-                            <div class="p-3 bg-slate-950 rounded-xl border border-cyan-500/30">
-                                <span class="text-xs text-accent-cyan font-bold block mb-1">Adjective Clause:</span>
-                                <p class="text-slate-200">I know the <strong>place</strong> <u>where he lives</u>.</p>
-                                <p class="text-[11px] text-slate-400 mt-1">(Antecedent 'place' আছে)</p>
+
+                            <div onclick="switchTopic('topic3')" class="cursor-pointer p-5 rounded-2xl border-t-4 border-cyan-500 transition-transform hover:-translate-y-1.5" style="background: var(--surface-elevated);">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400">২. অধীনস্থ</span>
+                                    <i class="fa-solid fa-link text-cyan-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">Subordinate Clause</h4>
+                                <p class="text-xs mt-1.5 leading-relaxed" style="color: var(--text-secondary);">অর্থ সম্পূর্ণ করতে Principal Clause-এর ওপর নির্ভরশীল থাকে।</p>
                             </div>
-                            <div class="p-3 bg-slate-950 rounded-xl border border-emerald-500/30">
-                                <span class="text-xs text-emerald-400 font-bold block mb-1">Adverbial Clause:</span>
-                                <p class="text-slate-200">Go <u>where you want to go</u>.</p>
-                                <p class="text-[11px] text-slate-400 mt-1">(স্থান প্রকাশ করছে, Verb-কে Modify)</p>
+
+                            <div onclick="switchTopic('topic4')" class="cursor-pointer p-5 rounded-2xl border-t-4 border-amber-500 transition-transform hover:-translate-y-1.5" style="background: var(--surface-elevated);">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400">৩. সংযোজক</span>
+                                    <i class="fa-solid fa-scale-balanced text-amber-400 text-lg"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">Coordinate Clause</h4>
+                                <p class="text-xs mt-1.5 leading-relaxed" style="color: var(--text-secondary);">FANBOYS Conjunction দ্বারা যুক্ত সমমর্যাদার দুটি স্বাধীন উপবাক্য।</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <!-- ================= PAGE 5: INTERACTIVE EXERCISES ================= -->
-        <section id="page5" class="tab-content hidden space-y-8 animate-fadeIn">
-            <!-- Quiz Header Stats & Filter -->
-            <div class="glass-panel p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4 border-b-2 border-b-brand-500">
-                <div>
-                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-clipboard-question text-accent-emerald"></i> অনুশীলন ও নিজেকে যাচাই
-                    </h2>
-                    <p class="text-slate-400 text-sm mt-1">সঠিক উত্তর নির্বাচন করুন অথবা ব্যাখ্যা দেখে আপনার উত্তর মিলিয়ে নিন।</p>
-                </div>
+                <!-- ==================== TOPIC 2: PRINCIPAL / INDEPENDENT CLAUSE ==================== -->
+                <section id="topic2" class="topic-panel hidden space-y-6">
+                    <div class="card-3d tilt-card rounded-3xl p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                                অধ্যায় ০২ • Principal / Independent Clause
+                            </span>
+                            <span class="text-xs font-mono text-emerald-400"><i class="fa-solid fa-shield-halved mr-1"></i> ১০০% স্বয়ংসম্পূর্ণ</span>
+                        </div>
 
-                <div class="flex items-center space-x-3">
-                    <button onclick="filterQuiz('all')" class="quiz-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 text-white shadow">সব প্রশ্ন</button>
-                    <button onclick="filterQuiz('set1')" class="quiz-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white">সেট ১ (প্রধান)</button>
-                    <button onclick="filterQuiz('set2')" class="quiz-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white">সেট ২ (Subordinate)</button>
-                </div>
-            </div>
+                        <h2 class="font-royal text-2xl sm:text-3xl font-bold">
+                            Principal Clause (স্বাধীন বা প্রধান উপবাক্য)
+                        </h2>
 
-            <!-- Quiz Items Container -->
-            <div id="quiz-container" class="space-y-6">
-                <!-- Dynamic Quiz Cards inserted via JavaScript -->
-            </div>
-        </section>
+                        <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                            যে Clause অন্য কোনো Clause-এর ওপর নির্ভর না করে <strong style="color: var(--text-primary);">স্বাধীনভাবে নিজস্ব অর্থ সম্পূর্ণরূপে প্রকাশ করতে পারে</strong>, তাকে Principal Clause বা Independent Clause বলে। এটি নিজেই একটি পূর্ণাঙ্গ Simple Sentence হিসেবে বসতে পারে।
+                        </p>
 
+                        <!-- Key Characteristics -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="p-4 rounded-2xl border" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                                <i class="fa-solid fa-check-double text-emerald-400 text-xl mb-2"></i>
+                                <h4 class="font-bold text-sm">পূর্ণ অর্থ প্রকাশ</h4>
+                                <p class="text-xs mt-1" style="color: var(--text-secondary);">বাক্য থেকে আলাদা করলেও অর্থের কোনো ঘাটতি হয় না।</p>
+                            </div>
+                            <div class="p-4 rounded-2xl border" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                                <i class="fa-solid fa-ban text-rose-400 text-xl mb-2"></i>
+                                <h4 class="font-bold text-sm">Linker মুক্ত</h4>
+                                <p class="text-xs mt-1" style="color: var(--text-secondary);">এর শুরুতে কোনো Subordinating Conjunction থাকে না।</p>
+                            </div>
+                            <div class="p-4 rounded-2xl border" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                                <i class="fa-solid fa-anchor text-cyan-400 text-xl mb-2"></i>
+                                <h4 class="font-bold text-sm">বাক্যের মূল স্তম্ভ</h4>
+                                <p class="text-xs mt-1" style="color: var(--text-secondary);">প্রতিটি অর্থপূর্ণ ইংরেজি বাক্যে অন্তত একটি Principal Clause থাকে।</p>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Examples -->
+                        <div class="space-y-3">
+                            <h3 class="font-bold text-base">উদাহরণে ক্লিক করে Principal Clause যাচাই করুন:</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div onclick="inspectSentence('I know the man who came here yesterday.', 'I', 'know', 'Principal Clause: I know the man', 'এখানে \"I know the man\" অংশটি নিজেই একটি সম্পূর্ণ অর্থবোধক বাক্য। তাই এটি Principal Clause।')"
+                                     class="clause-example-chip p-4 rounded-2xl">
+                                    <p class="font-mono text-sm sm:text-base font-semibold">
+                                        <span class="underline decoration-emerald-400 decoration-2 text-emerald-400">I know the man</span> who came here yesterday.
+                                    </p>
+                                    <span class="text-xs mt-2 inline-block" style="color: var(--text-secondary);">ক্লিক করে বিশ্লেষণ দেখুন →</span>
+                                </div>
+
+                                <div onclick="inspectSentence('He is rich, but he is humble.', 'He', 'is', 'Principal Clause: He is rich', '\"He is rich\" (সে ধনী) — এটি সম্পূর্ণ স্বাধীন এবং অন্য অংশের ওপর নির্ভরশীল নয়।')"
+                                     class="clause-example-chip p-4 rounded-2xl">
+                                    <p class="font-mono text-sm sm:text-base font-semibold">
+                                        <span class="underline decoration-emerald-400 decoration-2 text-emerald-400">He is rich</span>, but he is humble.
+                                    </p>
+                                    <span class="text-xs mt-2 inline-block" style="color: var(--text-secondary);">ক্লিক করে বিশ্লেষণ দেখুন →</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== TOPIC 3: SUBORDINATE CLAUSE (WITH 3 SUB-TABS) ==================== -->
+                <section id="topic3" class="topic-panel hidden space-y-6">
+                    <div class="card-3d rounded-3xl p-6 sm:p-8 space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/40">
+                                অধ্যায় ০৩ • Subordinate / Dependent Clause
+                            </span>
+                            <span class="text-xs font-mono text-cyan-400">Noun • Adjective • Adverbial</span>
+                        </div>
+
+                        <h2 class="font-royal text-2xl sm:text-3xl font-bold">
+                            Subordinate Clause (অধীনস্থ উপবাক্য)
+                        </h2>
+
+                        <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                            যে Clause নিজের অর্থ সম্পূর্ণভাবে প্রকাশ করতে পারে না এবং অর্থের পূর্ণতার জন্য <strong style="color: var(--text-primary);">Principal Clause-এর ওপর নির্ভরশীল থাকে</strong>, তাকে Subordinate Clause বলে। কাজের ধরন অনুযায়ী এটি <strong style="color: var(--accent-2);">৩ প্রকার</strong>। নিচের সাব-ট্যাবগুলো থেকে প্রতিটি ধরন বিস্তারিত দেখুন:
+                        </p>
+
+                        <!-- Sub-Tabs Navigation for Noun, Adjective, Adverbial -->
+                        <div class="flex flex-wrap gap-2 p-2 rounded-2xl border" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                            <button onclick="switchSubTab('sub-noun')" id="btn-sub-noun" class="sub-tab-btn btn-3d ripple-target flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold text-white" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+                                ১. Noun Clause
+                            </button>
+                            <button onclick="switchSubTab('sub-adj')" id="btn-sub-adj" class="sub-tab-btn ripple-target flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all" style="color: var(--text-primary);">
+                                ২. Adjective Clause
+                            </button>
+                            <button onclick="switchSubTab('sub-adv')" id="btn-sub-adv" class="sub-tab-btn ripple-target flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all" style="color: var(--text-primary);">
+                                ৩. Adverbial Clause
+                            </button>
+                        </div>
+
+                        <!-- SUB-TAB 1: NOUN CLAUSE -->
+                        <div id="sub-noun" class="sub-tab-content space-y-5">
+                            <div class="p-5 rounded-2xl border-l-4 border-indigo-500 space-y-3" style="background: var(--surface-elevated);">
+                                <h3 class="text-xl font-bold text-indigo-400">Noun Clause (বিশেষ্য স্থানীয় উপবাক্য)</h3>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    যে Subordinate Clause বাক্যে একটি <strong style="color: var(--text-primary);">Noun</strong>-এর মতো কাজ করে (Verb-এর Subject, Object, Complement বা Preposition-এর Object হিসেবে বসে), তাকে Noun Clause বলে।
+                                </p>
+                                
+                                <!-- Live "IT" Replacement Simulator -->
+                                <div class="p-4 rounded-xl border space-y-3" style="background: var(--surface-glass); border-color: var(--border-color);">
+                                    <div class="flex items-center justify-between flex-wrap gap-2">
+                                        <span class="text-xs font-bold text-amber-400"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i> ম্যাজিক "IT" টেস্ট সিমিউলেটর:</span>
+                                        <button onclick="toggleItSimulator()" class="btn-3d ripple-target px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-indigo-600">
+                                            'IT' বসিয়ে পরিবর্তন দেখুন
+                                        </button>
+                                    </div>
+                                    <p id="it-sim-text" class="font-mono text-sm sm:text-base text-center py-2">
+                                        I know <span class="text-indigo-400 font-bold underline">that he is honest</span>.
+                                    </p>
+                                    <p class="text-xs text-center" style="color: var(--text-secondary);">
+                                        নিয়ম: পুরো Clause-এর বদলে <strong>"It"</strong> বসালে বাক্যটি ব্যাকরণগতভাবে সঠিক থাকলে সেটি নিশ্চিতভাবেই <strong>Noun Clause</strong>।
+                                    </p>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                                    <div onclick="inspectSentence('That he is honest is known to all.', 'That he is honest (Clause Subject)', 'is known', 'Noun Clause (Subject হিসেবে)', 'এখানে পুরো Clause-টি Verb \"is\"-এর Subject হিসেবে বসেছে এবং \"It is known to all\" দ্বারা প্রতিস্থাপনযোগ্য।')"
+                                         class="clause-example-chip p-3.5 rounded-xl">
+                                        <span class="text-[11px] font-bold text-indigo-400">Verb-এর Subject রূপে:</span>
+                                        <p class="font-mono text-sm mt-1"><u>That he is honest</u> is known to all.</p>
+                                    </div>
+                                    <div onclick="inspectSentence('Tell me where you live.', 'you', 'live', 'Noun Clause (Object হিসেবে)', 'এখানে পূর্বে কোনো Antecedent Noun নেই। \"Tell me IT\" অর্থ প্রকাশ করায় এটি Noun Clause।')"
+                                         class="clause-example-chip p-3.5 rounded-xl">
+                                        <span class="text-[11px] font-bold text-indigo-400">Verb-এর Object রূপে:</span>
+                                        <p class="font-mono text-sm mt-1">Tell me <u>where you live</u>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SUB-TAB 2: ADJECTIVE CLAUSE -->
+                        <div id="sub-adj" class="sub-tab-content hidden space-y-5">
+                            <div class="p-5 rounded-2xl border-l-4 border-cyan-500 space-y-3" style="background: var(--surface-elevated);">
+                                <h3 class="text-xl font-bold text-cyan-400">Adjective Clause (বিশেষণ স্থানীয় উপবাক্য)</h3>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    যে Subordinate Clause তার ঠিক পূর্ববর্তী কোনো Noun বা Pronoun (যাকে <strong style="color: var(--accent-warn);">Antecedent</strong> বলে)-কে Modify বা বিশেষায়িত করে, তাকে Adjective Clause বলে। এটি সাধারণত Relative Pronoun (who, which, that, whom, whose) বা Relative Adverb (where, when) দিয়ে শুরু হয়।
+                                </p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                                    <div onclick="inspectSentence('This is the house where I was born.', 'I', 'was born', 'Adjective Clause (Antecedent: house)', 'Clause-টির ঠিক পূর্বে \"house\" নামক Noun (Antecedent) আছে, যাকে এটি নির্দিষ্ট করছে।')"
+                                         class="clause-example-chip p-3.5 rounded-xl">
+                                        <span class="text-[11px] font-bold text-cyan-400">Antecedent = house:</span>
+                                        <p class="font-mono text-sm mt-1">This is the <strong class="text-amber-400">house</strong> <u>where I was born</u>.</p>
+                                    </div>
+                                    <div onclick="inspectSentence('The dog that barks seldom bites.', 'that (dog)', 'barks', 'Adjective Clause (Antecedent: dog)', 'এখানে \"that barks\" অংশটি তার পূর্ববর্তী Noun \"dog\"-এর গুণ বা বৈশিষ্ট্য প্রকাশ করছে।')"
+                                         class="clause-example-chip p-3.5 rounded-xl">
+                                        <span class="text-[11px] font-bold text-cyan-400">Antecedent = dog:</span>
+                                        <p class="font-mono text-sm mt-1">The <strong class="text-amber-400">dog</strong> <u>that barks</u> seldom bites.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SUB-TAB 3: ADVERBIAL CLAUSE -->
+                        <div id="sub-adv" class="sub-tab-content hidden space-y-5">
+                            <div class="p-5 rounded-2xl border-l-4 border-emerald-500 space-y-3" style="background: var(--surface-elevated);">
+                                <h3 class="text-xl font-bold text-emerald-400">Adverbial Clause (ক্রিয়া-বিশেষণ স্থানীয় উপবাক্য)</h3>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    যে Subordinate Clause বাক্যের Verb, Adjective বা অন্য Adverb-কে Modify করে এবং ক্রিয়ার <strong style="color: var(--text-primary);">সময় (Time), স্থান (Place), কারণ (Reason), শর্ত (Condition), উদ্দেশ্য (Purpose) বা বৈপরীত্য (Contrast)</strong> প্রকাশ করে, তাকে Adverbial Clause বলে।
+                                </p>
+
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-semibold text-center">
+                                    <div class="p-2.5 rounded-xl border" style="background: var(--surface-glass); border-color: var(--border-color);">⏰ Time (when, while)</div>
+                                    <div class="p-2.5 rounded-xl border" style="background: var(--surface-glass); border-color: var(--border-color);">📍 Place (where, wherever)</div>
+                                    <div class="p-2.5 rounded-xl border" style="background: var(--surface-glass); border-color: var(--border-color);">💡 Reason (because, since)</div>
+                                    <div class="p-2.5 rounded-xl border" style="background: var(--surface-glass); border-color: var(--border-color);">⚖️ Condition (if, unless)</div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                                    <div onclick="inspectSentence('He will pass if he works hard.', 'he', 'works', 'Adverbial Clause of Condition', 'Principal Verb \"will pass\"-কে \"কী শর্তে?\" প্রশ্ন করলে উত্তর মেলে \"if he works hard\"।')"
+                                         class="clause-example-chip p-3.5 rounded-xl">
+                                        <span class="text-[11px] font-bold text-emerald-400">শর্ত (Condition):</span>
+                                        <p class="font-mono text-sm mt-1">He will pass <u>if he works hard</u>.</p>
+                                    </div>
+                                    <div onclick="inspectSentence('She stayed at home because it was raining.', 'it', 'was raining', 'Adverbial Clause of Reason', 'কেন বাড়িতে থাকল? — কারণ বৃষ্টি হচ্ছিল। এটি Verb \"stayed\"-এর কারণ নির্দেশ করছে।')"
+                                         class="clause-example-chip p-3.5 rounded-xl">
+                                        <span class="text-[11px] font-bold text-emerald-400">কারণ (Reason):</span>
+                                        <p class="font-mono text-sm mt-1">She stayed at home <u>because it was raining</u>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== TOPIC 4: COORDINATE CLAUSE ==================== -->
+                <section id="topic4" class="topic-panel hidden space-y-6">
+                    <div class="card-3d tilt-card rounded-3xl p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/40">
+                                অধ্যায় ০৪ • Coordinate Clause
+                            </span>
+                            <span class="text-xs font-mono text-amber-400">Connector: FANBOYS</span>
+                        </div>
+
+                        <h2 class="font-royal text-2xl sm:text-3xl font-bold">
+                            Coordinate Clause (সংযোজক বা সমমর্যাদার উপবাক্য)
+                        </h2>
+
+                        <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                            যখন দুই বা ততোধিক <strong style="color: var(--text-primary);">সমমর্যাদার (Equal Rank) স্বাধীন Clause</strong> কোনো Coordinating Conjunction (যেমন: and, but, or, nor, for, yet, so) দ্বারা যুক্ত হয়ে একটি Compound Sentence গঠন করে, তখন তাদের প্রত্যেকটিকে Coordinate Clause বলে।
+                        </p>
+
+                        <!-- Interactive FANBOYS 3D Builder -->
+                        <div class="p-5 rounded-2xl border space-y-4" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                            <h3 class="font-bold text-base flex items-center gap-2">
+                                <i class="fa-solid fa-puzzle-piece text-amber-400"></i> ইন্টারেক্টিভ FANBOYS সংযোজক ব্রিজ (ক্লিক করে বাক্য জোড়া লাগান):
+                            </h3>
+                            <div class="grid grid-cols-7 gap-1.5 sm:gap-2.5 text-center font-mono">
+                                <button onclick="selectFanboys('For', 'কারণ বোঝাতে', 'He could not come, <u>for he was ill</u>.')" class="btn-3d ripple-target p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 font-bold">
+                                    <span class="text-base sm:text-lg block">F</span><span class="text-[10px] hidden sm:block">For</span>
+                                </button>
+                                <button onclick="selectFanboys('And', 'তথ্য যোগ করতে', 'He came here <u>and he helped me</u>.')" class="btn-3d ripple-target p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 font-bold">
+                                    <span class="text-base sm:text-lg block">A</span><span class="text-[10px] hidden sm:block">And</span>
+                                </button>
+                                <button onclick="selectFanboys('Nor', 'নেতিবাচক সংযোগে', 'He does not smoke, <u>nor does he drink</u>.')" class="btn-3d ripple-target p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 font-bold">
+                                    <span class="text-base sm:text-lg block">N</span><span class="text-[10px] hidden sm:block">Nor</span>
+                                </button>
+                                <button onclick="selectFanboys('But', 'বৈপরীত্য বোঝাতে', 'He is poor, <u>but he is honest</u>.')" class="btn-3d ripple-target p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 font-bold">
+                                    <span class="text-base sm:text-lg block">B</span><span class="text-[10px] hidden sm:block">But</span>
+                                </button>
+                                <button onclick="selectFanboys('Or', 'বিকল্প বোঝাতে', 'Read attentively, <u>or you will fail</u>.')" class="btn-3d ripple-target p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 font-bold">
+                                    <span class="text-base sm:text-lg block">O</span><span class="text-[10px] hidden sm:block">Or</span>
+                                </button>
+                                <button onclick="selectFanboys('Yet', 'তবুও অর্থে', 'He worked hard, <u>yet he failed</u>.')" class="btn-3d ripple-target p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 font-bold">
+                                    <span class="text-base sm:text-lg block">Y</span><span class="text-[10px] hidden sm:block">Yet</span>
+                                </button>
+                                <button onclick="selectFanboys('So', 'ফলাফল বোঝাতে', 'It was raining, <u>so we stayed home</u>.')" class="btn-3d ripple-target p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 font-bold">
+                                    <span class="text-base sm:text-lg block">S</span><span class="text-[10px] hidden sm:block">So</span>
+                                </button>
+                            </div>
+
+                            <div id="fanboys-preview" class="p-4 rounded-xl border text-center space-y-1" style="background: var(--surface-glass); border-color: var(--border-color);">
+                                <span class="text-xs font-bold text-amber-400">But — বৈপরীত্য বোঝাতে</span>
+                                <p class="font-mono text-base font-semibold">He is poor, <u>but he is honest</u>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== TOPIC 5: PHRASE VS CLAUSE 3D COMPARISON ==================== -->
+                <section id="topic5" class="topic-panel hidden space-y-6">
+                    <div class="card-3d rounded-3xl p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                                অধ্যায় ০৫ • তুলনামূলক ৩ডি চার্ট
+                            </span>
+                            <span class="text-xs font-mono text-emerald-400">Phrase vs Clause</span>
+                        </div>
+
+                        <h2 class="font-royal text-2xl sm:text-3xl font-bold">
+                            Phrase বনাম Clause-এর ৩ডি পার্থক্য ও চেনার কৌশল
+                        </h2>
+
+                        <!-- 3D Comparison Table -->
+                        <div class="overflow-x-auto rounded-2xl border" style="border-color: var(--border-color);">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr style="background: var(--surface-elevated);">
+                                        <th class="p-4 font-bold">তুলনার ভিত্তি</th>
+                                        <th class="p-4 font-bold text-rose-400"><i class="fa-solid fa-layer-group mr-1.5"></i> Phrase (শব্দগুচ্ছ)</th>
+                                        <th class="p-4 font-bold text-cyan-400"><i class="fa-solid fa-cubes mr-1.5"></i> Clause (উপবাক্য)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y" style="border-color: var(--border-color);">
+                                    <tr>
+                                        <td class="p-4 font-semibold">১. Subject ও Finite Verb</td>
+                                        <td class="p-4 text-rose-400 font-medium"><i class="fa-solid fa-circle-xmark mr-1"></i> কখনোই থাকে না।</td>
+                                        <td class="p-4 text-emerald-400 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> অবশ্যই ১টি Subject ও ১টি Finite Verb থাকে।</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-semibold">২. অর্থ প্রকাশের ক্ষমতা</td>
+                                        <td class="p-4" style="color: var(--text-secondary);">আংশিক অর্থ দেয়; একা কখনোই পূর্ণ বাক্য হতে পারে না।</td>
+                                        <td class="p-4" style="color: var(--text-secondary);">Principal Clause হলে একাই পূর্ণ বাক্য হতে পারে।</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-semibold">৩. গঠনগত উদাহরণ</td>
+                                        <td class="p-4 font-mono text-xs sm:text-sm">in the morning, a man of letters</td>
+                                        <td class="p-4 font-mono text-xs sm:text-sm">when morning came, who is learned</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 3-Step Magic Decision Flowchart -->
+                        <div class="p-5 rounded-2xl border space-y-4" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                            <h3 class="font-bold text-base flex items-center gap-2">
+                                <i class="fa-solid fa-bolt text-amber-400"></i> মাত্র ৫ সেকেন্ডে Subordinate Clause চেনার ৩ ধাপের ম্যাজিক ফ্লো-চার্ট:
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-xs sm:text-sm">
+                                <div class="p-4 rounded-2xl border space-y-2" style="background: var(--surface-glass); border-color: var(--border-color);">
+                                    <span class="w-8 h-8 rounded-full bg-cyan-500 text-slate-950 font-bold mx-auto flex items-center justify-center">১</span>
+                                    <p class="font-bold">পূর্বে Noun/Pronoun আছে?</p>
+                                    <p style="color: var(--text-secondary);">Clause-টির ঠিক আগে Antecedent Noun থাকলে সেটি <strong>Adjective Clause</strong>।</p>
+                                </div>
+                                <div class="p-4 rounded-2xl border space-y-2" style="background: var(--surface-glass); border-color: var(--border-color);">
+                                    <span class="w-8 h-8 rounded-full bg-indigo-500 text-white font-bold mx-auto flex items-center justify-center">২</span>
+                                    <p class="font-bold">'IT' বসালে অর্থ মেলে?</p>
+                                    <p style="color: var(--text-secondary);">পুরো Clause-এর বদলে "It" বসালে বাক্য ঠিক থাকলে সেটি <strong>Noun Clause</strong>।</p>
+                                </div>
+                                <div class="p-4 rounded-2xl border space-y-2" style="background: var(--surface-glass); border-color: var(--border-color);">
+                                    <span class="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 font-bold mx-auto flex items-center justify-center">৩</span>
+                                    <p class="font-bold">কখন, কোথায়, কেন, কীভাবে?</p>
+                                    <p style="color: var(--text-secondary);">Verb-কে এসব প্রশ্ন করে উত্তর পাওয়া গেলে সেটি <strong>Adverbial Clause</strong>।</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== TOPIC 6: INTERACTIVE 3D QUIZ LAB ==================== -->
+                <section id="topic6" class="topic-panel hidden space-y-6">
+                    <div class="card-3d rounded-3xl p-6 sm:p-8 space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-4 border-b pb-4" style="border-color: var(--border-color);">
+                            <div>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-400 border border-rose-500/40">
+                                    অধ্যায় ০৬ • Practice Lab
+                                </span>
+                                <h2 class="font-royal text-2xl sm:text-3xl font-bold mt-2">
+                                    ৩ডি ইন্টারঅ্যাক্টিভ কুইজ ও দক্ষতা যাচাই
+                                </h2>
+                            </div>
+
+                            <!-- Quiz Filter & Reset -->
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button onclick="filterQuizSet('all', this)" class="quiz-filter btn-3d ripple-target px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-indigo-600">সবগুলো (১৩)</button>
+                                <button onclick="filterQuizSet('set1', this)" class="quiz-filter ripple-target px-3 py-1.5 rounded-xl text-xs font-bold border" style="background: var(--surface-elevated); border-color: var(--border-color);">প্রধান প্রকারভেদ</button>
+                                <button onclick="filterQuizSet('set2', this)" class="quiz-filter ripple-target px-3 py-1.5 rounded-xl text-xs font-bold border" style="background: var(--surface-elevated); border-color: var(--border-color);">Subordinate</button>
+                                <button onclick="resetQuiz()" class="ripple-target px-3 py-1.5 rounded-xl text-xs font-bold text-rose-400 border border-rose-500/40 hover:bg-rose-500/10">
+                                    <i class="fa-solid fa-rotate-right mr-1"></i> রিসেট
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Quiz Cards List -->
+                        <div id="quiz-list" class="space-y-5"></div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
     </div>
 
-    <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+    <!-- ==================== 3D POPUP SENTENCE INSPECTOR MODAL ==================== -->
+    <div id="inspector-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+        <div id="inspector-card" class="card-3d rounded-3xl max-w-lg w-full p-6 sm:p-7 space-y-5 transform scale-95 opacity-0 transition-all duration-300">
+            <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-color);">
+                <span class="text-xs font-bold uppercase tracking-wider flex items-center gap-2" style="color: var(--accent-2);">
+                    <i class="fa-solid fa-cube"></i> ৩ডি বাক্য বিশ্লেষক (Clause Inspector)
+                </span>
+                <button onclick="closeInspector()" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-rose-500/20 text-rose-400 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-4 rounded-2xl border text-center" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                <p id="modal-sentence" class="font-mono text-base sm:text-lg font-bold"></p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="p-3 rounded-2xl border border-emerald-500/40 bg-emerald-500/10">
+                    <span class="text-[11px] font-bold text-emerald-400 block">Subject (কর্তা)</span>
+                    <p id="modal-subject" class="font-mono text-sm font-bold mt-1 text-emerald-300"></p>
+                </div>
+                <div class="p-3 rounded-2xl border border-amber-500/40 bg-amber-500/10">
+                    <span class="text-[11px] font-bold text-amber-400 block">Finite Verb (ক্রিয়া)</span>
+                    <p id="modal-verb" class="font-mono text-sm font-bold mt-1 text-amber-300"></p>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-2xl border space-y-1.5" style="background: var(--surface-elevated); border-color: var(--border-color);">
+                <span class="text-xs font-bold" style="color: var(--accent-1);">Clause-এর ধরন:</span>
+                <h4 id="modal-type" class="text-base font-bold"></h4>
+                <p id="modal-desc" class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-secondary);"></p>
+            </div>
+
+            <button onclick="closeInspector()" class="btn-3d ripple-target w-full py-3 rounded-2xl text-sm font-bold text-white" style="background: linear-gradient(135deg, var(--accent-1), var(--accent-2));">
+                বুঝেছি, বন্ধ করুন
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Toast Container -->
+    <div id="toast-box" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <!-- Footer -->
-    <footer class="glass-panel border-t border-slate-800 py-6 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
-            <p>Clause Mastery - মাস্টার অফ ইংলিশ গ্রামার | সর্বাঙ্গীন টিউটোরিয়াল ও অনুশীলন ড্যাশবোর্ড</p>
-            <p class="mt-1 text-slate-500">ইংরেজি গ্রামারকে সহজ ও সচ্ছল করার প্রয়াস।</p>
-        </div>
+    <footer class="relative z-10 card-3d border-t mt-10 py-5 text-center text-xs" style="border-radius: 0; color: var(--text-secondary);">
+        <p class="font-royal text-sm font-semibold" style="color: var(--text-primary);">Clause Mastery 3D — ইংরেজি ব্যাকরণের উপবাক্য শিক্ষা প্ল্যাটফর্ম</p>
+        <p class="mt-1">Tiro Bangla & Hind Siliguri Typography • Three.js & GSAP Interactive Experience</p>
     </footer>
 
-    <!-- JavaScript Logic & App Functionality -->
+    <!-- ==================== JAVASCRIPT ENGINE (THREE.JS + GSAP + QUIZ + 3D TILT) ==================== -->
     <script>
-        // Global State & Progress Trackers
-        let userScore = 0;
-        let completedQuestions = new Set();
-        
-        // Quiz Questions Data (Matching provided detailed content)
-        const quizData = [
-            // SET 1: Principal, Subordinate, Co-ordinate
-            {
-                id: 1,
-                set: 'set1',
-                question: '<u>I know the man</u> who came here yesterday.',
-                options: ['Principal Clause', 'Subordinate Clause', 'Co-ordinate Clause'],
-                correct: 0,
-                explanation: '<strong>ব্যাখ্যা:</strong> "I know the man" অংশটি অন্য কোনো অংশের ওপর নির্ভর না করে স্বাধীনভাবে নিজস্ব অর্থ প্রকাশ করতে পারে। তাই এটি <strong>Principal Clause</strong>।'
-            },
-            {
-                id: 2,
-                set: 'set1',
-                question: 'Read attentively, <u>or you will fail in the exam</u>.',
-                options: ['Principal Clause', 'Subordinate Clause', 'Co-ordinate Clause'],
-                correct: 2,
-                explanation: '<strong>ব্যাখ্যা:</strong> এখানে "or" হলো একটি Co-ordinating Conjunction যা সমমর্যাদার দুটি Clause-কে যুক্ত করেছে। তাই এটি <strong>Co-ordinate Clause</strong>।'
-            },
-            {
-                id: 3,
-                set: 'set1',
-                question: '<u>When the sun set</u>, we returned home.',
-                options: ['Principal Clause', 'Subordinate Clause', 'Co-ordinate Clause'],
-                correct: 1,
-                explanation: '<strong>ব্যাখ্যা:</strong> "When the sun set" (যখন সূর্য ডুবল) একা একা পূর্ণাঙ্গ অর্থ দেয় না, এটি "we returned home" এর ওপর নির্ভরশীল। তাই এটি <strong>Subordinate Clause</strong>।'
-            },
-            {
-                id: 4,
-                set: 'set1',
-                question: 'She works hard <u>so that she can succeed</u>.',
-                options: ['Principal Clause', 'Subordinate Clause', 'Co-ordinate Clause'],
-                correct: 1,
-                explanation: '<strong>ব্যাখ্যা:</strong> "so that" দিয়ে যুক্ত হওয়া অংশটি উদ্দেশ্য প্রকাশ করছে এবং স্বাধীন বাক্য নয়। এটি <strong>Subordinate Clause</strong>।'
-            },
-            {
-                id: 5,
-                set: 'set1',
-                question: '<u>He is rich</u>, but he is humble.',
-                options: ['Principal Clause', 'Subordinate Clause', 'Co-ordinate Clause'],
-                correct: 0,
-                explanation: '<strong>ব্যাখ্যা:</strong> "He is rich" একটি স্বাধীন বাক্য যা কোনো মারফতে নির্ভরশীল নয়। এটি <strong>Principal Clause</strong>।'
-            },
+        /* ---------------- 1. THREE.JS AMBIENT 3D BACKGROUND ---------------- */
+        let scene, camera, renderer, cubesGroup, particleSystem;
+        let mouseX = 0, mouseY = 0;
 
-            // SET 2: Noun, Adjective, Adverbial
-            {
-                id: 6,
-                set: 'set2',
-                question: '<u>That he is honest</u> is known to all.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 0,
-                explanation: '<strong>ব্যাখ্যা:</strong> পুরো Clause-টির জায়গায় "It" বসালে দাঁড়ায় "It is known to all", যা একটি অর্থপূর্ণ বাক্য। এছাড়া এটি Verb "is"-এর Subject হিসেবে কাজ করছে। তাই এটি <strong>Noun Clause</strong>।'
-            },
-            {
-                id: 7,
-                set: 'set2',
-                question: 'I know the time <u>when he will arrive</u>.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 1,
-                explanation: '<strong>ব্যাখ্যা:</strong> Clause-টির ঠিক পূর্বে "time" (Noun) নামক Antecedent আছে। "when he will arrive" সেই time-কে Modify করছে। তাই এটি <strong>Adjective Clause</strong>।'
-            },
-            {
-                id: 8,
-                set: 'set2',
-                question: 'He will pass <u>if he works hard</u>.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 2,
-                explanation: '<strong>ব্যাখ্যা:</strong> এটি পাসের শর্ত (Condition) প্রকাশ করছে। "কী শর্তে পাস করবে?" - উত্তর দেয়। তাই এটি <strong>Adverbial Clause of Condition</strong>।'
-            },
-            {
-                id: 9,
-                set: 'set2',
-                question: 'I do not understand <u>what you are saying</u>.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 0,
-                explanation: '<strong>ব্যাখ্যা:</strong> "I do not understand IT" - এখানে "what you are saying" অংশটি Object হিসেবে কাজ করছে। তাই এটি <strong>Noun Clause</strong>।'
-            },
-            {
-                id: 10,
-                set: 'set2',
-                question: 'The dog <u>that barks</u> seldom bites.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 1,
-                explanation: '<strong>ব্যাখ্যা:</strong> Clause-টি তার আগের Noun "dog"-কে বর্ণনা বা নির্দেশ করছে। তাই এটি <strong>Adjective Clause</strong>।'
-            },
-            {
-                id: 11,
-                set: 'set2',
-                question: 'She stayed at home <u>because it was raining</u>.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 2,
-                explanation: '<strong>ব্যাখ্যা:</strong> এটি ঘরে থাকার কারণ (Reason) প্রকাশ করছে। তাই এটি <strong>Adverbial Clause of Reason</strong>।'
-            },
-            {
-                id: 12,
-                set: 'set2',
-                question: 'This is the house <u>where I was born</u>.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 1,
-                explanation: '<strong>ব্যাখ্যা:</strong> Clause-টির পূর্বে Noun "house" (Antecedent) রয়েছে যা স্থান নির্দেশিত বাড়িটিকে নির্দিষ্ট করছে। তাই এটি <strong>Adjective Clause</strong>।'
-            },
-            {
-                id: 13,
-                set: 'set2',
-                question: 'Tell me <u>where you live</u>.',
-                options: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'],
-                correct: 0,
-                explanation: '<strong>ব্যাখ্যা:</strong> "Tell me IT" (আমাকে তা বলো)। পূর্বে কোনো Antecedent Noun নেই, বরং Verb-এর Object হিসেবে কাজ করছে। তাই এটি <strong>Noun Clause</strong>।'
+        function initThreeJS() {
+            const canvas = document.getElementById('bg-three-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 28;
+
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Floating Wireframe Polyhedra representing Clause Building Blocks
+            cubesGroup = new THREE.Group();
+            const geometries = [
+                new THREE.OctahedronGeometry(1.5, 0),
+                new THREE.IcosahedronGeometry(1.3, 0),
+                new THREE.TetrahedronGeometry(1.4, 0)
+            ];
+
+            for (let i = 0; i < 16; i++) {
+                const geo = geometries[i % geometries.length];
+                const mat = new THREE.MeshBasicMaterial({
+                    color: i % 2 === 0 ? 0x6366f1 : 0x06b6d4,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.22
+                });
+                const mesh = new THREE.Mesh(geo, mat);
+                mesh.position.set(
+                    (Math.random() - 0.5) * 48,
+                    (Math.random() - 0.5) * 32,
+                    (Math.random() - 0.5) * 20 - 5
+                );
+                mesh.userData = {
+                    rotSpeedX: (Math.random() - 0.5) * 0.012,
+                    rotSpeedY: (Math.random() - 0.5) * 0.012,
+                    floatOffset: Math.random() * Math.PI * 2
+                };
+                cubesGroup.add(mesh);
             }
+            scene.add(cubesGroup);
+
+            // Particle Field
+            const pCount = 180;
+            const pGeo = new THREE.BufferGeometry();
+            const positions = new Float32Array(pCount * 3);
+            for (let i = 0; i < pCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 65;
+            }
+            pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const pMat = new THREE.PointsMaterial({ color: 0x6366f1, size: 0.18, transparent: true, opacity: 0.55 });
+            particleSystem = new THREE.Points(pGeo, pMat);
+            scene.add(particleSystem);
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            });
+
+            animateThree();
+        }
+
+        function animateThree() {
+            requestAnimationFrame(animateThree);
+            const time = Date.now() * 0.001;
+
+            cubesGroup.children.forEach((mesh) => {
+                mesh.rotation.x += mesh.userData.rotSpeedX;
+                mesh.rotation.y += mesh.userData.rotSpeedY;
+                mesh.position.y += Math.sin(time + mesh.userData.floatOffset) * 0.008;
+            });
+
+            particleSystem.rotation.y += 0.0008;
+            camera.position.x += (mouseX * 2.5 - camera.position.x) * 0.04;
+            camera.position.y += (-mouseY * 2.5 - camera.position.y) * 0.04;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        /* ---------------- 2. DYNAMIC THEME SWITCHER ---------------- */
+        function setTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+            
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow');
+            });
+            const activeBtn = document.querySelector(`[data-theme-btn="${themeName}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow');
+            }
+
+            // Update 3D Scene Colors
+            const themeColors = {
+                dark: [0x6366f1, 0x06b6d4],
+                light: [0x4f46e5, 0x0284c7],
+                rgb: [0xff007f, 0x00f0ff],
+                royal: [0xf59e0b, 0xec4899]
+            };
+            const [c1, c2] = themeColors[themeName] || themeColors.dark;
+            if (cubesGroup) {
+                cubesGroup.children.forEach((m, idx) => m.material.color.setHex(idx % 2 === 0 ? c1 : c2));
+                particleSystem.material.color.setHex(c1);
+            }
+
+            const names = { dark: 'ডার্ক মোড', light: 'ক্লিন হোয়াইট মোড', rgb: 'RGB নিয়ন গ্লো', royal: 'রয়্যাল 3D থিম' };
+            showToast(`থিম পরিবর্তিত হয়েছে: ${names[themeName]}`, 'info');
+        }
+
+        /* ---------------- 3. 3D CARD TILT & RIPPLE FEEDBACK ---------------- */
+        function init3DTiltAndRipple() {
+            // Subtle 3D Tilt on Desktop Hover
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    if (window.innerWidth < 768) return;
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    card.style.transform = `perspective(1200px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1200px) rotateY(0deg) rotateX(0deg)`;
+                });
+            });
+
+            // Haptic-style Ripple Effect on Buttons
+            document.addEventListener('click', (e) => {
+                const target = e.target.closest('.ripple-target');
+                if (!target) return;
+                const rect = target.getBoundingClientRect();
+                const circle = document.createElement('span');
+                const diameter = Math.max(rect.width, rect.height);
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+                circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+                circle.classList.add('ripple-span');
+                target.appendChild(circle);
+                setTimeout(() => circle.remove(), 600);
+            });
+        }
+
+        /* ---------------- 4. TOPIC & SUB-TAB NAVIGATION ---------------- */
+        function switchTopic(topicId) {
+            document.querySelectorAll('.topic-panel').forEach(panel => panel.classList.add('hidden'));
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.color = 'var(--text-primary)';
+            });
+
+            const targetPanel = document.getElementById(topicId);
+            targetPanel.classList.remove('hidden');
+            gsap.fromTo(targetPanel, { opacity: 0, y: 18, scale: 0.985 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'power3.out' });
+
+            const activeNav = document.getElementById('nav-' + topicId);
+            if (activeNav) activeNav.classList.add('active');
+
+            if (window.innerWidth < 1024) {
+                targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function switchSubTab(subId) {
+            document.querySelectorAll('.sub-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+                btn.style.background = 'transparent';
+                btn.style.color = 'var(--text-primary)';
+                btn.classList.remove('btn-3d');
+            });
+
+            const target = document.getElementById(subId);
+            target.classList.remove('hidden');
+            gsap.fromTo(target, { opacity: 0, x: 14 }, { opacity: 1, x: 0, duration: 0.35 });
+
+            const activeBtn = document.getElementById('btn-' + subId);
+            activeBtn.style.background = 'linear-gradient(135deg, #6366f1, #06b6d4)';
+            activeBtn.style.color = '#ffffff';
+            activeBtn.classList.add('btn-3d');
+        }
+
+        /* ---------------- 5. INTERACTIVE ANIMATIONS & SIMULATORS ---------------- */
+        function animateClauseFusion() {
+            const sub = document.getElementById('block-sub');
+            const verb = document.getElementById('block-verb');
+            const res = document.getElementById('block-result');
+            const cap = document.getElementById('fusion-caption');
+
+            gsap.fromTo(sub, { x: -45, rotateY: -25, opacity: 0.4 }, { x: 0, rotateY: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.7)' });
+            gsap.fromTo(verb, { x: 45, rotateY: 25, opacity: 0.4 }, { x: 0, rotateY: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.7)' });
+            gsap.fromTo(res, { scale: 0.5, rotation: -12 }, { scale: 1.08, rotation: 0, duration: 0.6, delay: 0.35, ease: 'elastic.out(1, 0.5)', onComplete: () => gsap.to(res, { scale: 1, duration: 0.2 }) });
+
+            cap.innerHTML = `<span class="text-emerald-400 font-bold">"The boy"</span> (Subject) + <span class="text-amber-400 font-bold">"plays football"</span> (Finite Verb) = <strong style="color: var(--accent-2);">"The boy plays football." (১টি পূর্ণাঙ্গ Clause)</strong>`;
+        }
+
+        let itReplaced = false;
+        function toggleItSimulator() {
+            const el = document.getElementById('it-sim-text');
+            itReplaced = !itReplaced;
+            gsap.fromTo(el, { scale: 0.9, opacity: 0.3 }, { scale: 1, opacity: 1, duration: 0.3 });
+            if (itReplaced) {
+                el.innerHTML = `I know <span class="px-2.5 py-0.5 rounded-lg bg-amber-500 text-slate-950 font-extrabold">IT</span>. <span class="text-xs text-emerald-400 block mt-1">(অর্থ সম্পূর্ণ ঠিক আছে = Noun Clause!)</span>`;
+            } else {
+                el.innerHTML = `I know <span class="text-indigo-400 font-bold underline">that he is honest</span>.`;
+            }
+        }
+
+        function selectFanboys(word, meaning, exampleHtml) {
+            const box = document.getElementById('fanboys-preview');
+            gsap.fromTo(box, { y: 8, opacity: 0.4 }, { y: 0, opacity: 1, duration: 0.3 });
+            box.innerHTML = `
+                <span class="text-xs font-bold text-amber-400">${word} — ${meaning}</span>
+                <p class="font-mono text-base font-semibold">${exampleHtml}</p>
+            `;
+        }
+
+        /* ---------------- 6. 3D SENTENCE INSPECTOR MODAL ---------------- */
+        function inspectSentence(sentence, subject, verb, type, desc) {
+            const modal = document.getElementById('inspector-modal');
+            const card = document.getElementById('inspector-card');
+
+            document.getElementById('modal-sentence').innerText = `"${sentence}"`;
+            document.getElementById('modal-subject').innerText = subject;
+            document.getElementById('modal-verb').innerText = verb;
+            document.getElementById('modal-type').innerText = type;
+            document.getElementById('modal-desc').innerText = desc;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 15);
+        }
+
+        function closeInspector() {
+            const modal = document.getElementById('inspector-modal');
+            const card = document.getElementById('inspector-card');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 220);
+        }
+
+        /* ---------------- 7. INTERACTIVE QUIZ ENGINE ---------------- */
+        const quizBank = [
+            { id: 1, set: 'set1', q: '<u>I know the man</u> who came here yesterday.', opts: ['Principal Clause', 'Subordinate Clause', 'Coordinate Clause'], ans: 0, exp: '"I know the man" অংশটি অন্য কোনো অংশের ওপর নির্ভর না করে স্বাধীনভাবে পূর্ণ অর্থ প্রকাশ করে। তাই এটি Principal Clause।' },
+            { id: 2, set: 'set1', q: 'Read attentively, <u>or you will fail in the exam</u>.', opts: ['Principal Clause', 'Subordinate Clause', 'Coordinate Clause'], ans: 2, exp: 'এখানে "or" (FANBOYS) Coordinating Conjunction দ্বারা দুটি সমমর্যাদার Clause যুক্ত হয়েছে। তাই এটি Coordinate Clause।' },
+            { id: 3, set: 'set1', q: '<u>When the sun set</u>, we returned home.', opts: ['Principal Clause', 'Subordinate Clause', 'Coordinate Clause'], ans: 1, exp: '"When the sun set" একা পূর্ণ অর্থ প্রকাশ করতে পারে না, Principal Clause-এর ওপর নির্ভরশীল। তাই এটি Subordinate Clause।' },
+            { id: 4, set: 'set1', q: 'She works hard <u>so that she can succeed</u>.', opts: ['Principal Clause', 'Subordinate Clause', 'Coordinate Clause'], ans: 1, exp: '"so that" দ্বারা যুক্ত অংশটি উদ্দেশ্য প্রকাশ করছে এবং স্বাধীন বাক্য নয়। এটি Subordinate Clause।' },
+            { id: 5, set: 'set1', q: '<u>He is rich</u>, but he is humble.', opts: ['Principal Clause', 'Subordinate Clause', 'Coordinate Clause'], ans: 0, exp: '"He is rich" একটি স্বয়ংসম্পূর্ণ স্বাধীন উপবাক্য, তাই এটি Principal Clause।' },
+            { id: 6, set: 'set2', q: '<u>That he is honest</u> is known to all.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 0, exp: 'পুরো Clause-এর বদলে "It" বসালে দাঁড়ায় "It is known to all" এবং এটি Verb "is"-এর Subject। তাই এটি Noun Clause।' },
+            { id: 7, set: 'set2', q: 'I know the time <u>when he will arrive</u>.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 1, exp: 'Clause-টির ঠিক পূর্বে "time" (Noun) নামক Antecedent আছে, যাকে এটি বিশেষায়িত করছে। তাই এটি Adjective Clause।' },
+            { id: 8, set: 'set2', q: 'He will pass <u>if he works hard</u>.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 2, exp: 'এটি পাসের শর্ত (Condition) প্রকাশ করে Verb-কে Modify করছে। তাই এটি Adverbial Clause।' },
+            { id: 9, set: 'set2', q: 'I do not understand <u>what you are saying</u>.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 0, exp: '"I do not understand IT" — এখানে Verb-এর Object হিসেবে বসেছে। তাই এটি Noun Clause।' },
+            { id: 10, set: 'set2', q: 'The dog <u>that barks</u> seldom bites.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 1, exp: 'Clause-টি তার পূর্ববর্তী Noun "dog"-কে বর্ণনা করছে। তাই এটি Adjective Clause।' },
+            { id: 11, set: 'set2', q: 'She stayed at home <u>because it was raining</u>.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 2, exp: 'ঘরে থাকার কারণ (Reason) প্রকাশ করে Verb-কে Modify করছে। তাই এটি Adverbial Clause।' },
+            { id: 12, set: 'set2', q: 'This is the house <u>where I was born</u>.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 1, exp: 'পূর্বে Antecedent Noun "house" থাকায় এটি Adjective Clause।' },
+            { id: 13, set: 'set2', q: 'Tell me <u>where you live</u>.', opts: ['Noun Clause', 'Adjective Clause', 'Adverbial Clause'], ans: 0, exp: 'পূর্বে কোনো Antecedent Noun নেই এবং "Tell me IT" অর্থ দেয়। তাই এটি Noun Clause।' }
         ];
 
-        // Page Load Init
-        window.onload = function() {
-            renderQuizCards(quizData);
-            updateProgressBar();
-        };
+        let score = 0;
+        let answeredMap = {};
+        let currentFilter = 'all';
 
-        // Navigation Tab Switcher
-        function switchTab(pageId) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.add('hidden');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+        function renderQuiz() {
+            const list = document.getElementById('quiz-list');
+            list.innerHTML = '';
+            const items = currentFilter === 'all' ? quizBank : quizBank.filter(q => q.set === currentFilter);
 
-            document.getElementById(pageId).classList.remove('hidden');
-            document.getElementById('tab-' + pageId).classList.add('active');
-            
-            // Smooth Scroll to Top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+            items.forEach((item, idx) => {
+                const userPick = answeredMap[item.id];
+                const isAnswered = userPick !== undefined;
 
-        // Phrase vs Clause Interactive Tester
-        function testPhraseClause(phraseText, type, expText) {
-            const resultBox = document.getElementById('p-c-result');
-            resultBox.classList.remove('hidden');
-            
-            const badgeClass = type === 'Clause' ? 'bg-accent-cyan/20 text-accent-cyan' : 'bg-emerald-500/20 text-emerald-300';
-            
-            resultBox.innerHTML = `
-                <div class="flex items-center space-x-2 mb-2">
-                    <span class="text-xs font-bold px-2 py-0.5 rounded ${badgeClass}">${type}</span>
-                    <strong class="text-white">"${phraseText}"</strong>
-                </div>
-                <p class="text-slate-300 text-xs sm:text-sm">${expText}</p>
-            `;
-        }
-
-        // Interactive "IT" Test Simulator Logic
-        let itTestState = 0;
-        function runItTest() {
-            const display = document.getElementById('it-test-display');
-            if (itTestState === 0) {
-                display.innerHTML = `"I know <span class="bg-amber-500 text-slate-950 px-2 py-0.5 rounded font-bold">IT</span>"`;
-                showToast("Clause-টির জায়গায় 'IT' বসানো হয়েছে!", "info");
-                itTestState = 1;
-            } else {
-                display.innerHTML = `"I know <span class="text-brand-400 font-bold underline">that he is honest</span>"`;
-                itTestState = 0;
-            }
-        }
-
-        // Render Quiz Cards
-        function renderQuizCards(data) {
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = '';
-
-            data.forEach((q, index) => {
                 const card = document.createElement('div');
-                card.className = `glass-panel p-6 rounded-3xl space-y-4 border border-slate-800 hover:border-slate-700 transition-all quiz-card-${q.set}`;
-                card.id = `quiz-card-${q.id}`;
+                card.className = 'p-5 rounded-2xl border space-y-4 transition-all';
+                card.style.background = 'var(--surface-elevated)';
+                card.style.borderColor = 'var(--border-color)';
 
-                let optionsHtml = '';
-                q.options.forEach((opt, optIdx) => {
-                    optionsHtml += `
-                        <button onclick="checkAnswer(${q.id}, ${optIdx})" id="btn-${q.id}-${optIdx}" 
-                            class="w-full text-left p-3.5 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-brand-500 text-sm font-medium text-slate-200 hover:bg-slate-800 transition-all flex items-center justify-between group">
+                const optsHtml = item.opts.map((opt, oIdx) => {
+                    let extraClass = '';
+                    let icon = '<i class="fa-regular fa-circle opacity-60"></i>';
+                    if (isAnswered) {
+                        if (oIdx === item.ans) {
+                            extraClass = 'bg-emerald-600 text-white border-emerald-400';
+                            icon = '<i class="fa-solid fa-circle-check"></i>';
+                        } else if (oIdx === userPick) {
+                            extraClass = 'bg-rose-600 text-white border-rose-400';
+                            icon = '<i class="fa-solid fa-circle-xmark"></i>';
+                        }
+                    }
+                    return `
+                        <button ${isAnswered ? 'disabled' : ''} onclick="submitAnswer(${item.id}, ${oIdx})"
+                            class="btn-3d ripple-target p-3 rounded-xl border text-left text-xs sm:text-sm font-semibold flex items-center justify-between gap-2 ${extraClass}"
+                            style="${!extraClass ? 'background: var(--surface-glass); border-color: var(--border-color);' : ''}">
                             <span>${opt}</span>
-                            <i class="fa-regular fa-circle text-slate-500 group-hover:text-brand-400"></i>
+                            ${icon}
                         </button>
                     `;
-                });
+                }).join('');
 
                 card.innerHTML = `
-                    <div class="flex items-start justify-between gap-3">
-                        <div class="flex items-center space-x-3">
-                            <span class="w-8 h-8 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center font-bold text-sm shrink-0">
-                                ${index + 1}
-                            </span>
-                            <h3 class="text-base sm:text-lg font-semibold text-white leading-relaxed">${q.question}</h3>
+                    <div class="flex items-start gap-3">
+                        <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-mono font-bold text-white shrink-0" style="background: var(--accent-1);">
+                            ${idx + 1}
+                        </span>
+                        <h4 class="font-mono text-sm sm:text-base font-semibold leading-relaxed">${item.q}</h4>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">${optsHtml}</div>
+                    ${isAnswered ? `
+                        <div class="p-3.5 rounded-xl border text-xs sm:text-sm leading-relaxed" style="background: var(--surface-glass); border-color: var(--accent-2); color: var(--text-secondary);">
+                            <strong style="color: var(--accent-2);"><i class="fa-solid fa-lightbulb mr-1"></i> ব্যাখ্যা:</strong> ${item.exp}
                         </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                        ${optionsHtml}
-                    </div>
-
-                    <div class="flex items-center justify-between pt-2">
-                        <button onclick="toggleExplanation(${q.id})" class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1.5 focus:outline-none">
-                            <i class="fa-solid fa-lightbulb"></i>
-                            <span>ব্যাখ্যা দেখুন</span>
-                        </button>
-                    </div>
-
-                    <div id="exp-${q.id}" class="hidden p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs sm:text-sm text-slate-300 leading-relaxed animate-fadeIn">
-                        ${q.explanation}
-                    </div>
+                    ` : ''}
                 `;
-
-                container.appendChild(card);
+                list.appendChild(card);
             });
         }
 
-        // Check Answer Logic
-        function checkAnswer(questionId, selectedOpt) {
-            const q = quizData.find(item => item.id === questionId);
-            if (!q) return;
+        function submitAnswer(qId, optIdx) {
+            if (answeredMap[qId] !== undefined) return;
+            const qObj = quizBank.find(q => q.id === qId);
+            answeredMap[qId] = optIdx;
 
-            const isCorrect = selectedOpt === q.correct;
-            const expBox = document.getElementById(`exp-${questionId}`);
-
-            // Reset options style for this question
-            q.options.forEach((_, idx) => {
-                const btn = document.getElementById(`btn-${questionId}-${idx}`);
-                btn.classList.remove('bg-emerald-600', 'bg-rose-600', 'border-emerald-500', 'border-rose-500', 'text-white');
-                btn.disabled = true; // Disable after answer
-            });
-
-            const selectedBtn = document.getElementById(`btn-${questionId}-${selectedOpt}`);
-            const correctBtn = document.getElementById(`btn-${questionId}-${q.correct}`);
-
-            if (isCorrect) {
-                selectedBtn.classList.add('bg-emerald-600/80', 'border-emerald-500', 'text-white');
-                selectedBtn.querySelector('i').className = 'fa-solid fa-circle-check text-white';
-                
-                if (!completedQuestions.has(questionId)) {
-                    userScore += 10;
-                    completedQuestions.add(questionId);
-                    showToast("সঠিক উত্তর! +১০ পয়েন্ট", "success");
-                }
+            if (optIdx === qObj.ans) {
+                score += 10;
+                showToast('অসাধারণ! সঠিক উত্তর (+১০ পয়েন্ট)', 'success');
             } else {
-                selectedBtn.classList.add('bg-rose-600/80', 'border-rose-500', 'text-white');
-                selectedBtn.querySelector('i').className = 'fa-solid fa-circle-xmark text-white';
-                
-                correctBtn.classList.add('bg-emerald-600/30', 'border-emerald-500', 'text-emerald-200');
-                showToast("ভুল উত্তর। ব্যাখ্যাটি দেখে নিন!", "error");
+                showToast('ভুল উত্তর! নিচের ব্যাখ্যাটি পড়ে নিন।', 'error');
             }
 
-            // Always reveal explanation after selection
-            expBox.classList.remove('hidden');
+            updateScoreBoard();
+            renderQuiz();
 
-            updateProgressBar();
-
-            // Trigger Confetti if all questions completed
-            if (completedQuestions.size === quizData.length) {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
+            if (Object.keys(answeredMap).length === quizBank.length && typeof confetti === 'function') {
+                confetti({ particleCount: 110, spread: 75, origin: { y: 0.65 } });
             }
         }
 
-        // Toggle Explanation Manually
-        function toggleExplanation(qId) {
-            const exp = document.getElementById(`exp-${qId}`);
-            exp.classList.toggle('hidden');
-        }
-
-        // Filter Quizzes
-        function filterQuiz(set) {
-            document.querySelectorAll('.quiz-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-brand-600', 'text-white');
-                btn.classList.add('bg-slate-800', 'text-slate-300');
+        function filterQuizSet(set, btnEl) {
+            currentFilter = set;
+            document.querySelectorAll('.quiz-filter').forEach(b => {
+                b.classList.remove('btn-3d', 'bg-indigo-600', 'text-white');
+                b.style.background = 'var(--surface-elevated)';
+                b.style.color = 'var(--text-primary)';
             });
-            event.target.classList.remove('bg-slate-800', 'text-slate-300');
-            event.target.classList.add('bg-brand-600', 'text-white');
-
-            if (set === 'all') {
-                renderQuizCards(quizData);
-            } else {
-                const filtered = quizData.filter(q => q.set === set);
-                renderQuizCards(filtered);
-            }
+            btnEl.classList.add('btn-3d', 'bg-indigo-600', 'text-white');
+            btnEl.style.background = '';
+            renderQuiz();
         }
 
-        // Update Progress Tracker
-        function updateProgressBar() {
-            document.getElementById('global-score').innerText = userScore;
-            
-            const total = quizData.length;
-            const done = completedQuestions.size;
-            const percentage = Math.round((done / total) * 100);
-
-            document.getElementById('global-progress-text').innerText = `${percentage}%`;
-            document.getElementById('overall-progress-bar').style.width = `${percentage}%`;
+        function resetQuiz() {
+            score = 0;
+            answeredMap = {};
+            updateScoreBoard();
+            renderQuiz();
+            showToast('কুইজ রিসেট করা হয়েছে!', 'info');
         }
 
-        // Custom Toast Notification System
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toast-container');
+        function updateScoreBoard() {
+            const pct = Math.round((Object.keys(answeredMap).length / quizBank.length) * 100);
+            document.getElementById('header-score').innerText = score;
+            document.getElementById('header-progress').innerText = `${pct}%`;
+            document.getElementById('top-progress-bar').style.width = `${pct}%`;
+        }
+
+        /* ---------------- 8. TOAST NOTIFICATION ---------------- */
+        function showToast(msg, type = 'info') {
+            const box = document.getElementById('toast-box');
             const toast = document.createElement('div');
-            
-            const bgClass = type === 'success' ? 'bg-emerald-600' : type === 'error' ? 'bg-rose-600' : 'bg-brand-600';
-            
-            toast.className = `${bgClass} text-white text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl shadow-xl flex items-center space-x-2 transition-all transform translate-y-2 opacity-0 pointer-events-auto`;
-            toast.innerHTML = `
-                <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
-                <span>${message}</span>
-            `;
-
-            container.appendChild(toast);
-
-            // Animate In
+            const colors = { success: 'bg-emerald-600', error: 'bg-rose-600', info: 'bg-indigo-600' };
+            toast.className = `${colors[type] || colors.info} text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 pointer-events-auto`;
+            toast.innerHTML = `<i class="fa-solid fa-sparkles"></i> <span>${msg}</span>`;
+            box.appendChild(toast);
+            gsap.fromTo(toast, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25 });
             setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
-
-            // Remove Toast
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+                gsap.to(toast, { opacity: 0, y: 10, duration: 0.25, onComplete: () => toast.remove() });
+            }, 2600);
         }
+
+        /* ---------------- 9. INITIALIZE APP ---------------- */
+        window.addEventListener('DOMContentLoaded', () => {
+            initThreeJS();
+            init3DTiltAndRipple();
+            renderQuiz();
+        });
     </script>
 </body>
 </html>
